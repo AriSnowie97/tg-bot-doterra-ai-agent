@@ -1,0 +1,9 @@
+# Конфігурація Railway для Python-бота
+
+# Команда запуску: спочатку завантажити контент у БД, потім запустити бота
+[deploy]
+startCommand = "python content/seed.py && python bot.py"
+
+# Версія Python
+[build]
+builder = "NIXPACKS"
