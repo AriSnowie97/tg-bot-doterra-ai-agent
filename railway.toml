@@ -1,9 +1,13 @@
-# Конфігурація Railway для Python-бота
+# Railway конфігурація
+# seed.py запускається автоматично перед стартом бота
 
-# Команда запуску: спочатку завантажити контент у БД, потім запустити бота
-[deploy]
-startCommand = "python content/seed.py && python bot.py"
-
-# Версія Python
 [build]
 builder = "NIXPACKS"
+
+[deploy]
+# Спочатку seed (завантаження контенту в БД), потім бот
+startCommand = "python content/seed.py && python bot.py"
+
+# Перезапускати тільки якщо бот впав (не seed)
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
