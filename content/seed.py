@@ -199,10 +199,26 @@ def seed_postgresql(products: list[dict], conn_string: str):
         print("❌ Встановіть psycopg2: pip install psycopg2-binary")
         sys.exit(1)
 
-    conn_string = conn_string.replace("postgresql://", "").replace("postgres://", "")
+    # psycopg2 приймає повний URL напряму (postgresql://user:pass@host:port/db)
+    # Railway може повертати postgres:// — нормалізуємо до postgresql://
+    if conn_string.startswith("postgres://"):
+        conn_string = conn_string.replace("postgres://", "postgresql://", 1)
 
-    conn = psycopg2.connect(conn_string if "://" not in conn_string else
-                            conn_string.split("://", 1)[1])
+    # Retry-логіка: Railway PostgreSQL може стартувати пізніше за бот
+    import time
+    max_retries = 5
+    for attempt in range(1, max_retries + 1):
+        try:
+            conn = psycopg2.connect(conn_string)
+            break
+        except psycopg2.OperationalError as e:
+            if attempt == max_retries:
+                print(f"❌ Не вдалося підключитися до БД після {max_retries} спроб: {e}")
+                sys.exit(1)
+            wait = 2 ** attempt  # 2, 4, 8, 16 секунд
+            print(f"⏳ Спроба {attempt}/{max_retries} невдала. Повтор через {wait}с...")
+            time.sleep(wait)
+
     cursor = conn.cursor()
 
     schema_path = os.path.join(os.path.dirname(__file__), "schema.sql")
