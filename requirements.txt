@@ -5,3 +5,7 @@ python-dotenv==1.2.2
 
 # Data Base
 psycopg2-binary==2.9.10     # PostgreSQL (Railway, Supabase, Neon)
+pgvector==0.5.0
+
+# Machine learning
+google-genai==2.16.0
