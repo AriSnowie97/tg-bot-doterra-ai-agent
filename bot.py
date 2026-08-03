@@ -19,7 +19,16 @@ dp = Dispatcher()
 
 @dp.message(Command("start"))
 async def command_start_handler(message: Message) -> None:
-    await message.answer("Hello, World!")
+    await message.answer(
+        f"👋 Привіт, {message.from_user.first_name}!\n\n"
+        "🌿 Ласкаво просимо до світу натуральних ефірних олій doTERRA!\n\n"
+        "Тут ти знайдеш:\n"
+        "✨ Інформацію про ефірні олії та їх властивості\n"
+        "💆 Поради щодо застосування для здоров'я та краси\n"
+        "🧴 Рецепти сумішей для дифузора\n"
+        "📚 Наукові дослідження та факти\n\n"
+        "Обери що тебе цікавить — і починаємо! 🌱"
+    )
 
 
 # Run the bot
