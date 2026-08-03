@@ -22,9 +22,9 @@ GEMINI_API_KEY_2 = os.getenv("GEMINI_API_KEY_2", "")
 GEMINI_API_KEY_3 = os.getenv("GEMINI_API_KEY_3", "")
 
 ks = [
-    "GEMINI_API_KEY_1",
-    "GEMINI_API_KEY_2",
-    "GEMINI_API_KEY_3"
+    GEMINI_API_KEY_1,
+    GEMINI_API_KEY_2,
+    GEMINI_API_KEY_3
 ]
 
 client = genai.Client(api_key=ks[2])
