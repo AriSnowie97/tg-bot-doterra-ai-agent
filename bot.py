@@ -12,6 +12,7 @@ from aiogram.types import Message
 # Loading variables from a dotenv file
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+CHANNEL_ID = os.getenv("CHANNEL_ID")
 
 # Creating a dispatcher
 dp = Dispatcher()
