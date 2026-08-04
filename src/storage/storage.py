@@ -57,7 +57,11 @@ def іs_there_similar_embedding(cur,
     check = False
     cur.execute(
         CHECK_FOR_SIMILAR_EMBEDDING,
-        {"embedding": embedding}
+        {
+            "chunk_id": chunk["chunk_id"],
+            "embedding": embedding,
+            "threshold": threshold
+        }
     )
     row = cur.fetchone()
 
