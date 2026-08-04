@@ -1,1 +1,1 @@
-from . import storage
+from .storage import search_chunks

@@ -147,6 +147,45 @@ def upsert_dir_of_chunks(pathDir: str) -> None:
         print(f"Folder error: {e}")
 
 
+def search_chunks(query: str, top_k: int = 5) -> list[dict]:
+    """Пошук найближчих чанків у БД за косинусною схожістю.
+
+    Args:
+        query:  текст запиту від користувача.
+        top_k:  кількість найближчих чанків для повернення.
+
+    Returns:
+        Список словників із полями chunk_id, content, section_title,
+        product_slug та similarity.
+    """
+    from ..embedding import create_embedding
+
+    query_embedding = create_embedding(query)
+
+    conn = _conn_create()
+    register_vector(conn)
+
+    with conn.cursor() as cur:
+        cur.execute(
+            SEARCH_CHUNKS,
+            {"embedding": Vector(query_embedding), "top_k": top_k}
+        )
+        rows = cur.fetchall()
+
+    conn.close()
+
+    return [
+        {
+            "chunk_id":      row[0],
+            "content":       row[1],
+            "section_title": row[2],
+            "product_slug":  row[3],
+            "similarity":    float(row[4]),
+        }
+        for row in rows
+    ]
+
+
 def creating_table_for_chunks() -> None:
     """Створення таблиці для чанків у БД."""
     conn = _conn_create()
@@ -171,6 +210,19 @@ WHERE
     AND (1 - (embedding <=> %(embedding)s)) >= %(threshold)s
 ORDER BY embedding <=> %(embedding)s
 LIMIT 1
+"""
+
+
+SEARCH_CHUNKS = """
+SELECT
+    chunk_id,
+    content,
+    section_title,
+    product_slug,
+    1 - (embedding <=> %(embedding)s) AS similarity
+FROM knowledge_chunks
+ORDER BY embedding <=> %(embedding)s
+LIMIT %(top_k)s
 """
 
 

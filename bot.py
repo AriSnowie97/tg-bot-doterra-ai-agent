@@ -8,6 +8,7 @@ from aiogram.filters import Command
 from aiogram.types import Message
 from aiogram.enums import ChatAction
 # Local
+from src.agent import generate_response
 
 
 # Loading variables from a dotenv file
@@ -44,11 +45,10 @@ async def on_message(message: Message, bot: Bot) -> None:
     thinking_msg = await message.answer("🤔 Думаю над відповіддю...")
 
     try:
-        # TODO: тут буде виклик LLM із RAG-контекстом
-        # response = await generate_response(message.text)
-        response = "⚙️ Генерацію відповіді ще не підключено. Скоро буде!"
+        # 3. RAG-пайплайн: пошук → промпт → Gemini
+        response = await generate_response(message.text)
 
-        # 3. Редагуємо плейсхолдер на реальну відповідь
+        # 4. Редагуємо плейсхолдер на реальну відповідь
         await thinking_msg.edit_text(response)
 
     except Exception as e:
