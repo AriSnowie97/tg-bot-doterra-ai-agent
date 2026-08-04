@@ -29,7 +29,10 @@ def create_embedding(content: str) -> list[float]:
 
             response = client.models.embed_content(
                 model=EMBED_MODEL,
-                contents=content
+                contents=content,
+                config={
+                    "output_dimensionality": 768
+                }
             )
 
             return response.embeddings[0].values
