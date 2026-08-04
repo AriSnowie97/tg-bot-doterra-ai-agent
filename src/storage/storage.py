@@ -3,6 +3,7 @@ import os
 import json
 # Special
 import psycopg2
+from pgvector import Vector
 from pgvector.psycopg2 import register_vector
 # Local
 from ..embedding import create_embedding
@@ -89,7 +90,7 @@ def _upsert_chunk(chunk: dict) -> None:
     conn = _conn_create()
     register_vector(conn)
 
-    embedding = create_embedding(chunk["content"])
+    embedding = Vector(create_embedding(chunk["content"]))
 
     with conn.cursor() as cur:
         if not іs_there_similar_embedding(cur, chunk, embedding):
