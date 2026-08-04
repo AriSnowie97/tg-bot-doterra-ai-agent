@@ -43,6 +43,42 @@ def _conn_create():
     return conn
 
 
+def іs_there_similar_embedding(cur,
+                               chunk: dict,
+                               embedding: list[float],
+                               threshold: float = 0.95) -> bool:
+    """Перевірка на наявність в БД схожого embedding.\n
+    Значення threshold:\n
+    0.98+ = майже гарантований дубль\n
+    0.95-0.98 = дуже схожий текст\n
+    0.90-0.95 = часто той самий зміст, але перефразовано\n
+    <0.90 = зазвичай різний контент
+    """
+    check = False
+    cur.execute(
+        CHECK_FOR_SIMILAR_EMBEDDING,
+        {"embedding": embedding}
+    )
+    row = cur.fetchone()
+
+    if row:
+        chunk_id, product_slug, chunk_order, similarity = row
+        check = True
+
+        print(f"""
+        similar embedding ----------
+        chunk_id: {chunk_id},
+        product_slug: {product_slug},
+        chunk_order: {chunk_order},
+        To new chunk----------------
+        chunk_id: {chunk["chunk_id"]},
+        product_slug: {chunk["product_slug"]},
+        chunk_order: {chunk["order"]},
+        ======== similarity: {float(similarity)} ========""")
+
+    return check
+
+
 def _upsert_chunk(chunk: dict) -> None:
     """Створює чи оновлює для вказаного chunk ембеддинг
     та зберігає цей чанк у БД."""
@@ -52,21 +88,22 @@ def _upsert_chunk(chunk: dict) -> None:
     embedding = create_embedding(chunk["content"])
 
     with conn.cursor() as cur:
-        cur.execute(
-            UPSERT_CHUNK,
-            {
-                "chunk_id": chunk["chunk_id"],
-                "product_slug": chunk["product_slug"],
-                "section_key": chunk["section_key"],
-                "section_title": chunk["section_title"],
-                "content": chunk["content"],
-                "char_count": chunk["char_count"],
-                "tokens_approx": chunk["tokens_approx"],
-                "chunk_order": chunk["order"],
-                "metadata": json.dumps(chunk["metadata"]),
-                "embedding": embedding
-            }
-        )
+        if not іs_there_similar_embedding(cur, chunk, embedding):
+            cur.execute(
+                UPSERT_CHUNK,
+                {
+                    "chunk_id": chunk["chunk_id"],
+                    "product_slug": chunk["product_slug"],
+                    "section_key": chunk["section_key"],
+                    "section_title": chunk["section_title"],
+                    "content": chunk["content"],
+                    "char_count": chunk["char_count"],
+                    "tokens_approx": chunk["tokens_approx"],
+                    "chunk_order": chunk["order"],
+                    "metadata": json.dumps(chunk["metadata"]),
+                    "embedding": embedding
+                }
+            )
 
     conn.commit()
     conn.close()
@@ -107,6 +144,21 @@ def creating_table_for_chunks() -> None:
 
     conn.commit()
     conn.close()
+
+
+CHECK_FOR_SIMILAR_EMBEDDING = """
+SELECT
+    chunk_id,
+    product_slug,
+    chunk_order,
+    1 - (embedding <=> %(embedding)s) AS similarity
+FROM knowledge_chunks
+WHERE
+    chunk_id <> %(chunk_id)s
+    AND (1 - (embedding <=> %(embedding)s)) >= %(threshold)s
+ORDER BY embedding <=> %(embedding)s
+LIMIT 1
+"""
 
 
 UPSERT_CHUNK = """
