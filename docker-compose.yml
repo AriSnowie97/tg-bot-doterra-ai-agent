@@ -1,0 +1,25 @@
+services:
+  postgres:
+    # pgvector/pgvector — официальный образ PostgreSQL + pgvector расширение.
+    # Та же версия что Railway использует по умолчанию.
+    image: pgvector/pgvector:pg16
+    container_name: doterra_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: railway
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: localpass
+    ports:
+      # Порт 5432 пробрасывается на твой ПК
+      - "5432:5432"
+    volumes:
+      # Данные сохраняются между перезапусками контейнера
+      - doterra_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d railway"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  doterra_pgdata:
