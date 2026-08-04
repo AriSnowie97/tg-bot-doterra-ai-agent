@@ -49,21 +49,21 @@ def _upsert_chunk(chunk: dict) -> None:
     conn = _conn_create()
     register_vector(conn)
 
-    embedding = create_embedding(chunk.content)
+    embedding = create_embedding(chunk["content"])
 
     with conn.cursor() as cur:
         cur.execute(
             UPSERT_CHUNK,
             {
-                "chunk_id": chunk.chunk_id,
-                "product_slug": chunk.product_slug,
-                "section_key": chunk.section_key,
-                "section_title": chunk.section_title,
-                "content": chunk.content,
-                "char_count": chunk.char_count,
-                "tokens_approx": chunk.tokens_approx,
-                "chunk_order": chunk.order,
-                "metadata": json.dumps(chunk.metadata),
+                "chunk_id": chunk["chunk_id"],
+                "product_slug": chunk["product_slug"],
+                "section_key": chunk["section_key"],
+                "section_title": chunk["section_title"],
+                "content": chunk["content"],
+                "char_count": chunk["char_count"],
+                "tokens_approx": chunk["tokens_approx"],
+                "chunk_order": chunk["order"],
+                "metadata": json.dumps(chunk["metadata"]),
                 "embedding": embedding
             }
         )
