@@ -20,6 +20,17 @@ CHANNEL_ID = os.getenv("CHANNEL_ID")
 dp = Dispatcher()
 
 
+async def _keep_typing(bot: Bot, chat_id: int, stop_event: asyncio.Event) -> None:
+    """Підтримує індикатор 'пише...' у шапці чату поки не встановлено stop_event.
+
+    Telegram автоматично гасить typing через ~5 сек — тому шлємо його
+    кожні 4 сек у фоновому таску.
+    """
+    while not stop_event.is_set():
+        await bot.send_chat_action(chat_id=chat_id, action=ChatAction.TYPING)
+        await asyncio.sleep(4)
+
+
 @dp.message(Command("start"))
 async def command_start_handler(message: Message) -> None:
     await message.answer(
@@ -33,26 +44,30 @@ async def command_start_handler(message: Message) -> None:
 
 @dp.message(F.text)
 async def on_message(message: Message, bot: Bot) -> None:
-    """Обробник текстових повідомлень із ефектом генерації відповіді."""
+    """Обробник текстових повідомлень із постійним ефектом 'пише...'."""
 
-    # 1. Показуємо індикатор "пише..." у шапці чату
-    await bot.send_chat_action(
-        chat_id=message.chat.id,
-        action=ChatAction.TYPING
+    stop_typing = asyncio.Event()
+
+    # Запускаємо фоновий таск який тримає індикатор "пише..." весь час генерації
+    typing_task = asyncio.create_task(
+        _keep_typing(bot, message.chat.id, stop_typing)
     )
 
-    # 2. Надсилаємо плейсхолдер поки генерується відповідь
-    thinking_msg = await message.answer("🤔 Думаю над відповіддю...")
-
     try:
-        # 3. RAG-пайплайн: пошук → промпт → Gemini
+        # RAG-пайплайн: пошук → промпт → Gemini
         response = await generate_response(message.text)
 
-        # 4. Редагуємо плейсхолдер на реальну відповідь
-        await thinking_msg.edit_text(response)
+        # Зупиняємо typing і надсилаємо відповідь
+        stop_typing.set()
+        typing_task.cancel()
+
+        await message.answer(response)
 
     except Exception as e:
-        await thinking_msg.edit_text(
+        stop_typing.set()
+        typing_task.cancel()
+
+        await message.answer(
             "😔 Виникла помилка при обробці запиту. Спробуй ще раз."
         )
         print(f"[on_message] Error: {e}")

@@ -30,11 +30,12 @@ from ..storage import search_chunks
 # ---------------------------------------------------------------------------
 
 # Моделі у порядку пріоритету — перебираємо при вичерпанні квоти.
+# Актуально на серпень 2026.
 GENERATION_MODELS: list[str] = [
+    "gemini-3.6-flash",
     "gemini-3.5-flash",
-    "gemini-2.5-flash",
-    "gemini-2.5-flash-lite",
-    "gemini-2.0-flash",
+    "gemini-3.5-flash-lite",
+    "gemini-3.1-flash-lite",
 ]
 
 GEMINI_API_KEYS: list[str] = [
@@ -49,7 +50,7 @@ GEMINI_API_KEYS: list[str] = [
 # Кількість чанків для RAG-контексту
 TOP_K = 5
 
-# Максимальна кількість повторних спроб при 429 (per-minute quota)
+# Максимальна кількість повторних спроб при 429/503
 MAX_RETRIES = 2
 
 
@@ -61,18 +62,11 @@ async def generate_response(user_text: str) -> str:
     """Повний RAG-пайплайн: пошук → промпт → LLM → відповідь.
 
     Стратегія при помилках:
-    - 429 per-minute: чекає retryDelay із відповіді і повторює (до MAX_RETRIES разів).
-    - 429 per-day / limit=0: переходить до наступної моделі.
-    - Інша помилка: переходить до наступного API-ключа.
-
-    Args:
-        user_text: текст повідомлення від користувача.
-
-    Returns:
-        Текст відповіді від моделі.
-
-    Raises:
-        RuntimeError: якщо всі комбінації ключ × модель вичерпані.
+    - 429 per-minute: чекає retryDelay із відповіді і повторює.
+    - 429 per-day / limit=0: пропускає до наступної моделі.
+    - 503 UNAVAILABLE: чекає і повторює (тимчасове перевантаження).
+    - 404 NOT_FOUND: пропускає модель одразу.
+    - Інша помилка: пропускає до наступного API-ключа.
     """
     # 1. Знаходимо релевантні чанки з БД
     chunks = await asyncio.to_thread(search_chunks, user_text, TOP_K)
@@ -95,38 +89,55 @@ async def generate_response(user_text: str) -> str:
                         system_prompt=system_prompt,
                         user_text=user_text,
                     )
-                    print(f"[agent] Success: key=...{api_key[-6:]}, model={model}")
+                    print(f"[agent] ✅ Success: key=...{api_key[-6:]}, model={model}")
                     return response
 
                 except Exception as e:
                     error_str = str(e)
                     last_error = e
 
+                    is_404 = "404" in error_str or "NOT_FOUND" in error_str
                     is_429 = "429" in error_str or "RESOURCE_EXHAUSTED" in error_str
+                    is_503 = "503" in error_str or "UNAVAILABLE" in error_str
 
-                    if not is_429:
-                        # Не квота — одразу переходимо до наступного ключа
-                        print(f"[agent] Non-quota error on model={model}: {e}")
+                    # 404 — модель застаріла або не існує, пропускаємо одразу
+                    if is_404:
+                        print(f"[agent] 404 model not found, skip: {model}")
                         break
 
-                    # Перевіряємо чи це per-day / limit=0 → не ретраємо
-                    is_per_day = (
-                        "GenerateRequestsPerDay" in error_str
-                        or '"limit": 0' in error_str
-                        or "limit: 0" in error_str
-                    )
+                    # 503 — тимчасове перевантаження, чекаємо і повторюємо
+                    if is_503:
+                        if attempt <= MAX_RETRIES:
+                            delay = attempt * 10
+                            print(f"[agent] 503 on model={model}, retry in {delay}s (attempt {attempt})")
+                            await asyncio.sleep(delay)
+                            continue
+                        print(f"[agent] 503 retries exhausted for model={model} → next model")
+                        break
 
-                    if is_per_day:
-                        print(f"[agent] Per-day quota exhausted, model={model} → next model")
-                        break  # до наступної моделі
+                    # 429 — розрізняємо per-day і per-minute
+                    if is_429:
+                        is_per_day = (
+                            "GenerateRequestsPerDay" in error_str
+                            or '"limit": 0' in error_str
+                            or "limit: 0" in error_str
+                        )
+                        if is_per_day:
+                            print(f"[agent] Per-day quota exhausted, model={model} → next model")
+                            break
 
-                    # per-minute quota — чекаємо і повторюємо
-                    if attempt <= MAX_RETRIES:
-                        delay = _parse_retry_delay(error_str) or (attempt * 15)
-                        print(f"[agent] Per-minute 429, model={model}, retry in {delay}s (attempt {attempt})")
-                        await asyncio.sleep(delay)
-                    else:
+                        # per-minute — чекаємо retryDelay і повторюємо
+                        if attempt <= MAX_RETRIES:
+                            delay = _parse_retry_delay(error_str) or (attempt * 15)
+                            print(f"[agent] Per-minute 429, model={model}, retry in {delay}s (attempt {attempt})")
+                            await asyncio.sleep(delay)
+                            continue
                         print(f"[agent] Retries exhausted for model={model} → next model")
+                        break
+
+                    # Невідома помилка — наступний ключ
+                    print(f"[agent] Unknown error on model={model}: {e}")
+                    break
 
     raise RuntimeError(
         f"Усі Gemini API-ключі та моделі недоступні. "
@@ -162,8 +173,13 @@ def _call_gemini(api_key: str, model: str, system_prompt: str, user_text: str) -
         config=types.GenerateContentConfig(
             system_instruction=system_prompt,
             temperature=0.3,
-            max_output_tokens=1024,
+            max_output_tokens=2048,
         ),
     )
+
+    if response.text is None:
+        candidates = response.candidates or []
+        finish_reason = candidates[0].finish_reason if candidates else "unknown"
+        raise ValueError(f"response.text=None, finish_reason={finish_reason}, model={model}")
 
     return response.text
