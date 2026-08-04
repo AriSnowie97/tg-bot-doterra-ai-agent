@@ -9,37 +9,45 @@ from pgvector.psycopg2 import register_vector
 from ..embedding import create_embedding
 
 
-PGDATABASE = os.getenv("PGDATABASE", "")
-PGUSER = os.getenv("PGUSER", "")
-PGPASSWORD = os.getenv("PGPASSWORD", "")
-PGHOST = os.getenv("PGHOST", "")
-PGPORT = os.getenv("PGPORT", "")
 DATABASE_URL = os.getenv("DATABASE_URL", "")
 DATABASE_PUBLIC_URL = os.getenv("DATABASE_PUBLIC_URL", "")
 
-# Railway sometimes returns "postgres://" instead of "postgresql://" —
-# — here’s the fix.
+# Railway sometimes returns "postgres://" instead of "postgresql://" — fix it.
 if DATABASE_URL.startswith("postgres://"):
-    print(DATABASE_URL)
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
-    print(DATABASE_URL)
+if DATABASE_PUBLIC_URL.startswith("postgres://"):
+    DATABASE_PUBLIC_URL = DATABASE_PUBLIC_URL.replace("postgres://", "postgresql://", 1)
+
+# Detect environment: Railway sets RAILWAY_ENVIRONMENT automatically.
+# If it's absent — we're running locally.
+IS_RAILWAY = bool(os.getenv("RAILWAY_ENVIRONMENT"))
 
 
 def _conn_create():
-    """Створення зв'язку з БД."""
-    try:
-        # Creating connect with DB
-        conn = psycopg2.connect(DATABASE_URL)
-    # conn = psycopg2.connect(
-    #     dbname=PGDATABASE,
-    #     user=PGUSER,
-    #     password=PGPASSWORD,
-    #     host=PGHOST,
-    #     port=PGPORT
-    # )
+    """Створення зв'язку з БД.
 
+    Логіка вибору URL:
+    - На Railway (IS_RAILWAY=True): використовується DATABASE_URL (внутрішня мережа Railway).
+    - Локально (IS_RAILWAY=False): використовується DATABASE_PUBLIC_URL (публічний хост Railway).
+      Якщо DATABASE_PUBLIC_URL не задано — fallback на DATABASE_URL.
+    """
+    if IS_RAILWAY:
+        url = DATABASE_URL
+        source = "Railway internal (DATABASE_URL)"
+    elif DATABASE_PUBLIC_URL:
+        url = DATABASE_PUBLIC_URL
+        source = "local dev (DATABASE_PUBLIC_URL)"
+    else:
+        url = DATABASE_URL
+        source = "fallback (DATABASE_URL)"
+
+    print(f"[DB] Connecting via {source}")
+
+    try:
+        conn = psycopg2.connect(url)
     except psycopg2.OperationalError as e:
-        print(f"Error: {e}")
+        print(f"[DB] Connection error: {e}")
+        raise
 
     return conn
 
