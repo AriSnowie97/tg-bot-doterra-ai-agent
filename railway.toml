@@ -6,7 +6,7 @@ builder = "NIXPACKS"
 
 [deploy]
 # First seed (loading content to the database), then bot
-startCommand = "python content/seed.py && python bot.py"
+startCommand = "python src/content/seed.py && python manualWork.py && python bot.py"
 
 # Restart only if the bot crashes (not seed)
 restartPolicyType = "ON_FAILURE"
