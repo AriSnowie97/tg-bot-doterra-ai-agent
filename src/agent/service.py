@@ -90,17 +90,6 @@ async def generate_response(user_text: str) -> str:
                         user_text=user_text,
                     )
                     print(f"[agent] ✅ Success: key=...{api_key[-6:]}, model={model}")
-
-                    # Перевіряємо що модель не вивела свої інструкції
-                    if not _is_valid_response(response):
-                        print(f"[agent] ❌ Leaked instructions detected, retrying...")
-                        continue
-
-                    # Якщо відповідь обірвалась — обрізаємо до останнього повного речення
-                    if not _is_complete(response):
-                        print(f"[agent] ⚠️ Response incomplete, trimming to last sentence")
-                        response = _trim_to_last_sentence(response)
-
                     return response
 
                 except Exception as e:
@@ -158,112 +147,10 @@ async def generate_response(user_text: str) -> str:
 
 def _parse_retry_delay(error_str: str) -> float | None:
     """Витягує retryDelay із тексту помилки Gemini (формат: 'N.NNs' або 'Ns')."""
-    match = re.search(r"retryDelay['\"\]?\s*[:=]\s*['\"]?(\d+\.?\d*)\s*s", error_str)
+    match = re.search(r"retryDelay['\"]?\s*[:=]\s*['\"]?(\d+\.?\d*)\s*s", error_str)
     if match:
         return float(match.group(1)) + 1.0  # +1с буфер
     return None
-
-
-# ---------------------------------------------------------------------------
-# Валідація та чищення відповіді
-# ---------------------------------------------------------------------------
-
-# Фрази, які означають витік системних інструкцій в відповідь моделі
-_LEAKED_PHRASES: tuple[str, ...] = (
-    "Use emojis",
-    "Language:",
-    "Language: Ukrainian",
-    "RETRIEVED_CONTEXT",
-    "system_instruction",
-    "STRUCTURE",
-    "chunk_id",       # літеральне слово, не мітка [xxx]
-    "FORMAT",
-    "DISCLAIMER",
-    "TONE",
-)
-
-# Символи та емодзі, якими має закінчуватись повна відповідь
-_COMPLETE_ENDINGS: tuple[str, ...] = (
-    ".", "!", "?",
-    "💛", "🌿", "✨", "🌸", "💧", "💚", "🍃", "🌱", "🌼", "🌻", "🪴", "🫧", "🫂",
-    "😊", "🙌", "👌", "☀️", "🌞",
-)
-
-# Символи, які однозначно вказують на обрив посеред речення
-# Увага: ӐНЕ додаємо українські сполучники (і, та, або...) — вони занадто викликають хибні срацьовання
-_INCOMPLETE_ENDINGS: tuple[str, ...] = (",", ":", "—", "-")
-
-
-def _is_valid_response(text: str) -> bool:
-    """Перевіряє, що модель не вивела власні інструкції замість відповіді.
-
-    Якщо відповідь містить прямі фрази з системного промпту (напр., «Use emojis») —
-    це витік інструкцій, запит треба повторити.
-    """
-    for phrase in _LEAKED_PHRASES:
-        if phrase in text:
-            print(f"[agent] ❌ Leaked instruction detected: '{phrase}'")
-            return False
-    return True
-
-
-def _is_complete(text: str) -> bool:
-    """Перевіряє, чи є відповідь завершеною.
-
-    Відповідь вважається незавершеною, якщо:
-    - закінчується на кому, двокрапку або тире (,  :  —)
-    - не закінчується жодним із відомих завершальних символів
-    """
-    stripped = text.strip()
-    if not stripped:
-        return False
-
-    # Явна ознака обриву
-    for bad in _INCOMPLETE_ENDINGS:
-        if stripped.endswith(bad):
-            print(f"[completion] ❌ Ends with incomplete marker: '{bad}'")
-            return False
-
-    # Перевіряємо чи є завершальний символ
-    for ending in _COMPLETE_ENDINGS:
-        if stripped.endswith(ending):
-            return True
-
-    # Частковий chunk_id (посередина hex або закрита ]
-    if stripped.endswith("]") or re.search(r"\[[a-f0-9]{1,15}$", stripped) or stripped.endswith("["):
-        print("[completion] ⚠️ Ends with chunk_id marker — trimming")
-        return False
-
-    # Невідоме закінчення — вважаємо незавершеним
-    print(f"[completion] ⚠️ Unknown ending, treating as incomplete")
-    return False
-
-
-def _trim_to_last_sentence(text: str) -> str:
-    """Обрізає незавершений хвіст до останнього повного речення.
-
-    Не робить додаткових API-запитів. Просто знаходить останню точку
-    або емодзі і обрізає текст після неї.
-    """
-    # Шукаємо останню позицію . ! ? або емодзі зі списку _COMPLETE_ENDINGS
-    emoji_pattern = "|".join(re.escape(e) for e in _COMPLETE_ENDINGS if e not in (".", "!", "?"))
-    sentence_end = re.compile(
-        rf'([.!?]|{emoji_pattern})(?=\s|$)',
-        re.UNICODE
-    )
-
-    last_pos = -1
-    for match in sentence_end.finditer(text):
-        last_pos = match.end()
-
-    if last_pos > 0:
-        result = text[:last_pos].rstrip()
-        print(f"[completion] ✂️ Trimmed to pos {last_pos}/{len(text)}")
-        return result
-
-    # Якщо жодної точки немає — повертаємо оригінал + мінімальне закінчення
-    print("[completion] ⚠️ No sentence end found, using raw fallback")
-    return text.strip().rstrip(",:-— ") + " 💛"
 
 
 def _call_gemini(api_key: str, model: str, system_prompt: str, user_text: str) -> str:
@@ -285,8 +172,8 @@ def _call_gemini(api_key: str, model: str, system_prompt: str, user_text: str) -
         contents=user_text,
         config=types.GenerateContentConfig(
             system_instruction=system_prompt,
-            temperature=0.7,
-            max_output_tokens=1500,
+            temperature=0.3,
+            max_output_tokens=2048,
         ),
     )
 
