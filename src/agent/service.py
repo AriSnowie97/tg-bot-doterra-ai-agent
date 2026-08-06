@@ -91,18 +91,15 @@ async def generate_response(user_text: str) -> str:
                     )
                     print(f"[agent] ✅ Success: key=...{api_key[-6:]}, model={model}")
 
-                    # Перевіряємо завершеність відповіді
+                    # Перевіряємо що модель не вивела свої інструкції
+                    if not _is_valid_response(response):
+                        print(f"[agent] ❌ Leaked instructions detected, retrying...")
+                        continue
+
+                    # Якщо відповідь обірвалась — обрізаємо до останнього повного речення
                     if not _is_complete(response):
-                        print(f"[agent] ⚠️ Response incomplete, requesting completion...")
-                        response = await asyncio.to_thread(
-                            _complete_response,
-                            api_key=api_key,
-                            model=model,
-                            system_prompt=system_prompt,
-                            user_text=user_text,
-                            partial_response=response,
-                        )
-                        print(f"[agent] ✅ Completion done")
+                        print(f"[agent] ⚠️ Response incomplete, trimming to last sentence")
+                        response = _trim_to_last_sentence(response)
 
                     return response
 
@@ -168,8 +165,22 @@ def _parse_retry_delay(error_str: str) -> float | None:
 
 
 # ---------------------------------------------------------------------------
-# Контролер завершеності відповіді
+# Валідація та чищення відповіді
 # ---------------------------------------------------------------------------
+
+# Фрази, які означають витік системних інструкцій в відповідь моделі
+_LEAKED_PHRASES: tuple[str, ...] = (
+    "Use emojis",
+    "Language:",
+    "Language: Ukrainian",
+    "RETRIEVED_CONTEXT",
+    "system_instruction",
+    "STRUCTURE",
+    "chunk_id",       # літеральне слово, не мітка [xxx]
+    "FORMAT",
+    "DISCLAIMER",
+    "TONE",
+)
 
 # Символи та емодзі, якими має закінчуватись повна відповідь
 _COMPLETE_ENDINGS: tuple[str, ...] = (
@@ -179,21 +190,35 @@ _COMPLETE_ENDINGS: tuple[str, ...] = (
 )
 
 # Символи, які однозначно вказують на обрив посеред речення
-_INCOMPLETE_ENDINGS: tuple[str, ...] = (",", ":", "—", "-", "і", "та", "або", "що", "як")
+# Увага: ӐНЕ додаємо українські сполучники (і, та, або...) — вони занадто викликають хибні срацьовання
+_INCOMPLETE_ENDINGS: tuple[str, ...] = (",", ":", "—", "-")
+
+
+def _is_valid_response(text: str) -> bool:
+    """Перевіряє, що модель не вивела власні інструкції замість відповіді.
+
+    Якщо відповідь містить прямі фрази з системного промпту (напр., «Use emojis») —
+    це витік інструкцій, запит треба повторити.
+    """
+    for phrase in _LEAKED_PHRASES:
+        if phrase in text:
+            print(f"[agent] ❌ Leaked instruction detected: '{phrase}'")
+            return False
+    return True
 
 
 def _is_complete(text: str) -> bool:
     """Перевіряє, чи є відповідь завершеною.
 
     Відповідь вважається незавершеною, якщо:
-    - закінчується на кому, двокрапку або тире (обрив)
+    - закінчується на кому, двокрапку або тире (,  :  —)
     - не закінчується жодним із відомих завершальних символів
     """
     stripped = text.strip()
     if not stripped:
         return False
 
-    # Явна ознака обриву — закінчується на "небезпечний" символ
+    # Явна ознака обриву
     for bad in _INCOMPLETE_ENDINGS:
         if stripped.endswith(bad):
             print(f"[completion] ❌ Ends with incomplete marker: '{bad}'")
@@ -204,67 +229,41 @@ def _is_complete(text: str) -> bool:
         if stripped.endswith(ending):
             return True
 
-    # Якщо закінчується на ] (chunk_id мітка) — вважаємо незавершеним,
-    # бо після джерела має бути ще closing phrase
-    if stripped.endswith("]"):
-        print("[completion] ⚠️ Ends with chunk_id — missing closing phrase")
+    # Частковий chunk_id (посередина hex або закрита ]
+    if stripped.endswith("]") or re.search(r"\[[a-f0-9]{1,15}$", stripped) or stripped.endswith("["):
+        print("[completion] ⚠️ Ends with chunk_id marker — trimming")
         return False
 
+    # Невідоме закінчення — вважаємо незавершеним
     print(f"[completion] ⚠️ Unknown ending, treating as incomplete")
     return False
 
 
-def _complete_response(
-    api_key: str,
-    model: str,
-    system_prompt: str,
-    user_text: str,
-    partial_response: str,
-) -> str:
-    """Надсилає повторний запит щоб дописати незавершену відповідь.
+def _trim_to_last_sentence(text: str) -> str:
+    """Обрізає незавершений хвіст до останнього повного речення.
 
-    Формує контекст із часткової відповіді та просить модель завершити її,
-    зберігаючи тон і стиль.
-
-    Args:
-        api_key:          Gemini API ключ.
-        model:            назва моделі Gemini.
-        system_prompt:    системний промпт із RAG-контекстом.
-        user_text:        оригінальне повідомлення користувача.
-        partial_response: незавершена відповідь яку треба дописати.
-
-    Returns:
-        Повна відповідь (partial_response + дописана частина).
+    Не робить додаткових API-запитів. Просто знаходить останню точку
+    або емодзі і обрізає текст після неї.
     """
-    client = genai.Client(api_key=api_key)
-
-    completion_prompt = (
-        f"Запит користувача: {user_text}\n\n"
-        f"Ти вже почав відповідати, але відповідь обірвалась. "
-        f"Ось незавершена відповідь:\n\n{partial_response}\n\n"
-        "Продовж і ДОВЕРШИ цю відповідь з того місця де вона обірвалась. "
-        "Не повторюй те що вже написано — лише допиши решту. "
-        "Обов'язково завершити закінчувальною теплою фразою з 💛 або 🌿. "
-        "Якщо потрібен дисклеймер — додай його в кінці."
+    # Шукаємо останню позицію . ! ? або емодзі зі списку _COMPLETE_ENDINGS
+    emoji_pattern = "|".join(re.escape(e) for e in _COMPLETE_ENDINGS if e not in (".", "!", "?"))
+    sentence_end = re.compile(
+        rf'([.!?]|{emoji_pattern})(?=\s|$)',
+        re.UNICODE
     )
 
-    response = client.models.generate_content(
-        model=model,
-        contents=completion_prompt,
-        config=types.GenerateContentConfig(
-            system_instruction=system_prompt,
-            temperature=0.2,
-            max_output_tokens=512,
-        ),
-    )
+    last_pos = -1
+    for match in sentence_end.finditer(text):
+        last_pos = match.end()
 
-    if response.text is None:
-        # Якщо дописати не вдалось — повертаємо оригінал із мінімальним закінченням
-        print("[completion] ❌ Completion call returned None, using fallback")
-        return partial_response.rstrip(",:-— ") + " 💛"
+    if last_pos > 0:
+        result = text[:last_pos].rstrip()
+        print(f"[completion] ✂️ Trimmed to pos {last_pos}/{len(text)}")
+        return result
 
-    completed = partial_response.rstrip() + "\n" + response.text.strip()
-    return completed
+    # Якщо жодної точки немає — повертаємо оригінал + мінімальне закінчення
+    print("[completion] ⚠️ No sentence end found, using raw fallback")
+    return text.strip().rstrip(",:-— ") + " 💛"
 
 
 def _call_gemini(api_key: str, model: str, system_prompt: str, user_text: str) -> str:
@@ -286,8 +285,8 @@ def _call_gemini(api_key: str, model: str, system_prompt: str, user_text: str) -
         contents=user_text,
         config=types.GenerateContentConfig(
             system_instruction=system_prompt,
-            temperature=0.3,
-            max_output_tokens=600,
+            temperature=0.7,
+            max_output_tokens=1500,
         ),
     )
 
