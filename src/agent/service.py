@@ -90,6 +90,20 @@ async def generate_response(user_text: str) -> str:
                         user_text=user_text,
                     )
                     print(f"[agent] ✅ Success: key=...{api_key[-6:]}, model={model}")
+
+                    # Перевіряємо завершеність відповіді
+                    if not _is_complete(response):
+                        print(f"[agent] ⚠️ Response incomplete, requesting completion...")
+                        response = await asyncio.to_thread(
+                            _complete_response,
+                            api_key=api_key,
+                            model=model,
+                            system_prompt=system_prompt,
+                            user_text=user_text,
+                            partial_response=response,
+                        )
+                        print(f"[agent] ✅ Completion done")
+
                     return response
 
                 except Exception as e:
@@ -147,10 +161,110 @@ async def generate_response(user_text: str) -> str:
 
 def _parse_retry_delay(error_str: str) -> float | None:
     """Витягує retryDelay із тексту помилки Gemini (формат: 'N.NNs' або 'Ns')."""
-    match = re.search(r"retryDelay['\"]?\s*[:=]\s*['\"]?(\d+\.?\d*)\s*s", error_str)
+    match = re.search(r"retryDelay['\"\]?\s*[:=]\s*['\"]?(\d+\.?\d*)\s*s", error_str)
     if match:
         return float(match.group(1)) + 1.0  # +1с буфер
     return None
+
+
+# ---------------------------------------------------------------------------
+# Контролер завершеності відповіді
+# ---------------------------------------------------------------------------
+
+# Символи та емодзі, якими має закінчуватись повна відповідь
+_COMPLETE_ENDINGS: tuple[str, ...] = (
+    ".", "!", "?",
+    "💛", "🌿", "✨", "🌸", "💧", "💚", "🍃", "🌱", "🌼", "🌻", "🪴", "🫧", "🫂",
+    "😊", "🙌", "👌", "☀️", "🌞",
+)
+
+# Символи, які однозначно вказують на обрив посеред речення
+_INCOMPLETE_ENDINGS: tuple[str, ...] = (",", ":", "—", "-", "і", "та", "або", "що", "як")
+
+
+def _is_complete(text: str) -> bool:
+    """Перевіряє, чи є відповідь завершеною.
+
+    Відповідь вважається незавершеною, якщо:
+    - закінчується на кому, двокрапку або тире (обрив)
+    - не закінчується жодним із відомих завершальних символів
+    """
+    stripped = text.strip()
+    if not stripped:
+        return False
+
+    # Явна ознака обриву — закінчується на "небезпечний" символ
+    for bad in _INCOMPLETE_ENDINGS:
+        if stripped.endswith(bad):
+            print(f"[completion] ❌ Ends with incomplete marker: '{bad}'")
+            return False
+
+    # Перевіряємо чи є завершальний символ
+    for ending in _COMPLETE_ENDINGS:
+        if stripped.endswith(ending):
+            return True
+
+    # Якщо закінчується на ] (chunk_id мітка) — вважаємо незавершеним,
+    # бо після джерела має бути ще closing phrase
+    if stripped.endswith("]"):
+        print("[completion] ⚠️ Ends with chunk_id — missing closing phrase")
+        return False
+
+    print(f"[completion] ⚠️ Unknown ending, treating as incomplete")
+    return False
+
+
+def _complete_response(
+    api_key: str,
+    model: str,
+    system_prompt: str,
+    user_text: str,
+    partial_response: str,
+) -> str:
+    """Надсилає повторний запит щоб дописати незавершену відповідь.
+
+    Формує контекст із часткової відповіді та просить модель завершити її,
+    зберігаючи тон і стиль.
+
+    Args:
+        api_key:          Gemini API ключ.
+        model:            назва моделі Gemini.
+        system_prompt:    системний промпт із RAG-контекстом.
+        user_text:        оригінальне повідомлення користувача.
+        partial_response: незавершена відповідь яку треба дописати.
+
+    Returns:
+        Повна відповідь (partial_response + дописана частина).
+    """
+    client = genai.Client(api_key=api_key)
+
+    completion_prompt = (
+        f"Запит користувача: {user_text}\n\n"
+        f"Ти вже почав відповідати, але відповідь обірвалась. "
+        f"Ось незавершена відповідь:\n\n{partial_response}\n\n"
+        "Продовж і ДОВЕРШИ цю відповідь з того місця де вона обірвалась. "
+        "Не повторюй те що вже написано — лише допиши решту. "
+        "Обов'язково завершити закінчувальною теплою фразою з 💛 або 🌿. "
+        "Якщо потрібен дисклеймер — додай його в кінці."
+    )
+
+    response = client.models.generate_content(
+        model=model,
+        contents=completion_prompt,
+        config=types.GenerateContentConfig(
+            system_instruction=system_prompt,
+            temperature=0.2,
+            max_output_tokens=512,
+        ),
+    )
+
+    if response.text is None:
+        # Якщо дописати не вдалось — повертаємо оригінал із мінімальним закінченням
+        print("[completion] ❌ Completion call returned None, using fallback")
+        return partial_response.rstrip(",:-— ") + " 💛"
+
+    completed = partial_response.rstrip() + "\n" + response.text.strip()
+    return completed
 
 
 def _call_gemini(api_key: str, model: str, system_prompt: str, user_text: str) -> str:
@@ -173,7 +287,7 @@ def _call_gemini(api_key: str, model: str, system_prompt: str, user_text: str) -
         config=types.GenerateContentConfig(
             system_instruction=system_prompt,
             temperature=0.3,
-            max_output_tokens=2048,
+            max_output_tokens=600,
         ),
     )
 
