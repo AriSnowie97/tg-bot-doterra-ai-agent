@@ -76,7 +76,7 @@ async def generate_response(user_text: str) -> str:
     # 2. Будуємо системний промпт із контекстом
     system_prompt = build_system_prompt(chunks)
 
-    response = LLM().generate_content(user_text,
+    response = await LLM().generate_content(user_text,
                                            types.GenerateContentConfig(
                                                system_instruction=system_prompt,
                                                temperature=0.3,
