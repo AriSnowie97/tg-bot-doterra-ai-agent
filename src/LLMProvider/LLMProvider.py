@@ -3,6 +3,7 @@ import re
 import asyncio
 from abc import ABC, abstractmethod
 # Special
+from google.genai import types
 # Local
 
 class LLMProvider(ABC):
@@ -33,7 +34,10 @@ class LLMProvider(ABC):
         return None
 
 
-    async def generate_content(self, content: str, config = None, MAX_RETRIES: int = 2) -> str:
+    async def generate_content(self,
+                               content: str,
+                               config: types.GenerateContentConfigOrDict | None = None,
+                               MAX_RETRIES: int = 2) -> str:
         """Генерація відповіді на основі prompt.
 
         Стратегія при помилках:
@@ -159,6 +163,7 @@ class LLMProvider(ABC):
 
 
     @abstractmethod
-    def _generate_content(self, api_key: str, model: str, content: str, config: dict = None) -> str:
+    def _generate_content(self, api_key: str, model: str, content: str,
+                          config: types.GenerateContentConfigOrDict | None = None,) -> str:
         """Приватний допоміжний метод для публічного generate_content."""
         pass
