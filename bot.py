@@ -4,7 +4,7 @@ import asyncio
 # Special
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, F
-from aiogram.filters import Command
+from aiogram.filters import Command, CommandObject
 from aiogram.types import Message
 from aiogram.enums import ChatAction
 # Local
@@ -40,6 +40,42 @@ async def command_start_handler(message: Message) -> None:
         "про ефірні олії та продукти doTERRA.\n\n"
         "Просто напиши своє запитання — і я знайду відповідь 🔍"
     )
+
+
+@dp.message(Command("ask"))
+async def command_ask_handler(message: Message, command: CommandObject) -> None:
+    """Метод для обробки запитів з команди /ask до бота."""
+    response = ""
+
+    if not command.args:
+        response = "Введіть питання після команди /ask ."
+
+    else:
+        response = await generate_response(command.args.strip())
+
+    await message.answer(response)
+
+
+@dp.message()
+async def bot_mention_handler(message: Message) -> None:
+    response = ""
+
+    if message.chat.type in {"group", "supergroup"} and message.text:
+        bot_user = await message.bot.get_me()
+
+        if bot_user.username:
+            mention = f"@{bot_user.username}"
+
+            if mention.lower() in message.text.lower():
+                query = message.text.replace(mention, "").strip()
+
+                if not query:
+                    response = "Введіть питання після згадування @бота."
+
+                else:
+                    response = await generate_response(query)
+
+                await message.answer(response)
 
 
 @dp.message(F.text)
