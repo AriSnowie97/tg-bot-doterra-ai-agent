@@ -56,11 +56,11 @@ async def command_ask_handler(message: Message, command: CommandObject) -> None:
     await message.answer(response)
 
 
-@dp.message()
+@dp.message(F.text)
 async def bot_mention_handler(message: Message) -> None:
     response = ""
 
-    if message.chat.type in {"group", "supergroup"} and message.text:
+    if message.text:
         bot_user = await message.bot.get_me()
 
         if bot_user.username:
@@ -78,35 +78,35 @@ async def bot_mention_handler(message: Message) -> None:
                 await message.answer(response)
 
 
-@dp.message(F.text)
-async def on_message(message: Message, bot: Bot) -> None:
-    """Обробник текстових повідомлень із постійним ефектом 'пише...'."""
+# @dp.message(F.text)
+# async def on_message(message: Message, bot: Bot) -> None:
+#     """Обробник текстових повідомлень із постійним ефектом 'пише...'."""
 
-    stop_typing = asyncio.Event()
+#     stop_typing = asyncio.Event()
 
-    # Запускаємо фоновий таск який тримає індикатор "пише..." весь час генерації
-    typing_task = asyncio.create_task(
-        _keep_typing(bot, message.chat.id, stop_typing)
-    )
+#     # Запускаємо фоновий таск який тримає індикатор "пише..." весь час генерації
+#     typing_task = asyncio.create_task(
+#         _keep_typing(bot, message.chat.id, stop_typing)
+#     )
 
-    try:
-        # RAG-пайплайн: пошук → промпт → Gemini
-        response = await generate_response(message.text)
+#     try:
+#         # RAG-пайплайн: пошук → промпт → Gemini
+#         response = await generate_response(message.text)
 
-        # Зупиняємо typing і надсилаємо відповідь
-        stop_typing.set()
-        typing_task.cancel()
+#         # Зупиняємо typing і надсилаємо відповідь
+#         stop_typing.set()
+#         typing_task.cancel()
 
-        await message.answer(response)
+#         await message.answer(response)
 
-    except Exception as e:
-        stop_typing.set()
-        typing_task.cancel()
+#     except Exception as e:
+#         stop_typing.set()
+#         typing_task.cancel()
 
-        await message.answer(
-            "😔 Виникла помилка при обробці запиту. Спробуй ще раз."
-        )
-        print(f"[on_message] Error: {e}")
+#         await message.answer(
+#             "😔 Виникла помилка при обробці запиту. Спробуй ще раз."
+#         )
+#         print(f"[on_message] Error: {e}")
 
 
 # Run the bot
