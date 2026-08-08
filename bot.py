@@ -9,6 +9,7 @@ from aiogram.types import Message
 from aiogram.enums import ChatAction
 # Local
 from src.agent import generate_response
+import handlers as h
 
 
 # Loading variables from a dotenv file
@@ -19,63 +20,67 @@ CHANNEL_ID = os.getenv("CHANNEL_ID")
 # Creating a dispatcher
 dp = Dispatcher()
 
-
-async def _keep_typing(bot: Bot, chat_id: int, stop_event: asyncio.Event) -> None:
-    """Підтримує індикатор 'пише...' у шапці чату поки не встановлено stop_event.
-
-    Telegram автоматично гасить typing через ~5 сек — тому шлємо його
-    кожні 4 сек у фоновому таску.
-    """
-    while not stop_event.is_set():
-        await bot.send_chat_action(chat_id=chat_id, action=ChatAction.TYPING)
-        await asyncio.sleep(4)
+dp.include_router(h.start_router)
+dp.include_router(h.ask_router)
+dp.include_router(h.mention_router)
 
 
-@dp.message(Command("start"))
-async def command_start_handler(message: Message) -> None:
-    await message.answer(
-        f"👋 Привіт, {message.from_user.first_name}!\n\n"
-        "🌿 Ласкаво просимо до AI-консультанта doTERRA!\n\n"
-        "Я допоможу тобі розібратись у гайдах та знайти потрібну інформацію "
-        "про ефірні олії та продукти doTERRA.\n\n"
-        "Просто напиши своє запитання — і я знайду відповідь 🔍"
-    )
+# async def _keep_typing(bot: Bot, chat_id: int, stop_event: asyncio.Event) -> None:
+#     """Підтримує індикатор 'пише...' у шапці чату поки не встановлено stop_event.
+
+#     Telegram автоматично гасить typing через ~5 сек — тому шлємо його
+#     кожні 4 сек у фоновому таску.
+#     """
+#     while not stop_event.is_set():
+#         await bot.send_chat_action(chat_id=chat_id, action=ChatAction.TYPING)
+#         await asyncio.sleep(4)
 
 
-@dp.message(Command("ask"))
-async def command_ask_handler(message: Message, command: CommandObject) -> None:
-    """Метод для обробки запитів з команди /ask до бота."""
-    response = ""
-
-    if not command.args:
-        response = "Введіть питання після команди /ask ."
-
-    else:
-        response = await generate_response(command.args.strip())
-
-    await message.answer(response)
+# @dp.message(Command("start"))
+# async def command_start_handler(message: Message) -> None:
+#     await message.answer(
+#         f"👋 Привіт, {message.from_user.first_name}!\n\n"
+#         "🌿 Ласкаво просимо до AI-консультанта doTERRA!\n\n"
+#         "Я допоможу тобі розібратись у гайдах та знайти потрібну інформацію "
+#         "про ефірні олії та продукти doTERRA.\n\n"
+#         "Просто напиши своє запитання — і я знайду відповідь 🔍"
+#     )
 
 
-@dp.message(F.text)
-async def bot_mention_handler(message: Message) -> None:
-    response = ""
+# @dp.message(Command("ask"))
+# async def command_ask_handler(message: Message, command: CommandObject) -> None:
+#     """Метод для обробки запитів з команди /ask до бота."""
+#     response = ""
 
-    if message.text:
-        bot_user = await message.bot.get_me()
+#     if not command.args:
+#         response = "Введіть питання після команди /ask ."
 
-        if bot_user.username:
-            mention = f"@{bot_user.username}"
+#     else:
+#         response = await generate_response(command.args.strip())
 
-            if mention.lower() in message.text.lower():
-                query = message.text.replace(mention, "").strip()
+#     await message.answer(response)
 
-                if not query:
-                    response = "Введіть питання після згадування @бота."
 
-                else:
-                    response = await generate_response(query)
+# @dp.message(F.text)
+# async def bot_mention_handler(message: Message) -> None:
+#     response = ""
 
-                await message.answer(response)
+#     if message.text:
+#         bot_user = await message.bot.get_me()
+
+#         if bot_user.username:
+#             mention = f"@{bot_user.username}"
+
+#             if mention.lower() in message.text.lower():
+#                 query = message.text.replace(mention, "").strip()
+
+#                 if not query:
+#                     response = "Введіть питання після згадування @бота."
+
+#                 else:
+#                     response = await generate_response(query)
+
+#                 await message.answer(response)
 
 
 # @dp.message(F.text)
