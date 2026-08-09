@@ -32,17 +32,19 @@ from datetime import datetime
 # pip install (вбудовано sqlite3 для SQLite)
 
 
-PRODUCTS_DIR = os.path.join(os.path.dirname(__file__), "products")
-
+CONTENT_DIR = os.path.dirname(__file__)
+DATA_DIRS = ["products", "advice", "kits"]
 
 def load_product_files() -> list[dict]:
-    """Завантажити всі JSON-файли продуктів з директорії products/"""
+    """Завантажити всі JSON-файли продуктів з директорій products, advice, kits"""
     products = []
-    pattern = os.path.join(PRODUCTS_DIR, "*.json")
-    files = sorted(glob.glob(pattern))
+    files = []
+    for d in DATA_DIRS:
+        pattern = os.path.join(CONTENT_DIR, d, "*.json")
+        files.extend(sorted(glob.glob(pattern)))
 
     if not files:
-        print(f"❌ Не знайдено JSON-файлів у {PRODUCTS_DIR}")
+        print(f"❌ Не знайдено JSON-файлів у {DATA_DIRS}")
         sys.exit(1)
 
     for filepath in files:
@@ -118,14 +120,11 @@ def seed_sqlite(products: list[dict], db_path: str):
         # SQLite: прибираємо PostgreSQL-специфічні речі
         schema_sql = schema_sql.replace("SERIAL", "INTEGER")
         schema_sql = schema_sql.replace("TIMESTAMPTZ", "TIMESTAMP")
-        # Виконуємо кожен запит окремо
-        for stmt in schema_sql.split(";"):
-            stmt = stmt.strip()
-            if stmt and not stmt.startswith("--"):
-                try:
-                    cursor.execute(stmt)
-                except Exception:
-                    pass  # Ігнорувати помилки CREATE INDEX IF NOT EXISTS тощо
+        
+        try:
+            cursor.executescript(schema_sql)
+        except Exception as e:
+            print(f"Schema Error: {e}")
 
     inserted = 0
     updated = 0
@@ -328,7 +327,7 @@ def main():
     else:
         print(f"🔗 Підключення: {args.db[:60]}...")
 
-    print(f"\n📂 Завантаження файлів з {PRODUCTS_DIR}...")
+    print(f"\n📂 Завантаження файлів з {DATA_DIRS}...")
     products = load_product_files()
 
     print(f"\n🔍 Валідація {len(products)} продуктів...")

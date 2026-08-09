@@ -1,138 +1,32 @@
-[
-  {
-    "chunk_id": "fc8f62765a15085c",
-    "product_slug": "digestzen-terrazyme",
-    "section_key": "product_header",
-    "section_title": "DigestZen TerraZyme",
-    "content": "Категорія: Supplements → Digestive Health\n\nТип: БАД (комплекс травних ферментів)\n\nПосилання: https://www.doterra.com/US/en/p/digestzen-terrazyme",
-    "char_count": 144,
-    "tokens_approx": 36,
-    "order": 0,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\digestzen-terrazyme.md",
-      "section_title": "__header__DigestZen TerraZyme",
-      "item_count": 0,
-      "has_list": false
-    }
-  },
-  {
-    "chunk_id": "513d434d7e855033",
-    "product_slug": "digestzen-terrazyme",
-    "section_key": "short_description",
-    "section_title": "Короткий опис",
-    "content": "👑 Комплекс травних ферментів на основі цільних харчових джерел для підтримки здорового травлення\n👑 Допомагає організму засвоювати поживні речовини з обробленої та вареної їжі\n👑 Частина лінійки DigestZen",
-    "char_count": 202,
-    "tokens_approx": 50,
-    "order": 1,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\digestzen-terrazyme.md",
-      "section_title": "Короткий опис",
-      "item_count": 3,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "01ddac35886e1f99",
-    "product_slug": "digestzen-terrazyme",
-    "section_key": "склад-та-ключові-інгредієнти",
-    "section_title": "Склад та ключові інгредієнти",
-    "content": "▫️ 10 активних цільнохарчових ферментів (амілаза, ліпаза, протеаза та інші)\n▫️ Кофактори для підтримки природного вироблення ферментів\n▫️ Фірмова суміш Tummy Tamer (м'ята, імбир, кмин)\n▫️ Рослинні капсули без глютену, молочних продуктів і компонентів тваринного походження",
-    "char_count": 272,
-    "tokens_approx": 68,
-    "order": 2,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\digestzen-terrazyme.md",
-      "section_title": "Склад та ключові інгредієнти",
-      "item_count": 4,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "819c8b00eb89fd2c",
-    "product_slug": "digestzen-terrazyme",
-    "section_key": "indications",
-    "section_title": "Показання",
-    "content": "👑 Травний комфорт: зменшує газоутворення і здуття після їжі\n👑 Засвоєння поживних речовин: підтримує перетворення їжі на клітинну енергію\n👑 Толерантність до їжі: корисний при подорожах чи пробі нових страв\n👑 Підтримка природного вироблення ферментів організмом",
-    "char_count": 259,
-    "tokens_approx": 64,
-    "order": 3,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\digestzen-terrazyme.md",
-      "section_title": "Показання",
-      "item_count": 4,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "5a8d3a77426fd504",
-    "product_slug": "digestzen-terrazyme",
-    "section_key": "спосіб-застосування",
-    "section_title": "Спосіб застосування",
-    "content": "🔹 1 капсула — коли страва містить переважно свіжі, необроблені продукти\n🔹 2-3 капсули — при вживанні сильно обробленої, вареної їжі або продуктів, які зазвичай викликають дискомфорт\n🔹 Приймати безпосередньо перед або одразу після їжі",
-    "char_count": 233,
-    "tokens_approx": 58,
-    "order": 4,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\digestzen-terrazyme.md",
-      "section_title": "Спосіб застосування",
-      "item_count": 3,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "b65adef78bade116",
-    "product_slug": "digestzen-terrazyme",
-    "section_key": "сумісність-з-іншими-продуктами-doterra",
-    "section_title": "Сумісність з іншими продуктами doTERRA",
-    "content": "🔹 Zendocrine — для комплексної підтримки детоксикаційних систем організму\n🔹 GX Assist та PB Assist+ — для повної підтримки мікрофлори кишківника\n🔹 Lifelong Vitality Pack — базова харчова основа",
-    "char_count": 193,
-    "tokens_approx": 48,
-    "order": 5,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\digestzen-terrazyme.md",
-      "section_title": "Сумісність з іншими продуктами doTERRA",
-      "item_count": 3,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "f5acdf6fa862ac13",
-    "product_slug": "digestzen-terrazyme",
-    "section_key": "interesting_facts",
-    "section_title": "Цікаві факти",
-    "content": "👑 Здоровий раціон, за оцінками фахівців, має включати мінімум 60% свіжих, необроблених продуктів\n👑 Сучасна кулінарна обробка їжі часто руйнує природні ферменти, тому організму доводиться виробляти більше власних\n👑 TerraZyme можна поєднувати з іншими продуктами DigestZen для комплексної підтримки травлення",
-    "char_count": 306,
-    "tokens_approx": 76,
-    "order": 6,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\digestzen-terrazyme.md",
-      "section_title": "Цікаві факти",
-      "item_count": 3,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "244a7e927b5ec7c3",
-    "product_slug": "digestzen-terrazyme",
-    "section_key": "precautions",
-    "section_title": "Запобіжні заходи",
-    "content": "🔹 На початку прийому можливі тимчасові зміни травного ритму — зазвичай минають за декілька днів\n🔹 Вагітним, жінкам, які годують груддю, та особам з хронічними захворюваннями — консультація лікаря перед застосуванням\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення і не є медичною консультацією. Дана інформація не оцінена Управлінням з контролю за продуктами харчування і ліками (FDA) і не призначена для діагностики, лікування чи попередження будь-якого захворювання. Перед застосуванням консультуйтеся з лікарем.\n\n#БАД #травлення #ферменти",
-    "char_count": 599,
-    "tokens_approx": 149,
-    "order": 7,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\digestzen-terrazyme.md",
-      "section_title": "Запобіжні заходи",
-      "item_count": 3,
-      "has_list": true
-    }
-  }
-]
+{
+  "slug": "digestzen-terrazyme",
+  "name_ua": "Категорія: Supplements → Digestive Health",
+  "name_en": "Digestzen Terrazyme",
+  "type": "supplement",
+  "short_description": [
+    "👑 Комплекс травних ферментів на основі цільних харчових джерел для підтримки здорового травлення",
+    "👑 Допомагає організму засвоювати поживні речовини з обробленої та вареної їжі",
+    "👑 Частина лінійки DigestZen"
+  ],
+  "склад-та-ключові-інгредієнти": "▫️ 10 активних цільнохарчових ферментів (амілаза, ліпаза, протеаза та інші)\n▫️ Кофактори для підтримки природного вироблення ферментів\n▫️ Фірмова суміш Tummy Tamer (м'ята, імбир, кмин)\n▫️ Рослинні капсули без глютену, молочних продуктів і компонентів тваринного походження",
+  "indications": [
+    "👑 Травний комфорт: зменшує газоутворення і здуття після їжі",
+    "👑 Засвоєння поживних речовин: підтримує перетворення їжі на клітинну енергію",
+    "👑 Толерантність до їжі: корисний при подорожах чи пробі нових страв",
+    "👑 Підтримка природного вироблення ферментів організмом"
+  ],
+  "спосіб-застосування": "🔹 1 капсула — коли страва містить переважно свіжі, необроблені продукти\n🔹 2-3 капсули — при вживанні сильно обробленої, вареної їжі або продуктів, які зазвичай викликають дискомфорт\n🔹 Приймати безпосередньо перед або одразу після їжі",
+  "сумісність-з-іншими-продуктами-doterra": "🔹 Zendocrine — для комплексної підтримки детоксикаційних систем організму\n🔹 GX Assist та PB Assist+ — для повної підтримки мікрофлори кишківника\n🔹 Lifelong Vitality Pack — базова харчова основа",
+  "interesting_facts": [
+    "👑 Здоровий раціон, за оцінками фахівців, має включати мінімум 60% свіжих, необроблених продуктів",
+    "👑 Сучасна кулінарна обробка їжі часто руйнує природні ферменти, тому організму доводиться виробляти більше власних",
+    "👑 TerraZyme можна поєднувати з іншими продуктами DigestZen для комплексної підтримки травлення"
+  ],
+  "precautions": [
+    "🔹 На початку прийому можливі тимчасові зміни травного ритму — зазвичай минають за декілька днів",
+    "🔹 Вагітним, жінкам, які годують груддю, та особам з хронічними захворюваннями — консультація лікаря перед застосуванням",
+    "🔹 Зберігати в недоступному для дітей місці",
+    "> ⚠️ Наведена інформація призначена виключно для ознайомлення і не є медичною консультацією. Дана інформація не оцінена Управлінням з контролю за продуктами харчування і ліками (FDA) і не призначена для діагностики, лікування чи попередження будь-якого захворювання. Перед застосуванням консультуйтеся з лікарем.",
+    "#БАД #травлення #ферменти"
+  ]
+}

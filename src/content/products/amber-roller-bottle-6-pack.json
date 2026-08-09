@@ -1,138 +1,33 @@
-[
-  {
-    "chunk_id": "3c8fcdd14e4dc67d",
-    "product_slug": "amber-roller-bottle-6-pack",
-    "section_key": "product_header",
-    "section_title": "10 mL Amber Roller Bottle 6 Pack",
-    "content": "Категорія: Diffusers & Accessories → Accessories\n\nТип: флакони-ролики для власних сумішей ефірних олій\n\nПосилання: https://www.doterra.com/US/en/p/10-ml-amber-roller-bottle-6-pack",
-    "char_count": 179,
-    "tokens_approx": 44,
-    "order": 0,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\amber-roller-bottle-6-pack.md",
-      "section_title": "__header__10 mL Amber Roller Bottle 6 Pack",
-      "item_count": 0,
-      "has_list": false
-    }
-  },
-  {
-    "chunk_id": "ad3487014b6d8e80",
-    "product_slug": "amber-roller-bottle-6-pack",
-    "section_key": "short_description",
-    "section_title": "Короткий опис",
-    "content": "👑 Набір із шести бурштинових скляних флаконів-роликів по 10 мл для власних сумішей ефірних олій\n👑 Те саме скло та металевий ролик, які використовуються у флаконах doTERRA Touch\n👑 Ідеальні для змішування, зберігання і персонального застосування ефірних олій",
-    "char_count": 256,
-    "tokens_approx": 64,
-    "order": 1,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\amber-roller-bottle-6-pack.md",
-      "section_title": "Короткий опис",
-      "item_count": 3,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "02396ff8db373c2d",
-    "product_slug": "amber-roller-bottle-6-pack",
-    "section_key": "склад-та-технічні-характеристики",
-    "section_title": "Склад та технічні характеристики",
-    "content": "▫️ Бурштинове скло — оберігає ефірні олії від сонячного світла\n▫️ Ролик з нержавіючої сталі — рівномірне нанесення без витрат олії\n▫️ Об'єм 10 мл — зручний компактний розмір для сумки чи кишені",
-    "char_count": 193,
-    "tokens_approx": 48,
-    "order": 2,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\amber-roller-bottle-6-pack.md",
-      "section_title": "Склад та технічні характеристики",
-      "item_count": 3,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "01b6e4923c45ad2e",
-    "product_slug": "amber-roller-bottle-6-pack",
-    "section_key": "indications",
-    "section_title": "Показання (сфери застосування)",
-    "content": "👑 Персональні суміші: дозволяють створювати власні комбінації ефірних олій з базовою олією\n👑 Зручність застосування: ролик забезпечує точкове нанесення без прямого контакту руки з олією\n👑 Портативність: компактний розмір підходить для подорожей і повсякденного носіння\n👑 Економія: розведена суміш у флаконі-ролику витрачається повільніше, ніж олія з піпетки",
-    "char_count": 357,
-    "tokens_approx": 89,
-    "order": 3,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\amber-roller-bottle-6-pack.md",
-      "section_title": "Показання (сфери застосування)",
-      "item_count": 4,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "99937fce02401d24",
-    "product_slug": "amber-roller-bottle-6-pack",
-    "section_key": "спосіб-застосування",
-    "section_title": "Спосіб застосування",
-    "content": "🔹 Заповнити флакон базовою олією (наприклад, фракціонованою кокосовою) приблизно на три чверті\n🔹 Додати обрані ефірні олії (зазвичай 10-15 крапель на 10 мл базової олії)\n🔹 Закрутити ролик і кришку, перевернути кілька разів для перемішування\n🔹 Нанести на потрібні ділянки шкіри — зап'ястя, скроні, шию",
-    "char_count": 300,
-    "tokens_approx": 75,
-    "order": 4,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\amber-roller-bottle-6-pack.md",
-      "section_title": "Спосіб застосування",
-      "item_count": 4,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "ce222c7db6cb4ffc",
-    "product_slug": "amber-roller-bottle-6-pack",
-    "section_key": "сумісність-з-іншими-продуктами-doterra",
-    "section_title": "Сумісність з іншими продуктами doTERRA",
-    "content": "🔹 Часто використовуються з Фракціонованою кокосовою олією як базою\n🔹 Підходять для будь-яких ефірних олій і сумішей doTERRA — Deep Blue, AromaTouch, власні рецепти",
-    "char_count": 163,
-    "tokens_approx": 40,
-    "order": 5,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\amber-roller-bottle-6-pack.md",
-      "section_title": "Сумісність з іншими продуктами doTERRA",
-      "item_count": 2,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "233efed5fa25dd22",
-    "product_slug": "amber-roller-bottle-6-pack",
-    "section_key": "interesting_facts",
-    "section_title": "Цікаві факти",
-    "content": "👑 Бурштиновий колір скла традиційно використовується для зберігання ефірних олій, оскільки блокує ультрафіолетові промені\n👑 Такий самий тип флакона і ролика застосовується у готових продуктах лінійки doTERRA Touch\n👑 Флакони-ролики — один із найпопулярніших аксесуарів серед користувачів, які створюють власні рецепти",
-    "char_count": 316,
-    "tokens_approx": 79,
-    "order": 6,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\amber-roller-bottle-6-pack.md",
-      "section_title": "Цікаві факти",
-      "item_count": 3,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "0cf541418fee1b10",
-    "product_slug": "amber-roller-bottle-6-pack",
-    "section_key": "precautions",
-    "section_title": "Запобіжні заходи",
-    "content": "🔹 Ретельно розводити концентровані ефірні олії базовою олією перед нанесенням на шкіру\n🔹 Підписувати флакони для зручності та безпеки\n🔹 Зберігати в недоступному для дітей місці\n🔹 Мити і сушити флакони перед повторним використанням з новою сумішшю\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Розведення ефірних олій залежить від типу шкіри та конкретної олії — за потреби консультуйтеся з фахівцем.\n\n#флаконролик #аксесуари #diy",
-    "char_count": 447,
-    "tokens_approx": 111,
-    "order": 7,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\amber-roller-bottle-6-pack.md",
-      "section_title": "Запобіжні заходи",
-      "item_count": 4,
-      "has_list": true
-    }
-  }
-]
+{
+  "slug": "amber-roller-bottle-6-pack",
+  "name_ua": "Категорія: Diffusers & Accessories → Accessories",
+  "name_en": "Amber Roller Bottle 6 Pack",
+  "type": "supplement",
+  "short_description": [
+    "👑 Набір із шести бурштинових скляних флаконів-роликів по 10 мл для власних сумішей ефірних олій",
+    "👑 Те саме скло та металевий ролик, які використовуються у флаконах doTERRA Touch",
+    "👑 Ідеальні для змішування, зберігання і персонального застосування ефірних олій"
+  ],
+  "склад-та-технічні-характеристики": "▫️ Бурштинове скло — оберігає ефірні олії від сонячного світла\n▫️ Ролик з нержавіючої сталі — рівномірне нанесення без витрат олії\n▫️ Об'єм 10 мл — зручний компактний розмір для сумки чи кишені",
+  "indications": [
+    "👑 Персональні суміші: дозволяють створювати власні комбінації ефірних олій з базовою олією",
+    "👑 Зручність застосування: ролик забезпечує точкове нанесення без прямого контакту руки з олією",
+    "👑 Портативність: компактний розмір підходить для подорожей і повсякденного носіння",
+    "👑 Економія: розведена суміш у флаконі-ролику витрачається повільніше, ніж олія з піпетки"
+  ],
+  "спосіб-застосування": "🔹 Заповнити флакон базовою олією (наприклад, фракціонованою кокосовою) приблизно на три чверті\n🔹 Додати обрані ефірні олії (зазвичай 10-15 крапель на 10 мл базової олії)\n🔹 Закрутити ролик і кришку, перевернути кілька разів для перемішування\n🔹 Нанести на потрібні ділянки шкіри — зап'ястя, скроні, шию",
+  "сумісність-з-іншими-продуктами-doterra": "🔹 Часто використовуються з Фракціонованою кокосовою олією як базою\n🔹 Підходять для будь-яких ефірних олій і сумішей doTERRA — Deep Blue, AromaTouch, власні рецепти",
+  "interesting_facts": [
+    "👑 Бурштиновий колір скла традиційно використовується для зберігання ефірних олій, оскільки блокує ультрафіолетові промені",
+    "👑 Такий самий тип флакона і ролика застосовується у готових продуктах лінійки doTERRA Touch",
+    "👑 Флакони-ролики — один із найпопулярніших аксесуарів серед користувачів, які створюють власні рецепти"
+  ],
+  "precautions": [
+    "🔹 Ретельно розводити концентровані ефірні олії базовою олією перед нанесенням на шкіру",
+    "🔹 Підписувати флакони для зручності та безпеки",
+    "🔹 Зберігати в недоступному для дітей місці",
+    "🔹 Мити і сушити флакони перед повторним використанням з новою сумішшю",
+    "> ⚠️ Наведена інформація призначена виключно для ознайомлення. Розведення ефірних олій залежить від типу шкіри та конкретної олії — за потреби консультуйтеся з фахівцем.",
+    "#флаконролик #аксесуари #diy"
+  ]
+}
