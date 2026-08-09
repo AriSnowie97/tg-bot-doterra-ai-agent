@@ -158,7 +158,6 @@ def search_chunks(query: str, top_k: int = 5) -> list[dict]:
         Список словників із полями chunk_id, content, section_title,
         product_slug та similarity.
     """
-    from ..embedding import create_embedding
 
     query_embedding = create_embedding(query)
 
