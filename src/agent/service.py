@@ -59,7 +59,7 @@ async def generate_response(user_text: str) -> str:
                                            types.GenerateContentConfig(
                                                system_instruction=system_prompt,
                                                temperature=0.3,
-                                               max_output_tokens=2048
+                                               max_output_tokens=4096
                                            ),
                                            MAX_RETRIES)
 
