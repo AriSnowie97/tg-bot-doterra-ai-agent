@@ -2,32 +2,25 @@
 Діагностичний скрипт — тестує кожен API ключ на кожній моделі.
 Запуск: python test_keys.py
 """
-import os
+# Standard
 import sys
+# Special
 from dotenv import load_dotenv
-from google import genai
 from google.genai import types
+# Local
+from src.LLMProvider import GeminiFlashProvider as LLM
+
 
 # Фікс кодування для Windows PowerShell
 sys.stdout.reconfigure(encoding="utf-8")
 
 load_dotenv()
 
-KEYS = {
-    "KEY_1": os.getenv("GEMINI_API_KEY_1", ""),
-    "KEY_2": os.getenv("GEMINI_API_KEY_2", ""),
-    "KEY_3": os.getenv("GEMINI_API_KEY_3", ""),
-}
+llm = LLM()
+KEYS = llm.LLM_API_KEYS
+MODELS = llm.GENERATION_MODELS
 
-MODELS = [
-    "gemini-3.6-flash",
-    "gemini-3.5-flash",
-    "gemini-3.5-flash-lite",
-    "gemini-3.1-flash-lite",
-    "gemini-2.0-flash",
-]
-
-for key_name, api_key in KEYS.items():
+for key_name, api_key in enumerate(KEYS, 1): # KEYS.items():
     if not api_key:
         print(f"\n[{key_name}] NOT SET in .env\n")
         continue
@@ -36,12 +29,10 @@ for key_name, api_key in KEYS.items():
 
     for model in MODELS:
         try:
-            client = genai.Client(api_key=api_key)
-            response = client.models.generate_content(
-                model=model,
-                contents="Say 'OK' in one word.",
-                config=types.GenerateContentConfig(max_output_tokens=5),
-            )
+            response = llm._generate_content(api_key,
+                                             model,
+                                             "Say 'OK' in one word.",
+                                             types.GenerateContentConfig(max_output_tokens=5))
 
             # Перевіряємо чи є text у відповіді
             if response.text is not None:
