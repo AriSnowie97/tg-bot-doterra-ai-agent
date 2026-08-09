@@ -1,0 +1,138 @@
+[
+  {
+    "chunk_id": "d17992974bdc81e0",
+    "product_slug": "athletes-kit",
+    "section_key": "product_header",
+    "section_title": "Athlete's Kit",
+    "content": "Категорія: Kits & Collections → Collections\n\nТип: тематичний набір\n\nПосилання: https://www.doterra.com/US/en/p/enrollment-kits-athlete",
+    "char_count": 134,
+    "tokens_approx": 33,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\athletes-kit.md",
+      "section_title": "__header__Athlete's Kit",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "911609328dfaf0a3",
+    "product_slug": "athletes-kit",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Тематичний набір для активного способу життя і спортсменів\n👑 Поєднує п'ять ефірних олій та суміш Deep Blue Rub у компактній сумці на блискавці\n👑 Створений у співпраці зі спортивними організаціями для підтримки активності і відновлення",
+    "char_count": 236,
+    "tokens_approx": 59,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\athletes-kit.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "77cdbccfada65df8",
+    "product_slug": "athletes-kit",
+    "section_key": "склад-набору",
+    "section_title": "Склад набору",
+    "content": "▫️ doTERRA Breathe (5 мл) — респіраторна суміш\n▫️ doTERRA On Guard (5 мл) — захисна суміш\n▫️ Лаванда (5 мл)\n▫️ Чайне дерево / Melaleuca (5 мл)\n▫️ М'ята перцева (5 мл)\n▫️ Deep Blue Rub (120 мл) — топічний крем для м'язів і суглобів",
+    "char_count": 230,
+    "tokens_approx": 57,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\athletes-kit.md",
+      "section_title": "Склад набору",
+      "item_count": 6,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "57d7d3530df600fd",
+    "product_slug": "athletes-kit",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Активний спосіб життя: підтримка організму під час і після фізичних навантажень\n👑 Комфорт м'язів: Deep Blue Rub наносять на ділянки, задіяні під час тренування\n👑 Дихання: doTERRA Breathe підтримує відчуття вільного дихання під час активності\n👑 Тонус: м'ята перцева допомагає при відчутті втоми чи низької енергії",
+    "char_count": 314,
+    "tokens_approx": 78,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\athletes-kit.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "5de1e7d084adb4dc",
+    "product_slug": "athletes-kit",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Deep Blue Rub — нанести на м'язи і суглоби після тренування чи активного дня\n🔹 М'яту перцеву — нанести на скроні чи шию для бадьорості\n🔹 Лаванду — використати ввечері для розслаблення після події\n🔹 Кожна олія має власний рекомендований спосіб застосування, вказаний на етикетці",
+    "char_count": 279,
+    "tokens_approx": 69,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\athletes-kit.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "7c6bde02281c3718",
+    "product_slug": "athletes-kit",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Deep Blue Polyphenol Complex — БАД для доповнення топічного догляду за м'язами\n🔹 Флакони-ролики для створення персональних дорожніх сумішей з олій набору",
+    "char_count": 155,
+    "tokens_approx": 38,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\athletes-kit.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "db0e76d7038cc170",
+    "product_slug": "athletes-kit",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 doTERRA співпрацює зі спортивними закладами, надаючи елітним спортсменам доступ до ефірних олій\n👑 Набір спакований у компактну сумку на блискавці — зручно брати на тренування чи змагання\n👑 Склад набору орієнтований саме на потреби активного тіла: дихання, м'язовий комфорт і відновлення",
+    "char_count": 288,
+    "tokens_approx": 72,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\athletes-kit.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "c749e6e8718f4f6a",
+    "product_slug": "athletes-kit",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Deep Blue Rub — уникати чутливих ділянок шкіри, не наносити на пошкоджену шкіру\n🔹 Ефірні олії розводити базовою олією перед нанесенням на шкіру за потреби\n🔹 Зберігати в недоступному для дітей місці\n🔹 Вагітним, жінкам, які годують груддю, та особам з хронічними захворюваннями — консультація лікаря перед застосуванням\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення і не є медичною консультацією. Перед застосуванням консультуйтеся з лікарем.\n\n#athleteskit #спорт #deepblue",
+    "char_count": 490,
+    "tokens_approx": 122,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\athletes-kit.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  }
+]
