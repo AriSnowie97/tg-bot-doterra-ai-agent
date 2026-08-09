@@ -63,4 +63,9 @@ async def generate_response(user_text: str) -> str:
                                            ),
                                            MAX_RETRIES)
 
-    return response.text
+    text = (response.text or "").strip()
+    if not text:
+        raise RuntimeError(f"[agent] LLM повернув порожній текст. finish_reason={getattr(response.candidates[0], 'finish_reason', 'unknown') if response.candidates else 'unknown'}")
+
+    print(f"[agent] Response len={len(text)} chars")
+    return text
