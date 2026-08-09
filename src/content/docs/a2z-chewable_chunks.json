@@ -1,0 +1,138 @@
+[
+  {
+    "chunk_id": "5b3bcc4e816a86f8",
+    "product_slug": "a2z-chewable",
+    "section_key": "product_header",
+    "section_title": "a2z Chewable",
+    "content": "Категорія: Supplements → Children's Supplements\n\nТип: БАД (дитячі жувальні мультивітаміни)\n\nПосилання: https://www.doterra.com/US/en/p/doterra-a2z-chewable",
+    "char_count": 155,
+    "tokens_approx": 38,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\a2z-chewable.md",
+      "section_title": "__header__a2z Chewable",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "5de2fde4eed72801",
+    "product_slug": "a2z-chewable",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Жувальні мультивітаміни зі смаком кавуна для дітей від 4 років і дорослих, які мають проблеми з ковтанням капсул\n👑 Поєднує групу вітамінів B з вітамінами A, C, E та рослинними екстрактами\n👑 Розроблений для регулярного прийому разом з IQ Mega — омега-3 добавкою",
+    "char_count": 262,
+    "tokens_approx": 65,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\a2z-chewable.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "642fd400c86c8568",
+    "product_slug": "a2z-chewable",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Комплекс вітамінів групи B (клітинна енергія)\n▫️ Вітаміни A, C, E (антиоксидантний захист)\n▫️ Мінерали: кальцій, магній, цинк, мідь, марганець\n▫️ Холін, фосфатидилсерин та інозитол — для підтримки когнітивної функції\n▫️ Фірмова антиоксидантна суміш Alpha CRS+\n▫️ Без високофруктозного кукурудзяного сиропу, штучних барвників, підсолоджувачів та ароматизаторів",
+    "char_count": 362,
+    "tokens_approx": 90,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\a2z-chewable.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 6,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "bf9eb3c7eebb7a38",
+    "product_slug": "a2z-chewable",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Розвиток та імунітет: комплексна вітамінно-мінеральна підтримка організму дитини\n👑 Когнітивна функція: холін та фосфатидилсерин підтримують пам'ять і концентрацію\n👑 Здорове клітинне зростання: збалансований склад вітамінів і мінералів\n👑 Зручна форма: смачні жувальні таблетки замість капсул",
+    "char_count": 292,
+    "tokens_approx": 73,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\a2z-chewable.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "6339df8a51166baf",
+    "product_slug": "a2z-chewable",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Дозування залежить від віку — уточнювати на етикетці або в консультанта doTERRA\n🔹 Приймати регулярно, бажано разом з IQ Mega для повноцінної підтримки\n🔹 Безпечний для дітей від 4 років",
+    "char_count": 186,
+    "tokens_approx": 46,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\a2z-chewable.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "bc65abd0ac3a2103",
+    "product_slug": "a2z-chewable",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 IQ Mega — омега-3 з DHA і EPA, разом складають повноцінну дитячу програму харчової підтримки\n🔹 PB Assist Jr. — порошковий пробіотик для дітей, які мають проблеми з ковтанням капсул",
+    "char_count": 182,
+    "tokens_approx": 45,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\a2z-chewable.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "4b8bdabd11919fd0",
+    "product_slug": "a2z-chewable",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Формула розроблена спеціально для дітей і дорослих з проблемами при ковтанні капсул\n👑 Смак кавуна без штучних добавок — природні ароматизатори\n👑 A2Z входить до дитячої лінійки продуктів doTERRA Kids поруч з наборами ефірних олій для дітей",
+    "char_count": 240,
+    "tokens_approx": 60,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\a2z-chewable.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "23e56f14b1fe635d",
+    "product_slug": "a2z-chewable",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Зберігати в недоступному для дітей місці — попри дитячу форму випуску, передозування небажане\n🔹 Не приймати дозу понад рекомендовану вікову\n🔹 Проконсультуватися з педіатром перед початком прийому, особливо за наявності алергій\n🔹 Не замінює повноцінне та збалансоване харчування\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення і не є медичною консультацією. Дана інформація не оцінена Управлінням з контролю за продуктами харчування і ліками (FDA) і не призначена для діагностики, лікування чи попередження будь-якого захворювання. Перед застосуванням консультуйтеся з лікарем.\n\n#БАД #дітям #вітаміни",
+    "char_count": 616,
+    "tokens_approx": 154,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\a2z-chewable.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  }
+]
