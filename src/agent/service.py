@@ -67,5 +67,19 @@ async def generate_response(user_text: str) -> str:
     if not text:
         raise RuntimeError(f"[agent] LLM повернув порожній текст. finish_reason={getattr(response.candidates[0], 'finish_reason', 'unknown') if response.candidates else 'unknown'}")
 
+    # Виявлення витоку промпту: якщо модель вивела інструкції замість відповіді
+    leakage_markers = [
+        "(no `**`",
+        "- List uses emojis",
+        "- Warm opening",
+        "- Disclaimer present",
+        "- Ends with support",
+        "- Context only",
+        "КРИТИЧНО —",
+        "RETRIEVED_CONTEXT",
+    ]
+    if any(marker in text for marker in leakage_markers):
+        raise RuntimeError(f"[agent] Виявлено витік промпту у відповіді моделі — пропускаємо")
+
     print(f"[agent] Response len={len(text)} chars")
     return text
