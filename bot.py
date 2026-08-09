@@ -5,8 +5,8 @@ import asyncio
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command, CommandObject
-from aiogram.types import Message, MessageEntityType
-from aiogram.enums import ChatAction, ChatType
+from aiogram.types import Message
+from aiogram.enums import ChatAction, ChatType, MessageEntityType
 # Local
 from src.agent import generate_response
 from src.publisher import publish_channel_post
