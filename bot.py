@@ -108,7 +108,7 @@ async def command_post_handler(message: Message, bot: Bot) -> None:
 
     try:
         await publish_channel_post(bot)
-        await message.answer(f"✅ Пост опубліковано у канал {CHANNEL_ID}!")
+        await message.answer("✅ Пост успішно опубліковано у канал!")
     except Exception as e:
         await message.answer(f"❌ Помилка при публікації: {e}")
         print(f"[bot] /post error: {e}")
