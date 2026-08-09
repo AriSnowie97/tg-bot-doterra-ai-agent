@@ -1,7 +1,6 @@
 # Standard
 import os
 import json
-# Special
 import psycopg2
 from pgvector import Vector
 from pgvector.psycopg2 import register_vector
@@ -119,6 +118,57 @@ def _upsert_chunk(chunk: dict) -> None:
             )
 
     conn.commit()
+    conn.close()
+
+
+def bulk_upsert_chunks(chunks: list[dict]) -> None:
+    """Оновлення списку чанків у БД з використанням одного з'єднання (оптимізовано)."""
+    conn = _conn_create()
+    register_vector(conn)
+    
+    print(f"[DB] Bulk upserting {len(chunks)} chunks to knowledge_chunks...")
+    with conn.cursor() as cur:
+        # 1. Fetch existing chunk_ids to avoid re-embedding
+        existing_ids = set()
+        try:
+            cur.execute("SELECT chunk_id FROM knowledge_chunks;")
+            existing_ids = {row[0] for row in cur.fetchall()}
+        except Exception as e:
+            print(f"[!] Error fetching existing chunk_ids: {e}")
+            conn.rollback()
+            
+        for chunk in chunks:
+            chunk_id = chunk.get("chunk_id")
+            if chunk_id in existing_ids:
+                continue
+                
+            try:
+                emb = create_embedding(chunk["content"])
+                if not emb:
+                    continue
+                embedding = Vector(emb)
+                
+                if not іs_there_similar_embedding(cur, chunk, embedding):
+                    cur.execute(
+                        UPSERT_CHUNK,
+                        {
+                            "chunk_id": chunk_id,
+                            "product_slug": chunk["product_slug"],
+                            "section_key": chunk["section_key"],
+                            "section_title": chunk["section_title"],
+                            "content": chunk["content"],
+                            "char_count": chunk["char_count"],
+                            "tokens_approx": chunk["tokens_approx"],
+                            "chunk_order": chunk.get("order", chunk.get("chunk_order", 0)),
+                            "metadata": json.dumps(chunk.get("metadata", {})),
+                            "embedding": embedding
+                        }
+                    )
+                    conn.commit() # Commit after each insert to make it visible
+            except Exception as e:
+                print(f"[!] Error upserting chunk {chunk_id}: {e}")
+                conn.rollback()
+                
     conn.close()
 
 
