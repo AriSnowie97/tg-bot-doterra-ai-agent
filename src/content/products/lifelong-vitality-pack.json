@@ -1,0 +1,138 @@
+[
+  {
+    "chunk_id": "8927c9771dea10f1",
+    "product_slug": "lifelong-vitality-pack",
+    "section_key": "product_header",
+    "section_title": "doTERRA Lifelong Vitality Pack (LLV)",
+    "content": "Категорія: Supplements → Daily Vitality (Foundational Wellness)\n\nТип: БАД (базовий вітамінно-мінеральний комплекс)\n\nПосилання: https://www.doterra.com/US/en/p/doterra-lifelong-vitality-pack",
+    "char_count": 189,
+    "tokens_approx": 47,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\lifelong-vitality-pack.md",
+      "section_title": "__header__doTERRA Lifelong Vitality Pack (LLV)",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "9f1175773ad09062",
+    "product_slug": "lifelong-vitality-pack",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Базовий трикомпонентний комплекс вітамінів, мінералів та поживних речовин для регулярного застосування\n👑 Складається з трьох продуктів: Alpha CRS+ (клітинний антиоксидантний комплекс), Microplex VMz (мультивітамінно-мінеральний комплекс), xEO Mega/EO Mega+ (омега-3 з риб'ячого жиру та ефірними оліями)\n👑 Один із найпопулярніших продуктів doTERRA — базова харчова підтримка для здоров'я і довголіття",
+    "char_count": 401,
+    "tokens_approx": 100,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\lifelong-vitality-pack.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "3fb469d14b355803",
+    "product_slug": "lifelong-vitality-pack",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Alpha CRS+ — антиоксидантний клітинний комплекс (ресвератрол, куркумін, зелений чай та інші)\n▫️ Microplex VMz — мультивітаміни та мінерали (вітаміни A, C, D, E, група B, кальцій, магній, цинк та інші мінерали)\n▫️ xEO Mega/EO Mega+ — омега-3 жирні кислоти (риб'ячий жир) у поєднанні з ефірними оліями",
+    "char_count": 302,
+    "tokens_approx": 75,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\lifelong-vitality-pack.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "23c26b10e8ba36df",
+    "product_slug": "lifelong-vitality-pack",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Загальний тонус і життєва енергія: підтримка організму на клітинному рівні\n👑 Антиоксидантний захист: допомагає нейтралізувати вільні радикали\n👑 Здоров'я кісток: кальцій і магній у складі Microplex VMz\n👑 Імунна функція: комплекс вітамінів і мінералів підтримує імунітет\n👑 Здоров'я волосся, шкіри й нігтів: живлення на клітинному рівні",
+    "char_count": 335,
+    "tokens_approx": 83,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\lifelong-vitality-pack.md",
+      "section_title": "Показання",
+      "item_count": 5,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "345b800a0a356ac9",
+    "product_slug": "lifelong-vitality-pack",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 По 2 капсули кожного з трьох продуктів (Alpha CRS+, Microplex VMz, xEO Mega) двічі на день, разом з їжею — вранці та ввечері\n🔹 Доступна також форма Daily Packs (готові саше на кожен прийом) і веганська версія (Vegan LLV)",
+    "char_count": 222,
+    "tokens_approx": 55,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\lifelong-vitality-pack.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "e5682680b29a6c65",
+    "product_slug": "lifelong-vitality-pack",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Рекомендована основа перед початком системи MetaPWR\n🔹 Можна поєднувати з TerraZyme для ліпшого травлення\n🔹 Разом з PB Assist+ — для комплексної підтримки травної й імунної систем",
+    "char_count": 180,
+    "tokens_approx": 45,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\lifelong-vitality-pack.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "da0328fd3691e8e8",
+    "product_slug": "lifelong-vitality-pack",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 LLV — один із перших і найпопулярніших продуктів у категорії БАД в асортименті компанії\n👑 Компанія опублікувала клінічне дослідження про потенційний вплив LLV на організм\n👑 Існує веганська версія комплексу — з vEO Mega та веганським Microplex VMz",
+    "char_count": 248,
+    "tokens_approx": 62,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\lifelong-vitality-pack.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "a66c9baeeee7084e",
+    "product_slug": "lifelong-vitality-pack",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Приймати разом з їжею для ліпшого засвоєння\n🔹 Вагітним, жінкам, які годують груддю, та особам з хронічними захворюваннями — консультація лікаря перед застосуванням\n🔹 Зберігати в недоступному для дітей місці\n🔹 Не приймати дозу понад рекомендовану\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення і не є медичною консультацією. Дана інформація не оцінена Управлінням з контролю за продуктами харчування і ліками (FDA) і не призначена для діагностики, лікування чи попередження будь-якого захворювання. Перед застосуванням консультуйтеся з лікарем.\n\n#БАД #вітаміни #комплекснапідтримка",
+    "char_count": 598,
+    "tokens_approx": 149,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\lifelong-vitality-pack.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  }
+]

@@ -1,0 +1,138 @@
+[
+  {
+    "chunk_id": "e2b3d4ef1b9936c6",
+    "product_slug": "sun-mineral-sunscreen-lotion",
+    "section_key": "product_header",
+    "section_title": "doTERRA sun Face + Body Mineral Sunscreen Lotion",
+    "content": "Категорія: Skin & Hair Care → Sun Care\n\nТип: сонцезахисний засіб (мінеральний SPF)\n\nПосилання: https://www.doterra.com/US/en/p/face-and-body-mineral-sunscreen-lotion",
+    "char_count": 165,
+    "tokens_approx": 41,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\sun-mineral-sunscreen-lotion.md",
+      "section_title": "__header__doTERRA sun Face + Body Mineral Sunscreen Lotion",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "4919187d5263b59e",
+    "product_slug": "sun-mineral-sunscreen-lotion",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Мінеральний сонцезахисний лосьйон SPF 30 на основі оксиду цинку (без хімічних UV-фільтрів)\n👑 Широкий спектр захисту UVA/UVB, водостійкість до 80 хвилин\n👑 Формула без оксибензону, парабенів і фталатів; містить ефірні олії ладану, безсмертника та моркви",
+    "char_count": 253,
+    "tokens_approx": 63,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\sun-mineral-sunscreen-lotion.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "d1ace39592d6a8cc",
+    "product_slug": "sun-mineral-sunscreen-lotion",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Оксид цинку (non-nano) — мінеральний UV-фільтр\n▫️ Алое віра, вітамін E (токоферол)\n▫️ Олія насіння малини, олія авокадо, естери жожоба\n▫️ Ефірні олії: Ладан (Frankincense), Безсмертник (Helichrysum), Морквяне насіння (Carrot Seed)",
+    "char_count": 233,
+    "tokens_approx": 58,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\sun-mineral-sunscreen-lotion.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "10b3a797468f184d",
+    "product_slug": "sun-mineral-sunscreen-lotion",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Захист від сонця: широкий спектр UVA/UVB, підходить для регулярного застосування на обличчя і тіло\n👑 Живлення шкіри: вітамін E і рослинні олії підтримують бар'єрну функцію шкіри\n👑 Підходить для чутливої шкіри та всієї родини\n👑 Не залишає білих слідів при нанесенні",
+    "char_count": 266,
+    "tokens_approx": 66,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\sun-mineral-sunscreen-lotion.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "aab287cdac4fed82",
+    "product_slug": "sun-mineral-sunscreen-lotion",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Нанести рівномірним шаром на відкриті ділянки шкіри перед виходом на сонце\n🔹 Повторно наносити кожні 2 години або одразу після купання чи посиленого потовиділення\n🔹 Підходить для обличчя і тіла",
+    "char_count": 195,
+    "tokens_approx": 48,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\sun-mineral-sunscreen-lotion.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "97170eca551b8867",
+    "product_slug": "sun-mineral-sunscreen-lotion",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Лінійка sun також включає спрей, стик (SPF 40) та відновлювальний спрей After Sun\n🔹 Можна поєднувати з After Sun Restorative Body Mist для відновлення шкіри після перебування на сонці",
+    "char_count": 185,
+    "tokens_approx": 46,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\sun-mineral-sunscreen-lotion.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "bc3b9b3ddb2d9a3a",
+    "product_slug": "sun-mineral-sunscreen-lotion",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Оксид цинку — мінеральний (фізичний) UV-фільтр, який відбиває сонячні промені, на відміну від хімічних фільтрів\n👑 Формула не містить оксибензону — компонента, який викликає занепокоєння через вплив на морські екосистеми (продукт reef-safe)\n👑 До складу входить ладан — одна з найвідоміших олій у портфелі doTERRA",
+    "char_count": 313,
+    "tokens_approx": 78,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\sun-mineral-sunscreen-lotion.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "d0d45f056052f46f",
+    "product_slug": "sun-mineral-sunscreen-lotion",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Для зовнішнього застосування\n🔹 Уникати потрапляння в очі\n🔹 За появи подразнення — припинити застосування\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Перед застосуванням протестуйте засіб на невеликій ділянці шкіри. За наявності алергічних реакцій в анамнезі — консультація дерматолога перед застосуванням.\n\n#доглядзашкірою #сонцезахист #мінеральнийSPF",
+    "char_count": 416,
+    "tokens_approx": 104,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\sun-mineral-sunscreen-lotion.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  }
+]

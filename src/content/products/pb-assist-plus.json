@@ -1,0 +1,138 @@
+[
+  {
+    "chunk_id": "348b868a39dbed08",
+    "product_slug": "pb-assist-plus",
+    "section_key": "product_header",
+    "section_title": "PB Assist+",
+    "content": "Категорія: Supplements → ProBiome\n\nТип: БАД (пробіотико-пребіотичний комплекс)\n\nПосилання: https://www.doterra.com/US/en/p/pb-assist-new",
+    "char_count": 136,
+    "tokens_approx": 34,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\pb-assist-plus.md",
+      "section_title": "__header__PB Assist+",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "32403508836ae3ef",
+    "product_slug": "pb-assist-plus",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Пробіотико-пребіотичний комплекс для підтримки здорової мікрофлори кишківника\n👑 Поєднує 13 штамів пробіотиків та пребіотичну клітковину (FOS) в одній формулі\n👑 Мікрокапсульована технологія оберігає живі культури від кислотності шлунка",
+    "char_count": 236,
+    "tokens_approx": 59,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\pb-assist-plus.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "b4f36013d8771c60",
+    "product_slug": "pb-assist-plus",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ 13 штамів пробіотичних бактерій (Lactobacillus, Bifidobacterium та інші роди)\n▫️ Пребіотична клітковина — фруктоолігосахариди (FOS)\n▫️ Формула без глютену, підходить для всієї родини",
+    "char_count": 185,
+    "tokens_approx": 46,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\pb-assist-plus.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "f5efc5aad495e61e",
+    "product_slug": "pb-assist-plus",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Мікрофлора кишківника: підтримує позитивний баланс і зростання корисних бактерій\n👑 Травна система: сприяє здоровому травленню на будь-якому віковому етапі\n👑 Імунна функція: значна частина імунної системи пов'язана зі станом кишківника\n👑 Засвоєння поживних речовин: підтримує оптимальний метаболізм і всмоктування нутрієнтів",
+    "char_count": 325,
+    "tokens_approx": 81,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\pb-assist-plus.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "9b58838086b9ee1e",
+    "product_slug": "pb-assist-plus",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 1 саше (порошок) на день — розчинити або вжити безпосередньо\n🔹 Альтернативна форма — капсули: 1 капсула 1-2 рази на день за призначенням спеціаліста\n🔹 Не потребує обов'язкового зберігання в холодильнику завдяки мікрокапсульованій технології",
+    "char_count": 242,
+    "tokens_approx": 60,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\pb-assist-plus.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "3a5ba8c219b7dc5a",
+    "product_slug": "pb-assist-plus",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 TerraZyme — комплексна підтримка травлення разом з ферментами\n🔹 Zendocrine та GX Assist — для системної підтримки детоксикаційних процесів\n🔹 PB Assist Jr. — дитяча версія у формі порошку для тих, хто має проблеми з ковтанням капсул",
+    "char_count": 233,
+    "tokens_approx": 58,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\pb-assist-plus.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "18983e24678bdf7f",
+    "product_slug": "pb-assist-plus",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Слово «пробіотик» перекладається як «для життя» — ці мікроорганізми використовуються людиною тисячоліттями\n👑 Живі культури мають подвійний захисний шар, який дозволяє їм пережити кислотність шлунка і дістатися кишківника живими\n👑 Формула підходить для регулярного використання всіма членами родини",
+    "char_count": 299,
+    "tokens_approx": 74,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\pb-assist-plus.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "082ea11ec2903d34",
+    "product_slug": "pb-assist-plus",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 На початку прийому можливі тимчасові зміни травного ритму — зазвичай минають за декілька днів\n🔹 Вагітним, жінкам, які годують груддю, та особам з хронічними захворюваннями — консультація лікаря перед застосуванням\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення і не є медичною консультацією. Дана інформація не оцінена Управлінням з контролю за продуктами харчування і ліками (FDA) і не призначена для діагностики, лікування чи попередження будь-якого захворювання. Перед застосуванням консультуйтеся з лікарем.\n\n#БАД #пробіотики #мікрофлора",
+    "char_count": 602,
+    "tokens_approx": 150,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\pb-assist-plus.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 3,
+      "has_list": true
+    }
+  }
+]
