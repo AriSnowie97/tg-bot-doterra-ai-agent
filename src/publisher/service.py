@@ -76,7 +76,7 @@ async def _generate_post_text(topic_query: str) -> str:
         types.GenerateContentConfig(
             system_instruction=system_prompt,
             temperature=0.7,
-            max_output_tokens=2048,
+            max_output_tokens=8192,
         ),
         MAX_RETRIES,
     )
