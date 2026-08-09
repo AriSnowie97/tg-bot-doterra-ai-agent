@@ -1,0 +1,138 @@
+[
+  {
+    "chunk_id": "d9081c1fe1518258",
+    "product_slug": "verage-immortelle-hydrating-serum",
+    "section_key": "product_header",
+    "section_title": "Veráge Immortelle Hydrating Serum",
+    "content": "Категорія: Skin & Hair Care → Veráge Skin Care\n\nТип: зволожувальна сироватка\n\nПосилання: https://www.doterra.com/US/en/p/personal-care-verage-immortelle-hydrating-serum",
+    "char_count": 168,
+    "tokens_approx": 42,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\verage-immortelle-hydrating-serum.md",
+      "section_title": "__header__Veráge Immortelle Hydrating Serum",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "fd41f7774733e666",
+    "product_slug": "verage-immortelle-hydrating-serum",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Зволожувальна сироватка на основі ліпідного комплексу, який імітує ліпіди молодої, здорової шкіри\n👑 Поєднує шість ефірних олій: ладан, гавайський сандал, лаванда, мирра, безсмертник, троянда\n👑 Глибоко зволожує і зменшує вигляд тонких ліній",
+    "char_count": 241,
+    "tokens_approx": 60,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\verage-immortelle-hydrating-serum.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "318365100fb13fbe",
+    "product_slug": "verage-immortelle-hydrating-serum",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Естери олії жожоба та макадамії\n▫️ Ефірна олія ладану (Boswellia carterii/sacra/papyrifera/frereana)\n▫️ Ефірна олія гавайського сандалу (Santalum paniculatum)\n▫️ Ефірна олія лаванди, мирри, безсмертника, троянди\n▫️ Сквален, фітостероли, токоферол",
+    "char_count": 249,
+    "tokens_approx": 62,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\verage-immortelle-hydrating-serum.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 5,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "0ea31659e23fbd4d",
+    "product_slug": "verage-immortelle-hydrating-serum",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Глибоке зволоження: ліпідний комплекс підтримує природний бар'єр шкіри\n👑 Антивіковий догляд: зменшує вигляд тонких ліній і надає гладкості\n👑 Баланс шкіри: підтримує оптимальний ліпідний баланс для сяючого вигляду\n👑 Підходить для всіх типів шкіри та будь-якого віку",
+    "char_count": 266,
+    "tokens_approx": 66,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\verage-immortelle-hydrating-serum.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "a9613fd5149a61eb",
+    "product_slug": "verage-immortelle-hydrating-serum",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Нанести на чисту шкіру обличчя і шиї легкими рухами знизу вгору\n🔹 Використовувати вранці та ввечері\n🔹 Продовжити доглядовий ритуал засобом Veráge Moisturizer",
+    "char_count": 159,
+    "tokens_approx": 39,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\verage-immortelle-hydrating-serum.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "ba62146168f9e540",
+    "product_slug": "verage-immortelle-hydrating-serum",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Veráge Cleanser та Veráge Toner — попередні кроки в лінійці Veráge\n🔹 Veráge Moisturizer — завершальний крок для закріплення зволоження",
+    "char_count": 136,
+    "tokens_approx": 34,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\verage-immortelle-hydrating-serum.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "245e716ebcae88f2",
+    "product_slug": "verage-immortelle-hydrating-serum",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Назва Immortelle (безсмертник) відсилає до квітки, яка зберігає форму навіть після висихання — символ довговічної краси\n👑 Ліпідний комплекс розроблений так, аби наслідувати структуру ліпідів шкіри в момент її оптимального здоров'я і молодості\n👑 До рецептури входить шість ефірних олій одночасно — рідкість для косметичного продукту",
+    "char_count": 333,
+    "tokens_approx": 83,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\verage-immortelle-hydrating-serum.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "20a46567ed1f9dd8",
+    "product_slug": "verage-immortelle-hydrating-serum",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Для зовнішнього застосування\n🔹 Уникати прямого контакту з очима\n🔹 За появи подразнення шкіри — припинити застосування\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Перед застосуванням протестуйте засіб на невеликій ділянці шкіри. За наявності алергічних реакцій в анамнезі — консультація дерматолога перед застосуванням.\n\n#veragé #сироватка #антивіковийдогляд",
+    "char_count": 422,
+    "tokens_approx": 105,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\verage-immortelle-hydrating-serum.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  }
+]
