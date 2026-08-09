@@ -1,138 +1,33 @@
-[
-  {
-    "chunk_id": "e7cf960b7e1fcaf5",
-    "product_slug": "fractionated-coconut-oil",
-    "section_key": "product_header",
-    "section_title": "Fractionated Coconut Oil",
-    "content": "Категорія: Skin & Hair Care → Body Care\n\nТип: базова (транспортна) олія для тіла\n\nПосилання: https://www.doterra.com/US/en/p/usage-fractionated-coconut-oil-carrier-oil",
-    "char_count": 167,
-    "tokens_approx": 41,
-    "order": 0,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\fractionated-coconut-oil.md",
-      "section_title": "__header__Fractionated Coconut Oil",
-      "item_count": 0,
-      "has_list": false
-    }
-  },
-  {
-    "chunk_id": "2d6a8cf8e36f9332",
-    "product_slug": "fractionated-coconut-oil",
-    "section_key": "short_description",
-    "section_title": "Короткий опис",
-    "content": "👑 Фракціонована кокосова олія — базова олія для розведення ефірних олій і догляду за тілом\n👑 Легка, безбарвна, без запаху; повністю розчинна з усіма ефірними оліями doTERRA\n👑 Не залишає жирного сліду і не забиває пори",
-    "char_count": 217,
-    "tokens_approx": 54,
-    "order": 1,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\fractionated-coconut-oil.md",
-      "section_title": "Короткий опис",
-      "item_count": 3,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "b6e0111765c8bdf4",
-    "product_slug": "fractionated-coconut-oil",
-    "section_key": "склад-та-ключові-інгредієнти",
-    "section_title": "Склад та ключові інгредієнти",
-    "content": "▫️ Caprylic/Capric Triglyceride — основний компонент, отриманий фракціонуванням кокосової олії\n▫️ 100% рослинне походження (Cocos nucifera)",
-    "char_count": 139,
-    "tokens_approx": 34,
-    "order": 2,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\fractionated-coconut-oil.md",
-      "section_title": "Склад та ключові інгредієнти",
-      "item_count": 2,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "613c1b5ce80452f0",
-    "product_slug": "fractionated-coconut-oil",
-    "section_key": "indications",
-    "section_title": "Показання",
-    "content": "👑 Базова олія для розведення: знижує чутливість шкіри при нанесенні концентрованих ефірних олій\n👑 Зволоження: пом'якшує суху шкіру рук, ніг, ліктів\n👑 Масаж: ідеальна текстура для масажних сумішей з ефірними оліями\n👑 Довгий термін зберігання: не застигає і зберігається практично необмежено",
-    "char_count": 289,
-    "tokens_approx": 72,
-    "order": 3,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\fractionated-coconut-oil.md",
-      "section_title": "Показання",
-      "item_count": 4,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "374cdd9f3d574ac7",
-    "product_slug": "fractionated-coconut-oil",
-    "section_key": "спосіб-застосування",
-    "section_title": "Спосіб застосування",
-    "content": "🔹 Для розведення: 1 частина ефірної олії на 5 і більше частин фракціонованої кокосової олії — залежно від чутливості шкіри\n🔹 Місцево: нанести на шкіру для зволоження без взаємодії з ароматом інших сумішей\n🔹 Для масажу: змішати з улюбленими ефірними оліями і нанести на шию та плечі",
-    "char_count": 281,
-    "tokens_approx": 70,
-    "order": 4,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\fractionated-coconut-oil.md",
-      "section_title": "Спосіб застосування",
-      "item_count": 3,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "9a0f220ee9adf312",
-    "product_slug": "fractionated-coconut-oil",
-    "section_key": "сумісність-з-іншими-продуктами-doterra",
-    "section_title": "Сумісність з іншими продуктами doTERRA",
-    "content": "🔹 Універсальний базовий компонент майже для всіх рецептів місцевого застосування ефірних олій doTERRA\n🔹 Часто використовується разом з Deep Blue, AromaTouch та іншими сумішами для масажу",
-    "char_count": 186,
-    "tokens_approx": 46,
-    "order": 5,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\fractionated-coconut-oil.md",
-      "section_title": "Сумісність з іншими продуктами doTERRA",
-      "item_count": 2,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "eee281aad60bcc77",
-    "product_slug": "fractionated-coconut-oil",
-    "section_key": "interesting_facts",
-    "section_title": "Цікаві факти",
-    "content": "👑 Фракціонування видаляє довголанцюгові тригліцериди, через які звичайна кокосова олія твердне за кімнатної температури\n👑 Процес фракціонування також збільшує частку каприлової та капринової кислот, корисних для здоров'я шкіри\n👑 Основний хімічний компонент — Caprylic/capric triglyceride",
-    "char_count": 287,
-    "tokens_approx": 71,
-    "order": 6,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\fractionated-coconut-oil.md",
-      "section_title": "Цікаві факти",
-      "item_count": 3,
-      "has_list": true
-    }
-  },
-  {
-    "chunk_id": "dc0fe89ee88b146a",
-    "product_slug": "fractionated-coconut-oil",
-    "section_key": "precautions",
-    "section_title": "Запобіжні заходи",
-    "content": "🔹 Для зовнішнього застосування\n🔹 Уникати потрапляння в очі, у внутрішні частини вух та на чутливі ділянки\n🔹 Вагітним, жінкам, які годують груддю, або особам під наглядом лікаря — консультація лікаря перед застосуванням\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Перед застосуванням протестуйте засіб на невеликій ділянці шкіри. За наявності алергічних реакцій в анамнезі — консультація дерматолога перед застосуванням.\n\n#доглядзатілом #базоваолія #фракціонованакокосова",
-    "char_count": 533,
-    "tokens_approx": 133,
-    "order": 7,
-    "metadata": {
-      "split": false,
-      "source_file": "D:\\Pictures\\homework\\codes\\Python\\VS Code\\tg-bot-doterra-ai-agent\\src\\content\\docs\\fractionated-coconut-oil.md",
-      "section_title": "Запобіжні заходи",
-      "item_count": 4,
-      "has_list": true
-    }
-  }
-]
+{
+  "slug": "fractionated-coconut-oil",
+  "name_ua": "Категорія: Skin & Hair Care → Body Care",
+  "name_en": "Fractionated Coconut Oil",
+  "type": "supplement",
+  "short_description": [
+    "👑 Фракціонована кокосова олія — базова олія для розведення ефірних олій і догляду за тілом",
+    "👑 Легка, безбарвна, без запаху; повністю розчинна з усіма ефірними оліями doTERRA",
+    "👑 Не залишає жирного сліду і не забиває пори"
+  ],
+  "склад-та-ключові-інгредієнти": "▫️ Caprylic/Capric Triglyceride — основний компонент, отриманий фракціонуванням кокосової олії\n▫️ 100% рослинне походження (Cocos nucifera)",
+  "indications": [
+    "👑 Базова олія для розведення: знижує чутливість шкіри при нанесенні концентрованих ефірних олій",
+    "👑 Зволоження: пом'якшує суху шкіру рук, ніг, ліктів",
+    "👑 Масаж: ідеальна текстура для масажних сумішей з ефірними оліями",
+    "👑 Довгий термін зберігання: не застигає і зберігається практично необмежено"
+  ],
+  "спосіб-застосування": "🔹 Для розведення: 1 частина ефірної олії на 5 і більше частин фракціонованої кокосової олії — залежно від чутливості шкіри\n🔹 Місцево: нанести на шкіру для зволоження без взаємодії з ароматом інших сумішей\n🔹 Для масажу: змішати з улюбленими ефірними оліями і нанести на шию та плечі",
+  "сумісність-з-іншими-продуктами-doterra": "🔹 Універсальний базовий компонент майже для всіх рецептів місцевого застосування ефірних олій doTERRA\n🔹 Часто використовується разом з Deep Blue, AromaTouch та іншими сумішами для масажу",
+  "interesting_facts": [
+    "👑 Фракціонування видаляє довголанцюгові тригліцериди, через які звичайна кокосова олія твердне за кімнатної температури",
+    "👑 Процес фракціонування також збільшує частку каприлової та капринової кислот, корисних для здоров'я шкіри",
+    "👑 Основний хімічний компонент — Caprylic/capric triglyceride"
+  ],
+  "precautions": [
+    "🔹 Для зовнішнього застосування",
+    "🔹 Уникати потрапляння в очі, у внутрішні частини вух та на чутливі ділянки",
+    "🔹 Вагітним, жінкам, які годують груддю, або особам під наглядом лікаря — консультація лікаря перед застосуванням",
+    "🔹 Зберігати в недоступному для дітей місці",
+    "> ⚠️ Наведена інформація призначена виключно для ознайомлення. Перед застосуванням протестуйте засіб на невеликій ділянці шкіри. За наявності алергічних реакцій в анамнезі — консультація дерматолога перед застосуванням.",
+    "#доглядзатілом #базоваолія #фракціонованакокосова"
+  ]
+}
