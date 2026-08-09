@@ -191,6 +191,12 @@ async def on_message(message: Message, bot: Bot) -> None:
         stop_typing.set()
         typing_task.cancel()
 
+        # Захист від порожньої відповіді
+        if not response or not response.strip():
+            print(f"[on_message] Empty response for query: {user_text!r}")
+            await message.reply("😔 Не вдалося сформувати відповідь. Спробуй перефразувати запит.")
+            return
+
         # У групах відповідаємо через reply (щоб було видно на чиє питання)
         await message.reply(response)
 
@@ -201,7 +207,7 @@ async def on_message(message: Message, bot: Bot) -> None:
         await message.reply(
             "😔 Виникла помилка при обробці запиту. Спробуй ще раз."
         )
-        print(f"[on_message] Error: {e}")
+        print(f"[on_message] Error: {type(e).__name__}: {e}")
 
 
 # Run the bot
