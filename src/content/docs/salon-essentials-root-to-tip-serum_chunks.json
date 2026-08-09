@@ -1,0 +1,138 @@
+[
+  {
+    "chunk_id": "1674880af45016bf",
+    "product_slug": "salon-essentials-root-to-tip-serum",
+    "section_key": "product_header",
+    "section_title": "Salon Essentials Root to Tip Serum",
+    "content": "Категорія: Skin & Hair Care → dōTERRA Hair Care\n\nТип: сироватка для волосся і шкіри голови\n\nПосилання: https://www.doterra.com/US/en/p/haircare-salon-essentials-root-to-tip-serum",
+    "char_count": 178,
+    "tokens_approx": 44,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\salon-essentials-root-to-tip-serum.md",
+      "section_title": "__header__Salon Essentials Root to Tip Serum",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "cbd0239307f04ba5",
+    "product_slug": "salon-essentials-root-to-tip-serum",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Легка сироватка для волосся і шкіри голови на основі ефірних олій і живильних ліпідів\n👑 Надає волоссю блиск і м'якість без обтяження\n👑 Частина професійної лінійки dōTERRA Salon Essentials",
+    "char_count": 189,
+    "tokens_approx": 47,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\salon-essentials-root-to-tip-serum.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "68851eca59387905",
+    "product_slug": "salon-essentials-root-to-tip-serum",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Ефірні олії: Лаванда, М'ята перцева, Майоран, Кедрове дерево, Лавандин, Розмарин, Ніяулі, Евкаліпт\n▫️ Олія арганії, олія сача інчі (Plukenetia volubilis)\n▫️ Олія насіння соняшника, олія мідоуфом",
+    "char_count": 197,
+    "tokens_approx": 49,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\salon-essentials-root-to-tip-serum.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "c8cd0d41c6e1ef60",
+    "product_slug": "salon-essentials-root-to-tip-serum",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Блиск і м'якість: миттєво поліпшує вигляд волосся, надає сяйва\n👑 Здоров'я шкіри голови: масажні властивості олій сприяють оновленню шкіри голови\n👑 Захист кінчиків: зменшує вигляд посічених кінчиків\n👑 Легка текстура: не обтяжує волосся і не залишає жирного вигляду",
+    "char_count": 265,
+    "tokens_approx": 66,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\salon-essentials-root-to-tip-serum.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "4c82ccc5bc5e3298",
+    "product_slug": "salon-essentials-root-to-tip-serum",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Нанести кілька крапель на чисте вологе волосся, розподіляючи по шкірі голови\n🔹 Легко помасажувати кінчиками пальців\n🔹 Для гладкого волосся нанести невелику кількість по довжині, приділяючи увагу кінчикам, і висушити як завжди",
+    "char_count": 227,
+    "tokens_approx": 56,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\salon-essentials-root-to-tip-serum.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "9f877537eed6fa66",
+    "product_slug": "salon-essentials-root-to-tip-serum",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Частина лінійки Salon Essentials (шампунь, кондиціонер, засоби для укладання)\n🔹 Можна поєднувати із засобами для шкіри голови на основі М'яти перцевої чи Розмарину",
+    "char_count": 165,
+    "tokens_approx": 41,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\salon-essentials-root-to-tip-serum.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "36ccded4f2730a88",
+    "product_slug": "salon-essentials-root-to-tip-serum",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 До складу входять вісім різних ефірних олій, підібраних спеціально для волосся і шкіри голови\n👑 Розмарин і м'ята перцева традиційно застосовуються для стимулюючого масажу шкіри голови\n👑 Формула розроблена так, аби забезпечити тривале зволоження без ефекту жирного волосся",
+    "char_count": 273,
+    "tokens_approx": 68,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\salon-essentials-root-to-tip-serum.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "8c175f5db9f2e266",
+    "product_slug": "salon-essentials-root-to-tip-serum",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Для зовнішнього застосування\n🔹 Уникати потрапляння в очі\n🔹 За появи подразнення шкіри голови — припинити застосування\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Перед застосуванням протестуйте засіб на невеликій ділянці шкіри. За наявності алергічних реакцій в анамнезі — консультація дерматолога перед застосуванням.\n\n#доглядзаволоссям #сироватка #salonessentials",
+    "char_count": 430,
+    "tokens_approx": 107,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\salon-essentials-root-to-tip-serum.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  }
+]

@@ -1,0 +1,138 @@
+[
+  {
+    "chunk_id": "a68608da30c86f73",
+    "product_slug": "petal-diffuser",
+    "section_key": "product_header",
+    "section_title": "Petal Diffuser 2.0",
+    "content": "Категорія: Diffusers & Accessories → Essential Oil Diffusers\n\nТип: ультразвуковий дифузор\n\nПосилання: https://www.doterra.com/US/en/petal-essential-collection",
+    "char_count": 158,
+    "tokens_approx": 39,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\petal-diffuser.md",
+      "section_title": "__header__Petal Diffuser 2.0",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "e15c93f8aaeee4b1",
+    "product_slug": "petal-diffuser",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Компактний ультразвуковий дифузор для дому чи офісу з м'яким підсвічуванням\n👑 Розпилює надтонкий, але насичений туман, який покриває зону до 30 кв. м\n👑 Три режими: 2 і 6 годин безперервної роботи або 12 годин з інтервалами (5 хв увімкнено / 5 хв вимкнено)",
+    "char_count": 257,
+    "tokens_approx": 64,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\petal-diffuser.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "d130a3c5b4f181ef",
+    "product_slug": "petal-diffuser",
+    "section_key": "склад-та-технічні-характеристики",
+    "section_title": "Склад та технічні характеристики",
+    "content": "▫️ Проста конструкція з трьох частин — легко чистити і збирати\n▫️ Опціональне світлодіодне підсвічування (нічник) або режим без світла\n▫️ Живлення від мережі: 100–240V AC\n▫️ Матеріали: скляна кришка, поліпропіленовий корпус",
+    "char_count": 223,
+    "tokens_approx": 55,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\petal-diffuser.md",
+      "section_title": "Склад та технічні характеристики",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "0533f9ef00f277ef",
+    "product_slug": "petal-diffuser",
+    "section_key": "indications",
+    "section_title": "Показання (сфери застосування)",
+    "content": "👑 Ароматерапія вдома: створює атмосферу для розслаблення, бадьорості чи концентрації залежно від обраної олії\n👑 Нічник: м'яке підсвічування підходить для дитячої кімнати чи спальні\n👑 Офіс та невеликі кімнати: компактний розмір підходить для робочого столу\n👑 Легкість використання: підходить як новачкам, так і досвідченим користувачам",
+    "char_count": 334,
+    "tokens_approx": 83,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\petal-diffuser.md",
+      "section_title": "Показання (сфери застосування)",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "996f05a54f48ef54",
+    "product_slug": "petal-diffuser",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Залити воду до позначки максимального рівня\n🔹 Додати 3-8 крапель обраної ефірної олії\n🔹 Обрати режим роботи (2, 6 або 12 годин інтервально) та за бажання підсвічування\n🔹 Періодично чистити сумішшю води й оцту, аби запобігти накопиченню залишків олії",
+    "char_count": 251,
+    "tokens_approx": 62,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\petal-diffuser.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "4c68269f053968f8",
+    "product_slug": "petal-diffuser",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Добре поєднується з цитрусовими оліями (Wild Orange, Bergamot) для бадьорого ранку\n🔹 Або з Lavender, сандалом чи римською ромашкою для вечірнього розслаблення\n🔹 Входить до складу Petal Essentials Collection разом з Wild Orange і Lavender",
+    "char_count": 239,
+    "tokens_approx": 59,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\petal-diffuser.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "a62581e4ff4266dc",
+    "product_slug": "petal-diffuser",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Дифузор належить до ультразвукового типу — розпилює олію без нагрівання, зберігаючи її властивості\n👑 Регулярна очистка дифузора запобігає накопиченню залишків олії, які можуть заважати роботі пристрою\n👑 Petal — один із найкомпактніших і найдоступніших дифузорів у лінійці doTERRA",
+    "char_count": 281,
+    "tokens_approx": 70,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\petal-diffuser.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "a90a525c012a1b01",
+    "product_slug": "petal-diffuser",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Використовувати лише з водою і ефірними оліями — не заливати інші рідини\n🔹 Ставити на рівній стійкій поверхні, подалі від краю столу\n🔹 Не залишати без нагляду поруч із малими дітьми чи домашніми тваринами\n🔹 Регулярно чистити резервуар для запобігання накопиченню залишків\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Дотримуйтеся інструкції з експлуатації пристрою на упаковці.\n\n#дифузор #ароматерапія #petal",
+    "char_count": 429,
+    "tokens_approx": 107,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "content\\docs\\petal-diffuser.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  }
+]
