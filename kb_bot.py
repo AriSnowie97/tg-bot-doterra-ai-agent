@@ -22,6 +22,7 @@ doTERRA KB Uploader Bot — Адмін-бот для завантаження MD
 import os
 import asyncio
 import tempfile
+import traceback
 from pathlib import Path
 # Special
 from dotenv import load_dotenv
@@ -255,20 +256,23 @@ async def receive_slug(message: Message, state: FSMContext, bot: Bot) -> None:
         await message.answer("✅ Файл отримано. Парсинг та завантаження в БД...")
 
         # ── Крок 2: запускаємо upsert у фоновому потоці з callback-прогресом ──
-        # upload_md_to_kb — синхронна функція, тому run у executor.
-        # progress_callback надсилає повідомлення в Telegram через event loop.
-        loop = asyncio.get_event_loop()
+        # get_running_loop() — правильний спосіб отримати loop із async-контексту
+        loop = asyncio.get_running_loop()
 
         def tg_progress(msg: str) -> None:
             """Відправляє прогрес-повідомлення у Telegram із синхронного потоку."""
-            asyncio.run_coroutine_threadsafe(message.answer(msg), loop)
+            try:
+                asyncio.run_coroutine_threadsafe(message.answer(msg), loop)
+            except Exception as cb_err:
+                print(f"[kb_bot] tg_progress error: {cb_err}")
 
         try:
             stats = await asyncio.to_thread(
                 upload_md_to_kb, str(tmp_path), slug, tg_progress
             )
         except Exception as e:
-            await message.answer(f"❌ Помилка при завантаженні: {e}")
+            print(f"[kb_bot] upload error:\n{traceback.format_exc()}")
+            await message.answer(f"❌ Помилка при завантаженні:\n<code>{e}</code>", parse_mode="HTML")
             return
 
     # ── Крок 3: фінальний звіт ───────────────────────────────────────────────
