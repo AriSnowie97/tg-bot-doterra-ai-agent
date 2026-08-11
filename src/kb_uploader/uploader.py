@@ -11,7 +11,6 @@ doTERRA KB Uploader — Модуль завантаження MD-файлів у
 # Standard
 import os
 import sys
-import tempfile
 from pathlib import Path
 # Special
 from dotenv import load_dotenv
@@ -42,15 +41,14 @@ def upload_md_to_kb(
         md_path:           Шлях до MD-файлу.
         product_slug:      Ідентифікатор продукту (наприклад, 'frankincense').
         progress_callback: Опціональна функція(msg: str) для відправки прогресу.
-                           Приклад: lambda msg: asyncio.run(message.answer(msg))
 
     Returns:
         Словник зі статистикою:
         {
-            "total": <кількість чанків у файлі>,
-            "inserted": <скільки нових>,
+            "total":              <кількість чанків у файлі>,
+            "inserted":           <скільки нових>,
             "skipped_duplicates": <скільки дублікатів>,
-            "errors": <скільки помилок>
+            "errors":             <скільки помилок>
         }
     """
     def _progress(msg: str):
@@ -64,9 +62,9 @@ def upload_md_to_kb(
     if not md_path.exists():
         raise FileNotFoundError(f"Файл не знайдено: {md_path}")
 
-    _progress(f"📄 Парсинг файлу {md_path.name}...")
+    # ── Парсинг ──────────────────────────────────────────────────────────────
+    _progress(f"📄 Парсинг файлу <b>{md_path.name}</b>...")
     parser = DoterraMarkdownParser()
-    # parse_file() бере slug із назви файлу; потім перевизначаємо якщо вказано інший
     chunks = parser.parse_file(md_path)
 
     # Якщо користувач передав slug — перевизначаємо у всіх чанках
@@ -75,21 +73,26 @@ def upload_md_to_kb(
             chunk.product_slug = product_slug
 
     stats["total"] = len(chunks)
-    _progress(f"🔍 Знайдено {len(chunks)} чанків. Перевіряю дублікати та завантажую...")
 
     if not chunks:
         _progress("⚠️ Файл не містить жодного чанку.")
         return stats
 
-    # Відкриваємо одне з'єднання для перевірки дублікатів
+    _progress(
+        f"🔍 Знайдено <b>{len(chunks)}</b> секцій.\n"
+        "Генерую embeddings та перевіряю дублікати..."
+    )
+
+    # ── Завантаження по одному чанку ─────────────────────────────────────────
     conn = _conn_create()
     register_vector(conn)
 
-    for chunk in chunks:
+    for i, chunk in enumerate(chunks, start=1):
         try:
             chunk_dict = chunk.to_dict() if hasattr(chunk, "to_dict") else vars(chunk)
+            section = chunk_dict.get("section_title", chunk_dict.get("section_key", "?"))
 
-            # Генеруємо embedding
+            # Генеруємо embedding (займає ~1–3 сек на чанк)
             embedding = Vector(create_embedding(chunk_dict["content"]))
 
             with conn.cursor() as cur:
@@ -97,15 +100,17 @@ def upload_md_to_kb(
 
             if is_dup:
                 stats["skipped_duplicates"] += 1
-                print(f"  ⏭ Пропущено дублікат: {chunk_dict.get('chunk_id', '?')}")
+                _progress(f"⏭ [{i}/{stats['total']}] <i>{section}</i> — дублікат, пропущено")
             else:
                 _upsert_chunk(chunk_dict)
                 stats["inserted"] += 1
-                print(f"  ✅ Додано: {chunk_dict.get('chunk_id', '?')}")
+                _progress(f"✅ [{i}/{stats['total']}] <i>{section}</i> — додано")
 
         except Exception as e:
             stats["errors"] += 1
-            print(f"  ❌ Помилка для чанку {getattr(chunk, 'chunk_id', '?')}: {e}")
+            section = getattr(chunk, "section_title", "?")
+            _progress(f"❌ [{i}/{stats['total']}] <i>{section}</i> — помилка: {e}")
+            print(f"  Full error: {e}")
 
     conn.close()
     return stats

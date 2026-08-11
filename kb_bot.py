@@ -262,7 +262,9 @@ async def receive_slug(message: Message, state: FSMContext, bot: Bot) -> None:
         def tg_progress(msg: str) -> None:
             """Відправляє прогрес-повідомлення у Telegram із синхронного потоку."""
             try:
-                asyncio.run_coroutine_threadsafe(message.answer(msg), loop)
+                asyncio.run_coroutine_threadsafe(
+                    message.answer(msg, parse_mode="HTML"), loop
+                )
             except Exception as cb_err:
                 print(f"[kb_bot] tg_progress error: {cb_err}")
 
