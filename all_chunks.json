@@ -1,0 +1,3079 @@
+[
+  {
+    "chunk_id": "5b3bcc4e816a86f8",
+    "product_slug": "a2z-chewable",
+    "section_key": "product_header",
+    "section_title": "a2z Chewable",
+    "content": "Категорія: Supplements → Children's Supplements\n\nТип: БАД (дитячі жувальні мультивітаміни)\n\nПосилання: https://www.doterra.com/US/en/p/doterra-a2z-chewable",
+    "char_count": 155,
+    "tokens_approx": 38,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\a2z-chewable.md",
+      "section_title": "__header__a2z Chewable",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "5de2fde4eed72801",
+    "product_slug": "a2z-chewable",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Жувальні мультивітаміни зі смаком кавуна для дітей від 4 років і дорослих, які мають проблеми з ковтанням капсул\n👑 Поєднує групу вітамінів B з вітамінами A, C, E та рослинними екстрактами\n👑 Розроблений для регулярного прийому разом з IQ Mega — омега-3 добавкою",
+    "char_count": 262,
+    "tokens_approx": 65,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\a2z-chewable.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "642fd400c86c8568",
+    "product_slug": "a2z-chewable",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Комплекс вітамінів групи B (клітинна енергія)\n▫️ Вітаміни A, C, E (антиоксидантний захист)\n▫️ Мінерали: кальцій, магній, цинк, мідь, марганець\n▫️ Холін, фосфатидилсерин та інозитол — для підтримки когнітивної функції\n▫️ Фірмова антиоксидантна суміш Alpha CRS+\n▫️ Без високофруктозного кукурудзяного сиропу, штучних барвників, підсолоджувачів та ароматизаторів",
+    "char_count": 362,
+    "tokens_approx": 90,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\a2z-chewable.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 6,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "bf9eb3c7eebb7a38",
+    "product_slug": "a2z-chewable",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Розвиток та імунітет: комплексна вітамінно-мінеральна підтримка організму дитини\n👑 Когнітивна функція: холін та фосфатидилсерин підтримують пам'ять і концентрацію\n👑 Здорове клітинне зростання: збалансований склад вітамінів і мінералів\n👑 Зручна форма: смачні жувальні таблетки замість капсул",
+    "char_count": 292,
+    "tokens_approx": 73,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\a2z-chewable.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "6339df8a51166baf",
+    "product_slug": "a2z-chewable",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Дозування залежить від віку — уточнювати на етикетці або в консультанта doTERRA\n🔹 Приймати регулярно, бажано разом з IQ Mega для повноцінної підтримки\n🔹 Безпечний для дітей від 4 років",
+    "char_count": 186,
+    "tokens_approx": 46,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\a2z-chewable.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "bc65abd0ac3a2103",
+    "product_slug": "a2z-chewable",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 IQ Mega — омега-3 з DHA і EPA, разом складають повноцінну дитячу програму харчової підтримки\n🔹 PB Assist Jr. — порошковий пробіотик для дітей, які мають проблеми з ковтанням капсул",
+    "char_count": 182,
+    "tokens_approx": 45,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\a2z-chewable.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "4b8bdabd11919fd0",
+    "product_slug": "a2z-chewable",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Формула розроблена спеціально для дітей і дорослих з проблемами при ковтанні капсул\n👑 Смак кавуна без штучних добавок — природні ароматизатори\n👑 A2Z входить до дитячої лінійки продуктів doTERRA Kids поруч з наборами ефірних олій для дітей",
+    "char_count": 240,
+    "tokens_approx": 60,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\a2z-chewable.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "23e56f14b1fe635d",
+    "product_slug": "a2z-chewable",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Зберігати в недоступному для дітей місці — попри дитячу форму випуску, передозування небажане\n🔹 Не приймати дозу понад рекомендовану вікову\n🔹 Проконсультуватися з педіатром перед початком прийому, особливо за наявності алергій\n🔹 Не замінює повноцінне та збалансоване харчування\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення і не є медичною консультацією. Дана інформація не оцінена Управлінням з контролю за продуктами харчування і ліками (FDA) і не призначена для діагностики, лікування чи попередження будь-якого захворювання. Перед застосуванням консультуйтеся з лікарем.\n\n#БАД #дітям #вітаміни",
+    "char_count": 616,
+    "tokens_approx": 154,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\a2z-chewable.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "4255ae3b1852370e",
+    "product_slug": "abode-surface-cleaner",
+    "section_key": "product_header",
+    "section_title": "abōde Multi-Purpose Surface Cleaner Concentrate",
+    "content": "Категорія: Homecare (abōde Line)\n\nТип: концентрат багатоцільового засобу для прибирання\n\nПосилання: https://www.doterra.com/US/en/p/abode-multi-purpose-surface-cleaner-concentrate",
+    "char_count": 179,
+    "tokens_approx": 44,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\abode-surface-cleaner.md",
+      "section_title": "__header__abōde Multi-Purpose Surface Cleaner Concentrate",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "e289448a029a3717",
+    "product_slug": "abode-surface-cleaner",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Концентрат багатоцільового засобу для прибирання на основі ефірних олій — розводиться водою у власному флаконі\n👑 Формула без фосфатів, сульфатів, фталатів, барвників і хлору\n👑 Підходить для кухні, ванної кімнати, стільниць, плитки та лакованого дерева",
+    "char_count": 253,
+    "tokens_approx": 63,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\abode-surface-cleaner.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "628c317ce63acc65",
+    "product_slug": "abode-surface-cleaner",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Ефірна суміш abōde Refreshing Blend: лайм, літсея, кассія, лимонний евкаліпт, чайне дерево, туя, кочійський евкаліпт, коріандр, лавандин, лимонний мирт\n▫️ Тимол — ключовий компонент суміші, відомий очисними властивостями\n▫️ Концентрована формула — знижує кількість пластику й транспортних витрат",
+    "char_count": 298,
+    "tokens_approx": 74,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\abode-surface-cleaner.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "be009f7c445fe182",
+    "product_slug": "abode-surface-cleaner",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Універсальне прибирання: підходить для кухонних поверхонь, ванної кімнати, стільниць, сантехніки\n👑 Свіжий аромат: залишає приємний цитрусово-трав'яний запах у домі\n👑 Екологічність: концентрат зменшує використання пластику і транспортні викиди\n👑 Безпечніший склад: без фосфатів, сульфатів, фталатів, барвників і хлору",
+    "char_count": 318,
+    "tokens_approx": 79,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\abode-surface-cleaner.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "755d4f0e0e101255",
+    "product_slug": "abode-surface-cleaner",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Залити концентрат у скляний флакон-розпилювач і долити чистою водою до позначки\n🔹 Розпилити на поверхню і протерти чистою тканиною або губкою\n🔹 Підходить для стільниць, кахлю, сантехніки, лакованого дерева; уникати необробленого каменю чи делікатних поверхонь без попередньої перевірки",
+    "char_count": 287,
+    "tokens_approx": 71,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\abode-surface-cleaner.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "eb05cabeba2d79ab",
+    "product_slug": "abode-surface-cleaner",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Частина лінійки abōde — рідке мило для посуду, капсули для посудомийної та пральної машини, м'яч для сушарки\n🔹 Аромат суміші abōde Refreshing Blend можна також використовувати окремо в дифузорі для освіження повітря",
+    "char_count": 217,
+    "tokens_approx": 54,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\abode-surface-cleaner.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "a920d215a1267fee",
+    "product_slug": "abode-surface-cleaner",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Тимол, ключовий компонент суміші, широко відомий своїми очисними й антисептичними властивостями\n👑 Суміш abōde Refreshing Blend відрізняється від суміші doTERRA On Guard — вона розроблена спеціально для прибирання дому, тоді як On Guard спочатку створювалася для внутрішнього застосування\n👑 Продається як концентрат саме для того, аби зменшити транспортування зайвої води і скоротити вуглецевий слід",
+    "char_count": 400,
+    "tokens_approx": 100,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\abode-surface-cleaner.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "019b1af24a0e642e",
+    "product_slug": "abode-surface-cleaner",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Для побутового застосування, не для вживання всередину\n🔹 Уникати потрапляння в очі\n🔹 Зберігати в недоступному для дітей місці\n🔹 Перед використанням на нових типах поверхонь перевірити на невеликій непомітній ділянці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Перед застосуванням на нових поверхнях протестуйте засіб на невеликій ділянці.\n\n#abode #домашнійдогляд #прибирання",
+    "char_count": 396,
+    "tokens_approx": 99,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\abode-surface-cleaner.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "3c8fcdd14e4dc67d",
+    "product_slug": "amber-roller-bottle-6-pack",
+    "section_key": "product_header",
+    "section_title": "10 mL Amber Roller Bottle 6 Pack",
+    "content": "Категорія: Diffusers & Accessories → Accessories\n\nТип: флакони-ролики для власних сумішей ефірних олій\n\nПосилання: https://www.doterra.com/US/en/p/10-ml-amber-roller-bottle-6-pack",
+    "char_count": 179,
+    "tokens_approx": 44,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\amber-roller-bottle-6-pack.md",
+      "section_title": "__header__10 mL Amber Roller Bottle 6 Pack",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "ad3487014b6d8e80",
+    "product_slug": "amber-roller-bottle-6-pack",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Набір із шести бурштинових скляних флаконів-роликів по 10 мл для власних сумішей ефірних олій\n👑 Те саме скло та металевий ролик, які використовуються у флаконах doTERRA Touch\n👑 Ідеальні для змішування, зберігання і персонального застосування ефірних олій",
+    "char_count": 256,
+    "tokens_approx": 64,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\amber-roller-bottle-6-pack.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "02396ff8db373c2d",
+    "product_slug": "amber-roller-bottle-6-pack",
+    "section_key": "склад-та-технічні-характеристики",
+    "section_title": "Склад та технічні характеристики",
+    "content": "▫️ Бурштинове скло — оберігає ефірні олії від сонячного світла\n▫️ Ролик з нержавіючої сталі — рівномірне нанесення без витрат олії\n▫️ Об'єм 10 мл — зручний компактний розмір для сумки чи кишені",
+    "char_count": 193,
+    "tokens_approx": 48,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\amber-roller-bottle-6-pack.md",
+      "section_title": "Склад та технічні характеристики",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "01b6e4923c45ad2e",
+    "product_slug": "amber-roller-bottle-6-pack",
+    "section_key": "indications",
+    "section_title": "Показання (сфери застосування)",
+    "content": "👑 Персональні суміші: дозволяють створювати власні комбінації ефірних олій з базовою олією\n👑 Зручність застосування: ролик забезпечує точкове нанесення без прямого контакту руки з олією\n👑 Портативність: компактний розмір підходить для подорожей і повсякденного носіння\n👑 Економія: розведена суміш у флаконі-ролику витрачається повільніше, ніж олія з піпетки",
+    "char_count": 357,
+    "tokens_approx": 89,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\amber-roller-bottle-6-pack.md",
+      "section_title": "Показання (сфери застосування)",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "99937fce02401d24",
+    "product_slug": "amber-roller-bottle-6-pack",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Заповнити флакон базовою олією (наприклад, фракціонованою кокосовою) приблизно на три чверті\n🔹 Додати обрані ефірні олії (зазвичай 10-15 крапель на 10 мл базової олії)\n🔹 Закрутити ролик і кришку, перевернути кілька разів для перемішування\n🔹 Нанести на потрібні ділянки шкіри — зап'ястя, скроні, шию",
+    "char_count": 300,
+    "tokens_approx": 75,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\amber-roller-bottle-6-pack.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "ce222c7db6cb4ffc",
+    "product_slug": "amber-roller-bottle-6-pack",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Часто використовуються з Фракціонованою кокосовою олією як базою\n🔹 Підходять для будь-яких ефірних олій і сумішей doTERRA — Deep Blue, AromaTouch, власні рецепти",
+    "char_count": 163,
+    "tokens_approx": 40,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\amber-roller-bottle-6-pack.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "233efed5fa25dd22",
+    "product_slug": "amber-roller-bottle-6-pack",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Бурштиновий колір скла традиційно використовується для зберігання ефірних олій, оскільки блокує ультрафіолетові промені\n👑 Такий самий тип флакона і ролика застосовується у готових продуктах лінійки doTERRA Touch\n👑 Флакони-ролики — один із найпопулярніших аксесуарів серед користувачів, які створюють власні рецепти",
+    "char_count": 316,
+    "tokens_approx": 79,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\amber-roller-bottle-6-pack.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "0cf541418fee1b10",
+    "product_slug": "amber-roller-bottle-6-pack",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Ретельно розводити концентровані ефірні олії базовою олією перед нанесенням на шкіру\n🔹 Підписувати флакони для зручності та безпеки\n🔹 Зберігати в недоступному для дітей місці\n🔹 Мити і сушити флакони перед повторним використанням з новою сумішшю\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Розведення ефірних олій залежить від типу шкіри та конкретної олії — за потреби консультуйтеся з фахівцем.\n\n#флаконролик #аксесуари #diy",
+    "char_count": 447,
+    "tokens_approx": 111,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\amber-roller-bottle-6-pack.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "d17992974bdc81e0",
+    "product_slug": "athletes-kit",
+    "section_key": "product_header",
+    "section_title": "Athlete's Kit",
+    "content": "Категорія: Kits & Collections → Collections\n\nТип: тематичний набір\n\nПосилання: https://www.doterra.com/US/en/p/enrollment-kits-athlete",
+    "char_count": 134,
+    "tokens_approx": 33,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\athletes-kit.md",
+      "section_title": "__header__Athlete's Kit",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "911609328dfaf0a3",
+    "product_slug": "athletes-kit",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Тематичний набір для активного способу життя і спортсменів\n👑 Поєднує п'ять ефірних олій та суміш Deep Blue Rub у компактній сумці на блискавці\n👑 Створений у співпраці зі спортивними організаціями для підтримки активності і відновлення",
+    "char_count": 236,
+    "tokens_approx": 59,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\athletes-kit.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "77cdbccfada65df8",
+    "product_slug": "athletes-kit",
+    "section_key": "склад-набору",
+    "section_title": "Склад набору",
+    "content": "▫️ doTERRA Breathe (5 мл) — респіраторна суміш\n▫️ doTERRA On Guard (5 мл) — захисна суміш\n▫️ Лаванда (5 мл)\n▫️ Чайне дерево / Melaleuca (5 мл)\n▫️ М'ята перцева (5 мл)\n▫️ Deep Blue Rub (120 мл) — топічний крем для м'язів і суглобів",
+    "char_count": 230,
+    "tokens_approx": 57,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\athletes-kit.md",
+      "section_title": "Склад набору",
+      "item_count": 6,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "57d7d3530df600fd",
+    "product_slug": "athletes-kit",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Активний спосіб життя: підтримка організму під час і після фізичних навантажень\n👑 Комфорт м'язів: Deep Blue Rub наносять на ділянки, задіяні під час тренування\n👑 Дихання: doTERRA Breathe підтримує відчуття вільного дихання під час активності\n👑 Тонус: м'ята перцева допомагає при відчутті втоми чи низької енергії",
+    "char_count": 314,
+    "tokens_approx": 78,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\athletes-kit.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "5de1e7d084adb4dc",
+    "product_slug": "athletes-kit",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Deep Blue Rub — нанести на м'язи і суглоби після тренування чи активного дня\n🔹 М'яту перцеву — нанести на скроні чи шию для бадьорості\n🔹 Лаванду — використати ввечері для розслаблення після події\n🔹 Кожна олія має власний рекомендований спосіб застосування, вказаний на етикетці",
+    "char_count": 279,
+    "tokens_approx": 69,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\athletes-kit.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "7c6bde02281c3718",
+    "product_slug": "athletes-kit",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Deep Blue Polyphenol Complex — БАД для доповнення топічного догляду за м'язами\n🔹 Флакони-ролики для створення персональних дорожніх сумішей з олій набору",
+    "char_count": 155,
+    "tokens_approx": 38,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\athletes-kit.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "db0e76d7038cc170",
+    "product_slug": "athletes-kit",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 doTERRA співпрацює зі спортивними закладами, надаючи елітним спортсменам доступ до ефірних олій\n👑 Набір спакований у компактну сумку на блискавці — зручно брати на тренування чи змагання\n👑 Склад набору орієнтований саме на потреби активного тіла: дихання, м'язовий комфорт і відновлення",
+    "char_count": 288,
+    "tokens_approx": 72,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\athletes-kit.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "c749e6e8718f4f6a",
+    "product_slug": "athletes-kit",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Deep Blue Rub — уникати чутливих ділянок шкіри, не наносити на пошкоджену шкіру\n🔹 Ефірні олії розводити базовою олією перед нанесенням на шкіру за потреби\n🔹 Зберігати в недоступному для дітей місці\n🔹 Вагітним, жінкам, які годують груддю, та особам з хронічними захворюваннями — консультація лікаря перед застосуванням\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення і не є медичною консультацією. Перед застосуванням консультуйтеся з лікарем.\n\n#athleteskit #спорт #deepblue",
+    "char_count": 490,
+    "tokens_approx": 122,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\athletes-kit.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "957364f1aa38b4e4",
+    "product_slug": "deep-blue-polyphenol-complex",
+    "section_key": "product_header",
+    "section_title": "Deep Blue Polyphenol Complex",
+    "content": "Категорія: Supplements → Specialized Supplements\n\nТип: БАД (капсульований поліфенольний комплекс)\n\nПосилання: https://www.doterra.com/US/en/p/deep-blue-polyphenol-complex",
+    "char_count": 170,
+    "tokens_approx": 42,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\deep-blue-polyphenol-complex.md",
+      "section_title": "__header__Deep Blue Polyphenol Complex",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "dbe006f077a4ed27",
+    "product_slug": "deep-blue-polyphenol-complex",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Капсульований БАД на основі поліфенольних екстрактів рослин — харчове доповнення до лінійки Deep Blue\n👑 Підтримує м'язи та суглоби при звичайному фізичному навантаженні та дискомфорті\n👑 Містить фірмову суміш Tummy Tamer (м'ята, імбир, кмин) для комфортного травлення",
+    "char_count": 268,
+    "tokens_approx": 67,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\deep-blue-polyphenol-complex.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "88f441497a13c92c",
+    "product_slug": "deep-blue-polyphenol-complex",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Екстракт ладану (Boswellia serrata / Frankincense) — запатентована швидкодіюча формула\n▫️ Куркума (Curcuma longa)\n▫️ Зелений чай (Camellia sinensis)\n▫️ Імбир (Zingiber officinale)\n▫️ Гранат (Punica granatum) — стандартизований екстракт з пунікалагіном\n▫️ Екстракт виноградних кісточок (Vitis vinifera)\n▫️ Ресвератрол, куркумін та інші поліфеноли",
+    "char_count": 348,
+    "tokens_approx": 87,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\deep-blue-polyphenol-complex.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 7,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "16df7cab7954191c",
+    "product_slug": "deep-blue-polyphenol-complex",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 М'язовий комфорт: підтримка після фізичного навантаження чи тренування\n👑 Суглоби: комплексна підтримка суглобової функції\n👑 Антиоксидантний захист: поліфеноли нейтралізують вільні радикали\n👑 Травний комфорт: суміш Tummy Tamer знижує дискомфорт від прийому капсул",
+    "char_count": 264,
+    "tokens_approx": 66,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\deep-blue-polyphenol-complex.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "7b1041468aab3674",
+    "product_slug": "deep-blue-polyphenol-complex",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 2 капсули на день разом з їжею: 1 капсула вранці, 1 увечері\n🔹 Можна приймати за потреби (при дискомфорті) або регулярно для тривалого ефекту\n🔹 Добре поєднується з місцевим застосуванням Deep Blue Rub чи ролера Deep Blue Touch",
+    "char_count": 227,
+    "tokens_approx": 56,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\deep-blue-polyphenol-complex.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "f6b9974cc5337f03",
+    "product_slug": "deep-blue-polyphenol-complex",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Deep Blue Rub / Deep Blue Touch — місцеве застосування разом із внутрішнім прийомом капсул\n🔹 Lifelong Vitality Pack — базова підтримка організму",
+    "char_count": 146,
+    "tokens_approx": 36,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\deep-blue-polyphenol-complex.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "0e0015999f46660e",
+    "product_slug": "deep-blue-polyphenol-complex",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Ладан (Boswellia serrata), один з основних інгредієнтів, здавна використовується в аюрведичній практиці Індії для підтримки суглобів\n👑 Поліфеноли — природні водорозчинні антиоксиданти, які людина отримує з рослинної їжі або БАД\n👑 Формула поєднує п'ять різних рослинних джерел поліфенолів в одній капсулі",
+    "char_count": 305,
+    "tokens_approx": 76,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\deep-blue-polyphenol-complex.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "a49a16a1aa0a335b",
+    "product_slug": "deep-blue-polyphenol-complex",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Не використовувати за пошкодженої захисної плівки на упаковці\n🔹 Вагітним, жінкам, які годують груддю, та особам з хронічними захворюваннями — консультація лікаря перед застосуванням\n🔹 Зберігати в недоступному для дітей місці\n🔹 Можлива посилена чутливість шкіри у окремих людей — уважно стежити за реакцією організму\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення і не є медичною консультацією. Дана інформація не оцінена Управлінням з контролю за продуктами харчування і ліками (FDA) і не призначена для діагностики, лікування чи попередження будь-якого захворювання. Перед застосуванням консультуйтеся з лікарем.\n\n#БАД #суглоби #поліфеноли",
+    "char_count": 658,
+    "tokens_approx": 164,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\deep-blue-polyphenol-complex.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "fc8f62765a15085c",
+    "product_slug": "digestzen-terrazyme",
+    "section_key": "product_header",
+    "section_title": "DigestZen TerraZyme",
+    "content": "Категорія: Supplements → Digestive Health\n\nТип: БАД (комплекс травних ферментів)\n\nПосилання: https://www.doterra.com/US/en/p/digestzen-terrazyme",
+    "char_count": 144,
+    "tokens_approx": 36,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\digestzen-terrazyme.md",
+      "section_title": "__header__DigestZen TerraZyme",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "513d434d7e855033",
+    "product_slug": "digestzen-terrazyme",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Комплекс травних ферментів на основі цільних харчових джерел для підтримки здорового травлення\n👑 Допомагає організму засвоювати поживні речовини з обробленої та вареної їжі\n👑 Частина лінійки DigestZen",
+    "char_count": 202,
+    "tokens_approx": 50,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\digestzen-terrazyme.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "01ddac35886e1f99",
+    "product_slug": "digestzen-terrazyme",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ 10 активних цільнохарчових ферментів (амілаза, ліпаза, протеаза та інші)\n▫️ Кофактори для підтримки природного вироблення ферментів\n▫️ Фірмова суміш Tummy Tamer (м'ята, імбир, кмин)\n▫️ Рослинні капсули без глютену, молочних продуктів і компонентів тваринного походження",
+    "char_count": 272,
+    "tokens_approx": 68,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\digestzen-terrazyme.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "819c8b00eb89fd2c",
+    "product_slug": "digestzen-terrazyme",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Травний комфорт: зменшує газоутворення і здуття після їжі\n👑 Засвоєння поживних речовин: підтримує перетворення їжі на клітинну енергію\n👑 Толерантність до їжі: корисний при подорожах чи пробі нових страв\n👑 Підтримка природного вироблення ферментів організмом",
+    "char_count": 259,
+    "tokens_approx": 64,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\digestzen-terrazyme.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "5a8d3a77426fd504",
+    "product_slug": "digestzen-terrazyme",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 1 капсула — коли страва містить переважно свіжі, необроблені продукти\n🔹 2-3 капсули — при вживанні сильно обробленої, вареної їжі або продуктів, які зазвичай викликають дискомфорт\n🔹 Приймати безпосередньо перед або одразу після їжі",
+    "char_count": 233,
+    "tokens_approx": 58,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\digestzen-terrazyme.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "b65adef78bade116",
+    "product_slug": "digestzen-terrazyme",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Zendocrine — для комплексної підтримки детоксикаційних систем організму\n🔹 GX Assist та PB Assist+ — для повної підтримки мікрофлори кишківника\n🔹 Lifelong Vitality Pack — базова харчова основа",
+    "char_count": 193,
+    "tokens_approx": 48,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\digestzen-terrazyme.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "f5acdf6fa862ac13",
+    "product_slug": "digestzen-terrazyme",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Здоровий раціон, за оцінками фахівців, має включати мінімум 60% свіжих, необроблених продуктів\n👑 Сучасна кулінарна обробка їжі часто руйнує природні ферменти, тому організму доводиться виробляти більше власних\n👑 TerraZyme можна поєднувати з іншими продуктами DigestZen для комплексної підтримки травлення",
+    "char_count": 306,
+    "tokens_approx": 76,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\digestzen-terrazyme.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "244a7e927b5ec7c3",
+    "product_slug": "digestzen-terrazyme",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 На початку прийому можливі тимчасові зміни травного ритму — зазвичай минають за декілька днів\n🔹 Вагітним, жінкам, які годують груддю, та особам з хронічними захворюваннями — консультація лікаря перед застосуванням\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення і не є медичною консультацією. Дана інформація не оцінена Управлінням з контролю за продуктами харчування і ліками (FDA) і не призначена для діагностики, лікування чи попередження будь-якого захворювання. Перед застосуванням консультуйтеся з лікарем.\n\n#БАД #травлення #ферменти",
+    "char_count": 599,
+    "tokens_approx": 149,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\digestzen-terrazyme.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "b4760f3bc0952315",
+    "product_slug": "doterra-baby-hair-body-wash",
+    "section_key": "product_header",
+    "section_title": "doTERRA Baby Hair & Body Wash",
+    "content": "Категорія: Skin & Hair Care → doTERRA Baby\n\nТип: дитячий засіб для миття волосся і тіла\n\nПосилання: https://www.doterra.com/US/en/p/doterra-baby-hair-and-body-wash",
+    "char_count": 163,
+    "tokens_approx": 40,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\doterra-baby-hair-body-wash.md",
+      "section_title": "__header__doTERRA Baby Hair & Body Wash",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "72850b2533cd0dbe",
+    "product_slug": "doterra-baby-hair-body-wash",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Ніжний засіб для миття волосся і тіла немовлят та малюків без сліз (tear-free формула)\n👑 Пінна текстура з екстрактом яблука і маслом ши для делікатної очистки без пересушування шкіри\n👑 Заспокійлива композиція лаванди, римської ромашки і мадагаскарської ванілі",
+    "char_count": 261,
+    "tokens_approx": 65,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\doterra-baby-hair-body-wash.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "33a54c1af54e2166",
+    "product_slug": "doterra-baby-hair-body-wash",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Sodium Laurylglucosides Hydroxypropylsulfonate та Caprylyl/Capryl Glucoside — м'які очисні компоненти\n▫️ Масло ши (Muyao Shea Butter, Східна Африка)\n▫️ Ефірна олія лаванди (Lavandula angustifolia)\n▫️ Ефірна олія римської ромашки (Anthemis nobilis)\n▫️ Екстракт мадагаскарської ванілі",
+    "char_count": 285,
+    "tokens_approx": 71,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\doterra-baby-hair-body-wash.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 5,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "373333a6e487b0c7",
+    "product_slug": "doterra-baby-hair-body-wash",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Ніжна очистка: підходить для делікатної шкіри немовлят з перших днів життя\n👑 Без сліз: формула клінічно протестована і не подразнює очі\n👑 Заспокоєння перед сном: аромат лаванди і ромашки допомагає створити спокійну атмосферу\n👑 Підходить для волосся і тіла — універсальний засіб для купання",
+    "char_count": 291,
+    "tokens_approx": 72,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\doterra-baby-hair-body-wash.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "1b268c5ec9008b7f",
+    "product_slug": "doterra-baby-hair-body-wash",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Кілька натискань дозатора на руку або мочалку\n🔹 Спінити на волоссі і тілі дитини\n🔹 Ретельно змити водою\n🔹 Підходить для регулярного (кожного купання) використання",
+    "char_count": 164,
+    "tokens_approx": 41,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\doterra-baby-hair-body-wash.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "29543d30765ecf7c",
+    "product_slug": "doterra-baby-hair-body-wash",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 doTERRA baby Lotion — наступний крок після купання для додаткового живлення шкіри\n🔹 doTERRA baby Diaper Rash Cream — догляд за шкірою під підгузником",
+    "char_count": 151,
+    "tokens_approx": 37,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\doterra-baby-hair-body-wash.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "6a51d2ff70ec2b40",
+    "product_slug": "doterra-baby-hair-body-wash",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Формула не містить парабенів, фталатів, пропіленгліколю, штучних барвників і тальку\n👑 Масло ши muyao походить зі Східної Африки і традиційно застосовується для догляду за шкірою немовлят\n👑 Аромат ванілі, лаванди і ромашки однаковий у всіх трьох продуктах лінійки doTERRA baby — для цілісного відчуття",
+    "char_count": 302,
+    "tokens_approx": 75,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\doterra-baby-hair-body-wash.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "4268e057a3cb5658",
+    "product_slug": "doterra-baby-hair-body-wash",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Для зовнішнього застосування\n🔹 Використовувати лише під наглядом дорослих\n🔹 За появи подразнення — припинити застосування\n🔹 Уникати потрапляння в очі дитини\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Перед першим використанням протестуйте засіб на невеликій ділянці шкіри дитини. За появи будь-яких реакцій — зверніться до педіатра.\n\n#doterrababy #дитячийдогляд #безсліз",
+    "char_count": 393,
+    "tokens_approx": 98,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\doterra-baby-hair-body-wash.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "add3e350689409ee",
+    "product_slug": "essential-skin-care-facial-cleanser",
+    "section_key": "product_header",
+    "section_title": "Essential Skin Care Facial Cleanser",
+    "content": "Категорія: Skin & Hair Care → Essential Skin Care\n\nТип: гель для очистки обличчя\n\nПосилання: https://www.doterra.com/US/en/pl/personal-care-essentials",
+    "char_count": 150,
+    "tokens_approx": 37,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\essential-skin-care-facial-cleanser.md",
+      "section_title": "__header__Essential Skin Care Facial Cleanser",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "2988d73bea947035",
+    "product_slug": "essential-skin-care-facial-cleanser",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Гель-очисник для обличчя з лінійки Essential Skin Care — перший крок регулярного антивікового ритуалу\n👑 М'яко видаляє забруднення та залишки макіяжу, не пересушуючи шкіру\n👑 Містить ефірні олії чайного дерева (Melaleuca) та м'яти перцевої",
+    "char_count": 239,
+    "tokens_approx": 59,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\essential-skin-care-facial-cleanser.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "cf67b965003e7245",
+    "product_slug": "essential-skin-care-facial-cleanser",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Sodium Cocoyl Isethionate та стеаринова кислота — м'які очисні компоненти на основі кокоса\n▫️ Ефірна олія чайного дерева (Melaleuca alternifolia)\n▫️ Ефірна олія м'яти перцевої (Mentha piperita)",
+    "char_count": 196,
+    "tokens_approx": 49,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\essential-skin-care-facial-cleanser.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "c5bcb6f47541cc3b",
+    "product_slug": "essential-skin-care-facial-cleanser",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Очистка шкіри: видаляє бруд, надлишок себуму і залишки макіяжу\n👑 Свіжість: м'ята перцева і чайне дерево надають освіжаючого ефекту\n👑 Підготовка шкіри: перший крок перед тонером і сироваткою в системі Essential Skin Care\n👑 Підходить для ранкового і вечірнього використання",
+    "char_count": 273,
+    "tokens_approx": 68,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\essential-skin-care-facial-cleanser.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "f9215607a1e16fc8",
+    "product_slug": "essential-skin-care-facial-cleanser",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Нанести на вологу шкіру обличчя, м'яко масажуючи круговими рухами\n🔹 Змити теплою водою\n🔹 Використовувати вранці та ввечері перед тонером і сироваткою",
+    "char_count": 151,
+    "tokens_approx": 37,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\essential-skin-care-facial-cleanser.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "fbaec9d88ee5f55e",
+    "product_slug": "essential-skin-care-facial-cleanser",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Наступні кроки лінійки Essential Skin Care: тонер, сироватка, крем для очей, зволожувальний крем\n🔹 Разом складають повну систему антивікового догляду за шкірою",
+    "char_count": 161,
+    "tokens_approx": 40,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\essential-skin-care-facial-cleanser.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "703899bac585e297",
+    "product_slug": "essential-skin-care-facial-cleanser",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Лінійка Essential Skin Care включає вісім продуктів для повного ритуалу догляду за обличчям\n👑 Ефірна олія чайного дерева здавна відома своїми очисними властивостями для проблемної шкіри\n👑 Формула поєднує сучасні технології догляду з ефірними оліями в значній концентрації",
+    "char_count": 273,
+    "tokens_approx": 68,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\essential-skin-care-facial-cleanser.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "ca61a82a9c564218",
+    "product_slug": "essential-skin-care-facial-cleanser",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Для зовнішнього застосування\n🔹 Уникати потрапляння в очі\n🔹 За появи подразнення — припинити застосування\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Перед застосуванням протестуйте засіб на невеликій ділянці шкіри. За наявності алергічних реакцій в анамнезі — консультація дерматолога перед застосуванням.\n\n#доглядзаобличчям #очисник #essentialskincare",
+    "char_count": 417,
+    "tokens_approx": 104,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\essential-skin-care-facial-cleanser.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "e7cf960b7e1fcaf5",
+    "product_slug": "fractionated-coconut-oil",
+    "section_key": "product_header",
+    "section_title": "Fractionated Coconut Oil",
+    "content": "Категорія: Skin & Hair Care → Body Care\n\nТип: базова (транспортна) олія для тіла\n\nПосилання: https://www.doterra.com/US/en/p/usage-fractionated-coconut-oil-carrier-oil",
+    "char_count": 167,
+    "tokens_approx": 41,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\fractionated-coconut-oil.md",
+      "section_title": "__header__Fractionated Coconut Oil",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "2d6a8cf8e36f9332",
+    "product_slug": "fractionated-coconut-oil",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Фракціонована кокосова олія — базова олія для розведення ефірних олій і догляду за тілом\n👑 Легка, безбарвна, без запаху; повністю розчинна з усіма ефірними оліями doTERRA\n👑 Не залишає жирного сліду і не забиває пори",
+    "char_count": 217,
+    "tokens_approx": 54,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\fractionated-coconut-oil.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "b6e0111765c8bdf4",
+    "product_slug": "fractionated-coconut-oil",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Caprylic/Capric Triglyceride — основний компонент, отриманий фракціонуванням кокосової олії\n▫️ 100% рослинне походження (Cocos nucifera)",
+    "char_count": 139,
+    "tokens_approx": 34,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\fractionated-coconut-oil.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "613c1b5ce80452f0",
+    "product_slug": "fractionated-coconut-oil",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Базова олія для розведення: знижує чутливість шкіри при нанесенні концентрованих ефірних олій\n👑 Зволоження: пом'якшує суху шкіру рук, ніг, ліктів\n👑 Масаж: ідеальна текстура для масажних сумішей з ефірними оліями\n👑 Довгий термін зберігання: не застигає і зберігається практично необмежено",
+    "char_count": 289,
+    "tokens_approx": 72,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\fractionated-coconut-oil.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "374cdd9f3d574ac7",
+    "product_slug": "fractionated-coconut-oil",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Для розведення: 1 частина ефірної олії на 5 і більше частин фракціонованої кокосової олії — залежно від чутливості шкіри\n🔹 Місцево: нанести на шкіру для зволоження без взаємодії з ароматом інших сумішей\n🔹 Для масажу: змішати з улюбленими ефірними оліями і нанести на шию та плечі",
+    "char_count": 281,
+    "tokens_approx": 70,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\fractionated-coconut-oil.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "9a0f220ee9adf312",
+    "product_slug": "fractionated-coconut-oil",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Універсальний базовий компонент майже для всіх рецептів місцевого застосування ефірних олій doTERRA\n🔹 Часто використовується разом з Deep Blue, AromaTouch та іншими сумішами для масажу",
+    "char_count": 186,
+    "tokens_approx": 46,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\fractionated-coconut-oil.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "eee281aad60bcc77",
+    "product_slug": "fractionated-coconut-oil",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Фракціонування видаляє довголанцюгові тригліцериди, через які звичайна кокосова олія твердне за кімнатної температури\n👑 Процес фракціонування також збільшує частку каприлової та капринової кислот, корисних для здоров'я шкіри\n👑 Основний хімічний компонент — Caprylic/capric triglyceride",
+    "char_count": 287,
+    "tokens_approx": 71,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\fractionated-coconut-oil.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "dc0fe89ee88b146a",
+    "product_slug": "fractionated-coconut-oil",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Для зовнішнього застосування\n🔹 Уникати потрапляння в очі, у внутрішні частини вух та на чутливі ділянки\n🔹 Вагітним, жінкам, які годують груддю, або особам під наглядом лікаря — консультація лікаря перед застосуванням\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Перед застосуванням протестуйте засіб на невеликій ділянці шкіри. За наявності алергічних реакцій в анамнезі — консультація дерматолога перед застосуванням.\n\n#доглядзатілом #базоваолія #фракціонованакокосова",
+    "char_count": 533,
+    "tokens_approx": 133,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\fractionated-coconut-oil.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "fba47aafe9bf8da3",
+    "product_slug": "frankincense",
+    "section_key": "product_header",
+    "section_title": "Ладан - Frankincense",
+    "content": "Тип: Однокомпонентна\n\nАртикул doTERRA: 31100001",
+    "char_count": 47,
+    "tokens_approx": 11,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\frankincense.md",
+      "section_title": "__header__Ладан - Frankincense",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "d7dd4eb042823435",
+    "product_slug": "frankincense",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Допомагає підтримувати здоров'я дихальних шляхів, клітинну функцію та здоров'я шкіри\n👑 Відомий своїми заспокійливими властивостями, використовується для покращення емоційного стану\n👑 Часто використовується в медитації та практиках усвідомленості",
+    "char_count": 247,
+    "tokens_approx": 61,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\frankincense.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "7a7f018e9b168d67",
+    "product_slug": "frankincense",
+    "section_key": "physical_effects",
+    "section_title": "Вплив на фізичне тіло",
+    "content": "▫️ Психотропні (без пригнічення ЦНС)\n▫️ Заспокійливі, розслабляючий\n▫️ Антидепресант\n▫️ Протизапальний\n▫️ Антигістамінний\n▫️ Протиастматичний\n▫️ Відхаркувальний\n▫️ Вітрогонний\n▫️ Регенеративний, працює на рівні ДНК клітин\n▫️ Імуномодулятор\n▫️ Антиоксидант\n▫️ Кровоспинний\n▫️ Зігріваючий\n▫️ Зміцнює волосся\n▫️ Місцевий анестетик",
+    "char_count": 327,
+    "tokens_approx": 81,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\frankincense.md",
+      "section_title": "Вплив на фізичне тіло",
+      "item_count": 15,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "77e73d253645a52f",
+    "product_slug": "frankincense",
+    "section_key": "emotional_effects",
+    "section_title": "Вплив на емоційному рівні",
+    "content": "Прибирає:\n▫️ Сирітство\n▫️ Духовну роз'єднаність\n▫️ Втрату зв'язку з батьком\n▫️ Невпевненість\n▫️ Духовну темряву\n\nРозвиває:\n▫️ Просвітлення\n▫️ Любов\n▫️ Захист\n▫️ Мудрість\n▫️ Прозріння\n▫️ Єдність з батьком\n▫️ Духовну відкритість",
+    "char_count": 226,
+    "tokens_approx": 56,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\frankincense.md",
+      "section_title": "Вплив на емоційному рівні",
+      "item_count": 12,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "f11036ffd16ad901",
+    "product_slug": "frankincense",
+    "section_key": "usage",
+    "section_title": "Способи застосування",
+    "content": "Ароматичний метод:\n🔹 Додати 3-4 краплі в дифузор\n🔹 Нанести краплю на долоню, злегка розтерти, накрити обличчя долонями і зробити кілька спокійних, глибоких вдихів\n🔹 Вдихати прямо з ковпачка або флакона на зручній відстані\n\nМетод місцевого застосування:\n🔹 Розвести 1-2 краплі базовою олією і обережно нанести на потрібну ділянку\n🔹 Використовувати 1-3 краплі, розведені з базовою олією, для масажу\n🔹 Змішати з емульгатором і розчинити в теплій воді для ванни\n🔹 Нанести 1 краплю, розведену з базовою олією, на підошви ніг\n\nВнутрішній спосіб:\n🔹 Приймати в капсулі, з медом або під язик — спосіб застосування, дозування та тривалість курсу залежать від конкретної потреби",
+    "char_count": 666,
+    "tokens_approx": 166,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\frankincense.md",
+      "section_title": "Способи застосування",
+      "item_count": 8,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "435ab581eb554272",
+    "product_slug": "frankincense",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Підвищення настрою:\nОлія ладану може допомогти зняти стрес і поліпшити емоційний стан\n\n👑 Антисептичні властивості:\nВикористовується для профілактики інфекцій і ран\n\n👑 Протизапальна дія:\nОлія може полегшити запалення і біль, пов'язані з артритом\n\n👑 Зігріваючий і заспокійливий ефект:\nПісля довгої прогулянки або тренування нанесіть олію ладану на зап'ястя, суглоби та втомлені м'язи\n\n👑 Догляд за шкірою:\nДопомагає зменшити зморшки, шрами та прищі завдяки своїм регенеративним властивостям\n\n👑 Підтримка імунної системи:\nЛадан може зміцнити імунну систему і захистити організм від хвороб\n\n👑 Дихальна система:\nВикористовується для полегшення симптомів застуди, бронхіту та астми",
+    "char_count": 676,
+    "tokens_approx": 169,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\frankincense.md",
+      "section_title": "Показання",
+      "item_count": 7,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "d58fdae172f313c9",
+    "product_slug": "frankincense",
+    "section_key": "origin",
+    "section_title": "Походження та склад",
+    "content": "👑 Дерева з роду Boswellia ростуть у гірських районах Африки та Азії, зокрема в Омані, Ємені, Сомалі та Ефіопії.\n\n👑 Ефірну олію добувають зі смоли дерев Boss wellia методом парової дистиляції.\n\n👑 Склад:\nα-пінен, лімонен, α-туйон\n\nМістить монотерпени, сесквітерпени та дитерпени — протизапальна та антисептична дія.",
+    "char_count": 313,
+    "tokens_approx": 78,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\frankincense.md",
+      "section_title": "Походження та склад",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "8685385fdc02fbe4",
+    "product_slug": "frankincense",
+    "section_key": "beauty_skincare",
+    "section_title": "Краса та догляд за шкірою",
+    "content": "👑 Зволоження шкіри:\nДодайте кілька крапель олії ладану до вашого улюбленого крему або лосьйону для додаткового зволоження\n\n👑 Антивіковий догляд:\nВикористовуйте олію ладану на цільових ділянках, щоб зменшити зморшки та ознаки старіння\n\n👑 Прищі:\nНанесіть розведену олію ладану безпосередньо на плями та прищі\n\n👑 Заспокійлива маска для обличчя:\nЗмішайте ладанну олію з глиною або йогуртом",
+    "char_count": 385,
+    "tokens_approx": 96,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\frankincense.md",
+      "section_title": "Краса та догляд за шкірою",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "fc1965bfaa70b53e",
+    "product_slug": "frankincense",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Ладан використовується з давніх часів як дорогоцінна речовина, часто пов'язана з релігійними та духовними практиками.\n👑 Вавилоняни та ассирійці використовували ладанну олію в ритуальних цілях.\n👑 Відомий як «король олій», ладан визнаний одним з найкращих для підтримки здоров'я клітин.",
+    "char_count": 286,
+    "tokens_approx": 71,
+    "order": 8,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\frankincense.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "a076e2b7e1fb9ac7",
+    "product_slug": "frankincense",
+    "section_key": "diffuser_blends",
+    "section_title": "Суміші для дифузора",
+    "content": "💦 Заспокійлива суміш:\n3 краплі ладану, 2 краплі лаванди, 2 краплі мандарина\n\n💦 Суміш для медитації:\n4 краплі ладану, 3 краплі сандалу, 1 крапля шавлії мускатної\n\n💦 Суміш для зосередження:\n4 краплі ладану, 2 краплі розмарину, 2 краплі м'яти перцевої",
+    "char_count": 248,
+    "tokens_approx": 62,
+    "order": 9,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\frankincense.md",
+      "section_title": "Суміші для дифузора",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "b3829399a1bb346a",
+    "product_slug": "frankincense",
+    "section_key": "research",
+    "section_title": "Дослідження",
+    "content": "👑 Протизапальна дія Boswellia serrata при артриті (Phytomedicine, 2014)\nКлінічне дослідження за участю 75 пацієнтів з остеоартритом показало значне зменшення болю та покращення рухливості.\nДжерело: https://pubmed.ncbi.nlm.nih.gov/24929566/\n\n👑 Вплив α-пінену на тривогу та депресію (Journal of Psychopharmacology, 2018)\nα-пінен виявив тривожно-зменшуючі та антидепресивні властивості, активуючи GABA-A рецептори мозку.\nДжерело: https://pubmed.ncbi.nlm.nih.gov/28980468/",
+    "char_count": 468,
+    "tokens_approx": 117,
+    "order": 10,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\frankincense.md",
+      "section_title": "Дослідження",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "9234df3c712fd774",
+    "product_slug": "frankincense",
+    "section_key": "additional_info",
+    "section_title": "Додаткова інформація",
+    "content": "Ладан викриває обман і помилкові переконання, пропонуючи свободу від низьких вібрацій.\n\nЛадан є потужним інструментом для розсіювання духовної темряви і відкриття нових горизонтів.\n\nЕфірна олія ладану допомагає зняти «завісу темряви», звільняє розум від обмежень і відкриває серце.",
+    "char_count": 281,
+    "tokens_approx": 70,
+    "order": 11,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\frankincense.md",
+      "section_title": "Додаткова інформація",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "9a7f8d1d4a5d3546",
+    "product_slug": "frankincense",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Перед першим використанням проведіть тест на алергію\n🔹 Завжди розбавляйте перед нанесенням на шкіру базовою олією\n🔹 Уникайте контакту з очима та слизовими оболонками\n🔹 Вагітним жінкам проконсультуватися з лікарем\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Надана інформація призначена виключно для ознайомлення і не є медичною консультацією. Перед застосуванням проконсультуйтеся з лікарем.",
+    "char_count": 398,
+    "tokens_approx": 99,
+    "order": 12,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\frankincense.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 5,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "98f819a0cb80f368",
+    "product_slug": "hd-clear-foaming-face-wash",
+    "section_key": "product_header",
+    "section_title": "HD Clear Foaming Face Wash",
+    "content": "Категорія: Skin & Hair Care → HD Clear Skin Care\n\nТип: пінка для очистки проблемної шкіри\n\nПосилання: https://www.doterra.com/US/en/pl/personal-care-hd-clear-skin-care",
+    "char_count": 167,
+    "tokens_approx": 41,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\hd-clear-foaming-face-wash.md",
+      "section_title": "__header__HD Clear Foaming Face Wash",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "9d82822e19a34874",
+    "product_slug": "hd-clear-foaming-face-wash",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Формула з п'ятьма ефірними оліями (чайне дерево, евкаліпт, герань, літсея, хо-вуд) для очистки шкіри\n👑 Пінна очисна формула для проблемної шкіри з екстрактом солодки та білої верби\n👑 Підходить для шкіри будь-якого віку, схильної до висипань",
+    "char_count": 242,
+    "tokens_approx": 60,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\hd-clear-foaming-face-wash.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "009a985b17e9b512",
+    "product_slug": "hd-clear-foaming-face-wash",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Ефірні олії: Чайне дерево (Melaleuca), Евкаліпт, Герань, Літсея, Хо-вуд\n▫️ Екстракт кореня солодки — регулює вироблення себуму\n▫️ Екстракт кори білої верби — сприяє оновленню клітин\n▫️ Амінокислоти та екстракт водоростей — живлення і заспокоєння шкіри",
+    "char_count": 254,
+    "tokens_approx": 63,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\hd-clear-foaming-face-wash.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "a24cb2c150f98cf8",
+    "product_slug": "hd-clear-foaming-face-wash",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Проблемна шкіра: допомагає впоратися з висипаннями і підтримувати чистоту шкіри\n👑 Контроль себуму: солодка регулює надмірну жирність шкіри\n👑 Оновлення клітин: біла верба сприяє гладкості і рівномірному тону\n👑 Заспокоєння: амінокислоти й екстракт водоростей знімають почервоніння та подразнення",
+    "char_count": 295,
+    "tokens_approx": 73,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\hd-clear-foaming-face-wash.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "9438a16acc2b459f",
+    "product_slug": "hd-clear-foaming-face-wash",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Двічі натиснути на дозатор піни в долоню\n🔹 Нанести на вологу шкіру обличчя і шиї, масажуючи круговими рухами знизу вгору\n🔹 Ретельно змити водою і промокнути рушником\n🔹 Використовувати вранці та ввечері, далі — HD Clear Topical Blend і зволожувальний крем",
+    "char_count": 256,
+    "tokens_approx": 64,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\hd-clear-foaming-face-wash.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "da3841268d5921c7",
+    "product_slug": "hd-clear-foaming-face-wash",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 HD Clear Topical Blend — точковий засіб для нанесення після очистки\n🔹 HD Clear Facial Lotion — завершальний крок системи для проблемної шкіри",
+    "char_count": 143,
+    "tokens_approx": 35,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\hd-clear-foaming-face-wash.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "4262c63fa0d873e0",
+    "product_slug": "hd-clear-foaming-face-wash",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 П'ять ефірних олій у складі об'єднані саме за їхніми очисними властивостями для проблемної шкіри\n👑 Спеціалізована суміш фітоліпідів (чорний кмин, чаульмугра, магнолія, манука) допомагає зменшити кількість висипань\n👑 Формула розроблена спеціально для шкіри, схильної до недосконалостей, у будь-якому віці",
+    "char_count": 305,
+    "tokens_approx": 76,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\hd-clear-foaming-face-wash.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "c09e79a020b6b2e9",
+    "product_slug": "hd-clear-foaming-face-wash",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Для зовнішнього застосування\n🔹 Уникати прямого контакту з очима\n🔹 За появи подразнення — припинити застосування\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Перед застосуванням протестуйте засіб на невеликій ділянці шкіри. За наявності алергічних реакцій в анамнезі — консультація дерматолога перед застосуванням.\n\n#hdclear #проблемнашкіра #очиснапіна",
+    "char_count": 415,
+    "tokens_approx": 103,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\hd-clear-foaming-face-wash.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "bbbcd2bd432be5d2",
+    "product_slug": "home-essentials-enrollment-kit",
+    "section_key": "product_header",
+    "section_title": "Home Essentials Enrollment Kit",
+    "content": "Категорія: Kits & Collections → Starter Kits\n\nТип: стартовий набір для нових клієнтів\n\nПосилання: https://www.doterra.com/US/en/p/home-essentials-enrollment-kit",
+    "char_count": 160,
+    "tokens_approx": 40,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\home-essentials-enrollment-kit.md",
+      "section_title": "__header__Home Essentials Enrollment Kit",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "487862cee62dcf9a",
+    "product_slug": "home-essentials-enrollment-kit",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Найпопулярніший стартовий набір doTERRA — база для знайомства з ефірними оліями\n👑 Містить 10 ефірних олій і сумішей плюс дифузор Petal\n👑 Включає безкоштовне оптове членство (Wellness Advocate) при реєстрації",
+    "char_count": 209,
+    "tokens_approx": 52,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\home-essentials-enrollment-kit.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "ac817ab37f433b3f",
+    "product_slug": "home-essentials-enrollment-kit",
+    "section_key": "склад-набору",
+    "section_title": "Склад набору",
+    "content": "▫️ Ефірні олії: ладан, лаванда, лимон, чайне дерево, орегано, м'ята перцева\n▫️ Суміші: doTERRA Breathe, DigestZen, doTERRA On Guard, Deep Blue (5 мл)\n▫️ Дифузор Petal\n▫️ Вступний пакет матеріалів для нового користувача (Wellness Advocate Introductory Packet)",
+    "char_count": 258,
+    "tokens_approx": 64,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\home-essentials-enrollment-kit.md",
+      "section_title": "Склад набору",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "a435c5fb6e035a08",
+    "product_slug": "home-essentials-enrollment-kit",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Перше знайомство: набір містить найуживаніші олії для основних побутових потреб\n👑 Економія: набір дешевший за окрему купівлю кожного продукту\n👑 Універсальність: покриває респіраторну, травну, імунну підтримку та побутове застосування\n👑 База для подальшого навчання: рекомендований набір для нових клієнтів і партнерів doTERRA",
+    "char_count": 327,
+    "tokens_approx": 81,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\home-essentials-enrollment-kit.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "b268a970a60031ed",
+    "product_slug": "home-essentials-enrollment-kit",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Кожна олія й суміш використовується згідно з власним профілем (ароматично, місцево чи всередину — залежно від продукту)\n🔹 Дифузор Petal дозволяє одразу почати ароматерапевтичне застосування олій з набору\n🔹 Рекомендовано почати з вивчення властивостей кожної олії окремо, поступово формуючи власні рецепти",
+    "char_count": 306,
+    "tokens_approx": 76,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\home-essentials-enrollment-kit.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "42ac7f3222852ed0",
+    "product_slug": "home-essentials-enrollment-kit",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Природне продовження — Lifelong Vitality Pack для регулярної харчової підтримки\n🔹 Можна доповнити флаконами-роликами і базовою олією для створення власних сумішей",
+    "char_count": 164,
+    "tokens_approx": 41,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\home-essentials-enrollment-kit.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "d2efec0e16162866",
+    "product_slug": "home-essentials-enrollment-kit",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Набір традиційно вважається найпопулярнішим стартовим набором серед нових клієнтів doTERRA\n👑 Реєстрація з набором зазвичай включає одноразовий внесок за оптове членство, який можна уникнути за певних умов замовлення\n👑 Склад набору може незначно відрізнятися залежно від регіону та поточних акцій",
+    "char_count": 297,
+    "tokens_approx": 74,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\home-essentials-enrollment-kit.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "4ab14750e9ac05a5",
+    "product_slug": "home-essentials-enrollment-kit",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Кожен продукт у наборі має власні рекомендації та застереження — уважно читати етикетку кожного товару\n🔹 Зберігати в недоступному для дітей місці\n🔹 Вагітним, жінкам, які годують груддю, та особам з хронічними захворюваннями — консультація лікаря перед застосуванням окремих олій\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення і не є медичною консультацією. Перед застосуванням консультуйтеся з лікарем.\n\n#стартовийнабір #homeessentials #дляновачків",
+    "char_count": 466,
+    "tokens_approx": 116,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\home-essentials-enrollment-kit.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "2d5d5a2771e8f0b1",
+    "product_slug": "iq-mega",
+    "section_key": "product_header",
+    "section_title": "IQ Mega",
+    "content": "Категорія: Supplements → Nutrition\n\nТип: БАД (омега-3 добавка)\n\nПосилання: https://www.doterra.com/us/en/p/iq-mega",
+    "char_count": 114,
+    "tokens_approx": 28,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\iq-mega.md",
+      "section_title": "__header__IQ Mega",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "29477fed8eeafdc6",
+    "product_slug": "iq-mega",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Омега-3 добавка на основі риб'ячого жиру зі смаком дикого апельсина замість типового «рибного» присмаку\n👑 Джерело DHA та EPA для підтримки мозку, серцево-судинної, імунної та суглобової функції\n👑 Розроблена для регулярного прийому дітьми і дорослими разом з a2z Chewable",
+    "char_count": 272,
+    "tokens_approx": 68,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\iq-mega.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "2733c57b15dd83b9",
+    "product_slug": "iq-mega",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Риб'ячий жир, молекулярно фільтрований і дезодорований\n▫️ 900 мг DHA та 400 мг EPA на порцію (1300 мг омега-3 загалом)\n▫️ Ефірна олія дикого апельсина (Citrus sinensis) для смаку\n▫️ Антиоксиданти: екстракт розмарину, токофероли, соняшникова олія і лецитин",
+    "char_count": 258,
+    "tokens_approx": 64,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\iq-mega.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "1450ccb8182a0204",
+    "product_slug": "iq-mega",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Мозкова функція: DHA — ключовий структурний компонент мозку\n👑 Серцево-судинна система: підтримка здорового рівня ліпідів\n👑 Імунна функція: омега-3 підтримують запальний баланс організму\n👑 Суглоби: додаткова підтримка суглобової функції",
+    "char_count": 237,
+    "tokens_approx": 59,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\iq-mega.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "c0d44d7908a8d08b",
+    "product_slug": "iq-mega",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 1 чайна ложка (5 мл) на день\n🔹 Зберігати подалі від прямого тепла і світла\n🔹 Після відкриття зберігати в холодильнику і використати впродовж 100 днів",
+    "char_count": 151,
+    "tokens_approx": 37,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\iq-mega.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "5c4bde1ac871597f",
+    "product_slug": "iq-mega",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 a2z Chewable — разом складають базову дитячу програму харчової підтримки\n🔹 Lifelong Vitality Pack — доповнює омега-3 профіль дорослої програми (xEO Mega вже входить до LLV, тому IQ Mega частіше рекомендують дітям)",
+    "char_count": 215,
+    "tokens_approx": 53,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\iq-mega.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "593786b20199d55b",
+    "product_slug": "iq-mega",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Смак дикого апельсина повністю замінює характерний рибний присмак, типовий для звичайних добавок омега-3\n👑 Кожна порція тестується за жорсткими вимогами до вмісту токсинів і важких металів у морських ліпідах\n👑 Формула не містить глютену, молочних продуктів, пшениці, сої та горіхів",
+    "char_count": 283,
+    "tokens_approx": 70,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\iq-mega.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "f035a72493746966",
+    "product_slug": "iq-mega",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Не використовувати за пошкодженої захисної плівки\n🔹 Вагітним, жінкам, які годують груддю, та особам з хронічними захворюваннями — консультація лікаря перед застосуванням\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення і не є медичною консультацією. Дана інформація не оцінена Управлінням з контролю за продуктами харчування і ліками (FDA) і не призначена для діагностики, лікування чи попередження будь-якого захворювання. Перед застосуванням консультуйтеся з лікарем.\n\n#БАД #омега3 #дітямідорослим",
+    "char_count": 558,
+    "tokens_approx": 139,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\iq-mega.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "8927c9771dea10f1",
+    "product_slug": "lifelong-vitality-pack",
+    "section_key": "product_header",
+    "section_title": "doTERRA Lifelong Vitality Pack (LLV)",
+    "content": "Категорія: Supplements → Daily Vitality (Foundational Wellness)\n\nТип: БАД (базовий вітамінно-мінеральний комплекс)\n\nПосилання: https://www.doterra.com/US/en/p/doterra-lifelong-vitality-pack",
+    "char_count": 189,
+    "tokens_approx": 47,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\lifelong-vitality-pack.md",
+      "section_title": "__header__doTERRA Lifelong Vitality Pack (LLV)",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "9f1175773ad09062",
+    "product_slug": "lifelong-vitality-pack",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Базовий трикомпонентний комплекс вітамінів, мінералів та поживних речовин для регулярного застосування\n👑 Складається з трьох продуктів: Alpha CRS+ (клітинний антиоксидантний комплекс), Microplex VMz (мультивітамінно-мінеральний комплекс), xEO Mega/EO Mega+ (омега-3 з риб'ячого жиру та ефірними оліями)\n👑 Один із найпопулярніших продуктів doTERRA — базова харчова підтримка для здоров'я і довголіття",
+    "char_count": 401,
+    "tokens_approx": 100,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\lifelong-vitality-pack.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "3fb469d14b355803",
+    "product_slug": "lifelong-vitality-pack",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Alpha CRS+ — антиоксидантний клітинний комплекс (ресвератрол, куркумін, зелений чай та інші)\n▫️ Microplex VMz — мультивітаміни та мінерали (вітаміни A, C, D, E, група B, кальцій, магній, цинк та інші мінерали)\n▫️ xEO Mega/EO Mega+ — омега-3 жирні кислоти (риб'ячий жир) у поєднанні з ефірними оліями",
+    "char_count": 302,
+    "tokens_approx": 75,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\lifelong-vitality-pack.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "23c26b10e8ba36df",
+    "product_slug": "lifelong-vitality-pack",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Загальний тонус і життєва енергія: підтримка організму на клітинному рівні\n👑 Антиоксидантний захист: допомагає нейтралізувати вільні радикали\n👑 Здоров'я кісток: кальцій і магній у складі Microplex VMz\n👑 Імунна функція: комплекс вітамінів і мінералів підтримує імунітет\n👑 Здоров'я волосся, шкіри й нігтів: живлення на клітинному рівні",
+    "char_count": 335,
+    "tokens_approx": 83,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\lifelong-vitality-pack.md",
+      "section_title": "Показання",
+      "item_count": 5,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "345b800a0a356ac9",
+    "product_slug": "lifelong-vitality-pack",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 По 2 капсули кожного з трьох продуктів (Alpha CRS+, Microplex VMz, xEO Mega) двічі на день, разом з їжею — вранці та ввечері\n🔹 Доступна також форма Daily Packs (готові саше на кожен прийом) і веганська версія (Vegan LLV)",
+    "char_count": 222,
+    "tokens_approx": 55,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\lifelong-vitality-pack.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "e5682680b29a6c65",
+    "product_slug": "lifelong-vitality-pack",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Рекомендована основа перед початком системи MetaPWR\n🔹 Можна поєднувати з TerraZyme для ліпшого травлення\n🔹 Разом з PB Assist+ — для комплексної підтримки травної й імунної систем",
+    "char_count": 180,
+    "tokens_approx": 45,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\lifelong-vitality-pack.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "da0328fd3691e8e8",
+    "product_slug": "lifelong-vitality-pack",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 LLV — один із перших і найпопулярніших продуктів у категорії БАД в асортименті компанії\n👑 Компанія опублікувала клінічне дослідження про потенційний вплив LLV на організм\n👑 Існує веганська версія комплексу — з vEO Mega та веганським Microplex VMz",
+    "char_count": 248,
+    "tokens_approx": 62,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\lifelong-vitality-pack.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "a66c9baeeee7084e",
+    "product_slug": "lifelong-vitality-pack",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Приймати разом з їжею для ліпшого засвоєння\n🔹 Вагітним, жінкам, які годують груддю, та особам з хронічними захворюваннями — консультація лікаря перед застосуванням\n🔹 Зберігати в недоступному для дітей місці\n🔹 Не приймати дозу понад рекомендовану\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення і не є медичною консультацією. Дана інформація не оцінена Управлінням з контролю за продуктами харчування і ліками (FDA) і не призначена для діагностики, лікування чи попередження будь-якого захворювання. Перед застосуванням консультуйтеся з лікарем.\n\n#БАД #вітаміни #комплекснапідтримка",
+    "char_count": 598,
+    "tokens_approx": 149,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\lifelong-vitality-pack.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "7d31df9abded3667",
+    "product_slug": "metapwr-metabolic-blend",
+    "section_key": "product_header",
+    "section_title": "MetaPWR Metabolic Blend",
+    "content": "Категорія: Supplements → MetaPWR\n\nТип: БАД (харчова добавка на основі ефірних олій, для внутрішнього вживання)\n\nПосилання: https://www.doterra.com/US/en/p/metapwr-oil",
+    "char_count": 166,
+    "tokens_approx": 41,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\metapwr-metabolic-blend.md",
+      "section_title": "__header__MetaPWR Metabolic Blend",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "b2a63f527618d724",
+    "product_slug": "metapwr-metabolic-blend",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Суміш ефірних олій для внутрішнього вживання, розроблена для підтримки здорового метаболізму та рівня енергії\n👑 Допомагає контролювати апетит і сприяє усвідомленому харчуванню\n👑 Частина системи MetaPWR (олія, softgels, жувальна гумка Satiety Gum, Assist, Advantage)",
+    "char_count": 267,
+    "tokens_approx": 66,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\metapwr-metabolic-blend.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "7fd8784e7a8a6204",
+    "product_slug": "metapwr-metabolic-blend",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Грейпфрут (Citrus paradisi)\n▫️ Лимон (Citrus limon)\n▫️ М'ята перцева (Mentha piperita)\n▫️ Імбир (Zingiber officinale)\n▫️ Кориця (Cinnamomum verum), кора",
+    "char_count": 155,
+    "tokens_approx": 38,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\metapwr-metabolic-blend.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 5,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "513042810d7b5aa9",
+    "product_slug": "metapwr-metabolic-blend",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Метаболічна підтримка: доповнює здоровий раціон та фізичну активність задля ліпшого метаболізму\n👑 Контроль апетиту: пригнічує тягу до їжі, підтримує усвідомлене харчування\n👑 Енергія та тонус: цитрусово-пряний аромат створює бадьорий, стимулюючий настрій\n👑 Клітинний захист: лімонен у складі підтримує клітини від окисного стресу",
+    "char_count": 330,
+    "tokens_approx": 82,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\metapwr-metabolic-blend.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "cba0494a63a112d1",
+    "product_slug": "metapwr-metabolic-blend",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Внутрішньо: додати кілька крапель у напій і вжити разом з їжею\n🔹 Ароматично: використати у дифузорі для бадьорої атмосфери\n🔹 У системі MetaPWR також доступні softgels, жувальна гумка Satiety Gum, Assist та Advantage — кожен продукт має власний спосіб застосування",
+    "char_count": 265,
+    "tokens_approx": 66,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\metapwr-metabolic-blend.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "84d61158409f3c79",
+    "product_slug": "metapwr-metabolic-blend",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Разом з Lifelong Vitality Pack — базова харчова підтримка перед початком системи MetaPWR\n🔹 MetaPWR Assist — приймати перед основним прийомом їжі\n🔹 MetaPWR Advantage — колаген, NMN, NADH та інші активні інгредієнти для клітинного здоров'я",
+    "char_count": 239,
+    "tokens_approx": 59,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\metapwr-metabolic-blend.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "fee000d780a4c6fa",
+    "product_slug": "metapwr-metabolic-blend",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Назва MetaPWR походить від слів «метаболічний» і абревіатури PWR — Personal Wellness Realized (усвідомлене персональне благополуччя)\n👑 Формула розроблена клінічними дослідниками doTERRA на основі співвідношень олій — попередні (неопубліковані) дослідження показують потенційний вплив на жирові клітини, потрібні подальші клінічні підтвердження\n👑 Лімонен, основний компонент грейпфрута і лимона, вивчається за роль у підтримці метаболізму при внутрішньому вживанні",
+    "char_count": 465,
+    "tokens_approx": 116,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\metapwr-metabolic-blend.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "5443fb6fba155bcc",
+    "product_slug": "metapwr-metabolic-blend",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Перед внутрішнім вживанням перевірити, чи позначена олія як безпечна для прийому всередину (Supplement Facts на етикетці)\n🔹 Уникати контакту з очима та слизовими\n🔹 Вагітним, жінкам, які годують груддю, та особам з хронічними захворюваннями — консультація лікаря перед застосуванням\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення і не є медичною консультацією. Дана інформація не оцінена Управлінням з контролю за продуктами харчування і ліками (FDA) і не призначена для діагностики, лікування чи попередження будь-якого захворювання. Перед застосуванням консультуйтеся з лікарем.\n\n#БАД #харчовадобавка #метаболізм",
+    "char_count": 674,
+    "tokens_approx": 168,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\metapwr-metabolic-blend.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "348b868a39dbed08",
+    "product_slug": "pb-assist-plus",
+    "section_key": "product_header",
+    "section_title": "PB Assist+",
+    "content": "Категорія: Supplements → ProBiome\n\nТип: БАД (пробіотико-пребіотичний комплекс)\n\nПосилання: https://www.doterra.com/US/en/p/pb-assist-new",
+    "char_count": 136,
+    "tokens_approx": 34,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\pb-assist-plus.md",
+      "section_title": "__header__PB Assist+",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "32403508836ae3ef",
+    "product_slug": "pb-assist-plus",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Пробіотико-пребіотичний комплекс для підтримки здорової мікрофлори кишківника\n👑 Поєднує 13 штамів пробіотиків та пребіотичну клітковину (FOS) в одній формулі\n👑 Мікрокапсульована технологія оберігає живі культури від кислотності шлунка",
+    "char_count": 236,
+    "tokens_approx": 59,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\pb-assist-plus.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "b4f36013d8771c60",
+    "product_slug": "pb-assist-plus",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ 13 штамів пробіотичних бактерій (Lactobacillus, Bifidobacterium та інші роди)\n▫️ Пребіотична клітковина — фруктоолігосахариди (FOS)\n▫️ Формула без глютену, підходить для всієї родини",
+    "char_count": 185,
+    "tokens_approx": 46,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\pb-assist-plus.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "f5efc5aad495e61e",
+    "product_slug": "pb-assist-plus",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Мікрофлора кишківника: підтримує позитивний баланс і зростання корисних бактерій\n👑 Травна система: сприяє здоровому травленню на будь-якому віковому етапі\n👑 Імунна функція: значна частина імунної системи пов'язана зі станом кишківника\n👑 Засвоєння поживних речовин: підтримує оптимальний метаболізм і всмоктування нутрієнтів",
+    "char_count": 325,
+    "tokens_approx": 81,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\pb-assist-plus.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "9b58838086b9ee1e",
+    "product_slug": "pb-assist-plus",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 1 саше (порошок) на день — розчинити або вжити безпосередньо\n🔹 Альтернативна форма — капсули: 1 капсула 1-2 рази на день за призначенням спеціаліста\n🔹 Не потребує обов'язкового зберігання в холодильнику завдяки мікрокапсульованій технології",
+    "char_count": 242,
+    "tokens_approx": 60,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\pb-assist-plus.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "3a5ba8c219b7dc5a",
+    "product_slug": "pb-assist-plus",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 TerraZyme — комплексна підтримка травлення разом з ферментами\n🔹 Zendocrine та GX Assist — для системної підтримки детоксикаційних процесів\n🔹 PB Assist Jr. — дитяча версія у формі порошку для тих, хто має проблеми з ковтанням капсул",
+    "char_count": 233,
+    "tokens_approx": 58,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\pb-assist-plus.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "18983e24678bdf7f",
+    "product_slug": "pb-assist-plus",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Слово «пробіотик» перекладається як «для життя» — ці мікроорганізми використовуються людиною тисячоліттями\n👑 Живі культури мають подвійний захисний шар, який дозволяє їм пережити кислотність шлунка і дістатися кишківника живими\n👑 Формула підходить для регулярного використання всіма членами родини",
+    "char_count": 299,
+    "tokens_approx": 74,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\pb-assist-plus.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "082ea11ec2903d34",
+    "product_slug": "pb-assist-plus",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 На початку прийому можливі тимчасові зміни травного ритму — зазвичай минають за декілька днів\n🔹 Вагітним, жінкам, які годують груддю, та особам з хронічними захворюваннями — консультація лікаря перед застосуванням\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення і не є медичною консультацією. Дана інформація не оцінена Управлінням з контролю за продуктами харчування і ліками (FDA) і не призначена для діагностики, лікування чи попередження будь-якого захворювання. Перед застосуванням консультуйтеся з лікарем.\n\n#БАД #пробіотики #мікрофлора",
+    "char_count": 602,
+    "tokens_approx": 150,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\pb-assist-plus.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "a68608da30c86f73",
+    "product_slug": "petal-diffuser",
+    "section_key": "product_header",
+    "section_title": "Petal Diffuser 2.0",
+    "content": "Категорія: Diffusers & Accessories → Essential Oil Diffusers\n\nТип: ультразвуковий дифузор\n\nПосилання: https://www.doterra.com/US/en/petal-essential-collection",
+    "char_count": 158,
+    "tokens_approx": 39,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\petal-diffuser.md",
+      "section_title": "__header__Petal Diffuser 2.0",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "e15c93f8aaeee4b1",
+    "product_slug": "petal-diffuser",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Компактний ультразвуковий дифузор для дому чи офісу з м'яким підсвічуванням\n👑 Розпилює надтонкий, але насичений туман, який покриває зону до 30 кв. м\n👑 Три режими: 2 і 6 годин безперервної роботи або 12 годин з інтервалами (5 хв увімкнено / 5 хв вимкнено)",
+    "char_count": 257,
+    "tokens_approx": 64,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\petal-diffuser.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "d130a3c5b4f181ef",
+    "product_slug": "petal-diffuser",
+    "section_key": "склад-та-технічні-характеристики",
+    "section_title": "Склад та технічні характеристики",
+    "content": "▫️ Проста конструкція з трьох частин — легко чистити і збирати\n▫️ Опціональне світлодіодне підсвічування (нічник) або режим без світла\n▫️ Живлення від мережі: 100–240V AC\n▫️ Матеріали: скляна кришка, поліпропіленовий корпус",
+    "char_count": 223,
+    "tokens_approx": 55,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\petal-diffuser.md",
+      "section_title": "Склад та технічні характеристики",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "0533f9ef00f277ef",
+    "product_slug": "petal-diffuser",
+    "section_key": "indications",
+    "section_title": "Показання (сфери застосування)",
+    "content": "👑 Ароматерапія вдома: створює атмосферу для розслаблення, бадьорості чи концентрації залежно від обраної олії\n👑 Нічник: м'яке підсвічування підходить для дитячої кімнати чи спальні\n👑 Офіс та невеликі кімнати: компактний розмір підходить для робочого столу\n👑 Легкість використання: підходить як новачкам, так і досвідченим користувачам",
+    "char_count": 334,
+    "tokens_approx": 83,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\petal-diffuser.md",
+      "section_title": "Показання (сфери застосування)",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "996f05a54f48ef54",
+    "product_slug": "petal-diffuser",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Залити воду до позначки максимального рівня\n🔹 Додати 3-8 крапель обраної ефірної олії\n🔹 Обрати режим роботи (2, 6 або 12 годин інтервально) та за бажання підсвічування\n🔹 Періодично чистити сумішшю води й оцту, аби запобігти накопиченню залишків олії",
+    "char_count": 251,
+    "tokens_approx": 62,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\petal-diffuser.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "4c68269f053968f8",
+    "product_slug": "petal-diffuser",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Добре поєднується з цитрусовими оліями (Wild Orange, Bergamot) для бадьорого ранку\n🔹 Або з Lavender, сандалом чи римською ромашкою для вечірнього розслаблення\n🔹 Входить до складу Petal Essentials Collection разом з Wild Orange і Lavender",
+    "char_count": 239,
+    "tokens_approx": 59,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\petal-diffuser.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "a62581e4ff4266dc",
+    "product_slug": "petal-diffuser",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Дифузор належить до ультразвукового типу — розпилює олію без нагрівання, зберігаючи її властивості\n👑 Регулярна очистка дифузора запобігає накопиченню залишків олії, які можуть заважати роботі пристрою\n👑 Petal — один із найкомпактніших і найдоступніших дифузорів у лінійці doTERRA",
+    "char_count": 281,
+    "tokens_approx": 70,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\petal-diffuser.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "a90a525c012a1b01",
+    "product_slug": "petal-diffuser",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Використовувати лише з водою і ефірними оліями — не заливати інші рідини\n🔹 Ставити на рівній стійкій поверхні, подалі від краю столу\n🔹 Не залишати без нагляду поруч із малими дітьми чи домашніми тваринами\n🔹 Регулярно чистити резервуар для запобігання накопиченню залишків\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Дотримуйтеся інструкції з експлуатації пристрою на упаковці.\n\n#дифузор #ароматерапія #petal",
+    "char_count": 429,
+    "tokens_approx": 107,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\petal-diffuser.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "9a69490974443f00",
+    "product_slug": "phytoestrogen-essential-complex",
+    "section_key": "product_header",
+    "section_title": "Phytoestrogen Essential Complex",
+    "content": "Категорія: Supplements → dōTERRA Women\n\nТип: БАД (жіночий гормональний комплекс)\n\nПосилання: https://www.doterra.com/US/en/p/phytoestrogen-complex",
+    "char_count": 146,
+    "tokens_approx": 36,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\phytoestrogen-essential-complex.md",
+      "section_title": "__header__Phytoestrogen Essential Complex",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "d9007dfa26b46c88",
+    "product_slug": "phytoestrogen-essential-complex",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 БАД для жінок на основі стандартизованих рослинних фітоестрогенів — соя, льняне насіння, гранат\n👑 Розроблений для м'якої підтримки гормонального балансу протягом різних етапів життя жінки\n👑 Частина лінійки dōTERRA Women поруч з Bone Nutrient Complex та ClaryCalm",
+    "char_count": 264,
+    "tokens_approx": 66,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\phytoestrogen-essential-complex.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "dc3c857efd4e679e",
+    "product_slug": "phytoestrogen-essential-complex",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Екстракт сої — стандартизований до 64% ізофлавонів, з яких мінімум 50% генистеїну\n▫️ Екстракт льняного насіння — стандартизований до 40% лігнанів\n▫️ Екстракт шкірки гранату — потужна антиоксидантна підтримка\n▫️ Рослинні капсули без лаурилсульфату натрію (SLS-free)",
+    "char_count": 267,
+    "tokens_approx": 66,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\phytoestrogen-essential-complex.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "d07a2f8332632fba",
+    "product_slug": "phytoestrogen-essential-complex",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Гормональний баланс: підтримка нормального рівня естрогену природним шляхом\n👑 ПМС та менопауза: полегшення дискомфорту, пов'язаного з передменструальним синдромом і менопаузою\n👑 Здоров'я кісток, серця і тканин молочної залози: додаткова підтримка з віком\n👑 Метаболізм естрогену: льняні лігнани допомагають у здоровому метаболізмі гормональних сполук",
+    "char_count": 351,
+    "tokens_approx": 87,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\phytoestrogen-essential-complex.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "dee76543252f38b3",
+    "product_slug": "phytoestrogen-essential-complex",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Пре- та періменопаузальний період: 1-2 капсули на день разом з їжею\n🔹 Постменопаузальний період: 2 капсули на день разом з їжею\n🔹 Курс і дозування ліпше узгодити з лікарем відповідно до індивідуальних потреб",
+    "char_count": 209,
+    "tokens_approx": 52,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\phytoestrogen-essential-complex.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "a55b24c897c25311",
+    "product_slug": "phytoestrogen-essential-complex",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Bone Nutrient Complex — комплексна підтримка кісткової тканини\n🔹 ClaryCalm — суміш ефірних олій для жіночого циклу (місцеве застосування)\n🔹 Lifelong Vitality Pack — базова харчова підтримка",
+    "char_count": 191,
+    "tokens_approx": 47,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\phytoestrogen-essential-complex.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "cbedd47f6755145b",
+    "product_slug": "phytoestrogen-essential-complex",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Соєвий екстракт у складі стандартизований саме за вмістом генистеїну — активного ізофлавону з естрогеноподібною дією\n👑 Продукт розроблений для використання на різних етапах життя жінки — від підліткового віку до менопаузи\n👑 Формула не містить глютену та молочних продуктів",
+    "char_count": 274,
+    "tokens_approx": 68,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\phytoestrogen-essential-complex.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "720007c4acdad1cd",
+    "product_slug": "phytoestrogen-essential-complex",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Вагітним і жінкам, які годують груддю, застосування лише після консультації з лікарем\n🔹 Особам з гормонозалежними захворюваннями обов'язково проконсультуватися з лікарем перед прийомом\n🔹 Не приймати дозу понад рекомендовану\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення і не є медичною консультацією. Дана інформація не оцінена Управлінням з контролю за продуктами харчування і ліками (FDA) і не призначена для діагностики, лікування чи попередження будь-якого захворювання. Перед застосуванням консультуйтеся з лікарем.\n\n#БАД #жіночездоров'я #гормональнийбаланс",
+    "char_count": 624,
+    "tokens_approx": 156,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\phytoestrogen-essential-complex.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "1674880af45016bf",
+    "product_slug": "salon-essentials-root-to-tip-serum",
+    "section_key": "product_header",
+    "section_title": "Salon Essentials Root to Tip Serum",
+    "content": "Категорія: Skin & Hair Care → dōTERRA Hair Care\n\nТип: сироватка для волосся і шкіри голови\n\nПосилання: https://www.doterra.com/US/en/p/haircare-salon-essentials-root-to-tip-serum",
+    "char_count": 178,
+    "tokens_approx": 44,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\salon-essentials-root-to-tip-serum.md",
+      "section_title": "__header__Salon Essentials Root to Tip Serum",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "cbd0239307f04ba5",
+    "product_slug": "salon-essentials-root-to-tip-serum",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Легка сироватка для волосся і шкіри голови на основі ефірних олій і живильних ліпідів\n👑 Надає волоссю блиск і м'якість без обтяження\n👑 Частина професійної лінійки dōTERRA Salon Essentials",
+    "char_count": 189,
+    "tokens_approx": 47,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\salon-essentials-root-to-tip-serum.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "68851eca59387905",
+    "product_slug": "salon-essentials-root-to-tip-serum",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Ефірні олії: Лаванда, М'ята перцева, Майоран, Кедрове дерево, Лавандин, Розмарин, Ніяулі, Евкаліпт\n▫️ Олія арганії, олія сача інчі (Plukenetia volubilis)\n▫️ Олія насіння соняшника, олія мідоуфом",
+    "char_count": 197,
+    "tokens_approx": 49,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\salon-essentials-root-to-tip-serum.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "c8cd0d41c6e1ef60",
+    "product_slug": "salon-essentials-root-to-tip-serum",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Блиск і м'якість: миттєво поліпшує вигляд волосся, надає сяйва\n👑 Здоров'я шкіри голови: масажні властивості олій сприяють оновленню шкіри голови\n👑 Захист кінчиків: зменшує вигляд посічених кінчиків\n👑 Легка текстура: не обтяжує волосся і не залишає жирного вигляду",
+    "char_count": 265,
+    "tokens_approx": 66,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\salon-essentials-root-to-tip-serum.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "4c82ccc5bc5e3298",
+    "product_slug": "salon-essentials-root-to-tip-serum",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Нанести кілька крапель на чисте вологе волосся, розподіляючи по шкірі голови\n🔹 Легко помасажувати кінчиками пальців\n🔹 Для гладкого волосся нанести невелику кількість по довжині, приділяючи увагу кінчикам, і висушити як завжди",
+    "char_count": 227,
+    "tokens_approx": 56,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\salon-essentials-root-to-tip-serum.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "9f877537eed6fa66",
+    "product_slug": "salon-essentials-root-to-tip-serum",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Частина лінійки Salon Essentials (шампунь, кондиціонер, засоби для укладання)\n🔹 Можна поєднувати із засобами для шкіри голови на основі М'яти перцевої чи Розмарину",
+    "char_count": 165,
+    "tokens_approx": 41,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\salon-essentials-root-to-tip-serum.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "36ccded4f2730a88",
+    "product_slug": "salon-essentials-root-to-tip-serum",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 До складу входять вісім різних ефірних олій, підібраних спеціально для волосся і шкіри голови\n👑 Розмарин і м'ята перцева традиційно застосовуються для стимулюючого масажу шкіри голови\n👑 Формула розроблена так, аби забезпечити тривале зволоження без ефекту жирного волосся",
+    "char_count": 273,
+    "tokens_approx": 68,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\salon-essentials-root-to-tip-serum.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "8c175f5db9f2e266",
+    "product_slug": "salon-essentials-root-to-tip-serum",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Для зовнішнього застосування\n🔹 Уникати потрапляння в очі\n🔹 За появи подразнення шкіри голови — припинити застосування\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Перед застосуванням протестуйте засіб на невеликій ділянці шкіри. За наявності алергічних реакцій в анамнезі — консультація дерматолога перед застосуванням.\n\n#доглядзаволоссям #сироватка #salonessentials",
+    "char_count": 430,
+    "tokens_approx": 107,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\salon-essentials-root-to-tip-serum.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "06795bdfc86d4bb2",
+    "product_slug": "spa-hand-body-lotion",
+    "section_key": "product_header",
+    "section_title": "dōTERRA Spa Hand & Body Lotion",
+    "content": "Категорія: Skin & Hair Care → dōTERRA Spa\n\nТип: лосьйон для рук і тіла (без аромату)\n\nПосилання: https://www.doterra.com/US/en/p/doterra-spa-hand-and-body-lotion-3-pack",
+    "char_count": 168,
+    "tokens_approx": 42,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\spa-hand-body-lotion.md",
+      "section_title": "__header__dōTERRA Spa Hand & Body Lotion",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "2987ea2bf05c3051",
+    "product_slug": "spa-hand-body-lotion",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Легкий, невагомий лосьйон для рук і тіла без доданого аромату — основа для персональних сумішей з ефірними оліями\n👑 Швидко вбирається, не залишає жирного сліду\n👑 Частина лінійки dōTERRA SPA для домашнього спа-догляду",
+    "char_count": 218,
+    "tokens_approx": 54,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\spa-hand-body-lotion.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "0ba4e5cb20306f3d",
+    "product_slug": "spa-hand-body-lotion",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Олія соняшника, олія макадамії, олія жожоба\n▫️ Масло мурумуру та масло теоброми (какао)\n▫️ Кокосова олія, рослинні екстракти",
+    "char_count": 127,
+    "tokens_approx": 31,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\spa-hand-body-lotion.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "6d75084bce825004",
+    "product_slug": "spa-hand-body-lotion",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Зволоження: живить суху шкіру рук і тіла\n👑 Персоналізація: нейтральна база дозволяє додати улюблену ефірну олію для власного аромату\n👑 Догляд за руками: підходить для частого використання без відчуття жирності\n👑 Домашній спа-ритуал: створює приємний, розслаблюючий догляд за тілом",
+    "char_count": 282,
+    "tokens_approx": 70,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\spa-hand-body-lotion.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "6d16d322a7f09392",
+    "product_slug": "spa-hand-body-lotion",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Нанести рясну кількість на руки і тіло для зволоження сухої шкіри\n🔹 Додати краплю улюбленої ефірної олії doTERRA в долоню разом з лосьйоном для персонального аромату\n🔹 Підходить для регулярного застосування",
+    "char_count": 208,
+    "tokens_approx": 52,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\spa-hand-body-lotion.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "4d6c784374595abd",
+    "product_slug": "spa-hand-body-lotion",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Добре поєднується з цитрусовими оліями (Wild Orange, Bergamot) для бадьорого аромату\n🔹 Або з Lavender, Roman Chamomile для розслаблюючого вечірнього ритуалу\n🔹 Частина ширшої лінійки dōTERRA SPA (Citrus Bliss Lotion, Rose Lotion та інші)",
+    "char_count": 238,
+    "tokens_approx": 59,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\spa-hand-body-lotion.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "66ebeb062ac0708b",
+    "product_slug": "spa-hand-body-lotion",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Формула не містить власного аромату саме для того, аби людина могла створити власну ароматичну композицію\n👑 Масло мурумуру походить з Амазонії і традиційно використовується для живлення шкіри і волосся\n👑 Лосьйон розроблений для швидкого вбирання без відчуття жирності на шкірі",
+    "char_count": 278,
+    "tokens_approx": 69,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\spa-hand-body-lotion.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "fc75c984a8771dce",
+    "product_slug": "spa-hand-body-lotion",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Для зовнішнього застосування\n🔹 Уникати потрапляння в очі\n🔹 За появи подразнення — припинити застосування\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Перед застосуванням протестуйте засіб на невеликій ділянці шкіри. За наявності алергічних реакцій в анамнезі — консультація дерматолога перед застосуванням.\n\n#доглядзатілом #спа #лосьйон",
+    "char_count": 400,
+    "tokens_approx": 100,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\spa-hand-body-lotion.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "e2b3d4ef1b9936c6",
+    "product_slug": "sun-mineral-sunscreen-lotion",
+    "section_key": "product_header",
+    "section_title": "doTERRA sun Face + Body Mineral Sunscreen Lotion",
+    "content": "Категорія: Skin & Hair Care → Sun Care\n\nТип: сонцезахисний засіб (мінеральний SPF)\n\nПосилання: https://www.doterra.com/US/en/p/face-and-body-mineral-sunscreen-lotion",
+    "char_count": 165,
+    "tokens_approx": 41,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\sun-mineral-sunscreen-lotion.md",
+      "section_title": "__header__doTERRA sun Face + Body Mineral Sunscreen Lotion",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "4919187d5263b59e",
+    "product_slug": "sun-mineral-sunscreen-lotion",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Мінеральний сонцезахисний лосьйон SPF 30 на основі оксиду цинку (без хімічних UV-фільтрів)\n👑 Широкий спектр захисту UVA/UVB, водостійкість до 80 хвилин\n👑 Формула без оксибензону, парабенів і фталатів; містить ефірні олії ладану, безсмертника та моркви",
+    "char_count": 253,
+    "tokens_approx": 63,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\sun-mineral-sunscreen-lotion.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "d1ace39592d6a8cc",
+    "product_slug": "sun-mineral-sunscreen-lotion",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Оксид цинку (non-nano) — мінеральний UV-фільтр\n▫️ Алое віра, вітамін E (токоферол)\n▫️ Олія насіння малини, олія авокадо, естери жожоба\n▫️ Ефірні олії: Ладан (Frankincense), Безсмертник (Helichrysum), Морквяне насіння (Carrot Seed)",
+    "char_count": 233,
+    "tokens_approx": 58,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\sun-mineral-sunscreen-lotion.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "10b3a797468f184d",
+    "product_slug": "sun-mineral-sunscreen-lotion",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Захист від сонця: широкий спектр UVA/UVB, підходить для регулярного застосування на обличчя і тіло\n👑 Живлення шкіри: вітамін E і рослинні олії підтримують бар'єрну функцію шкіри\n👑 Підходить для чутливої шкіри та всієї родини\n👑 Не залишає білих слідів при нанесенні",
+    "char_count": 266,
+    "tokens_approx": 66,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\sun-mineral-sunscreen-lotion.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "aab287cdac4fed82",
+    "product_slug": "sun-mineral-sunscreen-lotion",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Нанести рівномірним шаром на відкриті ділянки шкіри перед виходом на сонце\n🔹 Повторно наносити кожні 2 години або одразу після купання чи посиленого потовиділення\n🔹 Підходить для обличчя і тіла",
+    "char_count": 195,
+    "tokens_approx": 48,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\sun-mineral-sunscreen-lotion.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "97170eca551b8867",
+    "product_slug": "sun-mineral-sunscreen-lotion",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Лінійка sun також включає спрей, стик (SPF 40) та відновлювальний спрей After Sun\n🔹 Можна поєднувати з After Sun Restorative Body Mist для відновлення шкіри після перебування на сонці",
+    "char_count": 185,
+    "tokens_approx": 46,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\sun-mineral-sunscreen-lotion.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "bc3b9b3ddb2d9a3a",
+    "product_slug": "sun-mineral-sunscreen-lotion",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Оксид цинку — мінеральний (фізичний) UV-фільтр, який відбиває сонячні промені, на відміну від хімічних фільтрів\n👑 Формула не містить оксибензону — компонента, який викликає занепокоєння через вплив на морські екосистеми (продукт reef-safe)\n👑 До складу входить ладан — одна з найвідоміших олій у портфелі doTERRA",
+    "char_count": 313,
+    "tokens_approx": 78,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\sun-mineral-sunscreen-lotion.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "d0d45f056052f46f",
+    "product_slug": "sun-mineral-sunscreen-lotion",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Для зовнішнього застосування\n🔹 Уникати потрапляння в очі\n🔹 За появи подразнення — припинити застосування\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Перед застосуванням протестуйте засіб на невеликій ділянці шкіри. За наявності алергічних реакцій в анамнезі — консультація дерматолога перед застосуванням.\n\n#доглядзашкірою #сонцезахист #мінеральнийSPF",
+    "char_count": 416,
+    "tokens_approx": 104,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\sun-mineral-sunscreen-lotion.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "d9081c1fe1518258",
+    "product_slug": "verage-immortelle-hydrating-serum",
+    "section_key": "product_header",
+    "section_title": "Veráge Immortelle Hydrating Serum",
+    "content": "Категорія: Skin & Hair Care → Veráge Skin Care\n\nТип: зволожувальна сироватка\n\nПосилання: https://www.doterra.com/US/en/p/personal-care-verage-immortelle-hydrating-serum",
+    "char_count": 168,
+    "tokens_approx": 42,
+    "order": 0,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\verage-immortelle-hydrating-serum.md",
+      "section_title": "__header__Veráge Immortelle Hydrating Serum",
+      "item_count": 0,
+      "has_list": false
+    }
+  },
+  {
+    "chunk_id": "fd41f7774733e666",
+    "product_slug": "verage-immortelle-hydrating-serum",
+    "section_key": "short_description",
+    "section_title": "Короткий опис",
+    "content": "👑 Зволожувальна сироватка на основі ліпідного комплексу, який імітує ліпіди молодої, здорової шкіри\n👑 Поєднує шість ефірних олій: ладан, гавайський сандал, лаванда, мирра, безсмертник, троянда\n👑 Глибоко зволожує і зменшує вигляд тонких ліній",
+    "char_count": 241,
+    "tokens_approx": 60,
+    "order": 1,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\verage-immortelle-hydrating-serum.md",
+      "section_title": "Короткий опис",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "318365100fb13fbe",
+    "product_slug": "verage-immortelle-hydrating-serum",
+    "section_key": "склад-та-ключові-інгредієнти",
+    "section_title": "Склад та ключові інгредієнти",
+    "content": "▫️ Естери олії жожоба та макадамії\n▫️ Ефірна олія ладану (Boswellia carterii/sacra/papyrifera/frereana)\n▫️ Ефірна олія гавайського сандалу (Santalum paniculatum)\n▫️ Ефірна олія лаванди, мирри, безсмертника, троянди\n▫️ Сквален, фітостероли, токоферол",
+    "char_count": 249,
+    "tokens_approx": 62,
+    "order": 2,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\verage-immortelle-hydrating-serum.md",
+      "section_title": "Склад та ключові інгредієнти",
+      "item_count": 5,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "0ea31659e23fbd4d",
+    "product_slug": "verage-immortelle-hydrating-serum",
+    "section_key": "indications",
+    "section_title": "Показання",
+    "content": "👑 Глибоке зволоження: ліпідний комплекс підтримує природний бар'єр шкіри\n👑 Антивіковий догляд: зменшує вигляд тонких ліній і надає гладкості\n👑 Баланс шкіри: підтримує оптимальний ліпідний баланс для сяючого вигляду\n👑 Підходить для всіх типів шкіри та будь-якого віку",
+    "char_count": 266,
+    "tokens_approx": 66,
+    "order": 3,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\verage-immortelle-hydrating-serum.md",
+      "section_title": "Показання",
+      "item_count": 4,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "a9613fd5149a61eb",
+    "product_slug": "verage-immortelle-hydrating-serum",
+    "section_key": "спосіб-застосування",
+    "section_title": "Спосіб застосування",
+    "content": "🔹 Нанести на чисту шкіру обличчя і шиї легкими рухами знизу вгору\n🔹 Використовувати вранці та ввечері\n🔹 Продовжити доглядовий ритуал засобом Veráge Moisturizer",
+    "char_count": 159,
+    "tokens_approx": 39,
+    "order": 4,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\verage-immortelle-hydrating-serum.md",
+      "section_title": "Спосіб застосування",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "ba62146168f9e540",
+    "product_slug": "verage-immortelle-hydrating-serum",
+    "section_key": "сумісність-з-іншими-продуктами-doterra",
+    "section_title": "Сумісність з іншими продуктами doTERRA",
+    "content": "🔹 Veráge Cleanser та Veráge Toner — попередні кроки в лінійці Veráge\n🔹 Veráge Moisturizer — завершальний крок для закріплення зволоження",
+    "char_count": 136,
+    "tokens_approx": 34,
+    "order": 5,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\verage-immortelle-hydrating-serum.md",
+      "section_title": "Сумісність з іншими продуктами doTERRA",
+      "item_count": 2,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "245e716ebcae88f2",
+    "product_slug": "verage-immortelle-hydrating-serum",
+    "section_key": "interesting_facts",
+    "section_title": "Цікаві факти",
+    "content": "👑 Назва Immortelle (безсмертник) відсилає до квітки, яка зберігає форму навіть після висихання — символ довговічної краси\n👑 Ліпідний комплекс розроблений так, аби наслідувати структуру ліпідів шкіри в момент її оптимального здоров'я і молодості\n👑 До рецептури входить шість ефірних олій одночасно — рідкість для косметичного продукту",
+    "char_count": 333,
+    "tokens_approx": 83,
+    "order": 6,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\verage-immortelle-hydrating-serum.md",
+      "section_title": "Цікаві факти",
+      "item_count": 3,
+      "has_list": true
+    }
+  },
+  {
+    "chunk_id": "20a46567ed1f9dd8",
+    "product_slug": "verage-immortelle-hydrating-serum",
+    "section_key": "precautions",
+    "section_title": "Запобіжні заходи",
+    "content": "🔹 Для зовнішнього застосування\n🔹 Уникати прямого контакту з очима\n🔹 За появи подразнення шкіри — припинити застосування\n🔹 Зберігати в недоступному для дітей місці\n\n> ⚠️ Наведена інформація призначена виключно для ознайомлення. Перед застосуванням протестуйте засіб на невеликій ділянці шкіри. За наявності алергічних реакцій в анамнезі — консультація дерматолога перед застосуванням.\n\n#veragé #сироватка #антивіковийдогляд",
+    "char_count": 422,
+    "tokens_approx": 105,
+    "order": 7,
+    "metadata": {
+      "split": false,
+      "source_file": "src\\content\\docs\\verage-immortelle-hydrating-serum.md",
+      "section_title": "Запобіжні заходи",
+      "item_count": 4,
+      "has_list": true
+    }
+  }
+]

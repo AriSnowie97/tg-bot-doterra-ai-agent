@@ -639,11 +639,6 @@ def main():
         help="Зберегти чанки у JSON-файл (наприклад: chunks.json)"
     )
     parser.add_argument(
-        "--to-db",
-        action="store_true",
-        help="Зберегти чанки у базу даних (DATABASE_URL з env)"
-    )
-    parser.add_argument(
         "--db",
         default=os.getenv("DATABASE_URL", "sqlite:///doterra_bot.db"),
         help="Рядок підключення до БД (або DATABASE_URL з env)"
@@ -705,11 +700,6 @@ def main():
             json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8"
         )
         print(f"\n[SAVED] Output: {out_path} ({len(chunks)} chunks)")
-
-    # Збереження у БД
-    if args.to_db:
-        print(f"\n[DB] Writing to DB: {args.db[:50]}...")
-        save_to_db(chunks, args.db)
 
     return chunks
 
