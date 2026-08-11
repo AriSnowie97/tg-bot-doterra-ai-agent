@@ -31,12 +31,18 @@ from src.embedding import create_embedding
 from pgvector import Vector
 
 
-def upload_md_to_kb(md_path: str, product_slug: str) -> dict:
+def upload_md_to_kb(
+    md_path: str,
+    product_slug: str,
+    progress_callback=None,
+) -> dict:
     """Парсить MD-файл і завантажує чанки в базу знань з перевіркою дублікатів.
 
     Args:
-        md_path:      Шлях до MD-файлу.
-        product_slug: Ідентифікатор продукту (наприклад, 'frankincense').
+        md_path:           Шлях до MD-файлу.
+        product_slug:      Ідентифікатор продукту (наприклад, 'frankincense').
+        progress_callback: Опціональна функція(msg: str) для відправки прогресу.
+                           Приклад: lambda msg: asyncio.run(message.answer(msg))
 
     Returns:
         Словник зі статистикою:
@@ -47,12 +53,18 @@ def upload_md_to_kb(md_path: str, product_slug: str) -> dict:
             "errors": <скільки помилок>
         }
     """
+    def _progress(msg: str):
+        print(msg)
+        if progress_callback:
+            progress_callback(msg)
+
     stats = {"total": 0, "inserted": 0, "skipped_duplicates": 0, "errors": 0}
 
     md_path = Path(md_path)
     if not md_path.exists():
         raise FileNotFoundError(f"Файл не знайдено: {md_path}")
 
+    _progress(f"📄 Парсинг файлу {md_path.name}...")
     parser = DoterraMarkdownParser()
     # parse_file() бере slug із назви файлу; потім перевизначаємо якщо вказано інший
     chunks = parser.parse_file(md_path)
@@ -63,8 +75,10 @@ def upload_md_to_kb(md_path: str, product_slug: str) -> dict:
             chunk.product_slug = product_slug
 
     stats["total"] = len(chunks)
+    _progress(f"🔍 Знайдено {len(chunks)} чанків. Перевіряю дублікати та завантажую...")
 
     if not chunks:
+        _progress("⚠️ Файл не містить жодного чанку.")
         return stats
 
     # Відкриваємо одне з'єднання для перевірки дублікатів
