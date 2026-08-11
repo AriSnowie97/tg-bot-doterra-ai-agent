@@ -204,7 +204,7 @@ async def receive_file_wrong_type(message: Message) -> None:
 
 @dp.message(UploadKBStates.waiting_for_slug, F.text)
 async def receive_slug(message: Message, state: FSMContext, bot: Bot) -> None:
-    """Отримує slug, завантажує файл з Telegram і запускає upsert."""
+    """Отримує slug, завантажує файл з Telegram і запускає upsert з прогресом."""
     slug = message.text.strip().lower().replace(" ", "-")
 
     # Базова валідація slug
@@ -220,28 +220,49 @@ async def receive_slug(message: Message, state: FSMContext, bot: Bot) -> None:
     file_name: str = data["file_name"]
 
     await state.clear()
-    await message.answer(f"⏳ Обробляю файл з slug=<code>{slug}</code>...", parse_mode="HTML")
 
-    # Завантажуємо файл з Telegram у тимчасову директорію
+    # ── Крок 1: завантажуємо файл з Telegram ────────────────────────────────
+    await message.answer(
+        f"🚀 Починаю обробку файлу <b>{file_name}</b>\n"
+        f"Slug: <code>{slug}</code>\n\n"
+        "📥 Завантажую файл з Telegram...",
+        parse_mode="HTML"
+    )
+
     with tempfile.TemporaryDirectory() as tmp_dir:
         tmp_path = Path(tmp_dir) / file_name
 
         tg_file = await bot.get_file(file_id)
         await bot.download_file(tg_file.file_path, destination=str(tmp_path))
 
+        await message.answer("✅ Файл отримано. Парсинг та завантаження в БД...")
+
+        # ── Крок 2: запускаємо upsert у фоновому потоці з callback-прогресом ──
+        # upload_md_to_kb — синхронна функція, тому run у executor.
+        # progress_callback надсилає повідомлення в Telegram через event loop.
+        loop = asyncio.get_event_loop()
+
+        def tg_progress(msg: str) -> None:
+            """Відправляє прогрес-повідомлення у Telegram із синхронного потоку."""
+            asyncio.run_coroutine_threadsafe(message.answer(msg), loop)
+
         try:
-            stats = upload_md_to_kb(str(tmp_path), product_slug=slug)
+            stats = await asyncio.to_thread(
+                upload_md_to_kb, str(tmp_path), slug, tg_progress
+            )
         except Exception as e:
             await message.answer(f"❌ Помилка при завантаженні: {e}")
             return
 
-    # Результат
+    # ── Крок 3: фінальний звіт ───────────────────────────────────────────────
+    status_icon = "✅" if stats["errors"] == 0 else "⚠️"
     await message.answer(
-        f"✅ Готово! Результат завантаження <b>{file_name}</b> (slug: <code>{slug}</code>):\n\n"
-        f"📦 Всього чанків у файлі: {stats['total']}\n"
-        f"✅ Додано нових: {stats['inserted']}\n"
-        f"⏭ Пропущено дублікатів: {stats['skipped_duplicates']}\n"
-        f"❌ Помилок: {stats['errors']}",
+        f"{status_icon} <b>Готово!</b> Результат завантаження <b>{file_name}</b>\n"
+        f"Slug: <code>{slug}</code>\n\n"
+        f"📦 Всього чанків у файлі: <b>{stats['total']}</b>\n"
+        f"✅ Додано нових: <b>{stats['inserted']}</b>\n"
+        f"⏭ Пропущено дублікатів: <b>{stats['skipped_duplicates']}</b>\n"
+        f"❌ Помилок: <b>{stats['errors']}</b>",
         parse_mode="HTML"
     )
 
@@ -251,8 +272,9 @@ async def receive_slug(message: Message, state: FSMContext, bot: Bot) -> None:
         target_path = docs_dir / file_name
         if not target_path.exists():
             await message.answer(
-                f"💡 Файл ще не в docs/. Щоб рендер /docs/{slug} працював — "
-                f"збережи його до <code>src/content/docs/{file_name}</code>",
+                f"💡 Файл ще не в <code>docs/</code>. Щоб веб-перегляд "
+                f"<code>/docs/{slug}</code> працював — збережи його до "
+                f"<code>src/content/docs/{file_name}</code>",
                 parse_mode="HTML"
             )
 
