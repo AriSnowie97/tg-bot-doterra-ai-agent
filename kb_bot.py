@@ -167,13 +167,29 @@ async def cmd_cancel(message: Message, state: FSMContext) -> None:
 
 @dp.message(UploadKBStates.waiting_for_file, F.document)
 async def receive_file(message: Message, state: FSMContext, bot: Bot) -> None:
-    """Отримує MD-файл і запитує product_slug."""
+    """Отримує MD-файл у стані waiting_for_file і запитує product_slug."""
+    await _process_received_md(message, state)
+
+
+@dp.message(F.document)
+async def receive_file_any(message: Message, state: FSMContext, bot: Bot) -> None:
+    """Ловить MD-файл надісланий у будь-який момент (навіть без /upload).
+
+    Перевіряє доступ адміна та одразу починає FSM-сценарій завантаження.
+    """
+    if not _is_admin(message):
+        return  # мовчки ігноруємо — не адмін
+    await _process_received_md(message, state)
+
+
+async def _process_received_md(message: Message, state: FSMContext) -> None:
+    """Спільна логіка: перевірка файлу та перехід до кроку вибору slug."""
     doc: Document = message.document
 
     if not doc.file_name.endswith(".md"):
         await message.answer(
-            "⚠️ Надішли файл з розширенням .md\n"
-            "Спробуй ще раз або /cancel для скасування."
+            "⚠️ Підтримуються лише файли з розширенням .md\n"
+            "Надішли правильний файл або /cancel для скасування."
         )
         return
 
@@ -181,14 +197,15 @@ async def receive_file(message: Message, state: FSMContext, bot: Bot) -> None:
     await state.update_data(file_id=doc.file_id, file_name=doc.file_name)
 
     # Пропонуємо slug на основі назви файлу (без .md)
-    suggested_slug = doc.file_name.removesuffix(".md")
+    suggested_slug = doc.file_name.removesuffix(".md").lower().replace("_", "-").replace(" ", "-")
     await state.set_state(UploadKBStates.waiting_for_slug)
     await message.answer(
-        f"✅ Файл отримано: {doc.file_name}\n\n"
-        f"📝 Введи product_slug для цього документа.\n"
+        f"✅ Файл отримано: <b>{doc.file_name}</b>\n\n"
+        f"📝 Введи <b>product_slug</b> для цього документа.\n"
         f"Пропозиція: <code>{suggested_slug}</code>\n\n"
-        "Slug — це унікальний ідентифікатор продукту (наприклад: frankincense, lavender, deep-blue).\n"
-        "Надішли slug текстом:",
+        "Slug — унікальний ідентифікатор продукту "
+        "(наприклад: frankincense, lavender, deep-blue).\n\n"
+        "Надішли slug текстом або натисни /cancel для скасування:",
         parse_mode="HTML"
     )
 
