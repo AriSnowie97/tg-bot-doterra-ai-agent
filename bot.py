@@ -5,12 +5,15 @@ import asyncio
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command, CommandObject
+from aiogram.fsm.context import FSMContext
+from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message
 from aiogram.enums import ChatAction, ChatType, MessageEntityType
 # Local
 from src.agent import generate_response
 from src.publisher import publish_channel_post
 from src.scheduler import setup_scheduler
+from handlers.states import AskStates
 
 
 # Loading variables from a dotenv file
@@ -25,7 +28,7 @@ ADMIN_IDS: list[int] = [
 ]
 
 # Creating a dispatcher
-dp = Dispatcher()
+dp = Dispatcher(storage=MemoryStorage())
 
 # Кеш username бота — заповнюється при старті
 _BOT_USERNAME: str = ""
@@ -54,19 +57,24 @@ async def command_start_handler(message: Message) -> None:
 
 
 @dp.message(Command("ask"))
-async def command_ask_handler(message: Message, command: CommandObject) -> None:
-    """/ask <питання> — запит до бота в групі чи приватному чаті.
+async def command_ask_handler(message: Message, command: CommandObject, state: FSMContext) -> None:
+    """/ask [питання] — запит до бота в групі чи приватному чаті.
+
+    Два режими:
+    - /ask               → бот просить написати питання наступним повідомленням (FSM).
+    - /ask <текст>       → бот відповідає одразу (як раніше).
 
     Корисна альтернатива @mention у групах, де Privacy Mode обмежує видимість.
-    Приклад: /ask Як використовувати лаванду для сну?
     """
+    # Режим 1: /ask без аргументів — переходимо в стан очікування питання
     if not command.args:
+        await state.set_state(AskStates.waiting_for_question)
         await message.reply(
-            "🌿 Введіть питання після команди, наприклад:\n"
-            "/ask Як використовувати лаванду для сну?"
+            "🌿 Напиши своє питання наступним повідомленням 👇"
         )
         return
 
+    # Режим 2: /ask <текст> — відповідаємо одразу
     stop_typing = asyncio.Event()
     typing_task = asyncio.create_task(
         _keep_typing(message.bot, message.chat.id, stop_typing)
@@ -82,6 +90,41 @@ async def command_ask_handler(message: Message, command: CommandObject) -> None:
         typing_task.cancel()
         await message.reply("😔 Виникла помилка при обробці запиту. Спробуй ще раз.")
         print(f"[command_ask] Error: {e}")
+
+
+@dp.message(AskStates.waiting_for_question, F.text)
+async def ask_question_handler(message: Message, state: FSMContext) -> None:
+    """Обробляє питання після того, як користувач ввів /ask без аргументів.
+
+    Скидає FSM-стан і обробляє текст як звичайне питання до RAG-агента.
+    """
+    await state.clear()
+
+    user_text = message.text.strip()
+    if not user_text:
+        await message.reply("🌿 Запитай мене що-небудь про ефірні олії doTERRA!")
+        return
+
+    stop_typing = asyncio.Event()
+    typing_task = asyncio.create_task(
+        _keep_typing(message.bot, message.chat.id, stop_typing)
+    )
+
+    try:
+        response = await generate_response(user_text)
+        stop_typing.set()
+        typing_task.cancel()
+
+        if not response or not response.strip():
+            await message.reply("😔 Не вдалося сформувати відповідь. Спробуй перефразувати запит.")
+            return
+
+        await message.reply(response)
+    except Exception as e:
+        stop_typing.set()
+        typing_task.cancel()
+        await message.reply("😔 Виникла помилка при обробці запиту. Спробуй ще раз.")
+        print(f"[ask_question] Error: {e}")
 
 
 @dp.message(Command("post"))
