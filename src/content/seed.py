@@ -32,31 +32,32 @@ from datetime import datetime
 # pip install (вбудовано sqlite3 для SQLite)
 
 
-PRODUCTS_DIR = os.path.join(os.path.dirname(__file__), "products")
-
+CONTENT_DIR = os.path.dirname(__file__)
+DATA_DIRS = ["products", "advice", "kits"]
 
 def load_product_files() -> list[dict]:
-    """Завантажити всі JSON-файли продуктів з директорії products/"""
-    products = []
-    pattern = os.path.join(PRODUCTS_DIR, "*.json")
-    files = sorted(glob.glob(pattern))
+    """Завантажити всі JSON-файли продуктів з директорій products, advice, kits"""
+    all_products = []
+    for d in DATA_DIRS:
+        pattern = os.path.join(CONTENT_DIR, d, "*.json")
+        files = sorted(glob.glob(pattern))
+        print(f"📦 Завантаження пакету: {d} ({len(files)} продуктів)")
+        for filepath in files:
+            try:
+                with open(filepath, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    # Якщо це список (наприклад, старий формат), беремо перший елемент
+                    if isinstance(data, list):
+                        data = data[0]
+                    all_products.append(data)
+            except Exception as e:
+                print(f"  ❌ Помилка завантаження {os.path.basename(filepath)}: {e}")
 
-    if not files:
-        print(f"❌ Не знайдено JSON-файлів у {PRODUCTS_DIR}")
+    if not all_products:
+        print(f"❌ Не знайдено JSON-файлів у {DATA_DIRS}")
         sys.exit(1)
 
-    for filepath in files:
-        filename = os.path.basename(filepath)
-        try:
-            with open(filepath, encoding="utf-8") as f:
-                product = json.load(f)
-            products.append(product)
-            print(f"  ✅ Завантажено: {filename} ({product.get('name_ua', '?')})")
-        except json.JSONDecodeError as e:
-            print(f"  ❌ Помилка JSON у {filename}: {e}")
-            sys.exit(1)
-
-    return products
+    return all_products
 
 
 def validate_product(product: dict) -> list[str]:
@@ -118,14 +119,11 @@ def seed_sqlite(products: list[dict], db_path: str):
         # SQLite: прибираємо PostgreSQL-специфічні речі
         schema_sql = schema_sql.replace("SERIAL", "INTEGER")
         schema_sql = schema_sql.replace("TIMESTAMPTZ", "TIMESTAMP")
-        # Виконуємо кожен запит окремо
-        for stmt in schema_sql.split(";"):
-            stmt = stmt.strip()
-            if stmt and not stmt.startswith("--"):
-                try:
-                    cursor.execute(stmt)
-                except Exception:
-                    pass  # Ігнорувати помилки CREATE INDEX IF NOT EXISTS тощо
+        
+        try:
+            cursor.executescript(schema_sql)
+        except Exception as e:
+            print(f"Schema Error: {e}")
 
     inserted = 0
     updated = 0
@@ -319,7 +317,7 @@ def main():
     )
     args = parser.parse_args()
 
-    print("\n📦 doTERRA Bot — Завантаження першого пакету контенту")
+    print("\n📦 doTERRA Bot — Оновлення бази продуктів")
     print("=" * 55)
 
     # Показати звідки взято DATABASE_URL
@@ -328,7 +326,7 @@ def main():
     else:
         print(f"🔗 Підключення: {args.db[:60]}...")
 
-    print(f"\n📂 Завантаження файлів з {PRODUCTS_DIR}...")
+    print(f"\n📂 Пошук файлів по категоріях...")
     products = load_product_files()
 
     print(f"\n🔍 Валідація {len(products)} продуктів...")
@@ -356,7 +354,7 @@ def main():
     else:
         seed_postgresql(products, args.db)
 
-    print(f"\n🎉 Перший пакет контенту ({len(products)} продуктів) завантажено!")
+    print(f"\n🎉 Базу продуктів ({len(products)} штук) успішно оновлено!")
     print("   Наступний крок: перевірте команди бота.")
 
 
