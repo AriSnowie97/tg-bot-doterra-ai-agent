@@ -19,6 +19,7 @@ import asyncio
 from google.genai import types
 # Local
 from .prompt import build_system_prompt
+from .specialist import is_consultation_query, is_low_context
 from ..storage import search_chunks
 from src.LLMProvider import GeminiFlashProvider as LLM
 
@@ -31,6 +32,17 @@ TOP_K = 5
 
 # Максимальна кількість повторних спроб при 429/503
 MAX_RETRIES = 2
+
+# Фолбек-відповідь при повністю порожній базі знань (0 чанків)
+# LLM не викликається взагалі — повертається ця статична відповідь
+EMPTY_CONTEXT_FALLBACK: str = (
+    "🌿 На жаль, я не знайшов інформації з цього запиту в базі знань.\n\n"
+    "Спробуй переформулювати запит або запитати про конкретний продукт чи олію — "
+    "я пошукаю тільки в нашій базі doTERRA.\n\n"
+    "📸 Якщо питання складніше або потребуєш індивідуальної поради щодо олій — "
+    "звернись до Наталії Котелянської: https://www.instagram.com/nkotelianska/ 💛\n\n"
+    "🩺 З питань здоров'я, симптомів або лікування — обов'язково проконсультуйся з лікарем."
+)
 
 
 # ---------------------------------------------------------------------------
@@ -46,15 +58,34 @@ async def generate_response(user_text: str) -> str:
     - 503 UNAVAILABLE: чекає і повторює (тимчасове перевантаження).
     - 404 NOT_FOUND: пропускає модель одразу.
     - Інша помилка: пропускає до наступного API-ключа.
+
+    Проактивний контакт спеціаліста:
+    - Якщо знайдено < 2 чанків (база не знає відповіді) → suggest_specialist=True.
+    - Якщо питання про консультацію / ціни / послуги → suggest_specialist=True.
     """
     # 1. Знаходимо релевантні чанки з БД
     chunks = await asyncio.to_thread(search_chunks, user_text, TOP_K)
     print(f"[agent] Found {len(chunks)} chunks for query: {user_text!r}")
 
-    # 2. Будуємо системний промпт із контекстом
-    system_prompt = build_system_prompt(chunks)
+    # 2. Жорсткий фолбек: база повністю порожня — повертаємо статичну відповідь без виклику LLM
+    if not chunks:
+        print(f"[agent] 0 chunks found — returning EMPTY_CONTEXT_FALLBACK")
+        return EMPTY_CONTEXT_FALLBACK
 
-    # 3. Перебираємо комбінації ключ × модель
+    # 3. Визначаємо, чи треба проактивно пропонувати спеціаліста
+    low_ctx = is_low_context(chunks)
+    consult_req = is_consultation_query(user_text)
+    suggest_specialist = low_ctx or consult_req
+    if suggest_specialist:
+        print(
+            f"[agent] suggest_specialist=True "
+            f"(low_context={low_ctx}, consultation_query={consult_req})"
+        )
+
+    # 4. Будуємо системний промпт із контекстом + прапором спеціаліста
+    system_prompt = build_system_prompt(chunks, suggest_specialist=suggest_specialist)
+
+    # 5. Перебираємо комбінації ключ × модель
     response = await LLM().generate_content(user_text,
                                            types.GenerateContentConfig(
                                                system_instruction=system_prompt,
