@@ -7,12 +7,13 @@ from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command, CommandObject
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.types import Message
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from aiogram.enums import ChatAction, ChatType, MessageEntityType
 # Local
 from src.agent import generate_response
 from src.publisher import publish_channel_post
 from src.scheduler import setup_scheduler
+from src.storage.feedback import ensure_feedback_table, save_vote, get_vote_counts
 from handlers.states import AskStates
 
 
@@ -43,6 +44,29 @@ async def _keep_typing(bot: Bot, chat_id: int, stop_event: asyncio.Event) -> Non
     while not stop_event.is_set():
         await bot.send_chat_action(chat_id=chat_id, action=ChatAction.TYPING)
         await asyncio.sleep(4)
+
+
+def _feedback_keyboard(message_id: int, chat_id: int, likes: int = 0, dislikes: int = 0) -> InlineKeyboardMarkup:
+    """Повертає inline-клавіатуру з кнопками 👍/👎 і лічильниками."""
+    like_label    = f"👍 {likes}"    if likes    else "👍"
+    dislike_label = f"👎 {dislikes}" if dislikes else "👎"
+    return InlineKeyboardMarkup(inline_keyboard=[[
+        InlineKeyboardButton(
+            text=like_label,
+            callback_data=f"fb:like:{message_id}:{chat_id}"
+        ),
+        InlineKeyboardButton(
+            text=dislike_label,
+            callback_data=f"fb:dislike:{message_id}:{chat_id}"
+        ),
+    ]])
+
+
+async def _reply_with_feedback(message: Message, text: str) -> None:
+    """Надсилає reply з текстом відповіді і кнопками 👍/👎."""
+    sent = await message.reply(text)
+    keyboard = _feedback_keyboard(sent.message_id, sent.chat.id)
+    await sent.edit_reply_markup(reply_markup=keyboard)
 
 
 @dp.message(Command("start"))
@@ -84,7 +108,7 @@ async def command_ask_handler(message: Message, command: CommandObject, state: F
         response = await generate_response(command.args.strip())
         stop_typing.set()
         typing_task.cancel()
-        await message.reply(response)
+        await _reply_with_feedback(message, response)
     except Exception as e:
         stop_typing.set()
         typing_task.cancel()
@@ -119,7 +143,7 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
             await message.reply("😔 Не вдалося сформувати відповідь. Спробуй перефразувати запит.")
             return
 
-        await message.reply(response)
+        await _reply_with_feedback(message, response)
     except Exception as e:
         stop_typing.set()
         typing_task.cancel()
@@ -240,8 +264,8 @@ async def on_message(message: Message, bot: Bot) -> None:
             await message.reply("😔 Не вдалося сформувати відповідь. Спробуй перефразувати запит.")
             return
 
-        # У групах відповідаємо через reply (щоб було видно на чиє питання)
-        await message.reply(response)
+        # Відповідаємо з кнопками 👍/👎
+        await _reply_with_feedback(message, response)
 
     except Exception as e:
         stop_typing.set()
@@ -251,6 +275,75 @@ async def on_message(message: Message, bot: Bot) -> None:
             "😔 Виникла помилка при обробці запиту. Спробуй ще раз."
         )
         print(f"[on_message] Error: {type(e).__name__}: {e}")
+
+
+# ---------------------------------------------------------------------------
+# Обробник кнопок 👍 / 👎
+# ---------------------------------------------------------------------------
+
+@dp.callback_query(F.data.startswith("fb:"))
+async def feedback_callback(callback: CallbackQuery) -> None:
+    """Обробляє натискання кнопок 👍/👎 під відповіддю бота.
+
+    Формат callback_data: fb:<vote>:<message_id>:<chat_id>
+    """
+    await callback.answer()  # знімаємо годинник з кнопки
+
+    parts = callback.data.split(":")
+    if len(parts) != 4:
+        return
+
+    _, vote, msg_id_str, chat_id_str = parts
+    try:
+        msg_id  = int(msg_id_str)
+        chat_id = int(chat_id_str)
+    except ValueError:
+        return
+
+    user_id = callback.from_user.id
+
+    # Зберігаємо питання для аналітики (беремо з reply-контексту якщо є)
+    query_text = ""
+    if callback.message and callback.message.reply_to_message:
+        query_text = callback.message.reply_to_message.text or ""
+
+    # Записуємо голос у БД
+    try:
+        result = save_vote(
+            message_id=msg_id,
+            chat_id=chat_id,
+            user_id=user_id,
+            vote=vote,
+            query_text=query_text[:500],  # обрізаємо довгі тексти
+        )
+    except Exception as e:
+        print(f"[feedback] DB error: {e}")
+        await callback.answer("⚠️ Не вдалося зберегти оцінку.", show_alert=True)
+        return
+
+    # Показуємо підтвердження
+    if result == "unchanged":
+        emoji = "👍" if vote == "like" else "👎"
+        await callback.answer(f"{emoji} Ти вже поставив цю оцінку!", show_alert=False)
+        return
+
+    # Оновлюємо лічильники на кнопках
+    try:
+        counts = get_vote_counts(msg_id, chat_id)
+        new_keyboard = _feedback_keyboard(
+            msg_id, chat_id,
+            likes=counts["likes"],
+            dislikes=counts["dislikes"],
+        )
+        await callback.message.edit_reply_markup(reply_markup=new_keyboard)
+    except Exception as e:
+        print(f"[feedback] keyboard update error: {e}")
+
+    # Підтвердження користувачу
+    if vote == "like":
+        await callback.answer("👍 Дякую за позитивний відгук!", show_alert=False)
+    else:
+        await callback.answer("👎 Зрозуміло, постараємось покращити відповіді!", show_alert=False)
 
 
 # Run the bot
@@ -263,6 +356,13 @@ async def main() -> None:
     me = await bot.get_me()
     _BOT_USERNAME = me.username or ""
     print(f"[bot] 🤖 Bot username: @{_BOT_USERNAME}")
+
+    # Ініціалізуємо таблицю фідбеку (якщо не існує)
+    try:
+        ensure_feedback_table()
+        print("[bot] ✅ Feedback table ready.")
+    except Exception as e:
+        print(f"[bot] ⚠️ Could not init feedback table: {e}")
 
     # Налаштовуємо та запускаємо планувальник публікацій
     scheduler = setup_scheduler(bot)
