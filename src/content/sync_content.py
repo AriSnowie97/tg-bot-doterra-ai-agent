@@ -2,6 +2,11 @@
 doTERRA Bot — Скрипт масового імпорту контенту (JSON + MD + Вектори)
 Цей скрипт об'єднує функціонал seed.py (JSON), parser.py (MD) та створює
 вектори (embeddings) для збереження у knowledge_chunks.
+
+Публічне API:
+    run_sync(progress_callback=None) -> dict
+        Запускає повну синхронізацію та повертає статистику.
+        Можна імпортувати з будь-якого місця проекту (наприклад, kb_bot.py).
 """
 
 import os
@@ -20,7 +25,103 @@ from src.content.seed import load_product_files, validate_product, seed_sqlite, 
 from src.content.parser import parse_md_dir
 from src.storage.storage import bulk_upsert_chunks, creating_table_for_chunks
 
+
+def run_sync(progress_callback=None) -> dict:
+    """Виконує повну синхронізацію контенту: JSON картки + MD парсинг + векторизація.
+
+    Args:
+        progress_callback: опціональна функція(msg: str) для відправки прогресу
+                           (наприклад, у Telegram-повідомлення).
+
+    Returns:
+        Словник зі статистикою:
+        {
+            "products":      <кількість оброблених JSON карток>,
+            "chunks_found":  <кількість чанків з MD-файлів>,
+            "errors":        <список рядків помилок>,
+        }
+    """
+    def _log(msg: str) -> None:
+        print(msg, flush=True)
+        if progress_callback:
+            try:
+                progress_callback(msg)
+            except Exception:
+                pass
+
+    stats = {"products": 0, "chunks_found": 0, "errors": []}
+
+    # ── 1. JSON картки продуктів ──────────────────────────────────────────────
+    _log("📦 <b>[1/3]</b> Завантаження JSON карток продуктів...")
+    try:
+        products = load_product_files()
+        validation_errors = []
+        for product in products:
+            errs = validate_product(product)
+            if errs:
+                validation_errors.append(
+                    f"{product.get('slug', '?')}: {'; '.join(errs)}"
+                )
+
+        if validation_errors:
+            for ve in validation_errors:
+                stats["errors"].append(f"Валідація: {ve}")
+            _log(f"⚠️ Знайдено {len(validation_errors)} помилок валідації (продовжуємо).")
+
+        is_railway = bool(os.getenv("RAILWAY_ENVIRONMENT"))
+        db_url = os.getenv("DATABASE_URL", "") if is_railway else (
+            os.getenv("DATABASE_PUBLIC_URL") or os.getenv("DATABASE_URL", "")
+        )
+        if db_url.startswith("postgres://"):
+            db_url = db_url.replace("postgres://", "postgresql://", 1)
+
+        if db_url.startswith("sqlite"):
+            seed_sqlite(products, db_url)
+        else:
+            seed_postgresql(products, db_url)
+
+        stats["products"] = len(products)
+        _log(f"✅ Картки продуктів оновлено: <b>{len(products)}</b> шт.")
+    except Exception as e:
+        stats["errors"].append(f"JSON seed: {e}")
+        _log(f"❌ Помилка при завантаженні JSON карток: <code>{e}</code>")
+
+    # ── 2. Парсинг MD-файлів ─────────────────────────────────────────────────
+    _log("\n📄 <b>[2/3]</b> Парсинг MD-документів з docs/...")
+    docs_dir = project_root / "src" / "content" / "docs"
+    chunks = []
+    if not docs_dir.exists():
+        msg = f"Директорія docs/ не знайдена: {docs_dir}"
+        stats["errors"].append(msg)
+        _log(f"❌ {msg}")
+    else:
+        try:
+            chunks = parse_md_dir(docs_dir)
+            stats["chunks_found"] = len(chunks)
+            _log(f"✅ Знайдено чанків: <b>{len(chunks)}</b> з {docs_dir.name}/")
+        except Exception as e:
+            stats["errors"].append(f"MD парсинг: {e}")
+            _log(f"❌ Помилка парсингу MD: <code>{e}</code>")
+
+    # ── 3. Векторизація і запис у БД ─────────────────────────────────────────
+    if chunks:
+        _log("\n🔢 <b>[3/3]</b> Генерація embeddings та збереження у knowledge_chunks...")
+        try:
+            creating_table_for_chunks()
+            chunk_dicts = [c.to_dict() for c in chunks]
+            bulk_upsert_chunks(chunk_dicts)
+            _log("✅ Вектори збережено у БД!")
+        except Exception as e:
+            stats["errors"].append(f"Векторизація: {e}")
+            _log(f"❌ Помилка векторизації: <code>{e}</code>")
+    else:
+        _log("⚠️ Чанки не знайдено — векторизація пропущена.")
+
+    return stats
+
+
 def main():
+    """CLI-обгортка для запуску sync_content.py з командного рядка."""
     # Розумний вибір URL для локального/серверного запуску
     is_railway = bool(os.getenv("RAILWAY_ENVIRONMENT"))
     default_db = os.getenv("DATABASE_URL", "sqlite:///doterra_bot.db")
@@ -28,83 +129,35 @@ def main():
         default_db = os.getenv("DATABASE_PUBLIC_URL")
 
     parser = argparse.ArgumentParser(description="Імпорт контенту у базу даних doTERRA Bot")
-    parser.add_argument(
-        "--db",
-        default=default_db,
-        help="Рядок підключення до БД"
-    )
+    parser.add_argument("--db", default=default_db, help="Рядок підключення до БД")
     args = parser.parse_args()
 
-    # Виправлення Railway postgres:// → postgresql://
     if args.db.startswith("postgres://"):
         args.db = args.db.replace("postgres://", "postgresql://", 1)
 
-    # Примусово вказуємо storage.py використовувати цей самий URL
     import src.storage.storage as storage_mod
     storage_mod.DATABASE_URL = args.db
     storage_mod.DATABASE_PUBLIC_URL = args.db
-    storage_mod.IS_RAILWAY = True # Завжди використовувати наданий URL
+    storage_mod.IS_RAILWAY = True
 
     print("\n📦 doTERRA Bot — Масовий імпорт контенту", flush=True)
     print("=" * 60, flush=True)
     print(f"🔗 Підключення до бази: {args.db[:50]}...", flush=True)
 
-    # 1. Завантаження JSON карток
-    print("\n[1/3] Оновлення карток продуктів (JSON)...", flush=True)
-    products = load_product_files()
-    
-    print(f"🔍 Валідація {len(products)} продуктів...", flush=True)
-    all_valid = True
-    for product in products:
-        errors = validate_product(product)
-        if errors:
-            print(f"  ❌ {product.get('slug', 'unknown')}: {'; '.join(errors)}")
-            all_valid = False
-
-    if not all_valid:
-        print("\n❌ Знайдено помилки валідації в JSON. Виправте та запустіть знову.")
-        sys.exit(1)
-
-    if args.db.startswith("sqlite"):
-        seed_sqlite(products, args.db)
-    else:
-        seed_postgresql(products, args.db)
-    print(f"✅ Базу продуктів ({len(products)} штук) успішно оновлено!", flush=True)
-
-    # 2. Парсинг MD файлів
-    print("\n[2/3] Парсинг текстів продуктів (Markdown)...", flush=True)
-    docs_dir = project_root / "src" / "content" / "docs"
-    
-    if not docs_dir.exists():
-        print(f"❌ Директорія {docs_dir} не знайдена!")
-        sys.exit(1)
-
-    # parser_dir expects a path object or string
-    # We pass quiet=True to avoid printing the big report if supported
-    # Wait, parse_md_dir doesn't take quiet as kwarg in my previous view, let's just not pass it.
-    chunks = parse_md_dir(docs_dir)
-    if not chunks:
-        print("❌ Не знайдено жодного тексту для парсингу.", flush=True)
-        sys.exit(1)
-        
-    print(f"✅ Знайдено {len(chunks)} текстових фрагментів (чанків) у {docs_dir.name}/", flush=True)
-
-    # 3. Генерація векторів та запис у knowledge_chunks
-    print("\n[3/3] Генерація векторів та збереження у knowledge_chunks...", flush=True)
-    try:
-        # Переконаємось, що таблиця існує (з pgvector)
-        creating_table_for_chunks()
-        
-        chunk_dicts = [c.to_dict() for c in chunks]
-        bulk_upsert_chunks(chunk_dicts)
-        print("✅ Вектори успішно згенеровано та збережено у БД!")
-    except Exception as e:
-        print(f"❌ Помилка під час збереження векторів: {e}")
-        sys.exit(1)
+    stats = run_sync()
 
     print("\n" + "=" * 60)
-    print("🎉 Масовий імпорт контенту успішно завершено!")
+    if stats["errors"]:
+        print(f"⚠️  Завершено з {len(stats['errors'])} помилками:")
+        for err in stats["errors"]:
+            print(f"   • {err}")
+    else:
+        print("🎉 Масовий імпорт контенту успішно завершено!")
     print("=" * 60)
+
+    if stats["errors"]:
+        sys.exit(1)
+
 
 if __name__ == "__main__":
     main()
