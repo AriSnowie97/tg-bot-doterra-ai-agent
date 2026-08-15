@@ -19,7 +19,7 @@ import asyncio
 from google.genai import types
 # Local
 from .prompt import build_system_prompt
-from .specialist import is_consultation_query, is_low_context
+from .specialist import is_consultation_query, is_low_context, MEDICAL_DISCLAIMER
 from ..storage import search_chunks
 from src.LLMProvider import GeminiFlashProvider as LLM
 
@@ -111,6 +111,12 @@ async def generate_response(user_text: str) -> str:
     ]
     if any(marker in text for marker in leakage_markers):
         raise RuntimeError(f"[agent] Виявлено витік промпту у відповіді моделі — пропускаємо")
+
+    # Додаємо дисклеймер хардкодом (гарантовано, незалежно від LLM)
+    # Якщо LLM вже додав схожий текст — уникаємо дублювання
+    disclaimer_core = "не є медичною консультацією"
+    if disclaimer_core not in text.lower():
+        text = text + MEDICAL_DISCLAIMER
 
     print(f"[agent] Response len={len(text)} chars")
     return text
