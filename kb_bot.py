@@ -35,6 +35,7 @@ from aiogram.types import Message, Document
 from handlers.states import UploadKBStates
 from src.kb_uploader.uploader import upload_md_to_kb
 from src.storage.storage import _conn_create
+from src.content.sync_content import run_sync
 
 load_dotenv()
 
@@ -80,9 +81,10 @@ async def cmd_start(message: Message) -> None:
     await message.answer(
         "🌿 Привіт! Я adмін-бот для управління базою знань doTERRA.\n\n"
         "Доступні команди:\n"
-        "📤 /upload — завантажити MD-файл у базу знань\n"
-        "📋 /list   — список документів у docs/\n"
-        "📊 /status — кількість чанків у БД\n"
+        "📤 /upload  — завантажити MD-файл у базу знань\n"
+        "🔄 /resync  — переіндексація всієї бази знань\n"
+        "📋 /list    — список документів у docs/\n"
+        "📊 /status  — кількість чанків у БД\n"
     )
 
 
@@ -137,6 +139,63 @@ async def cmd_status(message: Message) -> None:
         )
     except Exception as e:
         await message.answer(f"❌ Помилка підключення до БД: {e}")
+
+
+# ---------------------------------------------------------------------------
+# /resync — повна переіндексація бази знань
+# ---------------------------------------------------------------------------
+
+@dp.message(Command("resync"))
+@_admin_only
+async def cmd_resync(message: Message) -> None:
+    """Запускає повну переіндексацію: JSON картки + MD парсинг + векторизація."""
+    await message.answer(
+        "🔄 <b>Починаю переіндексацію бази знань...</b>\n\n"
+        "📦 Крок 1/3 — JSON картки продуктів\n"
+        "📄 Крок 2/3 — Парсинг MD-документів\n"
+        "🔢 Крок 3/3 — Генерація embeddings\n\n"
+        "⏳ Це може зайняти кілька хвилин. Прогрес нижче:",
+        parse_mode="HTML"
+    )
+
+    loop = asyncio.get_running_loop()
+
+    def tg_progress(msg: str) -> None:
+        """Надсилає рядок прогресу в Telegram (виклик з sync-потоку)."""
+        try:
+            asyncio.run_coroutine_threadsafe(
+                message.answer(msg, parse_mode="HTML"), loop
+            )
+        except Exception as cb_err:
+            print(f"[kb_bot] resync progress error: {cb_err}")
+
+    try:
+        stats = await asyncio.to_thread(run_sync, tg_progress)
+    except Exception as e:
+        print(f"[kb_bot] resync error:\n{traceback.format_exc()}")
+        await message.answer(
+            f"❌ <b>Критична помилка переіндексації:</b>\n<code>{e}</code>",
+            parse_mode="HTML"
+        )
+        return
+
+    # ── Фінальний звіт ──────────────────────────────────────────────────────
+    error_count = len(stats.get("errors", []))
+    status_icon = "✅" if error_count == 0 else "⚠️"
+    error_lines = ""
+    if error_count:
+        error_lines = "\n\n<b>Помилки:</b>\n" + "\n".join(
+            f"  • <code>{e}</code>" for e in stats["errors"]
+        )
+
+    await message.answer(
+        f"{status_icon} <b>Переіндексація завершена!</b>\n\n"
+        f"📦 Оброблено карток: <b>{stats.get('products', 0)}</b>\n"
+        f"📄 Чанків знайдено: <b>{stats.get('chunks_found', 0)}</b>\n"
+        f"❌ Помилок: <b>{error_count}</b>"
+        f"{error_lines}",
+        parse_mode="HTML"
+    )
 
 
 # ---------------------------------------------------------------------------
