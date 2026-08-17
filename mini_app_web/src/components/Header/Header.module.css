@@ -1,0 +1,32 @@
+header {
+    /* width: max-width; */
+    height: 50px;
+
+    padding: 10px 15px;
+
+    position: sticky;
+    top: 0px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+
+    border-bottom: 2px solid var(--color-border);
+    
+    h1 {
+        color: red;
+    }
+
+    .btnWrapper {
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        /* align-items: center;
+        justify-content: space-between; */
+        gap: 15px;
+    }
+}
+
