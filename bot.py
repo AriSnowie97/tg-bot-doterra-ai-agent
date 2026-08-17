@@ -7,7 +7,7 @@ from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command, CommandObject
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, WebAppInfo
 from aiogram.enums import ChatAction, ChatType, MessageEntityType
 # Local
 from src.agent import generate_response
@@ -71,12 +71,22 @@ async def _reply_with_feedback(message: Message, text: str) -> None:
 
 @dp.message(Command("start"))
 async def command_start_handler(message: Message) -> None:
+    webapp_url = os.getenv("WEBAPP_URL", "https://localhost:5173")
+    
+    markup = InlineKeyboardMarkup(inline_keyboard=[[
+        InlineKeyboardButton(
+            text="📱 Відкрити Mini App", 
+            web_app=WebAppInfo(url=webapp_url)
+        )
+    ]])
+
     await message.answer(
         f"👋 Привіт, {message.from_user.first_name}!\n\n"
         "🌿 Ласкаво просимо до AI-консультанта doTERRA!\n\n"
         "Я допоможу тобі розібратись у гайдах та знайти потрібну інформацію "
         "про ефірні олії та продукти doTERRA.\n\n"
-        "Просто напиши своє запитання — і я знайду відповідь 🔍"
+        "Просто напиши своє запитання — і я знайду відповідь 🔍",
+        reply_markup=markup
     )
 
 
