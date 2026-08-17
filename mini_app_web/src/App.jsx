@@ -5,7 +5,7 @@
 
 import "./App.css";
 import styles from "./App.module.css";
-import { Router } from "./router";
+import { Router } from "./Router";
 import { Header } from "./components/Header";
 import { Menu } from "./components/Menu";
 
