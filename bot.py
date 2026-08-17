@@ -71,7 +71,7 @@ async def _reply_with_feedback(message: Message, text: str) -> None:
 
 @dp.message(Command("start"))
 async def command_start_handler(message: Message) -> None:
-    webapp_url = os.getenv("WEBAPP_URL", "https://localhost:5173")
+    webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
     
     markup = InlineKeyboardMarkup(inline_keyboard=[[
         InlineKeyboardButton(
