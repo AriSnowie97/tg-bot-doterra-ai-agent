@@ -1,0 +1,24 @@
+.wrapper {
+    background-color: var(--color-surface);
+
+    /* .img {
+        background-color: var(--color-border);
+    } */
+
+    .text {
+
+        h3 {
+            color: var(--color-text-h-muted);
+        }
+
+        p {
+            color: var(--color-text-muted);
+        }
+    }
+
+    .arrow {
+        p {
+             color: var(--color-text-h-muted);
+        }
+    }
+}

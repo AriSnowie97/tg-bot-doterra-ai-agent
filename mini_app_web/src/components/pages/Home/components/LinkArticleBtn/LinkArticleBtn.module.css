@@ -1,0 +1,27 @@
+a.linkToBtn {
+    text-decoration-line: none;       
+}
+
+.wrapper{
+    /* width: 100px; */
+    min-width: 200px;
+    /* height: 100px; */
+    min-height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+
+    background-color: var(--color-primary);
+
+    h3 {
+        color: var(--color-text-h);
+    }
+
+}

@@ -1,0 +1,18 @@
+.wrapper {
+    background-color: var(--color-primary);
+
+    /* .img {
+        background-color: var(--color-border);
+    } */
+
+    .text {
+
+        h3 {
+            color: var(--color-text-h);
+        }
+
+        p {
+            color: var(--color-text);
+        }
+    }
+}

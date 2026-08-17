@@ -1,0 +1,1 @@
+export {WriteMsgArea} from "./WriteMsgArea";

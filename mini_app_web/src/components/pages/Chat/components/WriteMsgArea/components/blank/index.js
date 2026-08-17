@@ -1,0 +1,1 @@
+export {blank} from "./blank";
