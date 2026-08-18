@@ -22,15 +22,12 @@ import markdown
 
 from pydantic import BaseModel
 from src.agent import generate_response
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
 
 # ---------------------------------------------------------------------------
 # Налаштування
 # ---------------------------------------------------------------------------
 
 DOCS_DIR = Path(__file__).parent.parent / "content" / "docs"
-DIST_DIR = Path(__file__).parent.parent.parent / "mini_app_web" / "dist"
 
 app = FastAPI(title="doTERRA Docs Viewer", docs_url=None, redoc_url=None)
 
@@ -39,7 +36,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # В продакшені краще вказати конкретні домени
+    allow_origins=["*"],  # В продакшені краще вказати конкретні домени (наприклад, ваш github.io)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -151,7 +148,7 @@ async def api_get_doc(slug: str):
 # Маршрути (старі, для перегляду в браузері)
 # ---------------------------------------------------------------------------
 
-@app.get("/docs_list", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse)
 async def index() -> HTMLResponse:
     """Список усіх документів."""
     docs = _get_all_docs()
@@ -181,28 +178,7 @@ async def view_doc(slug: str) -> HTMLResponse:
     html_content = _render_md(md_text)
 
     body = (
-        '<a class="back" href="/docs_list">← До списку документів</a>'
+        '<a class="back" href="/">← До списку документів</a>'
         + html_content
     )
     return HTMLResponse(_html_page(f"doTERRA — {slug}", body))
-
-
-# ---------------------------------------------------------------------------
-# Frontend (React Mini App)
-# ---------------------------------------------------------------------------
-
-# Якщо папка dist існує, сервимо статику (React Mini App)
-if (DIST_DIR / "assets").exists():
-    app.mount("/assets", StaticFiles(directory=str(DIST_DIR / "assets")), name="assets")
-
-@app.get("/{full_path:path}")
-async def serve_frontend(full_path: str):
-    """Сервить React-додаток для всіх інших роутів."""
-    # Якщо роут починається на /api/ чи /docs/, він вже оброблений вище.
-    # Віддаємо index.html для всіх інших шляхів, дозволяючи React Router'у розбиратись.
-    index_path = DIST_DIR / "index.html"
-    if index_path.exists():
-        return FileResponse(str(index_path))
-    else:
-        # Fallback якщо фронтенд ще не скомпільований
-        return HTMLResponse("<h1>Mini App не знайдено.</h1><p>Будь ласка, виконайте <code>npm run build</code> у папці <code>mini_app_web</code>.</p>")
