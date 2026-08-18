@@ -11,7 +11,7 @@ header {
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
 
     border-bottom: 1px solid var(--color-border);
     background-color: var(--color-bg);
@@ -24,3 +24,30 @@ header {
         gap: 12px;
     }
 }
+
+.headerInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.headerTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1.2;
+}
+
+.headerSubtitle {
+    font-size: 13px;
+    color: var(--color-primary);
+    line-height: 1.2;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.4; }
+    50% { opacity: 1; }
+    100% { opacity: 0.4; }
+}
+
