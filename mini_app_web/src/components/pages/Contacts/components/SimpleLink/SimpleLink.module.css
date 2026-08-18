@@ -12,7 +12,7 @@
 
     border-radius: 20px;
     border: none;
-    background-color: var(--color-surface);
+    background-color: var(--color-primary);
     cursor: pointer;
 
     transition: opacity 0.15s ease, transform 0.1s ease;
@@ -31,14 +31,14 @@
             font-family: var(--text-art);
             font-size: 15px;
             font-weight: 700;
-            color: var(--color-bg);
+            color: var(--color-text-h);
         }
     }
 
     .arrow {
         p {
             margin: 0;
-            color: var(--color-bg);
+            color: var(--color-text-h);
             font-size: 18px;
             line-height: 1;
         }
@@ -46,7 +46,7 @@
 }
 
 .another {
-    background-color: rgba(159, 109, 45, 0.1);
+    background-color: color-mix(in srgb, var(--color-text) 10%, transparent);
     
     .text h3 {
         color: var(--color-text-h);

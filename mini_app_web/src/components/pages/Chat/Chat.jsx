@@ -8,27 +8,43 @@ import { WriteMsgArea } from "./components/WriteMsgArea";
 const Chat = () => {
     const [dialogueMsgs, setDialogueMsgs] = useState([])
 
-    const onQuestionSubmit = (question) => {
-        if (!question.trim()) return;
+    const [isLoading, setIsLoading] = useState(false);
+
+    const onQuestionSubmit = async (question) => {
+        if (!question.trim() || isLoading) return;
 
         setDialogueMsgs(prev => [
             ...prev,
-            {
-                isQuestion: true,
-                text: question
-            }
+            { isQuestion: true, text: question }
         ]);
+        
+        setIsLoading(true);
 
-        // Simulate bot typing and answering
-        setTimeout(() => {
+        try {
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+            const response = await fetch(`${API_URL}/api/chat`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: question })
+            });
+            
+            if (!response.ok) throw new Error('API Error');
+            
+            const data = await response.json();
+            
             setDialogueMsgs(prev => [
                 ...prev,
-                {
-                    isQuestion: false,
-                    text: "Привіт! Я AI-асистент doTERRA. Наразі чат в Mini App працює в демо-режимі. Щоб отримати справжню відповідь від бази знань, будь ласка, закрийте це вікно і напишіть своє запитання безпосередньо в чат зі мною!"
-                }
+                { isQuestion: false, text: data.response }
             ]);
-        }, 1000);
+        } catch (error) {
+            console.error(error);
+            setDialogueMsgs(prev => [
+                ...prev,
+                { isQuestion: false, text: "Вибачте, виникла помилка при зв'язку з бекендом. Переконайтесь, що app.py запущено!" }
+            ]);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (

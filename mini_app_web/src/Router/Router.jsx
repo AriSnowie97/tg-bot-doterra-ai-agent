@@ -4,6 +4,7 @@ import { Home } from "../components/pages/Home";
 import { Chat } from "../components/pages/Chat";
 import { Articles } from "../components/pages/Articles";
 import { Contacts } from "../components/pages/Contacts";
+import { ArticleView } from "../components/pages/ArticleView";
 import { NotFound } from "../components/pages/NotFound";
 
 
@@ -13,6 +14,7 @@ const Router = () => {
             <Route path="/" element={<Home />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/articles" element={<Articles />} />
+            <Route path="/article/:slug" element={<ArticleView />} />
             <Route path="/contacts" element={<Contacts />} />
 
             <Route path="*" element={<NotFound />} />

@@ -12,10 +12,10 @@
 
     border-radius: 20px;
     border: none;
-    background-color: var(--color-surface);
+    background-color: var(--color-primary);
 
     text-decoration: none;
-    color: var(--color-bg);
+    color: var(--color-text-h);
     cursor: pointer;
 
     transition: transform 0.15s ease, opacity 0.15s ease;
@@ -40,12 +40,12 @@
         justify-content: center;
         
         border-radius: 12px;
-        background-color: rgba(253, 248, 235, 0.2);
+        background-color: color-mix(in srgb, var(--color-text) 10%, transparent);
         
         .Svg {
             width: 20px;
             height: 20px;
-            color: var(--color-bg);
+            color: var(--color-text-h);
         }
     }
 
@@ -63,13 +63,13 @@
             font-family: var(--text-art);
             font-size: 15px;
             font-weight: 700;
-            color: var(--color-bg);
+            color: var(--color-text-h);
         }
 
         p {
             margin: 0;
             font-size: 12px;
-            color: rgba(253, 248, 235, 0.85);
+            color: var(--color-text);
             line-height: 1.4;
         }
     }
@@ -77,7 +77,7 @@
     .arrow {
         p {
             margin: 0;
-            color: var(--color-bg);
+            color: var(--color-text-h);
             font-size: 18px;
             line-height: 1;
         }
