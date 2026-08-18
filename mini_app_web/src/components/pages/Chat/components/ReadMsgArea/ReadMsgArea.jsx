@@ -5,7 +5,7 @@ import { QuestionMsg } from "./components/QuestionMsg";
 import { AnswerMsg } from "./components/AnswerMsg";
 
 
-const ReadMsgArea = ({dialogueMsgs}) => {
+const ReadMsgArea = ({dialogueMsgs, onQuestionSubmit}) => {
     const bottomElemRef = useRef(null);
 
     useEffect(() => {
@@ -22,9 +22,9 @@ const ReadMsgArea = ({dialogueMsgs}) => {
                             <p className={styles.emptyTitle}>Привіт! Я AI-асистент dōTERRA</p>
                             <p className={styles.emptyHint}>Запитай мене про ефірні олії, БАДи або набори</p>
                             <div className={styles.suggestions}>
-                                <span className={styles.chip}>Яка олія від стресу?</span>
-                                <span className={styles.chip}>Що таке Home Essentials Kit?</span>
-                                <span className={styles.chip}>Як почати з dōTERRA?</span>
+                                <span className={styles.chip} onClick={() => onQuestionSubmit("Яка олія від стресу?")}>Яка олія від стресу?</span>
+                                <span className={styles.chip} onClick={() => onQuestionSubmit("Що таке Home Essentials Kit?")}>Що таке Home Essentials Kit?</span>
+                                <span className={styles.chip} onClick={() => onQuestionSubmit("Як почати з dōTERRA?")}>Як почати з dōTERRA?</span>
                             </div>
                         </div>
                     )}
