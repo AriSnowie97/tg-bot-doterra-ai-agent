@@ -7,7 +7,7 @@ from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command, CommandObject
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, WebAppInfo
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, WebAppInfo, MenuButtonWebApp
 from aiogram.enums import ChatAction, ChatType, MessageEntityType
 # Local
 from src.agent import generate_response
@@ -373,6 +373,16 @@ async def main() -> None:
         print("[bot] ✅ Feedback table ready.")
     except Exception as e:
         print(f"[bot] ⚠️ Could not init feedback table: {e}")
+
+    # Налаштовуємо кнопку "Меню" (Web App)
+    webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
+    try:
+        await bot.set_chat_menu_button(
+            menu_button=MenuButtonWebApp(text="Mini App", web_app=WebAppInfo(url=webapp_url))
+        )
+        print("[bot] ✅ Menu button configured.")
+    except Exception as e:
+        print(f"[bot] ⚠️ Could not configure menu button: {e}")
 
     # Налаштовуємо та запускаємо планувальник публікацій
     scheduler = setup_scheduler(bot)
