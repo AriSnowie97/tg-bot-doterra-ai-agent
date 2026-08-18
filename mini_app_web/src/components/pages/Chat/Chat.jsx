@@ -9,6 +9,8 @@ const Chat = () => {
     const [dialogueMsgs, setDialogueMsgs] = useState([])
 
     const onQuestionSubmit = (question) => {
+        if (!question.trim()) return;
+
         setDialogueMsgs(prev => [
             ...prev,
             {
@@ -17,14 +19,16 @@ const Chat = () => {
             }
         ]);
 
-        //!
-        // setDialogueMsgs(prev => [
-        //     ...prev,
-        //     {
-        //         isQuestion: false,
-        //         text: answer
-        //     }
-        // ]);
+        // Simulate bot typing and answering
+        setTimeout(() => {
+            setDialogueMsgs(prev => [
+                ...prev,
+                {
+                    isQuestion: false,
+                    text: "Привіт! Я AI-асистент doTERRA. Наразі чат в Mini App працює в демо-режимі. Щоб отримати справжню відповідь від бази знань, будь ласка, закрийте це вікно і напишіть своє запитання безпосередньо в чат зі мною!"
+                }
+            ]);
+        }, 1000);
     };
 
     return (
