@@ -19,6 +19,8 @@ const Chat = () => {
         ]);
         
         setIsLoading(true);
+        const typingIndicator = document.getElementById('typing-indicator');
+        if (typingIndicator) typingIndicator.style.display = 'block';
 
         try {
             const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
@@ -44,6 +46,8 @@ const Chat = () => {
             ]);
         } finally {
             setIsLoading(false);
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) typingIndicator.style.display = 'none';
         }
     };
 
