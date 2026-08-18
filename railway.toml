@@ -3,6 +3,7 @@
 
 [build]
 builder = "NIXPACKS"
+buildCommand = "cd mini_app_web && npm ci && npm run build && cd .."
 
 [deploy]
 # First seed (loading content to the database), then bot
