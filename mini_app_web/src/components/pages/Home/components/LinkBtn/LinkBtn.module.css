@@ -1,11 +1,10 @@
-a.linkToBtn {
-    text-decoration-line: none;       
-}
+/* a.linkToBtn {    
+} */
 
 .wrapper {
     /* width: 100%; */
 
-    padding: 5px 10px;
+    padding: 20px;
 
     display: flex;
     flex-direction: row;
@@ -30,6 +29,20 @@ a.linkToBtn {
         
         border-radius: 15px;
         object-fit: contain;
+
+        /* background-color: var(--color-secondary); */
+        background-color: color-mix(
+            in srgb,
+            var(--color-secondary) 50%,
+            transparent
+        );
+        /* opacity: 50%; */
+        
+        .Svg {
+            width: 30px;
+            height: 30px;
+
+        }
     }
 
     .text {

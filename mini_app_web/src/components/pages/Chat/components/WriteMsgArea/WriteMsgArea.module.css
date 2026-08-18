@@ -12,22 +12,24 @@
     justify-content: space-between;
     gap: 10px;
 
-    border-radius: 20px;
+    /* border-radius: 20px;
     border: 3px outset var(--color-border);
 
-    background-color: var(--color-surface);
+    background-color: var(--color-surface); */
 
     .input {
         height: 100%;
-        flex: 1;
+        flex: 1 1 0%;
 
         margin: 0px;
-        padding: 0px 10px;
+        padding: 9px 10px;
         outline: none;
+        box-sizing: border-box;
 
         border-radius: 15px;
         border: none;
-        /* border: 2px inset var(--color-border); */
+        border: 1px inset var(--color-border);
+        /* background-color: var(--color-secondary); */
 
         font-size: 16px;
         font-weight: 700;
@@ -44,11 +46,14 @@
         outline: none;
 
         border-radius: 15px;
-        border: 1px inset var(--color-border);
+        border: 1px outset var(--color-border);
+        background-color: var(--color-primary);
+    
+        font-family: monospace;
     }
 
     .input, .submit{
-        color: var(--color-text-h-muted);
-        background-color: var(--color-surface);
+        color: var(--color-text-h);
+        /* background-color: var(--color-surface); */
     }
 }

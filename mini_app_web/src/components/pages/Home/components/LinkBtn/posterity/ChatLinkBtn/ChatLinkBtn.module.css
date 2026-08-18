@@ -1,3 +1,7 @@
+a.linkToBtn {
+    color: var(--color-text-h-muted);
+}
+
 .wrapper {
     background-color: var(--color-surface);
 

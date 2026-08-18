@@ -18,11 +18,11 @@ const ChangeThemeBtn = () => {
     return (
         <>
             <div className={styles.wrapper} onClick={changeTheme}>
-                <img src={
+                {
                     theme=="light"
-                    ? "light.png"
-                    : "dark.png"
-                } alt="theme"/>
+                    ? <p>☀️</p>
+                    :<p>🌙</p>
+                }
             </div>
         </>
     );

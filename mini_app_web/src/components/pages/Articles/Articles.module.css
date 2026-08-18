@@ -1,4 +1,43 @@
 .wrapper{
     width: 100%;
     height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+
+    .input {
+        width: 100%;
+        /* margin: auto; */
+        padding: 11px 14px;
+        box-sizing: border-box;
+
+        border: 0.5px solid var(--color-border);
+        border-radius: 14px;
+
+        font-size: 13px;
+        color: var(--color-text)
+    }
+
+
+    .slider {
+        width: 100%;
+        height: 0;
+        flex: 1 1 auto;
+        
+        overflow-y: auto;
+
+        .articles {
+            width: 100%;
+    
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+    
+        }
+    }
 }

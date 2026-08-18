@@ -3,12 +3,15 @@ import { useState } from "react";
 import styles from "./WriteMsgArea.module.css";
 
 
-const WriteMsgArea = () => {
-    const [question, setQuestion] = useState("")
+const WriteMsgArea = ({onQuestionSubmit}) => {
+    const [question, setQuestion] = useState("");
+    // const [writing, setWriting] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
+        
+        // Get question
+        onQuestionSubmit(question);
 
         // Clearing input
         setQuestion("");
@@ -19,14 +22,15 @@ const WriteMsgArea = () => {
             <form
             onSubmit={handleSubmit}
             method="get"
-            className={styles.wrapper}>
+            className={styles.wrapper}
+            >
                 <input
                 className={styles.input}
                 type="text"
-                name="question"
+                name="writing"
                 value={question}
                 onChange={(event) => setQuestion(event.target.value)}
-                placeholder="Введіть запитання"
+                placeholder="Введіть запитання..."
                 />
                 <input
                 className={styles.submit}

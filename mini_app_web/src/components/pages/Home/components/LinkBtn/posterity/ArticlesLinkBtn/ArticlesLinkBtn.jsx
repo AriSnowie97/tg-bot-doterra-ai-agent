@@ -1,12 +1,14 @@
 import styles from "./ArticlesLinkBtn.module.css";
 import { LinkBtn } from "../../LinkBtn";
+import { ArticlesSvg } from "../../../../../../../assets/images";
+
 
 const ArticlesLinkBtn = () => {
     return (
         <>
             <LinkBtn 
             linkTo={"/articles"}
-            img={""}
+            Svg={ArticlesSvg}
             h3Text={"База знань"}
             pText={"Каталог наборів і продуктів з описом складу та застосування"}
             newStyles={styles}/>

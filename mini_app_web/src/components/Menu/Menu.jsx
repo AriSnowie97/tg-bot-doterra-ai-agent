@@ -1,27 +1,31 @@
 import { NavLink } from "react-router-dom";
 
 import styles from "./Menu.module.css";
-import heroImg from "/src/assets/hero.png";
+import { HomeSvg, ChatSvg, ArticlesSvg, ContactsSvg } from "../../assets/images";
 
 const Menu = () => {
 
     const navigation = [
-        ["/", "home", "Головна"],
-        ["/chat", "chat", "Чат"],
-        ["/articles", "articles", "Статті"],
-        ["/contacts", "contacts", "Контакти"]
+        ["/", HomeSvg,"home", "Головна"],
+        ["/chat", ChatSvg, "chat", "Чат"],
+        ["/articles", ArticlesSvg, "articles", "Статті"],
+        ["/contacts", ContactsSvg, "contacts", "Контакти"]
     ]
 
     return (
         <>
             <menu>
                 <nav className={styles.navigation}>
-                    {navigation.map(([src, alt, name], index) => (
+                    {navigation.map(([to, Svg, alt, name], index) => (
                         <NavLink
-                        to={src}
+                        to={to}
                         key={index + 1}
                         className={({isActive}) => isActive ? styles.active : ""}>
-                            <img src={`${alt}.png`} alt={alt}/>
+                            {
+                            Svg
+                            ? <Svg className={styles.Svg} />
+                            : <p>{alt}</p>
+                            }
                             <h3>{name}</h3>
                         </NavLink>
                     ))}
