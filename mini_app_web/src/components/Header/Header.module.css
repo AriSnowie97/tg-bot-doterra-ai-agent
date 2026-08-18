@@ -16,9 +16,6 @@ header {
     border-bottom: 1px solid var(--color-border);
     background-color: var(--color-bg);
 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-
     .btnWrapper {
         display: flex;
         flex-direction: row;

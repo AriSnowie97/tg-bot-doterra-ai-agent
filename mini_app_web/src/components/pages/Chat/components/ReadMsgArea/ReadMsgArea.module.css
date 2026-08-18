@@ -1,11 +1,7 @@
 .scroll {
     width: 100%;
-    /* height: 100%; */
-    /* max-height: 600px; */
-    /* min-height: 0; */
     height: 0;
     flex: 1 1 auto;
-
     overflow-y: auto;
 }
 
@@ -18,21 +14,58 @@
     align-items: center;
     justify-content: flex-end;
     gap: 10px;
-
-    /* border-left: 2px solid var(--color-border); */
-    /* border-right: 2px solid var(--color-border); */
-    /* border-bottom: 2px solid var(--color-border); */
-
-    /* background: linear-gradient(transparent 0%,  var(--color-primary) 30%, transparent 100%); */
-    background: radial-gradient(var(--color-primary) 0%,  transparent 90%);
+    padding: 12px 0;
 }
 
-.ab {
+/* Empty state */
+.emptyState {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 32px 16px;
+    text-align: center;
+}
+
+.emptyIcon {
+    font-size: 48px;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.emptyTitle {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text-h);
+}
+
+.emptyHint {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+
+.suggestions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
     width: 100%;
-    min-height: 500px;
-    /* min-width: 30px; */
-
-    /* flex-shrink: 0; */
-
-    /* border: 1px solid red; */
 }
+
+.chip {
+    padding: 10px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-primary);
+    font-size: 13px;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+        background-color: color-mix(in srgb, var(--color-surface) 15%, var(--color-primary));
+    }
+}

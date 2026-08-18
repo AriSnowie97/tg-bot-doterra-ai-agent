@@ -16,19 +16,30 @@ const ReadMsgArea = ({dialogueMsgs}) => {
         <>
             <div className={styles.scroll}>
                 <div className={styles.wrapper}>
+                    {dialogueMsgs.length === 0 && (
+                        <div className={styles.emptyState}>
+                            <span className={styles.emptyIcon}>🌿</span>
+                            <p className={styles.emptyTitle}>Привіт! Я AI-асистент dōTERRA</p>
+                            <p className={styles.emptyHint}>Запитай мене про ефірні олії, БАДи або набори</p>
+                            <div className={styles.suggestions}>
+                                <span className={styles.chip}>Яка олія від стресу?</span>
+                                <span className={styles.chip}>Що таке Home Essentials Kit?</span>
+                                <span className={styles.chip}>Як почати з dōTERRA?</span>
+                            </div>
+                        </div>
+                    )}
+
                     {dialogueMsgs.map((msg, index) =>
                         msg.isQuestion ? (
                             <QuestionMsg 
                             key={index}
                             question={msg.text}
                             />
-                            // <p>Hello</p>
                         ) : (
                             <AnswerMsg
                             key={index}
                             answer={msg.text}
                             />
-                            // <p>bye</p>
                         )              
                     )}
 
