@@ -32,6 +32,7 @@ const Chat = () => {
             <div className={styles.wrapper}>
                 <ReadMsgArea
                     dialogueMsgs={dialogueMsgs}
+                    onQuestionSubmit={onQuestionSubmit}
                 />
                 <WriteMsgArea
                     onQuestionSubmit={onQuestionSubmit}
