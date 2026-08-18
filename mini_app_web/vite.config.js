@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/tg-bot-doterra-ai-agent/',
+  // Видалено base, щоб працювало з кореня FastAPI
 })
