@@ -1,4 +1,4 @@
-﻿![doTERRA Essential Oils](https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=800&auto=format&fit=crop)
+﻿![doTERRA Lifestyle](https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=800&auto=format&fit=crop)
 
 # Home Essentials Enrollment Kit
 
@@ -68,4 +68,5 @@
 > вљ пёЏ РќР°РІРµРґРµРЅР° С–РЅС„РѕСЂРјР°С†С–СЏ РїСЂРёР·РЅР°С‡РµРЅР° РІРёРєР»СЋС‡РЅРѕ РґР»СЏ РѕР·РЅР°Р№РѕРјР»РµРЅРЅСЏ С– РЅРµ С” РјРµРґРёС‡РЅРѕСЋ РєРѕРЅСЃСѓР»СЊС‚Р°С†С–С”СЋ. РџРµСЂРµРґ Р·Р°СЃС‚РѕСЃСѓРІР°РЅРЅСЏРј РєРѕРЅСЃСѓР»СЊС‚СѓР№С‚РµСЃСЏ Р· Р»С–РєР°СЂРµРј.
 
 #СЃС‚Р°СЂС‚РѕРІРёР№РЅР°Р±С–СЂ #homeessentials #РґР»СЏРЅРѕРІР°С‡РєС–РІ
+
 
