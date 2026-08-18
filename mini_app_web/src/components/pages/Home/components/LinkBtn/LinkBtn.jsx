@@ -17,7 +17,7 @@ const LinkBtn = ({linkTo, Svg, h3Text, pText, newStyles}) => {
                         <p>{pText}</p>
                     </div>
                     <div className={`${styles.arrow} ${newStyles.arrow || ""}`}>
-                        <p><code>{"-->"}</code></p>
+                        <p>→</p>
                     </div>
                 </div>
             </Link>
