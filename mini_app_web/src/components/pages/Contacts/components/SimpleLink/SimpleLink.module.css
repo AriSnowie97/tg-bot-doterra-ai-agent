@@ -1,8 +1,6 @@
-.wrapper{
-    /* width: 100%; */
-    min-height: 0px;
-
-    padding: 13px;
+.wrapper {
+    width: 100%;
+    padding: 14px 20px;
 
     display: flex;
     flex-direction: row;
@@ -10,22 +8,31 @@
     align-items: center;
     justify-content: center;
 
-    border: 1px solid var(--color-border);
+    border: 1.5px solid var(--color-border);
     border-radius: 16px;
 
     background-color: var(--color-primary);
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: opacity 0.15s ease, transform 0.1s ease;
+
+    &:hover { opacity: 0.85; }
+    &:active { transform: scale(0.98); }
 
     h3 {
-        font-size: 14px;
+        font-family: var(--text-art);
+        font-size: 15px;
         font-weight: 700;
+        color: var(--color-text-h);
     }
-
 }
 
 .another {
     background-color: var(--color-surface);
+    border-color: var(--color-surface);
 
     h3 {
-        color: var(--color-text-h-muted)
+        color: var(--color-text-h-muted);
     }
-}
+}
