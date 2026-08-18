@@ -1,0 +1,92 @@
+.wrapper {
+    box-sizing: border-box;
+    padding: 16px;
+    padding-bottom: 80px;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-bg);
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.backBtn {
+    background: none;
+    border: none;
+    color: var(--color-text-h);
+    font-family: var(--text-art);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 8px 0;
+    transition: opacity 0.2s;
+}
+
+.backBtn:hover {
+    opacity: 0.8;
+}
+
+.loading {
+    color: var(--color-text-muted);
+    font-family: var(--text-art);
+    text-align: center;
+    margin-top: 40px;
+}
+
+.error {
+    color: var(--color-error, red);
+    font-family: var(--text-art);
+    text-align: center;
+    margin-top: 40px;
+}
+
+.content {
+    background-color: var(--color-primary);
+    border-radius: 20px;
+    padding: 20px;
+    color: var(--color-text);
+    font-family: var(--text-art);
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.markdownContent h1,
+.markdownContent h2,
+.markdownContent h3 {
+    color: var(--color-text-h);
+}
+
+.markdownContent p {
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.markdownContent a {
+    color: var(--color-text-h);
+    text-decoration: underline;
+}
+
+.markdownContent table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+}
+
+.markdownContent th,
+.markdownContent td {
+    border: 1px solid var(--color-text-muted);
+    padding: 8px;
+    text-align: left;
+}
+
+.markdownContent ul,
+.markdownContent ol {
+    margin-bottom: 16px;
+    padding-left: 24px;
+}
+
+.markdownContent li {
+    margin-bottom: 8px;
+}

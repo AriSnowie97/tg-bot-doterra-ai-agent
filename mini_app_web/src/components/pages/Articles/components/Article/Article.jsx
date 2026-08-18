@@ -5,7 +5,7 @@ import styles from "./Article.module.css";
 
 const Article = ({data}) => {
     return (
-        <>
+        <Link to={`/article/${data.slug || 'home-essentials-enrollment-kit'}`} style={{textDecoration: 'none'}}>
             <div className={styles.wrapper}>
                 <div className={styles.img}>Prod Img</div>
                 <div className={styles.description}>
@@ -16,7 +16,7 @@ const Article = ({data}) => {
                     </div>
                 </div>
             </div>
-        </>
+        </Link>
     );
 }
 
