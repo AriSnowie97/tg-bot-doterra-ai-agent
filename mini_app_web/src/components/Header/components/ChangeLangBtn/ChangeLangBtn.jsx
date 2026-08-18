@@ -4,7 +4,7 @@ const ChangeLangBtn = () => {
     return (
         <>
             <div className={styles.wrapper}>
-                <img src="lang.png" alt="lang"/>
+                <p>&#127760;</p>
             </div>
         </>
     );

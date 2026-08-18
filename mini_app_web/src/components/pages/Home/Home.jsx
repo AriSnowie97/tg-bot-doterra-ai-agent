@@ -3,13 +3,13 @@ import styles from "./Home.module.css";
 import { ChatLinkBtn } from "./components/LinkBtn/posterity/ChatLinkBtn";
 import { ArticlesLinkBtn } from "./components/LinkBtn/posterity/ArticlesLinkBtn";
 import { LinkArticleBtn } from "./components/LinkArticleBtn";
-
 import { TelegramLinkBtn } from "./components/LinkBtn/posterity/TelegramLinkBtn";
+import { articles } from "../../../dataMocks";
 
 const Home = () => {
 
-    let tg = window.Telegram.WebApp; //
-    console.log(tg); //
+    // let tg = window.Telegram.WebApp; //
+    // console.log(tg); //
     
 
     return (
@@ -26,13 +26,12 @@ const Home = () => {
                 <div className={styles.popular}>
                     <h3>ПОПУЛЯРНЕ ЗАРАЗ</h3>
                     <div className={styles.articles}>
-                        <LinkArticleBtn />
-                        <LinkArticleBtn />
-                        <LinkArticleBtn />
-                        <LinkArticleBtn />
-                        <LinkArticleBtn />
-                        <LinkArticleBtn />
-                        <LinkArticleBtn />
+                        {articles.map((data, index) => (
+                            <LinkArticleBtn
+                            data={data}
+                            key={index}
+                            />
+                        ))}
                     </div>
                 </div>
                 <div className={styles.links}>
