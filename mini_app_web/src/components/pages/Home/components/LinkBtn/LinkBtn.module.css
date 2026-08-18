@@ -1,25 +1,35 @@
-/* a.linkToBtn {    
-} */
-
 .wrapper {
-    /* width: 100%; */
-
-    padding: 20px;
+    width: 100%;
+    padding: 16px 20px;
 
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 14px;
 
-    border-radius: 15px;
+    border-radius: 18px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-primary);
 
-    /* background-color: var(--color-primary); */
+    text-decoration: none;
+    color: var(--color-text);
+
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+    &:active {
+        transform: scale(0.98);
+    }
+
+    &:hover {
+        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
 
     .img {
-        width: 60px;
-        height: 50px;
+        width: 56px;
+        height: 56px;
+        flex-shrink: 0;
         
         display: flex;
         flex-direction: row;
@@ -27,41 +37,42 @@
         align-items: center;
         justify-content: center;
         
-        border-radius: 15px;
+        border-radius: 14px;
         object-fit: contain;
 
-        /* background-color: var(--color-secondary); */
         background-color: color-mix(
             in srgb,
-            var(--color-secondary) 50%,
+            var(--color-surface) 20%,
             transparent
         );
-        /* opacity: 50%; */
         
         .Svg {
-            width: 30px;
-            height: 30px;
-
+            width: 28px;
+            height: 28px;
         }
     }
 
     .text {
-        width: 100%;
+        flex: 1;
 
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
         align-items: flex-start;
         justify-content: center;
+        gap: 3px;
 
         h3 {
-            font-size: 20px;
-            /* color: var(--color-text-h); */
+            font-family: var(--text-art);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-text-h);
         }
 
         p {
-            font-size: 17px;
-            /* color: var(--color-text); */
+            font-size: 13px;
+            color: var(--color-text);
+            line-height: 1.4;
         }
     }
 
@@ -69,6 +80,8 @@
         p {
             white-space: nowrap;
             overflow: hidden;
+            color: var(--color-text-muted);
+            font-size: 18px;
         }
     }
-}
+}
