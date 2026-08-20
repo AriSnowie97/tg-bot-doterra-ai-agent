@@ -1,6 +1,6 @@
 ![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
 
-# doTERRA Kids Collection — Rescuer, Steady, Brave, Stronger, Thinker, Calmer, Tamer
+# doTERRA Kids Collection — Overview
 
 **Категорія:** Ефірні Олії
 

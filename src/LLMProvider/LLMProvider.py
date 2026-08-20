@@ -1,6 +1,7 @@
 # Standard
 import re
 import asyncio
+import time
 from abc import ABC, abstractmethod
 # Special
 from google.genai import types
@@ -10,19 +11,33 @@ class LLMProvider(ABC):
     """LLMProvider - інтерфейс для LLMs, абстрактний клас, що
     описує необхідні змінні та методи для класів-нащадків."""
 
-    def embed_content(self, content):
-        """Генерація embedding для введеного content."""
+    def embed_content(self, content, MAX_RETRIES: int = 3):
+        """Генерація embedding для введеного content з Retry-логікою для 429."""
         last_error = None
 
         # Searching for a working key
         for api_key in self.LLM_API_KEYS:
-            try:
-                response = self._embed_content(api_key, content)
-                return response
-            
-            except Exception as e:
-                last_error = e
-    
+            for attempt in range(1, MAX_RETRIES + 2):
+                try:
+                    response = self._embed_content(api_key, content)
+                    return response
+                except Exception as e:
+                    error_str = str(e)
+                    last_error = e
+
+                    is_429 = "429" in error_str or "RESOURCE_EXHAUSTED" in error_str
+                    if is_429:
+                        if attempt <= MAX_RETRIES:
+                            delay = self._parse_retry_delay(error_str) or (attempt * 15)
+                            print(f"[agent] Per-minute 429 on embed_content, retry in {delay}s (attempt {attempt})")
+                            time.sleep(delay)
+                            continue
+                        print(f"[agent] Retries exhausted for embedding -> next key")
+                        break
+
+                    print(f"[agent] Unknown error on embed_content: {e}")
+                    break
+
         raise RuntimeError(f"Для {self.NAME} усі API-ключі недоступні. {last_error}")
 
 
