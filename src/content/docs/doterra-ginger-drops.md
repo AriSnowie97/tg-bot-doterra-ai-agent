@@ -1,3 +1,5 @@
+![doTERRA Product](https://www.doterra.com/medias/600x400-ginger-drops-preview-new.jpg?context=bWFzdGVyfHJvb3R8Mzk2ODZ8aW1hZ2UvanBlZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3hOQzlvT0Rrdk16QTNNemsxTURJeE1EUTJNRFl2TmpBd2VEUXdNQzFuYVc1blpYSXRaSEp2Y0hNdGNISmxkbWxsZHkxdVpYY3VhbkJufGRmZDQxOTgxMzE5Mjc1MjY3OWE1YTMxYmIwNTgwOTAwY2NiNzZhMDJmZTYyNDllNmYwZThlM2I0ZTVmZGYwMzg)
+
 # dōTERRA Ginger Drops
 
 **Тип:** supplement

@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 import styles from "./WriteMsgArea.module.css";
-
+import { useLang } from "../../../../contexts/LangContext";
 
 const WriteMsgArea = ({onQuestionSubmit}) => {
     const [question, setQuestion] = useState("");
-    // const [writing, setWriting] = useState("");
+    const { t } = useLang();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -30,7 +30,7 @@ const WriteMsgArea = ({onQuestionSubmit}) => {
                 name="writing"
                 value={question}
                 onChange={(event) => setQuestion(event.target.value)}
-                placeholder="Введіть запитання..."
+                placeholder={t("chat_placeholder")}
                 />
                 <button
                 className={styles.submit}

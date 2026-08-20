@@ -1,3 +1,5 @@
+![doTERRA Product](https://www.doterra.com/medias/Preview-PB-Restore.jpg?context=bWFzdGVyfHJvb3R8MTMxODkwfGltYWdlL2pwZWd8YzNsekxXMWhjM1JsY2k5eWIyOTBMMmhpTVM5b05XUXZNamszT1RFNE9URXlOVGswTWpJdlVISmxkbWxsZDE5UVFpMVNaWE4wYjNKbExtcHdad3w4MjEyZWZiNGRhMjczNDQ3MGRlMWEwMTMzZTI3OWNmYTJhNTU4NTFlZDgxZDhjNTg0NzJlYzUzMWQ5NTlhNDgy)
+
 # PB Restore ProBiome Complex
 
 **Тип:** supplement

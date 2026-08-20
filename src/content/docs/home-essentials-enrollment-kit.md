@@ -1,4 +1,4 @@
-﻿![doTERRA Lifestyle](https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=800&auto=format&fit=crop)
+﻿![doTERRA Product](https://www.doterra.com/medias/625x325-60221657-home-essentials-enrollment-kit-us-en-web.jpg?context=bWFzdGVyfHJvb3R8NzQyMDl8aW1hZ2UvanBlZ3xhR0ZsTDJobVlTOHlPREE1T1RneU5EVTBPVGt4T0M1cWNHY3w4OGNkYjc0YWM5ODJkMzQwMzRiMjAyYjRhOTAyMTcwOTVkZGRlYjRmMjJlMzkzZjFhOGU5MmI3YjhhNGEwZWRl)
 
 # Home Essentials Enrollment Kit
 

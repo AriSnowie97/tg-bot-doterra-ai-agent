@@ -1,3 +1,5 @@
+![doTERRA Product](https://www.doterra.com/medias/625x325-60217376-meta-pwr-beadlets-us-en-web.png.jpg?context=bWFzdGVyfHJvb3R8MTk5NDN8aW1hZ2UvanBlZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGtaaTlvWm1Jdk1qZzJPREkzTkRVNU1EVXhPREl2TmpJMWVETXlOVjgyTURJeE56TTNObDl0WlhSaFgzQjNjbDlpWldGa2JHVjBjMTkxYzE5bGJsOTNaV0l1Y0c1bkxtcHdad3xmZGQ0MjE2ZGY1ODA2NGI1ZmFhODIyMjFhY2EyOGFiOTBmNzVlN2FjYjA5NDMyOWFkNjJhNzQwNjJjOTJhYmM5)
+
 # MetaPWR Beadlets
 
 **Тип:** supplement

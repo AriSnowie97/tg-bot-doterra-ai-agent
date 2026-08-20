@@ -3,10 +3,12 @@ import { useRef, useEffect } from "react";
 import styles from "./ReadMsgArea.module.css";
 import { QuestionMsg } from "./components/QuestionMsg";
 import { AnswerMsg } from "./components/AnswerMsg";
+import { useLang } from "../../../../contexts/LangContext";
 
 
 const ReadMsgArea = ({dialogueMsgs, onQuestionSubmit}) => {
     const bottomElemRef = useRef(null);
+    const { t } = useLang();
 
     useEffect(() => {
         bottomElemRef.current?.scrollIntoView({behavior: "smooth"});
@@ -19,12 +21,12 @@ const ReadMsgArea = ({dialogueMsgs, onQuestionSubmit}) => {
                     {dialogueMsgs.length === 0 && (
                         <div className={styles.emptyState}>
                             <span className={styles.emptyIcon}>🌿</span>
-                            <p className={styles.emptyTitle}>Привіт! Я AI-асистент dōTERRA</p>
-                            <p className={styles.emptyHint}>Запитай мене про ефірні олії, БАДи або набори</p>
+                            <p className={styles.emptyTitle}>{t("chat_empty_title")}</p>
+                            <p className={styles.emptyHint}>{t("chat_empty_hint")}</p>
                             <div className={styles.suggestions}>
-                                <span className={styles.chip} onClick={() => onQuestionSubmit("Яка олія від стресу?")}>Яка олія від стресу?</span>
-                                <span className={styles.chip} onClick={() => onQuestionSubmit("Що таке Home Essentials Kit?")}>Що таке Home Essentials Kit?</span>
-                                <span className={styles.chip} onClick={() => onQuestionSubmit("Як почати з dōTERRA?")}>Як почати з dōTERRA?</span>
+                                <span className={styles.chip} onClick={() => onQuestionSubmit(t("chat_suggestion_1"))}>{t("chat_suggestion_1")}</span>
+                                <span className={styles.chip} onClick={() => onQuestionSubmit(t("chat_suggestion_2"))}>{t("chat_suggestion_2")}</span>
+                                <span className={styles.chip} onClick={() => onQuestionSubmit(t("chat_suggestion_3"))}>{t("chat_suggestion_3")}</span>
                             </div>
                         </div>
                     )}

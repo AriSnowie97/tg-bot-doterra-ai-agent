@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./ArticleView.module.css";
+import { useLang } from "../../../contexts/LangContext";
 
 const ArticleView = () => {
     const { slug } = useParams();
@@ -8,6 +9,7 @@ const ArticleView = () => {
     const [articleData, setArticleData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const { t } = useLang();
 
     useEffect(() => {
         const fetchArticle = async () => {
@@ -22,7 +24,7 @@ const ArticleView = () => {
                 setArticleData(data);
             } catch (err) {
                 console.error(err);
-                setError("Помилка підключення до бази знань. Переконайтеся, що бекенд запущено.");
+                setError(t("article_error"));
             } finally {
                 setLoading(false);
             }
@@ -35,11 +37,11 @@ const ArticleView = () => {
         <div className={styles.wrapper}>
             <div className={styles.header}>
                 <button className={styles.backBtn} onClick={() => navigate(-1)}>
-                    ← Назад
+                    {t("article_back")}
                 </button>
             </div>
             
-            {loading && <div className={styles.loading}>Завантаження...</div>}
+            {loading && <div className={styles.loading}>{t("article_loading")}</div>}
             
             {error && <div className={styles.error}>{error}</div>}
             

@@ -1,4 +1,5 @@
 import styles from "./ChangeLangBtn.module.css";
+import { useLang } from "../../../../contexts/LangContext";
 
 const GlobeIcon = () => (
     <svg viewBox="0 0 24 24" fill="none" className={styles.icon}>
@@ -8,9 +9,12 @@ const GlobeIcon = () => (
 );
 
 const ChangeLangBtn = () => {
+    const { lang, toggleLang } = useLang();
+
     return (
-        <div className={styles.wrapper} title="Мова">
+        <div className={styles.wrapper} title="Language" onClick={toggleLang}>
             <GlobeIcon />
+            <span style={{marginLeft: "4px", fontSize: "14px", fontWeight: "bold", textTransform: "uppercase"}}>{lang}</span>
         </div>
     );
 }

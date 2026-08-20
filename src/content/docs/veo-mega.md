@@ -1,3 +1,5 @@
+![doTERRA Product](https://www.doterra.com/medias/600x400-veo-mega-vegan-preview-new.jpg?context=bWFzdGVyfHJvb3R8NTMyOTR8aW1hZ2UvanBlZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzFNeTlvT0dRdk16QTNORGc1TXpFNU1UVTRNRFl2TmpBd2VEUXdNQzEyWlc4dGJXVm5ZUzEyWldkaGJpMXdjbVYyYVdWM0xXNWxkeTVxY0djfDBlMzFmMjhlNmI4MGJiYTJiZjBiODY5MjNlMmY0NjRiNThjNzkyZTlmZWFiMTM1ZGU3MzUzYThmNWE2YWI3ZDI)
+
 # vEO Mega
 
 **Тип:** supplement
