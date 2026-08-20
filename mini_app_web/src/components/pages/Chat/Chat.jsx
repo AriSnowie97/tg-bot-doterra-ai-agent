@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import styles from "./Chat.module.css";
 import { ReadMsgArea } from "./components/ReadMsgArea";
 import { WriteMsgArea } from "./components/WriteMsgArea";
-import { useLang } from "../../contexts/LangContext";
+import { useLang } from "../../../contexts/LangContext";
 
 
 const Chat = () => {

@@ -3,7 +3,7 @@ import { useRef, useEffect } from "react";
 import styles from "./ReadMsgArea.module.css";
 import { QuestionMsg } from "./components/QuestionMsg";
 import { AnswerMsg } from "./components/AnswerMsg";
-import { useLang } from "../../../../contexts/LangContext";
+import { useLang } from "../../../../../contexts/LangContext";
 
 
 const ReadMsgArea = ({dialogueMsgs, onQuestionSubmit}) => {
