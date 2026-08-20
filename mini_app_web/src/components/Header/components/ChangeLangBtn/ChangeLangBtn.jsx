@@ -14,7 +14,7 @@ const ChangeLangBtn = () => {
     return (
         <div className={styles.wrapper} title="Language" onClick={toggleLang}>
             <GlobeIcon />
-            <span style={{marginLeft: "4px", fontSize: "14px", fontWeight: "bold", textTransform: "uppercase"}}>{lang}</span>
+            <span style={{fontSize: "14px", fontWeight: "bold", textTransform: "uppercase"}}>{lang}</span>
         </div>
     );
 }

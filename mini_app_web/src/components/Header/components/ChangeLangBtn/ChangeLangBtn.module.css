@@ -1,15 +1,17 @@
 .wrapper {
-    width: 36px;
+    width: auto;
     height: 36px;
-
+    padding: 0 12px;
+    
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
+    gap: 6px;
 
     border: 1.5px solid var(--color-border);
-    border-radius: 50%;
+    border-radius: 18px;
 
     cursor: pointer;
     color: var(--color-text);
