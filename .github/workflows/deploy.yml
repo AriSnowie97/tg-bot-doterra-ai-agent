@@ -38,6 +38,8 @@ jobs:
       - name: Build
         run: npm run build
         working-directory: ./mini_app_web
+        env:
+          VITE_API_URL: https://tg-bot-doterra-ai-agent-production.up.railway.app
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
