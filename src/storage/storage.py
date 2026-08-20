@@ -179,7 +179,7 @@ def bulk_upsert_chunks(chunks: list[dict]) -> None:
                             "embedding": embedding
                         }
                     )
-                    conn.commit() # Commit after each insert to make it visible
+                    conn.commit()  # Зафіксувати кожний успішний чанк, щоб не втратити прогрес
             except Exception as e:
                 print(f"[!] Error upserting chunk {chunk_id}: {e}")
                 conn.rollback()
