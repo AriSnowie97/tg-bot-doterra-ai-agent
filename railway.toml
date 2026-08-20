@@ -6,7 +6,7 @@ builder = "NIXPACKS"
 
 [deploy]
 # First seed (loading content to the database), then bot
-startCommand = "python manualWork.py && uvicorn src.web.app:app --host 0.0.0.0 --port ${PORT:-8000} & python kb_bot.py & python bot.py"
+startCommand = "python src/content/sync_content.py & python manualWork.py && uvicorn src.web.app:app --host 0.0.0.0 --port ${PORT:-8000} & python kb_bot.py & python bot.py"
 
 # Restart only if the bot crashes (not seed)
 restartPolicyType = "ON_FAILURE"
