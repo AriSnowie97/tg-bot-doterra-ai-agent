@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import styles from "./WriteMsgArea.module.css";
-import { useLang } from "../../../../contexts/LangContext";
+import { useLang } from "../../../../../contexts/LangContext";
 
 const WriteMsgArea = ({onQuestionSubmit}) => {
     const [question, setQuestion] = useState("");
