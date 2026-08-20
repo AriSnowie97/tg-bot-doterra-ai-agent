@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import styles from "./Home.module.css";
 import { useLang } from "../../../contexts/LangContext";
 
@@ -5,10 +7,32 @@ import { ChatLinkBtn } from "./components/LinkBtn/posterity/ChatLinkBtn";
 import { ArticlesLinkBtn } from "./components/LinkBtn/posterity/ArticlesLinkBtn";
 import { LinkArticleBtn } from "./components/LinkArticleBtn";
 import { TelegramLinkBtn } from "./components/LinkBtn/posterity/TelegramLinkBtn";
-import { articles } from "../../../dataMocks";
+
+import { get_articles } from "../../../api/articles";
+
 
 const Home = () => {
+    const [articlesList, setArticlesList] = useState([]);
+    const [loading, setLoading] = useState(true);
     const { t } = useLang();
+
+    useEffect(() => {
+        const fetchArticles = async () => {
+            try {
+                setLoading(true);
+                const response = await get_articles();
+                if (response.ok) {
+                    const data = await response.json();
+                    setArticlesList(data);
+                }
+            } catch (err) {
+                console.error("Failed to load articles", err);
+            } finally {
+                setLoading(false);    
+            }
+        };
+        fetchArticles();
+    }, []);
 
     return (
         <>
@@ -24,12 +48,18 @@ const Home = () => {
                 <div className={styles.popular}>
                     <h3>{t("popular_now")}</h3>
                     <div className={styles.articles}>
-                        {articles.map((data, index) => (
-                            <LinkArticleBtn
-                            data={data}
-                            key={index}
-                            />
-                        ))}
+                        {loading ? (
+                            <div style={{marginTop: "20px"}}>Завантаження...</div>
+                        ) : articlesList.length > 0 ? (
+                            articlesList.slice(0, 5).map((data, index) => (
+                                <LinkArticleBtn
+                                data={data}
+                                key={index}
+                                />
+                            ))
+                        ) : (
+                            <div style={{marginTop: "20px"}}>Нічого не знайдено</div>
+                        )}
                     </div>
                 </div>
                 <div className={styles.links}>

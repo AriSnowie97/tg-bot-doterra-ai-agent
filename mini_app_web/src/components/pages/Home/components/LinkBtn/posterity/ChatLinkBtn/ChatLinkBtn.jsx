@@ -1,6 +1,6 @@
 import styles from "./ChatLinkBtn.module.css";
 import { LinkBtn } from "../../LinkBtn";
-import { ChatSvg } from "../../../../../../../assets/images";
+import { ChatSvg } from "../../../../../../../assets/icons";
 
 
 const ChatLinkBtn = () => {

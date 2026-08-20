@@ -3,6 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import styles from "./ArticleView.module.css";
 import { useLang } from "../../../contexts/LangContext";
 
+import { get_article } from "../../../api/articles";
+
+
 const ArticleView = () => {
     const { slug } = useParams();
     const navigate = useNavigate();
@@ -15,8 +18,8 @@ const ArticleView = () => {
         const fetchArticle = async () => {
             try {
                 setLoading(true);
-                const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-                const response = await fetch(`${API_URL}/api/docs/${slug}`);
+                // const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+                const response = await get_article(slug);
                 if (!response.ok) {
                     throw new Error("Не вдалося завантажити статтю");
                 }

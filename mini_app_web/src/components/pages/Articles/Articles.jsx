@@ -4,6 +4,8 @@ import { useLang } from "../../../contexts/LangContext";
 import styles from "./Articles.module.css";
 import { Article } from "./components/Article";
 
+import { get_articles } from "../../../api/articles";
+
 const Articles = () => {
     const [search, setSearch] = useState("");
     const [articlesList, setArticlesList] = useState([]);
@@ -15,8 +17,8 @@ const Articles = () => {
         const fetchArticles = async () => {
             try {
                 setLoading(true);
-                const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-                const response = await fetch(`${API_URL}/api/articles`);
+                // const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+                const response = await get_articles();
                 if (response.ok) {
                     const data = await response.json();
                     setArticlesList(data);
