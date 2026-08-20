@@ -68,7 +68,7 @@ async def _reply_with_feedback(message: Message, text: str) -> None:
     webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
     
     # Шукаємо всі маркдаун посилання виду [Текст](slug)
-    pattern = r'\[([^\]]+)\]\(([a-zA-Z0-9_-]+)\)'
+    pattern = r'\[([^\]]+)\]\(([^)]+)\)'
     links = re.findall(pattern, text)
     
     # Замінюємо [Текст](slug) просто на Текст
