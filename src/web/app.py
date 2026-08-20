@@ -66,6 +66,67 @@ def _render_md(md_text: str) -> str:
     )
 
 
+def _get_article_metadata(md_path: Path) -> dict:
+    """Витягує метадані з .md файлу."""
+    slug = md_path.stem
+    text = md_path.read_text(encoding="utf-8")
+    lines = text.splitlines()
+    
+    title = slug
+    short = ""
+    category = "Інше"
+    image = ""
+    
+    # Шукаємо image в перших рядках
+    for line in lines[:5]:
+        if line.startswith("![") and "](" in line:
+            parts = line.split("](")[1].split(")")
+            if parts:
+                image = parts[0]
+            break
+
+    # Шукаємо заголовок
+    for line in lines:
+        if line.startswith("# "):
+            title = line[2:].strip()
+            break
+            
+    # Шукаємо категорію
+    for line in lines:
+        if "**Категорія:**" in line:
+            category = line.split("**Категорія:**")[1].strip()
+            if "→" in category:
+                category = category.split("→")[0].strip()
+            elif ">" in category:
+                category = category.split(">")[0].strip()
+            break
+    
+    if category == "Інше":
+        if "_Гід" in slug or slug.startswith("0"):
+            category = "Гайди"
+            
+    # Шукаємо короткий опис
+    for line in lines:
+        line = line.strip()
+        if not line: continue
+        if line.startswith("#"): continue
+        if line.startswith("!["): continue
+        if line.startswith("**Категорія:**") or line.startswith("**Тип:**") or line.startswith("**Артикул") or line.startswith("**Посилання"): continue
+        if line.startswith("---"): continue
+        
+        short = line
+        if len(short) > 120:
+            short = short[:117] + "..."
+        break
+        
+    return {
+        "slug": slug,
+        "title": title,
+        "short": short,
+        "tag": category,
+        "image": image
+    }
+
 def _get_all_docs() -> list[dict]:
     """Повертає список усіх MD-файлів із директорії docs."""
     if not DOCS_DIR.exists():
@@ -120,6 +181,21 @@ async def api_chat(request: ChatRequest):
     except Exception as e:
         print(f"[api_chat] Error: {e}")
         raise HTTPException(status_code=500, detail="Помилка при генерації відповіді")
+
+
+@app.get("/api/articles")
+async def api_get_articles():
+    """Повертає список усіх статей з метаданими для Mini App."""
+    if not DOCS_DIR.exists():
+        return []
+    
+    articles = []
+    for md_path in DOCS_DIR.glob("*.md"):
+        articles.append(_get_article_metadata(md_path))
+        
+    # Сортуємо: спочатку гайди, потім інші за алфавітом
+    articles.sort(key=lambda a: (0 if a["tag"] == "Гайди" else 1, a["title"]))
+    return articles
 
 
 @app.get("/api/docs/{slug}")
