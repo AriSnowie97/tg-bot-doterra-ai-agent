@@ -1,6 +1,6 @@
 import styles from "./TelegramLinkBtn.module.css";
 import { LinkBtn } from "../../LinkBtn";
-import { TelegramSvg } from "../../../../../../../assets/images";
+import { TelegramSvg } from "../../../../../../../assets/icons";
 
 
 const TelegramLinkBtn = () => {
