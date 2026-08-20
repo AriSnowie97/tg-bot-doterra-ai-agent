@@ -1,0 +1,27 @@
+{
+    "home_title": "Hello! 👋",
+    "home_subtitle": "I will help you find doTERRA essential oils, supplements, and kits - just ask.",
+    "popular_now": "POPULAR NOW",
+    "tg_channel": "OUR TELEGRAM CHANNEL",
+    "contact_specialist": "Message specialist directly -->",
+    
+    "chat_empty_title": "Hi! I am doTERRA AI Assistant",
+    "chat_empty_hint": "Ask me about essential oils, supplements or kits",
+    "chat_suggestion_1": "Which oil helps with stress?",
+    "chat_suggestion_2": "What is Home Essentials Kit?",
+    "chat_suggestion_3": "How to get started with doTERRA?",
+    "chat_typing": "typing...",
+    "chat_placeholder": "Type your question...",
+    "chat_error": "Sorry, there was an error connecting to the backend. Ensure the server is running!",
+    
+    "header_title": "doTERRA AI Assistant",
+    
+    "article_back": "← Back",
+    "article_loading": "Loading...",
+    "article_error": "Knowledge base connection error. Ensure the backend is running.",
+
+    "nav_home": "Home",
+    "nav_chat": "Chat",
+    "nav_articles": "Articles",
+    "nav_contacts": "Contacts"
+}

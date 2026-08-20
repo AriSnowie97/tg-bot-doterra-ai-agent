@@ -1,14 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import styles from "./Chat.module.css";
 import { ReadMsgArea } from "./components/ReadMsgArea";
 import { WriteMsgArea } from "./components/WriteMsgArea";
+import { useLang } from "../../contexts/LangContext";
 
 
 const Chat = () => {
-    const [dialogueMsgs, setDialogueMsgs] = useState([])
+    const { t } = useLang();
+    const [dialogueMsgs, setDialogueMsgs] = useState(() => {
+        const saved = localStorage.getItem("chat_history");
+        return saved ? JSON.parse(saved) : [];
+    });
 
     const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        localStorage.setItem("chat_history", JSON.stringify(dialogueMsgs));
+    }, [dialogueMsgs]);
 
     const onQuestionSubmit = async (question) => {
         if (!question.trim() || isLoading) return;
@@ -42,7 +51,7 @@ const Chat = () => {
             console.error(error);
             setDialogueMsgs(prev => [
                 ...prev,
-                { isQuestion: false, text: "Вибачте, виникла помилка при зв'язку з бекендом. Переконайтесь, що app.py запущено!" }
+                { isQuestion: false, text: t("chat_error") }
             ]);
         } finally {
             setIsLoading(false);

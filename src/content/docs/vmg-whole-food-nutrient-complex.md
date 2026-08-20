@@ -1,3 +1,5 @@
+![doTERRA Product](https://www.doterra.com/medias/600x400-vmg-preview-new.jpg?context=bWFzdGVyfHJvb3R8NzkxMDh8aW1hZ2UvanBlZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3haQzlvTVdRdk16QTNNamc1TmpRNE1EQTFOREl2TmpBd2VEUXdNQzEyYldjdGNISmxkbWxsZHkxdVpYY3VhbkJufDc0MDE1MDQ3NmIyODBhODk4ZDgyYzhlYjkwZmMzNWIyYzM4ODliZWYzMWQyZjQ5M2IwZjQ0YzU1YzRiZDU0MGI)
+
 # VMG+ Whole-Food Nutrient Complex
 
 **Тип:** supplement
