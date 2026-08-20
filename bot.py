@@ -16,6 +16,7 @@ from src.publisher import publish_channel_post
 from src.scheduler import setup_scheduler
 from src.storage.feedback import ensure_feedback_table, save_vote, get_vote_counts
 from handlers.states import AskStates
+from src.content.sync_content import run_sync
 
 
 # Loading variables from a dotenv file
@@ -210,6 +211,41 @@ async def command_post_handler(message: Message, bot: Bot) -> None:
     except Exception as e:
         await message.answer(f"❌ Помилка при публікації: {e}")
         print(f"[bot] /post error: {e}")
+
+
+@dp.message(Command("sync_db"))
+async def command_sync_db_handler(message: Message, bot: Bot) -> None:
+    """Ручне оновлення бази знань (синхронізація файлів) — тільки для адміністраторів."""
+    user_id = message.from_user.id
+
+    if ADMIN_IDS and user_id not in ADMIN_IDS:
+        await message.answer("⛔ У тебе немає прав для цієї команди.")
+        return
+
+    await message.answer("⏳ Запускаю синхронізацію бази знань... Це може зайняти 10-15 хвилин через ліміти API. Я повідомлю, коли закінчу.")
+
+    try:
+        # Запускаємо синхронізацію у фоновому потоці, щоб не блокувати бота
+        stats = await asyncio.to_thread(run_sync)
+        
+        if stats["errors"]:
+            error_msg = "\n".join([f"• {err}" for err in stats["errors"][:10]])
+            if len(stats["errors"]) > 10:
+                error_msg += f"\n...та ще {len(stats['errors']) - 10} помилок."
+            await message.answer(
+                f"⚠️ Синхронізацію завершено з помилками:\n{error_msg}\n\n"
+                f"📊 Оброблено карток: {stats['products']}\n"
+                f"📊 Знайдено чанків: {stats['chunks_found']}"
+            )
+        else:
+            await message.answer(
+                f"✅ Базу знань успішно оновлено!\n\n"
+                f"📦 Картки: {stats['products']}\n"
+                f"📄 Чанки: {stats['chunks_found']}"
+            )
+    except Exception as e:
+        await message.answer(f"❌ Критична помилка під час синхронізації: {e}")
+        print(f"[bot] /sync_db error: {e}")
 
 
 def _is_addressed(message: Message) -> bool:

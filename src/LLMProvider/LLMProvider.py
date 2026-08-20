@@ -15,9 +15,8 @@ class LLMProvider(ABC):
         """Генерація embedding для введеного content з Retry-логікою для 429."""
         last_error = None
 
-        # Searching for a working key
-        for api_key in self.LLM_API_KEYS:
-            for attempt in range(1, MAX_RETRIES + 2):
+        for attempt in range(1, MAX_RETRIES + 2):
+            for api_key in self.LLM_API_KEYS:
                 try:
                     response = self._embed_content(api_key, content)
                     return response
@@ -25,18 +24,20 @@ class LLMProvider(ABC):
                     error_str = str(e)
                     last_error = e
 
-                    is_429 = "429" in error_str or "RESOURCE_EXHAUSTED" in error_str
-                    if is_429:
-                        if attempt <= MAX_RETRIES:
-                            delay = self._parse_retry_delay(error_str) or (attempt * 15)
-                            print(f"[agent] Per-minute 429 on embed_content, retry in {delay}s (attempt {attempt})")
-                            time.sleep(delay)
-                            continue
-                        print(f"[agent] Retries exhausted for embedding -> next key")
-                        break
-
-                    print(f"[agent] Unknown error on embed_content: {e}")
-                    break
+                    if "429" in error_str or "RESOURCE_EXHAUSTED" in error_str:
+                        print(f"[agent] 429 on embed_content with key ...{api_key[-6:] if api_key else ''}")
+                        continue
+                    
+                    print(f"[agent] Error on embed_content with key ...{api_key[-6:] if api_key else ''}: {e}")
+                    continue
+            
+            # Якщо всі ключі перебрані і спроба ще є - чекаємо
+            if attempt <= MAX_RETRIES:
+                delay = attempt * 5
+                print(f"[agent] All keys failed. Sleeping {delay}s before attempt {attempt+1}")
+                time.sleep(delay)
+            else:
+                break
 
         raise RuntimeError(f"Для {self.NAME} усі API-ключі недоступні. {last_error}")
 
@@ -53,20 +54,12 @@ class LLMProvider(ABC):
                                content: str,
                                config: types.GenerateContentConfigOrDict | None = None,
                                MAX_RETRIES: int = 2) -> str:
-        """Генерація відповіді на основі prompt.
-
-        Стратегія при помилках:
-            - 429 per-minute: чекає retryDelay із відповіді і повторює.
-            - 429 per-day / limit=0: пропускає до наступної моделі.
-            - 503 UNAVAILABLE: чекає і повторює (тимчасове перевантаження).
-            - 404 NOT_FOUND: пропускає модель одразу.
-            - Інша помилка: пропускає до наступного API-ключа.
-        """
+        """Генерація відповіді на основі prompt."""
         last_error: Exception | None = None
         
-        for api_key in self.LLM_API_KEYS:
-            for model in self.GENERATION_MODELS:
-                for attempt in range(1, MAX_RETRIES + 2):  # спроби: 1, 2, 3
+        for attempt in range(1, MAX_RETRIES + 2):
+            for api_key in self.LLM_API_KEYS:
+                for model in self.GENERATION_MODELS:
                     try:
                         response = await asyncio.to_thread(
                             self._generate_content,
@@ -81,7 +74,7 @@ class LLMProvider(ABC):
                             finish_reason = candidates[0].finish_reason if candidates else "unknown"
                             raise ValueError(f"response.text=None, finish_reason={finish_reason}, model={model}")
                         else:
-                            print(f"[agent] ✅ Success: key=...{api_key[-6:]}, model={model}")
+                            print(f"[agent] ✅ Success: key=...{api_key[-6:] if api_key else ''}, model={model}")
                             return response
 
                     except Exception as e:
@@ -89,47 +82,29 @@ class LLMProvider(ABC):
                         last_error = e
 
                         is_404 = "404" in error_str or "NOT_FOUND" in error_str
-                        is_429 = "429" in error_str or "RESOURCE_EXHAUSTED" in error_str
-                        is_503 = "503" in error_str or "UNAVAILABLE" in error_str
-
-                        # 404 — модель застаріла або не існує, пропускаємо одразу
                         if is_404:
                             print(f"[agent] 404 model not found, skip: {model}")
-                            break
+                            continue
 
-                        # 503 — тимчасове перевантаження, чекаємо і повторюємо
-                        if is_503:
-                            if attempt <= MAX_RETRIES:
-                                delay = attempt * 10
-                                print(f"[agent] 503 on model={model}, retry in {delay}s (attempt {attempt})")
-                                await asyncio.sleep(delay)
-                                continue
-                            print(f"[agent] 503 retries exhausted for model={model} → next model")
-                            break
-
-                        # 429 — розрізняємо per-day і per-minute
+                        is_429 = "429" in error_str or "RESOURCE_EXHAUSTED" in error_str
                         if is_429:
-                            is_per_day = (
-                                "GenerateRequestsPerDay" in error_str
-                                or '"limit": 0' in error_str
-                                or "limit: 0" in error_str
-                            )
-                            if is_per_day:
-                                print(f"[agent] Per-day quota exhausted, model={model} → next model")
-                                break
+                            print(f"[agent] 429 on model={model}, key=...{api_key[-6:] if api_key else ''} → next")
+                            continue
 
-                            # per-minute — чекаємо retryDelay і повторюємо
-                            if attempt <= MAX_RETRIES:
-                                delay = self._parse_retry_delay(error_str) or (attempt * 15)
-                                print(f"[agent] Per-minute 429, model={model}, retry in {delay}s (attempt {attempt})")
-                                await asyncio.sleep(delay)
-                                continue
-                            print(f"[agent] Retries exhausted for model={model} → next model")
-                            break
+                        is_503 = "503" in error_str or "UNAVAILABLE" in error_str
+                        if is_503:
+                            print(f"[agent] 503 on model={model}, key=...{api_key[-6:] if api_key else ''} → next")
+                            continue
 
-                        # Невідома помилка — наступний ключ
                         print(f"[agent] Unknown error on model={model}: {e}")
-                        break
+                        continue
+            
+            if attempt <= MAX_RETRIES:
+                delay = attempt * 5
+                print(f"[agent] All keys/models failed. Sleeping {delay}s before attempt {attempt+1}")
+                await asyncio.sleep(delay)
+            else:
+                break
 
         raise RuntimeError(
             f"Усі Gemini API-ключі та моделі недоступні. "
