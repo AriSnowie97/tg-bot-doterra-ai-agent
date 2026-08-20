@@ -191,9 +191,14 @@ async def api_get_articles():
     
     articles = []
     for md_path in DOCS_DIR.glob("*.md"):
+        # Пропускаємо технічні файли-гайди (01_Гід, 02_Гід тощо), 
+        # оскільки вони призначені для бази знань AI, а не для стрічки статей
+        if md_path.stem[0].isdigit() and "_Гід" in md_path.stem:
+            continue
+            
         articles.append(_get_article_metadata(md_path))
         
-    # Сортуємо: спочатку гайди, потім інші за алфавітом
+    # Сортуємо: спочатку гайди (якщо якісь залишились), потім інші за алфавітом
     articles.sort(key=lambda a: (0 if a["tag"] == "Гайди" else 1, a["title"]))
     return articles
 
