@@ -25,3 +25,35 @@
         box-shadow: 0 1px 4px rgba(0,0,0,0.07);
     }
 }
+
+.sourceBtn {
+    display: inline-block;
+    margin: 2px 0;
+    padding: 3px 10px;
+
+    border-radius: 20px;
+    border: 1px solid var(--color-border);
+
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-surface);
+    text-decoration: none;
+
+    background-color: color-mix(
+        in srgb,
+        var(--color-surface) 12%,
+        transparent
+    );
+
+    transition: background-color 0.15s ease, transform 0.1s ease;
+
+    &:active {
+        transform: scale(0.97);
+        background-color: color-mix(
+            in srgb,
+            var(--color-surface) 22%,
+            transparent
+        );
+    }
+}
