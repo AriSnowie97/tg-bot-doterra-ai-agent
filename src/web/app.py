@@ -16,12 +16,14 @@ doTERRA Bot — Мінімальний веб-сервер для перегля
 import os
 from pathlib import Path
 # Special
+import re
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 import markdown
 
 from pydantic import BaseModel
 from src.agent import generate_response
+from src.content.parser import slugify
 
 # ---------------------------------------------------------------------------
 # Налаштування
@@ -68,11 +70,12 @@ def _render_md(md_text: str) -> str:
 
 def _get_article_metadata(md_path: Path) -> dict:
     """Витягує метадані з .md файлу."""
-    slug = md_path.stem
+    original_stem = md_path.stem
+    slug = slugify(original_stem)
     text = md_path.read_text(encoding="utf-8")
     lines = text.splitlines()
     
-    title = slug
+    title = original_stem
     short = ""
     category = "Інше"
     image = ""
@@ -102,7 +105,7 @@ def _get_article_metadata(md_path: Path) -> dict:
             break
     
     if category == "Інше":
-        if "_Гід" in slug or slug.startswith("0"):
+        if "_Гід" in original_stem or original_stem.startswith("0"):
             category = "Гайди"
             
     # Шукаємо короткий опис
@@ -133,7 +136,7 @@ def _get_all_docs() -> list[dict]:
         return []
     return sorted(
         [
-            {"slug": p.stem, "filename": p.name}
+            {"slug": slugify(p.stem), "filename": p.name}
             for p in DOCS_DIR.glob("*.md")
         ],
         key=lambda d: d["slug"],
@@ -209,11 +212,17 @@ async def api_get_doc(slug: str):
     if not slug.replace("-", "").replace("_", "").isalnum():
         raise HTTPException(status_code=400, detail="Невірний slug")
 
-    md_path = DOCS_DIR / f"{slug}.md"
-    if not md_path.exists():
+    target_path = None
+    if DOCS_DIR.exists():
+        for p in DOCS_DIR.glob("*.md"):
+            if slugify(p.stem) == slug:
+                target_path = p
+                break
+
+    if not target_path:
         raise HTTPException(status_code=404, detail=f"Документ '{slug}' не знайдено")
 
-    md_text = md_path.read_text(encoding="utf-8")
+    md_text = target_path.read_text(encoding="utf-8")
     html_content = _render_md(md_text)
     
     # Витягнемо заголовок з першого рядка якщо це H1, або просто використаємо slug
@@ -251,11 +260,17 @@ async def view_doc(slug: str) -> HTMLResponse:
     if not slug.replace("-", "").replace("_", "").isalnum():
         raise HTTPException(status_code=400, detail="Невірний slug")
 
-    md_path = DOCS_DIR / f"{slug}.md"
-    if not md_path.exists():
+    target_path = None
+    if DOCS_DIR.exists():
+        for p in DOCS_DIR.glob("*.md"):
+            if slugify(p.stem) == slug:
+                target_path = p
+                break
+
+    if not target_path:
         raise HTTPException(status_code=404, detail=f"Документ '{slug}' не знайдено")
 
-    md_text = md_path.read_text(encoding="utf-8")
+    md_text = target_path.read_text(encoding="utf-8")
     html_content = _render_md(md_text)
 
     body = (
