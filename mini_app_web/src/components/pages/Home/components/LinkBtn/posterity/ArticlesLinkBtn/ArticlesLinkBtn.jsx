@@ -1,6 +1,6 @@
 import styles from "./ArticlesLinkBtn.module.css";
 import { LinkBtn } from "../../LinkBtn";
-import { ArticlesSvg } from "../../../../../../../assets/images";
+import { ArticlesSvg } from "../../../../../../../assets/icons";
 
 
 const ArticlesLinkBtn = () => {
