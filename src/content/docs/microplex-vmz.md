@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/microplex-vmz-60229827-600x900-us.png?context=bWFzdGVyfHJvb3R8Mzg5NDQ2fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzRPUzlvTURjdk16QTNORGN6TXpJek56ZzJOVFF2YldsamNtOXdiR1Y0WDNadGVsODJNREl5T1RneU4xODJNREI0T1RBd1gzVnpMbkJ1Wnd8Y2JmNTdkODM0YThhNDliN2Y4YjRiM2JhMGMyMTdjNTVmYjAwMzJmZGY1MjA4ZjgwZjY2N2RkYTUxN2YxZDNjMA)
 
 # Microplex VMz®
 

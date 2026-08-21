@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/on-guard-softgesl-60225767-566x819-us-15off.png?context=bWFzdGVyfHJvb3R8MzAzOTc1fGltYWdlL3BuZ3xhRGhpTDJnNFpDOHpNRGc1TWpJNU16ZzBPVEV4T0M5dmJpMW5kV0Z5WkMxemIyWjBaMlZ6YkMwMk1ESXlOVGMyTnkwMU5qWjRPREU1TFhWekxURTFiMlptTG5CdVp3fGE5YWQyNjg2ZmFjYjBhNjQwMjNjMjBlMjRlOTkyMzNkZDJhNTIyNWZkNTUxM2MwYTRiN2VjM2I4NDUzZDY4ZWI)
 
 # dōTERRA On Guard+™ Softgels
 

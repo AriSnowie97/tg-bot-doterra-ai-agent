@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](Тhttps://www.doterra.com/medias/15ml-citrus-bloom-60208812-600x900-us.png?context=bWFzdGVyfHJvb3R8MzU1NTA0fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3lZaTlvWXpJdk16QTRNVGcwTVRBMU1qZzNPVGd2TVRWdGJDMWphWFJ5ZFhNdFlteHZiMjB0TmpBeU1EZzRNVEl0TmpBd2VEa3dNQzExY3k1d2JtY3wwODhmMTMxNDE5Zjc3MGI3NWJlMzhiMmNkMTFlYjU4NjQwNTY2YjdjN2RiNzI2ZDMyZTk0MWYyMTM1OWY2MDA4)
 
 # Citrus Bloom® Springtime Blend
 

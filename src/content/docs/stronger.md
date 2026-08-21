@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Lifestyle](https://www.doterra.com/medias/10ml-kids-stronger-60206654-600x900-us.png?context=bWFzdGVyfHJvb3R8MTMzMjk4fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3paUzlvT1Rrdk16QTRNVGd5TkRVek56Z3dOemd2TVRCdGJDMXJhV1J6TFhOMGNtOXVaMlZ5TFRZd01qQTJOalUwTFRZd01IZzVNREF0ZFhNdWNHNW58Mjg2YjI4OGYxODRkNDQyYTg4OWIwMjNhMzRmYTk0ZTk3ZTBhM2FhMTIxMjhlYmRhZjQ1NDA3YzFiZGM0MGM2MA)
 
 # Stronger (імунна суміш)
 
@@ -6,7 +6,7 @@
 
 **Тип:** Ефірна олія (з лінійки Kids Collection)
 
-**Посилання:** https://www.doterra.com/US/en/p/тут-посилання-на-продукт
+**Посилання:** https://www.doterra.com/US/en/p/doterra-stronger-blend
 
 ---
 

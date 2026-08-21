@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/2x3-60208146-on-guard-beadlets-OoS.png?context=bWFzdGVyfHJvb3R8MTM5NTI2fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGxOaTlvTlRVdk16QTRORGM1T1RNME56a3hPVGd2TW5nekxUWXdNakE0TVRRMkxXOXVMV2QxWVhKa0xXSmxZV1JzWlhSekxVOXZVeTV3Ym1jfDhlYTgzZWYyYzk3Yzc1MDExYzUyYThlMWM0OTExYjg1MGEyMDVhMDFiMWUwNzI3ZmE5NzkyNmVjMWM3ZGE4YTc)
 
 # dōTERRA On Guard™ Beadlets
 

@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Lifestyle](https://www.doterra.com/medias/Fiber-Bag.png?context=bWFzdGVyfHJvb3R8NzcxODIxfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGtZUzlvWVRrdk16QXpOak14TURrMk9EY3pNall2Um1saVpYSmZRbUZuTG5CdVp3fDhhZDZjNGU4NTMzMmVlNzVhNDhkZDI3MDlmZDhiNzQ5ZTc4NDFjNDVhODIzNjQ1NWU0YWFhNTk3MWE5NzZjZGI)
 
 # doTERRA Fiber
 

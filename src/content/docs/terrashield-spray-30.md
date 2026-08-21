@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/30ml-terrashield-spray-60214387-546x819-us.png?context=bWFzdGVyfHJvb3R8MzY4ODR8aW1hZ2UvcG5nfGMzbHpMVzFoYzNSbGNpOXliMjkwTDJneU5TOW9aVEV2TXpBNE5ETXdOemt6T1RNek1UQXZNekJ0YkMxMFpYSnlZWE5vYVdWc1pDMXpjSEpoZVMwMk1ESXhORE00TnkwMU5EWjRPREU1TFhWekxuQnVad3w1Mzg5OWMxZWNkMjA1YmU0ZjA3NzViNTVjODU0YWMxMWFmMDg4ODUyOTQ0OTM2NDlkZmNjNzUyOTY5MzUzNzg0)
 
 # TerraShield® Spray (30 мл)
 

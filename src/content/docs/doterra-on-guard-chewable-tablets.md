@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/3x3-on-guard-chewable-tablet.png?context=bWFzdGVyfHJvb3R8Nzc0NTV8aW1hZ2UvcG5nfGMzbHpMVzFoYzNSbGNpOXliMjkwTDJnME55OW9aVEF2TXpBM016azFNRGc1TlRNeE1UZ3ZNM2d6TFc5dUxXZDFZWEprTFdOb1pYZGhZbXhsTFhSaFlteGxkQzV3Ym1jfGY4ZGRkZjA4ZGM0NzBkODBkZmNmOTFjN2I0NjkwYzhiMWQ1MTVkNWM1YjczY2QyZjEwZmJmMzExYjdkZGQ2YTU)
 
 # dōTERRA On Guard+™ Chewable Tablets
 

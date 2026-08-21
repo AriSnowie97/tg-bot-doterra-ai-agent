@@ -1,4 +1,4 @@
-![doTERRA Product](https://www.doterra.com/medias/New-Default-Image.png?context=bWFzdGVyfHJvb3R8MjMzMzg0NHxpbWFnZS9wbmd8YzNsekxXMWhjM1JsY2k5eWIyOTBMMmhtTnk5b1ltUXZNamt6TWpZNU9Ua3lOVGN4TVRndlRtVjNMVVJsWm1GMWJIUXRTVzFoWjJVdWNHNW58M2Y5NzU2N2YyZDJhYjcyNDFhYzY5YWY2N2RjY2I5OTQ3MDBlNDQxMjUyOTNmZTNkOTdlMTc1MWQxNjY2Y2QxNA)
+![doTERRA Product](https://www.doterra.com/medias/veggie-caps-60225231-600x900-us.png?context=bWFzdGVyfHJvb3R8NTE1ODEwfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzNOQzlvWVRrdk16QTNNRGd6TXpjeU56a3dNRFl2ZG1WbloybGxYMk5oY0hOZk5qQXlNalV5TXpGZk5qQXdlRGt3TUY5MWN5NXdibWN8NzE2YWE5NTA1MTVmYTU1N2ZkMDEzYjJmZjI4MmVkOTFmODEwMGViODQ0MGQyY2VjMTNjZDgxY2RjNTU3ODRjNw)
 
 # Veggie Caps
 
@@ -6,7 +6,7 @@
 
 **Тип:** БАД (порожні рослинні капсули)
 
-**Посилання:** https://www.doterra.com/US/en/pl/supplements-specialized
+**Посилання:** https://www.doterra.com/US/en/p/veggie-caps
 
 ---
 

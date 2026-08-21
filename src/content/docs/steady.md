@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Lifestyle](https://www.doterra.com/medias/10ml-kids-steady-60206617-600x900-us.png?context=bWFzdGVyfHJvb3R8MTM0NTExfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzJaaTlvWm1Ndk16QTRNVGd5TkRRMU5UZzROemd2TVRCdGJDMXJhV1J6TFhOMFpXRmtlUzAyTURJd05qWXhOeTAyTURCNE9UQXdMWFZ6TG5CdVp3fDA2NzE3YjgzYTk3OTEzMTBkOWMxY2VmYTgwMDU3ZDdlZWVkYjIyMTk2MDYyZDNhNjFlMmEwZjJlN2NiYjdkMjU)
 
 # Steady (заземлююча суміш)
 
@@ -6,7 +6,7 @@
 
 **Тип:** Ефірна олія (з лінійки Kids Collection)
 
-**Посилання:** https://www.doterra.com/US/en/p/
+**Посилання:** https://www.doterra.com/US/en/p/doterra-steady-blend
 
 ---
 

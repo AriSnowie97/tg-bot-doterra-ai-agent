@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-peace-touch-60200151-600x900-us.png?context=bWFzdGVyfHJvb3R8MjIwNjc5fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGlNeTlvT1RNdk16QTRNVGcwTVRnM09EWXpNelF2TVRCdGJDMXdaV0ZqWlMxMGIzVmphQzAyTURJd01ERTFNUzAyTURCNE9UQXdMWFZ6TG5CdVp3fDNkMWFhOTg2ZGU3NDk0MzIzMDNiNTZlOTZiOTBkNzcyN2I2MDQ5YjZkMTdkODgxNDc5OWQzOTY4ZTkwZTU0YTE)
 
 # dōTERRA Peace® Touch
 

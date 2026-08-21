@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-motivate-touch-60200149-566x819-us.png?context=bWFzdGVyfHJvb3R8MTUyNjEyfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzNOQzlvTkdFdk16QTRNVGcwTVRZME5UazRNRFl2TVRCdGJDMXRiM1JwZG1GMFpTMTBiM1ZqYUMwMk1ESXdNREUwT1MwMU5qWjRPREU1TFhWekxuQnVad3xmZDExZDE2MjY3OGRlODdlYzM2ZmRiZTA4ZTA5NTlhMmI4NWY5YjNjMWU4OWRmOWU3ZWMxOGE1MTk3MDVjNWIy)
 
 # dōTERRA Motivate® Touch
 

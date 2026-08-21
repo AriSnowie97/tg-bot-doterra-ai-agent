@@ -1,4 +1,4 @@
-![doTERRA Product](https://www.doterra.com/medias/New-Default-Image.png?context=bWFzdGVyfHJvb3R8MjMzMzg0NHxpbWFnZS9wbmd8YzNsekxXMWhjM1JsY2k5eWIyOTBMMmhtTnk5b1ltUXZNamt6TWpZNU9Ua3lOVGN4TVRndlRtVjNMVVJsWm1GMWJIUXRTVzFoWjJVdWNHNW58M2Y5NzU2N2YyZDJhYjcyNDFhYzY5YWY2N2RjY2I5OTQ3MDBlNDQxMjUyOTNmZTNkOTdlMTc1MWQxNjY2Y2QxNA)
+![doTERRA Product](https://www.doterra.com/medias/2x3-566x819-petal-diffuser-education2.jpg?context=bWFzdGVyfGltYWdlc3wxMDUwMTF8aW1hZ2UvanBlZ3xhVzFoWjJWekwyZ3pNUzlvTWpRdk1UTXhORFUyTlRnMk9EYzFNVGd1YW5CbnwyZDdlZTdkNDVhMjU2OGEyM2Y5YzA2YzljNjkxNTUxMzNhMzY1NTA0ZjBmZjY0MTU5NWRlYmNlYmY3MzUwZTRm)
 
 # Essential Oil Diffusers — Petal Diffuser 2.0
 

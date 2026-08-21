@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/15ml-air-x-60215527-600x900-us.png?context=bWFzdGVyfHJvb3R8MzUyNTk3fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaG1PQzlvTXpndk16QTRNVGcwTURnNE5UYzJNekF2TVRWdGJDMWhhWEl0ZUMwMk1ESXhOVFV5TnkwMk1EQjRPVEF3TFhWekxuQnVad3w1OTRlZjkwZTJiMjczZGFlMGRjOTRhNmIzNzllODliZTAwYThlMzhlNWJhNGU1YzMyYTNlMjY1ZTY2MzFiZjM4)
 
 # Air-X® Air Blend
 

@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/2x3-600x900-60213525-meta-pwr-assist-caps-us-en-web.png?context=bWFzdGVyfHJvb3R8NTIyNjE1fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGlZUzlvTVdNdk16QTNOekU1TURVNE1qSTNOVEF2TW5nelh6WXdNSGc1TURCZk5qQXlNVE0xTWpWZmJXVjBZVjl3ZDNKZllYTnphWE4wWDJOaGNITmZkWE5mWlc1ZmQyVmlMbkJ1Wnd8Yzc4NmYzOWI5YjVkODQ3ODY4YWIxMjg3ZjFhMzM5MGM2YTc1NzVjOGRjOWM0ZWMxZjVhMTk3NzRlNThkNTlmNA)
 
 # MetaPWR® Assist
 
