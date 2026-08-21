@@ -10,14 +10,14 @@ import { post_chat_question } from "../../../api/chat";
 const Chat = () => {
     const { t } = useLang();
     const [dialogueMsgs, setDialogueMsgs] = useState(() => {
-        const saved = localStorage.getItem("chat_history");
+        const saved = sessionStorage.getItem("chat_history");
         return saved ? JSON.parse(saved) : [];
     });
 
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        localStorage.setItem("chat_history", JSON.stringify(dialogueMsgs));
+        sessionStorage.setItem("chat_history", JSON.stringify(dialogueMsgs));
     }, [dialogueMsgs]);
 
     const onQuestionSubmit = async (question) => {
