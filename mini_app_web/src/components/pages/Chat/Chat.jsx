@@ -4,6 +4,7 @@ import styles from "./Chat.module.css";
 import { ReadMsgArea } from "./components/ReadMsgArea";
 import { WriteMsgArea } from "./components/WriteMsgArea";
 import { useLang } from "../../../contexts/LangContext";
+import { post_chat_question } from "../../../api/chat";
 
 
 const Chat = () => {
@@ -32,12 +33,7 @@ const Chat = () => {
         if (typingIndicator) typingIndicator.style.display = 'block';
 
         try {
-            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-            const response = await fetch(`${API_URL}/api/chat`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ query: question })
-            });
+            const response = await post_chat_question(question);
             
             if (!response.ok) throw new Error('API Error');
             
