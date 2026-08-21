@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/On-Guard-15mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8Mjc3NDk4fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzRZUzlvTURBdk16QTRNak0zTmpReE9UYzBNRFl2VDI0Z1IzVmhjbVJmTVRWdFRDMUliM0pwZW05dWRHRnNMVVZ6YzJWdWRHbGhiQ0JQYVd3dE1qQXlOUzFRYUc5MGJ5MVVjbUZ1YzNCaGNtVnVkRjlNYVc1ckxWQnlaWFpwWlhjdE0zZ3lMbkJ1Wnd8YzA3YzRhMDIzODBhMmMxMTY3ZTg3OTZmYjllN2EzMmQyYzg4ODM3MzIyMGNmMjNmZTUyYzBkMmMyYjk4NmJlNA)
 
 # doTERRA On Guard — Protective Blend
 
@@ -12,7 +12,7 @@
 
 ## doTERRA On Guard — Protective Blend
 
-РўРёРї: РЎСѓРјС–С€ (Protective Blend)
+Тип: Суміш (Protective Blend)
 
 ## Короткий опис
 
@@ -42,7 +42,7 @@
 
 ▫️ Втому і виснаження в сезон навантажень
 
-в–«пёЏ РўСЂРёРІРѕРіСѓ Р·Р° Р·РґРѕСЂРѕРІ'СЏ СЂРѕРґРёРЅРё
+▫️ Тривогу за здоров'я родини
 
 Розвиває:
 

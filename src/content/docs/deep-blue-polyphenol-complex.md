@@ -23,7 +23,7 @@
 
 ▫️ Екстракт ладану (Boswellia serrata / Frankincense) — запатентована швидкодіюча формула
 
-в–«пёЏ РљСѓСЂРєСѓРјР° (Curcuma longa)
+▫️ Куркума (Curcuma longa)
 
 ▫️ Зелений чай (Camellia sinensis)
 
@@ -82,3 +82,4 @@
 > ---
 
 #БАД #суглоби #поліфеноли
+

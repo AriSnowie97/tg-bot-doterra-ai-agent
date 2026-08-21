@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/SuperMint-10mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8MTYxOTg5fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGtZaTlvWkdNdk16QTRNak0zTmpZME5UZ3pPVGd2VTNWd1pYSk5hVzUwWHpFd2JVd3RTRzl5YVhwdmJuUmhiQzFGYzNObGJuUnBZV3dnVDJsc0xUSXdNalV0VUdodmRHOHRWSEpoYm5Od1lYSmxiblJmVEdsdWF5MVFjbVYyYVdWM0xUTjRNaTV3Ym1jfDNiY2I0MDFmMzE2OWZmNDYwZGU5YTllMzQwNDY3MDEwZGRhNzRkZTczN2MzN2IzMzU0NzQ3YzdhYjg4ZmE0NDU)
 
 # doTERRA SuperMint
 

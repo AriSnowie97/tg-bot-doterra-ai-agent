@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/Hope-10mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8MTQyNDA3fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGhaaTlvWkRjdk16QTRNakl5TURnM01EQTBORFl2U0c5d1pWOHhNRzFNTFVodmNtbDZiMjUwWVd3dFJYTnpaVzUwYVdGc0lFOXBiQzB5TURJMUxWQm9iM1J2TFZSeVlXNXpjR0Z5Wlc1MFgweHBibXN0VUhKbGRtbGxkeTB6ZURJdWNHNW58MGE4NGFhOTk1YWRmYmFlNmYzMTYxMjVkZTI3ZGViMmRiNzJlOGFlN2I5ZGIxNWIyN2Q4NDZjNDU4NzljZDgyNw)
 
 # doTERRA Hope Touch
 

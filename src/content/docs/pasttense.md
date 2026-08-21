@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/PastTense-15mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8Mjg4Mjk2fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzVOUzlvWVdJdk16QTRNak0zTmpjNE5qYzBNakl2VUdGemRGUmxibk5sWHpFMWJVd3RTRzl5YVhwdmJuUmhiQzFGYzNObGJuUnBZV3dnVDJsc0xUSXdNalV0VUdodmRHOHRWSEpoYm5Od1lYSmxiblJmVEdsdWF5MVFjbVYyYVdWM0xUTjRNaTV3Ym1jfDFjNmQ4MzJlYTBlOTdlOTk4NGM1N2E4ZDY0YTg1N2Y2YTg1ZDgwMDg3NjMyYWMyNTYyMDI4MzBhMjg2ZGQ5NWY)
 
 # PastTense — Tension Blend
 
@@ -11,7 +11,7 @@
 
 ## PastTense — Tension Blend
 
-РўРёРї: РЎСѓРјС–С€ (Tension Blend)
+Тип: Суміш (Tension Blend)
 
 ## Короткий опис
 

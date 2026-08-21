@@ -288,18 +288,18 @@ async def cmd_start(message: Message) -> None:
         return
 
     await message.answer(
-        "👋 *Привіт! Я Content Uploader Bot.*\n\n"
-        "Надішли мені один або декілька `.md` файлів із новими продуктами doTERRA.\n\n"
+        "👋 <b>Привіт! Я Content Uploader Bot.</b>\n\n"
+        "Надішли мені один або декілька <code>.md</code> файлів із новими продуктами doTERRA.\n\n"
         "Я автоматично:\n"
         "✅ Відформатую файл під стандарт проекту\n"
         "✅ Підставлю офіційне фото з doterra.com\n"
         "✅ Розіб'ю на чанки та збережу в БД\n"
-        "✅ Оновлю `all_chunks.json`\n"
-        "✅ Збережу файл у `src/content/docs/`\n\n"
-        "📌 *Команди:*\n"
+        "✅ Оновлю <code>all_chunks.json</code>\n"
+        "✅ Збережу файл у <code>src/content/docs/</code>\n\n"
+        "📌 <b>Команди:</b>\n"
         "/status — Статус бота\n"
         "/list — Список завантажених продуктів",
-        parse_mode="Markdown",
+        parse_mode="HTML",
     )
 
 
@@ -308,7 +308,8 @@ async def cmd_status(message: Message) -> None:
     if not is_admin(message.from_user.id):
         return
 
-    docs_count = len(list(DOCS_DIR.glob("*.md")))
+    # rglob — рахуємо всі MD рекурсивно
+    docs_count = len(list(DOCS_DIR.rglob("*.md")))
     chunks_count = 0
     if ALL_CHUNKS_PATH.exists():
         try:
@@ -317,12 +318,13 @@ async def cmd_status(message: Message) -> None:
         except Exception:
             pass
 
+    db_status = "✅ PostgreSQL" if DATABASE_URL else "⚠️ не налаштовано"
     await message.answer(
-        f"📊 *Статус:*\n"
-        f"📁 MD-файлів: `{docs_count}`\n"
-        f"🧩 Чанків у all_chunks.json: `{chunks_count}`\n"
-        f"🗄 БД: `{'✅ PostgreSQL' if DATABASE_URL else '⚠️ не налаштовано'}`",
-        parse_mode="Markdown",
+        f"📊 <b>Статус:</b>\n"
+        f"📁 MD-файлів: <code>{docs_count}</code>\n"
+        f"🧩 Чанків у all_chunks.json: <code>{chunks_count}</code>\n"
+        f"🗄 БД: {db_status}",
+        parse_mode="HTML",
     )
 
 
@@ -331,18 +333,20 @@ async def cmd_list(message: Message) -> None:
     if not is_admin(message.from_user.id):
         return
 
-    files = sorted(DOCS_DIR.glob("*.md"))
+    # rglob — всі MD рекурсивно
+    files = sorted(DOCS_DIR.rglob("*.md"))
     if not files:
         await message.answer("📂 Файлів немає.")
         return
 
-    lines = [f"• `{f.stem}`" for f in files]
-    text = "📦 *Продукти в базі:*\n\n" + "\n".join(lines)
+    lines = [f"• <code>{f.stem}</code>" for f in files]
+    text = f"📦 <b>Продукти в базі ({len(files)}):</b>\n\n" + "\n".join(lines)
 
+    # Telegram limit: 4096 chars per message
     if len(text) > 4000:
         text = text[:4000] + "\n…"
 
-    await message.answer(text, parse_mode="Markdown")
+    await message.answer(text, parse_mode="HTML")
 
 
 @dp.message(F.document)
@@ -357,8 +361,8 @@ async def handle_document(message: Message, bot: Bot) -> None:
         return
 
     await message.answer(
-        f"📥 Отримано: `{doc.file_name}`\nОбробка…",
-        parse_mode="Markdown",
+        f"📥 Отримано: <code>{doc.file_name}</code>\nОбробка…",
+        parse_mode="HTML",
     )
 
     # 1. Скачуємо файл
@@ -394,7 +398,7 @@ async def handle_document(message: Message, bot: Bot) -> None:
     try:
         chunks = parse_to_chunks(out_md)
     except Exception as e:
-        await message.answer(f"❌ Помилка парсингу: `{e}`", parse_mode="Markdown")
+        await message.answer(f"❌ Помилка парсингу: <code>{e}</code>", parse_mode="HTML")
         return
 
     # 6. Зберігаємо у БД
@@ -404,13 +408,14 @@ async def handle_document(message: Message, bot: Bot) -> None:
     update_all_chunks_json(chunks)
 
     # 8. Звіт
+    db_saved = "✅" if DATABASE_URL else "⚠️ пропущено"
     await message.answer(
-        f"✅ *Готово!*\n\n"
-        f"📄 Файл: `{out_md.name}`\n"
-        f"🧩 Чанків створено: `{len(chunks)}`\n"
-        f"🗄 Збережено в БД: `{'✅' if DATABASE_URL else '⚠️ пропущено'}`\n"
-        f"📦 all\\_chunks.json оновлено ✅",
-        parse_mode="Markdown",
+        f"✅ <b>Готово!</b>\n\n"
+        f"📄 Файл: <code>{out_md.name}</code>\n"
+        f"🧩 Чанків створено: <code>{len(chunks)}</code>\n"
+        f"🗄 Збережено в БД: {db_saved}\n"
+        f"📦 all_chunks.json оновлено ✅",
+        parse_mode="HTML",
     )
 
 

@@ -97,7 +97,8 @@ def _upsert_chunk(chunk: dict) -> None:
     conn = _conn_create()
     register_vector(conn)
 
-    embedding = Vector(create_embedding(chunk["content"]))
+    text_to_embed = f"{chunk['section_title']}\n{chunk['content']}"
+    embedding = Vector(create_embedding(text_to_embed))
 
     with conn.cursor() as cur:
         if not іs_there_similar_embedding(cur, chunk, embedding):
@@ -158,7 +159,8 @@ def bulk_upsert_chunks(chunks: list[dict]) -> None:
                 continue
                 
             try:
-                emb = create_embedding(chunk["content"])
+                text_to_embed = f"{chunk['section_title']}\n{chunk['content']}"
+                emb = create_embedding(text_to_embed)
                 if not emb:
                     continue
                 embedding = Vector(emb)

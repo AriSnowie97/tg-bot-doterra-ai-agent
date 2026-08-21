@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/New-Default-Image.png?context=bWFzdGVyfHJvb3R8MjMzMzg0NHxpbWFnZS9wbmd8YzNsekxXMWhjM1JsY2k5eWIyOTBMMmhtTnk5b1ltUXZNamt6TWpZNU9Ua3lOVGN4TVRndlRtVjNMVVJsWm1GMWJIUXRTVzFoWjJVdWNHNW58M2Y5NzU2N2YyZDJhYjcyNDFhYzY5YWY2N2RjY2I5OTQ3MDBlNDQxMjUyOTNmZTNkOTdlMTc1MWQxNjY2Y2QxNA)
 
 # doTERRA Motivate — Encouraging Blend
 
@@ -12,7 +12,7 @@
 
 ## doTERRA Motivate — Encouraging Blend
 
-РўРёРї: РЎСѓРјС–С€ (Encouraging Blend, Emotional Aromatherapy)
+Тип: Суміш (Encouraging Blend, Emotional Aromatherapy)
 
 ## Короткий опис
 

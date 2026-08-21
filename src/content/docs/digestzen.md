@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/DigestZen-15mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8MjQ5NjkxfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzVPQzlvTVRjdk16QTRNakl5TURVMk9EVTNPVEF2UkdsblpYTjBXbVZ1WHpFMWJVd3RTRzl5YVhwdmJuUmhiQzFGYzNObGJuUnBZV3dnVDJsc0xUSXdNalV0VUdodmRHOHRWSEpoYm5Od1lYSmxiblJmVEdsdWF5MVFjbVYyYVdWM0xUTjRNaTV3Ym1jfGVkOWY2ODFmZmVkOWQ2NGJjZjllNzQ2NmNhYWFhZjY5ZDRmMWIwZDk5OTI5NjQ1MmJhYzNlNzljMDQ0ZjRlZTU)
 
 # DigestZen — Digestive Blend
 
@@ -12,7 +12,7 @@
 
 ## DigestZen — Digestive Blend
 
-РўРёРї: РЎСѓРјС–С€ (Digestive Blend)
+Тип: Суміш (Digestive Blend)
 
 ## Короткий опис
 

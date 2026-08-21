@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/Shinrin-Yoku-15mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8Mjc5MTE4fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGlaQzlvTkRVdk16QTRNak0zTmpnM01Ua3pPVEF2VTJocGJuSnBiaTFaYjJ0MVh6RTFiVXd0U0c5eWFYcHZiblJoYkMxRmMzTmxiblJwWVd3Z1QybHNMVEl3TWpVdFVHaHZkRzh0VkhKaGJuTndZWEpsYm5SZlRHbHVheTFRY21WMmFXVjNMVE40TWk1d2JtY3xmNDRjZWFhZTdlODk1ZjFjOTYwNzM3ZDE1ZjUyZjE3ZTFlYzVlN2M2YTAwZWU3NmM3MTZiNGMyMTI3MGZiOTYy)
 
 # Shinrin-Yoku — Forest Bathing Blend
 
@@ -11,7 +11,7 @@
 
 ## Shinrin-Yoku — Forest Bathing Blend
 
-РўРёРї: РЎСѓРјС–С€ (Forest Bathing Blend)
+Тип: Суміш (Forest Bathing Blend)
 
 ## Короткий опис
 
@@ -47,7 +47,7 @@
 
 ▫️ Спокій і центрованість
 
-в–«пёЏ Р—РІ'СЏР·РѕРє Р· РїСЂРёСЂРѕРґРѕСЋ
+▫️ Зв'язок з природою
 
 ## Способи застосування
 

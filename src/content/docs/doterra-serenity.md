@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/Serenity-15mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8Mjc5MjAzfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3lOQzlvT0RBdk16QTRNak0zTmpVNE1ETXdNemd2VTJWeVpXNXBkSGxmTVRWdFRDMUliM0pwZW05dWRHRnNMVVZ6YzJWdWRHbGhiQ0JQYVd3dE1qQXlOUzFRYUc5MGJ5MVVjbUZ1YzNCaGNtVnVkRjlNYVc1ckxWQnlaWFpwWlhjdE0zZ3lMbkJ1Wnd8N2NlOTRjM2M5ZjJhY2ZiNDFlZjE2MmRkMmJmYjEyYmM0N2E3MTBjYTU4ZjVkNzA3MTA0ZGM1MTg3YzQ1ODFiYw)
 
 # doTERRA Serenity — Restful Blend
 
@@ -7,13 +7,13 @@
 **Посилання:** - doTERRA Serenity 15 РјР» (https://www.doterra.com/US/en/p/doterra-serenity-oil)
 - Також: Serenity Softgels, Serenity Stick + Valerian, Serenity Combo Pack, Serenity Bath Bar
 
-#СЃРѕРЅ
+#сон
 
 ---
 
 ## doTERRA Serenity — Restful Blend
 
-РўРёРї: РЎСѓРјС–С€ (Restful Blend)
+Тип: Суміш (Restful Blend)
 
 ## Короткий опис
 

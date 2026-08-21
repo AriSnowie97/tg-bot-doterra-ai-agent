@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/Whisper-10mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8MTY0NTU2fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzNZeTlvTnpJdk16QTRNak0zTnpFd01UTXhOVEF2VjJocGMzQmxjbDh4TUcxTUxVaHZjbWw2YjI1MFlXd3RSWE56Wlc1MGFXRnNJRTlwYkMweU1ESTFMVkJvYjNSdkxWUnlZVzV6Y0dGeVpXNTBYMHhwYm1zdFVISmxkbWxsZHkwemVESXVjRzVufDQwZDI0OTlmNDkzZmQ1OTE0YTM2MjAzNzQ0Yjk5ZTI1MTg2OTc5NWYyMmY5OTJjM2Q2Y2U5ODM5NTU3OWM3OTU)
 
 # doTERRA Whisper Touch — Personal Fragrance Blend
 

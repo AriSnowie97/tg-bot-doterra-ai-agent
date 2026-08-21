@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/TerraShield-15mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8Mjc2NjU2fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzVOeTlvWkRFdk16QTRNak0zTnpBek5UYzNPVEF2VkdWeWNtRlRhR2xsYkdSZk1UVnRUQzFJYjNKcGVtOXVkR0ZzTFVWemMyVnVkR2xoYkNCUGFXd3RNakF5TlMxUWFHOTBieTFVY21GdWMzQmhjbVZ1ZEY5TWFXNXJMVkJ5WlhacFpYY3RNM2d5TG5CdVp3fDg2OTcwNGZhMjkzZTc1M2E4YWRkMWYyMjk0NjMwZGFjYjk5YTJkZDY1MGIxODM3NTllOWQwZDAxNTQzYThhNDk)
 
 # TerraShield — Repellent Blend
 
@@ -11,7 +11,7 @@
 
 ## TerraShield — Repellent Blend
 
-РўРёРї: РЎСѓРјС–С€ (Repellent Blend)
+Тип: Суміш (Repellent Blend)
 
 ## Короткий опис
 
