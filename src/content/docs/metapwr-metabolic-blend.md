@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/MetaPWR-15mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8MjgwMjA1fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3lNeTlvWWprdk16QTRNak0zTmpjME56UXlNRFl2VFdWMFlWQlhVbDh4TlcxTUxVaHZjbWw2YjI1MFlXd3RSWE56Wlc1MGFXRnNJRTlwYkMweU1ESTFMVkJvYjNSdkxWUnlZVzV6Y0dGeVpXNTBYMHhwYm1zdFVISmxkbWxsZHkwemVESXVjRzVufGMwZTcyMDZkYzk4YzlmNDEyNjhiMTYwM2I1MWMzYjIzYTU1Njg4OGY4ZGNmYTZhODY5ODk1MmY0YzhkMzJiNTE)
 
 # MetaPWR Metabolic Blend
 

@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/625x325-31640001-fractionated-coconut-us-english-web.jpg?context=bWFzdGVyfHJvb3R8MzcxODR8aW1hZ2UvanBlZ3xhREZoTDJoa09DOHhOelF6TnpZek1UWTBNelkzT0M1cWNHY3xiZjk4ZjM4NGYyNDFmNmNkNTViNGNhMDRkNmFlOTI2MDJjZGZmZmI4MGQ0NTI2M2YyODhkYmE1YTk3MDcxMjVi)
 
 # Body Care — Fractionated Coconut Oil
 

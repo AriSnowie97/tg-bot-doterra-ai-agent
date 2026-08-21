@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/PB-Assist-Sticks-Product-Page-Images-preview-link-image.jpg?context=bWFzdGVyfHJvb3R8NDMyMTM1fGltYWdlL2pwZWd8YzNsekxXMWhjM1JsY2k5eWIyOTBMMmd3WXk5b1pXRXZNamszT1RFNE9UUTFOamc1T1RBdlVFSWdRWE56YVhOMEt5QlRkR2xqYTNNZ1VISnZaSFZqZENCUVlXZGxJRWx0WVdkbGMxOXdjbVYyYVdWM0lHeHBibXNnYVcxaFoyVXVhbkJufGIwODQyMTE5NjVjNWI1NWRkOTQ4ZDdhNDM5YTUwODllZWI2NmM4OWZhN2RlYzg5YjMwOTQ4YTI0NTM2MTBmYWQ)
 
 # PB Assist+
 

@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/625x325-60209482-meta-pwr-softgels-us-en-web.jpg?context=bWFzdGVyfHJvb3R8Mjk3NjJ8aW1hZ2UvanBlZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGlOaTlvWWpndk1qZzJPREkzTkRZd016WXlOVFF2TmpJMWVETXlOVjgyTURJd09UUTRNbDl0WlhSaFgzQjNjbDl6YjJaMFoyVnNjMTkxYzE5bGJsOTNaV0l1YW5CbnwwODJmMjc3ZTY4ZTE2ZjNjYzMzODkxMWY4YzQ3MmI0YWY0OGZlMjgyODQ3MmYyNTgwMDVkYmM3ZTU3MTVhYWE5)
 
 # MetaPWR Softgel
 

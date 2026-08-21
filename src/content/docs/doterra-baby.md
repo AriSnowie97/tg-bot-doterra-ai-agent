@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/625x325-60201361-baby-wash-us-english-web.jpg?context=bWFzdGVyfGltYWdlc3w0MDY0OHxpbWFnZS9qcGVnfGFXMWhaMlZ6TDJoaU5pOW9NekF2TVRRMU5qTTJNakUzT1RjNU1UZ3VhbkJufDA2MDhhMTM1MWZiZGIwZDNlNzJkZTFlMmY2M2Q4ZDc3ZDIzYjdiZTVlMzc1YjdmMWQwZTQzODFjN2FiMTljZjc)
 
 # doTERRA Baby — Baby Hair & Body Wash
 

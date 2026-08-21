@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/900x600-ddr-prime-preview-image.jfif?context=bWFzdGVyfHJvb3R8MTA4MTQyfGltYWdlL2pwZWd8YzNsekxXMWhjM1JsY2k5eWIyOTBMMmd6TlM5b1pqQXZNekEyTkRjNU5UZzJOamN5T1RRdk9UQXdlRFl3TUMxa1pISXRjSEpwYldVdGNISmxkbWxsZHkxcGJXRm5aUzVxWm1sbXxhYzJmOTdmYzMwMTQ0M2M3Y2IwYjdkYTg0ZGZmZjY0NDdjNTQ5YzYwN2EyOTJjOWRjYWQxOWQ5MGQ2OGRhYjNj)
 
 # DDR Prime Softgels
 

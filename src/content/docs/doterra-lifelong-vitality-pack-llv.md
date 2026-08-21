@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/600x400-llv-eo-mega-preview.jpg?context=bWFzdGVyfHJvb3R8MTUwNzE0fGltYWdlL2pwZWd8YzNsekxXMWhjM1JsY2k5eWIyOTBMMmczT1M5b01qY3ZNekEyTnpVd01URTFNREl4TVRBdk5qQXdlRFF3TUMxc2JIWXRaVzh0YldWbllTMXdjbVYyYVdWM0xtcHdad3w3MjI1NGRiNzYxMzdlOTJlZjEyZDg0MDc4YjVmYjY2OWRkZmZhOWI2Y2UwOWRjYTBiNjFhNWRlMjE1YzczZTY0)
 
 # doTERRA Lifelong Vitality Pack (LLV)
 

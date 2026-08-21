@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/600x400-frankincense-complex-preview.jpg?context=bWFzdGVyfHJvb3R8NTIwNjR8aW1hZ2UvanBlZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzJPQzlvWlRndk16QTJNek14TXpJM05USTVNall2TmpBd2VEUXdNQzFtY21GdWEybHVZMlZ1YzJVdFkyOXRjR3hsZUMxd2NtVjJhV1YzTG1wd1p3fGRmMTgwZGZhOTU2MWE0YzMzZDIzYzVkN2U3YzA4Nzg4MzQ2N2FkNWMwOTAwYjk4ZDc3OThiZTM2ZjliZWRjYzY)
 
 # Frankincense Boswellic Acid Complex
 

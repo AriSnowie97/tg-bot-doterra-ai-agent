@@ -1,4 +1,4 @@
-![doTERRA Product](https://www.doterra.com/medias/New-Default-Image.png?context=bWFzdGVyfHJvb3R8MjMzMzg0NHxpbWFnZS9wbmd8YzNsekxXMWhjM1JsY2k5eWIyOTBMMmhtTnk5b1ltUXZNamt6TWpZNU9Ua3lOVGN4TVRndlRtVjNMVVJsWm1GMWJIUXRTVzFoWjJVdWNHNW58M2Y5NzU2N2YyZDJhYjcyNDFhYzY5YWY2N2RjY2I5OTQ3MDBlNDQxMjUyOTNmZTNkOTdlMTc1MWQxNjY2Y2QxNA)
+![doTERRA Product](https://www.doterra.com/medias/625x325-60200498-spa-lotion-3pc-us-english-web.jpg?context=bWFzdGVyfGltYWdlc3w1NzUxM3xpbWFnZS9qcGVnfGFXMWhaMlZ6TDJoa01pOW9ObVl2TVRRMU5qTTJNak15TXprM01UQXVhbkJufDhiZmM3MzQxOGRjZDcxNDlmOWJlZmE2MzY1NzNkZThjNWIwOGJlMzViOWU0YTI4Y2U5ZjZmMWJhZmYzZTkwYzU)
 
 # dōTERRA Spa Hand & Body Lotion
 

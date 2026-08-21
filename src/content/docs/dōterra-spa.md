@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/625x325-60200498-spa-lotion-3pc-us-english-web.jpg?context=bWFzdGVyfGltYWdlc3w1NzUxM3xpbWFnZS9qcGVnfGFXMWhaMlZ6TDJoa01pOW9ObVl2TVRRMU5qTTJNak15TXprM01UQXVhbkJufDhiZmM3MzQxOGRjZDcxNDlmOWJlZmE2MzY1NzNkZThjNWIwOGJlMzViOWU0YTI4Y2U5ZjZmMWJhZmYzZTkwYzU)
 
 # dōTERRA Spa — Hand & Body Lotion
 

@@ -1,4 +1,4 @@
-![doTERRA Product](https://www.doterra.com/medias/New-Default-Image.png?context=bWFzdGVyfHJvb3R8MjMzMzg0NHxpbWFnZS9wbmd8YzNsekxXMWhjM1JsY2k5eWIyOTBMMmhtTnk5b1ltUXZNamt6TWpZNU9Ua3lOVGN4TVRndlRtVjNMVVJsWm1GMWJIUXRTVzFoWjJVdWNHNW58M2Y5NzU2N2YyZDJhYjcyNDFhYzY5YWY2N2RjY2I5OTQ3MDBlNDQxMjUyOTNmZTNkOTdlMTc1MWQxNjY2Y2QxNA)
+![doTERRA Product](https://www.doterra.com/medias/625x325-31640001-fractionated-coconut-us-english-web.jpg?context=bWFzdGVyfHJvb3R8MzcxODR8aW1hZ2UvanBlZ3xhREZoTDJoa09DOHhOelF6TnpZek1UWTBNelkzT0M1cWNHY3xiZjk4ZjM4NGYyNDFmNmNkNTViNGNhMDRkNmFlOTI2MDJjZGZmZmI4MGQ0NTI2M2YyODhkYmE1YTk3MDcxMjVi)
 
 # Fractionated Coconut Oil
 

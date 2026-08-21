@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/Adaptiv-Capsules-NEW-bottle-imagery-07.jpg?context=bWFzdGVyfHJvb3R8NTQzMzg4fGltYWdlL2pwZWd8YzNsekxXMWhjM1JsY2k5eWIyOTBMMmc0TVM5b05UUXZNamsxTWpNM01EZzJNRGcxTkRJdlFXUmhjSFJwZGlCRFlYQnpkV3hsY3lBdElFNUZWeUJpYjNSMGJHVWdhVzFoWjJWeWVTMHdOeTVxY0djfDFhYWQ2OTY2MDcwODE5OWQyZTQ2ZjEyNDk2ZTM1MWViMTJlN2Q3NjJmOGZhOGRhYzJhNjQxNTllNDZjYmY2NWY)
 
 # Adaptiv Calming Blend Capsules
 

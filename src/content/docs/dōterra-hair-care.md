@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/625x325-49050001-hair-root-to-tip-serum-us-english-web.jpg?context=bWFzdGVyfGltYWdlc3w0Mzc3MHxpbWFnZS9qcGVnfGFXMWhaMlZ6TDJoak1TOW9PRGt2TVRRMU5qTTJNalkwTVRneU1EWXVhbkJufGIwN2VkMWQ3YmY5ZDA1OTJkY2YwNGVlNjZmMThjZGJiMjNmYmM3Mzk3MzZlZTk2ZjQxZTI3MTNiMTczMWZlZjM)
 
 # dōTERRA Hair Care — Salon Essentials Root to Tip Serum
 

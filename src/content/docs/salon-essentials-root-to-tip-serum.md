@@ -1,4 +1,4 @@
-![doTERRA Product](https://www.doterra.com/medias/New-Default-Image.png?context=bWFzdGVyfHJvb3R8MjMzMzg0NHxpbWFnZS9wbmd8YzNsekxXMWhjM1JsY2k5eWIyOTBMMmhtTnk5b1ltUXZNamt6TWpZNU9Ua3lOVGN4TVRndlRtVjNMVVJsWm1GMWJIUXRTVzFoWjJVdWNHNW58M2Y5NzU2N2YyZDJhYjcyNDFhYzY5YWY2N2RjY2I5OTQ3MDBlNDQxMjUyOTNmZTNkOTdlMTc1MWQxNjY2Y2QxNA)
+![doTERRA Product](https://www.doterra.com/medias/625x325-49050001-hair-root-to-tip-serum-us-english-web.jpg?context=bWFzdGVyfGltYWdlc3w0Mzc3MHxpbWFnZS9qcGVnfGFXMWhaMlZ6TDJoak1TOW9PRGt2TVRRMU5qTTJNalkwTVRneU1EWXVhbkJufGIwN2VkMWQ3YmY5ZDA1OTJkY2YwNGVlNjZmMThjZGJiMjNmYmM3Mzk3MzZlZTk2ZjQxZTI3MTNiMTczMWZlZjM)
 
 # Salon Essentials Root to Tip Serum
 

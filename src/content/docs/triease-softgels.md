@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/9841440456734.jpg?context=bWFzdGVyfHJvb3R8MTQzNzA2fGltYWdlL2pwZWd8YURreEwyZ3paUzg0TnprNU5qWTVOVFV4TVRNMExtcHdad3w3MzkzYjA4NzdjYzI0NjMzYTM2ZmVmNDY4NTUzODQ0ZjcyZjQ1NTg2NmZjZmM2MjUwYzg4OGZlNjU5N2Q3OTAw)
 
 # TriEase Softgels
 

@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/Deep-Blue-3x2-Preview-Image-2-.png?context=bWFzdGVyfHJvb3R8MjA1NDExfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGpOQzlvWXpZdk16QTNORFV4TXpRM09USTNNelF2UkdWbGNDQkNiSFZsSURONE1pQlFjbVYyYVdWM0lFbHRZV2RsSUNneUtTNXdibWN8ZGE2NTkyOTY3MjIyN2Y5ZWYwNGQ4YWFlMDg5Zjk3ODQ3NTE5YzY4OGFmZTA0NjczOWE3YTM0MDJkNGUzNzgwYw)
 
 # Deep Blue Polyphenol Complex
 
