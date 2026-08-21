@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-passion-touch-60200150-600x900-us.png?context=bWFzdGVyfHJvb3R8MjIwNzgwfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzJOQzlvT0RVdk16QTRNVGcwTVRnek1qYzFPREl2TVRCdGJDMXdZWE56YVc5dUxYUnZkV05vTFRZd01qQXdNVFV3TFRZd01IZzVNREF0ZFhNdWNHNW58ODlmYjk2NTBkNTJkMWQxYzQ0YWJkMmYxMGViYjNlMjBhYzZhYmQ5YmNiOTliYTcwM2JjMWQwNzRlZjcyYjJmYw)
 
 # Passion Touch
 

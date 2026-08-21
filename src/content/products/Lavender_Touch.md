@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-lavender-touch-60200225-600x900-us.png?context=bWFzdGVyfHJvb3R8MjIzOTcwfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3hNaTlvTTJZdk16QTRNVGcyTlRjNU9USTNNelF2TVRCdGJDMXNZWFpsYm1SbGNpMTBiM1ZqYUMwMk1ESXdNREl5TlMwMk1EQjRPVEF3TFhWekxuQnVad3wwYzAwMzczZDMwYmU5Y2QxY2YwZTJhNzJmNGZlMTc1NjAxM2I2YWM0MDQzZTRhZTFhNWM3YmYyZDhkZGM3YjUz)
 
 # Lavender Touch
 

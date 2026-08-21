@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-rose-touch-60201813-600x900-us.png?context=bWFzdGVyfHJvb3R8MjIwMDc0fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzJPQzlvTURZdk16QTRNVGczTmpNeU5ETTFOVEF2TVRCdGJDMXliM05sTFhSdmRXTm9MVFl3TWpBeE9ERXpMVFl3TUhnNU1EQXRkWE11Y0c1bnxiZjk1NjMxYjM4NGMwODQzMWE1Y2VhY2I3ZDA4ZWU3ZWFjN2E4OWExMzJmOWIzZjJjNjcxZDNlMzhjZGFkYTQ2)
 
 # Rose Touch
 

@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-vetiver-touch-60221438-600x900-us.png?context=bWFzdGVyfHJvb3R8MjIxOTc0fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzROQzlvWWpRdk16QTRNVGczTmpZNE5EZ3dNekF2TVRCdGJDMTJaWFJwZG1WeUxYUnZkV05vTFRZd01qSXhORE00TFRZd01IZzVNREF0ZFhNdWNHNW58ZGVlNDcyY2QxM2ZjNzhjNjY2NDEzOGI1NTMwMTRhNDFjMzM0MTYwYjVhYjcyZWZjM2VlNGQ2MjUzOWRkYzNhNA)
 
 # Vetiver Touch
 
