@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/600x400-revitazen-blend-preview.jpg?context=bWFzdGVyfHJvb3R8NTE1ODR8aW1hZ2UvanBlZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3hNaTlvT0dRdk16QTNOVFF6TmpFd09ERTRPRFl2TmpBd2VEUXdNQzF5WlhacGRHRjZaVzR0WW14bGJtUXRjSEpsZG1sbGR5NXFjR2N8OTY3MDlkN2IzMTA2Mjc3ZmIyNDNhYmQ0ZGI4OWM3ZDA1NTIyMWY1NGUyMTRlZTY1MDBhMzNhMzYzZDJjYzRiNQ)
 
 # RevitaZen — Detoxification Blend
 
@@ -11,7 +11,7 @@
 
 ## RevitaZen — Detoxification Blend
 
-РўРёРї: РЎСѓРјС–С€ (Detoxification Blend)
+Тип: Суміш (Detoxification Blend)
 
 ## Короткий опис
 

@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/AromaTouch-15mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8MjQ5OTkyfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzRaaTlvT1RJdk16QTRNakl5TURReE56ZzBOakl2UVhKdmJXRlViM1ZqYUY4eE5XMU1MVWh2Y21sNmIyNTBZV3d0UlhOelpXNTBhV0ZzSUU5cGJDMHlNREkxTFZCb2IzUnZMVlJ5WVc1emNHRnlaVzUwWDB4cGJtc3RVSEpsZG1sbGR5MHplREl1Y0c1bnwxMjkzMzg0ODU5NjU1MmUyNmIyZDJmNGY4M2ZhOWZjODZkN2E1OGJhYmE3Yjg3YTgzOTY0MTYzNThmN2Q5OWJk)
 
 # AromaTouch — Massage Blend
 
@@ -11,7 +11,7 @@
 
 ## AromaTouch — Massage Blend
 
-РўРёРї: РЎСѓРјС–С€ (Massage Blend)
+Тип: Суміш (Massage Blend)
 
 ## Короткий опис
 

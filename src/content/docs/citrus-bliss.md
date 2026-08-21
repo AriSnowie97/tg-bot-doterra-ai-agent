@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/Citrus-Bliss-15mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8MjQ3ODI3fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGlaUzlvT0dJdk16QTRNakl5TURRek56VXdOekF2UTJsMGNuVnpJRUpzYVhOelh6RTFiVXd0U0c5eWFYcHZiblJoYkMxRmMzTmxiblJwWVd3Z1QybHNMVEl3TWpVdFVHaHZkRzh0VkhKaGJuTndZWEpsYm5SZlRHbHVheTFRY21WMmFXVjNMVE40TWk1d2JtY3w5ZjE2NjA4MjE3ZTQ1YzdjZjZjNGQwNWIyNGYyOGMxNjAxY2IyZjdkYWViZDc3ZDMzZmUxZTA2OGU3NTljNzM3)
 
 # Citrus Bliss — Invigorating Blend
 
@@ -11,7 +11,7 @@
 
 ## Citrus Bliss — Invigorating Blend
 
-РўРёРї: РЎСѓРјС–С€ (Invigorating Blend)
+Тип: Суміш (Invigorating Blend)
 
 ## Короткий опис
 

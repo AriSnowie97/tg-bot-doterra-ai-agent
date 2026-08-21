@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/Adaptiv-15mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8MjQ3NjUxfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGtaaTlvWVdRdk16QTRNakl5TURJM016WTJOekF2UVdSaGNIUnBkbDh4TlcxTUxVaHZjbWw2YjI1MFlXd3RSWE56Wlc1MGFXRnNJRTlwYkMweU1ESTFMVkJvYjNSdkxWUnlZVzV6Y0dGeVpXNTBYMHhwYm1zdFVISmxkbWxsZHkwemVESXVjRzVufGUxNjdmNzRkMjYzNGU2Mzc5NWExYWUxNDRmMDU0MmY1MDUxMDQyYjc2YjZlMGYyOTFmM2I5Y2Q3YjdjMTFkNzc)
 
 # Adaptiv — Calming Blend
 
@@ -12,7 +12,7 @@
 
 ## Adaptiv — Calming Blend
 
-РўРёРї: РЎСѓРјС–С€ (Calming Blend)
+Тип: Суміш (Calming Blend)
 
 ## Короткий опис
 

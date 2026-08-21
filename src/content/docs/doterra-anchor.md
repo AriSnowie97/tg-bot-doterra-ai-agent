@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/Anchor-5mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8MjA1MTU1fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGpPQzlvWlRjdk16QTRNakl5TURNM09EVXlORFl2UVc1amFHOXlYelZ0VEMxSWIzSnBlbTl1ZEdGc0xVVnpjMlZ1ZEdsaGJDQlBhV3d0TWpBeU5TMVFhRzkwYnkxVWNtRnVjM0JoY21WdWRGOU1hVzVyTFZCeVpYWnBaWGN0TTNneUxuQnVad3w4N2YyZTZiMjNjMGFmYmM4MTI4OWU0MDI1NmJlMWJlNTNjZmEyYTU3OGJmYmE0MDFiYzM5M2Y1NDE5NWZjNzRi)
 
 # doTERRA Anchor — Steadying Blend
 
@@ -7,7 +7,7 @@
 **Посилання:** - Anchor флакон-ролик 10 мл (https://www.doterra.com/US/en/p/doterra-yoga-anchor)
 - Частина doTERRA Yoga Collection
 
-#Р№РѕРіР°
+#йога
 
 ---
 

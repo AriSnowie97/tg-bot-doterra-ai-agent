@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/2x3-kids-kit.png?context=bWFzdGVyfHJvb3R8NTA1NDV8aW1hZ2UvcG5nfGFERm1MMmc0TXk4eU56UTROREUzTlRJd05ETTRNaTV3Ym1jfGI1MzI3MTg2YmY1ZTFmZDNiMTk1OThiNzlkNTI3ZGYyMTZiNjA2ZDUwMTBlNDM5MGQ1ZjRjYzBlMDIxMmZhMWM)
 
 # doTERRA Kids Collection — Overview
 

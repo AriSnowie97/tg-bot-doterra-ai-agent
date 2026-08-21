@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/Balance-15mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8MjQ1NTE5fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGpPQzlvTVRBdk16QTRNakl5TURVNE9ESXpPVGd2UW1Gc1lXNWpaVjh4TlcxTUxVaHZjbWw2YjI1MFlXd3RSWE56Wlc1MGFXRnNJRTlwYkMweU1ESTFMVkJvYjNSdkxWUnlZVzV6Y0dGeVpXNTBYMHhwYm1zdFVISmxkbWxsZHkwemVESXVjRzVufDdmNDI0OTNkZmU4ZmE4YWRmZGZkYTc4MWMxNDVmYmZkYzZkOGMwNzQ2MDc0ZDc1OWE3M2VjYjA1MTU0Y2ZlYzI)
 
 # doTERRA Balance — Grounding Blend
 
@@ -12,7 +12,7 @@
 
 ## doTERRA Balance — Grounding Blend
 
-РўРёРї: РЎСѓРјС–С€ (Grounding Blend)
+Тип: Суміш (Grounding Blend)
 
 ## Короткий опис
 

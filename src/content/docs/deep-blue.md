@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/Deep-Blue-5mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8MjIzNTA0fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzJPQzlvTVdVdk16QTRNakl5TURVME9Ea3hPREl2UkdWbGNDQkNiSFZsWHpWdFRDMUliM0pwZW05dWRHRnNMVVZ6YzJWdWRHbGhiQ0JQYVd3dE1qQXlOUzFRYUc5MGJ5MVVjbUZ1YzNCaGNtVnVkRjlNYVc1ckxWQnlaWFpwWlhjdE0zZ3lMbkJ1Wnd8MDMyNWYzOGU4ZmY0MTI1OWE5ZDkyNzkyNjEzNzk1ZjQ1ZWZmZWIxMjM4MTJlNDQ4NjAxMDQ0YzBjOGFjZWU0Mw)
 
 # Deep Blue — Soothing Blend
 
@@ -7,13 +7,13 @@
 **Посилання:** - Deep Blue 5 РјР» (https://www.doterra.com/US/en/p/deep-blue-oil)
 - Deep Blue Rub, Deep Blue Stick + Copaiba, Deep Blue Polyphenol Complex (БАД — окрема картка в файлі 02)
 
-#Рј'СЏР·Рё
+#м'язи
 
 ---
 
 ## Deep Blue — Soothing Blend
 
-РўРёРї: РЎСѓРјС–С€ (Soothing Blend)
+Тип: Суміш (Soothing Blend)
 
 ## Короткий опис
 

@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/Northern-Escape-15mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8Mjc5Njg2fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzFNeTlvWWpJdk16QTRNak0zTmpjMk56QTRNVFF2VG05eWRHaGxjbTRnUlhOallYQmxYekUxYlV3dFNHOXlhWHB2Ym5SaGJDMUZjM05sYm5ScFlXd2dUMmxzTFRJd01qVXRVR2h2ZEc4dFZISmhibk53WVhKbGJuUmZUR2x1YXkxUWNtVjJhV1YzTFRONE1pNXdibWN8MDJlY2M0MjQ3ODRmY2Q2YjkzY2IzZDM3OGQzMmMzOWM1ZGI2ZTM1MzUxNDFkOTEyYTZjNGQ3OGQxYTVkMmRkYg)
 
 # Northern Escape — Woodland Blend
 
@@ -10,7 +10,7 @@
 
 ## Northern Escape — Woodland Blend
 
-РўРёРї: РЎСѓРјС–С€ (Woodland Blend)
+Тип: Суміш (Woodland Blend)
 
 ## Короткий опис
 

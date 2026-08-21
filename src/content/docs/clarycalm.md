@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/625x325-10ml-49480001-clarycalm-roll-us-english-web.jpg?context=bWFzdGVyfGltYWdlc3wzNjI1NnxpbWFnZS9qcGVnfGFXMWhaMlZ6TDJnNU1pOW9OR1V2TVRRMU5UWXpNVFl3TkRFeU5EWXVhbkJufGRkNGQyOGEyZWM1ZjQ3YzAxZjA4NTFmZWQ0NmNmMTk3YTIzYmI4MjZiMjdiNWMwNmRjODUwZWJhNGZjNGE2MGY)
 
 # ClaryCalm — Monthly Blend for Women
 

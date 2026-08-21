@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/Purify-15mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8MjY2MTg1fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3hPUzlvTldRdk16QTRNak0zTmpnd05qUXdNekF2VUhWeWFXWjVYekUxYlV3dFNHOXlhWHB2Ym5SaGJDMUZjM05sYm5ScFlXd2dUMmxzTFRJd01qVXRVR2h2ZEc4dFZISmhibk53WVhKbGJuUmZUR2x1YXkxUWNtVjJhV1YzTFRONE1pNXdibWN8YjMwNmY1ZGIzY2EzNmZkMzRkZTFiODE0NmNkNDNhMzMzNGZmZDkzODA0NjlhMDRkZDBiNjdkNDk2ZDU4YjUxMw)
 
 # Purify — Cleansing Blend
 
@@ -6,13 +6,13 @@
 
 **Посилання:** - Purify 15 РјР» (https://www.doterra.com/US/en/p/purify-oil)
 
-#РґС–Рј
+#дім
 
 ---
 
 ## Purify — Cleansing Blend
 
-РўРёРї: РЎСѓРјС–С€ (Cleansing Blend)
+Тип: Суміш (Cleansing Blend)
 
 ## Короткий опис
 

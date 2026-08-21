@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/Align-5mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8MjAzNTk3fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzVPQzlvWldVdk16QTRNakl5TURNMU9EZzJNemd2UVd4cFoyNWZOVzFNTFVodmNtbDZiMjUwWVd3dFJYTnpaVzUwYVdGc0lFOXBiQzB5TURJMUxWQm9iM1J2TFZSeVlXNXpjR0Z5Wlc1MFgweHBibXN0VUhKbGRtbGxkeTB6ZURJdWNHNW58MWMyNWIzMDMwNmQ4MDkzYTY1ZmQwOTZmNTdhOTYzZTFkZTM4MWYwNjBhYjhkN2NmYzliYmExMjVmOTZjYjZkYQ)
 
 # doTERRA Align — Centering Blend
 
@@ -7,7 +7,7 @@
 **Посилання:** - Align флакон-ролик 10 мл (https://www.doterra.com/US/en/p/doterra-yoga-align)
 - Частина doTERRA Yoga Collection
 
-#Р№РѕРіР°
+#йога
 
 ---
 

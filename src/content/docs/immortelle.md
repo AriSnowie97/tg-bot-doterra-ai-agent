@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/Immortelle-Preview.png?context=bWFzdGVyfHJvb3R8MTgzMTI1fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzRNQzlvT1RFdk16QXlOek0yTkRFeE9EVXpNVEF2U1cxdGIzSjBaV3hzWlMxUWNtVjJhV1YzTG5CdVp3fDhhMjljYTMyNDQ4ZjZiNDA0NzhjYWM4MzQ0OTliNzY4NDM5MDQ1NjdmNzkyOTIyMTljMzQzNjliZjNkOGQ2NjA)
 
 # Immortelle — Anti-Aging Blend
 
@@ -11,7 +11,7 @@
 
 ## Immortelle — Anti-Aging Blend
 
-РўРёРї: РЎСѓРјС–С€ (Anti-Aging Blend)
+Тип: Суміш (Anti-Aging Blend)
 
 ## Короткий опис
 

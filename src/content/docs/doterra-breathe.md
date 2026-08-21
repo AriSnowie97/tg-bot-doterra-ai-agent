@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/Breathe-15mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8MjQ5NzU2fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzRNaTlvTkRjdk16QTRNakl5TURZek5ERXhOVEF2UW5KbFlYUm9aVjh4TlcxTUxVaHZjbWw2YjI1MFlXd3RSWE56Wlc1MGFXRnNJRTlwYkMweU1ESTFMVkJvYjNSdkxWUnlZVzV6Y0dGeVpXNTBYMHhwYm1zdFVISmxkbWxsZHkwemVESXVjRzVufGI2ODEzYmYzOWI1NzBlYzg3NTc4ZjBhMmFlMDM4YjU5MjI2NTgxNGZmNjZlMGFiOWY4ODI4MzUwMTI1ZDNhODQ)
 
 # doTERRA Breathe — Respiratory Blend
 
@@ -12,7 +12,7 @@
 
 ## doTERRA Breathe — Respiratory Blend
 
-РўРёРї: РЎСѓРјС–С€ (Respiratory Blend)
+Тип: Суміш (Respiratory Blend)
 
 ## Короткий опис
 
