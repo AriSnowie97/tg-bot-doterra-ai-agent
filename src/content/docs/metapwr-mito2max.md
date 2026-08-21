@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/MetaPWR-Mito2Max-Icons-Sample-Image-preview-link-image.jpg?context=bWFzdGVyfHJvb3R8NzQyODQ2fGltYWdlL2pwZWd8YzNsekxXMWhjM1JsY2k5eWIyOTBMMmhqWkM5b05Ua3ZNekF5TkRFeU5EWTRNemc0TVRRdlRXVjBZVkJYVWlCTmFYUnZNazFoZUNCSlkyOXVjeUJUWVcxd2JHVWdTVzFoWjJWZmNISmxkbWxsZHlCc2FXNXJJR2x0WVdkbExtcHdad3w0MmQyYzg2N2Y2NmUwM2I2NDMyN2Q5YjQ4NTExY2Y3ZThhNDUyNzQ1ZmFiOTM5MzNiOGY1ZTRiYTIyOGNjODJm)
 
 # MetaPWR Mito2Max
 

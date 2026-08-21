@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/625x325-60217378-meta-pwr-gum-us-en-web.jpg?context=bWFzdGVyfHJvb3R8MjEwOTR8aW1hZ2UvanBlZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGtPQzlvWlRjdk1qZzJPREkzTkRVek5EZ3hNall2TmpJMWVETXlOVjgyTURJeE56TTNPRjl0WlhSaFgzQjNjbDluZFcxZmRYTmZaVzVmZDJWaUxtcHdad3wwY2M3MWFhMzJiMWRjYjEyY2I2Zjg2Nzg3NjllNTM4NWFjYTg5ZjNkOGZjMDc3MjliNzVkMzM2OTg2NTc4MTAy)
 
 # MetaPWR Satiety Gum
 

@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/eo-mega-complex-preview.jpg?context=bWFzdGVyfHJvb3R8NTAyNzB8aW1hZ2UvanBlZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3lOUzlvWm1Ndk16QTJNek14TWprNU16UTROemd2Wlc4dGJXVm5ZUzFqYjIxd2JHVjRMWEJ5WlhacFpYY3VhbkJufDJmNjUyYzA2NDQ2YjZiMGYwZmM3NzBlODIxYzIwYWEzYmE1ZWIwZTQzYWQ0NjYxZTdlZjIyMmQ3ZmQzODM1MDE)
 
 # EO Mega+
 

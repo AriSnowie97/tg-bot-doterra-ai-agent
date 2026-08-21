@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/MetaPWR-Recharge-Preview-Link-Wild-Strawberry.png?context=bWFzdGVyfHJvb3R8MzM1ODE1fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3haaTlvWlRZdk16QXdNekUyTWpBNE9UZzRORFl2VFdWMFlWQlhVaUJTWldOb1lYSm5aU0JRY21WMmFXVjNJRXhwYm10ZlYybHNaQ0JUZEhKaGQySmxjbko1TG5CdVp3fGNjMTZkMDQ3NTZhYTM3ZTg0YTU0M2JmYzMyNDNhM2FiNTk2YzI4NzM3N2MwZWJjOTlmY2RmNGRkNDdmZGE3YzY)
 
 # MetaPWR Recharge
 

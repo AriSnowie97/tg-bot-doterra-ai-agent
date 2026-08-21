@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/900x600-vegan-LLV-preview.jpg?context=bWFzdGVyfHJvb3R8NjIyMjJ8aW1hZ2UvanBlZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzFZUzlvTnpVdk16QTRORE13T0RnMU1ESTRNVFF2T1RBd2VEWXdNQzEyWldkaGJpMU1URll0Y0hKbGRtbGxkeTVxY0djfDFkNDkxNzMyZjVkYzdjM2EwNzdjMjhhNmY4NzgxMWU1ZGEwN2U3N2JiOTE0OTA5NmI2M2NlM2QwZmRiZTk2ZmM)
 
 # Vegan Lifelong Vitality Pack
 

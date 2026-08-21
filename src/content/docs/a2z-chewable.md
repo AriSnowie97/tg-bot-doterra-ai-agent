@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/600x400-a2z-preview.jpg?context=bWFzdGVyfHJvb3R8NDg3NTV8aW1hZ2UvanBlZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzVaaTlvT0RBdk16QTJOakF5T1RRMU1EZzFOelF2TmpBd2VEUXdNQzFoTW5vdGNISmxkbWxsZHk1cWNHY3w4NDEzNTJiZTU3OGMwYWQzMDRhMWM1ZjI0ZjJmMjJiMzFjMjE0ZTdlNWQ5MWFkNTMyNjM0OTJkYTI4N2U1YzIw)
 
 # a2z Chewable
 

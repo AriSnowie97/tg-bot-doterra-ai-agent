@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/DigestZen-Softgels-Preview.jpg?context=bWFzdGVyfHJvb3R8OTM5NTh8aW1hZ2UvanBlZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzFNeTlvTkdVdk16QXlPRGs0TkRrek5USXlNakl2UkdsblpYTjBXbVZ1TFZOdlpuUm5aV3h6TFZCeVpYWnBaWGN1YW5CbnxiOWMyZGU2MmE0NGZlOTNjYWM0MjA4NGU3MjIxYTg0MjVlZjZiZjk2NDBiNDliMmU0ZjliYWQ5YWI2MTNjZWUw)
 
 # DigestZen Softgels
 

@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/625x325-37400001-serum-us-english-web.jpg?context=bWFzdGVyfGltYWdlc3w0MTY4MXxpbWFnZS9qcGVnfGFXMWhaMlZ6TDJoaFl5OW9OR0V2TVRRMU5qTTJNamc1TnpReE1UQXVhbkJufGQ1N2UxOTU3NzQxODJjOGQ0Nzk3NzljYWQwYWQ3MDE4OGExNTZiNDRkMGFkZTNmNTI4OGMyNGFhZGVmZjViZTc)
 
 # Veráge Skin Care — Immortelle Hydrating Serum
 

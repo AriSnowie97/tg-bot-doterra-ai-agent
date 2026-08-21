@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/GX-Assist-Preview-1-.png?context=bWFzdGVyfHJvb3R8OTk2ODV8aW1hZ2UvcG5nfGMzbHpMVzFoYzNSbGNpOXliMjkwTDJneE55OW9PRFl2TXpBek5EVXdNemN3T0RZM05UQXZSMWd0UVhOemFYTjBMVkJ5WlhacFpYY2dLREVwTG5CdVp3fDAwNjA3ZjQ3MTM3MDU2OTBlY2JiMzNiMjQ1MGMwOTc3ZWU5ZDU1NWIwODBiOWQ0OTMwMzg3NDRiNjEzYTA1NGU)
 
 # GX Assist
 

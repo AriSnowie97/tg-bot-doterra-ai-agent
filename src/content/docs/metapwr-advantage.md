@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/625x325-60222772-meta-pwr-advantage-us-en-web.jpg?context=bWFzdGVyfHJvb3R8MzM4OTh8aW1hZ2UvanBlZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzVOeTlvWldJdk1qZzJPREkzTkRVME56a3hPVGd2TmpJMWVETXlOVjgyTURJeU1qYzNNbDl0WlhSaFgzQjNjbDloWkhaaGJuUmhaMlZmZFhOZlpXNWZkMlZpTG1wd1p3fGNkMzMxYTI4YzJjNDlkOGRlMjgwNTM1YTZiZWNlM2EzMzVhMzYyMmQ3NGZhMTNjZDg1OWFjMjA2ZTI4YjdkOTE)
 
 # MetaPWR Advantage
 

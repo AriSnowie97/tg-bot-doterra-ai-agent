@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/500x500-sunscreen-lotion-preview.jpg?context=bWFzdGVyfHJvb3R8MjQxNTd8aW1hZ2UvanBlZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGpaQzlvT0RNdk16QTRNelU1TURRNE1EWTVOREl2TlRBd2VEVXdNQzF6ZFc1elkzSmxaVzR0Ykc5MGFXOXVMWEJ5WlhacFpYY3VhbkJufGVhZGNhMTc2YzkxZDBiYzY4ZjZkMGMyYTBmNzRkNjYxODY3YzE0NDFlM2Y1OWM3ZWQ4ZjRjY2JkNWNlNWM3NDM)
 
 # Sun Care — doTERRA sun Face + Body Mineral Sunscreen Lotion
 

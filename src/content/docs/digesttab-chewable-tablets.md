@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1550572017-edb159f3cc96?q=80&w=800&auto=format&fit=crop)
+![doTERRA Product](https://www.doterra.com/medias/500x500-digesttab-preview.jpg?context=bWFzdGVyfHJvb3R8MjgwNjV8aW1hZ2UvanBlZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGxaUzlvWlRjdk16QTRNemt5TVRBd05EazFOall2TlRBd2VEVXdNQzFrYVdkbGMzUjBZV0l0Y0hKbGRtbGxkeTVxY0djfDBmOTNiNDY2ZjFlMzhkMTNhYjZhNGZkZjM3N2Q2ODc5ZDlkOTg5NTE0OGJjYjYwMmUzOGI1YzNmZWRiZWE5Y2I)
 
 # DigestTab Chewable Tablets
 
