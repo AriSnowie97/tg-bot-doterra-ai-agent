@@ -1,4 +1,4 @@
-![doTERRA Product](https://www.doterra.com/medias/New-Default-Image.png?context=bWFzdGVyfHJvb3R8MjMzMzg0NHxpbWFnZS9wbmd8YzNsekxXMWhjM1JsY2k5eWIyOTBMMmhtTnk5b1ltUXZNamt6TWpZNU9Ua3lOVGN4TVRndlRtVjNMVVJsWm1GMWJIUXRTVzFoWjJVdWNHNW58M2Y5NzU2N2YyZDJhYjcyNDFhYzY5YWY2N2RjY2I5OTQ3MDBlNDQxMjUyOTNmZTNkOTdlMTc1MWQxNjY2Y2QxNA)
+![doTERRA Product](https://www.doterra.com/medias/5ml-passion-31760001-600x900-us.png?context=bWFzdGVyfHJvb3R8MjQyNDUxfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGhOaTlvTjJVdk16QTRNVGcwTVRneE16QTVOelF2Tlcxc0xYQmhjM05wYjI0dE16RTNOakF3TURFdE5qQXdlRGt3TUMxMWN5NXdibWN8MGEwYzc5NDMxMGZlNDFkMGZiMTUwZTY5MGJmMTJlNjFhY2Q5NzIyMmQxYjMwYTMwM2RiZTQxYzc2YWM0MmU4Nw)
 
 # doTERRA Passion — Inspiring Blend
 
@@ -6,7 +6,7 @@
 
 **Тип:** Суміш (Inspiring Blend, Emotional Aromatherapy)
 
-**Посилання:** https://www.doterra.com/US/en/p/emotional-aromatherapy-passion (додатково доступно: doTERRA Passion флакон-ролик 10 мл; частина doTERRA Emotional Aromatherapy System / Touch Kit)
+**Посилання:** https://www.doterra.com/US/en/p/passion-inspiring-blend-oil (додатково доступно: doTERRA Passion флакон-ролик 10 мл; частина doTERRA Emotional Aromatherapy System / Touch Kit)
 
 ---
 

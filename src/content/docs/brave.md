@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Lifestyle](https://www.doterra.com/medias/10ml-kids-brave-60206618-600x900-us.png?context=bWFzdGVyfHJvb3R8MTI5ODkxfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGhNQzlvTW1Rdk16QTRNVGcwTURrM056VXhNelF2TVRCdGJDMXJhV1J6TFdKeVlYWmxMVFl3TWpBMk5qRTRMVFl3TUhnNU1EQXRkWE11Y0c1bnwwOTNkYzE2MmVkNjcwNmE3OTdlMTgzZjE2ZmQ1MmZkYTI5MGUxNWNmZTU2OWRhYjkyMmVlY2YzYzMxYjc4YTBh)
 
 # Brave (суміш сміливості)
 
@@ -6,7 +6,7 @@
 
 **Тип:** Ефірна олія (з лінійки Kids Collection)
 
-**Посилання:** https://www.doterra.com/US/en/p/тут-посилання-на-продукт
+**Посилання:** https://www.doterra.com/US/en/p/doterra-brave-blend
 
 ---
 

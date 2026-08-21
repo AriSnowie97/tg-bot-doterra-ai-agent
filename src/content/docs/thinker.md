@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Lifestyle](https://www.doterra.com/medias/10ml-kids-thinker-60206633-600x900-us.png?context=bWFzdGVyfHJvb3R8MTI1NzA1fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGtOQzlvTW1Jdk16QTRNVGd5TkRZME9USXhPVEF2TVRCdGJDMXJhV1J6TFhSb2FXNXJaWEl0TmpBeU1EWTJNek10TmpBd2VEa3dNQzExY3k1d2JtY3xhN2NlZGZhZjk4NzVmZDY0MTUzNzljMDdmNjQxNmU5YWUzMjkyMDczNjBlNjExNGQ2Yzk5OWJkZjYwZTdkNzlm)
 
 # Thinker (суміш концентрації)
 
@@ -6,7 +6,7 @@
 
 **Тип:** Ефірна олія (з лінійки Kids Collection)
 
-**Посилання:** https://www.doterra.com/US/en/p/тут-посилання-на-продукт
+**Посилання:** https://www.doterra.com/US/en/p/doterra-thinker-blend
 
 ---
 

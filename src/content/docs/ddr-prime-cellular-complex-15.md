@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/15ml-ddr-prime-60207092-600x900-us.png?context=bWFzdGVyfHJvb3R8MzYyOTY4fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzVNQzlvTldVdk16QTRNVGcwTVRFek9EQTNOall2TVRWdGJDMWtaSEl0Y0hKcGJXVXROakF5TURjd09USXROakF3ZURrd01DMTFjeTV3Ym1jfGEwYTY1YzhkMzExYjllMDk2NGMzODU2NGVhMjcyN2QyMGM1ZGFmNjU2NTU1MzEzMTQ0ZDIyYWUyNGIyODA4ZDg)
 
 # DDR Prime® Cellular Complex (15 мл бленд)
 

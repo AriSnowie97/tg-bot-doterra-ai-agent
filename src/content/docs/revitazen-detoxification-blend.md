@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/15ml-revitazen-60231405-566x819-us.png?context=bWFzdGVyfHJvb3R8Mjc5OTkwfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGpOaTlvTW1Zdk16QTNOakEwTnpRd05UQTFPVEF2TVRWdGJGOXlaWFpwZEdGNlpXNWZOakF5TXpFME1EVmZOVFkyZURneE9WOTFjeTV3Ym1jfGNlNDU2NDYyZGVhZjgzODVmNzgzMjhlMzQ2NGJmODRiODY1ZGVlMzQzNDc1ZTNkYzRhZDgwN2Y2OWQzYTc3YTc)
 
 # RevitaZen™ Detoxification Blend
 

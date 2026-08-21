@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-digestzen-touch-60200223-600x900-us.png?context=bWFzdGVyfHJvb3R8MjIzODMxfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3pOaTlvTURRdk16QTRNVGcwTVRJeE5qY3hPVGd2TVRCdGJDMWthV2RsYzNSNlpXNHRkRzkxWTJndE5qQXlNREF5TWpNdE5qQXdlRGt3TUMxMWN5NXdibWN8YzM1ZmExOTU4YTY1NzIwZmYxMzhkMmY2ZmVlYTM1ODYyNmMyNmVhNWU2NDgwMjhmNjdlNGNiZTkwNmEyNTU1MA)
 
 # DigestZen® Touch
 

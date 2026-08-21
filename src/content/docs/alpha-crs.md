@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/alpha-crs-60223966-600x900-us.png?context=bWFzdGVyfHJvb3R8NDc2MTI2fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3haQzlvTnpFdk16QTNNRGt5TnpBeU9ESXlOekF2WVd4d2FHRmZZM0p6WHpZd01qSXpPVFkyWHpZd01IZzVNREJmZFhNdWNHNW58MGQ2ZWM2MTYyYzlmZTVhMTA1NmI1MzlkNjk5MGM4NTI3ZmJmNGViMTExMjAwMGZhYWEwNWFlMDNjNzFlZWRiOA)
 
 # Alpha CRS+®
 

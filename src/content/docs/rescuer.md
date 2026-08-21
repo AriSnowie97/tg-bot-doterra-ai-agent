@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Lifestyle](https://www.doterra.com/medias/10ml-kids-rescuer-60206635-600x900-us.png?context=bWFzdGVyfHJvb3R8MTMxMDc5fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3dPQzlvWVRBdk16QTRNVGd5TkRNM01EWTVNVEF2TVRCdGJDMXJhV1J6TFhKbGMyTjFaWEl0TmpBeU1EWTJNelV0TmpBd2VEa3dNQzExY3k1d2JtY3w0MjdhMjg3NTNjZTg4Zjg4NGE1MGM3ZWY5ZTg1NTg0M2Q3MGZlOGNhZTViNTZlNTc0OTNkOTI1YzBhYzYyNjM5)
 
 # Rescuer (заспокійлива суміш)
 
@@ -6,7 +6,7 @@
 
 **Тип:** Ефірна олія (з лінійки Kids Collection)
 
-**Посилання:** https://www.doterra.com/US/en/p/
+**Посилання:** https://www.doterra.com/US/en/p/doterra-rescuer-blend
 
 ---
 

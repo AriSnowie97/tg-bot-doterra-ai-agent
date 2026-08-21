@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Lifestyle](https://www.doterra.com/medias/10ml-kids-calmer-60206632-600x900-us.png?context=bWFzdGVyfHJvb3R8MTMxNjMzfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3dOUzlvTXpRdk16QTRNVGcwTURrNU16ZzVOelF2TVRCdGJDMXJhV1J6TFdOaGJHMWxjaTAyTURJd05qWXpNaTAyTURCNE9UQXdMWFZ6TG5CdVp3fDlmYTc3MzgzODI4OWEwZDFhYjJiNzUxZTVjOTQ3ZjY5Y2VmNjIwY2NjNjNjZmVlODM3ZTIzOWIxYWNjYjczY2U)
 
 # Calmer (заспокійлива суміш для сну)
 
@@ -6,7 +6,7 @@
 
 **Тип:** Ефірна олія (з лінійки Kids Collection)
 
-**Посилання:** https://www.doterra.com/US/en/p/тут-посилання-на-продукт
+**Посилання:** https://www.doterra.com/US/en/p/doterra-calmer-blend
 
 ---
 

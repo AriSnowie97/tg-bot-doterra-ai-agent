@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/15ml-abode-60217576-600x900-us.png?context=bWFzdGVyfHJvb3R8MzQyNTExfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzVaaTlvTlRndk16QTRNVFV6T0RReU56STVNall2TVRWdGJDMWhZbTlrWlMwMk1ESXhOelUzTmkwMk1EQjRPVEF3TFhWekxuQnVad3wxNDZiOTcwMzE4MzIyYjFlMTIwNmI2YTAyOTI2NWZiNGVlZmM3M2Q1NzM5YjZiNThkMzVhMGQ5OWM2NDhiZDZj)
 
 # abōde Refreshing Blend
 

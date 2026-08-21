@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/2x3-566x819-60222094-supermint-beadlet-OoS.png?context=bWFzdGVyfHJvb3R8MTQ5OTkzfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzBNUzlvWkdFdk16QTROREF6T0Rjek16Z3lOekF2TW5nelh6VTJObmc0TVRsZk5qQXlNakl3T1RSZmMzVndaWEp0YVc1MFgySmxZV1JzWlhSZlQyOVRMbkJ1Wnd8NDkxMGUwYzhlOGZjYmM4MTU0YWM2NGJjODQ3YTk3ZmZlYzliOTIyOWUxMWE0Yjg2NTUyOWFiMmYwMDE5YzQ5Ng)
 
 # dōTERRA SuperMint® Beadlets
 

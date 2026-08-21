@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/2x3-546x819-10ml-49400001-hd-clear-roll-us-en-web.png?context=bWFzdGVyfHJvb3R8MTQyMTU3fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3pNUzlvTkRjdk16QTNNVE14TkRreU1qY3dNemd2TW5nelh6VTBObmc0TVRsZk1UQnRiRjgwT1RRd01EQXdNVjlvWkY5amJHVmhjbDl5YjJ4c1gzVnpYMlZ1WDNkbFlpNXdibWN8OWU3Zjk5NTBmMzRlNzJjNDUyZTUzY2M2NDkwYTZjMmZiZDE5ZjA5YzA3NzkyN2UwYTk1ZmRjMzY2ZjJhZGVhYQ)
 
 # HD Clear® Topical Blend (Roll-On)
 

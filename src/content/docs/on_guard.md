@@ -1,4 +1,4 @@
-![doTERRA Product](https://www.doterra.com/medias/New-Default-Image.png?context=bWFzdGVyfHJvb3R8MjMzMzg0NHxpbWFnZS9wbmd8YzNsekxXMWhjM1JsY2k5eWIyOTBMMmhtTnk5b1ltUXZNamt6TWpZNU9Ua3lOVGN4TVRndlRtVjNMVVJsWm1GMWJIUXRTVzFoWjJVdWNHNW58M2Y5NzU2N2YyZDJhYjcyNDFhYzY5YWY2N2RjY2I5OTQ3MDBlNDQxMjUyOTNmZTNkOTdlMTc1MWQxNjY2Y2QxNA)
+![doTERRA Product](https://www.doterra.com/medias/15ml-on-guard-31100001-600x900-us-15off.png?context=bWFzdGVyfHJvb3R8MzQ5NTkxfGltYWdlL3BuZ3xhR05qTDJnNE9TOHpNRGc1TWpJNU16Y3hPREEwTmk4eE5XMXNMVzl1TFdkMVlYSmtMVE14TVRBd01EQXhMVFl3TUhnNU1EQXRkWE10TVRWdlptWXVjRzVufGE1OWY5N2FjNjUyZjhmNzU1YWNmM2FhMWUzOWFiOGE0MzUzYTkzM2ViYTQ5NGQyMjkyZTg2Njc2MDU4NWUxZWE)
 
 # On Guard (Захисна суміш) -- On Guard Protective Blend
 

@@ -1,4 +1,4 @@
-![doTERRA Lifestyle](https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop)
+![doTERRA Lifestyle](https://www.doterra.com/medias/10ml-kids-tamer-60209356-600x900-us.png?context=bWFzdGVyfHJvb3R8MTI1NDM1fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzVaaTlvT0Rndk16QTRNVGd5TkRVNE16WTRNekF2TVRCdGJDMXJhV1J6TFhSaGJXVnlMVFl3TWpBNU16VTJMVFl3TUhnNU1EQXRkWE11Y0c1bnw0YTUxN2E0MGVlMDU4NGU0OGZjNTczY2NiNjkwMzMyNjRmODkzYjRkOGE5ZDEzYjk1ZmQ1NWI1OThiMjYxZDZi)
 
 # Tamer (травна суміш)
 
@@ -6,7 +6,7 @@
 
 **Тип:** Ефірна олія (з лінійки Kids Collection)
 
-**Посилання:** https://www.doterra.com/US/en/p/тут-посилання-на-продукт
+**Посилання:** https://www.doterra.com/US/en/p/tamer-oil
 
 ---
 

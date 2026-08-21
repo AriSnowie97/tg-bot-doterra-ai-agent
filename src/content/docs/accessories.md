@@ -1,4 +1,4 @@
-![doTERRA Product](https://www.doterra.com/medias/New-Default-Image.png?context=bWFzdGVyfHJvb3R8MjMzMzg0NHxpbWFnZS9wbmd8YzNsekxXMWhjM1JsY2k5eWIyOTBMMmhtTnk5b1ltUXZNamt6TWpZNU9Ua3lOVGN4TVRndlRtVjNMVVJsWm1GMWJIUXRTVzFoWjJVdWNHNW58M2Y5NzU2N2YyZDJhYjcyNDFhYzY5YWY2N2RjY2I5OTQ3MDBlNDQxMjUyOTNmZTNkOTdlMTc1MWQxNjY2Y2QxNA)
+![doTERRA Product](https://www.doterra.com/medias/2x3-amber-rollers-x6-min.png?context=bWFzdGVyfHJvb3R8NTgzNDZ8aW1hZ2UvcG5nfGFHWXpMMmhpWkM4eU9EQXdPVGN6T1RRNE5USXhOQzV3Ym1jfGE5NzJmYmRkN2I0YmZhNjEzYjk2OWVmNTMyNmVjMzNhZDQzNDYzYmNkYWE5ODE0NTg1MTQwMWQ5YzVmYzU2OTg)
 
 # Accessories — 10 mL Amber Roller Bottle 6 Pack
 
