@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-on-guard-touch-60200142-600x900-us-15off.png?context=bWFzdGVyfHJvb3R8MjE5MjQ0fGltYWdlL3BuZ3xhRGhrTDJnNFlTOHpNRGc1TWpJNU16YzRNelU0TWk4eE1HMXNMVzl1TFdkMVlYSmtMWFJ2ZFdOb0xUWXdNakF3TVRReUxUWXdNSGc1TURBdGRYTXRNVFZ2Wm1ZdWNHNW58YTE4NWIwNWQ2MmRmMmRjMTNlYTU5MGVlZGQ5MDdiZWU0ZTZlYWUzZDdjZDgwMTVhM2JjOTgyZDdlODVkYTllMQ)
 
 # On Guard Touch
 

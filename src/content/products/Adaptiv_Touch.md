@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-adaptiv-60209357-566x819-us.png?context=bWFzdGVyfHJvb3R8MTUzNzM1fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzNaUzlvTlRRdk16QTRNVGcwTURnd016ZzBNekF2TVRCdGJDMWhaR0Z3ZEdsMkxUWXdNakE1TXpVM0xUVTJObmc0TVRrdGRYTXVjRzVufDkwNzhiNzQ0OTg3N2M5YzRkODExMDQyMWVmZmM2Yzc3OTAxMzZhMTgwNGVhNTdkNWU3YTA1M2I5M2Q0ZGYyYmQ)
 
 # Adaptiv Touch
 

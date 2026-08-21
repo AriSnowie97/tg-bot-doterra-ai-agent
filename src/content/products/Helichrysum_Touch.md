@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-helichrysum-touch-60207012-650tall-us.png?context=bWFzdGVyfHJvb3R8MTU3MzY0fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGlNQzlvT1Rjdk16QTROakExTURZek9UZzNOVEF2TVRCdGJDMW9aV3hwWTJoeWVYTjFiUzEwYjNWamFDMDJNREl3TnpBeE1pMDJOVEIwWVd4c0xYVnpMbkJ1Wnd8NjEyOTY4YjY1MGMxMzMwMTYwYjlkNzFkYzIxNDUxMjE4NTgwOTEzNWZhOGFmZWU4ZGVkNjhiNThhZWIxOWE2MA)
 
 # Helichrysum Touch
 

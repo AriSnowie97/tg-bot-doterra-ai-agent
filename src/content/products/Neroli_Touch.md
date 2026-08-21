@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-neroli-touch-60200224-600x900-us.png?context=bWFzdGVyfHJvb3R8MjE5MzkxfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3dZaTlvTURZdk16QTRNVGcyTmpFeE16ZzBOakl2TVRCdGJDMXVaWEp2YkdrdGRHOTFZMmd0TmpBeU1EQXlNalF0TmpBd2VEa3dNQzExY3k1d2JtY3xkNDRmOTc1NzViODMwOWNiYzVkNDUwMTNmYmE1YzQ4YjJmOGQ2NTE0NWU4ODY0NzZiYzc2ZDNmMjBjYWZmMGZl)
 
 # Neroli Touch
 

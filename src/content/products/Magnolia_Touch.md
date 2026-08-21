@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-magnolia-touch-60205420-600x900-us.png?context=bWFzdGVyfHJvb3R8MjI0MzUwfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGpaaTlvT0RJdk16QTRNVGcyTlRrME16UTFNall2TVRCdGJDMXRZV2R1YjJ4cFlTMTBiM1ZqYUMwMk1ESXdOVFF5TUMwMk1EQjRPVEF3TFhWekxuQnVad3xmOTNmMzU0ZmM2NzlkNGExOWEwMjhjNTM2MzE0M2JjYjcyMzA2MmU3ODA1ZTAxY2UxYjQwN2EwNjNlMGRmZTQ1)
 
 # Magnolia Touch
 

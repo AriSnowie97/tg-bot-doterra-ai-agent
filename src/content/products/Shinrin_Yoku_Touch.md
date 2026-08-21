@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-shinrin-yoku-touch-60225706-600x900-us.png?context=bWFzdGVyfHJvb3R8MjIyMTg1fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaGtNeTlvWm1Ndk16QTRNVGd5TkRRek5qSXlOekF2TVRCdGJDMXphR2x1Y21sdUxYbHZhM1V0ZEc5MVkyZ3ROakF5TWpVM01EWXROakF3ZURrd01DMTFjeTV3Ym1jfGRhMjg4NjRhMTliMjU5ZDU3NTg3Nzg3OTY1Y2YxZWM2NWRkNmI1YzlhY2UyZDNhZGUwNjljZTUxN2Y3NmMyN2M)
 
 # Shinrin-Yoku Touch
 

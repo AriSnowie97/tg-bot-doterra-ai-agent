@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-copaiba-touch-60219176-600x900-us.png?context=bWFzdGVyfHJvb3R8MjIzMjU1fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzNOQzlvT1Rrdk16QTRNVGd5TlRFMk5qazFNelF2TVRCdGJDMWpiM0JoYVdKaExYUnZkV05vTFRZd01qRTVNVGMyTFRZd01IZzVNREF0ZFhNdWNHNW58ODIyNzhhZmRjMjVhZDY5MWFkOTE4YzNkOGQzYjgzYzRmMDI1NjJkMjhiZDU4Nzg3NmYxNjQwYzVlNTVhZDYyMg)
 
 # Copaiba Touch
 

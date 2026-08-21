@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-jasmine-touch-60201812-566x819-us.png?context=bWFzdGVyfHJvb3R8MTQ0MjkzfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzBZUzlvTldVdk16QTJPREExTkRVek9UUTNNVGd2TVRCdGJGOXFZWE50YVc1bFgzUnZkV05vWHpZd01qQXhPREV5WHpVMk5uZzRNVGxmZFhNdWNHNW58OGI2ZmUyNDQ0NGYxMzMxYjIzMDhhYTM2MjhlMDhmZTBhNDI2ZGMzYmRkOTA2ODc5MmFhY2RhMjc5YTZiYWRmOQ)
 
 # Jasmine Touch
 

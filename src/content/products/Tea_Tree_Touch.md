@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-tea-tree-touch-60208343-600x900-us.png?context=bWFzdGVyfHJvb3R8MjIwOTczfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzJOUzlvWkdFdk16QTRNVGczTmpVMk1ESTRORFl2TVRCdGJDMTBaV0V0ZEhKbFpTMTBiM1ZqYUMwMk1ESXdPRE0wTXkwMk1EQjRPVEF3TFhWekxuQnVad3xhNGZjOGI4NGRmMjNiMjc0NTU5ZmIxODAxM2EzNTViOTMzMzRjMGU1NjhhMDg3MjM5ZDM0N2MyMWQ3NTJhMDEx)
 
 # Tea Tree Touch
 

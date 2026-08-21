@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/10ml-touch-breathe-60200192-600x900-us.png?context=bWFzdGVyfHJvb3R8MjIyODA1fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3pOeTlvTm1Vdk16QTRNVGcwTVRNeE9ETXdNRFl2TVRCdGJDMTBiM1ZqYUMxaWNtVmhkR2hsTFRZd01qQXdNVGt5TFRZd01IZzVNREF0ZFhNdWNHNW58MDM5ZDlkMWU2MjQwMTY0ZDliYzBmNTJlMzZjOTdiMTMxMjZhOGFkZWI3Zjc2NzkyZGFmNDVlZWFjODQ1ZWNjYQ)
 
 # Breathe Touch
 
