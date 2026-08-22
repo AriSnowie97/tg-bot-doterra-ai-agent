@@ -1,0 +1,49 @@
+![doTERRA Product](https://www.doterra.com/medias/2x3-60217546-abode-multipurpose-spray-min.png?context=bWFzdGVyfHJvb3R8NDkwMzJ8aW1hZ2UvcG5nfGMzbHpMVzFoYzNSbGNpOXliMjkwTDJnME5DOW9NRGN2TXpBMk9UUTJNemcwT0RVMU16UXZNbmd6TFRZd01qRTNOVFEyTFdGaWIyUmxMVzExYkhScGNIVnljRzl6WlMxemNISmhlUzF0YVc0dWNHNW58NGE1OGZkMTAwYjA2MDlkZjJjMGFhZjVjMGE1YjU0MWZiY2RhNGRiNTVjNGZjOGMyNjI1ODI1OWM2MjA4YmE1ZQ)
+
+# abōde Surface Spray Dispenser
+
+**Категорія:** Товари для дому
+
+**Тип:** Аксесуар — багаторазовий флакон-розпилювач
+
+**Посилання:** https://www.doterra.com/US/en/p/abode-multi-surface-spray-dispenser
+
+---
+
+## Короткий опис
+
+👑 Багаторазовий скляний флакон-розпилювач для концентрату abōde
+👑 Дозволяє зменшити використання пластику вдома
+👑 Стильний бурштиновий скляний дизайн для будь-якої кухні чи ванної
+
+## Склад та ключові інгредієнти
+
+▫️ Не застосовується (порожній аксесуар — сам засіб не входить у комплект)
+
+## Показання
+
+🔹 Потреба у зручному багаторазовому флаконі для очищення поверхонь
+🔹 Скорочення використання одноразового пластику вдома
+
+## Спосіб застосування
+
+🔹 Налити 1 рідку унцію abōde Multi-Purpose Surface Cleaner Concentrate у флакон
+🔹 Долити очищеної води до позначки
+🔹 Щільно закрутити розпилювач і злегка струснути
+🔹 Розпилити на непористі поверхні та витерти
+
+## Сумісність з іншими продуктами doTERRA
+
+🔹 abōde Multi-Purpose Surface Cleaner Concentrate (продається окремо)
+🔹 abōde Modular Trays — для зберігання на стільниці
+
+## Цікаві факти
+
+👑 Місткість 10 унцій обрана як зручний розмір для перенесення по дому
+👑 Виготовлений з міцного бурштинового скла для багаторазового використання
+
+## Застереження
+
+> ⚠️ Використовувати лише за призначенням як побутовий засіб. Зберігати в недоступному для дітей та тварин місці. Уникати контакту з очима — у разі потрапляння рясно промити водою.
+
+#дім #home #дотерра
