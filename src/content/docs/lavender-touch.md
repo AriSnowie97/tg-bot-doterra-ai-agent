@@ -1,0 +1,48 @@
+![doTERRA Product](https://www.doterra.com/medias/10ml-lavender-touch-60200225-600x900-us.png?context=bWFzdGVyfHJvb3R8MjIzOTcwfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3hNaTlvTTJZdk16QTRNVGcyTlRjNU9USTNNelF2TVRCdGJDMXNZWFpsYm1SbGNpMTBiM1ZqYUMwMk1ESXdNREl5TlMwMk1EQjRPVEF3TFhWekxuQnVad3wwYzAwMzczZDMwYmU5Y2QxY2YwZTJhNzJmNGZlMTc1NjAxM2I2YWM0MDQzZTRhZTFhNWM3YmYyZDhkZGM3YjUz)
+
+# Lavender Touch
+
+**Категорія:** Ефірні олії
+
+**Тип:** Ефірна олія Touch (рол-он, 10 мл)
+
+**Посилання:** https://www.doterra.com/US/en/p/lavender-touch-blend-oil
+
+---
+
+## Короткий опис
+
+👑 Попередньо розведена версія найпопулярнішої олії Lavender
+👑 Ідеальна для дітей і чутливої шкіри
+👑 Заспокоює тіло та розслабляє розум
+
+## Склад та ключові інгредієнти
+
+▫️ Фракціонована кокосова олія
+▫️ Ефірна олія Lavender (Lavandula angustifolia)
+
+## Показання
+
+🔹 Заспокоєння неспокійної дитини перед сном
+🔹 Полегшення незначних подразнень шкіри
+🔹 Заземлюючий ефект на пульсові точки
+
+## Спосіб застосування
+
+🔹 Нанести на скроні чи задню частину шиї
+🔹 На підошви стоп дитини перед сном
+🔹 На пульсові точки протягом дня
+
+## Сумісність з іншими продуктами doTERRA
+
+🔹 Lavender (15 мл) — класична нерозведена версія
+
+## Цікаві факти
+
+👑 Джерело — здебільшого Болгарія, де лаванда дистилюється протягом доби після збору
+
+## Застереження
+
+> ⚠️ Можлива чутливість шкіри. Зберігати в недоступному для дітей місці. Якщо ви вагітні, годуєте грудьми або перебуваєте під наглядом лікаря, проконсультуйтеся з ним. Уникайте контакту з очима, внутрішнім вухом та чутливими ділянками.
+
+#ефірніолії #singleoils #дотерра
