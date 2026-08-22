@@ -10,8 +10,11 @@ def main():
     parser = DoterraMarkdownParser()
     docs = parser.parse_directory(Path("src/content/docs"))
     products = parser.parse_directory(Path("src/content/products"))
+    advice = parser.parse_directory(Path("src/content/advice"))
+    symphony = parser.parse_directory(Path("src/content/symphony_of_the_cells"))
     
-    all_chunks = docs + products
+    all_chunks = docs + products + advice + symphony
+    all_chunks.sort(key=lambda c: (c.product_slug, c.order))
     data = [c.to_dict() for c in all_chunks]
     
     out_path = Path("all_chunks.json")
