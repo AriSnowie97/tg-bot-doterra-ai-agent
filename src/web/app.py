@@ -17,8 +17,9 @@ import os
 from pathlib import Path
 # Special
 import re
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 import markdown
 
 from pydantic import BaseModel
@@ -44,6 +45,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Монтуємо папку з картинками
+IMAGES_DIR = Path(__file__).parent.parent / "content" / "images"
+IMAGES_DIR.mkdir(parents=True, exist_ok=True)
+app.mount("/images", StaticFiles(directory=str(IMAGES_DIR)), name="images")
+
 
 # ---------------------------------------------------------------------------
 # Моделі
@@ -68,7 +74,7 @@ def _render_md(md_text: str) -> str:
     )
 
 
-def _get_article_metadata(md_path: Path) -> dict:
+def _get_article_metadata(md_path: Path, base_url: str = "", section_name: str = "") -> dict:
     """Витягує метадані з .md файлу."""
     original_stem = md_path.stem
     slug = slugify(original_stem)
@@ -86,6 +92,12 @@ def _get_article_metadata(md_path: Path) -> dict:
             parts = line.split("](")[1].split(")")
             if parts:
                 image = parts[0]
+                # Якщо картинка локальна, робимо її абсолютною
+                if image.startswith("/images/") and base_url:
+                    image = f"{base_url}{image}"
+                # Якщо картинка це шаблонний текст
+                if image == "Тут_буде_офіційне_фото_після_завантаження_через_бот":
+                    image = ""
             break
 
     # Шукаємо заголовок
@@ -127,7 +139,8 @@ def _get_article_metadata(md_path: Path) -> dict:
         "title": title,
         "short": short,
         "tag": category,
-        "image": image
+        "image": image,
+        "section": section_name
     }
 
 CONTENT_DIR = Path(__file__).parent.parent / "content"
@@ -198,11 +211,12 @@ async def api_chat(request: ChatRequest):
 
 
 @app.get("/api/articles")
-async def api_get_articles():
+async def api_get_articles(request: Request):
     """Повертає список усіх статей з метаданими для Mini App."""
     if not CONTENT_DIR.exists():
         return []
     
+    base_url = str(request.base_url).rstrip("/")
     articles = []
     for dir_name in DIRECTORIES_TO_SEARCH:
         d = CONTENT_DIR / dir_name
@@ -212,14 +226,14 @@ async def api_get_articles():
                 if md_path.stem[0].isdigit() and "_Гід" in md_path.stem:
                     continue
                 
-                articles.append(_get_article_metadata(md_path))
+                articles.append(_get_article_metadata(md_path, base_url, dir_name))
         
     # Сортуємо: спочатку гайди (якщо якісь залишились), потім інші за алфавітом
     articles.sort(key=lambda a: (0 if a["tag"] == "Гайди" else 1, a["title"]))
     return articles
 
 @app.get("/api/docs/{slug}")
-async def api_get_doc(slug: str):
+async def api_get_doc(slug: str, request: Request):
     """Повертає відрендерений HTML статті у форматі JSON для React-додатку."""
     if not slug.replace("-", "").replace("_", "").isalnum():
         raise HTTPException(status_code=400, detail="Невірний slug")
@@ -236,6 +250,10 @@ async def api_get_doc(slug: str):
 
     md_text = target_path.read_text(encoding="utf-8")
     html_content = _render_md(md_text)
+    
+    # Робимо відносні посилання на картинки абсолютними (щоб працювали в React)
+    base_url = str(request.base_url).rstrip("/")
+    html_content = html_content.replace('src="/images/', f'src="{base_url}/images/')
     
     # Витягнемо заголовок з першого рядка якщо це H1, або просто використаємо slug
     title = slug
