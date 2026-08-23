@@ -156,7 +156,7 @@ def main():
     print("=" * 60)
 
     if stats["errors"]:
-        sys.exit(1)
+        print("\n⚠️ Синхронізація завершилася з помилками, але бот все одно буде запущено.", flush=True)
 
 
 if __name__ == "__main__":
