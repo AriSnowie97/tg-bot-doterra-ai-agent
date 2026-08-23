@@ -97,7 +97,8 @@ def _upsert_chunk(chunk: dict) -> None:
     conn = _conn_create()
     register_vector(conn)
 
-    embedding = Vector(create_embedding(chunk["content"]))
+    text_to_embed = f"{chunk['section_title']}\n{chunk['content']}"
+    embedding = Vector(create_embedding(text_to_embed))
 
     with conn.cursor() as cur:
         if not іs_there_similar_embedding(cur, chunk, embedding):
@@ -130,11 +131,26 @@ def bulk_upsert_chunks(chunks: list[dict]) -> None:
     with conn.cursor() as cur:
         # 1. Fetch existing chunk_ids to avoid re-embedding
         existing_ids = set()
+        new_ids = {chunk.get("chunk_id") for chunk in chunks if chunk.get("chunk_id")}
         try:
             cur.execute("SELECT chunk_id FROM knowledge_chunks;")
             existing_ids = {row[0] for row in cur.fetchall()}
+            
+            # Delete orphaned chunks (chunks that exist in DB but not in the new MD files)
+            orphans = existing_ids - new_ids
+            if orphans:
+                print(f"[DB] Deleting {len(orphans)} orphaned chunks...")
+                # SQLite and Postgres handle IN differently if the list is huge, 
+                # but for 300 chunks it's fine. We do it in batches of 100 just in case.
+                orphans_list = list(orphans)
+                for i in range(0, len(orphans_list), 100):
+                    batch = orphans_list[i:i+100]
+                    format_strings = ','.join(['%s'] * len(batch))
+                    cur.execute(f"DELETE FROM knowledge_chunks WHERE chunk_id IN ({format_strings})", tuple(batch))
+                conn.commit()
+                
         except Exception as e:
-            print(f"[!] Error fetching existing chunk_ids: {e}")
+            print(f"[!] Error fetching/deleting existing chunk_ids: {e}")
             conn.rollback()
             
         for chunk in chunks:
@@ -143,7 +159,8 @@ def bulk_upsert_chunks(chunks: list[dict]) -> None:
                 continue
                 
             try:
-                emb = create_embedding(chunk["content"])
+                text_to_embed = f"{chunk['section_title']}\n{chunk['content']}"
+                emb = create_embedding(text_to_embed)
                 if not emb:
                     continue
                 embedding = Vector(emb)
@@ -164,7 +181,7 @@ def bulk_upsert_chunks(chunks: list[dict]) -> None:
                             "embedding": embedding
                         }
                     )
-                    conn.commit() # Commit after each insert to make it visible
+                    conn.commit()  # Зафіксувати кожний успішний чанк, щоб не втратити прогрес
             except Exception as e:
                 print(f"[!] Error upserting chunk {chunk_id}: {e}")
                 conn.rollback()

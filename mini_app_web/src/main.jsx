@@ -1,14 +1,17 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 import "./index.css";
 import App from "./App.jsx";
+import { LangProvider } from "./contexts/LangContext.jsx";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter basename="/tg-bot-doterra-ai-agent">
-      <App />
-    </BrowserRouter>
+    <LangProvider>
+      <HashRouter>
+        <App />
+      </HashRouter>
+    </LangProvider>
   </StrictMode>,
 );

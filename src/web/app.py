@@ -16,12 +16,14 @@ doTERRA Bot — Мінімальний веб-сервер для перегля
 import os
 from pathlib import Path
 # Special
+import re
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 import markdown
 
 from pydantic import BaseModel
 from src.agent import generate_response
+from src.content.parser import slugify
 
 # ---------------------------------------------------------------------------
 # Налаштування
@@ -66,13 +68,75 @@ def _render_md(md_text: str) -> str:
     )
 
 
+def _get_article_metadata(md_path: Path) -> dict:
+    """Витягує метадані з .md файлу."""
+    original_stem = md_path.stem
+    slug = slugify(original_stem)
+    text = md_path.read_text(encoding="utf-8")
+    lines = text.splitlines()
+    
+    title = original_stem
+    short = ""
+    category = "Інше"
+    image = ""
+    
+    # Шукаємо image в перших рядках
+    for line in lines[:5]:
+        if line.startswith("![") and "](" in line:
+            parts = line.split("](")[1].split(")")
+            if parts:
+                image = parts[0]
+            break
+
+    # Шукаємо заголовок
+    for line in lines:
+        if line.startswith("# "):
+            title = line[2:].strip()
+            break
+            
+    # Шукаємо категорію
+    for line in lines:
+        if "**Категорія:**" in line:
+            category = line.split("**Категорія:**")[1].strip()
+            if "→" in category:
+                category = category.split("→")[0].strip()
+            elif ">" in category:
+                category = category.split(">")[0].strip()
+            break
+    
+    if category == "Інше":
+        if "_Гід" in original_stem or original_stem.startswith("0"):
+            category = "Гайди"
+            
+    # Шукаємо короткий опис
+    for line in lines:
+        line = line.strip()
+        if not line: continue
+        if line.startswith("#"): continue
+        if line.startswith("!["): continue
+        if line.startswith("**Категорія:**") or line.startswith("**Тип:**") or line.startswith("**Артикул") or line.startswith("**Посилання"): continue
+        if line.startswith("---"): continue
+        
+        short = line
+        if len(short) > 120:
+            short = short[:117] + "..."
+        break
+        
+    return {
+        "slug": slug,
+        "title": title,
+        "short": short,
+        "tag": category,
+        "image": image
+    }
+
 def _get_all_docs() -> list[dict]:
     """Повертає список усіх MD-файлів із директорії docs."""
     if not DOCS_DIR.exists():
         return []
     return sorted(
         [
-            {"slug": p.stem, "filename": p.name}
+            {"slug": slugify(p.stem), "filename": p.name}
             for p in DOCS_DIR.glob("*.md")
         ],
         key=lambda d: d["slug"],
@@ -122,17 +186,43 @@ async def api_chat(request: ChatRequest):
         raise HTTPException(status_code=500, detail="Помилка при генерації відповіді")
 
 
+@app.get("/api/articles")
+async def api_get_articles():
+    """Повертає список усіх статей з метаданими для Mini App."""
+    if not DOCS_DIR.exists():
+        return []
+    
+    articles = []
+    for md_path in DOCS_DIR.glob("*.md"):
+        # Пропускаємо технічні файли-гайди (01_Гід, 02_Гід тощо), 
+        # оскільки вони призначені для бази знань AI, а не для стрічки статей
+        if md_path.stem[0].isdigit() and "_Гід" in md_path.stem:
+            continue
+            
+        articles.append(_get_article_metadata(md_path))
+        
+    # Сортуємо: спочатку гайди (якщо якісь залишились), потім інші за алфавітом
+    articles.sort(key=lambda a: (0 if a["tag"] == "Гайди" else 1, a["title"]))
+    return articles
+
+
 @app.get("/api/docs/{slug}")
 async def api_get_doc(slug: str):
     """Повертає відрендерений HTML статті у форматі JSON для React-додатку."""
     if not slug.replace("-", "").replace("_", "").isalnum():
         raise HTTPException(status_code=400, detail="Невірний slug")
 
-    md_path = DOCS_DIR / f"{slug}.md"
-    if not md_path.exists():
+    target_path = None
+    if DOCS_DIR.exists():
+        for p in DOCS_DIR.glob("*.md"):
+            if slugify(p.stem) == slug:
+                target_path = p
+                break
+
+    if not target_path:
         raise HTTPException(status_code=404, detail=f"Документ '{slug}' не знайдено")
 
-    md_text = md_path.read_text(encoding="utf-8")
+    md_text = target_path.read_text(encoding="utf-8")
     html_content = _render_md(md_text)
     
     # Витягнемо заголовок з першого рядка якщо це H1, або просто використаємо slug
@@ -170,11 +260,17 @@ async def view_doc(slug: str) -> HTMLResponse:
     if not slug.replace("-", "").replace("_", "").isalnum():
         raise HTTPException(status_code=400, detail="Невірний slug")
 
-    md_path = DOCS_DIR / f"{slug}.md"
-    if not md_path.exists():
+    target_path = None
+    if DOCS_DIR.exists():
+        for p in DOCS_DIR.glob("*.md"):
+            if slugify(p.stem) == slug:
+                target_path = p
+                break
+
+    if not target_path:
         raise HTTPException(status_code=404, detail=f"Документ '{slug}' не знайдено")
 
-    md_text = md_path.read_text(encoding="utf-8")
+    md_text = target_path.read_text(encoding="utf-8")
     html_content = _render_md(md_text)
 
     body = (

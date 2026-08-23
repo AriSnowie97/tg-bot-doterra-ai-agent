@@ -1,0 +1,27 @@
+{
+    "home_title": "Привіт! 👋",
+    "home_subtitle": "Я допоможу підібрати ефірні олії, БАДи та набори doTERRA - просто запитай.",
+    "popular_now": "ПОПУЛЯРНЕ ЗАРАЗ",
+    "tg_channel": "НАШ ТЕЛЕГРАМ-КАНАЛ",
+    "contact_specialist": "Написати спеціалісту напряму -->",
+    
+    "chat_empty_title": "Привіт! Я AI-асистент doTERRA",
+    "chat_empty_hint": "Запитай мене про ефірні олії, БАДи або набори",
+    "chat_suggestion_1": "Яка олія від стресу?",
+    "chat_suggestion_2": "Що таке Home Essentials Kit?",
+    "chat_suggestion_3": "Як почати з doTERRA?",
+    "chat_typing": "друкує...",
+    "chat_placeholder": "Введіть запитання...",
+    "chat_error": "Вибачте, виникла помилка при зв'язку з бекендом. Переконайтесь, що сервер запущено!",
+    
+    "header_title": "ШІ Асистент doTERRA",
+    
+    "article_back": "← Назад",
+    "article_loading": "Завантаження...",
+    "article_error": "Помилка підключення до бази знань. Переконайтеся, що бекенд запущено.",
+
+    "nav_home": "Головна",
+    "nav_chat": "Чат",
+    "nav_articles": "Статті",
+    "nav_contacts": "Контакти"
+}

@@ -1,0 +1,46 @@
+![doTERRA Product](https://www.doterra.com/medias/15ml-petitgrain-49520001-600x900-us.png?context=bWFzdGVyfHJvb3R8MzU3OTAxfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3dPQzlvWTJNdk16QTRNVGczTmpFMk56QTJPRFl2TVRWdGJDMXdaWFJwZEdkeVlXbHVMVFE1TlRJd01EQXhMVFl3TUhnNU1EQXRkWE11Y0c1bnxiOTYxYjg5Zjk5ZjkxYjhiYTU4ZDkxNmUxNzRlMGFiMGM5NmVkMTMxMjczZjAyMTQ3ZjhmNzMzNTA4ZmU2MzA2)
+
+# Petitgrain
+
+**Категорія:** Ефірні олії
+
+**Тип:** Ефірна олія (одиночна, 15 мл)
+
+**Посилання:** https://www.doterra.com/US/en/blog/spotlight-master-list-of-essential-oils
+
+---
+
+## Короткий опис
+
+👑 Деревно-зелена олія, яку іноді називають «чоловічою лавандою»
+👑 Заспокоює нервову систему та сприяє повноцінному сну
+👑 Підтримує серцево-судинну, травну та імунну системи
+
+## Склад та ключові інгредієнти
+
+▫️ Ефірна олія Citrus aurantium (лист гіркого апельсина)
+
+## Показання
+
+🔹 Зняття відчуття напруги
+🔹 Підтримка повноцінного сну
+🔹 Загальна системна підтримка
+
+## Спосіб застосування
+
+🔹 Дифузія перед сном
+🔹 Топічно, розбавивши базовою олією
+
+## Сумісність з іншими продуктами doTERRA
+
+🔹 Shinrin-Yoku® — petitgrain лимона входить до складу
+
+## Цікаві факти
+
+👑 Отримується з листя того самого дерева, з якого отримують Neroli (з квітів)
+
+## Застереження
+
+> ⚠️ Можлива чутливість шкіри. Зберігати в недоступному для дітей місці. Якщо ви вагітні, годуєте грудьми або перебуваєте під наглядом лікаря, проконсультуйтеся з ним. Уникайте контакту з очима, внутрішнім вухом та чутливими ділянками.
+
+#ефірніолії #singleoils #дотерра
