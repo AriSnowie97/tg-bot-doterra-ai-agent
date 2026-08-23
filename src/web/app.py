@@ -130,17 +130,28 @@ def _get_article_metadata(md_path: Path) -> dict:
         "image": image
     }
 
+CONTENT_DIR = Path(__file__).parent.parent / "content"
+DIRECTORIES_TO_SEARCH = [
+    "docs",
+    "products",
+    "symphony_of_the_cells",
+    "advice",
+    "kits"
+]
+
 def _get_all_docs() -> list[dict]:
-    """Повертає список усіх MD-файлів із директорії docs."""
-    if not DOCS_DIR.exists():
+    """Повертає список усіх MD-файлів із вказаних директорій."""
+    if not CONTENT_DIR.exists():
         return []
-    return sorted(
-        [
-            {"slug": slugify(p.stem), "filename": p.name}
-            for p in DOCS_DIR.glob("*.md")
-        ],
-        key=lambda d: d["slug"],
-    )
+        
+    docs = []
+    for dir_name in DIRECTORIES_TO_SEARCH:
+        d = CONTENT_DIR / dir_name
+        if d.exists():
+            for p in d.glob("*.md"):
+                docs.append({"slug": slugify(p.stem), "filename": p.name})
+                
+    return sorted(docs, key=lambda d: d["slug"])
 
 
 def _html_page(title: str, body: str) -> str:
@@ -189,22 +200,23 @@ async def api_chat(request: ChatRequest):
 @app.get("/api/articles")
 async def api_get_articles():
     """Повертає список усіх статей з метаданими для Mini App."""
-    if not DOCS_DIR.exists():
+    if not CONTENT_DIR.exists():
         return []
     
     articles = []
-    for md_path in DOCS_DIR.glob("*.md"):
-        # Пропускаємо технічні файли-гайди (01_Гід, 02_Гід тощо), 
-        # оскільки вони призначені для бази знань AI, а не для стрічки статей
-        if md_path.stem[0].isdigit() and "_Гід" in md_path.stem:
-            continue
-            
-        articles.append(_get_article_metadata(md_path))
+    for dir_name in DIRECTORIES_TO_SEARCH:
+        d = CONTENT_DIR / dir_name
+        if d.exists():
+            for md_path in d.glob("*.md"):
+                # Пропускаємо технічні файли-гайди (01_Гід, 02_Гід тощо)
+                if md_path.stem[0].isdigit() and "_Гід" in md_path.stem:
+                    continue
+                
+                articles.append(_get_article_metadata(md_path))
         
     # Сортуємо: спочатку гайди (якщо якісь залишились), потім інші за алфавітом
     articles.sort(key=lambda a: (0 if a["tag"] == "Гайди" else 1, a["title"]))
     return articles
-
 
 @app.get("/api/docs/{slug}")
 async def api_get_doc(slug: str):
@@ -213,8 +225,8 @@ async def api_get_doc(slug: str):
         raise HTTPException(status_code=400, detail="Невірний slug")
 
     target_path = None
-    if DOCS_DIR.exists():
-        for p in DOCS_DIR.glob("*.md"):
+    if CONTENT_DIR.exists():
+        for p in CONTENT_DIR.rglob("*.md"):
             if slugify(p.stem) == slug:
                 target_path = p
                 break
@@ -261,8 +273,8 @@ async def view_doc(slug: str) -> HTMLResponse:
         raise HTTPException(status_code=400, detail="Невірний slug")
 
     target_path = None
-    if DOCS_DIR.exists():
-        for p in DOCS_DIR.glob("*.md"):
+    if CONTENT_DIR.exists():
+        for p in CONTENT_DIR.rglob("*.md"):
             if slugify(p.stem) == slug:
                 target_path = p
                 break
