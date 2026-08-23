@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Діаграма «Системи тіла» (чанк 33)
 
-![�������� �����](/images/diagram_system_of_the_body.jpg)
+![Симфонія клітин](/images/diagram_system_of_the_body.jpg)
 
 ## Системи тіла на діаграмі (за годинниковою стрілкою)
 

@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Ознайомлювальний протокол №2 (чанк 17)
 
-![�������� �����](/images/introduce_2_protocoljpg.jpg)
+![Симфонія клітин](/images/introduce_2_protocoljpg.jpg)
 
 ## Короткий підсумок застосування (легенда до протоколу)
 

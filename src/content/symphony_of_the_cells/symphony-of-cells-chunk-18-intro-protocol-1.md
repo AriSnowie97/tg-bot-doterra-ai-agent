@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Ознайомлювальний протокол №1 (чанк 18)
 
-![�������� �����](/images/introduce_1_protocoljpg.jpg)
+![Симфонія клітин](/images/introduce_1_protocoljpg.jpg)
 
 ## Короткий підсумок застосування (легенда до протоколу)
 

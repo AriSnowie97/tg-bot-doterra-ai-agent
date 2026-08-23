@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Сенсорний протокол (чанк 9)
 
-![�������� �����](/images/sense_protocol.jpg)
+![Симфонія клітин](/images/sense_protocol.jpg)
 
 ## Короткий підсумок застосування (легенда до протоколу)
 

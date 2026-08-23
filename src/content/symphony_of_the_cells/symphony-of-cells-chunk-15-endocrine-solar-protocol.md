@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Ендокринний Solar протокол (чанк 15)
 
-![�������� �����](/images/endo_solar_protocol.jpg)
+![Симфонія клітин](/images/endo_solar_protocol.jpg)
 
 ## Короткий підсумок застосування (легенда до протоколу)
 
