@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Дихальний протокол (чанк 4)
+# Symphony of the Cells™ — Дихальний протокол
 
 ![Симфонія клітин](/images/lungs_system.jpg)
 

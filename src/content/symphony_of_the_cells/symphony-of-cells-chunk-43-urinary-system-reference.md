@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Система: Сечовидільна (чанк 43)
+# Symphony of the Cells™ — Система: Сечовидільна 
 
 ![Симфонія клітин](/images/urinary_system.jpg)
 

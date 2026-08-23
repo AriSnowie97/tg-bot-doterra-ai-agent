@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Система: Покривна (чанк 39)
+# Symphony of the Cells™ — Система: Покривна 
 
 ![Симфонія клітин](/images/covering.jpg)
 

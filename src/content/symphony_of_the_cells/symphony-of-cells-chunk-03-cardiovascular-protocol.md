@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Серцево-судинний протокол (чанк 3)
+# Symphony of the Cells™ — Серцево-судинний протокол
 
 ![Симфонія клітин](/images/heart_protocol.jpg)
 

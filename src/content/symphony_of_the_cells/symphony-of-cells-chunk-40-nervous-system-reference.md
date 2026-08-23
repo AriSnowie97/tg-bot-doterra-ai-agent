@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Система: Нервова (чанк 40)
+# Symphony of the Cells™ — Система: Нервова 
 
 ![Симфонія клітин](/images/nervous_system.jpg)
 

@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Ендокринний Solar протокол (чанк 15)
+# Symphony of the Cells™ — Ендокринний Solar протокол
 
 ![Симфонія клітин](/images/endo_solar_protocol.jpg)
 

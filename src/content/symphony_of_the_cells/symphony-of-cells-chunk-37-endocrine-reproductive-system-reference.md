@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Система: Ендокринна / Репродуктивна (чанк 37)
+# Symphony of the Cells™ — Система: Ендокринна / Репродуктивна 
 
 ![Симфонія клітин](/images/endocrine_system.jpg)
 

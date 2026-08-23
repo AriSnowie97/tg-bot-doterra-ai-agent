@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Система: Дихальна (чанк 41)
+# Symphony of the Cells™ — Система: Дихальна 
 
 ![Симфонія клітин](/images/lungs.jpg)
 

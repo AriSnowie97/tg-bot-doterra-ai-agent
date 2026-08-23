@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Система: Скелетно-м'язова (чанк 42)
+# Symphony of the Cells™ — Система: Скелетно-м'язова 
 
 ![Симфонія клітин](/images/skelet.jpg)
 

@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Протокол «Енергія Ці» (чанк 12)
+# Symphony of the Cells™ — Протокол «Енергія Ці»
 
 ![Симфонія клітин](/images/energy_tsi.jpg)
 

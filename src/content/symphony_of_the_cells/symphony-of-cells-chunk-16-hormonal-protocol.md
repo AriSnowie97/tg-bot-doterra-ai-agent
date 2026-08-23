@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Гормональний протокол (чанк 16)
+# Symphony of the Cells™ — Гормональний протокол 
 
 ![Симфонія клітин](/images/gormon_protocol.jpg)
 

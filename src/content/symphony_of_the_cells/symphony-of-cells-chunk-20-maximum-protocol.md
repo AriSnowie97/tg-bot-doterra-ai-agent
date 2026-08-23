@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Максимальний протокол (чанк 20)
+# Symphony of the Cells™ — Максимальний протокол
 
 ![Симфонія клітин](/images/max_protocol.jpg)
 
