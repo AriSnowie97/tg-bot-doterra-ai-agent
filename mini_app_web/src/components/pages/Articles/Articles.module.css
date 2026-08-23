@@ -11,6 +11,16 @@
     justify-content: flex-start;
     gap: 10px;
 
+    .pageTitle {
+        width: 100%;
+        margin: 0;
+        text-align: left;
+        font-family: var(--text-art);
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--color-text-h);
+    }
+
     .input {
         width: 100%;
         /* margin: auto; */

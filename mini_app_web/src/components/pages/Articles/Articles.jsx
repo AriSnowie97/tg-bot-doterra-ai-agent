@@ -73,6 +73,7 @@ const Articles = () => {
     if (activeSection === null) {
         return (
             <div className={styles.wrapper}>
+                <h1 className={styles.pageTitle}>{t("Articles") || "Статті"}</h1>
                 {loading ? (
                     <div style={{marginTop: "20px"}}>Завантаження...</div>
                 ) : (
