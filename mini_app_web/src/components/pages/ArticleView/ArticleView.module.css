@@ -56,11 +56,21 @@
 .markdownContent h2,
 .markdownContent h3 {
     color: var(--color-text-h);
+    font-family: var(--text-art);
+    margin-bottom: 12px;
 }
 
 .markdownContent p {
     margin-bottom: 16px;
     line-height: 1.5;
+}
+
+.markdownContent img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 12px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .markdownContent a {

@@ -1,6 +1,5 @@
-.wrapper{
+.wrapper {
     width: 100%;
-    /* height: 100%; */
 
     padding: 10px;
     box-sizing: border-box;
@@ -16,63 +15,108 @@
 
     background-color: var(--color-primary);
 
-    .img {
-        width: 56px;
-        height: 56px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-
-        border-radius: 12px;
-        border: 1px dotted var(--color-border);
-        pointer-events: none;
+    &:active {
+        transform: scale(0.98);
     }
 
-    .description {
+    &:hover {
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
+}
+
+/* Обгортка для реального зображення */
+.imgWrap {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Плейсхолдер якщо зображення відсутнє */
+.imgPlaceholder {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+    border: 1px dotted var(--color-border);
+
+    font-size: 22px;
+    pointer-events: none;
+}
+
+.description {
+    width: 100%;
+    min-width: 0;
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+
+    h3 {
+        font-size: 13px;
+        font-weight: 900;
+        color: var(--color-text);
+
+        /* Обмежуємо до 2 рядків */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    span {
         width: 100%;
-        min-width: 0;
-        flex: 1;
+        font-size: 11px;
+        line-height: 1.4;
+        color: var(--color-surface);
 
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        align-items: flex-start;
-        justify-content: center;
-        gap: 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
-        h3 {
-            font-size: 13px;
-            font-weight: 900;
-            color: var(--color-text);
-        }
+    .tag {
+        font-size: 10px;
+        font-weight: 600;
 
-        span {
-            width: 100%;
-            font-size: 11px;
-            line-height: 1.4;
-            color: var(--color-surface);
+        padding: 2px 8px;
 
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+        border-radius: 8px;
 
-        .tag {
-            font-size: 10px;
-            font-weight: 600;
+        color: var(--color-surface);
+        background-color: color-mix(
+            in srgb,
+            var(--color-surface) 20%,
+            transparent
+        );
 
-            padding: 2px 8px;
-
-            border-radius: 8px;
-
-            color: var(--color-surface);
-            background-color: color-mix(
-                in srgb,
-                var(--color-surface) 20%,
-                transparent
-            );
-        }
+        /* Не дозволяємо хештегу розтягуватись */
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }

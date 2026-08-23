@@ -87,21 +87,31 @@ def run_sync(progress_callback=None) -> dict:
         _log(f"❌ Помилка при завантаженні JSON карток: <code>{e}</code>")
 
     # ── 2. Парсинг MD-файлів ─────────────────────────────────────────────────
-    _log("\n📄 <b>[2/3]</b> Парсинг MD-документів з docs/...")
-    docs_dir = project_root / "src" / "content" / "docs"
+    _log("\n📄 <b>[2/3]</b> Парсинг MD-документів...")
+    
+    md_dirs = [
+        project_root / "src" / "content" / "docs",
+        project_root / "src" / "content" / "products",
+        project_root / "src" / "content" / "advice",
+        project_root / "src" / "content" / "symphony_of_the_cells",
+    ]
     chunks = []
-    if not docs_dir.exists():
-        msg = f"Директорія docs/ не знайдена: {docs_dir}"
-        stats["errors"].append(msg)
-        _log(f"❌ {msg}")
-    else:
-        try:
-            chunks = parse_md_dir(docs_dir)
-            stats["chunks_found"] = len(chunks)
-            _log(f"✅ Знайдено чанків: <b>{len(chunks)}</b> з {docs_dir.name}/")
-        except Exception as e:
-            stats["errors"].append(f"MD парсинг: {e}")
-            _log(f"❌ Помилка парсингу MD: <code>{e}</code>")
+    for d in md_dirs:
+        if not d.exists():
+            msg = f"Директорія не знайдена: {d}"
+            stats["errors"].append(msg)
+            _log(f"❌ {msg}")
+        else:
+            try:
+                dir_chunks = parse_md_dir(d)
+                chunks.extend(dir_chunks)
+                _log(f"✅ Знайдено чанків: <b>{len(dir_chunks)}</b> з {d.name}/")
+            except Exception as e:
+                stats["errors"].append(f"MD парсинг ({d.name}): {e}")
+                _log(f"❌ Помилка парсингу MD ({d.name}): <code>{e}</code>")
+                
+    stats["chunks_found"] = len(chunks)
+    _log(f"✅ Всього знайдено чанків: <b>{len(chunks)}</b>")
 
     # ── 3. Векторизація і запис у БД ─────────────────────────────────────────
     if chunks:

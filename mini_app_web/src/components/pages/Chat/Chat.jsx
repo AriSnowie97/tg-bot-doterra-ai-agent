@@ -1,14 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import styles from "./Chat.module.css";
 import { ReadMsgArea } from "./components/ReadMsgArea";
 import { WriteMsgArea } from "./components/WriteMsgArea";
+import { useLang } from "../../../contexts/LangContext";
+import { post_chat_question } from "../../../api/chat";
 
 
 const Chat = () => {
-    const [dialogueMsgs, setDialogueMsgs] = useState([])
+    const { t } = useLang();
+    const [dialogueMsgs, setDialogueMsgs] = useState(() => {
+        const saved = sessionStorage.getItem("chat_history");
+        return saved ? JSON.parse(saved) : [];
+    });
 
     const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        sessionStorage.setItem("chat_history", JSON.stringify(dialogueMsgs));
+    }, [dialogueMsgs]);
 
     const onQuestionSubmit = async (question) => {
         if (!question.trim() || isLoading) return;
@@ -19,14 +29,11 @@ const Chat = () => {
         ]);
         
         setIsLoading(true);
+        const typingIndicator = document.getElementById('typing-indicator');
+        if (typingIndicator) typingIndicator.style.display = 'block';
 
         try {
-            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-            const response = await fetch(`${API_URL}/api/chat`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ query: question })
-            });
+            const response = await post_chat_question(question);
             
             if (!response.ok) throw new Error('API Error');
             
@@ -40,10 +47,12 @@ const Chat = () => {
             console.error(error);
             setDialogueMsgs(prev => [
                 ...prev,
-                { isQuestion: false, text: "Вибачте, виникла помилка при зв'язку з бекендом. Переконайтесь, що app.py запущено!" }
+                { isQuestion: false, text: t("chat_error") }
             ]);
         } finally {
             setIsLoading(false);
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) typingIndicator.style.display = 'none';
         }
     };
 

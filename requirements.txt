@@ -17,3 +17,7 @@ apscheduler==3.11.0
 fastapi>=0.115.0
 uvicorn>=0.34.0
 markdown>=3.7
+
+# Content processing
+ftfy>=6.1.3
+requests>=2.31.0

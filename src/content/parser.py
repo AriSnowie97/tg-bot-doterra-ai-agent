@@ -385,16 +385,12 @@ class DoterraMarkdownParser:
                 current_title = f"__header__{title_text}"
                 current_lines = []
 
-            elif level == 2:
-                # H2 = нова секція
+            elif level >= 2:
+                # H2, H3+ = нова секція
                 if current_lines:
                     sections.append((current_title, self._join_lines(current_lines)))
                 current_title = title_text
                 current_lines = []
-
-            elif level >= 3:
-                # H3+ = підрозділ усередині секції — зберігаємо як є
-                current_lines.append(line)
 
             elif is_separator(line):
                 # --- між H2-секціями — ігноруємо

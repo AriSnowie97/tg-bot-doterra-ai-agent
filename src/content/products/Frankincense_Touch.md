@@ -1,0 +1,47 @@
+![doTERRA Product](https://www.doterra.com/medias/10ml-frankincense-touch-60200224-566x819-us.png?context=bWFzdGVyfHJvb3R8MTU1NDQ1fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3hPUzlvT1dRdk16QTRNVGd5TlRNek56TTBOekF2TVRCdGJDMW1jbUZ1YTJsdVkyVnVjMlV0ZEc5MVkyZ3ROakF5TURBeU1qUXROVFkyZURneE9TMTFjeTV3Ym1jfDYzNmYzMTEwMzliNjM5OGIxZGI4M2RhN2ZlODAwNWExMzkxYzg0NmI0ODA5MTAzM2YwMzY1YzkyNmZjZmMwMjM)
+
+# Frankincense Touch
+
+**Категорія:** Ефірні Олії
+
+**Тип:** Одиночна олія, Touch (рол-он 10 мл)
+
+**Посилання:** https://www.doterra.com/US/en/p/doterra-frankincense-touch-blend-oil
+
+---
+
+## Короткий опис
+
+👑 Відома «королівська» олія у зручному дозованому форматі
+👑 Заспокійливий ефект для емоцій та балансу
+👑 Зменшує вигляд дрібних зморшок та недосконалостей шкіри
+
+## Склад та ключові інгредієнти
+
+▫️ Фракціонована кокосова олія
+▫️ Смола босвелії (ладан, три види Boswellia)
+
+## Показання
+
+🔹 Ранкові та вечірні ритуали, медитація, догляд за шкірою обличчя
+
+## Спосіб застосування
+
+🔹 Нанесіть на зап'ястя, скроні та ділянку серця для спокою
+🔹 Використовуйте як зволожувач після очистки обличчя
+🔹 Наносьте на стопи перед сном для розслаблення
+
+## Сумісність з іншими продуктами doTERRA
+
+🔹 Гармонійно поєднується з Lavender Touch, Myrrh Touch, Peppermint Touch
+
+## Цікаві факти
+
+👑 Ладан був цінним торговим товаром за часів Стародавнього Єгипту, Персії та Македонії
+👑 doTERRA поєднує смолу трьох видів дерева Boswellia
+
+## Застереження
+
+> ⚠️ Можлива чутливість шкіри. Зберігати в недоступному для дітей місці. У разі вагітності, годування грудьми або перебування під наглядом лікаря, проконсультуйтеся з ним. Уникайте контакту з очима, внутрішнім вухом та чутливими ділянками.
+
+#doterra #touch #ладан #медитація

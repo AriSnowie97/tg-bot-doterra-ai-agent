@@ -12,6 +12,18 @@
     <script src="https://telegram.org/js/telegram-web-app.js?63"></script>
   </head>
   <body>
+    <script>
+      (function() {
+        var hash = window.location.hash;
+        if (hash.includes('tgWebApp')) {
+          if (hash.startsWith('#tgWebApp') || hash.startsWith('#?tgWebApp')) {
+            window.location.hash = '';
+          } else {
+            window.location.hash = hash.replace(/[?&]tgWebApp.*/, '');
+          }
+        }
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -1,13 +1,14 @@
 # Standard
 import os
 import asyncio
+import re
 # Special
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command, CommandObject
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, WebAppInfo
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, WebAppInfo, MenuButtonWebApp
 from aiogram.enums import ChatAction, ChatType, MessageEntityType
 # Local
 from src.agent import generate_response
@@ -15,6 +16,7 @@ from src.publisher import publish_channel_post
 from src.scheduler import setup_scheduler
 from src.storage.feedback import ensure_feedback_table, save_vote, get_vote_counts
 from handlers.states import AskStates
+from src.content.sync_content import run_sync
 
 
 # Loading variables from a dotenv file
@@ -63,9 +65,29 @@ def _feedback_keyboard(message_id: int, chat_id: int, likes: int = 0, dislikes: 
 
 
 async def _reply_with_feedback(message: Message, text: str) -> None:
-    """Надсилає reply з текстом відповіді і кнопками 👍/👎."""
-    sent = await message.reply(text)
+    """Надсилає reply з текстом відповіді і кнопками 👍/👎 та посиланнями на гайди."""
+    webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
+    
+    # Шукаємо всі маркдаун посилання виду [Текст](slug)
+    pattern = r'\[([^\]]+)\]\(([^)]+)\)'
+    links = re.findall(pattern, text)
+    
+    # Замінюємо [Текст](slug) просто на Текст
+    clean_text = re.sub(pattern, r'\1', text)
+    
+    sent = await message.reply(clean_text)
     keyboard = _feedback_keyboard(sent.message_id, sent.chat.id)
+    
+    if links:
+        seen_slugs = set()
+        for link_text, slug in links:
+            if slug not in seen_slugs:
+                seen_slugs.add(slug)
+                # Додаємо кнопку відкриття Mini App
+                keyboard.inline_keyboard.insert(0, [
+                    InlineKeyboardButton(text=f"📖 {link_text}", web_app=WebAppInfo(url=f"{webapp_url}#/article/{slug}"))
+                ])
+                
     await sent.edit_reply_markup(reply_markup=keyboard)
 
 
@@ -189,6 +211,41 @@ async def command_post_handler(message: Message, bot: Bot) -> None:
     except Exception as e:
         await message.answer(f"❌ Помилка при публікації: {e}")
         print(f"[bot] /post error: {e}")
+
+
+@dp.message(Command("sync_db"))
+async def command_sync_db_handler(message: Message, bot: Bot) -> None:
+    """Ручне оновлення бази знань (синхронізація файлів) — тільки для адміністраторів."""
+    user_id = message.from_user.id
+
+    if ADMIN_IDS and user_id not in ADMIN_IDS:
+        await message.answer("⛔ У тебе немає прав для цієї команди.")
+        return
+
+    await message.answer("⏳ Запускаю синхронізацію бази знань... Це може зайняти 10-15 хвилин через ліміти API. Я повідомлю, коли закінчу.")
+
+    try:
+        # Запускаємо синхронізацію у фоновому потоці, щоб не блокувати бота
+        stats = await asyncio.to_thread(run_sync)
+        
+        if stats["errors"]:
+            error_msg = "\n".join([f"• {err}" for err in stats["errors"][:10]])
+            if len(stats["errors"]) > 10:
+                error_msg += f"\n...та ще {len(stats['errors']) - 10} помилок."
+            await message.answer(
+                f"⚠️ Синхронізацію завершено з помилками:\n{error_msg}\n\n"
+                f"📊 Оброблено карток: {stats['products']}\n"
+                f"📊 Знайдено чанків: {stats['chunks_found']}"
+            )
+        else:
+            await message.answer(
+                f"✅ Базу знань успішно оновлено!\n\n"
+                f"📦 Картки: {stats['products']}\n"
+                f"📄 Чанки: {stats['chunks_found']}"
+            )
+    except Exception as e:
+        await message.answer(f"❌ Критична помилка під час синхронізації: {e}")
+        print(f"[bot] /sync_db error: {e}")
 
 
 def _is_addressed(message: Message) -> bool:
@@ -373,6 +430,16 @@ async def main() -> None:
         print("[bot] ✅ Feedback table ready.")
     except Exception as e:
         print(f"[bot] ⚠️ Could not init feedback table: {e}")
+
+    # Налаштовуємо кнопку "Меню" (Web App)
+    webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
+    try:
+        await bot.set_chat_menu_button(
+            menu_button=MenuButtonWebApp(text="Mini App", web_app=WebAppInfo(url=webapp_url))
+        )
+        print("[bot] ✅ Menu button configured.")
+    except Exception as e:
+        print(f"[bot] ⚠️ Could not configure menu button: {e}")
 
     # Налаштовуємо та запускаємо планувальник публікацій
     scheduler = setup_scheduler(bot)
