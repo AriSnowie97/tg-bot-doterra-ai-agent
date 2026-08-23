@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Система: Імунна (чанк 38)
+# Symphony of the Cells™ — Система: Імунна 
 
 ![Симфонія клітин](/images/immune.jpg)
 

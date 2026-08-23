@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Система: Серцево-судинна (чанк 34)
+# Symphony of the Cells™ — Система: Серцево-судинна 
 
 ![Симфонія клітин](/images/heart.jpg)
 

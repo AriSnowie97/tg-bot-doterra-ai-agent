@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Базовий протокол (чанк 19)
+# Symphony of the Cells™ — Базовий протокол 
 
 ![Симфонія клітин](/images/base_protocol.jpg)
 

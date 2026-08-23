@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Система: Емоційна / Лімбічна (чанк 36)
+# Symphony of the Cells™ — Система: Емоційна / Лімбічна 
 
 ![Симфонія клітин](/images/brain.jpg)
 

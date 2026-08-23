@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Система: Травна (чанк 35)
+# Symphony of the Cells™ — Система: Травна 
 
 ![Симфонія клітин](/images/stomach.jpg)
 

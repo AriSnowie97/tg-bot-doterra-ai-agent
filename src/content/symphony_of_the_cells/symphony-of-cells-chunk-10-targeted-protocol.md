@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Цільовий протокол (чанк 10)
+# Symphony of the Cells™ — Цільовий протокол
 
 ![Симфонія клітин](/images/target_protocol.jpg)
 

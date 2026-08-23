@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Лімфатичний протокол (чанк 6)
+# Symphony of the Cells™ — Лімфатичний протокол
 
 ![Симфонія клітин](/images/limfa_protocol.jpg)
 

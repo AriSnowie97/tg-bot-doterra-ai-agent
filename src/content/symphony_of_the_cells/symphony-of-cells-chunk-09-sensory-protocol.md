@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Сенсорний протокол (чанк 9)
+# Symphony of the Cells™ — Сенсорний протокол
 
 ![Симфонія клітин](/images/sense_protocol.jpg)
 

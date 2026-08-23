@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Інфекційний протокол (чанк 5)
+# Symphony of the Cells™ — Інфекційний протокол
 
 ![Симфонія клітин](/images/immune_protocol.jpg)
 

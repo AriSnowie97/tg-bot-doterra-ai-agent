@@ -41,6 +41,7 @@ def load_product_files() -> list[dict]:
     for d in DATA_DIRS:
         pattern = os.path.join(CONTENT_DIR, d, "*.json")
         files = sorted(glob.glob(pattern))
+        files = [f for f in files if not f.endswith("_chunks.json")]
         print(f"📦 Завантаження пакету: {d} ({len(files)} продуктів)")
         for filepath in files:
             try:

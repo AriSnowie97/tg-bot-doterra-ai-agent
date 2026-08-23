@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Протокол «Пробачення» (Forgiveness) (чанк 21)
+# Symphony of the Cells™ — Протокол «Пробачення» (Forgiveness) 
 
 ![Симфонія клітин](/images/forgive_protocol.jpg)
 
