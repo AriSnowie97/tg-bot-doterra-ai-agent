@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Система: Покривна (чанк 39)
 
-![�������� �����](/images/covering.jpg)
+![Симфонія клітин](/images/covering.jpg)
 
 ## Що входить у систему
 

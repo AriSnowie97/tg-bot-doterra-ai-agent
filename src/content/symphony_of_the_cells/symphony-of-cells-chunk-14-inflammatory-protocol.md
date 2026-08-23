@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Запальний протокол (чанк 14)
 
-![�������� �����](/images/stomach_protocol.jpg)
+![Симфонія клітин](/images/stomach_protocol.jpg)
 
 ## Короткий підсумок застосування (легенда до протоколу)
 

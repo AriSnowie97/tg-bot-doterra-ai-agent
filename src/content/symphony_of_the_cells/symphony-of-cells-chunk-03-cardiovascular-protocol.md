@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Серцево-судинний протокол (чанк 3)
 
-![�������� �����](/images/heart_protocol.jpg)
+![Симфонія клітин](/images/heart_protocol.jpg)
 
 ## Короткий підсумок застосування (легенда до протоколу)
 

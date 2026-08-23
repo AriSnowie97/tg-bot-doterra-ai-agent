@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Лімфатичний протокол (чанк 6)
 
-![�������� �����](/images/limfa_protocol.jpg)
+![Симфонія клітин](/images/limfa_protocol.jpg)
 
 ## Короткий підсумок застосування (легенда до протоколу)
 

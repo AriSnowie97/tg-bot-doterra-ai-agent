@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Емоційний протокол (чанк 11)
 
-![�������� �����](/images/emotion_protocol.jpg)
+![Симфонія клітин](/images/emotion_protocol.jpg)
 
 ## Короткий підсумок застосування (легенда до протоколу)
 

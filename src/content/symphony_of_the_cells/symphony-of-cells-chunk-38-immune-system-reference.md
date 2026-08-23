@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Система: Імунна (чанк 38)
 
-![�������� �����](/images/immune.jpg)
+![Симфонія клітин](/images/immune.jpg)
 
 ## Що входить у систему
 

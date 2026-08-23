@@ -11,7 +11,7 @@ class LLMProvider(ABC):
     """LLMProvider - інтерфейс для LLMs, абстрактний клас, що
     описує необхідні змінні та методи для класів-нащадків."""
 
-    def embed_content(self, content, MAX_RETRIES: int = 3):
+    def embed_content(self, content, MAX_RETRIES: int = 5):
         """Генерація embedding для введеного content з Retry-логікою для 429."""
         last_error = None
 
@@ -33,7 +33,9 @@ class LLMProvider(ABC):
             
             # Якщо всі ключі перебрані і спроба ще є - чекаємо
             if attempt <= MAX_RETRIES:
-                delay = attempt * 5
+                delay = self._parse_retry_delay(str(last_error))
+                if not delay:
+                    delay = attempt * 10
                 print(f"[agent] All keys failed. Sleeping {delay}s before attempt {attempt+1}")
                 time.sleep(delay)
             else:

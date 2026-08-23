@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Цільовий протокол (чанк 10)
 
-![�������� �����](/images/target_protocol.jpg)
+![Симфонія клітин](/images/target_protocol.jpg)
 
 ## Короткий підсумок застосування (легенда до протоколу)
 

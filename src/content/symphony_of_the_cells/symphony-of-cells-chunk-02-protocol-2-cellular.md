@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Клітинний протокол №2 (чанк 2)
 
-![�������� �����](/images/cellular_protocol.jpg)
+![Симфонія клітин](/images/cellular_protocol.jpg)
 
 ## Короткий підсумок застосування (легенда до протоколу)
 

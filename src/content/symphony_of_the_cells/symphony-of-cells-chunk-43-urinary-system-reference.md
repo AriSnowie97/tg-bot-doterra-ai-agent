@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Система: Сечовидільна (чанк 43)
 
-![�������� �����](/images/urinary_system.jpg)
+![Симфонія клітин](/images/urinary_system.jpg)
 
 ## Що входить у систему
 

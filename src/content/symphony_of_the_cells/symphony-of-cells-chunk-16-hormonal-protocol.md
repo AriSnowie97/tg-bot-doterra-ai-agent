@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Гормональний протокол (чанк 16)
 
-![�������� �����](/images/gormon_protocol.jpg)
+![Симфонія клітин](/images/gormon_protocol.jpg)
 
 ## Короткий підсумок застосування (легенда до протоколу)
 

@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Кістковий (Osteo) протокол (чанк 13)
 
-![�������� �����](/images/bones_osteo_protocol.jpg)
+![Симфонія клітин](/images/bones_osteo_protocol.jpg)
 
 ## Короткий підсумок застосування (легенда до протоколу)
 

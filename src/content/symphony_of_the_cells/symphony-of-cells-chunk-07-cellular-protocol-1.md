@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Клітинний протокол №1 (чанк 7)
 
-![�������� �����](/images/cellular_protocol.jpg)
+![Симфонія клітин](/images/cellular_protocol.jpg)
 
 ## Короткий підсумок застосування (легенда до протоколу)
 

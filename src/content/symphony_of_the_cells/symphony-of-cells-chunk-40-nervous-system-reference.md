@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Система: Нервова (чанк 40)
 
-![�������� �����](/images/nervous_system.jpg)
+![Симфонія клітин](/images/nervous_system.jpg)
 
 ## Що входить у систему
 

@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Інфекційний протокол (чанк 5)
 
-![�������� �����](/images/immune_protocol.jpg)
+![Симфонія клітин](/images/immune_protocol.jpg)
 
 ## Короткий підсумок застосування (легенда до протоколу)
 
