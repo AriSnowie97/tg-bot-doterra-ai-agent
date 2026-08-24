@@ -15,14 +15,9 @@ const Contacts = () => {
             <div className={styles.wrapper}>
                 <div className={styles.about}>
                     <img className={styles.img} src={specialistImg} alt="Спеціаліст" />
-                    <h2>Про спеціаліста</h2>
-                    <p>
-                        Ефірні олії | Аромапрактик | Нутриціолог | Київ<br />
-                        Аромаексперт тіла й душі<br />
-                        Ефірні олії, замість аптечки<br />
-                        Консультую,<br />
-                        коли аналізи в нормі, а самопочуття ні<br />
-                        Підбір ефірних олій та БАД 👇🏼
+                    <h2>{t("contacts_about")}</h2>
+                    <p style={{whiteSpace: "pre-line"}}>
+                        {t("contacts_about_description") ?? "description"}
                     </p>
                 </div>
                 <div className={styles.dots}>
