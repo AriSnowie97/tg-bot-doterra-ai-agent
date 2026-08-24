@@ -98,9 +98,7 @@ def run_sync(progress_callback=None) -> dict:
     chunks = []
     for d in md_dirs:
         if not d.exists():
-            msg = f"Директорія не знайдена: {d}"
-            stats["errors"].append(msg)
-            _log(f"❌ {msg}")
+            _log(f"ℹ️ Директорія не знайдена, пропускаємо: {d.name}")
         else:
             try:
                 dir_chunks = parse_md_dir(d)
@@ -166,7 +164,7 @@ def main():
     print("=" * 60)
 
     if stats["errors"]:
-        sys.exit(1)
+        print("\n⚠️ Синхронізація завершилася з помилками, але бот все одно буде запущено.", flush=True)
 
 
 if __name__ == "__main__":
