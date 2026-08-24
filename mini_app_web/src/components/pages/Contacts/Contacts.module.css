@@ -26,6 +26,7 @@
         .img {
             width: 66px;
             height: 66px;
+            object-fit: cover;
 
             display: flex;
             flex-direction: column;

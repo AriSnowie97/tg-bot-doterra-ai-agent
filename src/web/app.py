@@ -217,6 +217,8 @@ async def api_get_articles(request: Request):
         return []
     
     base_url = str(request.base_url).rstrip("/")
+    if request.headers.get("x-forwarded-proto") == "https":
+        base_url = base_url.replace("http://", "https://")
     articles = []
     for dir_name in DIRECTORIES_TO_SEARCH:
         d = CONTENT_DIR / dir_name
@@ -253,6 +255,8 @@ async def api_get_doc(slug: str, request: Request):
     
     # Робимо відносні посилання на картинки абсолютними (щоб працювали в React)
     base_url = str(request.base_url).rstrip("/")
+    if request.headers.get("x-forwarded-proto") == "https":
+        base_url = base_url.replace("http://", "https://")
     html_content = html_content.replace('src="/images/', f'src="{base_url}/images/')
     
     # Витягнемо заголовок з першого рядка якщо це H1, або просто використаємо slug

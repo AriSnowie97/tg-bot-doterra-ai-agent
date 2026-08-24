@@ -1,4 +1,6 @@
-# Symphony of the Cells™ — Символ «Посилення (за бажанням)» (чанк 53)
+# Symphony of the Cells™ — Символ «Посилення (за бажанням)» 
+
+![Симфонія клітин](/images/strongest.jpg)
 
 ## Опис символу
 
