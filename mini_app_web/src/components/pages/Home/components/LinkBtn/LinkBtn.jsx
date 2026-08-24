@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 
 import styles from "./LinkBtn.module.css";
+import { useLang } from "../../../../../contexts/LangContext";
 
 
-const LinkBtn = ({linkTo, Svg, h3Text, pText, newStyles}) => {
+const LinkBtn = ({linkTo, Svg, subject, newStyles}) => {
+    const { t } = useLang();
     
     return (
         <>
@@ -13,8 +15,8 @@ const LinkBtn = ({linkTo, Svg, h3Text, pText, newStyles}) => {
                         <Svg className={styles.Svg} />
                     </div>
                     <div className={`${styles.text} ${newStyles.text || ""}`}>
-                        <h3>{h3Text}</h3>
-                        <p>{pText}</p>
+                        <h3>{t("link_btns")?.[subject]?.title ?? "title"}</h3>
+                        <p>{t("link_btns")?.[subject]?.description ?? "description"}</p>
                     </div>
                     <div className={`${styles.arrow} ${newStyles.arrow || ""}`}>
                         <p>→</p>

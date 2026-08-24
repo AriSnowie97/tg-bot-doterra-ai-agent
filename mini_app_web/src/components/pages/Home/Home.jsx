@@ -49,7 +49,7 @@ const Home = () => {
                     <h3>{t("popular_now")}</h3>
                     <div className={styles.articles}>
                         {loading ? (
-                            <div style={{marginTop: "20px"}}>Завантаження...</div>
+                            <div style={{marginTop: "20px"}}>{t("loading")}</div>
                         ) : articlesList.length > 0 ? (
                             articlesList.slice(0, 5).map((data, index) => (
                                 <LinkArticleBtn
@@ -58,7 +58,7 @@ const Home = () => {
                                 />
                             ))
                         ) : (
-                            <div style={{marginTop: "20px"}}>Нічого не знайдено</div>
+                            <div style={{marginTop: "20px"}}>{t("nothing_found")}</div>
                         )}
                     </div>
                 </div>

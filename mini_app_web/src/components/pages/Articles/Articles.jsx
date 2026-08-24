@@ -3,18 +3,9 @@ import { useLang } from "../../../contexts/LangContext";
 
 import styles from "./Articles.module.css";
 import { Article } from "./components/Article";
-
 import { get_articles } from "../../../api/articles";
-
 import { ArticlesSvg, SunSvg, ChatSvg, GlobeSvg, ContactsSvg } from "../../../assets/icons";
 
-const SECTION_DATA = {
-    "products": { name: "Продукти", desc: "Ефірні олії, суміші та догляд", icon: ArticlesSvg },
-    "symphony_of_the_cells": { name: "Симфонія клітин", desc: "Протоколи нанесення ефірних олій", icon: SunSvg },
-    "advice": { name: "Поради", desc: "Рекомендації та корисні статті", icon: ChatSvg },
-    "kits": { name: "Набори", desc: "Стартові та подарункові набори", icon: GlobeSvg },
-    "docs": { name: "Довідники", desc: "Технічна інформація та гайди", icon: ContactsSvg }
-};
 
 const Articles = () => {
     const [search, setSearch] = useState("");
@@ -23,7 +14,22 @@ const Articles = () => {
     const [activeTag, setActiveTag] = useState("Усі");
     const [activeSection, setActiveSection] = useState(null);
     const { t } = useLang();
+    const SECTION_DATA = {
+        "products": { icon: ArticlesSvg },
+        "symphony_of_the_cells": { icon: SunSvg },
+        "advice": { icon: ChatSvg },
+        "kits": { icon: GlobeSvg },
+        "docs": { icon: ContactsSvg }
+    };
 
+    Object.entries(SECTION_DATA).map(([key, data]) => {
+        data.name = t("articles_section_data")?.[key]?.name ?? "name";
+        data.desc = t("articles_section_data")?.[key]?.description ?? "description";
+    });
+
+    
+    
+    
     useEffect(() => {
         const fetchArticles = async () => {
             try {
@@ -74,7 +80,7 @@ const Articles = () => {
         return (
             <div className={styles.wrapper}>
                 {loading ? (
-                    <div style={{marginTop: "20px"}}>Завантаження...</div>
+                    <div style={{marginTop: "20px"}}>{t("loading")}</div>
                 ) : (
                     <div className={styles.sectionsContainer}>
                         {Object.entries(SECTION_DATA).map(([key, data]) => {
@@ -105,7 +111,7 @@ const Articles = () => {
     return (
         <div className={styles.wrapper}>
             <button className={styles.backBtn} onClick={() => setActiveSection(null)}>
-                ← Назад до розділів
+                {t("articles_back")}
             </button>
             <input
                 className={styles.input}
@@ -113,7 +119,7 @@ const Articles = () => {
                 name="search"
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
-                placeholder="Пошук статей..."
+                placeholder={t("articles_search_placeholder")}
             />
             
             {!loading && categories.length > 1 && (
@@ -133,13 +139,13 @@ const Articles = () => {
             <div className={styles.slider}>
                 <div className={styles.articles}>
                     {loading ? (
-                        <div style={{marginTop: "20px"}}>Завантаження...</div>
+                        <div style={{marginTop: "20px"}}>{t("loading")}</div>
                     ) : filteredArticles.length > 0 ? (
                         filteredArticles.map((data, index) => (
                             <Article data={data} key={index} />
                         ))
                     ) : (
-                        <div style={{marginTop: "20px"}}>Нічого не знайдено</div>
+                        <div style={{marginTop: "20px"}}>{t("nothing_found")}</div>
                     )}
                 </div>
             </div>

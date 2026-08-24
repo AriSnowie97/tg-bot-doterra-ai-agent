@@ -9,8 +9,7 @@ const TelegramLinkBtn = () => {
             <LinkBtn 
             linkTo={"https://t.me/doterra_ua_assistant_bot"}
             Svg={TelegramSvg}
-            h3Text={"Наш телеграм"}
-            pText={"Посилання на телеграм-бота"}
+            subject="telegram"
             newStyles={styles}/>
         </>
     );

@@ -9,8 +9,7 @@ const ArticlesLinkBtn = () => {
             <LinkBtn 
             linkTo={"/articles"}
             Svg={ArticlesSvg}
-            h3Text={"База знань"}
-            pText={"Каталог наборів і продуктів з описом складу та застосування"}
+            subject="articles"
             newStyles={styles}/>
         </>
     );
