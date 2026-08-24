@@ -1,13 +1,12 @@
 import styles from "./DotInfo.module.css";
 
 
-const DotInfo = ({name}) => {
+const DotInfo = ({name, icon, href}) => {
     return (
-        <>
-            <div className={styles.wrapper}>
-                <p>{name}</p>
-            </div>
-        </>
+        <a href={href} target="_blank" rel="noopener noreferrer" className={styles.wrapper}>
+            {icon && <span className={styles.icon}>{icon}</span>}
+            <p>{name}</p>
+        </a>
     );
 }
 
