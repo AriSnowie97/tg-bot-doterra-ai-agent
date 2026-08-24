@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 
 import styles from "./Home.module.css";
 import { useLang } from "../../../contexts/LangContext";
-
 import { ChatLinkBtn } from "./components/LinkBtn/posterity/ChatLinkBtn";
 import { ArticlesLinkBtn } from "./components/LinkBtn/posterity/ArticlesLinkBtn";
 import { LinkArticleBtn } from "./components/LinkArticleBtn";
 import { TelegramLinkBtn } from "./components/LinkBtn/posterity/TelegramLinkBtn";
-
 import { get_articles } from "../../../api/articles";
 
 

@@ -22,13 +22,11 @@ const Articles = () => {
         "docs": { icon: ContactsSvg }
     };
 
+    // Adding text to sections
     Object.entries(SECTION_DATA).map(([key, data]) => {
         data.name = t("articles_section_data")?.[key]?.name ?? "name";
         data.desc = t("articles_section_data")?.[key]?.description ?? "description";
     });
-
-    
-    
     
     useEffect(() => {
         const fetchArticles = async () => {
@@ -79,7 +77,7 @@ const Articles = () => {
     if (activeSection === null) {
         return (
             <div className={styles.wrapper}>
-                <h1 className={styles.pageTitle}>{t("Articles") || "Статті"}</h1>
+                <h1 className={styles.pageTitle}>{t("articles")}</h1>
                 {loading ? (
                     <div style={{marginTop: "20px"}}>{t("loading")}</div>
                 ) : (
@@ -131,7 +129,7 @@ const Articles = () => {
                             className={`${styles.tagBtn} ${activeTag === tag ? styles.activeTag : ""}`}
                             onClick={() => setActiveTag(tag)}
                         >
-                            {tag}
+                            {tag === "Усі" ? t("articles_category_all") : tag}
                         </button>
                     ))}
                 </div>

@@ -3,22 +3,6 @@
     "home_subtitle": "I will help you find doTERRA essential oils, supplements, and kits - just ask.",
     "popular_now": "POPULAR NOW",
     "tg_channel": "OUR TELEGRAM CHANNEL",
-    "contact_specialist": "Message specialist directly -->",
-    
-    "chat_empty_title": "Hi! I am doTERRA AI Assistant",
-    "chat_empty_hint": "Ask me about essential oils, supplements or kits",
-    "chat_suggestion_1": "Which oil helps with stress?",
-    "chat_suggestion_2": "What is Home Essentials Kit?",
-    "chat_suggestion_3": "How to get started with doTERRA?",
-    "chat_typing": "typing...",
-    "chat_placeholder": "Type your question...",
-    "chat_error": "Sorry, there was an error connecting to the backend. Ensure the server is running!",
-    
-    "header_title": "doTERRA AI Assistant",
-    
-    "article_back": "← Back",
-    "article_error": "Knowledge base connection error. Ensure the backend is running.",
-
     "link_btns": {
         "chat": {
             "title": "Ask the assistant a question",
@@ -35,7 +19,19 @@
             "description": "Link to the Telegram bot"
         }
     },
-
+    "contact_specialist": "Message specialist directly -->",
+    
+    "header_title": "doTERRA AI Assistant",
+    "chat_empty_title": "Hi! I am doTERRA AI Assistant",
+    "chat_empty_hint": "Ask me about essential oils, supplements or kits",
+    "chat_suggestion_1": "Which oil helps with stress?",
+    "chat_suggestion_2": "What is Home Essentials Kit?",
+    "chat_suggestion_3": "How to get started with doTERRA?",
+    "chat_typing": "typing...",
+    "chat_placeholder": "Type your question...",
+    "chat_error": "Sorry, there was an error connecting to the backend. Ensure the server is running!",
+    
+    "articles": "Articles",
     "articles_section_data": {
         "products": {
             "name": "Products",
@@ -62,11 +58,15 @@
             "description": "Technical information and guides"
         }
     },
+    "articles_back": "← Back to sections",
+    "articles_search_placeholder": "Searching for articles...",
+    "articles_category_all": "All",
+    "article_back": "← Back",
+    "article_error": "Knowledge base connection error. Ensure the backend is running.",
 
     "contacts_about": "About the Specialist",
-    "contacts_about_description": "Certified nutritionist and skincare consultant. I answer questions about dietary supplements, beauty devices, and daily skincare routines.",
-
-    "simple_links": {
+    "contacts_about_description": "Essential Oils | Aromatherapy Practitioner | Nutritionist | Kyiv\nBody & Soul Aroma Expert\nEssential oils instead of a medicine cabinet\nConsultations for when\nlab results are normal but you don't feel well\nPersonalized selection of essential oils and supplements 👇🏼",
+    "contacts_simple_links": {
         "chat": {
             "text": "Message the assistant in the chat"
         },
