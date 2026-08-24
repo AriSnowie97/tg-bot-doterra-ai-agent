@@ -10,9 +10,28 @@
 
     border-radius: 50%;
     border: 1px solid var(--color-border);
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s;
 
     p {
         font-size: 12px;
         font-weight: 800;
+        margin: 0;
     }
+}
+
+.wrapper:hover {
+    opacity: 0.8;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon svg {
+    width: 20px;
+    height: 20px;
 }
