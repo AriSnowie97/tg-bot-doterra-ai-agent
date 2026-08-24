@@ -96,12 +96,18 @@ async def cmd_start(message: Message) -> None:
 @_admin_only
 async def cmd_list(message: Message) -> None:
     """Список усіх MD-файлів у src/content/docs/."""
-    docs_dir = Path(__file__).parent / "src" / "content" / "docs"
-    if not docs_dir.exists():
-        await message.answer("❌ Директорія docs/ не знайдена.")
+    content_dir = Path(__file__).parent / "src" / "content"
+    if not content_dir.exists():
+        await message.answer("❌ Директорія content/ не знайдена.")
         return
 
-    files = sorted(docs_dir.glob("*.md"))
+    files = []
+    for d in ["docs", "products", "advice", "symphony_of_the_cells", "kits"]:
+        folder = content_dir / d
+        if folder.exists():
+            files.extend(list(folder.glob("*.md")))
+            
+    files = sorted(files, key=lambda f: f.name)
     if not files:
         await message.answer("📭 Документи відсутні.")
         return
@@ -350,13 +356,19 @@ async def receive_slug(message: Message, state: FSMContext, bot: Bot) -> None:
 
     # Якщо є нові чанки — пропонуємо скопіювати файл у docs/
     if stats["inserted"] > 0:
-        docs_dir = Path(__file__).parent / "src" / "content" / "docs"
-        target_path = docs_dir / file_name
-        if not target_path.exists():
+        content_dir = Path(__file__).parent / "src" / "content"
+        found = False
+        if content_dir.exists():
+            for d in ["docs", "products", "advice", "symphony_of_the_cells", "kits"]:
+                if (content_dir / d / file_name).exists():
+                    found = True
+                    break
+                    
+        if not found:
             await message.answer(
-                f"💡 Файл ще не в <code>docs/</code>. Щоб веб-перегляд "
+                f"💡 Файл ще не в директоріях контенту. Щоб веб-перегляд "
                 f"<code>/docs/{slug}</code> працював — збережи його до "
-                f"<code>src/content/docs/{file_name}</code>",
+                f"<code>src/content/products/{file_name}</code>",
                 parse_mode="HTML"
             )
 
