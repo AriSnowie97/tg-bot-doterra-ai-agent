@@ -1,6 +1,6 @@
-# Symphony of the Cells™ — Неврологічний протокол
+# Symphony of the Cells™ — Неврологічний протокол (чанк 8)
 
-![Симфонія клітин](/images/nervous_protocol.jpg)
+![�������� �����](/images/nervous_protocol.jpg)
 
 ## Короткий підсумок застосування (легенда до протоколу)
 

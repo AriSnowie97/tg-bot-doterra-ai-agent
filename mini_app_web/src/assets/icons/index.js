@@ -7,3 +7,5 @@ export {SunSvg} from "./SunSvg";
 export {MoonSvg} from "./MoonSvg";
 export {GlobeSvg} from "./GlobeSvg";
 export {SendMsgSvg} from "./SendMsgSvg";
+export {InstagramSvg} from "./InstagramSvg";
+export {WhatsappSvg} from "./WhatsappSvg";
