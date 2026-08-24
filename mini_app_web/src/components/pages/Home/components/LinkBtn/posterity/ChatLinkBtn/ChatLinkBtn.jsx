@@ -9,8 +9,7 @@ const ChatLinkBtn = () => {
             <LinkBtn 
             linkTo={"/chat"}
             Svg={ChatSvg}
-            h3Text={"Задати питання асистенту"}
-            pText={"Відповім на основі бази знань і покажу джерела"}
+            subject="chat"
             newStyles={styles}/>
         </>
     );

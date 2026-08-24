@@ -17,8 +17,67 @@
     "header_title": "doTERRA AI Assistant",
     
     "article_back": "← Back",
-    "article_loading": "Loading...",
     "article_error": "Knowledge base connection error. Ensure the backend is running.",
+
+    "link_btns": {
+        "chat": {
+            "title": "Ask the assistant a question",
+            "description": "I will answer based on the knowledge base and show the sources"
+        },
+
+        "articles": {
+            "title": "Knowledge Base",
+            "description": "Catalog of sets and products with descriptions of ingredients and usage"
+        },
+
+        "telegram": {
+            "title": "Our Telegram channel",
+            "description": "Link to the Telegram bot"
+        }
+    },
+
+    "articles_section_data": {
+        "products": {
+            "name": "Products",
+            "description": "Essential oils, blends, and care"
+        },
+
+        "symphony_of_the_cells": {
+            "name": "A symphony of cells",
+            "description": "Essential oil application protocols"
+        },
+
+        "advice": {
+            "name": "Advices",
+            "description": "Recommendations and useful articles"
+        },
+
+        "kits": {
+            "name": "Sets",
+            "description": "Starter and gift sets"
+        },
+
+        "docs": {
+            "name": "Reference Guides",
+            "description": "Technical information and guides"
+        }
+    },
+
+    "contacts_about": "About the Specialist",
+    "contacts_about_description": "Certified nutritionist and skincare consultant. I answer questions about dietary supplements, beauty devices, and daily skincare routines.",
+
+    "simple_links": {
+        "chat": {
+            "text": "Message the assistant in the chat"
+        },
+
+        "specialist": {
+            "text": "Message the specialist directly"
+        }
+    },
+
+    "loading": "Loading...",
+    "nothing_found": "Nothing found",
 
     "nav_home": "Home",
     "nav_chat": "Chat",

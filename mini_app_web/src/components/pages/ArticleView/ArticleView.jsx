@@ -18,8 +18,8 @@ const ArticleView = () => {
         const fetchArticle = async () => {
             try {
                 setLoading(true);
-                // const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
                 const response = await get_article(slug);
+                
                 if (!response.ok) {
                     throw new Error("Не вдалося завантажити статтю");
                 }
@@ -44,7 +44,7 @@ const ArticleView = () => {
                 </button>
             </div>
             
-            {loading && <div className={styles.loading}>{t("article_loading")}</div>}
+            {loading && <div className={styles.loading}>{t("loading")}</div>}
             
             {error && <div className={styles.error}>{error}</div>}
             
