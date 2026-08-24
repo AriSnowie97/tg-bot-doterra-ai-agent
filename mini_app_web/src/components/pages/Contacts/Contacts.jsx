@@ -9,7 +9,7 @@ const Contacts = () => {
         <>
             <div className={styles.wrapper}>
                 <div className={styles.about}>
-                    <img className={styles.img} src="/specialist.jpg" alt="Спеціаліст" />
+                    <img className={styles.img} src="/specialist.png" alt="Спеціаліст" />
                     <h2>Про спеціаліста</h2>
                     <p>
                         Сертифікований нутриціолог і консультант з догляду за шкірою.Відповідаю на питання про БАД, косметологічні пристрої та щоденні ритуали догляду.
