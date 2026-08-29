@@ -36,15 +36,13 @@ async def translate_file(target_file: Path, is_retranslate: bool = False) -> Non
                 print(f"Перекладено: {f_trans.name}")
 
 
-async def translate_folder(target_folder: Path, is_retranslate: bool = False) -> None:
+async def translate_folder(folder: Path, is_retranslate: bool = False) -> None:
     """Перекладає усі .md файли у target_folder.
     - Якщо is_retranslate = True, то переписує існуючі файли теж."""
-    # for f in target_folder.glob("*.md"):
-    #     await translate_file(f, is_retranslate)
-
-    await asyncio.gather(
-        *(translate_file(f, is_retranslate) for f in target_folder.glob("*.md"))
-    )
+    if folder.exists() and folder.is_dir():
+        await asyncio.gather(
+            *(translate_file(f, is_retranslate) for f in folder.glob("*.md"))
+        )
 
 
 async def translate_folders(path: Path, folder_names: list[str], is_retranslate: bool = False) -> None:
