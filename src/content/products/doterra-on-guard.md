@@ -2,7 +2,7 @@
 
 # doTERRA On Guard — Protective Blend
 
-**Категорія:** Ефірні Олії
+**Категорія:** Ефірні олії
 
 **Тип:** Суміш (Protective Blend)
 

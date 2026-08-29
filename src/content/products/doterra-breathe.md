@@ -2,7 +2,7 @@
 
 # doTERRA Breathe — Respiratory Blend
 
-**Категорія:** Ефірні Олії
+**Категорія:** Ефірні олії
 
 **Тип:** Суміш (Respiratory Blend)
 

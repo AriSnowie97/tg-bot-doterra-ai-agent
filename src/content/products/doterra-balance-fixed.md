@@ -2,7 +2,7 @@
 
 # doTERRA Balance — Grounding Blend
 
-**Категорія:** Ефірні Олії
+**Категорія:** Ефірні олії
 
 **Тип:** Суміш (Grounding Blend)
 

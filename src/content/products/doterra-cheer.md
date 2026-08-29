@@ -2,7 +2,7 @@
 
 # doTERRA Cheer — Uplifting Blend
 
-**Категорія:** Ефірні Олії
+**Категорія:** Ефірні олії
 
 **Тип:** Суміш (Uplifting Blend, Emotional Aromatherapy)
 

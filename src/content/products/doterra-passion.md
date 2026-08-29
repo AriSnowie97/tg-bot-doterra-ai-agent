@@ -2,7 +2,7 @@
 
 # doTERRA Passion — Inspiring Blend
 
-**Категорія:** Ефірні Олії
+**Категорія:** Ефірні олії
 
 **Тип:** Суміш (Inspiring Blend, Emotional Aromatherapy)
 

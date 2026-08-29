@@ -2,7 +2,7 @@
 
 # doTERRA Align — Centering Blend
 
-**Категорія:** Ефірні Олії
+**Категорія:** Ефірні олії
 
 **Тип:** Суміш (Centering Blend, частина Yoga Collection)
 
