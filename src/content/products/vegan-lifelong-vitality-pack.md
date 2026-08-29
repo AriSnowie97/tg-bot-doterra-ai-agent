@@ -6,7 +6,6 @@
 
 **Тип:** БАД (веганська версія базового комплексу LLV)
 
-**Посилання:** https://www.doterra.com/US/en/p/supplements-daily-vitality-doterra-lifelong-vitality-pack-vegan
 
 ---
 

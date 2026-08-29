@@ -6,7 +6,6 @@
 
 **Тип:** Базова олія (Carrier Oil, 15 мл)
 
-**Посилання:** https://www.doterra.com/US/en/p/castor-oil
 
 ---
 

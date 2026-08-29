@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна олія Touch (рол-он, 4 мл)
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-magnolia-touch
 
 ---
 

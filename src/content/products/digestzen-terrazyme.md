@@ -6,7 +6,6 @@
 
 **Тип:** БАД (комплекс травних ферментів)
 
-**Посилання:** https://www.doterra.com/US/en/p/digestzen-terrazyme
 
 ---
 

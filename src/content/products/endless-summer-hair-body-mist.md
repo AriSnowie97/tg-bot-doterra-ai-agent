@@ -6,7 +6,6 @@
 
 **Тип:** Спрей для волосся й тіла (лімітований літній)
 
-**Посилання:** https://www.doterra.com/US/en/p/endless-summer-hair-and-body-mist
 
 ---
 

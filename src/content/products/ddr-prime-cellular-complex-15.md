@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна суміш (15 мл)
 
-**Посилання:** https://www.doterra.com/US/en/p/ddr-prime-oil
 
 ---
 

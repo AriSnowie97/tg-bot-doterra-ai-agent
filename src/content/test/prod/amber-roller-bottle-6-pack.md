@@ -6,7 +6,6 @@
 
 **Тип:** Флакони-ролики для власних сумішей ефірних олій
 
-**Посилання:** https://www.doterra.com/US/en/p/10-ml-amber-roller-bottle-6-pack
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Cleansing Blend)
 
-**Посилання:** https://www.doterra.com/US/en/p/purify-oil
 
 ---
 

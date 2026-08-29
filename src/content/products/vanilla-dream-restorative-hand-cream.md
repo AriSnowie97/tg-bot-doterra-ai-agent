@@ -6,7 +6,6 @@
 
 **Тип:** Крем для рук (сезонний)
 
-**Посилання:** https://www.doterra.com/US/en/holiday-collection
 
 ---
 

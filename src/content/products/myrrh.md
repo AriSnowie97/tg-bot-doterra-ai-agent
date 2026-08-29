@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна олія (одиночна, 15 мл)
 
-**Посилання:** https://www.doterra.com/US/en/blog/spotlight-myrrh-oil
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** БАД (порошковий комплекс з колагеном)
 
-**Посилання:** https://www.doterra.com/US/en/p/metapwr-advantage
 
 ---
 

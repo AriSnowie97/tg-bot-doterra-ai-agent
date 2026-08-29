@@ -6,7 +6,6 @@
 
 **Тип:** Набір ефірних олій (10 позицій)
 
-**Посилання:** https://www.doterra.com/US/en/p/family-essentials-kit
 
 ---
 

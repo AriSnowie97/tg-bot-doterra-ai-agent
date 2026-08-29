@@ -6,7 +6,6 @@
 
 **Тип:** Набір для метаболічного здоров'я
 
-**Посилання:** https://media.doterra.com/us/en/flyers/enrollment-kits.pdf
 
 ---
 

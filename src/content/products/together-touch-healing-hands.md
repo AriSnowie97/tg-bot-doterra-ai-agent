@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна суміш Touch (рол-он, благодійна)
 
-**Посилання:** https://www.doterra.com/US/en/p/together-touch-oil
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Концентрат пінного мила для рук + багаторазовий дозатор
 
-**Посилання:** https://www.doterra.com/US/en/p/abode-foaming-handwash-concentrate-with-citrus-bloom
 
 ---
 

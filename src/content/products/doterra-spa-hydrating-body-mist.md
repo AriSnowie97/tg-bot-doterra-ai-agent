@@ -6,7 +6,6 @@
 
 **Тип:** Спрей для тіла
 
-**Посилання:** https://www.doterra.com/US/en/blog/spotlight-doterra-spa-hydrating-body-mist
 
 ---
 

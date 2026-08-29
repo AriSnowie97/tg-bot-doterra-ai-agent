@@ -6,7 +6,6 @@
 
 **Тип:** БАД (капсульований поліфенольний комплекс)
 
-**Посилання:** https://www.doterra.com/US/en/p/deep-blue-polyphenol-complex
 
 ---
 

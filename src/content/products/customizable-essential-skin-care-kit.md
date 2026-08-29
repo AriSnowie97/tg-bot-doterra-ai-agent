@@ -6,7 +6,6 @@
 
 **Тип:** Набір для догляду за обличчям (кастомізований)
 
-**Посилання:** https://www.doterra.com/US/en/p/personal-care-Customizable-Essential-Skin-Care-Kit
 
 ---
 

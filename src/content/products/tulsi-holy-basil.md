@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна олія (одиночна, 5 мл)
 
-**Посилання:** https://www.doterra.com/US/en/p/tulsi-holy-basil-oil
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Repellent Blend)
 
-**Посилання:** https://www.doterra.com/US/en/p/terrashield-blend (також доступний TerraShield Spray 30 мл — той самий склад у флаконі-спреї)
 
 ---
 

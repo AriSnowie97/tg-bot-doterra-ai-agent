@@ -6,7 +6,6 @@
 
 **Тип:** Капсули — Food Nutrient Complex
 
-**Посилання:** https://www.doterra.com/US/en/p/supplements-daily-vitality-microplex-vmz-food-nutrient-complex
 
 ---
 

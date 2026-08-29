@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна суміш Touch (рол-он, 10 мл)
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-motivate-touch-encouraging-blend-oil
 
 ---
 

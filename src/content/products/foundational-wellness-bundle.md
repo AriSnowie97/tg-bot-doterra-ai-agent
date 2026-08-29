@@ -6,7 +6,6 @@
 
 **Тип:** Набір БАДів
 
-**Посилання:** https://www.doterra.com/US/en/p/essential-foundations-kit
 
 ---
 

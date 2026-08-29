@@ -6,7 +6,6 @@
 
 **Тип:** Набір для поповнення запасів
 
-**Посилання:** https://www.doterra.com/US/en/p/aromatouch-technique-refill-kit
 
 ---
 

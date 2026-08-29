@@ -6,7 +6,6 @@
 
 **Тип:** БАД (дитячі жувальні мультивітаміни)
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-a2z-chewable
 
 ---
 

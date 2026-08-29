@@ -6,7 +6,6 @@
 
 **Тип:** Повний набір ефірних олій колекціонера
 
-**Посилання:** https://www.doterra.com/US/en/p/oil-collectors-kit
 
 ---
 

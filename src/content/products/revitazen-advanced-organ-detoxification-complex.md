@@ -6,7 +6,6 @@
 
 **Тип:** БАД (комплекс подвійної камери для органів детоксикації)
 
-**Посилання:** https://www.doterra.com/US/en/p/revitazen-advanced-organ-detoxification-complex
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Renewing Blend, Emotional Aromatherapy)
 
-**Посилання:** https://www.doterra.com/US/en/p/emotional-aromatherapy-forgive
 
 ---
 

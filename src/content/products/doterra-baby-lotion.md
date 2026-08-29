@@ -6,7 +6,6 @@
 
 **Тип:** Лосьйон для тіла
 
-**Посилання:** https://www.doterra.com/US/en/doterra-baby
 
 ---
 

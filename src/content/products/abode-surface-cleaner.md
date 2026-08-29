@@ -6,7 +6,6 @@
 
 **Тип:** Концентрат багатоцільового засобу для прибирання
 
-**Посилання:** https://www.doterra.com/US/en/p/abode-multi-purpose-surface-cleaner-concentrate
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** БАД (протеїновий порошок, 3 варіанти: Whey Chocolate, Whey Vanilla, Vegan)
 
-**Посилання:** https://www.doterra.com/US/en/doterra-protein
 
 ---
 

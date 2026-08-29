@@ -6,7 +6,6 @@
 
 **Тип:** Дезодорант
 
-**Посилання:** https://www.doterra.com/US/en/p/natural-deodorant-infused-with-doterra-balance-essential-oil
 
 ---
 

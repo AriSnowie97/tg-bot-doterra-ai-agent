@@ -6,7 +6,6 @@
 
 **Тип:** БАД (вегетаріанський комплекс омега-3)
 
-**Посилання:** https://www.doterra.com/US/en/p/supplements-daily-vitality-veo-mega
 
 ---
 

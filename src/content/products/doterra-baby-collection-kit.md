@@ -6,7 +6,6 @@
 
 **Тип:** Набір для догляду за малюком
 
-**Посилання:** https://www.doterra.com/US/en/doterra-baby
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Серветки-санітайзер (50 шт.)
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-on-guard-hand-sanitizing-wipes
 
 ---
 

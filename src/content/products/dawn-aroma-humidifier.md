@@ -6,7 +6,6 @@
 
 **Тип:** Дифузор-зволожувач повітря
 
-**Посилання:** https://www.doterra.com/US/en/p/dawn-aroma-humidifier
 
 ---
 

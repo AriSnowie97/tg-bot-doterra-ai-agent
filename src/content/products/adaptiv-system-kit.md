@@ -6,7 +6,6 @@
 
 **Тип:** Набір для управління стресом
 
-**Посилання:** https://www.doterra.com/US/en/p/adaptiv-system
 
 ---
 

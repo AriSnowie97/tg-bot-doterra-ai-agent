@@ -6,7 +6,6 @@
 
 **Тип:** БАД (жіночий гормональний комплекс)
 
-**Посилання:** https://www.doterra.com/US/en/p/phytoestrogen-complex
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Навчальний набір з масажу
 
-**Посилання:** https://www.doterra.com/US/en/p/aromatouch-technique-kit
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна олія Touch (рол-он, 4 мл)
 
-**Посилання:** https://media.doterra.com/ca-otg/en/pips/precious-floral-collection.pdf
 
 ---
 

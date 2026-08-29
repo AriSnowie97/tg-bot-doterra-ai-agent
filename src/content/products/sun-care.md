@@ -6,7 +6,6 @@
 
 **Тип:** сонцезахисний засіб (мінеральний SPF)
 
-**Посилання:** https://www.doterra.com/US/en/p/face-and-body-mineral-sunscreen-lotion
 
 ---
 

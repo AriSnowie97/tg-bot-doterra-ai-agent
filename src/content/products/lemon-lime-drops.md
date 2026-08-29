@@ -6,7 +6,6 @@
 
 **Тип:** Льодяники (30 шт., сезонні)
 
-**Посилання:** https://www.doterra.com/US/en/p/lemon-lime-drops
 
 ---
 

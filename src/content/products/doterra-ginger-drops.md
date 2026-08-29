@@ -6,7 +6,6 @@
 
 **Тип:** Льодяники (supplement)
 
-**Посилання:** https://www.doterra.com/US/en/p/ginger-drops
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Набір для догляду за волоссям
 
-**Посилання:** https://www.doterra.com/US/en/education/pe/doterra-hair-care-trio
 
 ---
 

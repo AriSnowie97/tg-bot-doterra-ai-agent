@@ -6,7 +6,6 @@
 
 **Тип:** БАД (риб'ячий жир з ефірною олією)
 
-**Посилання:** https://www.doterra.com/US/en/p/eo-mega-essential-oil-omega-complex
 
 ---
 

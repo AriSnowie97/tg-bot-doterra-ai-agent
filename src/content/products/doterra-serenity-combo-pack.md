@@ -6,7 +6,6 @@
 
 **Тип:** Набір для сну
 
-**Посилання:** https://beautis.com.ua/doterra-serenity-bedtime-kit/
 
 ---
 

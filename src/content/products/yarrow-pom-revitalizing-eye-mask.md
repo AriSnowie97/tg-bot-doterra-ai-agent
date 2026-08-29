@@ -6,7 +6,6 @@
 
 **Тип:** Патчі під очі
 
-**Посилання:** https://www.doterra.com/US/en/p/yarrow-pom-eye-mask
 
 ---
 

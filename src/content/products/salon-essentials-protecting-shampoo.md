@@ -6,7 +6,6 @@
 
 **Тип:** Шампунь
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-protecting-shampoo
 
 ---
 

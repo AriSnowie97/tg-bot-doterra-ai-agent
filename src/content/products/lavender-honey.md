@@ -6,7 +6,6 @@
 
 **Тип:** Мед з ефірною олією (сезонний)
 
-**Посилання:** https://www.doterra.com/US/en/holiday-collection
 
 ---
 

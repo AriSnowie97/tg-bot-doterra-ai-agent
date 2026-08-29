@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна олія (однокомпонентна / single)
 
-**Посилання:** https://www.doterra.com/US/en/p/peppermint-oil
 
 ---
 

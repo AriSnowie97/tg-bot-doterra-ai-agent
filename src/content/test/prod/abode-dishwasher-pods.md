@@ -6,7 +6,6 @@
 
 **Тип:** Капсули для посудомийної машини
 
-**Посилання:** https://www.doterra.com/US/en/p/abode-dishwasher-pods
 
 ---
 

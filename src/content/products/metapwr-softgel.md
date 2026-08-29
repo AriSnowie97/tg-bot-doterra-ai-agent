@@ -6,7 +6,6 @@
 
 **Тип:** БАД (олія MetaPWR у капсулах)
 
-**Посилання:** https://www.doterra.com/US/en/p/metapwr-softgels
 
 ---
 

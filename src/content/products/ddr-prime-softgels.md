@@ -6,7 +6,6 @@
 
 **Тип:** БАД (клітинний комплекс у капсулах)
 
-**Посилання:** https://www.doterra.com/US/en/p/ddr-prime-softgels
 
 ---
 

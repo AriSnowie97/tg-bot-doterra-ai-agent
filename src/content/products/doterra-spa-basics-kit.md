@@ -6,7 +6,6 @@
 
 **Тип:** Набір для догляду за тілом
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-spa-basics-kit
 
 ---
 

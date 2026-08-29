@@ -6,7 +6,6 @@
 
 **Тип:** БАД (порошок із зелені та суперфудів)
 
-**Посилання:** https://www.doterra.com/US/en/doterra-greens
 
 ---
 

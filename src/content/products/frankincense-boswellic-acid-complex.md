@@ -6,7 +6,6 @@
 
 **Тип:** БАД (олія і смола ладану в мікробідах)
 
-**Посилання:** https://www.doterra.com/US/en/p/frankincense-boswellic-acid-complex
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Мазь
 
-**Посилання:** https://www.doterra.com/US/en/p/correct-x
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Бальзам для губ
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-spa-lip-balm-tropical
 
 ---
 

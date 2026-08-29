@@ -6,7 +6,6 @@
 
 **Тип:** Набір емоційних сумішей
 
-**Посилання:** https://www.doterra.com/US/en/p/emotional-aromatherapy-system-kit
 
 ---
 

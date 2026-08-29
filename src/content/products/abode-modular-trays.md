@@ -6,7 +6,6 @@
 
 **Тип:** Аксесуар — модульні лотки для зберігання
 
-**Посилання:** https://www.doterra.com/US/en/p/abode-modular-trays
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Спрей-репелент
 
-**Посилання:** https://www.doterra.com/US/en/p/terrashield-blend-spray
 
 ---
 

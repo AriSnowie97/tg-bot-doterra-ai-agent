@@ -6,7 +6,6 @@
 
 **Тип:** Крем-масло для тіла
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-spa-replenishing-body-butter
 
 ---
 

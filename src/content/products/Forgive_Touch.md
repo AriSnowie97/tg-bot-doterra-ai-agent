@@ -6,7 +6,6 @@
 
 **Тип:** Суміш ефірних олій, Touch (рол-он 10 мл)
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-forgive-touch-renewing-blend-oil
 
 ---
 

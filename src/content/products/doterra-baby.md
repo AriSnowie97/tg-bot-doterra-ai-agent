@@ -6,7 +6,6 @@
 
 **Тип:** дитячий засіб для миття волосся і тіла
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-baby-hair-and-body-wash
 
 ---
 

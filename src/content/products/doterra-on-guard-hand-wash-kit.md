@@ -6,7 +6,6 @@
 
 **Тип:** Набір для миття рук (сезонний)
 
-**Посилання:** https://www.doterra.com/US/en/p/on-guard-hand-wash-kit
 
 ---
 

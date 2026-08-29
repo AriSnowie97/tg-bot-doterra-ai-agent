@@ -6,7 +6,6 @@
 
 **Тип:** Набір з портативним дифузором (лімітований літній)
 
-**Посилання:** https://www.doterra.com/US/en/p/endless-summer-bundle
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Сироватка для тіла
 
-**Посилання:** https://www.doterra.com/US/en/p/yarrow-pom-body-renewal-serum-oil
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Набір для дітей
 
-**Посилання:** https://www.doterra.com/US/en/p/kids-collection
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Жувальні таблетки
 
-**Посилання:** https://www.doterra.com/US/en/p/on-guard-chewable-tablet
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Однокомпонентна ефірна олія
 
-**Посилання:** https://www.doterra.com/US/en/p/frankincense-oil
 
 ---
 

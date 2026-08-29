@@ -6,7 +6,6 @@
 
 **Тип:** Капсули (Softgels)
 
-**Посилання:** https://www.doterra.com/us/en/p/onguard-protective-blend-softgel
 
 ---
 

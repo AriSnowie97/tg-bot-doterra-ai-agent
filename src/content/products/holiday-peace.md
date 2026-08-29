@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна суміш (15 мл, сезонна)
 
-**Посилання:** https://www.doterra.com/US/en/holiday-collection
 
 ---
 

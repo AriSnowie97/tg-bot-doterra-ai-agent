@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Restful Blend)
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-serenity-oil
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** БАД (олія копайби в капсулах)
 
-**Посилання:** https://www.doterra.com/US/en/p/copaiba-softgels
 
 ---
 

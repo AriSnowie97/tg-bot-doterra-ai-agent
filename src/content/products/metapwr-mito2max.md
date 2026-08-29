@@ -6,7 +6,6 @@
 
 **Тип:** БАД (комплекс для енергії та витривалості)
 
-**Посилання:** https://www.doterra.com/US/en/p/supplements-mito-2-max
 
 ---
 

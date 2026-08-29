@@ -6,7 +6,6 @@
 
 **Тип:** Засіб для прання (концентрат 6x)
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-on-guard-laundry-detergent
 
 ---
 

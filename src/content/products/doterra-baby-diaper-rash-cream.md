@@ -6,7 +6,6 @@
 
 **Тип:** Крем від попрілостей
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-baby-diaper-rash-cream
 
 ---
 

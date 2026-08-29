@@ -6,7 +6,6 @@
 
 **Тип:** Набір з дифузором та БАДами
 
-**Посилання:** https://media.doterra.com/us/en/flyers/enrollment-kits.pdf
 
 ---
 

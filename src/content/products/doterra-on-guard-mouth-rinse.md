@@ -6,7 +6,6 @@
 
 **Тип:** Ополіскувач для рота
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-onguard-mouthwash
 
 ---
 

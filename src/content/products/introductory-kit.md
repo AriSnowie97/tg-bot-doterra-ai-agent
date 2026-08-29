@@ -6,7 +6,6 @@
 
 **Тип:** Набір ефірних олій (3 позиції)
 
-**Посилання:** https://www.doterra.com/US/en/p/introductory-kit
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна олія
 
-**Посилання:** https://www.doterra.com/US/en/p/lavender-oil
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Soothing Blend)
 
-**Посилання:** https://www.doterra.com/US/en/p/deep-blue-oil
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Компактний портативний дифузор
 
-**Посилання:** https://www.doterra.com/US/en/p/pebble-diffuser
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Стартовий набір для нових клієнтів
 
-**Посилання:** https://www.doterra.com/US/en/p/home-essentials-enrollment-kit
 
 ---
 
