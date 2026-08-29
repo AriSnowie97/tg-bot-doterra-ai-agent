@@ -2,7 +2,7 @@
 
 # doTERRA Motivate — Encouraging Blend
 
-**Категорія:** Ефірні Олії
+**Категорія:** Ефірні олії
 
 **Тип:** Суміш (Encouraging Blend, Emotional Aromatherapy)
 

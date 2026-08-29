@@ -2,7 +2,7 @@
 
 # Immortelle — Anti-Aging Blend
 
-**Категорія:** Ефірні Олії
+**Категорія:** Ефірні олії
 
 **Тип:** Суміш (Anti-Aging Blend)
 

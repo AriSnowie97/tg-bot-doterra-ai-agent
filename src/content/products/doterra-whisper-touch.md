@@ -2,7 +2,7 @@
 
 # doTERRA Whisper Touch — Personal Fragrance Blend
 
-**Категорія:** Ефірні Олії
+**Категорія:** Ролери (Touch)
 
 **Тип:** Суміш (персональний аромат для жінок)
 

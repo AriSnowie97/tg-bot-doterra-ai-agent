@@ -2,7 +2,7 @@
 
 # doTERRA Anchor — Steadying Blend
 
-**Категорія:** Ефірні Олії
+**Категорія:** Ефірні олії
 
 **Тип:** Суміш (Steadying Blend, частина Yoga Collection)
 

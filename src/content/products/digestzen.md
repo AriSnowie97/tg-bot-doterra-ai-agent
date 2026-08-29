@@ -2,7 +2,7 @@
 
 # DigestZen — Digestive Blend
 
-**Категорія:** Ефірні Олії
+**Категорія:** Ефірні олії
 
 **Тип:** Суміш (Digestive Blend)
 

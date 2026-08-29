@@ -2,7 +2,7 @@
 
 # TerraShield — Repellent Blend
 
-**Категорія:** Ефірні Олії
+**Категорія:** Ефірні олії
 
 **Тип:** Суміш (Repellent Blend)
 
