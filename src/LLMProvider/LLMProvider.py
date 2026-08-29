@@ -55,13 +55,15 @@ class LLMProvider(ABC):
     async def generate_content(self,
                                content: str,
                                config: types.GenerateContentConfigOrDict | None = None,
-                               MAX_RETRIES: int = 2) -> str:
+                               MAX_RETRIES: int = 2,
+                               models: list[str] | None = None) -> str:
         """Генерація відповіді на основі prompt."""
+        models = models if models is not None else self.GENERATION_MODELS
         last_error: Exception | None = None
         
         for attempt in range(1, MAX_RETRIES + 2):
             for api_key in self.LLM_API_KEYS:
-                for model in self.GENERATION_MODELS:
+                for model in models:
                     try:
                         response = await asyncio.to_thread(
                             self._generate_content,
