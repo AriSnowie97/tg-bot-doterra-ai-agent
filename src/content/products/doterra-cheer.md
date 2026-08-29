@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Uplifting Blend, Emotional Aromatherapy)
 
-**Посилання:** https://www.doterra.com/US/en/p/emotional-aromatherapy-cheer
 
 ---
 

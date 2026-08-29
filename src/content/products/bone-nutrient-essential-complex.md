@@ -6,7 +6,6 @@
 
 **Тип:** БАД (комплекс для здоров'я кісток)
 
-**Посилання:** https://www.doterra.com/US/en/p/supplements-bone-nutrient-essential-complex
 
 ---
 

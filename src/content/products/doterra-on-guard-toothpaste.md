@@ -6,7 +6,6 @@
 
 **Тип:** Зубна паста
 
-**Посилання:** https://www.doterra.com/US/en/onguard-natural-whitening-toothpaste
 
 ---
 

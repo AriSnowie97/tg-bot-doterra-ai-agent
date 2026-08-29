@@ -6,7 +6,6 @@
 
 **Тип:** Ультразвуковий дифузор
 
-**Посилання:** https://www.doterra.com/US/en/petal-essential-collection
 
 ---
 

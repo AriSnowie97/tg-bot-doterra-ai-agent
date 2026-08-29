@@ -6,7 +6,6 @@
 
 **Тип:** Капсули — Cellular Vitality Complex
 
-**Посилання:** https://www.doterra.com/US/en/p/alpha-crs-plus
 
 ---
 

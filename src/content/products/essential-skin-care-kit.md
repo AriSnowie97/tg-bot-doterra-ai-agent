@@ -6,7 +6,6 @@
 
 **Тип:** Набір для догляду за обличчям
 
-**Посилання:** https://www.doterra.com/US/en/p/personal-care-essential-skin-care-kit
 
 ---
 

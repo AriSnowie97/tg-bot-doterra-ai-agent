@@ -6,7 +6,6 @@
 
 **Тип:** Льодяники для горла
 
-**Посилання:** https://www.doterra.com/US/en/p/onguard-protecting-throat-drops
 
 ---
 

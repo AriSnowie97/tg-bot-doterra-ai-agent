@@ -6,7 +6,6 @@
 
 **Тип:** БАД (сезонна суміш у капсулах)
 
-**Посилання:** https://www.doterra.com/US/en/blog/spotlight-triease-softgels
 
 ---
 

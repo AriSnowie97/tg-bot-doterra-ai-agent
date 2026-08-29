@@ -6,7 +6,6 @@
 
 **Тип:** Набір для жіночого здоров'я
 
-**Посилання:** https://www.doterra.com/US/en/p/loyalty-reward-kits-womens-health-kit
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Кондиціонер
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-daily-conditioner
 
 ---
 

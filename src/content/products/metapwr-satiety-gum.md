@@ -6,7 +6,6 @@
 
 **Тип:** БАД (жувальна гумка без цукру)
 
-**Посилання:** https://www.doterra.com/US/en/p/metapwr-satiety-gum
 
 ---
 

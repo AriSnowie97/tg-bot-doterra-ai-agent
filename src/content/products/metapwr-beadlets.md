@@ -6,7 +6,6 @@
 
 **Тип:** БАД (олія MetaPWR у формі дрібних кульок)
 
-**Посилання:** https://www.doterra.com/US/en/metapwr-beadlets
 
 ---
 

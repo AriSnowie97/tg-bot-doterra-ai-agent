@@ -6,7 +6,6 @@
 
 **Тип:** Лосьйон для рук і тіла
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-spa-hand-and-body-lotion-3-pack
 
 ---
 

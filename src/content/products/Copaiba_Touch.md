@@ -6,7 +6,6 @@
 
 **Тип:** Одиночна олія, Touch (рол-он 10 мл)
 
-**Посилання:** https://www.doterra.com/US/en/p/copaiba-touch-oil
 
 ---
 

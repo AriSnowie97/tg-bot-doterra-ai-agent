@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Steadying Blend, частина Yoga Collection)
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-yoga-anchor
 
 ---
 

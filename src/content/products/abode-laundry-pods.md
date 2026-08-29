@@ -6,7 +6,6 @@
 
 **Тип:** Капсули для прання
 
-**Посилання:** https://www.doterra.com/US/en/p/abode-laundry-pods
 
 ---
 

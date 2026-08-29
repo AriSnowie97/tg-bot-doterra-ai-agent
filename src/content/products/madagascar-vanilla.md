@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна олія (одиночна, абсолют, попередньо розведений)
 
-**Посилання:** https://www.doterra.com/US/en/p/madagascar-vanilla-oil
 
 ---
 

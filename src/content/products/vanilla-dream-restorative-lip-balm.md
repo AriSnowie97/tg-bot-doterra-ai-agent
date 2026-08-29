@@ -6,7 +6,6 @@
 
 **Тип:** Бальзам для губ (сезонний)
 
-**Посилання:** https://www.doterra.com/US/en/holiday-collection
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна олія (фірмова суміш, 15 мл)
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-yarrow-pom
 
 ---
 

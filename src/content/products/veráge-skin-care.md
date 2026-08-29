@@ -6,7 +6,6 @@
 
 **Тип:** зволожувальна сироватка
 
-**Посилання:** https://www.doterra.com/US/en/p/personal-care-verage-immortelle-hydrating-serum
 
 ---
 

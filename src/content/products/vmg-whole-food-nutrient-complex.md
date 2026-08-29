@@ -6,7 +6,6 @@
 
 **Тип:** Дієтична добавка (порошковий напій)
 
-**Посилання:** https://www.doterra.com/US/en/p/vmg-plus-powder
 
 ---
 

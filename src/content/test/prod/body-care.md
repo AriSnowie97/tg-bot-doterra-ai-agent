@@ -6,7 +6,6 @@
 
 **Тип:** базова (транспортна) олія для тіла
 
-**Посилання:** https://www.doterra.com/US/en/p/usage-fractionated-coconut-oil-carrier-oil
 
 ---
 

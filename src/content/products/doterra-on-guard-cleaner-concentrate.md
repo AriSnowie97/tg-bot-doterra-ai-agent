@@ -6,7 +6,6 @@
 
 **Тип:** Концентрат для прибирання
 
-**Посилання:** https://www.doterra.com/US/en/p/onguard-cleaner-concentrate
 
 ---
 

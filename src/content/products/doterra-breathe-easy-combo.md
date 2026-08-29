@@ -6,7 +6,6 @@
 
 **Тип:** Набір для дихання
 
-**Посилання:** https://www.doterra.com/US/en/p/breathe-easy-combo
 
 ---
 

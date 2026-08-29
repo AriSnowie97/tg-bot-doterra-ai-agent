@@ -6,7 +6,6 @@
 
 **Тип:** Драже (Beadlets)
 
-**Посилання:** https://www.doterra.com/US/en/p/peppermint-beadlets
 
 ---
 

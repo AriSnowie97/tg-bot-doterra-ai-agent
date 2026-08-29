@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Monthly Blend, розроблена спеціально для жінок)
 
-**Посилання:** https://www.doterra.com/US/en/p/clarycalm-blend-oil
 
 ---
 

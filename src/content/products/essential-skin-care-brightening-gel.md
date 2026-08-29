@@ -6,7 +6,6 @@
 
 **Тип:** Гель для обличчя
 
-**Посилання:** https://www.doterra.com/US/en/p/personal-care-brightening-gel
 
 ---
 

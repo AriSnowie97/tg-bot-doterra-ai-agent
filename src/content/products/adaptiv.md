@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Calming Blend)
 
-**Посилання:** https://www.doterra.com/US/en/p/adaptiv-oil (Також доступні: Adaptiv Touch флакон-ролик 10 мл; Adaptiv Calming Blend Capsules — БАД)
 
 ---
 

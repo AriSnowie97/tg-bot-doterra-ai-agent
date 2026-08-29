@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Grounding Blend)
 
-**Посилання:** https://www.doterra.com/US/en/p/balance-grounding-blend-oil
 
 ---
 

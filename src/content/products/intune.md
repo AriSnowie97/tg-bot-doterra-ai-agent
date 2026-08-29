@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Focus Blend)
 
-**Посилання:** https://www.doterra.com/US/en/p/in-tune-oil
 
 ---
 

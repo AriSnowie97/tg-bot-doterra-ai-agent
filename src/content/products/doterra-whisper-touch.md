@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (персональний аромат для жінок)
 
-**Посилання:** https://www.doterra.com/US/en/p/whisper-touch-oil
 
 ---
 

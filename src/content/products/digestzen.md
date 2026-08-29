@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Digestive Blend)
 
-**Посилання:** https://www.doterra.com/US/en/p/digestzen-oil (Також доступно у форматах: DigestZen 15 мл, флакон-ролик 10 мл, Softgels, DigestTab, TerraZyme)
 
 ---
 

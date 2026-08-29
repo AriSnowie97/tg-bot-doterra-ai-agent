@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна олія (з лінійки Kids Collection)
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-rescuer-blend
 
 ---
 

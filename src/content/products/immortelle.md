@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Anti-Aging Blend)
 
-**Посилання:** https://www.doterra.com/US/en/p/immortelle-anti-aging-blend (також Veráge Immortelle Hydrating Serum - окрема картка в файлі 03)
 
 ---
 

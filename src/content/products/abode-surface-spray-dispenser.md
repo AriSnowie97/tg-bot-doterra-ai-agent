@@ -6,7 +6,6 @@
 
 **Тип:** Аксесуар — багаторазовий флакон-розпилювач
 
-**Посилання:** https://www.doterra.com/US/en/p/abode-multi-surface-spray-dispenser
 
 ---
 

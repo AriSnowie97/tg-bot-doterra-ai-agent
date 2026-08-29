@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Protective Blend)
 
-**Посилання:** https://www.doterra.com/US/en/p/on-guard-oil (також доступно: флакон-ролик 10 мл, Beadlets, Chewable Tablets, Softgels, Throat Drops, зубна паста, ополіскувач, засоби для дому)
 
 ---
 

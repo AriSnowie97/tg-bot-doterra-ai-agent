@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Tension Blend)
 
-**Посилання:** https://www.doterra.com/US/en/p/pasttense
 
 ---
 

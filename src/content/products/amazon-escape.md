@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна суміш (5 мл, частина Escape Series Trio)
 
-**Посилання:** https://www.doterra.com/US/en/p/escape-series-trio
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Крем для шкіри навколо очей
 
-**Посилання:** https://www.doterra.com/US/en/blog/spotlight-anti-aging-eye-cream
 
 ---
 

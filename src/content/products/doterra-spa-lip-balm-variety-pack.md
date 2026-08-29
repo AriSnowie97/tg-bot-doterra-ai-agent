@@ -6,7 +6,6 @@
 
 **Тип:** Бальзам для губ (набір з 3 ароматів)
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-spa-lip-balm-3-pack
 
 ---
 

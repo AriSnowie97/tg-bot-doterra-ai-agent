@@ -6,7 +6,6 @@
 
 **Тип:** Незмивний кондиціонер
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-leave-in-conditioner
 
 ---
 

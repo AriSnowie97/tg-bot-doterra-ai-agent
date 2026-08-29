@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (благодійна лінійка)
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-hope-touch-essential-oil-blend
 
 ---
 

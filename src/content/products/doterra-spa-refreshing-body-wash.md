@@ -6,7 +6,6 @@
 
 **Тип:** Гель для душу
 
-**Посилання:** https://www.doterra.com/US/en/blog/spotlight-doterra-spa-refreshing-body-wash
 
 ---
 

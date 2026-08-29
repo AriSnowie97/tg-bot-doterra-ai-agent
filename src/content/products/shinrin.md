@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Forest Bathing Blend)
 
-**Посилання:** https://www.doterra.com/US/en/p/shinrin-yoku-oil
 
 ---
 

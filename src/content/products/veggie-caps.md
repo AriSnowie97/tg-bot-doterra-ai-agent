@@ -6,7 +6,6 @@
 
 **Тип:** БАД (порожні рослинні капсули)
 
-**Посилання:** https://www.doterra.com/US/en/p/veggie-caps
 
 ---
 

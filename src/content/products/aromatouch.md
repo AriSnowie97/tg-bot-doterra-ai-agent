@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Massage Blend)
 
-**Посилання:** https://www.doterra.com/US/en/p/aromatouch-massage-blend-oil
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** БАД (порошковий мультивітамінний напій)
 
-**Посилання:** https://www.doterra.com/US/en/p/vmg-whole-food-nutrient-complex
 
 ---
 

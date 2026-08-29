@@ -6,7 +6,6 @@
 
 **Тип:** БАД (базовий вітамінно-мінеральний комплекс)
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-lifelong-vitality-pack
 
 ---
 

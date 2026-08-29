@@ -6,7 +6,6 @@
 
 **Тип:** БАД (капсули для внутрішнього застосування)
 
-**Посилання:** https://www.doterra.com/US/en/p/adaptiv-oil-capsules
 
 ---
 

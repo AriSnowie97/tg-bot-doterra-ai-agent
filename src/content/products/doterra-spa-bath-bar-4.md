@@ -6,7 +6,6 @@
 
 **Тип:** Мило (Bath Bar)
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-spa-moisturizing-bath-bar
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Порошок / Клітковина
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-fiber
 
 ---
 

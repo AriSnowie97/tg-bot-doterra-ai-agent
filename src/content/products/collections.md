@@ -6,7 +6,6 @@
 
 **Тип:** тематичний набір
 
-**Посилання:** https://www.doterra.com/US/en/p/enrollment-kits-athlete
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Detoxification Blend)
 
-**Посилання:** https://www.doterra.com/US/en/p/revitazen-detoxification-blend
 
 ---
 

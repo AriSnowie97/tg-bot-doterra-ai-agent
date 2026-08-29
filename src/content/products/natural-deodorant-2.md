@@ -6,7 +6,6 @@
 
 **Тип:** Дезодорант для чутливої шкіри
 
-**Посилання:** https://www.doterra.com/US/en/p/natural-sensitive-deodorant-infused-with-doterra-douglas-fir-and-greek-orange
 
 ---
 

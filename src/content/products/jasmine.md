@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна олія (абсолют, попередньо розведений, 15 мл)
 
-**Посилання:** https://www.doterra.com/US/en/blog/spotlight-jasmine-touch-uses-and-benefits
 
 ---
 

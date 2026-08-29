@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна олія (single)
 
-**Посилання:** https://www.doterra.com/US/en/p/lemon-oil
 
 ---
 

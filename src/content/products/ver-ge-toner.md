@@ -6,7 +6,6 @@
 
 **Тип:** Тонік для обличчя
 
-**Посилання:** https://www.doterra.com/US/en/p/personal-care-verage-toner
 
 ---
 

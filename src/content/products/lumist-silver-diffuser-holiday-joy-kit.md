@@ -6,7 +6,6 @@
 
 **Тип:** Набір з дифузором (сезонний)
 
-**Посилання:** https://www.doterra.com/US/en/holiday-collection
 
 ---
 

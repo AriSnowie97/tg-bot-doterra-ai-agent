@@ -6,7 +6,6 @@
 
 **Тип:** гель для очистки обличчя
 
-**Посилання:** https://www.doterra.com/US/en/pl/personal-care-essentials
 
 ---
 

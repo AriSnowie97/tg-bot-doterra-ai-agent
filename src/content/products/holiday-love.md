@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна суміш (5 мл, сезонна)
 
-**Посилання:** https://www.doterra.com/US/en/holiday-love-oil
 
 ---
 

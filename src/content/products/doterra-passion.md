@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Inspiring Blend, Emotional Aromatherapy)
 
-**Посилання:** https://www.doterra.com/US/en/p/passion-inspiring-blend-oil (додатково доступно: doTERRA Passion флакон-ролик 10 мл; частина doTERRA Emotional Aromatherapy System / Touch Kit)
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Піняче мило для рук
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-on-guard-foaming-hand-wash
 
 ---
 

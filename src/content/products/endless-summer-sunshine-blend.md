@@ -6,7 +6,6 @@
 
 **Тип:** Ефірна суміш (15 мл, лімітована літня)
 
-**Посилання:** https://www.doterra.com/US/en/endless-summer-offers
 
 ---
 

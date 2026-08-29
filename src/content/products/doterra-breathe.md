@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Respiratory Blend)
 
-**Посилання:** https://www.doterra.com/US/en/p/breathe-respiratory-blend-oil
 
 ---
 

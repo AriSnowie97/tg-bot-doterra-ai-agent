@@ -6,7 +6,6 @@
 
 **Тип:** Набір для йоги
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-yoga-collection
 
 ---
 

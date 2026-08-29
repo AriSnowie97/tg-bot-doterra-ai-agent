@@ -6,7 +6,6 @@
 
 **Тип:** Скраб для тіла
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-spa-exfoliating-body-scrub
 
 ---
 

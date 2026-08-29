@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (охолоджувальна м'ятна суміш)
 
-**Посилання:** https://www.doterra.com/US/en/p/supermint-touch-blend-oil
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Набір з дифузором
 
-**Посилання:** https://www.doterra.com/US/en/p/home-essentials-enrollment-kit
 
 ---
 

@@ -6,7 +6,6 @@
 
 **Тип:** Суміш ефірних олій
 
-**Посилання:** https://www.doterra.com/US/en/p/on-guard-oil
 
 ---
 

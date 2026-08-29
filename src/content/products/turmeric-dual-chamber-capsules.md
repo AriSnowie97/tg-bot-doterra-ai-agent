@@ -6,7 +6,6 @@
 
 **Тип:** БАД (капсула з двома камерами: олія і екстракт)
 
-**Посилання:** https://www.doterra.com/US/en/p/turmeric-oil-capsules
 
 ---
 

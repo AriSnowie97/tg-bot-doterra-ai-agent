@@ -6,7 +6,6 @@
 
 **Тип:** БАД (жувальні таблетки з карбонатом кальцію)
 
-**Посилання:** https://www.doterra.com/US/en/p/digestzen-digesttab
 
 ---
 

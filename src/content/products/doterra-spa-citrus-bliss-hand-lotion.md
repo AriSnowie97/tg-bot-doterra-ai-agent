@@ -6,7 +6,6 @@
 
 **Тип:** Лосьйон для рук
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-spa-citrus-bliss-hand-lotion
 
 ---
 

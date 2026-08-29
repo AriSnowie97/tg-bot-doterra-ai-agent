@@ -6,7 +6,6 @@
 
 **Тип:** сироватка для волосся і шкіри голови
 
-**Посилання:** https://www.doterra.com/US/en/p/haircare-salon-essentials-root-to-tip-serum
 
 ---
 

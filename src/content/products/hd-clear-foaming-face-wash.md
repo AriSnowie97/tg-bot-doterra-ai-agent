@@ -6,7 +6,6 @@
 
 **Тип:** Пінка для очистки проблемної шкіри
 
-**Посилання:** https://www.doterra.com/US/en/pl/personal-care-hd-clear-skin-care
 
 ---
 

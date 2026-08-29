@@ -6,7 +6,6 @@
 
 **Тип:** Аксесуар — багаторазовий дозатор
 
-**Посилання:** https://www.doterra.com/US/en/p/doterra-on-guard-foaming-hand-wash
 
 ---
 

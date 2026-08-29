@@ -6,7 +6,6 @@
 
 **Тип:** Суміш (Woodland Blend)
 
-**Посилання:** https://www.doterra.com/US/en/p/northern-escape
 
 ---
 

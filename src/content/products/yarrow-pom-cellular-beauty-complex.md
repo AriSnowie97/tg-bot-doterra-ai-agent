@@ -6,7 +6,6 @@
 
 **Тип:** Капсули
 
-**Посилання:** https://www.doterra.com/US/en/p/yarrow-pom-oil-capsules
 
 ---
 

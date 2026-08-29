@@ -6,7 +6,6 @@
 
 **Тип:** Сироватка для обличчя
 
-**Посилання:** https://www.doterra.com/US/en/p/personal-care-Tightening-Serum
 
 ---
 

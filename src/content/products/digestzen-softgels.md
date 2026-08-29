@@ -6,7 +6,6 @@
 
 **Тип:** БАД (олія DigestZen у капсулах)
 
-**Посилання:** https://www.doterra.com/US/en/p/digestzen-blend-oil-softgels
 
 ---
 
