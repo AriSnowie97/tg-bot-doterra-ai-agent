@@ -13,7 +13,7 @@ const Articles = () => {
     const [loading, setLoading] = useState(true);
     const [activeTag, setActiveTag] = useState("Усі");
     const [activeSection, setActiveSection] = useState(null);
-    const { t } = useLang();
+    const { t, lang } = useLang();
     const SECTION_DATA = {
         "products": { icon: ArticlesSvg },
         "symphony_of_the_cells": { icon: SunSvg },
@@ -32,7 +32,7 @@ const Articles = () => {
         const fetchArticles = async () => {
             try {
                 setLoading(true);
-                const response = await get_articles();
+                const response = await get_articles(lang);
                 if (response.ok) {
                     const data = await response.json();
                     setArticlesList(data);
@@ -45,6 +45,32 @@ const Articles = () => {
         };
         fetchArticles();
     }, []);
+
+    useEffect(() => {
+        if (lang === "ua") {
+            console.log("Привіт");
+        } else {
+            console.log("Hello");
+        }
+        console.log(lang);
+
+        const fetchArticles = async () => {
+            try {
+                setLoading(true);
+                const response = await get_articles(lang);
+                if (response.ok) {
+                    const data = await response.json();
+                    setArticlesList(data);
+                }
+            } catch (err) {
+                console.error("Failed to load articles", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchArticles();
+        
+    }, [lang]);
 
     const sectionArticles = useMemo(() => {
         if (!activeSection) return [];
