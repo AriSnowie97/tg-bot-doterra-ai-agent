@@ -272,11 +272,12 @@ async def api_get_doc(slug: str, lang: str, request: Request):
                 if lang == "ua":
                     if p.parent.name != "en":
                         target_path = p
+                        break
 
                 else: # lang == "en"
                     if p.parent.name == lang: # if p.parent.name == "en"
                         target_path = p.parent / lang / p.name
-                break
+                        break
 
     if not target_path:
         raise HTTPException(status_code=404, detail=f"Документ '{slug}' не знайдено")
