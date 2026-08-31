@@ -9,8 +9,8 @@ const get_article = async (slug, url = `${API_URL}/api/docs/`) => {
 
 
 // Getting articles
-const get_articles = async (url = `${API_URL}/api/articles`) => {
-    const response = await fetch(`${url}`);
+const get_articles = async (lang, url = `${API_URL}/api/articles/`) => {
+    const response = await fetch(`${url}${lang}`);
     
     return response;
 };

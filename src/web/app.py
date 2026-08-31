@@ -74,16 +74,37 @@ def _render_md(md_text: str) -> str:
     )
 
 
-def _get_article_metadata(md_path: Path, base_url: str = "", section_name: str = "") -> dict:
+def _get_article_metadata(lang: str, md_path: Path, base_url: str = "", section_name: str = "") -> dict:
     """Витягує метадані з .md файлу."""
     original_stem = md_path.stem
     slug = slugify(original_stem)
     text = md_path.read_text(encoding="utf-8")
     lines = text.splitlines()
+
+    LANG = {
+        "ua": {
+            "other": "Інше",
+            "guide": "_Гід",
+            "guides": "Гайди",
+            "category": "**Категорія:**",
+            "type": "**Тип:**",
+            "article": "**Артикул",
+            "link": "**Посилання",
+        },
+        "en": {
+            "other": "Other",
+            "guide": "_Guide",
+            "guides": "Guides",
+            "category": "**Category:**",
+            "type": "**Type:**",
+            "article": "**Article",
+            "link": "**Link",
+        }
+    }
     
     title = original_stem
     short = ""
-    category = "Інше"
+    category = LANG[lang]["other"]
     image = ""
     
     # Шукаємо image в перших рядках
@@ -108,17 +129,17 @@ def _get_article_metadata(md_path: Path, base_url: str = "", section_name: str =
             
     # Шукаємо категорію
     for line in lines:
-        if "**Категорія:**" in line:
-            category = line.split("**Категорія:**")[1].strip()
+        if LANG[lang]["category"] in line:
+            category = line.split(LANG[lang]["category"])[1].strip()
             if "→" in category:
                 category = category.split("→")[0].strip()
             elif ">" in category:
                 category = category.split(">")[0].strip()
             break
     
-    if category == "Інше":
-        if "_Гід" in original_stem or original_stem.startswith("0"):
-            category = "Гайди"
+    if category == LANG[lang]["other"]:
+        if LANG[lang]["guide"] in original_stem or original_stem.startswith("0"):
+            category = LANG[lang]["guides"]
             
     # Шукаємо короткий опис
     for line in lines:
@@ -126,7 +147,7 @@ def _get_article_metadata(md_path: Path, base_url: str = "", section_name: str =
         if not line: continue
         if line.startswith("#"): continue
         if line.startswith("!["): continue
-        if line.startswith("**Категорія:**") or line.startswith("**Тип:**") or line.startswith("**Артикул") or line.startswith("**Посилання"): continue
+        if line.startswith(LANG[lang]["category"]) or line.startswith(LANG[lang]["type"]) or line.startswith(LANG[lang]["article"]) or line.startswith(LANG[lang]["link"]): continue
         if line.startswith("---"): continue
         
         short = line
@@ -210,8 +231,8 @@ async def api_chat(request: ChatRequest):
         raise HTTPException(status_code=500, detail="Помилка при генерації відповіді")
 
 
-@app.get("/api/articles")
-async def api_get_articles(request: Request):
+@app.get("/api/articles/{lang}")
+async def api_get_articles(lang: str, request: Request):
     """Повертає список усіх статей з метаданими для Mini App."""
     if not CONTENT_DIR.exists():
         return []
@@ -221,14 +242,18 @@ async def api_get_articles(request: Request):
         base_url = base_url.replace("http://", "https://")
     articles = []
     for dir_name in DIRECTORIES_TO_SEARCH:
-        d = CONTENT_DIR / dir_name
+        if lang == "ua":
+            d = CONTENT_DIR / dir_name
+        else: # lang == "en"
+            d = CONTENT_DIR / dir_name / lang
+
         if d.exists():
             for md_path in d.glob("*.md"):
                 # Пропускаємо технічні файли-гайди (01_Гід, 02_Гід тощо)
                 if md_path.stem[0].isdigit() and "_Гід" in md_path.stem:
                     continue
                 
-                articles.append(_get_article_metadata(md_path, base_url, dir_name))
+                articles.append(_get_article_metadata(lang, md_path, base_url, dir_name))
         
     # Сортуємо: спочатку гайди (якщо якісь залишились), потім інші за алфавітом
     articles.sort(key=lambda a: (0 if a["tag"] == "Гайди" else 1, a["title"]))
