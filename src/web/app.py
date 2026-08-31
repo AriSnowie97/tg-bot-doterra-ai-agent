@@ -259,8 +259,8 @@ async def api_get_articles(lang: str, request: Request):
     articles.sort(key=lambda a: (0 if a["tag"] == "Гайди" else 1, a["title"]))
     return articles
 
-@app.get("/api/docs/{slug}")
-async def api_get_doc(slug: str, request: Request):
+@app.get("/api/docs/{slug}/{lang}")
+async def api_get_doc(slug: str, lang: str, request: Request):
     """Повертає відрендерений HTML статті у форматі JSON для React-додатку."""
     if not slug.replace("-", "").replace("_", "").isalnum():
         raise HTTPException(status_code=400, detail="Невірний slug")
@@ -269,7 +269,13 @@ async def api_get_doc(slug: str, request: Request):
     if CONTENT_DIR.exists():
         for p in CONTENT_DIR.rglob("*.md"):
             if slugify(p.stem) == slug:
-                target_path = p
+                if lang == "ua":
+                    if p.parent.name != "en":
+                        target_path = p
+
+                else: # lang == "en"
+                    if p.parent.name == lang: # if p.parent.name == "en"
+                        target_path = p.parent / lang / p.name
                 break
 
     if not target_path:

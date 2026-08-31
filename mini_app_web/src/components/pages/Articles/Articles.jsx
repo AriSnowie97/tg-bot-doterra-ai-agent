@@ -44,32 +44,6 @@ const Articles = () => {
             }
         };
         fetchArticles();
-    }, []);
-
-    useEffect(() => {
-        if (lang === "ua") {
-            console.log("Привіт");
-        } else {
-            console.log("Hello");
-        }
-        console.log(lang);
-
-        const fetchArticles = async () => {
-            try {
-                setLoading(true);
-                const response = await get_articles(lang);
-                if (response.ok) {
-                    const data = await response.json();
-                    setArticlesList(data);
-                }
-            } catch (err) {
-                console.error("Failed to load articles", err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchArticles();
-        
     }, [lang]);
 
     const sectionArticles = useMemo(() => {

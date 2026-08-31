@@ -1,8 +1,8 @@
 import { API_URL } from "./settings";
 
 // Getting article
-const get_article = async (slug, url = `${API_URL}/api/docs/`) => {
-    const response = await fetch(`${url}${slug}`);
+const get_article = async (slug, lang, url = `${API_URL}/api/docs/`) => {
+    const response = await fetch(`${url}${slug}/${lang}`);
     
     return response;
 };
