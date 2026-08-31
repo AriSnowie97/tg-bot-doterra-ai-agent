@@ -12,13 +12,13 @@ import { get_articles } from "../../../api/articles";
 const Home = () => {
     const [articlesList, setArticlesList] = useState([]);
     const [loading, setLoading] = useState(true);
-    const { t } = useLang();
+    const { t, lang } = useLang();
 
     useEffect(() => {
         const fetchArticles = async () => {
             try {
                 setLoading(true);
-                const response = await get_articles();
+                const response = await get_articles(lang);
                 if (response.ok) {
                     const data = await response.json();
                     setArticlesList(data);
@@ -30,7 +30,7 @@ const Home = () => {
             }
         };
         fetchArticles();
-    }, []);
+    }, [lang]);
 
     return (
         <>

@@ -12,13 +12,13 @@ const ArticleView = () => {
     const [articleData, setArticleData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    const { t } = useLang();
+    const { t, lang } = useLang();
 
     useEffect(() => {
         const fetchArticle = async () => {
             try {
                 setLoading(true);
-                const response = await get_article(slug);
+                const response = await get_article(slug, lang);
                 
                 if (!response.ok) {
                     throw new Error("Не вдалося завантажити статтю");
@@ -34,7 +34,7 @@ const ArticleView = () => {
         };
 
         fetchArticle();
-    }, [slug]);
+    }, [slug, lang]);
 
     return (
         <div className={styles.wrapper}>
