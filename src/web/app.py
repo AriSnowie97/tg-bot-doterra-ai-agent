@@ -275,8 +275,8 @@ async def api_get_doc(slug: str, lang: str, request: Request):
                         break
 
                 else: # lang == "en"
-                    if p.parent.name == lang: # if p.parent.name == "en"
-                        target_path = p.parent / lang / p.name
+                    if p.parent.name == lang:
+                        target_path = p
                         break
 
     if not target_path:
