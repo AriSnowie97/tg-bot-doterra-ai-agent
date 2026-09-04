@@ -15,7 +15,7 @@ from src.agent import generate_response
 from src.publisher import publish_channel_post
 from src.scheduler import setup_scheduler
 from src.storage.feedback import ensure_feedback_table, save_vote, get_vote_counts
-from handlers.states import AskStates
+from handlers.states import AskStates, ScreeningStates
 from src.content.sync_content import run_sync
 
 
@@ -92,7 +92,9 @@ async def _reply_with_feedback(message: Message, text: str) -> None:
 
 
 @dp.message(Command("start"))
-async def command_start_handler(message: Message) -> None:
+async def command_start_handler(message: Message, state: FSMContext) -> None:
+    # Скидаємо стан скринінгу при /start
+    await state.clear()
     webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
     
     markup = InlineKeyboardMarkup(inline_keyboard=[[
@@ -295,11 +297,17 @@ def _strip_mention(text: str, bot_username: str) -> str:
 
 
 @dp.message(F.text)
-async def on_message(message: Message, bot: Bot) -> None:
+async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
     """Обробник текстових повідомлень.
 
     Приватний чат: відповідає на будь-яке повідомлення.
     Група / супергрупа: відповідає тільки на @mention або Reply на бота.
+
+    Скринінг (Блоки 1–3):
+    - При скарзі/симптомі вмикається screening_mode='active'/'red_flag'
+    - Стан зберігається в FSMContext між повідомленнями
+    - conversation_context накопичує весь діалог для RAG і LLM
+    - Red_flag залишається до /start або нового запиту без скарги
     """
     # Ігноруємо повідомлення у групах, якщо бота не згадано
     if not _is_addressed(message):
@@ -311,33 +319,88 @@ async def on_message(message: Message, bot: Bot) -> None:
         await message.reply("🌿 Запитай мене що-небудь про ефірні олії doTERRA!")
         return
 
-    stop_typing = asyncio.Event()
+    # ── Завантажуємо стан скринінгу з FSMContext ──────────────────────────────
+    fsm_data = await state.get_data()
+    stored_mode: str | None = fsm_data.get("screening_mode")        # 'active'|'red_flag'|None
+    screening_history: str = fsm_data.get("screening_history", "")  # накопичений діалог
 
-    # Запускаємо фоновий таск який тримає індикатор "пише..." весь час генерації
+    # Визначаємо чи це відповідь на скринінг чи новий незалежний запит
+    from src.agent.specialist import is_health_complaint_query, has_red_flags
+    is_new_complaint = is_health_complaint_query(user_text)
+    is_new_red_flag  = has_red_flags(user_text)
+
+    # Якщо є активний скринінг — продовжуємо його;
+    # якщо прийшов новий незалежний запит без скарги — скидаємо стан
+    if stored_mode in ("active", "red_flag"):
+        # Продовжуємо скринінг: оновлюємо накопичений контекст
+        conversation_context = (
+            screening_history + f"\n\nКористувач: {user_text}"
+            if screening_history
+            else f"Користувач: {user_text}"
+        )
+        # Якщо в новому повідомленні з'явились прапори — ескалюємо до red_flag
+        if stored_mode == "active" and (is_new_red_flag or has_red_flags(conversation_context)):
+            pass_mode = "red_flag"
+        else:
+            pass_mode = stored_mode
+    else:
+        # Новий запит — передаємо None щоб service.py визначив режим сам
+        conversation_context = None
+        pass_mode = None
+
+    stop_typing = asyncio.Event()
     typing_task = asyncio.create_task(
         _keep_typing(bot, message.chat.id, stop_typing)
     )
 
     try:
-        # RAG-пайплайн: пошук → промпт → Gemini
-        response = await generate_response(user_text)
+        response = await generate_response(
+            user_text,
+            screening_mode=pass_mode,
+            conversation_context=conversation_context,
+        )
 
         stop_typing.set()
         typing_task.cancel()
 
-        # Захист від порожньої відповіді
         if not response or not response.strip():
             print(f"[on_message] Empty response for query: {user_text!r}")
             await message.reply("😔 Не вдалося сформувати відповідь. Спробуй перефразувати запит.")
             return
 
-        # Відповідаємо з кнопками 👍/👎
+        # ── Оновлюємо стан скринінгу після отримання відповіді ───────────────
+        # Визначаємо фінальний режим (міг змінитись в service.py)
+        if pass_mode is None:
+            # Перше повідомлення: визначаємо режим по user_text
+            if is_new_complaint and is_new_red_flag:
+                new_mode = "red_flag"
+            elif is_new_complaint:
+                new_mode = "active"
+            else:
+                new_mode = None  # загальне питання — не зберігаємо стан
+        else:
+            new_mode = pass_mode  # зберігаємо переданий режим
+
+        if new_mode in ("active", "red_flag"):
+            # Зберігаємо стан: режим + оновлений контекст (скарга + відповідь бота)
+            new_history = (
+                (conversation_context or f"Користувач: {user_text}")
+                + f"\n\nБот: {response[:500]}"  # обрізаємо відповідь бота для економії
+            )
+            await state.set_state(ScreeningStates.in_progress)
+            await state.update_data(
+                screening_mode=new_mode,
+                screening_history=new_history,
+            )
+        else:
+            # Загальне питання або скринінг завершено — очищаємо стан
+            await state.clear()
+
         await _reply_with_feedback(message, response)
 
     except Exception as e:
         stop_typing.set()
         typing_task.cancel()
-
         await message.reply(
             "😔 Виникла помилка при обробці запиту. Спробуй ще раз."
         )

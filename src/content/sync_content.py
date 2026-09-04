@@ -94,6 +94,7 @@ def run_sync(progress_callback=None) -> dict:
         project_root / "src" / "content" / "products",
         project_root / "src" / "content" / "advice",
         project_root / "src" / "content" / "symphony_of_the_cells",
+        project_root / "src" / "content" / "books",   # 📚 Книги по ефірних оліях
     ]
     chunks = []
     for d in md_dirs:
