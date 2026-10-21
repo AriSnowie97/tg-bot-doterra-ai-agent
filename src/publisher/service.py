@@ -18,6 +18,15 @@ import os
 import re
 import random
 import asyncio
+import sys
+from dotenv import load_dotenv
+
+if sys.stdout and hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 # Special
 from aiogram import Bot
 from google.genai import types
@@ -25,13 +34,21 @@ from google.genai import types
 from ..agent.post_prompt import build_post_prompt, TOPIC_SEEDS
 from ..storage import search_chunks
 from src.LLMProvider import GeminiFlashProvider as LLM
+from src.safety import redact
+
+load_dotenv()
 
 
 # ---------------------------------------------------------------------------
 # Конфігурація
 # ---------------------------------------------------------------------------
 
-CHANNEL_ID: str = os.getenv("CHANNEL_ID", "")
+def get_channel_id() -> str:
+    """Отримує актуальний CHANNEL_ID із змінних середовища."""
+    return os.getenv("CHANNEL_ID", "").strip()
+
+
+CHANNEL_ID: str = get_channel_id()
 
 # Більший контекст для посту (vs 5 для чат-бота)
 POST_TOP_K: int = 12
@@ -202,10 +219,15 @@ async def publish_channel_post(bot: Bot) -> None:
 
     Args:
         bot: Aiogram Bot instance.
+
+    Raises:
+        ValueError: якщо CHANNEL_ID не задано.
+        Exception: якщо виникла помилка генерації або відправки.
     """
-    if not CHANNEL_ID:
-        print("[publisher] ⚠️  CHANNEL_ID не задано — публікацію скасовано.")
-        return
+    channel_id = get_channel_id()
+    if not channel_id:
+        print("[publisher] ⚠️ CHANNEL_ID не задано — публікацію скасовано.")
+        raise ValueError("CHANNEL_ID environment variable is not set")
 
     # Обираємо рандомну тему
     topic = random.choice(TOPIC_SEEDS)
@@ -216,11 +238,12 @@ async def publish_channel_post(bot: Bot) -> None:
         post_text = _truncate_post(post_text)
 
         await bot.send_message(
-            chat_id=CHANNEL_ID,
+            chat_id=channel_id,
             text=post_text,
             parse_mode=None,
         )
-        print(f"[publisher] ✅ Post published to {CHANNEL_ID!r} ({len(post_text)} chars)")
+        print(f"[publisher] ✅ Post published to {channel_id!r} ({len(post_text)} chars)")
 
     except Exception as e:
-        print(f"[publisher] ❌ Failed to publish post: {e}")
+        print(f"[publisher] ❌ Failed to publish post: {redact(e)}")
+        raise

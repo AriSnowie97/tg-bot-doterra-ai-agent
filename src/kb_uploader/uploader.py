@@ -23,6 +23,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 # Local
+from src.safety import redact
 from src.content.parser import DoterraMarkdownParser
 from src.storage.storage import _upsert_chunk, іs_there_similar_embedding, _conn_create
 from pgvector.psycopg2 import register_vector
@@ -109,8 +110,8 @@ def upload_md_to_kb(
         except Exception as e:
             stats["errors"] += 1
             section = getattr(chunk, "section_title", "?")
-            _progress(f"❌ [{i}/{stats['total']}] <i>{section}</i> — помилка: {e}")
-            print(f"  Full error: {e}")
+            _progress(f"❌ [{i}/{stats['total']}] <i>{section}</i> — помилка ({type(e).__name__})")
+            print(f"  Full error: {redact(e)}")
 
     conn.close()
     return stats

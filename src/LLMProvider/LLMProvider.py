@@ -6,6 +6,10 @@ from abc import ABC, abstractmethod
 # Special
 from google.genai import types
 # Local
+from src.safety import redact, key_fingerprint
+
+# Жорстка стеля звернень до Gemini на один generate_content (ключі × моделі × повтори)
+MAX_TOTAL_CALLS = 24
 
 class LLMProvider(ABC):
     """LLMProvider - інтерфейс для LLMs, абстрактний клас, що
@@ -25,10 +29,10 @@ class LLMProvider(ABC):
                     last_error = e
 
                     if "429" in error_str or "RESOURCE_EXHAUSTED" in error_str:
-                        print(f"[agent] 429 on embed_content with key ...{api_key[-6:] if api_key else ''}")
+                        print(f"[agent] 429 on embed_content with key #{key_fingerprint(api_key)}")
                         continue
                     
-                    print(f"[agent] Error on embed_content with key ...{api_key[-6:] if api_key else ''}: {e}")
+                    print(f"[agent] Error on embed_content with key #{key_fingerprint(api_key)}: {redact(e)}")
                     continue
             
             # Якщо всі ключі перебрані і спроба ще є - чекаємо
@@ -41,7 +45,7 @@ class LLMProvider(ABC):
             else:
                 break
 
-        raise RuntimeError(f"Для {self.NAME} усі API-ключі недоступні. {last_error}")
+        raise RuntimeError(f"Для {self.NAME} усі API-ключі недоступні. {redact(last_error)}")
 
 
     def _parse_retry_delay(self, error_str: str) -> float | None:
@@ -60,10 +64,14 @@ class LLMProvider(ABC):
         """Генерація відповіді на основі prompt."""
         models = models if models is not None else self.GENERATION_MODELS
         last_error: Exception | None = None
+        calls = 0
         
         for attempt in range(1, MAX_RETRIES + 2):
             for api_key in self.LLM_API_KEYS:
                 for model in models:
+                    if calls >= MAX_TOTAL_CALLS:
+                        break
+                    calls += 1
                     try:
                         response = await asyncio.to_thread(
                             self._generate_content,
@@ -78,7 +86,7 @@ class LLMProvider(ABC):
                             finish_reason = candidates[0].finish_reason if candidates else "unknown"
                             raise ValueError(f"response.text=None, finish_reason={finish_reason}, model={model}")
                         else:
-                            print(f"[agent] ✅ Success: key=...{api_key[-6:] if api_key else ''}, model={model}")
+                            print(f"[agent] ✅ Success: key=#{key_fingerprint(api_key)}, model={model}")
                             return response
 
                     except Exception as e:
@@ -92,17 +100,23 @@ class LLMProvider(ABC):
 
                         is_429 = "429" in error_str or "RESOURCE_EXHAUSTED" in error_str
                         if is_429:
-                            print(f"[agent] 429 on model={model}, key=...{api_key[-6:] if api_key else ''} → next")
+                            print(f"[agent] 429 on model={model}, key=#{key_fingerprint(api_key)} → next")
                             continue
 
                         is_503 = "503" in error_str or "UNAVAILABLE" in error_str
                         if is_503:
-                            print(f"[agent] 503 on model={model}, key=...{api_key[-6:] if api_key else ''} → next")
+                            print(f"[agent] 503 on model={model}, key=#{key_fingerprint(api_key)} → next")
                             continue
 
-                        print(f"[agent] Unknown error on model={model}: {e}")
+                        print(f"[agent] Unknown error on model={model}: {redact(e)}")
                         continue
+                if calls >= MAX_TOTAL_CALLS:
+                    break
             
+            if calls >= MAX_TOTAL_CALLS:
+                print(f"[agent] Call budget exhausted ({MAX_TOTAL_CALLS}), giving up.")
+                break
+
             if attempt <= MAX_RETRIES:
                 delay = attempt * 5
                 print(f"[agent] All keys/models failed. Sleeping {delay}s before attempt {attempt+1}")
@@ -112,7 +126,7 @@ class LLMProvider(ABC):
 
         raise RuntimeError(
             f"Усі Gemini API-ключі та моделі недоступні. "
-            f"Остання помилка: {last_error}"
+            f"Остання помилка: {redact(last_error)}"
         )
 
 

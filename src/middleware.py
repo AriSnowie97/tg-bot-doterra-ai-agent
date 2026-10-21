@@ -7,24 +7,71 @@ from collections import defaultdict, deque
 from typing import Any, Awaitable, Callable
 # Special
 from aiogram import BaseMiddleware
-from aiogram.types import Message
+from aiogram.types import CallbackQuery, Message
 
 RATE_LIMIT_MESSAGES = int(os.getenv("BOT_RATE_LIMIT", "8"))
 RATE_LIMIT_WINDOW = int(os.getenv("BOT_RATE_WINDOW", "60"))
 MAX_TEXT_LENGTH = int(os.getenv("BOT_MAX_TEXT_LENGTH", "2000"))
+CALLBACK_RATE_LIMIT = int(os.getenv("BOT_CALLBACK_RATE_LIMIT", "20"))
+
+# Коли словник user_id → вікно перевищує цей розмір, чистимо застарілі записи
+_CLEANUP_THRESHOLD = 1000
+
+
+class _SlidingWindow:
+    """Ковзне вікно на користувача з періодичним очищенням застарілих записів."""
+
+    def __init__(self, limit: int, window: int) -> None:
+        self.limit = limit
+        self.window = window
+        self._hits: dict[int, deque] = defaultdict(deque)
+        self._warned_at: dict[int, float] = {}
+
+    def _cleanup(self, now: float) -> None:
+        if len(self._hits) < _CLEANUP_THRESHOLD:
+            return
+        for uid in [u for u, q in self._hits.items() if not q or now - q[-1] > self.window]:
+            del self._hits[uid]
+            self._warned_at.pop(uid, None)
+
+    def allow(self, user_id: int) -> bool:
+        """True якщо запит дозволено (і зараховує його у вікно)."""
+        now = time.monotonic()
+        self._cleanup(now)
+        q = self._hits[user_id]
+        while q and now - q[0] > self.window:
+            q.popleft()
+        if len(q) >= self.limit:
+            return False
+        q.append(now)
+        return True
+
+    def should_warn(self, user_id: int) -> bool:
+        """True не частіше одного разу за вікно — щоб бот сам не спамив."""
+        now = time.monotonic()
+        if now - self._warned_at.get(user_id, 0) > self.window:
+            self._warned_at[user_id] = now
+            return True
+        return False
 
 
 class RateLimitMiddleware(BaseMiddleware):
-    """Ковзне вікно на користувача. Адміни (exempt_ids) ліміт не мають.
+    """Ліміт повідомлень (outer middleware на dp.message).
 
-    Зайві повідомлення відкидаються. Попередження надсилається лише один раз
-    за вікно, щоб бот сам не спамив у відповідь.
+    - Адміни (exempt_ids) ліміт не мають.
+    - Якщо задано `should_limit`, ліміт та перевірка довжини діють лише для
+      повідомлень, які бот реально обробить (напр. приват / @mention / reply).
+      Решта (звичайні розмови в групі) проходить без змін і не зараховується.
     """
 
-    def __init__(self, exempt_ids: set[int] | None = None) -> None:
+    def __init__(
+        self,
+        exempt_ids: set[int] | None = None,
+        should_limit: Callable[[Message], bool] | None = None,
+    ) -> None:
         self.exempt_ids = exempt_ids or set()
-        self._hits: dict[int, deque] = defaultdict(deque)
-        self._warned_at: dict[int, float] = {}
+        self.should_limit = should_limit
+        self._window = _SlidingWindow(RATE_LIMIT_MESSAGES, RATE_LIMIT_WINDOW)
 
     async def __call__(
         self,
@@ -37,21 +84,36 @@ class RateLimitMiddleware(BaseMiddleware):
             return None  # анонімні адміни груп / системні повідомлення ігноруємо
         if user.id in self.exempt_ids:
             return await handler(event, data)
+        if self.should_limit is not None and not self.should_limit(event):
+            return await handler(event, data)
 
         if event.text and len(event.text) > MAX_TEXT_LENGTH:
             await event.answer(f"⚠️ Занадто довге повідомлення (максимум {MAX_TEXT_LENGTH} символів).")
             return None
 
-        now = time.monotonic()
-        q = self._hits[user.id]
-        while q and now - q[0] > RATE_LIMIT_WINDOW:
-            q.popleft()
-
-        if len(q) >= RATE_LIMIT_MESSAGES:
-            if now - self._warned_at.get(user.id, 0) > RATE_LIMIT_WINDOW:
-                self._warned_at[user.id] = now
+        if not self._window.allow(user.id):
+            if self._window.should_warn(user.id):
                 await event.answer("⏳ Забагато повідомлень. Зачекай хвилинку і спробуй ще раз.")
             return None
 
-        q.append(now)
         return await handler(event, data)
+
+
+class CallbackRateLimitMiddleware(BaseMiddleware):
+    """Ліміт натискань inline-кнопок (outer middleware на dp.callback_query)."""
+
+    def __init__(self, exempt_ids: set[int] | None = None) -> None:
+        self.exempt_ids = exempt_ids or set()
+        self._window = _SlidingWindow(CALLBACK_RATE_LIMIT, RATE_LIMIT_WINDOW)
+
+    async def __call__(
+        self,
+        handler: Callable[[CallbackQuery, dict[str, Any]], Awaitable[Any]],
+        event: CallbackQuery,
+        data: dict[str, Any],
+    ) -> Any:
+        uid = event.from_user.id
+        if uid in self.exempt_ids or self._window.allow(uid):
+            return await handler(event, data)
+        await event.answer("⏳ Забагато натискань. Зачекай хвилинку.", show_alert=False)
+        return None

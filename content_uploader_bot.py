@@ -19,6 +19,7 @@ doTERRA Content Uploader Bot
 """
 
 import asyncio
+import html
 import io
 import json
 import logging
@@ -27,12 +28,15 @@ import re
 import sys
 import requests
 from pathlib import Path
+from urllib.parse import urljoin, urlparse
 
 import ftfy
 from aiogram import Bot, Dispatcher, F
 from aiogram.types import Message, Document
 from aiogram.filters import CommandStart, Command
 from dotenv import load_dotenv
+
+from src.safety import redact, safe_error
 
 # ──────────────────────────────────────────────────
 # Шляхи
@@ -122,6 +126,48 @@ def format_md(text: str) -> str:
     return text
 
 
+OFFICIAL_DOMAIN = "doterra.com"
+MAX_PAGE_BYTES = 2 * 1024 * 1024          # ліміт розміру HTML-сторінки doTERRA
+MAX_UPLOAD_BYTES = int(os.getenv("CONTENT_MAX_UPLOAD_BYTES", str(5 * 1024 * 1024)))
+
+
+_OFFICIAL_HOST_REGEX = re.compile(r"^(?:[a-zA-Z0-9-]+\.)*doterra\.com$")
+
+
+def is_official_url(url: str) -> bool:
+    r"""True лише для безпечних https-посилань на офіційний домен doterra.com.
+
+    Забороняє:
+    - Будь-які зворотні слеші '\\', пробіли, символи '%' та '@' у URL/хості
+    - Не-https схеми
+    - Нестандартні порти
+    - Хости, що не відповідають строгому regex r"^(?:[a-zA-Z0-9-]+\.)*doterra\.com$"
+    """
+    if not url or not isinstance(url, str):
+        return False
+
+    if any(c in url for c in ("\\", " ", "\t", "\r", "\n", "%", "@")):
+        return False
+
+    try:
+        parsed = urlparse(url)
+        host = (parsed.hostname or "").lower()
+        if not host:
+            return False
+
+        if not _OFFICIAL_HOST_REGEX.match(host):
+            return False
+
+        return (
+            parsed.scheme == "https"
+            and parsed.username is None
+            and parsed.password is None
+            and parsed.port in (None, 443)
+        )
+    except Exception:
+        return False
+
+
 def fetch_official_image(url: str) -> str | None:
     """Витягує og:image з офіційної сторінки doTERRA."""
     headers = {
@@ -131,27 +177,49 @@ def fetch_official_image(url: str) -> str | None:
             "Chrome/115.0.0.0 Safari/537.36"
         )
     }
+    if not is_official_url(url):
+        log.warning("fetch_official_image: rejected non-official URL")
+        return None
     try:
-        response = requests.get(url, headers=headers, timeout=12)
-        if response.status_code == 200:
-            match = re.search(
-                r'<meta property="og:image" content="([^"]+)"',
-                response.text,
-            )
-            if match:
-                return match.group(1)
+        current = url
+        for _ in range(4):  # початковий запит + до 3 редіректів
+            # Редіректи йдемо вручну й лише на офіційний домен — захист від SSRF
+            with requests.get(
+                current, headers=headers, timeout=12, allow_redirects=False, stream=True
+            ) as response:
+                if response.status_code in (301, 302, 303, 307, 308):
+                    nxt = urljoin(current, response.headers.get("Location", ""))
+                    if not is_official_url(nxt):
+                        log.warning("fetch_official_image: redirect to non-official URL rejected")
+                        return None
+                    current = nxt
+                    continue
+                if response.status_code != 200:
+                    return None
+                body = response.raw.read(MAX_PAGE_BYTES, decode_content=True)
+                page = body.decode(response.encoding or "utf-8", errors="replace")
+                match = re.search(
+                    r'<meta property="og:image" content="([^"]+)"',
+                    page,
+                )
+                if match:
+                    img = match.group(1).strip()
+                    # Картинка потрапляє у markdown: лише https без пробілів/дужок
+                    if urlparse(img).scheme == "https" and not re.search(r"[\s()<>\"']", img):
+                        return img
+                return None
     except Exception as e:
-        log.warning("fetch_official_image error: %s", e)
+        log.warning("fetch_official_image error: %s", redact(e))
     return None
 
 
 def update_image(text: str) -> str:
     """Якщо є посилання → завантажує офіційне фото та підставляє."""
     link_match = re.search(
-        r'\*\*Посилання:\*\*\s*(https://www\.doterra\.com[^\s\n]+)',
+        r'\*\*Посилання:\*\*\s*(https://[^\s\n]+)',
         text,
     )
-    if not link_match:
+    if not link_match or not is_official_url(link_match.group(1).strip()):
         return text
 
     url = link_match.group(1).strip()
@@ -241,7 +309,7 @@ def save_chunks_to_db(chunks_dicts: list[dict]) -> None:
         conn.close()
         log.info("Saved %d chunks to DB", len(chunks_dicts))
     except Exception as e:
-        log.error("save_chunks_to_db error: %s", e)
+        log.error("save_chunks_to_db error: %s", redact(e))
 
 
 def update_all_chunks_json(new_chunks: list[dict]) -> None:
@@ -308,12 +376,12 @@ async def cmd_status(message: Message) -> None:
     if not is_admin(message.from_user.id):
         return
 
-    # rglob — рахуємо всі MD рекурсивно
-    docs_count = len(list(DOCS_DIR.rglob("*.md")))
+    # rglob — рахуємо всі MD рекурсивно у фоновому потоці
+    docs_count = await asyncio.to_thread(lambda: len(list(DOCS_DIR.rglob("*.md"))))
     chunks_count = 0
     if ALL_CHUNKS_PATH.exists():
         try:
-            data = json.loads(ALL_CHUNKS_PATH.read_text(encoding="utf-8"))
+            data = await asyncio.to_thread(lambda: json.loads(ALL_CHUNKS_PATH.read_text(encoding="utf-8")))
             chunks_count = len(data)
         except Exception:
             pass
@@ -333,8 +401,8 @@ async def cmd_list(message: Message) -> None:
     if not is_admin(message.from_user.id):
         return
 
-    # rglob — всі MD рекурсивно
-    files = sorted(DOCS_DIR.rglob("*.md"))
+    # rglob — всі MD рекурсивно у фоновому потоці
+    files = await asyncio.to_thread(lambda: sorted(DOCS_DIR.rglob("*.md")))
     if not files:
         await message.answer("📂 Файлів немає.")
         return
@@ -351,17 +419,31 @@ async def cmd_list(message: Message) -> None:
 
 @dp.message(F.document)
 async def handle_document(message: Message, bot: Bot) -> None:
-    if not is_admin(message.from_user.id):
+    if message.from_user is None or not is_admin(message.from_user.id):
         await message.answer("⛔ У вас немає доступу.")
         return
 
     doc: Document = message.document
-    if not doc.file_name.endswith(".md"):
+    if not (doc.file_name or "").lower().endswith(".md"):
         await message.answer("⚠️ Надішліть файл з розширенням `.md`")
         return
 
+    if doc.file_size is not None and doc.file_size > MAX_UPLOAD_BYTES:
+        await message.answer(
+            f"⚠️ Файл занадто великий (максимум {MAX_UPLOAD_BYTES // (1024 * 1024)} МБ)."
+        )
+        return
+
+    # Ім'я для відображення — без шляху та HTML-символів
+    display_name = html.escape(Path(doc.file_name.replace("\\", "/")).name)
+    stem = Path(doc.file_name.replace("\\", "/")).stem
+    slug = slugify(stem)
+    if not slug:
+        await message.answer("⚠️ Некоректне ім'я файлу.")
+        return
+
     await message.answer(
-        f"📥 Отримано: <code>{doc.file_name}</code>\nОбробка…",
+        f"📥 Отримано: <code>{display_name}</code>\nОбробка…",
         parse_mode="HTML",
     )
 
@@ -381,31 +463,33 @@ async def handle_document(message: Message, bot: Bot) -> None:
     await message.answer("🔧 Форматую файл…")
     formatted_text = format_md(raw_text)
 
-    # 3. Офіційне фото
+    # 3. Офіційне фото (мережевий запит у фоновому потоці)
     await message.answer("🖼 Завантажую офіційне фото з doterra.com…")
-    formatted_text = update_image(formatted_text)
+    formatted_text = await asyncio.to_thread(update_image, formatted_text)
 
-    # 4. Зберігаємо MD
-    stem = Path(doc.file_name).stem
-    slug = slugify(stem)
+    # 4. Зберігаємо MD (slug вже обчислено та перевірено вище)
     out_md = DOCS_DIR / f"{slug}.md"
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
-    out_md.write_text(formatted_text, encoding="utf-8")
+    await asyncio.to_thread(out_md.write_text, formatted_text, encoding="utf-8")
     log.info("Saved MD: %s", out_md)
 
-    # 5. Парсинг → чанки
+    # 5. Парсинг → чанки (CPU/парсинг у фоновому потоці)
     await message.answer("🧩 Парсю на чанки…")
     try:
-        chunks = parse_to_chunks(out_md)
+        chunks = await asyncio.to_thread(parse_to_chunks, out_md)
     except Exception as e:
-        await message.answer(f"❌ Помилка парсингу: <code>{e}</code>", parse_mode="HTML")
+        log.error("parse_to_chunks error: %s", redact(e))
+        await message.answer(
+            f"❌ Помилка парсингу (<code>{html.escape(safe_error(e))}</code>). Деталі — у логах сервера.",
+            parse_mode="HTML",
+        )
         return
 
-    # 6. Зберігаємо у БД
-    save_chunks_to_db(chunks)
+    # 6. Зберігаємо у БД (I/O у фоновому потоці)
+    await asyncio.to_thread(save_chunks_to_db, chunks)
 
-    # 7. Оновлюємо all_chunks.json
-    update_all_chunks_json(chunks)
+    # 7. Оновлюємо all_chunks.json (I/O у фоновому потоці)
+    await asyncio.to_thread(update_all_chunks_json, chunks)
 
     # 8. Звіт
     db_saved = "✅" if DATABASE_URL else "⚠️ пропущено"

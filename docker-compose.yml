@@ -10,8 +10,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: localpass
     ports:
-      # Порт 5432 пробрасывается на твой ПК
-      - "5432:5432"
+      # Порт 5432 прив'язано тільки до localhost (захист від доступу із зовнішньої мережі)
+      - "127.0.0.1:5432:5432"
     volumes:
       # Данные сохраняются между перезапусками контейнера
       - doterra_pgdata:/var/lib/postgresql/data

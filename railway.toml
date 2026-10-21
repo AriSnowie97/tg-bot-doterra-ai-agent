@@ -5,8 +5,8 @@
 builder = "NIXPACKS"
 
 [deploy]
-# First seed (loading content to the database), then bot
-startCommand = "python src/content/sync_content.py & uvicorn src.web.app:app --host 0.0.0.0 --port ${PORT:-8000} & python kb_bot.py & python bot.py & python content_uploader_bot.py"
+# First syncs content, then runs and supervises bot, web app and helper bots
+startCommand = "python supervisor.py"
 
 # Restart only if the bot crashes (not seed)
 restartPolicyType = "ON_FAILURE"

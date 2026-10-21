@@ -1,0 +1,115 @@
+"""Захист від витоку секретів у логи та чат.
+
+- redact(text)      — маскує рядки підключення до БД, API-ключі та токени ботів.
+- safe_error(e)     — короткий безпечний опис помилки (лише тип) для відповіді користувачу.
+- key_fingerprint() — стійкий ідентифікатор ключа для логів без жодного фрагмента самого ключа.
+"""
+
+# Standard
+import hashlib
+import re
+
+_PATTERNS: list[tuple[re.Pattern, str]] = [
+    # scheme://user:password@host → scheme://user:***@host
+    (re.compile(r"([a-zA-Z][a-zA-Z0-9+.\-]*://[^:/\s@]+:)[^@\s/]+(@)"), r"\1***\2"),
+    # DSN у стилі "password=secret"
+    (re.compile(r"(?i)(password|passwd|pwd|api[_-]?key|token|secret)\s*[=:]\s*[^\s,;&'\"]+"), r"\1=***"),
+    # Google API keys
+    (re.compile(r"AIza[0-9A-Za-z_\-]{20,}"), "***"),
+    # OpenAI / Anthropic style keys
+    (re.compile(r"sk-[A-Za-z0-9_\-]{16,}"), "***"),
+    # Telegram bot token 123456789:AA... (включаючи URL-шляхи на кшталт /bot123456:...)
+    (re.compile(r"(?:(?<=[bB][oO][tT])|\b)\d{6,}:[A-Za-z0-9_\-]{20,}"), "***"),
+    # Bearer-токени
+    (re.compile(r"(?i)(bearer\s+)[A-Za-z0-9._\-]{16,}"), r"\1***"),
+]
+
+
+def redact(value: object) -> str:
+    """Повертає текст із замаскованими секретами. Приймає будь-який об'єкт (напр. виняток)."""
+    text = str(value)
+    for pattern, repl in _PATTERNS:
+        text = pattern.sub(repl, text)
+    return text
+
+
+def redact_db_url(url: str | None) -> str:
+    """Для логів: лише host/db без логіна та пароля."""
+    if not url:
+        return "<not set>"
+    m = re.match(r"^[a-zA-Z][a-zA-Z0-9+.\-]*://(?:[^@/]*@)?([^/?]+)(/[^?]*)?", url)
+    return f"{m.group(1)}{m.group(2) or ''}" if m else "<invalid url>"
+
+
+def safe_error(e: BaseException) -> str:
+    """Безпечний опис помилки для користувача: лише тип, без тексту виключення."""
+    return type(e).__name__
+
+
+def key_fingerprint(api_key: str | None) -> str:
+    """Короткий хеш ключа: дозволяє розрізняти ключі в логах, не розкриваючи жодного символу."""
+    if not api_key:
+        return "none"
+    return hashlib.sha256(api_key.encode()).hexdigest()[:6]
+
+
+_ROLE_INJECTION_RE = re.compile(
+    r"(?im)^[ \t>*#\-_*`'\"\[(]*"
+    r"(?:Бот|Bot|Assistant|Користувач|User|System|AI|Model|Gemini|Human)"
+    r"[ \t*`'\"\])]*"
+    r"[:：—\-=]+"
+    r"[ \t*`'\"\])]*",
+)
+
+
+def sanitize_dialogue_text(text: str, max_chars: int = 500) -> str:
+    """Очищає текст користувача від спроб підробки ролей бота у діалозі (role injection)."""
+    if not text:
+        return ""
+    # Нейтралізуємо фальшиві заголовки реплік на початку рядків у будь-яких варіаціях
+    cleaned = _ROLE_INJECTION_RE.sub("(ввід користувача)", text)
+    cleaned = cleaned.strip()
+    return cleaned[:max_chars]
+
+
+def append_and_format_dialogue(
+    turns: list[dict[str, str]] | None,
+    new_user_text: str | None = None,
+    bot_response: str | None = None,
+    max_turns: int = 3,
+    max_chars: int = 1500,
+) -> tuple[list[dict[str, str]], str]:
+    """Додає нові репліки, обмежує глибину історії (FIFO) та повертає (turns, context_str).
+
+    - Обмежує кількість реплік (не більше max_turns діалогових пар).
+    - Захищає від безкінечного зростання пам'яті FSM та контексту LLM.
+    - Форматує рядок для RAG та LLM із чіткими префіксами.
+    """
+    safe_turns = [dict(t) for t in (turns or []) if isinstance(t, dict)]
+
+    if new_user_text is not None:
+        safe_user = sanitize_dialogue_text(new_user_text)
+        if safe_user:
+            safe_turns.append({"role": "user", "text": safe_user})
+
+    if bot_response is not None:
+        safe_bot = bot_response.strip()[:400]
+        if safe_bot:
+            safe_turns.append({"role": "bot", "text": safe_bot})
+
+    # Обмежуємо кількість повідомлень (max_turns пар = 2 * max_turns повідомлень)
+    max_msgs = max_turns * 2
+    if len(safe_turns) > max_msgs:
+        safe_turns = safe_turns[-max_msgs:]
+
+    parts = []
+    for t in safe_turns:
+        prefix = "Користувач:" if t.get("role") == "user" else "Бот:"
+        parts.append(f"{prefix} {t.get('text', '')}")
+
+    context_str = "\n\n".join(parts)
+    if len(context_str) > max_chars:
+        context_str = context_str[-max_chars:]
+
+    return safe_turns, context_str
+

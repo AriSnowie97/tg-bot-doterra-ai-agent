@@ -13,6 +13,7 @@ doTERRA Bot — Мінімальний веб-сервер для перегля
 """
 
 # Standard
+import html
 import os
 from pathlib import Path
 # Special
@@ -27,6 +28,7 @@ import nh3
 from src.web.auth import require_telegram_user
 from src.agent import generate_response
 from src.content.parser import slugify
+from src.safety import redact
 
 # ---------------------------------------------------------------------------
 # Налаштування
@@ -101,12 +103,12 @@ def _validate_lang(lang: str) -> None:
 
 def _render_md(md_text: str) -> str:
     """Конвертує Markdown-текст у безпечний (очищений) HTML."""
-    html = markdown.markdown(
+    raw_html = markdown.markdown(
         md_text,
         extensions=["tables", "fenced_code", "nl2br"]
     )
     return nh3.clean(
-        html,
+        raw_html,
         tags=_ALLOWED_TAGS,
         attributes=_ALLOWED_ATTRS,
         url_schemes=_ALLOWED_SCHEMES,
@@ -234,7 +236,7 @@ def _html_page(title: str, body: str) -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{title}</title>
+<title>{html.escape(title)}</title>
 <style>
   body {{ font-family: sans-serif; max-width: 820px; margin: 40px auto; padding: 0 16px; line-height: 1.6; color: #222; }}
   h1 {{ border-bottom: 2px solid #ccc; padding-bottom: 8px; }}
@@ -266,7 +268,7 @@ async def api_chat(request: ChatRequest, user: dict = Depends(require_telegram_u
         response_text = await generate_response(request.query)
         return ChatResponse(response=response_text)
     except Exception as e:
-        print(f"[api_chat] Error: {e}")
+        print(f"[api_chat] Error: {redact(e)}")
         raise HTTPException(status_code=500, detail="Помилка при генерації відповіді")
 
 
@@ -353,7 +355,7 @@ async def index() -> HTMLResponse:
         items = "<p>Документи не знайдено.</p>"
     else:
         items = "<ul>" + "".join(
-            f'<li><a href="/docs/{d["slug"]}">{d["filename"]}</a></li>'
+            f'<li><a href="/docs/{html.escape(d["slug"], quote=True)}">{html.escape(d["filename"])}</a></li>'
             for d in docs
         ) + "</ul>"
 

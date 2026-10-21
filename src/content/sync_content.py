@@ -12,6 +12,7 @@ doTERRA Bot — Скрипт масового імпорту контенту (J
 import os
 import sys
 import argparse
+import threading
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -23,10 +24,78 @@ load_dotenv(project_root / ".env")
 
 from src.content.seed import load_product_files, validate_product, seed_sqlite, seed_postgresql
 from src.content.parser import parse_md_dir
-from src.storage.storage import bulk_upsert_chunks, creating_table_for_chunks
+from src.storage.storage import bulk_upsert_chunks, creating_table_for_chunks, _conn_create
+from src.safety import redact, redact_db_url, safe_error
+
+
+# Захист від одночасного запуску синхронізації:
+#  - _SYNC_LOCK        — у межах одного процесу;
+#  - advisory lock у Postgres — між процесами (bot.py /sync_db і kb_bot.py /resync).
+_SYNC_LOCK = threading.Lock()
+_ADVISORY_LOCK_KEY = 727_001  # довільний сталий ключ блокування
+
+
+def _acquire_db_lock():
+    """Пробує взяти advisory lock. Повертає (дозволено, з'єднання).
+
+    - (False, None) — інший процес вже тримає блокування;
+    - (True, conn)  — блокування взято (відпускається при conn.close());
+    - (True, None)  — БД недоступна/не Postgres: працюємо лише з процесним замком.
+    """
+    conn = None
+    try:
+        conn = _conn_create()
+        conn.autocommit = True
+        with conn.cursor() as cur:
+            cur.execute("SELECT pg_try_advisory_lock(%s)", (_ADVISORY_LOCK_KEY,))
+            got = cur.fetchone()[0]
+        if not got:
+            conn.close()
+            return False, None
+        return True, conn
+    except Exception as e:
+        print(f"[sync] advisory lock unavailable, using process lock only: {redact(e)}", flush=True)
+        if conn is not None:
+            try:
+                conn.close()
+            except Exception:
+                pass
+        return True, None
 
 
 def run_sync(progress_callback=None) -> dict:
+    """Запускає синхронізацію, якщо ще не виконується інша (у цьому або іншому процесі).
+
+    Якщо синхронізація вже йде — не запускає нову, а повертає статистику з помилкою.
+    """
+    busy_msg = "Синхронізація вже виконується — зачекай її завершення."
+
+    def _busy() -> dict:
+        if progress_callback:
+            try:
+                progress_callback(f"⚠️ {busy_msg}")
+            except Exception:
+                pass
+        return {"products": 0, "chunks_found": 0, "errors": [busy_msg]}
+
+    if not _SYNC_LOCK.acquire(blocking=False):
+        return _busy()
+    db_conn = None
+    try:
+        allowed, db_conn = _acquire_db_lock()
+        if not allowed:
+            return _busy()
+        return _run_sync_impl(progress_callback)
+    finally:
+        if db_conn is not None:
+            try:
+                db_conn.close()  # закриття з'єднання знімає advisory lock
+            except Exception:
+                pass
+        _SYNC_LOCK.release()
+
+
+def _run_sync_impl(progress_callback=None) -> dict:
     """Виконує повну синхронізацію контенту: JSON картки + MD парсинг + векторизація.
 
     Args:
@@ -83,8 +152,9 @@ def run_sync(progress_callback=None) -> dict:
         stats["products"] = len(products)
         _log(f"✅ Картки продуктів оновлено: <b>{len(products)}</b> шт.")
     except Exception as e:
-        stats["errors"].append(f"JSON seed: {e}")
-        _log(f"❌ Помилка при завантаженні JSON карток: <code>{e}</code>")
+        stats["errors"].append(f"JSON seed: {safe_error(e)}")
+        print(f"[sync] JSON seed error: {redact(e)}", flush=True)
+        _log("❌ Помилка при завантаженні JSON карток (деталі у логах сервера).")
 
     # ── 2. Парсинг MD-файлів ─────────────────────────────────────────────────
     _log("\n📄 <b>[2/3]</b> Парсинг MD-документів...")
@@ -106,8 +176,9 @@ def run_sync(progress_callback=None) -> dict:
                 chunks.extend(dir_chunks)
                 _log(f"✅ Знайдено чанків: <b>{len(dir_chunks)}</b> з {d.name}/")
             except Exception as e:
-                stats["errors"].append(f"MD парсинг ({d.name}): {e}")
-                _log(f"❌ Помилка парсингу MD ({d.name}): <code>{e}</code>")
+                stats["errors"].append(f"MD парсинг ({d.name}): {safe_error(e)}")
+                print(f"[sync] MD parse error ({d.name}): {redact(e)}", flush=True)
+                _log(f"❌ Помилка парсингу MD ({d.name}) (деталі у логах сервера).")
                 
     stats["chunks_found"] = len(chunks)
     _log(f"✅ Всього знайдено чанків: <b>{len(chunks)}</b>")
@@ -121,8 +192,9 @@ def run_sync(progress_callback=None) -> dict:
             bulk_upsert_chunks(chunk_dicts)
             _log("✅ Вектори збережено у БД!")
         except Exception as e:
-            stats["errors"].append(f"Векторизація: {e}")
-            _log(f"❌ Помилка векторизації: <code>{e}</code>")
+            stats["errors"].append(f"Векторизація: {safe_error(e)}")
+            print(f"[sync] Vectorization error: {redact(e)}", flush=True)
+            _log("❌ Помилка векторизації (деталі у логах сервера).")
     else:
         _log("⚠️ Чанки не знайдено — векторизація пропущена.")
 
@@ -151,7 +223,7 @@ def main():
 
     print("\n📦 doTERRA Bot — Масовий імпорт контенту", flush=True)
     print("=" * 60, flush=True)
-    print(f"🔗 Підключення до бази: {args.db[:50]}...", flush=True)
+    print(f"🔗 Підключення до бази: {redact_db_url(args.db)}", flush=True)
 
     stats = run_sync()
 
@@ -159,7 +231,7 @@ def main():
     if stats["errors"]:
         print(f"⚠️  Завершено з {len(stats['errors'])} помилками:")
         for err in stats["errors"]:
-            print(f"   • {err}")
+            print(f"   • {redact(err)}")
     else:
         print("🎉 Масовий імпорт контенту успішно завершено!")
     print("=" * 60)

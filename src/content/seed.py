@@ -27,6 +27,10 @@ import argparse
 import glob
 from datetime import datetime
 
+# Щоб імпорт src.safety працював і при прямому запуску скрипта
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+from src.safety import redact, redact_db_url
+
 # ── Залежності ──────────────────────────────────────────────────────────────
 # pip install psycopg2-binary  (для PostgreSQL)
 # pip install (вбудовано sqlite3 для SQLite)
@@ -52,7 +56,7 @@ def load_product_files() -> list[dict]:
                         data = data[0]
                     all_products.append(data)
             except Exception as e:
-                print(f"  ❌ Помилка завантаження {os.path.basename(filepath)}: {e}")
+                print(f"  ❌ Помилка завантаження {os.path.basename(filepath)}: {redact(e)}")
 
     if not all_products:
         print(f"❌ Не знайдено JSON-файлів у {DATA_DIRS}")
@@ -124,7 +128,7 @@ def seed_sqlite(products: list[dict], db_path: str):
         try:
             cursor.executescript(schema_sql)
         except Exception as e:
-            print(f"Schema Error: {e}")
+            print(f"Schema Error: {redact(e)}")
 
     inserted = 0
     updated = 0
@@ -212,7 +216,7 @@ def seed_postgresql(products: list[dict], conn_string: str):
             break
         except psycopg2.OperationalError as e:
             if attempt == max_retries:
-                print(f"❌ Не вдалося підключитися до БД після {max_retries} спроб: {e}")
+                print(f"❌ Не вдалося підключитися до БД після {max_retries} спроб: {redact(e)}")
                 sys.exit(1)
             wait = 2 ** attempt  # 2, 4, 8, 16 секунд
             print(f"⏳ Спроба {attempt}/{max_retries} невдала. Повтор через {wait}с...")
@@ -325,7 +329,7 @@ def main():
     if env_db_url and not any(a.startswith("--db") for a in sys.argv):
         print(f"🔗 Підключення з DATABASE_URL (env)")
     else:
-        print(f"🔗 Підключення: {args.db[:60]}...")
+        print(f"🔗 Підключення: {redact_db_url(args.db)}")
 
     print(f"\n📂 Пошук файлів по категоріях...")
     products = load_product_files()

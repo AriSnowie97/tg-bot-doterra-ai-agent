@@ -21,8 +21,10 @@ doTERRA KB Uploader Bot — Адмін-бот для завантаження MD
 # Standard
 import os
 import asyncio
+import re
 import tempfile
 import traceback
+from html import escape
 from pathlib import Path
 # Special
 from dotenv import load_dotenv
@@ -36,8 +38,19 @@ from handlers.states import UploadKBStates
 from src.kb_uploader.uploader import upload_md_to_kb
 from src.storage.storage import _conn_create
 from src.content.sync_content import run_sync
+from src.safety import redact, safe_error
 
 load_dotenv()
+
+# Максимальний розмір MD-файлу, який приймаємо від користувача
+MAX_UPLOAD_BYTES = int(os.getenv("KB_MAX_UPLOAD_BYTES", str(5 * 1024 * 1024)))
+
+
+def _safe_filename(name: str | None) -> str:
+    """Безпечне ім'я файлу з Telegram: без шляху (../, слешів) та спецсимволів."""
+    base = Path((name or "").replace("\\", "/")).name
+    base = re.sub(r"[^\w.\- ]", "_", base).strip(" .")
+    return base[:100]
 
 KB_BOT_TOKEN: str = os.getenv("KB_BOT_TOKEN", "")
 KB_ADMIN_IDS: list[int] = [
@@ -143,7 +156,8 @@ async def cmd_status(message: Message) -> None:
             "Топ продуктів:\n" + "\n".join(lines)
         )
     except Exception as e:
-        await message.answer(f"❌ Помилка підключення до БД: {e}")
+        print(f"[kb_bot] status error: {redact(e)}")
+        await message.answer(f"❌ Помилка підключення до БД ({safe_error(e)}). Деталі — у логах сервера.")
 
 
 # ---------------------------------------------------------------------------
@@ -172,14 +186,15 @@ async def cmd_resync(message: Message) -> None:
                 message.answer(msg, parse_mode="HTML"), loop
             )
         except Exception as cb_err:
-            print(f"[kb_bot] resync progress error: {cb_err}")
+            print(f"[kb_bot] resync progress error: {redact(cb_err)}")
 
     try:
         stats = await asyncio.to_thread(run_sync, tg_progress)
     except Exception as e:
-        print(f"[kb_bot] resync error:\n{traceback.format_exc()}")
+        print(f"[kb_bot] resync error:\n{redact(traceback.format_exc())}")
         await message.answer(
-            f"❌ <b>Критична помилка переіндексації:</b>\n<code>{e}</code>",
+            f"❌ <b>Критична помилка переіндексації:</b> <code>{escape(safe_error(e))}</code>\n"
+            "Деталі — у логах сервера.",
             parse_mode="HTML"
         )
         return
@@ -190,7 +205,7 @@ async def cmd_resync(message: Message) -> None:
     error_lines = ""
     if error_count:
         error_lines = "\n\n<b>Помилки:</b>\n" + "\n".join(
-            f"  • <code>{e}</code>" for e in stats["errors"]
+            f"  • <code>{escape(redact(e))}</code>" for e in stats["errors"]
         )
 
     await message.answer(
@@ -250,24 +265,31 @@ async def receive_file_any(message: Message, state: FSMContext, bot: Bot) -> Non
 async def _process_received_md(message: Message, state: FSMContext) -> None:
     """Спільна логіка: перевірка файлу та перехід до кроку вибору slug."""
     doc: Document = message.document
+    file_name = _safe_filename(doc.file_name)
 
-    if not doc.file_name.endswith(".md"):
+    if not file_name.lower().endswith(".md"):
         await message.answer(
             "⚠️ Підтримуються лише файли з розширенням .md\n"
             "Надішли правильний файл або /cancel для скасування."
         )
         return
 
-    # Зберігаємо file_id та ім'я файлу в стані FSM
-    await state.update_data(file_id=doc.file_id, file_name=doc.file_name)
+    if doc.file_size is not None and doc.file_size > MAX_UPLOAD_BYTES:
+        await message.answer(
+            f"⚠️ Файл занадто великий (максимум {MAX_UPLOAD_BYTES // (1024 * 1024)} МБ)."
+        )
+        return
+
+    # Зберігаємо file_id та безпечне ім'я файлу в стані FSM
+    await state.update_data(file_id=doc.file_id, file_name=file_name)
 
     # Пропонуємо slug на основі назви файлу (без .md)
-    suggested_slug = doc.file_name.removesuffix(".md").lower().replace("_", "-").replace(" ", "-")
+    suggested_slug = file_name.removesuffix(".md").lower().replace("_", "-").replace(" ", "-")
     await state.set_state(UploadKBStates.waiting_for_slug)
     await message.answer(
-        f"✅ Файл отримано: <b>{doc.file_name}</b>\n\n"
+        f"✅ Файл отримано: <b>{escape(file_name)}</b>\n\n"
         f"📝 Введи <b>product_slug</b> для цього документа.\n"
-        f"Пропозиція: <code>{suggested_slug}</code>\n\n"
+        f"Пропозиція: <code>{escape(suggested_slug)}</code>\n\n"
         "Slug — унікальний ідентифікатор продукту "
         "(наприклад: frankincense, lavender, deep-blue).\n\n"
         "Надішли slug текстом або натисни /cancel для скасування:",
@@ -305,8 +327,8 @@ async def receive_slug(message: Message, state: FSMContext, bot: Bot) -> None:
 
     # ── Крок 1: завантажуємо файл з Telegram ────────────────────────────────
     await message.answer(
-        f"🚀 Починаю обробку файлу <b>{file_name}</b>\n"
-        f"Slug: <code>{slug}</code>\n\n"
+        f"🚀 Починаю обробку файлу <b>{escape(file_name)}</b>\n"
+        f"Slug: <code>{escape(slug)}</code>\n\n"
         "📥 Завантажую файл з Telegram...",
         parse_mode="HTML"
     )
@@ -330,15 +352,18 @@ async def receive_slug(message: Message, state: FSMContext, bot: Bot) -> None:
                     message.answer(msg, parse_mode="HTML"), loop
                 )
             except Exception as cb_err:
-                print(f"[kb_bot] tg_progress error: {cb_err}")
+                print(f"[kb_bot] tg_progress error: {redact(cb_err)}")
 
         try:
             stats = await asyncio.to_thread(
                 upload_md_to_kb, str(tmp_path), slug, tg_progress
             )
         except Exception as e:
-            print(f"[kb_bot] upload error:\n{traceback.format_exc()}")
-            await message.answer(f"❌ Помилка при завантаженні:\n<code>{e}</code>", parse_mode="HTML")
+            print(f"[kb_bot] upload error:\n{redact(traceback.format_exc())}")
+            await message.answer(
+                f"❌ Помилка при завантаженні (<code>{escape(safe_error(e))}</code>). Деталі — у логах сервера.",
+                parse_mode="HTML",
+            )
             return
 
     # ── Крок 3: фінальний звіт ───────────────────────────────────────────────

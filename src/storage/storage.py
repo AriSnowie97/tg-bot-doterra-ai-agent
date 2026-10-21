@@ -6,6 +6,7 @@ from pgvector import Vector
 from pgvector.psycopg2 import register_vector
 # Local
 from ..embedding import create_embedding
+from ..safety import redact
 
 
 DATABASE_URL = os.getenv("DATABASE_URL", "")
@@ -45,7 +46,7 @@ def _conn_create():
     try:
         conn = psycopg2.connect(url)
     except psycopg2.OperationalError as e:
-        print(f"[DB] Connection error: {e}")
+        print(f"[DB] Connection error: {redact(e)}")
         raise
 
     return conn
@@ -150,7 +151,7 @@ def bulk_upsert_chunks(chunks: list[dict]) -> None:
                 conn.commit()
                 
         except Exception as e:
-            print(f"[!] Error fetching/deleting existing chunk_ids: {e}")
+            print(f"[!] Error fetching/deleting existing chunk_ids: {redact(e)}")
             conn.rollback()
             
         for chunk in chunks:
@@ -183,7 +184,7 @@ def bulk_upsert_chunks(chunks: list[dict]) -> None:
                     )
                     conn.commit()  # Зафіксувати кожний успішний чанк, щоб не втратити прогрес
             except Exception as e:
-                print(f"[!] Error upserting chunk {chunk_id}: {e}")
+                print(f"[!] Error upserting chunk {chunk_id}: {redact(e)}")
                 conn.rollback()
                 
     conn.close()
@@ -199,7 +200,7 @@ def upsert_file_of_chunks(pathFile: str) -> None:
                 _upsert_chunk(chunk)
 
     except Exception as e:
-        print(f"File error: {e}")
+        print(f"File error: {redact(e)}")
 
 
 def upsert_dir_of_chunks(pathDir: str) -> None:
@@ -211,7 +212,7 @@ def upsert_dir_of_chunks(pathDir: str) -> None:
             upsert_file_of_chunks(pathFile)
 
     except Exception as e:
-        print(f"Folder error: {e}")
+        print(f"Folder error: {redact(e)}")
 
 
 def search_chunks(query: str, top_k: int = 5) -> list[dict]:

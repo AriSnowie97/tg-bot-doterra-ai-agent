@@ -17,7 +17,8 @@ from src.scheduler import setup_scheduler
 from src.storage.feedback import ensure_feedback_table, save_vote, get_vote_counts
 from handlers.states import AskStates, ScreeningStates
 from src.content.sync_content import run_sync
-from src.middleware import RateLimitMiddleware
+from src.middleware import RateLimitMiddleware, CallbackRateLimitMiddleware
+from src.safety import redact, safe_error, append_and_format_dialogue
 
 
 # Loading variables from a dotenv file
@@ -40,8 +41,15 @@ class AdminFilter(BaseFilter):
 
 # Creating a dispatcher
 dp = Dispatcher(storage=MemoryStorage())
-# Ліміт частоти/довжини повідомлень (адміни без ліміту)
-dp.message.outer_middleware(RateLimitMiddleware(exempt_ids=ADMIN_IDS))
+# Ліміт частоти/довжини — лише для повідомлень, які бот реально обробить (адміни без ліміту).
+# Звичайні розмови в групі не зараховуються. _is_addressed визначена нижче — викликається пізно.
+dp.message.outer_middleware(
+    RateLimitMiddleware(
+        exempt_ids=ADMIN_IDS,
+        should_limit=lambda m: _is_addressed(m) or (m.text or "").startswith("/"),
+    )
+)
+dp.callback_query.outer_middleware(CallbackRateLimitMiddleware(exempt_ids=ADMIN_IDS))
 
 # Кеш username бота — заповнюється при старті
 _BOT_USERNAME: str = ""
@@ -157,7 +165,7 @@ async def command_ask_handler(message: Message, command: CommandObject, state: F
         stop_typing.set()
         typing_task.cancel()
         await message.reply("😔 Виникла помилка при обробці запиту. Спробуй ще раз.")
-        print(f"[command_ask] Error: {e}")
+        print(f"[command_ask] Error: {redact(e)}")
 
 
 @dp.message(AskStates.waiting_for_question, F.text, ~F.text.startswith("/"))
@@ -192,7 +200,7 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
         stop_typing.set()
         typing_task.cancel()
         await message.reply("😔 Виникла помилка при обробці запиту. Спробуй ще раз.")
-        print(f"[ask_question] Error: {e}")
+        print(f"[ask_question] Error: {redact(e)}")
 
 
 @dp.message(Command("post"), AdminFilter(), F.chat.type == ChatType.PRIVATE)
@@ -215,8 +223,8 @@ async def command_post_handler(message: Message, bot: Bot) -> None:
         await publish_channel_post(bot)
         await message.answer("✅ Пост успішно опубліковано у канал!")
     except Exception as e:
-        await message.answer(f"❌ Помилка при публікації: {e}")
-        print(f"[bot] /post error: {e}")
+        await message.answer(f"❌ Помилка при публікації ({safe_error(e)}). Деталі — у логах сервера.")
+        print(f"[bot] /post error: {redact(e)}")
 
 
 @dp.message(Command("sync_db"), AdminFilter(), F.chat.type == ChatType.PRIVATE)
@@ -245,8 +253,8 @@ async def command_sync_db_handler(message: Message, bot: Bot) -> None:
                 f"📄 Чанки: {stats['chunks_found']}"
             )
     except Exception as e:
-        await message.answer(f"❌ Критична помилка під час синхронізації: {e}")
-        print(f"[bot] /sync_db error: {e}")
+        await message.answer(f"❌ Критична помилка під час синхронізації ({safe_error(e)}). Деталі — у логах сервера.")
+        print(f"[bot] /sync_db error: {redact(e)}")
 
 
 @dp.message(Command("post", "sync_db"))
@@ -327,7 +335,10 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
     # ── Завантажуємо стан скринінгу з FSMContext ──────────────────────────────
     fsm_data = await state.get_data()
     stored_mode: str | None = fsm_data.get("screening_mode")        # 'active'|'red_flag'|None
-    screening_history: str = fsm_data.get("screening_history", "")  # накопичений діалог
+    stored_turns: list[dict[str, str]] = fsm_data.get("screening_turns") or []
+    # Зворотна сумісність: якщо в стані був старий строковий screening_history
+    if not stored_turns and fsm_data.get("screening_history"):
+        stored_turns = [{"role": "user", "text": str(fsm_data["screening_history"])[:500]}]
 
     # Визначаємо чи це відповідь на скринінг чи новий незалежний запит
     from src.agent.specialist import is_health_complaint_query, has_red_flags
@@ -337,11 +348,10 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
     # Якщо є активний скринінг — продовжуємо його;
     # якщо прийшов новий незалежний запит без скарги — скидаємо стан
     if stored_mode in ("active", "red_flag"):
-        # Продовжуємо скринінг: оновлюємо накопичений контекст
-        conversation_context = (
-            screening_history + f"\n\nКористувач: {user_text}"
-            if screening_history
-            else f"Користувач: {user_text}"
+        # Продовжуємо скринінг: оновлюємо накопичений контекст (із захистом від role injection)
+        active_turns, conversation_context = append_and_format_dialogue(
+            stored_turns,
+            new_user_text=user_text,
         )
         # Якщо в новому повідомленні з'явились прапори — ескалюємо до red_flag
         if stored_mode == "active" and (is_new_red_flag or has_red_flags(conversation_context)):
@@ -350,6 +360,7 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
             pass_mode = stored_mode
     else:
         # Новий запит — передаємо None щоб service.py визначив режим сам
+        active_turns = []
         conversation_context = None
         pass_mode = None
 
@@ -387,15 +398,17 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
             new_mode = pass_mode  # зберігаємо переданий режим
 
         if new_mode in ("active", "red_flag"):
-            # Зберігаємо стан: режим + оновлений контекст (скарга + відповідь бота)
-            new_history = (
-                (conversation_context or f"Користувач: {user_text}")
-                + f"\n\nБот: {response[:500]}"  # обрізаємо відповідь бота для економії
+            # Зберігаємо стан: режим + оновлений контекст (скарга + відповідь бота, обмежена історія)
+            final_turns, final_context = append_and_format_dialogue(
+                active_turns if pass_mode is not None else [],
+                new_user_text=user_text if pass_mode is None else None,
+                bot_response=response,
             )
             await state.set_state(ScreeningStates.in_progress)
             await state.update_data(
                 screening_mode=new_mode,
-                screening_history=new_history,
+                screening_turns=final_turns,
+                screening_history=final_context,
             )
         else:
             # Загальне питання або скринінг завершено — очищаємо стан
@@ -409,7 +422,7 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
         await message.reply(
             "😔 Виникла помилка при обробці запиту. Спробуй ще раз."
         )
-        print(f"[on_message] Error: {type(e).__name__}: {e}")
+        print(f"[on_message] Error: {type(e).__name__}: {redact(e)}")
 
 
 # ---------------------------------------------------------------------------
@@ -452,7 +465,7 @@ async def feedback_callback(callback: CallbackQuery) -> None:
             query_text=query_text[:500],  # обрізаємо довгі тексти
         )
     except Exception as e:
-        print(f"[feedback] DB error: {e}")
+        print(f"[feedback] DB error: {redact(e)}")
         await callback.answer("⚠️ Не вдалося зберегти оцінку.", show_alert=True)
         return
 
@@ -472,7 +485,7 @@ async def feedback_callback(callback: CallbackQuery) -> None:
         )
         await callback.message.edit_reply_markup(reply_markup=new_keyboard)
     except Exception as e:
-        print(f"[feedback] keyboard update error: {e}")
+        print(f"[feedback] keyboard update error: {redact(e)}")
 
     # Підтвердження користувачу
     if vote == "like":
@@ -500,7 +513,7 @@ async def main() -> None:
         ensure_feedback_table()
         print("[bot] ✅ Feedback table ready.")
     except Exception as e:
-        print(f"[bot] ⚠️ Could not init feedback table: {e}")
+        print(f"[bot] ⚠️ Could not init feedback table: {redact(e)}")
 
     # Налаштовуємо кнопку "Меню" (Web App)
     webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
@@ -510,7 +523,7 @@ async def main() -> None:
         )
         print("[bot] ✅ Menu button configured.")
     except Exception as e:
-        print(f"[bot] ⚠️ Could not configure menu button: {e}")
+        print(f"[bot] ⚠️ Could not configure menu button: {redact(e)}")
 
     # Налаштовуємо та запускаємо планувальник публікацій
     scheduler = setup_scheduler(bot)
