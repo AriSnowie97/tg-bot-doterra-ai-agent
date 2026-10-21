@@ -23,6 +23,7 @@ from fastapi.staticfiles import StaticFiles
 import markdown
 
 from pydantic import BaseModel, Field
+import nh3
 from src.web.auth import require_telegram_user
 from src.agent import generate_response
 from src.content.parser import slugify
@@ -74,11 +75,41 @@ class ChatResponse(BaseModel):
 # Допоміжні функції
 # ---------------------------------------------------------------------------
 
+# Дозволені мови статей
+ALLOWED_LANGS = {"ua", "en"}
+
+# Allow-list для HTML, що генерує markdown. Усе інше (script, iframe, on*-атрибути,
+# javascript:-посилання) вирізається.
+_ALLOWED_TAGS = {
+    "p", "br", "hr", "h1", "h2", "h3", "h4", "h5", "h6",
+    "ul", "ol", "li", "blockquote", "pre", "code",
+    "strong", "em", "b", "i", "del", "s", "a", "img",
+    "table", "thead", "tbody", "tr", "th", "td", "details", "summary",
+}
+_ALLOWED_ATTRS = {
+    "a": {"href", "title"},
+    "img": {"src", "alt", "title"},
+    "code": {"class"},
+}
+_ALLOWED_SCHEMES = {"http", "https", "mailto"}
+
+
+def _validate_lang(lang: str) -> None:
+    if lang not in ALLOWED_LANGS:
+        raise HTTPException(status_code=400, detail="Невірна мова")
+
+
 def _render_md(md_text: str) -> str:
-    """Конвертує Markdown-текст у HTML."""
-    return markdown.markdown(
+    """Конвертує Markdown-текст у безпечний (очищений) HTML."""
+    html = markdown.markdown(
         md_text,
         extensions=["tables", "fenced_code", "nl2br"]
+    )
+    return nh3.clean(
+        html,
+        tags=_ALLOWED_TAGS,
+        attributes=_ALLOWED_ATTRS,
+        url_schemes=_ALLOWED_SCHEMES,
     )
 
 
@@ -242,6 +273,7 @@ async def api_chat(request: ChatRequest, user: dict = Depends(require_telegram_u
 @app.get("/api/articles/{lang}")
 async def api_get_articles(lang: str, request: Request):
     """Повертає список усіх статей з метаданими для Mini App."""
+    _validate_lang(lang)
     if not CONTENT_DIR.exists():
         return []
     
@@ -270,6 +302,7 @@ async def api_get_articles(lang: str, request: Request):
 @app.get("/api/docs/{slug}/{lang}")
 async def api_get_doc(slug: str, lang: str, request: Request):
     """Повертає відрендерений HTML статті у форматі JSON для React-додатку."""
+    _validate_lang(lang)
     if not slug.replace("-", "").replace("_", "").isalnum():
         raise HTTPException(status_code=400, detail="Невірний slug")
 

@@ -17,6 +17,7 @@ from src.scheduler import setup_scheduler
 from src.storage.feedback import ensure_feedback_table, save_vote, get_vote_counts
 from handlers.states import AskStates, ScreeningStates
 from src.content.sync_content import run_sync
+from src.middleware import RateLimitMiddleware
 
 
 # Loading variables from a dotenv file
@@ -39,6 +40,8 @@ class AdminFilter(BaseFilter):
 
 # Creating a dispatcher
 dp = Dispatcher(storage=MemoryStorage())
+# Ліміт частоти/довжини повідомлень (адміни без ліміту)
+dp.message.outer_middleware(RateLimitMiddleware(exempt_ids=ADMIN_IDS))
 
 # Кеш username бота — заповнюється при старті
 _BOT_USERNAME: str = ""
