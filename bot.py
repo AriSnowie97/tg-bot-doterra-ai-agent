@@ -5,7 +5,7 @@ import re
 # Special
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, F
-from aiogram.filters import Command, CommandObject
+from aiogram.filters import BaseFilter, Command, CommandObject
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, WebAppInfo, MenuButtonWebApp
@@ -26,9 +26,16 @@ CHANNEL_ID = os.getenv("CHANNEL_ID")
 
 # ID адміністраторів бота, які можуть викликати /post вручну.
 # Заповни своїм Telegram user_id (отримати через @userinfobot).
-ADMIN_IDS: list[int] = [
+ADMIN_IDS: set[int] = {
     int(uid) for uid in os.getenv("ADMIN_IDS", "").split(",") if uid.strip().isdigit()
-]
+}
+
+
+class AdminFilter(BaseFilter):
+    """Пропускає лише адмінів. Порожній ADMIN_IDS = доступу немає ні в кого."""
+
+    async def __call__(self, message: Message) -> bool:
+        return bool(message.from_user) and message.from_user.id in ADMIN_IDS
 
 # Creating a dispatcher
 dp = Dispatcher(storage=MemoryStorage())
@@ -150,7 +157,7 @@ async def command_ask_handler(message: Message, command: CommandObject, state: F
         print(f"[command_ask] Error: {e}")
 
 
-@dp.message(AskStates.waiting_for_question, F.text)
+@dp.message(AskStates.waiting_for_question, F.text, ~F.text.startswith("/"))
 async def ask_question_handler(message: Message, state: FSMContext) -> None:
     """Обробляє питання після того, як користувач ввів /ask без аргументів.
 
@@ -185,19 +192,13 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
         print(f"[ask_question] Error: {e}")
 
 
-@dp.message(Command("post"))
+@dp.message(Command("post"), AdminFilter(), F.chat.type == ChatType.PRIVATE)
 async def command_post_handler(message: Message, bot: Bot) -> None:
     """Ручна публікація посту в канал — тільки для адміністраторів.
 
     Використання: надіслати /post у приватний чат з ботом.
     Бот одразу публікує новий пост у канал і повідомляє про результат.
     """
-    user_id = message.from_user.id
-
-    # Захист: тільки адміни або якщо ADMIN_IDS не задано (режим розробки)
-    if ADMIN_IDS and user_id not in ADMIN_IDS:
-        await message.answer("⛔ У тебе немає прав для цієї команди.")
-        return
 
     if not CHANNEL_ID:
         await message.answer(
@@ -215,14 +216,9 @@ async def command_post_handler(message: Message, bot: Bot) -> None:
         print(f"[bot] /post error: {e}")
 
 
-@dp.message(Command("sync_db"))
+@dp.message(Command("sync_db"), AdminFilter(), F.chat.type == ChatType.PRIVATE)
 async def command_sync_db_handler(message: Message, bot: Bot) -> None:
     """Ручне оновлення бази знань (синхронізація файлів) — тільки для адміністраторів."""
-    user_id = message.from_user.id
-
-    if ADMIN_IDS and user_id not in ADMIN_IDS:
-        await message.answer("⛔ У тебе немає прав для цієї команди.")
-        return
 
     await message.answer("⏳ Запускаю синхронізацію бази знань... Це може зайняти 10-15 хвилин через ліміти API. Я повідомлю, коли закінчу.")
 
@@ -248,6 +244,12 @@ async def command_sync_db_handler(message: Message, bot: Bot) -> None:
     except Exception as e:
         await message.answer(f"❌ Критична помилка під час синхронізації: {e}")
         print(f"[bot] /sync_db error: {e}")
+
+
+@dp.message(Command("post", "sync_db"))
+async def admin_command_denied(message: Message) -> None:
+    """Fallback для не-адмінів: не віддаємо адмін-команди загальному обробнику F.text."""
+    await message.answer("⛔ У тебе немає прав для цієї команди.")
 
 
 def _is_addressed(message: Message) -> bool:
@@ -479,6 +481,9 @@ async def feedback_callback(callback: CallbackQuery) -> None:
 # Run the bot
 async def main() -> None:
     global _BOT_USERNAME
+
+    if not ADMIN_IDS:
+        print("[bot] ⚠️ ADMIN_IDS порожній або невалідний — адмін-команди (/post, /sync_db) вимкнені.")
 
     bot = Bot(token=BOT_TOKEN)
 

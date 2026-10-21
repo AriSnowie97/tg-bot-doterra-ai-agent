@@ -17,12 +17,13 @@ import os
 from pathlib import Path
 # Special
 import re
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 import markdown
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from src.web.auth import require_telegram_user
 from src.agent import generate_response
 from src.content.parser import slugify
 
@@ -37,12 +38,19 @@ app = FastAPI(title="doTERRA Docs Viewer", docs_url=None, redoc_url=None)
 # Додаємо CORS для того, щоб React (який запущено на іншому порту чи домені) міг робити запити
 from fastapi.middleware.cors import CORSMiddleware
 
+# Дозволені origin'и (через кому). За замовчуванням — лише GitHub Pages з Mini App.
+CORS_ORIGINS = [
+    o.strip()
+    for o in os.getenv("CORS_ORIGINS", "https://arisnowie97.github.io").split(",")
+    if o.strip()
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # В продакшені краще вказати конкретні домени (наприклад, ваш github.io)
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=CORS_ORIGINS,
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type", "X-Telegram-Init-Data"],
 )
 
 # Монтуємо папку з картинками
@@ -56,7 +64,7 @@ app.mount("/images", StaticFiles(directory=str(IMAGES_DIR)), name="images")
 # ---------------------------------------------------------------------------
 
 class ChatRequest(BaseModel):
-    query: str
+    query: str = Field(max_length=1000)
 
 class ChatResponse(BaseModel):
     response: str
@@ -218,7 +226,7 @@ def _html_page(title: str, body: str) -> str:
 # ---------------------------------------------------------------------------
 
 @app.post("/api/chat", response_model=ChatResponse)
-async def api_chat(request: ChatRequest):
+async def api_chat(request: ChatRequest, user: dict = Depends(require_telegram_user)):
     """Ендпоінт для чату з Mini App."""
     if not request.query.strip():
         raise HTTPException(status_code=400, detail="Query cannot be empty")

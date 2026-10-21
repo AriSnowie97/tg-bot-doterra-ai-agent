@@ -54,10 +54,9 @@ dp = Dispatcher(storage=MemoryStorage())
 # ---------------------------------------------------------------------------
 
 def _is_admin(message: Message) -> bool:
-    """Повертає True якщо користувач є адміном або KB_ADMIN_IDS не задано."""
-    if not KB_ADMIN_IDS:
-        return True  # режим розробки — дозволяємо всім
-    return message.from_user.id in KB_ADMIN_IDS
+    """Повертає True лише якщо користувач у KB_ADMIN_IDS. Порожній список = доступу немає."""
+    user = message.from_user
+    return user is not None and user.id in KB_ADMIN_IDS
 
 
 def _admin_only(func):
@@ -380,6 +379,10 @@ async def receive_slug(message: Message, state: FSMContext, bot: Bot) -> None:
 async def main() -> None:
     if not KB_BOT_TOKEN:
         print("[kb_bot] ❌ KB_BOT_TOKEN не задано у .env!")
+        return
+
+    if not KB_ADMIN_IDS:
+        print("[kb_bot] ❌ KB_ADMIN_IDS порожній або невалідний — бот не запущено.")
         return
 
     bot = Bot(token=KB_BOT_TOKEN)

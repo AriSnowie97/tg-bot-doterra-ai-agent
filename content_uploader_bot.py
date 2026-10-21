@@ -279,7 +279,7 @@ dp = Dispatcher()
 
 
 def is_admin(user_id: int) -> bool:
-    return not ADMIN_IDS or user_id in ADMIN_IDS
+    return user_id in ADMIN_IDS
 
 
 @dp.message(CommandStart())
@@ -424,6 +424,9 @@ async def handle_document(message: Message, bot: Bot) -> None:
 # ──────────────────────────────────────────────────
 
 async def main() -> None:
+    if not ADMIN_IDS:
+        sys.exit("❌ CONTENT_BOT_ADMINS порожній або невалідний — бот не запущено.")
+
     bot = Bot(token=BOT_TOKEN)
     log.info("Content Uploader Bot started. Admins: %s", ADMIN_IDS)
     await dp.start_polling(bot)
