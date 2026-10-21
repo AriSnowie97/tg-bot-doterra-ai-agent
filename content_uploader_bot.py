@@ -138,29 +138,32 @@ def is_official_url(url: str) -> bool:
     r"""True лише для безпечних https-посилань на офіційний домен doterra.com.
 
     Забороняє:
-    - Будь-які зворотні слеші '\\', пробіли, символи '%' та '@' у URL/хості
     - Не-https схеми
+    - Зворотні слеші '\\', '@', '%', пробіли у назві хоста/авторитету (захист від SSRF/open redirect)
     - Нестандартні порти
     - Хости, що не відповідають строгому regex r"^(?:[a-zA-Z0-9-]+\.)*doterra\.com$"
+    Дозволяє коректні percent-encoded символи (наприклад %20, %C2%AE) у шляху (path) та параметрах (query).
     """
     if not url or not isinstance(url, str):
         return False
 
-    if any(c in url for c in ("\\", " ", "\t", "\r", "\n", "%", "@")):
-        return False
-
     try:
         parsed = urlparse(url)
-        host = (parsed.hostname or "").lower()
-        if not host:
+        if parsed.scheme != "https":
             return False
 
-        if not _OFFICIAL_HOST_REGEX.match(host):
+        # Перевірка авторитету (host, userinfo, port):
+        # Забороняємо небезпечні символи обходу парсера саме в частині хоста/авторитету
+        authority = (url.split("://", 1)[1] if "://" in url else url).split("/", 1)[0].split("?", 1)[0].split("#", 1)[0]
+        if any(c in authority for c in ("\\", " ", "\t", "\r", "\n", "%", "@")):
+            return False
+
+        host = (parsed.hostname or "").lower()
+        if not host or not _OFFICIAL_HOST_REGEX.match(host):
             return False
 
         return (
-            parsed.scheme == "https"
-            and parsed.username is None
+            parsed.username is None
             and parsed.password is None
             and parsed.port in (None, 443)
         )
@@ -204,13 +207,15 @@ def fetch_official_image(url: str) -> str | None:
                 )
                 if match:
                     img = match.group(1).strip()
-                    # Картинка потрапляє у markdown: лише https без пробілів/дужок
-                    if urlparse(img).scheme == "https" and not re.search(r"[\s()<>\"']", img):
-                        return img
+                    full_img = urljoin(current, img)
+                    # Картинка має бути виключно з офіційного домену doterra.com
+                    if is_official_url(full_img) and not re.search(r"[\s()<>\"']", full_img):
+                        return full_img
                 return None
     except Exception as e:
         log.warning("fetch_official_image error: %s", redact(e))
     return None
+
 
 
 def update_image(text: str) -> str:

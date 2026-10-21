@@ -8,12 +8,18 @@
 # Standard
 import hashlib
 import re
+import unicodedata
 
 _PATTERNS: list[tuple[re.Pattern, str]] = [
     # scheme://user:password@host → scheme://user:***@host
     (re.compile(r"([a-zA-Z][a-zA-Z0-9+.\-]*://[^:/\s@]+:)[^@\s/]+(@)"), r"\1***\2"),
-    # DSN у стилі "password=secret"
-    (re.compile(r"(?i)(password|passwd|pwd|api[_-]?key|token|secret)\s*[=:]\s*[^\s,;&'\"]+"), r"\1=***"),
+    # DSN, query params та JSON: BOT_TOKEN=..., password="secret", ?key=..., 'token': '...'
+    (
+        re.compile(
+            r"""(?i)(["']?(?:[a-z0-9_-]*(?:password|passwd|pwd|token|secret)|(?:[a-z0-9_-]*[_-]|[?&]|\b)key)["']?\s*[=:]\s*)(?:["'][^"']+["']|[^\s,;&'"\\]+)"""
+        ),
+        r"\g<1>***",
+    ),
     # Google API keys
     (re.compile(r"AIza[0-9A-Za-z_\-]{20,}"), "***"),
     # OpenAI / Anthropic style keys
@@ -53,11 +59,23 @@ def key_fingerprint(api_key: str | None) -> str:
     return hashlib.sha256(api_key.encode()).hexdigest()[:6]
 
 
+_ZERO_WIDTH_RE = re.compile(r"[\u200b-\u200f\ufeff\u00ad\u2060-\u206f\u202a-\u202e]")
+
 _ROLE_INJECTION_RE = re.compile(
     r"(?im)^[ \t>*#\-_*`'\"\[(]*"
-    r"(?:Бот|Bot|Assistant|Користувач|User|System|AI|Model|Gemini|Human)"
+    r"(?:"
+    r"[БбВвBb][ОоOo0][ТтTt]"
+    r"|[AaАа][SsСсCc]{1,2}[IiІіИи1][SsСсCc][TtТт][AaАаEeЕе][NnНн][TtТт]"
+    r"|[KkКк][ОоOo0][RrРр][IiІіИи1][SsСсCc][TtТт][UuУу][VvВв][AaАа][ЧчChch]"
+    r"|[UuУу][SsСс][EeЕе][RrРр]"
+    r"|[SsСс][YyУуIiІіИи1][SsСс][TtТт][EeЕе][MmМм][AaАа]?"
+    r"|[AaАа][IiІі1]"
+    r"|[MmМм][ОоOo0][DdДд][EeЕе][LlЛл][Ьь]?"
+    r"|[Gg][EeЕе][MmМм][IiІі1][NnНн][IiІі1]"
+    r"|[HhНн][UuУу][MmМм][AaАа][NnНн]"
+    r")"
     r"[ \t*`'\"\])]*"
-    r"[:：—\-=]+"
+    r"[:：=\u002d\u2010-\u2015\u2212]+"
     r"[ \t*`'\"\])]*",
 )
 
@@ -66,8 +84,12 @@ def sanitize_dialogue_text(text: str, max_chars: int = 500) -> str:
     """Очищає текст користувача від спроб підробки ролей бота у діалозі (role injection)."""
     if not text:
         return ""
-    # Нейтралізуємо фальшиві заголовки реплік на початку рядків у будь-яких варіаціях
-    cleaned = _ROLE_INJECTION_RE.sub("(ввід користувача)", text)
+    # 1. Видаляємо невидимі та нульової ширини керуючі символи
+    cleaned = _ZERO_WIDTH_RE.sub("", text)
+    # 2. Нормалізація Unicode NFKC (повноширинні Ｂｏｔ → Bot, ： → : тощо)
+    cleaned = unicodedata.normalize("NFKC", cleaned)
+    # 3. Нейтралізуємо фальшиві заголовки реплік на початку рядків (з омогліфами кирилиця/латиниця)
+    cleaned = _ROLE_INJECTION_RE.sub("(ввід користувача)", cleaned)
     cleaned = cleaned.strip()
     return cleaned[:max_chars]
 

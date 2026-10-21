@@ -24,7 +24,11 @@ from src.safety import redact, safe_error, append_and_format_dialogue
 # Loading variables from a dotenv file
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-CHANNEL_ID = os.getenv("CHANNEL_ID")
+
+def _get_channel_id() -> str:
+    """Отримує актуальний CHANNEL_ID із змінних середовища."""
+    return (os.getenv("CHANNEL_ID") or "").strip()
+
 
 # ID адміністраторів бота, які можуть викликати /post вручну.
 # Заповни своїм Telegram user_id (отримати через @userinfobot).
@@ -211,7 +215,8 @@ async def command_post_handler(message: Message, bot: Bot) -> None:
     Бот одразу публікує новий пост у канал і повідомляє про результат.
     """
 
-    if not CHANNEL_ID:
+    channel_id = _get_channel_id()
+    if not channel_id:
         await message.answer(
             "⚠️ CHANNEL_ID не задано у .env — публікацію неможливо виконати."
         )

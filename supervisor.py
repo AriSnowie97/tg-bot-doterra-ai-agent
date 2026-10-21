@@ -98,7 +98,18 @@ def main() -> None:
             if p.poll() is None:
                 p.terminate()
 
-        time.sleep(2)
+        # Очікуємо до 8 секунд для коректного завершення (graceful shutdown aiogram / uvicorn)
+        for _ in range(8):
+            all_dead = True
+            if sync_proc and sync_proc.poll() is None:
+                all_dead = False
+            for p in processes.values():
+                if p.poll() is None:
+                    all_dead = False
+                    break
+            if all_dead:
+                break
+            time.sleep(1)
 
         if sync_proc and sync_proc.poll() is None:
             sync_proc.kill()
@@ -152,18 +163,28 @@ def main() -> None:
             proc = processes[name]
             ret = proc.poll()
             if ret is not None:
-                print(f"[supervisor] ⚠️ Service '{name}' exited with code {ret}!", flush=True)
+                is_critical = s.get("critical", False)
 
-                # Перевіряємо історію падінь
+                # Код виходу 0 для допоміжного сервісу — це штатне завершення, не перезапускаємо
+                if ret == 0 and not is_critical:
+                    print(f"[supervisor] ℹ️ Service '{name}' exited cleanly with code 0. Will not restart.", flush=True)
+                    del processes[name]
+                    continue
+
+                if ret == 0:
+                    print(f"[supervisor] ⚠️ Critical service '{name}' exited with code 0 (unexpected termination).", flush=True)
+                else:
+                    print(f"[supervisor] ⚠️ Service '{name}' crashed with exit code {ret}!", flush=True)
+
+                # Перевіряємо історію завершень / падінь
                 history = restart_history[name]
                 history = [t for t in history if now - t < CRASH_WINDOW]
                 history.append(now)
                 restart_history[name] = history
 
                 if len(history) >= MAX_CRASHES:
-                    is_critical = s.get("critical", False)
                     if not is_critical:
-                        # Допоміжний бот впав забагато разів — просто вимикаємо його,
+                        # Допоміжний бот впав забагато разів — вимикаємо його,
                         # не зупиняючи основний бот та веб-сервер
                         print(
                             f"[supervisor] 🛑 Non-critical service '{name}' crashed {len(history)} times "
@@ -173,11 +194,10 @@ def main() -> None:
                         del processes[name]
                         continue
                     else:
-                        # Критичний сервіс (web_api або main_bot) впав забагато разів —
-                        # завершуємо роботу супервізора з КОДОМ 1, щоб Railway (ON_FAILURE)
-                        # перезапустив весь контейнер!
+                        # Критичний сервіс (web_api або main_bot) завершився або впав забагато разів —
+                        # виходимо з КОДОМ 1, щоб Railway (ON_FAILURE) перезапустив весь контейнер!
                         print(
-                            f"[supervisor] ❌ Critical service '{name}' crashed {len(history)} times "
+                            f"[supervisor] ❌ Critical service '{name}' exited/crashed {len(history)} times "
                             f"in {CRASH_WINDOW}s. Exiting supervisor with code 1 to trigger platform restart.",
                             flush=True,
                         )
@@ -189,6 +209,8 @@ def main() -> None:
                 time.sleep(3)
                 if running:
                     _start_service(s)
+
+
 
 
 if __name__ == "__main__":

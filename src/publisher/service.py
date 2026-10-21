@@ -48,8 +48,6 @@ def get_channel_id() -> str:
     return os.getenv("CHANNEL_ID", "").strip()
 
 
-CHANNEL_ID: str = get_channel_id()
-
 # Більший контекст для посту (vs 5 для чат-бота)
 POST_TOP_K: int = 12
 
