@@ -168,7 +168,7 @@ async def command_start_handler(message: Message, state: FSMContext) -> None:
 
     await message.answer(
         f"👋 Привіт, {message.from_user.first_name}!\n\n"
-        "🌿 Я — Aroma Assistant, помічниця Наталії Котелянської.\n\n"
+        "🌿 Мене звати Арома, я помічниця Наталії Котелянської у нашому боті Aroma Assistant.\n\n"
         "Я з радістю допоможу тобі познайомитися з ефірними оліями doTERRA "
         "та іншими чудовими продуктами, які є у Наталії 🌸\n\n"
         "Просто напиши своє запитання — і я з радістю підкажу 🔍",

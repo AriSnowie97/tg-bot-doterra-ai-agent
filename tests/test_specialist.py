@@ -88,7 +88,8 @@ class TestSpecialistScreening:
 
     def test_system_prompt_creator_and_emoji_rules(self):
         from src.agent.prompt import SYSTEM_PROMPT
-        # Перевірка ролі Aroma Assistant Наталії Котелянської
+        # Перевірка ролі та імені Арома, помічниці Наталії Котелянської
+        assert "Твоє ім'я — Арома" in SYSTEM_PROMPT
         assert "помічниця Наталії Котелянської" in SYSTEM_PROMPT
         assert "Aroma Assistant" in SYSTEM_PROMPT
         assert "КАТЕГОРИЧНО ЗАБОРОНЕНО" in SYSTEM_PROMPT
