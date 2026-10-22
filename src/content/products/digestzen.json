@@ -5,10 +5,10 @@
   "type": "blend",
   "tags": ["#ролер", "#БАД"],
   "product_variants": [
-    { "name": "DigestZen 15 мл", "url": "https://www.doterra.com/US/en/p/digestzen-oil" },
-    { "name": "DigestZen Touch (ролер)", "url": "https://www.doterra.com/US/en/p/digestzen-touch-oil" },
-    { "name": "DigestZen TerraZyme (ферменти)", "url": "https://www.doterra.com/US/en/p/digestzen-terrazyme" },
-    { "name": "DigestZen пом'якшувальні таблетки", "url": "https://www.doterra.com/US/en/p/digestzen-chewable-tablets" }
+    { "name": "DigestZen 15 мл", "slug": "digestzen" },
+    { "name": "DigestZen Touch (ролер)", "slug": "digestzen-touch" },
+    { "name": "DigestZen TerraZyme (ферменти)", "slug": "digestzen-terrazyme" },
+    { "name": "DigestZen пом'якшувальні таблетки", "slug": "digesttab-chewable-tablets" }
   ],
   "short_description": [
     "Авторська суміш doTERRA з 9 олій — природна підтримка травної системи від нудоти та здуття до синдрому подразненого кишківника",

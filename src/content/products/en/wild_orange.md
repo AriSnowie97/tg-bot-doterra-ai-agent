@@ -64,8 +64,8 @@
 ## Additional Information
 
 ### Product Options
-*   [Wild Orange 15 ml](https://www.doterra.com/US/en/p/wild-orange-oil)
-*   [Wild Orange Touch (roll-on)](https://www.doterra.com/US/en/p/wild-orange-touch-oil)
+*   **Wild Orange 15 ml** — pure cold-pressed wild orange essential oil
+*   **Wild Orange Touch (roll-on)** — roll-on for convenient topical application
 
 ### Origin
 Wild Orange (Citrus sinensis) is a variety of sweet orange grown without chemical fertilizers or pesticides. doTERRA sources the oil primarily from Brazil and the Dominican Republic through cold pressing the fruit's outer peel. The name "wild" reflects the tradition of harvesting fruit from trees growing in natural conditions with minimal human intervention.

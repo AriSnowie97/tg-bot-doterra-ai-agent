@@ -5,9 +5,9 @@
   "type": "single",
   "tags": ["#ролер", "#БАД"],
   "product_variants": [
-    { "name": "Лаванда 15 мл", "url": "https://www.doterra.com/US/en/p/lavender-oil" },
-    { "name": "Лаванда Touch (ролер)", "url": "https://www.doterra.com/US/en/p/lavender-touch-oil" },
-    { "name": "Капсули Лаванди", "url": "https://www.doterra.com/US/en/p/lavender-softgels" }
+    { "name": "Лаванда 15 мл", "slug": "lavender" },
+    { "name": "Лаванда Touch (ролер)", "slug": "lavender-touch" },
+    { "name": "Капсули Лаванди", "slug": "lavender" }
   ],
   "short_description": [
     "Одна з найпопулярніших ефірних олій у світі — відома своїми заспокійливими та розслаблювальними властивостями",

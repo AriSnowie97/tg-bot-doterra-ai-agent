@@ -5,9 +5,9 @@
   "type": "single",
   "tags": ["#ролер"],
   "product_variants": [
-    { "name": "М'ята перцева 15 мл", "url": "https://www.doterra.com/US/en/p/peppermint-oil" },
-    { "name": "М'ята Touch (ролер)", "url": "https://www.doterra.com/US/en/p/peppermint-touch-oil" },
-    { "name": "Капсули М'яти перцевої", "url": "https://www.doterra.com/US/en/p/peppermint-softgels" }
+    { "name": "М'ята перцева 15 мл", "slug": "peppermint" },
+    { "name": "М'ята Touch (ролер)", "slug": "peppermint-touch" },
+    { "name": "Капсули М'яти перцевої", "slug": "doterra-peppermint-softgels" }
   ],
   "short_description": [
     "Одна з найбільш універсальних олій — від освіження та бадьорості до полегшення болю і травлення",

@@ -270,6 +270,9 @@ async def generate_response(
     for pattern, repl in guide_replacements:
         text = re.sub(pattern, repl, text, flags=re.IGNORECASE)
 
+    # Видаляємо будь-які випадкові зовнішні URL doterra.com
+    text = re.sub(r'https?://(?:www\.)?doterra\.com[^\s\)]*', '', text)
+
     # Виявлення витоку промпту: якщо модель вивела інструкції замість відповіді
     leakage_markers = [
         "(no `**`",

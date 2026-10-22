@@ -5,12 +5,12 @@
   "type": "single",
   "tags": ["#відео", "#ролер", "#БАД"],
   "product_variants": [
-    { "name": "Ладан 15 мл", "url": "https://www.doterra.com/US/en/p/frankincense-oil" },
-    { "name": "Капсули Ладана з мікросферами", "url": "https://www.doterra.com/US/en/p/frankincense-boswellic-acid-complex" },
-    { "name": "Стік Ладана + Дерево Наіо", "url": "https://www.doterra.com/US/en/p/frankincense-stick-naio-wood" },
-    { "name": "Ладан ролер", "url": "https://www.doterra.com/US/en/p/doterra-frankincense-touch-blend-oil" },
-    { "name": "Капсули Ладана і DDR Prime", "url": "https://www.doterra.com/US/en/p/targeted-solutions-cellular-support" },
-    { "name": "Комплекс Ладан капсули і стік", "url": "https://www.doterra.com/US/en/p/frankincense-bundle" }
+    { "name": "Ладан 15 мл", "slug": "frankincense" },
+    { "name": "Капсули Ладана з мікросферами", "slug": "frankincense" },
+    { "name": "Стік Ладана + Дерево Наіо", "slug": "frankincense" },
+    { "name": "Ладан ролер", "slug": "frankincense-touch" },
+    { "name": "Капсули Ладана і DDR Prime", "slug": "ddr-prime-softgels" },
+    { "name": "Комплекс Ладан капсули і стік", "slug": "frankincense" }
   ],
   "short_description": [
     "Допомагає підтримувати здоров'я дихальних шляхів, клітинну функцію та здоров'я шкіри",

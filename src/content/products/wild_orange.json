@@ -5,8 +5,8 @@
   "type": "single",
   "tags": [],
   "product_variants": [
-    { "name": "Дика апельсин 15 мл", "url": "https://www.doterra.com/US/en/p/wild-orange-oil" },
-    { "name": "Дика апельсин Touch (ролер)", "url": "https://www.doterra.com/US/en/p/wild-orange-touch-oil" }
+    { "name": "Дика апельсин 15 мл", "slug": "wild_orange" },
+    { "name": "Дика апельсин Touch (ролер)", "slug": "wild_orange" }
   ],
   "short_description": [
     "Сонячна, піднімаюча настрій олія з потужними антиоксидантними та імуностимулюючими властивостями",

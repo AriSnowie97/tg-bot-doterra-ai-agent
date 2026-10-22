@@ -113,6 +113,7 @@ async def _reply_with_feedback(message: Message, text: str, sticker_id: str | No
     
     # Замінюємо [Текст](slug) просто на Текст
     clean_text = re.sub(pattern, r'\1', text)
+    clean_text = re.sub(r'https?://(?:www\.)?doterra\.com[^\s\)]*', '', clean_text).strip()
     clean_text = clean_text.replace("🪨", "🌿").replace("🫂", "🌿").replace("🗿", "")
     clean_text = re.sub(r'\b(я\s+—\s+віртуальний\s+гід|я\s+віртуальний\s+гід|віртуальний\s+гід-помічник|гід-помічник|віртуальний\s+гід|твій\s+гід|ваш\s+гід)\b', 'помічниця', clean_text, flags=re.IGNORECASE)
     
@@ -122,12 +123,23 @@ async def _reply_with_feedback(message: Message, text: str, sticker_id: str | No
     if links:
         seen_slugs = set()
         for link_text, slug in links:
+            slug = slug.strip()
+            # Повністю блокуємо зовнішні посилання на сайт doterra.com
+            if "doterra.com" in slug.lower():
+                continue
             if slug not in seen_slugs:
                 seen_slugs.add(slug)
-                # Додаємо кнопку відкриття Mini App
-                keyboard.inline_keyboard.insert(0, [
-                    InlineKeyboardButton(text=f"📖 {link_text}", web_app=WebAppInfo(url=f"{webapp_url}#/article/{slug}"))
-                ])
+                if slug.startswith("http://") or slug.startswith("https://"):
+                    # Авторитетні наукові дослідження (PubMed тощо) відкриваємо як URL
+                    keyboard.inline_keyboard.insert(0, [
+                        InlineKeyboardButton(text=f"📖 {link_text}", url=slug)
+                    ])
+                else:
+                    # Внутрішні статті довідника відкриваємо в Telegram Mini App
+                    clean_slug = slug.lstrip("#/").replace("article/", "")
+                    keyboard.inline_keyboard.insert(0, [
+                        InlineKeyboardButton(text=f"📖 {link_text}", web_app=WebAppInfo(url=f"{webapp_url}#/article/{clean_slug}"))
+                    ])
                 
     await sent.edit_reply_markup(reply_markup=keyboard)
 

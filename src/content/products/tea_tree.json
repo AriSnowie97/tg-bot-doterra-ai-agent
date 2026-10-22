@@ -5,8 +5,8 @@
   "type": "single",
   "tags": ["#ролер"],
   "product_variants": [
-    { "name": "Чайне дерево 15 мл", "url": "https://www.doterra.com/US/en/p/tea-tree-oil" },
-    { "name": "Чайне дерево Touch (ролер)", "url": "https://www.doterra.com/US/en/p/tea-tree-touch-oil" }
+    { "name": "Чайне дерево 15 мл", "slug": "tea-tree" },
+    { "name": "Чайне дерево Touch (ролер)", "slug": "tea-tree-touch" }
   ],
   "short_description": [
     "Природний антисептик №1 — чайне дерево є одним з найпотужніших антибактеріальних та протигрибкових засобів серед ефірних олій",

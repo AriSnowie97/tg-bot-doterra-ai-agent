@@ -5,13 +5,13 @@
   "type": "blend",
   "tags": ["#БАД", "#відео"],
   "product_variants": [
-    { "name": "On Guard 15 мл", "url": "https://www.doterra.com/US/en/p/on-guard-oil" },
-    { "name": "On Guard Touch (ролер)", "url": "https://www.doterra.com/US/en/p/on-guard-touch-oil" },
-    { "name": "On Guard капсули", "url": "https://www.doterra.com/US/en/p/on-guard-softgels" },
-    { "name": "On Guard зубна паста", "url": "https://www.doterra.com/US/en/p/on-guard-toothpaste" },
-    { "name": "On Guard засіб для рук", "url": "https://www.doterra.com/US/en/p/on-guard-hand-sanitizer-spray" },
-    { "name": "On Guard рідина для полоскання рота", "url": "https://www.doterra.com/US/en/p/on-guard-mouthwash" },
-    { "name": "On Guard пастилки", "url": "https://www.doterra.com/US/en/p/on-guard-protecting-throat-drops" }
+    { "name": "On Guard 15 мл", "slug": "doterra-on-guard" },
+    { "name": "On Guard Touch (ролер)", "slug": "doterra-on-guard-touch" },
+    { "name": "On Guard капсули", "slug": "doterra-on-guard-softgels" },
+    { "name": "On Guard зубна паста", "slug": "doterra-on-guard-toothpaste" },
+    { "name": "On Guard засіб для рук", "slug": "doterra-on-guard-sanitizing-mist" },
+    { "name": "On Guard рідина для полоскання рота", "slug": "doterra-on-guard-mouth-rinse" },
+    { "name": "On Guard пастилки", "slug": "doterra-on-guard-protecting-throat-drops" }
   ],
   "short_description": [
     "Флагманська захисна суміш doTERRA — поєднання дикої апельсин, гвоздики, кориці, евкаліпту та розмарину для потужної підтримки імунної системи",
@@ -118,7 +118,7 @@
       "source": "doTERRA Internal Research / Journal of Food Protection",
       "year": 2017,
       "summary": "Лабораторне тестування підтвердило значну активність суміші On Guard проти Salmonella typhimurium, E. coli, Listeria monocytogenes та Staphylococcus aureus при концентрації 0.5–1%.",
-      "url": "https://www.doterra.com/US/en/science-research"
+      "url": ""
     },
     {
       "title": "Євгенол як природний антибіотик: огляд досліджень",

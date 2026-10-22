@@ -5,8 +5,8 @@
   "type": "single",
   "tags": ["#БАД"],
   "product_variants": [
-    { "name": "Лимон 15 мл", "url": "https://www.doterra.com/US/en/p/lemon-oil" },
-    { "name": "Лимон Touch (ролер)", "url": "https://www.doterra.com/US/en/p/lemon-touch-oil" }
+    { "name": "Лимон 15 мл", "slug": "lemon" },
+    { "name": "Лимон Touch (ролер)", "slug": "lemon" }
   ],
   "short_description": [
     "Свіжа, бадьора олія з потужними очищувальними та детоксикаційними властивостями",

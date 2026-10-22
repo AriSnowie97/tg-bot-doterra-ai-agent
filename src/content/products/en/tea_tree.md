@@ -67,8 +67,8 @@
 ## Additional Information
 
 ### Product Options
-- [Tea Tree 15 ml](https://www.doterra.com/US/en/p/tea-tree-oil)
-- [Tea Tree Touch (roller)](https://www.doterra.com/US/en/p/tea-tree-touch-oil)
+- **Tea Tree 15 ml** — pure essential oil (Melaleuca)
+- **[Tea Tree Touch (roller)](tea-tree-touch)** — convenient roll-on for topical blemish care
 
 ### Origin
 Tea tree (Melaleuca alternifolia) is an evergreen plant endemic to the Australian state of New South Wales. The indigenous people of Australia—the Bundjalung aboriginal people—used melaleuca leaves to treat wounds and skin conditions for millennia.

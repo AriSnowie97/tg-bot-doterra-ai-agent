@@ -37,10 +37,10 @@ from pathlib import Path
 from typing import Iterator
 
 # Виправлення кодування консолі Windows (cp1251 → utf-8)
-if sys.platform == "win32":
-    import io
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
+if sys.platform == "win32" and __name__ == "__main__":
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
 # ── Налаштування ─────────────────────────────────────────────────────────────
 
@@ -330,13 +330,16 @@ class DoterraMarkdownParser:
         order = 0
 
         for section_title, section_content in raw_sections:
-            if not section_content.strip():
+            content_cleaned = re.sub(r"!\[.*?\]\(.*?\)", "", section_content).strip()
+            # Видаляємо зовнішні посилання на сайт doterra.com
+            content_cleaned = re.sub(r"https?://(?:www\.)?doterra\.com[^\s\)]*", "", content_cleaned).strip()
+            if not content_cleaned:
                 continue
-            if len(section_content.strip()) < self.min_chunk_chars:
+            if len(content_cleaned) < self.min_chunk_chars:
                 continue
 
             section_key = detect_section_key(section_title)
-            item_count = count_list_items(section_content)
+            item_count = count_list_items(content_cleaned)
 
             # Мета-дані чанку
             meta = {
@@ -351,7 +354,7 @@ class DoterraMarkdownParser:
                 product_slug=product_slug,
                 section_key=section_key,
                 section_title=section_title,
-                content=section_content.strip(),
+                content=content_cleaned,
                 base_order=order,
                 max_chars=self.max_chunk_chars,
             )
@@ -381,14 +384,20 @@ class DoterraMarkdownParser:
             if level == 1:
                 # H1 = назва продукту
                 if current_lines:
-                    sections.append((current_title, self._join_lines(current_lines)))
+                    joined = self._join_lines(current_lines)
+                    text_without_images = re.sub(r"!\[.*?\]\(.*?\)", "", joined).strip()
+                    if text_without_images:
+                        sections.append((current_title, text_without_images))
                 current_title = f"__header__{title_text}"
                 current_lines = []
 
             elif level >= 2:
                 # H2, H3+ = нова секція
                 if current_lines:
-                    sections.append((current_title, self._join_lines(current_lines)))
+                    joined = self._join_lines(current_lines)
+                    text_without_images = re.sub(r"!\[.*?\]\(.*?\)", "", joined).strip()
+                    if text_without_images:
+                        sections.append((current_title, text_without_images))
                 current_title = title_text
                 current_lines = []
 
@@ -401,7 +410,10 @@ class DoterraMarkdownParser:
 
         # Остання секція
         if current_lines:
-            sections.append((current_title, self._join_lines(current_lines)))
+            joined = self._join_lines(current_lines)
+            text_without_images = re.sub(r"!\[.*?\]\(.*?\)", "", joined).strip()
+            if text_without_images:
+                sections.append((current_title, text_without_images))
 
         return sections
 

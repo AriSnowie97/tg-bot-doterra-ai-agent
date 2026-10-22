@@ -64,13 +64,13 @@
 ## Додаткова інформація
 
 ### Варіанти продукту в лінійці On Guard:
-* [On Guard 15 мл](https://www.doterra.com/US/en/p/on-guard-oil)
-* [On Guard Touch (ролер)](https://www.doterra.com/US/en/p/on-guard-touch-oil)
-* [On Guard капсули](https://www.doterra.com/US/en/p/on-guard-softgels)
-* [On Guard зубна паста](https://www.doterra.com/US/en/p/on-guard-toothpaste)
-* [On Guard засіб для рук](https://www.doterra.com/US/en/p/on-guard-hand-sanitizer-spray)
-* [On Guard рідина для полоскання рота](https://www.doterra.com/US/en/p/on-guard-mouthwash)
-* [On Guard пастилки](https://www.doterra.com/US/en/p/on-guard-protecting-throat-drops)
+* **[On Guard 15 мл](doterra-on-guard)** — класична захисна суміш ефірних олій
+* **[On Guard Touch (ролер)](doterra-on-guard-touch)** — готова до нанесення суміш у ролері 10 мл
+* **[On Guard капсули](doterra-on-guard-softgels)** — рослинні капсули для підтримки імунітету
+* **[On Guard зубна паста](doterra-on-guard-toothpaste)** — натуральна відбілююча паста без фтору
+* **[On Guard спрей-санітайзер для рук](doterra-on-guard-sanitizing-mist)** — антисептичний спрей із зволожуючим ефектом
+* **[On Guard ополіскувач для ротової порожнини](doterra-on-guard-mouth-rinse)** — безалкогольний освіжаючий ополіскувач
+* **[On Guard льодяники](doterra-on-guard-protecting-throat-drops)** — льодяники для пом'якшення горла
 
 ### Вплив на фізичне тіло:
 * Імуностимулюючий та імуномодулюючий
@@ -112,7 +112,7 @@
 * **Протипоказання:** Вагітність (уникати внутрішнього застосування та нанесення на живіт через вміст кориці); серйозні захворювання печінки (вміст євгенолу вимагає медичного контролю); алергія на гвоздику, корицю або евкаліпт.
 
 ### Наукові дослідження:
-* **Антимікробна активність суміші On Guard проти харчових патогенів** (*doTERRA Internal Research / Journal of Food Protection, 2017*): Лабораторне тестування підтвердило значну активність суміші On Guard проти *Salmonella typhimurium*, *E. coli*, *Listeria monocytogenes* та *Staphylococcus aureus* при концентрації 0.5–1%. (Джерело: doterra.com/US/en/science-research)
+* **Антимікробна активність суміші On Guard проти харчових патогенів** (*doTERRA Internal Research / Journal of Food Protection, 2017*): Лабораторне тестування підтвердило значну активність суміші On Guard проти *Salmonella typhimurium*, *E. coli*, *Listeria monocytogenes* та *Staphylococcus aureus* при концентрації 0.5–1%. (Джерело: Journal of Food Protection / doTERRA Research)
 * **Євгенол як природний антибіотик: огляд досліджень** (*Molecules (MDPI), 2021*): Систематичний огляд підтвердив антибактеріальну активність євгенолу проти понад 60 штамів бактерій, включаючи резистентні до антибіотиків. (Джерело: pubmed.ncbi.nlm.nih.gov/33921695)
 
 ### Рекомендації експертів:

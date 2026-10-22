@@ -60,8 +60,8 @@
 ## Additional Information
 
 ### Product Options
-- [Lemon 15 ml](https://www.doterra.com/US/en/p/lemon-oil)
-- [Lemon Touch (roller)](https://www.doterra.com/US/en/p/lemon-touch-oil)
+- **Lemon 15 ml** — classic pure cold-pressed essential oil
+- **Lemon Touch (roller)** — convenient roll-on for topical use
 
 ### Physical Body Benefits
 ▫️ Antibacterial and antiseptic

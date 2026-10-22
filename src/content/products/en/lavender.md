@@ -64,9 +64,9 @@
 ## Additional Information
 
 ### Product Options
-* [Lavender 15 mL](https://www.doterra.com/US/en/p/lavender-oil)
-* [Lavender Touch (roll-on)](https://www.doterra.com/US/en/p/lavender-touch-oil)
-* [Lavender Softgels](https://www.doterra.com/US/en/p/lavender-softgels)
+* **Lavender 15 mL** — classic pure essential oil
+* **[Lavender Touch (roll-on)](lavender-touch)** — convenient roll-on blend with Fractionated Coconut Oil
+* **Lavender Softgels** — softgels for dietary use and restful sleep
 
 ### Origin and Extraction
 * Lavender (Lavandula angustifolia) is an aromatic flowering plant of the Lamiaceae family native to the Mediterranean region. The highest quality oil is produced in France, Bulgaria, and Provence.

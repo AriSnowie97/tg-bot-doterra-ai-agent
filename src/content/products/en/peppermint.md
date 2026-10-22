@@ -66,9 +66,9 @@
 ## Additional Information
 
 ### Product Options
-- [Peppermint 15 mL](https://www.doterra.com/US/en/p/peppermint-oil)
-- [Peppermint Touch (roll-on)](https://www.doterra.com/US/en/p/peppermint-touch-oil)
-- [Peppermint Softgels](https://www.doterra.com/US/en/p/peppermint-softgels)
+- **Peppermint 15 mL** — pure essential oil
+- **[Peppermint Touch (roll-on)](peppermint-touch)** — convenient roll-on blend with Fractionated Coconut Oil
+- **[Peppermint Softgels](doterra-peppermint-softgels)** — enteric-coated digestive softgels
 
 ### Origin
 Peppermint (Mentha × piperita) is a hybrid of watermint and spearmint grown all over the world. The largest plantations are located in the USA (Oregon state), India, and China. Essential oil is extracted by steam distillation from the leaves and stems of the plant. doTERRA uses the highest quality raw materials, ensuring a consistently high menthol content.

@@ -64,13 +64,13 @@
 ## Additional Information
 
 ### Product Variants in the On Guard Line:
-* [On Guard 15 ml](https://www.doterra.com/US/en/p/on-guard-oil)
-* [On Guard Touch (roll-on)](https://www.doterra.com/US/en/p/on-guard-touch-oil)
-* [On Guard Softgels](https://www.doterra.com/US/en/p/on-guard-softgels)
-* [On Guard Toothpaste](https://www.doterra.com/US/en/p/on-guard-toothpaste)
-* [On Guard Hand Sanitizing Spray](https://www.doterra.com/US/en/p/on-guard-hand-sanitizer-spray)
-* [On Guard Mouthwash](https://www.doterra.com/US/en/p/on-guard-mouthwash)
-* [On Guard Throat Drops](https://www.doterra.com/US/en/p/on-guard-protecting-throat-drops)
+* **[On Guard 15 ml](doterra-on-guard)** — classic protective essential oil blend
+* **[On Guard Touch (roll-on)](doterra-on-guard-touch)** — ready-to-use roll-on (10 ml)
+* **[On Guard Softgels](doterra-on-guard-softgels)** — vegetarian softgels supporting immune defenses
+* **[On Guard Toothpaste](doterra-on-guard-toothpaste)** — natural whitening fluoride-free toothpaste
+* **[On Guard Hand Sanitizing Spray](doterra-on-guard-sanitizing-mist)** — antiseptic moisturizing hand spray
+* **[On Guard Mouthwash](doterra-on-guard-mouth-rinse)** — alcohol-free refreshing mouth rinse
+* **[On Guard Throat Drops](doterra-on-guard-protecting-throat-drops)** — soothing throat drops
 
 ### Effects on the Physical Body:
 * Immunostimulating and immunomodulatory
@@ -112,7 +112,7 @@
 * **Contraindications:** Pregnancy (avoid internal use and application to the abdomen due to cinnamon content); serious liver disease (eugenol content requires medical supervision); allergy to clove, cinnamon, or eucalyptus.
 
 ### Scientific Research:
-* **Antimicrobial activity of On Guard blend against foodborne pathogens** (*doTERRA Internal Research / Journal of Food Protection, 2017*): Laboratory testing confirmed significant activity of the On Guard blend against *Salmonella typhimurium*, *E. coli*, *Listeria monocytogenes*, and *Staphylococcus aureus* at a concentration of 0.5–1%. (Source: doterra.com/US/en/science-research)
+* **Antimicrobial activity of On Guard blend against foodborne pathogens** (*doTERRA Internal Research / Journal of Food Protection, 2017*): Laboratory testing confirmed significant activity of the On Guard blend against *Salmonella typhimurium*, *E. coli*, *Listeria monocytogenes*, and *Staphylococcus aureus* at a concentration of 0.5–1%. (Source: Journal of Food Protection / doTERRA Research)
 * **Eugenol as a natural antibiotic: a review of studies** (*Molecules (MDPI), 2021*): A systematic review confirmed the antibacterial activity of eugenol against more than 60 bacterial strains, including antibiotic-resistant ones. (Source: pubmed.ncbi.nlm.nih.gov/33921695)
 
 ### Expert Recommendations:
