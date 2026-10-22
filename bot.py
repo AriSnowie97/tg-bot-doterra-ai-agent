@@ -19,6 +19,14 @@ from handlers.states import AskStates, ScreeningStates
 from src.content.sync_content import run_sync
 from src.middleware import RateLimitMiddleware, CallbackRateLimitMiddleware
 from src.safety import redact, safe_error, append_and_format_dialogue
+from src.stickers import (
+    load_stickers,
+    get_or_load_sticker,
+    should_accompany_with_sticker,
+    classify_casual_interaction,
+    should_reply_to_user_sticker,
+    STICKER_SET_NAME,
+)
 
 
 # Loading variables from a dotenv file
@@ -86,8 +94,17 @@ def _feedback_keyboard(message_id: int, chat_id: int, likes: int = 0, dislikes: 
     ]])
 
 
-async def _reply_with_feedback(message: Message, text: str) -> None:
-    """Надсилає reply з текстом відповіді і кнопками 👍/👎 та посиланнями на гайди."""
+async def _reply_with_feedback(message: Message, text: str, sticker_id: str | None = None) -> None:
+    """Надсилає reply з текстом відповіді і кнопками 👍/👎 та посиланнями на гайди.
+    
+    Якщо передано sticker_id, надсилає відповідний стікер перед або разом із текстом.
+    """
+    if sticker_id:
+        try:
+            await message.reply_sticker(sticker_id)
+        except Exception as e:
+            print(f"[_reply_with_feedback] Sticker error: {redact(e)}")
+
     webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
     
     # Шукаємо всі маркдаун посилання виду [Текст](slug)
@@ -117,6 +134,15 @@ async def _reply_with_feedback(message: Message, text: str) -> None:
 async def command_start_handler(message: Message, state: FSMContext) -> None:
     # Скидаємо стан скринінгу при /start
     await state.clear()
+    
+    # Вітальний стікер зі стікерпаку aromaaitgbot
+    welcome_sticker = await get_or_load_sticker(message.bot, preferred_emojis=["👋", "🌿", "😊", "✨"])
+    if welcome_sticker:
+        try:
+            await message.answer_sticker(welcome_sticker)
+        except Exception as e:
+            print(f"[command_start] Sticker error: {redact(e)}")
+
     webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
     
     markup = InlineKeyboardMarkup(inline_keyboard=[[
@@ -155,6 +181,10 @@ async def command_ask_handler(message: Message, command: CommandObject, state: F
         return
 
     # Режим 2: /ask <текст> — відповідаємо одразу
+    accompany_sticker = None
+    if should_accompany_with_sticker(command.args.strip()):
+        accompany_sticker = await get_or_load_sticker(message.bot)
+
     stop_typing = asyncio.Event()
     typing_task = asyncio.create_task(
         _keep_typing(message.bot, message.chat.id, stop_typing)
@@ -164,7 +194,7 @@ async def command_ask_handler(message: Message, command: CommandObject, state: F
         response = await generate_response(command.args.strip())
         stop_typing.set()
         typing_task.cancel()
-        await _reply_with_feedback(message, response)
+        await _reply_with_feedback(message, response, sticker_id=accompany_sticker)
     except Exception as e:
         stop_typing.set()
         typing_task.cancel()
@@ -185,6 +215,10 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
         await message.reply("🌿 Запитай мене що-небудь про ефірні олії doTERRA!")
         return
 
+    accompany_sticker = None
+    if should_accompany_with_sticker(user_text):
+        accompany_sticker = await get_or_load_sticker(message.bot)
+
     stop_typing = asyncio.Event()
     typing_task = asyncio.create_task(
         _keep_typing(message.bot, message.chat.id, stop_typing)
@@ -199,7 +233,7 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
             await message.reply("😔 Не вдалося сформувати відповідь. Спробуй перефразувати запит.")
             return
 
-        await _reply_with_feedback(message, response)
+        await _reply_with_feedback(message, response, sticker_id=accompany_sticker)
     except Exception as e:
         stop_typing.set()
         typing_task.cancel()
@@ -292,9 +326,10 @@ def _is_addressed(message: Message) -> bool:
 
     # @mention бота у тексті або підписі
     if message.entities and _BOT_USERNAME:
+        text_source = message.text or message.caption or ""
         for entity in message.entities:
-            if entity.type == MessageEntityType.MENTION:
-                mention_text = message.text[
+            if entity.type == MessageEntityType.MENTION and text_source:
+                mention_text = text_source[
                     entity.offset : entity.offset + entity.length
                 ]
                 if mention_text.lstrip("@").lower() == _BOT_USERNAME.lower():
@@ -349,6 +384,26 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
     from src.agent.specialist import is_health_complaint_query, has_red_flags
     is_new_complaint = is_health_complaint_query(user_text)
     is_new_red_flag  = has_red_flags(user_text)
+
+    # ── Перевіряємо, чи це повсякденна коротка репліка (вітання/подяка/реакція) ──────────────
+    if stored_mode not in ("active", "red_flag") and not is_new_complaint and not is_new_red_flag:
+        should_casual, reply_text, pref_emoji = classify_casual_interaction(user_text)
+        if should_casual:
+            casual_sticker = await get_or_load_sticker(bot, preferred_emojis=[pref_emoji] if pref_emoji else None)
+            if casual_sticker:
+                try:
+                    await message.reply_sticker(casual_sticker)
+                    if reply_text:
+                        await message.answer(reply_text)
+                    return
+                except Exception as e:
+                    print(f"[on_message] Casual sticker error: {redact(e)}")
+
+    # Визначаємо, чи супроводжувати коротке питання стікером із паку aromaaitgbot
+    accompany_sticker = None
+    if stored_mode != "red_flag" and not is_new_red_flag:
+        if should_accompany_with_sticker(user_text, is_complaint=is_new_complaint):
+            accompany_sticker = await get_or_load_sticker(bot)
 
     # Якщо є активний скринінг — продовжуємо його;
     # якщо прийшов новий незалежний запит без скарги — скидаємо стан
@@ -419,7 +474,7 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
             # Загальне питання або скринінг завершено — очищаємо стан
             await state.clear()
 
-        await _reply_with_feedback(message, response)
+        await _reply_with_feedback(message, response, sticker_id=accompany_sticker)
 
     except Exception as e:
         stop_typing.set()
@@ -428,6 +483,30 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
             "😔 Виникла помилка при обробці запиту. Спробуй ще раз."
         )
         print(f"[on_message] Error: {type(e).__name__}: {redact(e)}")
+
+
+@dp.message(F.sticker)
+async def on_sticker(message: Message, bot: Bot) -> None:
+    """Обробник вхідних стікерів від користувача.
+
+    Якщо користувач надіслав стікер у приватному чаті або відповів боту в групі,
+    бот іноді (з високою ймовірністю) відповідає стікером із паку aromaaitgbot.
+    """
+    if not _is_addressed(message):
+        return
+
+    if should_reply_to_user_sticker():
+        input_emoji = message.sticker.emoji if message.sticker else None
+        pref_emojis = [input_emoji] if input_emoji else None
+        reply_sticker = await get_or_load_sticker(bot, preferred_emojis=pref_emojis)
+        if reply_sticker:
+            try:
+                await message.reply_sticker(reply_sticker)
+                return
+            except Exception as e:
+                print(f"[on_sticker] Reply sticker error: {redact(e)}")
+
+    await message.reply("🌿")
 
 
 # ---------------------------------------------------------------------------
@@ -534,6 +613,13 @@ async def main() -> None:
     scheduler = setup_scheduler(bot)
     scheduler.start()
     print("[bot] 🚀 Bot started with channel post scheduler.")
+
+    # Завантажуємо стікери зі стікерпаку aromaaitgbot
+    try:
+        await load_stickers(bot)
+    except Exception as e:
+        print(f"[bot] [WARN] Could not load stickers on startup: {redact(e)}")
+
 
     try:
         await dp.start_polling(bot)

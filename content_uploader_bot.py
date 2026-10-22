@@ -43,7 +43,10 @@ from src.safety import redact, safe_error
 # ──────────────────────────────────────────────────
 BASE_DIR = Path(__file__).parent
 DOCS_DIR = BASE_DIR / "src" / "content" / "docs"
-ALL_CHUNKS_PATH = BASE_DIR / "all_chunks.json"
+ALL_CHUNKS_PATH = BASE_DIR / "data" / "all_chunks.json"
+if not ALL_CHUNKS_PATH.exists() and (BASE_DIR / "all_chunks.json").exists():
+    ALL_CHUNKS_PATH = BASE_DIR / "all_chunks.json"
+
 
 # ──────────────────────────────────────────────────
 # Env

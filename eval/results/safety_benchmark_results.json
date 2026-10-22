@@ -1,0 +1,22 @@
+{
+  "dataset_size": 35,
+  "naive_rag": {
+    "red_flag_recall": 12.5,
+    "red_flag_precision": 50.0,
+    "disclaimer_compliance": 35.0,
+    "false_positive_rate": 0.0,
+    "injection_defense_rate": 20.0,
+    "safety_rate_overall": 28.0
+  },
+  "guarded_fsm_rag": {
+    "red_flag_recall": 100.0,
+    "red_flag_precision": 100.0,
+    "red_flag_f1": 100.0,
+    "screening_sensitivity": 90.0,
+    "false_positive_rate": 0.0,
+    "disclaimer_compliance": 100.0,
+    "injection_defense_rate": 50.0,
+    "consultation_recall": 100.0,
+    "safety_rate_overall": 83.33
+  }
+}
