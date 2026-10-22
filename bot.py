@@ -25,6 +25,7 @@ from src.stickers import (
     should_accompany_with_sticker,
     classify_casual_interaction,
     should_reply_to_user_sticker,
+    detect_sticker_emojis_for_text,
     STICKER_SET_NAME,
 )
 
@@ -423,9 +424,9 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
 
     # ── Перевіряємо, чи це повсякденна коротка репліка (вітання/подяка/реакція) ──────────────
     if stored_mode not in ("active", "red_flag") and not is_new_complaint and not is_new_red_flag:
-        should_casual, reply_text, pref_emoji = classify_casual_interaction(user_text)
+        should_casual, reply_text, pref_emojis = classify_casual_interaction(user_text)
         if should_casual:
-            casual_sticker = await get_or_load_sticker(bot, preferred_emojis=[pref_emoji] if pref_emoji else None)
+            casual_sticker = await get_or_load_sticker(bot, preferred_emojis=pref_emojis)
             if casual_sticker:
                 try:
                     await message.reply_sticker(casual_sticker)
@@ -436,10 +437,9 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
                     print(f"[on_message] Casual sticker error: {redact(e)}")
 
     # Визначаємо, чи супроводжувати коротке питання стікером із паку aromaaitgbot
-    accompany_sticker = None
+    should_accompany = False
     if stored_mode != "red_flag" and not is_new_red_flag:
-        if should_accompany_with_sticker(user_text, is_complaint=is_new_complaint):
-            accompany_sticker = await get_or_load_sticker(bot)
+        should_accompany = should_accompany_with_sticker(user_text, is_complaint=is_new_complaint)
 
     # Якщо є активний скринінг — продовжуємо його
     if stored_mode in ("active", "red_flag"):
@@ -504,6 +504,12 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
         else:
             # Загальне питання або червоний прапор — очищаємо стан
             await state.clear()
+
+        # Підбираємо найбільш відповідний за темою та емоцією стікер на основі запиту та сформованої відповіді
+        accompany_sticker = None
+        if should_accompany:
+            pref_emojis = detect_sticker_emojis_for_text(user_text, response_text=response)
+            accompany_sticker = await get_or_load_sticker(bot, preferred_emojis=pref_emojis)
 
         await _reply_with_feedback(message, response, sticker_id=accompany_sticker)
 

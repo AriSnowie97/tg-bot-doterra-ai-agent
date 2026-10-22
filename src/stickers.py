@@ -51,6 +51,57 @@ _cached_file_ids: List[str] = []
 _stickers_by_emoji: Dict[str, List[str]] = {}
 _is_loaded: bool = False
 
+# Негативні / відмовні / конфліктні емодзі (наприклад, червоний хрест ❌ або схрещені руки 🙅)
+# Їх КАТЕГОРИЧНО НЕ МОЖНА відправляти у випадковому порядку чи на звичайні дружні запитання!
+NEGATIVE_EMOJIS: set[str] = {
+    "❌", "🙅", "🙅‍♀️", "🙅‍♂️", "🚫", "⛔", "👎", "😡", "🤬", "💔", "👿", "✖️"
+}
+
+# Безпечні дружні та позитивні емодзі для загальних відповідей та випадкового вибору
+SAFE_DEFAULT_EMOJIS: list[str] = [
+    "🌿", "✨", "😊", "🌸", "🌱", "💧", "💛", "👋", "🤔", "🍃", "🥰"
+]
+
+# Словник синонімів та споріднених емодзі, прив'язаних до 28 стікерів набору aromaaitgbot:
+# [👋, 😊, 🌿, 😶‍🌫️, ☺️, 🍋‍🟩, 😍, 😃, 🥳, 🎄, 😷, 👍, 💆‍♀️, ☀️, 🌓, 😴, 🤟, 😌, 🤔, 🙏, 🥺, ☝️, 👌, 👎]
+EMOJI_SYNONYMS: dict[str, list[str]] = {
+    "👋": ["👋", "😊", "☺️", "🌿"],
+    "🌿": ["🌿", "🌱", "🍃", "🍋‍🟩", "🎄", "✨", "💚"],
+    "🤔": ["🤔", "☝️", "💡", "💭", "🧐", "🌿", "😊"],
+    "😊": ["😊", "☺️", "😃", "😌", "🌿", "✨"],
+    "☺️": ["☺️", "😊", "😌", "🌿", "👋"],
+    "❤️": ["😍", "❤️", "🥰", "💖", "🙏", "😊"],
+    "😍": ["😍", "❤️", "🥰", "✨", "😊"],
+    "👍": ["👍", "👌", "🤟", "😃", "😊"],
+    "👌": ["👌", "👍", "🤟", "😊"],
+    "🤟": ["🤟", "👍", "👌", "😃", "🥳"],
+    "🥳": ["🥳", "😃", "🤟", "😍", "👍"],
+    "😴": ["😴", "🌓", "😌", "💆‍♀️"],
+    "💆‍♀️": ["💆‍♀️", "😌", "🌿", "🌸"],
+    "☀️": ["☀️", "🍋‍🟩", "😃", "🌿"],
+    "🍋‍🟩": ["🍋‍🟩", "☀️", "🌿", "😃"],
+    "🍋": ["🍋‍🟩", "☀️", "🌿"],
+    "🍊": ["🍋‍🟩", "☀️", "🌿"],
+    "🎄": ["🎄", "🌿", "😌"],
+    "🌲": ["🎄", "🌿"],
+    "😷": ["😷", "🌿", "☝️", "🍋‍🟩"],
+    "😶‍🌫️": ["😶‍🌫️", "🌿", "😌"],
+    "😌": ["😌", "🌿", "🌓", "💆‍♀️", "☺️"],
+    "🌓": ["🌓", "😴", "😌"],
+    "🌙": ["🌓", "😴", "😌"],
+    "💤": ["😴", "🌓", "😌"],
+    "🙏": ["🙏", "😊", "☺️", "❤️"],
+    "🥺": ["🥺", "🙏", "😊", "☺️"],
+    "☝️": ["☝️", "🤔", "🌿", "💡"],
+    "🌸": ["💆‍♀️", "🌿", "😊", "☺️"],
+    "✨": ["✨", "🌿", "😊", "☀️", "🍋‍🟩"],
+    "💧": ["🌿", "🍋‍🟩", "😶‍🌫️"],
+    "💡": ["🤔", "☝️", "🌿"],
+    "👎": ["👎", "❌", "🙅", "🙅‍♀️", "🚫"],
+    "❌": ["👎", "❌", "🙅"],
+    "🙅": ["👎", "❌"],
+}
+
 
 async def load_stickers(bot: Bot, force_refresh: bool = False) -> List[str]:
     """Завантажує та кешує список стікерів із заданого стікерпаку через Telegram API.
@@ -71,7 +122,11 @@ async def load_stickers(bot: Bot, force_refresh: bool = False) -> List[str]:
         _stickers_by_emoji.clear()
         for s in _cached_stickers:
             if s.emoji:
+                # Зберігаємо повний рядок емодзі та кожен окремий символ
                 _stickers_by_emoji.setdefault(s.emoji, []).append(s.file_id)
+                for char in s.emoji:
+                    if char != s.emoji:
+                        _stickers_by_emoji.setdefault(char, []).append(s.file_id)
 
         _is_loaded = True
         print(
@@ -86,27 +141,63 @@ async def load_stickers(bot: Bot, force_refresh: bool = False) -> List[str]:
         return _cached_file_ids
 
 
+def get_random_sticker(preferred_emojis: Optional[list[str] | str] = None) -> Optional[str]:
+    """Повертає file_id найбільш доречного стікера із кешу.
 
-
-def get_random_sticker(preferred_emojis: Optional[List[str]] = None) -> Optional[str]:
-    """Повертає file_id випадкового стікера із кешу.
-
-    Якщо вказано preferred_emojis, спочатку шукає стікер з цими емодзі.
-    Якщо таких немає або preferred_emojis не задано, повертає випадковий стікер з усього паку.
+    1. Якщо вказано preferred_emojis (одне емодзі або список пріоритетних):
+       - Розширює список спорідненими емодзі (EMOJI_SYNONYMS).
+       - Шукає точний збіг стікерів за цими емодзі по черзі.
+       - Якщо знайдено — повертає випадковий із них.
+    2. Якщо точного збігу за preferred_emojis немає:
+       - Шукає серед безпечних позитивних емодзі (SAFE_DEFAULT_EMOJIS).
+       - У жодному разі не повертає негативні/заборонні стікери (👎, ❌, 🙅) як випадковий фолбек!
     """
     if not _cached_file_ids:
         return None
 
     if preferred_emojis:
-        for emoji in preferred_emojis:
+        raw_list = [preferred_emojis] if isinstance(preferred_emojis, str) else list(preferred_emojis)
+        expanded_emojis: list[str] = []
+        for e in raw_list:
+            if not e:
+                continue
+            expanded_emojis.append(e)
+            if e in EMOJI_SYNONYMS:
+                expanded_emojis.extend(EMOJI_SYNONYMS[e])
+
+        # Усуваємо дублікати, зберігаючи пріоритетний порядок
+        seen = set()
+        ordered_emojis = [x for x in expanded_emojis if not (x in seen or seen.add(x))]
+
+        for emoji in ordered_emojis:
             matches = _stickers_by_emoji.get(emoji)
             if matches:
                 return random.choice(matches)
 
+    # Якщо preferred_emojis не задано або не знайдено збігу:
+    # 1. Пробуємо знайти стікери з безпечними позитивними емодзі
+    safe_matches: list[str] = []
+    for safe_emoji in SAFE_DEFAULT_EMOJIS:
+        if safe_emoji in _stickers_by_emoji:
+            safe_matches.extend(_stickers_by_emoji[safe_emoji])
+
+    if safe_matches:
+        return random.choice(safe_matches)
+
+    # 2. Якщо серед емодзі немає SAFE_DEFAULT_EMOJIS, беремо будь-який стікер,
+    # чий emoji НЕ містить жодного з NEGATIVE_EMOJIS (❌, 🙅 тощо)
+    non_negative: list[str] = []
+    for s in _cached_stickers:
+        if s.emoji and not any(neg in s.emoji for neg in NEGATIVE_EMOJIS):
+            non_negative.append(s.file_id)
+
+    if non_negative:
+        return random.choice(non_negative)
+
     return random.choice(_cached_file_ids)
 
 
-async def get_or_load_sticker(bot: Bot, preferred_emojis: Optional[List[str]] = None) -> Optional[str]:
+async def get_or_load_sticker(bot: Bot, preferred_emojis: Optional[list[str] | str] = None) -> Optional[str]:
     """Повертає випадковий стікер, за потреби завантажуючи пак, якщо кеш ще порожній."""
     global _cached_file_ids
     if not _cached_file_ids:
@@ -114,10 +205,222 @@ async def get_or_load_sticker(bot: Bot, preferred_emojis: Optional[List[str]] = 
     return get_random_sticker(preferred_emojis)
 
 
+# ---------------------------------------------------------------------------
+# Шаблони та правила для класифікації емоцій, тем та ключових слів
+# ---------------------------------------------------------------------------
 
-# ---------------------------------------------------------------------------
-# Шаблони для класифікації повідомлень
-# ---------------------------------------------------------------------------
+_RULE_PROHIBITION = [
+    re.compile(
+        r"\b(не\s+можна|нельзя|заборонен[оа-я]*|запрещен[оа-я]*|небезпечн[оа-я]*|опасн[оа-я]*)\b",
+        re.IGNORECASE,
+    ),
+    re.compile(
+        r"\b(в\s+оч[іи]|в\s+глаза|в\s+уш[іи]|в\s+уши|не\s+капа[йт]|не\s+пей[те]*|не\s+пити|чистому\s+вигляді|чистом\s+виде)\b",
+        re.IGNORECASE,
+    ),
+]
+
+# Багаторівневий список правил (категорія, список compiled regex, пріоритетні емодзі з паку)
+STICKER_TOPIC_RULES: list[tuple[str, list[re.Pattern], list[str]]] = [
+    # 1. Сувора заборона / застереження (НЕ можна капати в очі/вуха тощо)
+    (
+        "prohibition",
+        _RULE_PROHIBITION,
+        ["👎"],
+    ),
+    # 2. Асортимент, що є, каталог, що маєш, що вмієш, покажи
+    (
+        "assortment",
+        [
+            re.compile(r"\b(що\s+(ти\s+)?маєш|что\s+(ты\s+)?имеешь|что\s+есть|що\s+є|каталог|асортимент|ассортимент)\b", re.IGNORECASE),
+            re.compile(r"\b(що\s+вмієш|что\s+умеешь|які\s+є\s+олії|какие\s+есть\s+масла|список\s+(олій|масел)|продукці[яї]|продукци[яи])\b", re.IGNORECASE),
+            re.compile(r"\b(покажи|розкажи\s+про\s+олії|расскажи\s+про\s+масла|допоможи\s+вибрати|помоги\s+выбрать)\b", re.IGNORECASE),
+        ],
+        ["🤔", "🌿", "☝️", "😊"],
+    ),
+    # 3. Сон, безсоння, ніч, вечір, відпочинок (Serenity, Lavender)
+    (
+        "sleep",
+        [
+            re.compile(r"\b(сон[а-я]*|сн[аеиуоя][а-я]*|засин[а-я]*|засып[а-я]*|сп[ая][тл][а-я]*|безсонн[яі]|бессонниц[ае]|заснут[иь]|уснуть|ніч|ноч[ьюи]|вечір[а-я]*|вечер[а-я]*)\b", re.IGNORECASE),
+            re.compile(r"\b(сереніті|серен[иі]ти|serenity|лаванд[аеиу]|lavender|спокійн[оа-я]*|спокойн[оа-я]*|заспокоїт[иь]|успокоит[иь])\b", re.IGNORECASE),
+        ],
+        ["😴", "🌓", "😌", "💆‍♀️"],
+    ),
+    # 4. Головний біль, напруга, масаж, SPA, м'язи, догляд за шкірою (PastTense, Deep Blue, AromaTouch)
+    (
+        "massage_spa",
+        [
+            re.compile(r"\b(голов[а-я]*\s+болить|головн[оа-я]*\s+б[іи]л[ья]|скрон[іях]|виск[а-я]*|масаж[а-я]*|массаж[а-я]*|спа\b|spa\b)\b", re.IGNORECASE),
+            re.compile(r"\b(ши[яїе]|ше[еия]|м['’]?яз[а-я]*|мышц[а-я]*|напруг[а-я]*|напряжен[а-я]*|паст\s*тенс|past\s*tense|aromatouch|ароматач)\b", re.IGNORECASE),
+            re.compile(r"\b(шкір[а-я]*|кож[а-я]*|обличч[яі]|лиц[оеа]|догляд[а-я]*|уход[а-я]*)\b", re.IGNORECASE),
+        ],
+        ["💆‍♀️", "😌", "🌿"],
+    ),
+    # 5. Застуда, імунітет, кашель, горло, вірус, захист (On Guard, Чайне дерево)
+    (
+        "immunity_cold",
+        [
+            re.compile(r"\b(імунітет[а-я]*|иммунитет[а-я]*|застуд[а-я]*|простуд[а-я]*|хвороб[а-я]*|болезн[а-я]*|горл[оа-я]*|каш[еі]л[ья]*)\b", re.IGNORECASE),
+            re.compile(r"\b(нежит[ья]|насморк[а-я]*|вірус[а-я]*|вирус[а-я]*|температур[а-я]*|он\s*гард|on\s*guard|онгард|профілактик[а-я]*)\b", re.IGNORECASE),
+            re.compile(r"\b(чайн[ое][ея]\s+дерев[оа]|масло\s+чайного\s+дерева|чайне\s+дерево|melaleuca|маск[а-я]*)\b", re.IGNORECASE),
+        ],
+        ["😷", "🌿", "☝️", "🍋‍🟩"],
+    ),
+    # 6. Енергія, бадьорість, ранок, тонус, втома (Wild Orange, Peppermint)
+    (
+        "energy_morning",
+        [
+            re.compile(r"\b(енергі[яїею]|энерги[яиею]|ранок|ранк[уа]|утр[оа-я]*|бадьор[іе][сз][ть]*|бодрост[ьюи]|тонус[а-я]*|прокинут[иь]ся|проснут[иь]ся)\b", re.IGNORECASE),
+            re.compile(r"\b(втом[а-я]*|усталост[ьюи]|сонлив[іи]ст[ьюи]|дик[ийая]\s+апельсин|wild\s+orange|мотиваці[яї]|мотиваци[яи]|активн[іи]ст[ьюи])\b", re.IGNORECASE),
+        ],
+        ["☀️", "🍋‍🟩", "😃", "🌿"],
+    ),
+    # 7. Цитрусові, лимон, лайм, свіжість, вода з лимоном, детокс
+    (
+        "citrus_fresh",
+        [
+            re.compile(r"\b(цитрус[а-я]*|лимон[а-я]*|lemon|лайм[а-я]*|lime|апельсин[а-я]*|orange|грейпфрут[а-я]*|grapefruit|бергамот[а-я]*|bergamot)\b", re.IGNORECASE),
+            re.compile(r"\b(свіж[іе][сз][ть]*|свежест[ьюи]|детокс[а-я]*|вода\s+з\s+лимоном|вода\s+с\s+лимоном|мандарин[а-я]*)\b", re.IGNORECASE),
+        ],
+        ["🍋‍🟩", "☀️", "🌿", "😃"],
+    ),
+    # 8. Хвойні, ялиця, ліс, зима, кедр, кипарис (Siberian Fir, Cypress, Cedarwood)
+    (
+        "conifers_forest",
+        [
+            re.compile(r"\b(хвойн[а-я]*|ялиц[яіе]|пихт[а-я]*|сибірськ[а-я]*\s+ялиц|сибирск[а-я]*\s+пихт|сосн[а-я]*|кедр[а-я]*|cedarwood)\b", re.IGNORECASE),
+            re.compile(r"\b(ялівець|можжевельник[а-я]*|кипарис[а-я]*|cypress|ліс[а-я]*|лес[а-я]*|ялинк[а-я]*|елк[а-я]*|зима|зимн[а-я]*)\b", re.IGNORECASE),
+        ],
+        ["🎄", "🌿", "😌"],
+    ),
+    # 9. Дифузор, розпилення, вдихання, ароматна пара, туман
+    (
+        "diffuser_steam",
+        [
+            re.compile(r"\b(дифузор[а-я]*|диффузор[а-я]*|розпилювач[а-я]*|аромаламп[а-я]*|інгаляці[яї]|ингаляци[яи]|вдихат[иь]|дышат[иь])\b", re.IGNORECASE),
+            re.compile(r"\b(ароматн[а-я]*\s+пар[а-я]*|туман[а-я]*|хмарк[а-я]*|облачк[а-я]*)\b", re.IGNORECASE),
+        ],
+        ["😶‍🌫️", "🌿", "😌"],
+    ),
+    # 10. Спокій, релакс, антистрес, гармонія, медитація (Balance, Adaptiv)
+    (
+        "calm_zen",
+        [
+            re.compile(r"\b(спок[іи][йяе]|поко[йяе]|дзен|гармоні[яї]|гармони[яи]|медитаці[яї]|медитаци[яи]|стрес[а-я]*|стресс[а-я]*)\b", re.IGNORECASE),
+            re.compile(r"\b(тривожн[іи]ст[ьюи]|тревог[а-я]*|баланс[а-я]*|balance|адаптів|adaptiv|нерв[иа-я]*|вдих|выдох)\b", re.IGNORECASE),
+        ],
+        ["😌", "🌿", "🌓", "💆‍♀️"],
+    ),
+    # 11. Важливі правила, дозування, техніка безпеки, базове масло
+    (
+        "rules_safety",
+        [
+            re.compile(r"\b(як\s+приймати|как\s+принимать|як\s+наносити|как\s+наносить|дозуванн[яі]|дозировк[а-я]*)\b", re.IGNORECASE),
+            re.compile(r"\b(базов[а-я]*\s+ол[іе][яї]|базов[а-я]*\s+масл[оа]|розведенн[яі]|разведен[иі][ея]|правил[оа-я]*|важлив[оа-я]*|важн[оа-я]*)\b", re.IGNORECASE),
+            re.compile(r"\b(зверни\s+увагу|обрати\s+внимание|застереженн[яі]|предостережен[иі][ея]|фракціонован[а-я]*|фракционированн[а-я]*)\b", re.IGNORECASE),
+        ],
+        ["☝️", "🤔", "🌿"],
+    ),
+    # 12. Захоплення, любов, найкраща, магія, краса
+    (
+        "delight_love",
+        [
+            re.compile(r"\b(обожню[ює]|обожа[юе]|любл[юе]|любов[ью]*|красив[оа-я]*|неймовірн[оа-я]*|невероятн[оа-я]*)\b", re.IGNORECASE),
+            re.compile(r"\b(захват[а-я]*|восторг[а-я]*|прекрасн[оа-я]*|чудов[оа-я]*|чудесн[оа-я]*|ідеальн[оа-я]*|идеальн[оа-я]*|улюблен[а-я]*|любим[а-я]*|магі[яїе]|маги[яие])\b", re.IGNORECASE),
+        ],
+        ["😍", "❤️", "😊", "✨"],
+    ),
+    # 13. Свято, подарунок, знижка, акція, радість
+    (
+        "celebration_gift",
+        [
+            re.compile(r"\b(свят[оа-я]*|праздник[а-я]*|віта[ює]мо|поздравля[юе]|подарун[оа]к[а-я]*|подар[оа]к[а-я]*|знижк[а-я]*|скидк[а-я]*)\b", re.IGNORECASE),
+            re.compile(r"\b(акці[яїе]|акци[яие]|промо\b|бонус[а-я]*|ура\b|день\s+народження|день\s+рождения)\b", re.IGNORECASE),
+        ],
+        ["🥳", "😃", "🤟", "✨"],
+    ),
+    # 14. Подяка
+    (
+        "gratitude",
+        [
+            re.compile(r"\b(дяку[ює]|спасиб[оі]|вдячн[а-я]*|благодар[юя]|thanks|thank\s+you|thx|будь\s+ласка|пожалуйста)\b", re.IGNORECASE),
+        ],
+        ["🙏", "😊", "☺️", "❤️"],
+    ),
+    # 15. Привітання, знайомство, Арома
+    (
+        "greeting_intro",
+        [
+            re.compile(r"\b(привіт|привет|добрий\s+(день|ранок|вечір)|добрый\s+(день|вечер)|доброе\s+утро|віта[ює]|здравствуй[те]*|hello|hi|hey)\b", re.IGNORECASE),
+            re.compile(r"\b(хто\s+ти|кто\s+ты|знайом[а-я]*|познакомим[ся]*|арома\b|aroma\b)\b", re.IGNORECASE),
+        ],
+        ["👋", "😊", "☺️", "🌿"],
+    ),
+    # 16. Питання, роздуми, цікавість, підкажи
+    (
+        "curious_question",
+        [
+            re.compile(r"\?"),
+            re.compile(r"\b(підкажи|подскажи|розкажи|расскажи|як\s+саме|как\s+именно|чому|почему|що\s+таке|что\s+такое|цікав[оа-я]*|интересн[оа-я]*)\b", re.IGNORECASE),
+        ],
+        ["🤔", "🌿", "☝️", "😊"],
+    ),
+    # 17. Загальні ефірні олії / doTERRA
+    (
+        "oils_general",
+        [
+            re.compile(r"\b(ол[іе][яїею]|масл[оауе]|дотерра|doterra|ефірн[а-я]*|эфирн[а-я]*|крапл[іея]|капл[иейя]|суміш[іей]*|смес[ьия]|ролик|роллер)\b", re.IGNORECASE),
+        ],
+        ["🌿", "😊", "✨", "🌱"],
+    ),
+    # 18. Схвалення, згода, супер, клас
+    (
+        "approval_cool",
+        [
+            re.compile(r"\b(так\b|да\b|згод[аен]|домовились|договорились|круто|клас[но]*|супер|чудово|отлично|добре|хорошо|кайф|вау)\b", re.IGNORECASE),
+        ],
+        ["👍", "👌", "🤟", "😊"],
+    ),
+]
+
+
+def detect_sticker_emojis_for_text(text: str, response_text: str = "") -> list[str]:
+    """Визначає список релевантних емодзі стікерів на основі тексту запиту та/або відповіді.
+
+    Аналізує ключові слова, тематику (сон, імунітет, енергія, догляд, цитруси, асортимент тощо),
+    емоційне забарвлення та виключає недоречні або заборонні стікери.
+    """
+    combined = f"{text}\n{response_text}".lower().strip()
+    if not combined:
+        return list(SAFE_DEFAULT_EMOJIS)
+
+    # 1. Перевіряємо сувору заборону (наприклад, не капати в очі/вуха).
+    # Якщо це сувора заборона — вона має найвищий пріоритет.
+    for pattern in _RULE_PROHIBITION:
+        if pattern.search(combined):
+            return ["👎"]
+
+    matched_emojis: list[str] = []
+
+    # 2. Перевіряємо всі тематичні правила за чергою
+    for rule_name, patterns, emojis in STICKER_TOPIC_RULES:
+        if rule_name == "prohibition":
+            continue
+        for pat in patterns:
+            if pat.search(combined):
+                for e in emojis:
+                    if e not in matched_emojis:
+                        matched_emojis.append(e)
+                break
+
+    if matched_emojis:
+        return matched_emojis
+
+    # Якщо нічого специфічного не знайшли, повертаємо безпечні позитивні емодзі
+    return list(SAFE_DEFAULT_EMOJIS)
+
+
 _RE_GREETING = re.compile(
     r"^(привіт|добрий\s+(ранок|день|вечір)|віта(ю|ємо)|хай|хелло|hello|hi|hey|привет|доброе\s+утро|добрый\s+(день|вечер)|здравствуй(те)?|dobr[yý](j)?\s+(den|den\'|ranok|vechir)|pryvit|privet)\b",
     re.IGNORECASE,
@@ -222,17 +525,16 @@ def should_accompany_with_sticker(text: str, is_complaint: bool = False, is_red_
     return False
 
 
-
 def classify_casual_interaction(
     text: str,
     is_complaint: bool = False,
     is_red_flag: bool = False,
-) -> tuple[bool, Optional[str], Optional[str]]:
+) -> tuple[bool, Optional[str], Optional[list[str]]]:
     """Визначає, чи є повідомлення повсякденною реплікою (привітання, подяка, реакція),
     на яку бот може відповісти стікером замість важкого звернення до LLM.
 
     Повертає:
-        (should_reply_sticker, reply_text, preferred_emoji)
+        (should_reply_sticker, reply_text, preferred_emojis)
     """
     if is_complaint or is_red_flag:
         return False, None, None
@@ -252,7 +554,7 @@ def classify_casual_interaction(
             "Будь ласка! Завжди рада підказати про олії doTERRA 💚",
             "На здоров'я! 🌸 Якщо знадобиться ще порада — пиши!",
         ]
-        return True, random.choice(replies), "❤️"
+        return True, random.choice(replies), ["🙏", "😊", "☺️", "❤️"]
 
     if is_greeting(cleaned):
         replies = [
@@ -260,17 +562,17 @@ def classify_casual_interaction(
             "Вітаю! 🌸 Я Арома, затишна помічниця Наталії. Запитуй будь-що про ефірні олії та продукти doTERRA!",
             "Привіт! 💛 Я Арома, помічниця Наталії Котелянської. З радістю підкажу про олії та продукцію doTERRA ✨",
         ]
-        return True, random.choice(replies), "👋"
+        return True, random.choice(replies), ["👋", "😊", "☺️", "🌿"]
 
     if is_farewell(cleaned):
         replies = [
             "Бувай! Гарного та ароматного дня! 🌿",
             "До зустрічі! Нехай день буде спокійним та затишним 🌸",
         ]
-        return True, random.choice(replies), "👋"
+        return True, random.choice(replies), ["👋", "😊", "☺️"]
 
     if is_reaction(cleaned):
-        return True, None, "👍"
+        return True, None, ["👍", "👌", "🤟", "😊"]
 
     return False, None, None
 
@@ -280,3 +582,4 @@ def should_reply_to_user_sticker() -> bool:
     if not _cached_file_ids:
         return False
     return random.random() < PROB_USER_STICKER
+

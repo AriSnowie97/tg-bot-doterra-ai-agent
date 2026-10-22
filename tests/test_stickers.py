@@ -75,3 +75,46 @@ class TestStickersModule:
         assert get_random_sticker(preferred_emojis=["👋"]) == "ID_WAVE"
         assert get_random_sticker(preferred_emojis=["❤️"]) == "ID_HEART"
         assert get_random_sticker() in ["ID_WAVE", "ID_HEART"]
+
+    def test_get_random_sticker_excludes_negative_stickers_on_fallback(self, monkeypatch):
+        fake_pos = MagicMock(spec=Sticker, file_id="POS_ID", emoji="🌿")
+        fake_neg = MagicMock(spec=Sticker, file_id="NEG_ID", emoji="👎")
+
+        monkeypatch.setattr(stickers_mod, "_cached_stickers", [fake_pos, fake_neg])
+        monkeypatch.setattr(stickers_mod, "_cached_file_ids", ["POS_ID", "NEG_ID"])
+        monkeypatch.setattr(stickers_mod, "_stickers_by_emoji", {
+            "🌿": ["POS_ID"],
+            "👎": ["NEG_ID"],
+        })
+
+        # Без preferred_emojis негативний стікер не повинен обиратися
+        for _ in range(10):
+            result = get_random_sticker()
+            assert result == "POS_ID"
+
+    @pytest.mark.parametrize("query,expected_emoji,disallowed_emoji", [
+        ("что ты имеешь?", "🤔", "👎"),
+        ("що маєш в наявності?", "🌿", "👎"),
+        ("покажи каталог продукції", "🤔", "👎"),
+        ("підкажи масло для сну", "😴", "👎"),
+        ("болить голова та напруга в шиї", "💆‍♀️", "👎"),
+        ("що допоможе від застуди та кашлю?", "😷", "👎"),
+        ("що дасть енергію зранку?", "☀️", "👎"),
+        ("хочу лимон для детоксу", "🍋‍🟩", "👎"),
+        ("хвойні олії лісу та сибірська ялиця", "🎄", "👎"),
+        ("як працює дифузор та пара?", "😶‍🌫️", "👎"),
+        ("хочу спокій та гармонію", "😌", "👎"),
+        ("як приймати та яке дозування?", "☝️", "👎"),
+        ("обожнюю цю олію, це магія!", "😍", "👎"),
+        ("зі святом та вітаємо!", "🥳", "👎"),
+        ("дякую тобі велике!", "🙏", "👎"),
+        ("привіт, хто ти?", "👋", "👎"),
+        ("не можна капати в очі", "👎", None),
+    ])
+    def test_detect_sticker_emojis_for_text(self, query: str, expected_emoji: str, disallowed_emoji: str):
+        from src.stickers import detect_sticker_emojis_for_text
+        detected = detect_sticker_emojis_for_text(query)
+        assert expected_emoji in detected
+        if disallowed_emoji:
+            assert disallowed_emoji not in detected
+
