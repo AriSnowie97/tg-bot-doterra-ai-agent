@@ -90,14 +90,18 @@ class TestSpecialistScreening:
         from src.agent.prompt import SYSTEM_PROMPT
         # Перевірка ролі Aroma Assistant Наталії Котелянської
         assert "помічниця Наталії Котелянської" in SYSTEM_PROMPT
-        assert "Aroma Assistant by Kotelianska" in SYSTEM_PROMPT
-        assert "КАТЕГОРИЧНО ЗАБОРОНЕНО називати себе \"гідом\"" in SYSTEM_PROMPT
-        # Перевірка обізнаності про розробницю Аріну
+        assert "Aroma Assistant" in SYSTEM_PROMPT
+        assert "КАТЕГОРИЧНО ЗАБОРОНЕНО" in SYSTEM_PROMPT
+        assert "Ти НЕ ГІД!" in SYSTEM_PROMPT
+        # Перевірка згадки про розробницю та співавторку Аріну
         assert "Аріна" in SYSTEM_PROMPT
-        assert "@AriSnowie97" in SYSTEM_PROMPT
+        assert "розробниця системи" in SYSTEM_PROMPT
+        assert "співавторка" in SYSTEM_PROMPT
+        # Перевірка образу дівчинки з аватарки
+        assert "лавандова курточка" in SYSTEM_PROMPT
+        assert "паростком" in SYSTEM_PROMPT
         # Заборона на глючні емодзі каменю/обіймів
         assert "🪨" in SYSTEM_PROMPT
-        assert "ЗАБОРОНЕНО" in SYSTEM_PROMPT
 
     @pytest.mark.parametrize("query", [
         "Скільки коштує олія чайного дерева?",
