@@ -109,7 +109,16 @@ def detect_is_english(user_text: str) -> bool:
     if set(latin_words) & EN_WORDS or len(latin_words) >= 4:
         return True
 
-    return False
+def is_persona_query(text: str) -> bool:
+    """Визначає, чи є запит питанням про саму помічницю, її ім'я, образ, розробників або улюблені олії."""
+    low = text.lower()
+    return bool(re.search(
+        r"\b(хто\s+ти|кто\s+ты|як\s+тебе\s+звати|как\s+тебя\s+зовут|хто\s+ви|кто\s+вы|"
+        r"розкажи\s+про\s+себе|расскажи\s+о\s+себе|який\s+твій\s+образ|як\s+ти\s+виглядаєш|как\s+ты\s+выглядишь|"
+        r"(най)?улюблен\w*\s+(масл\w+|ол\w+|аромат\w*)|(най)?любим\w*\s+(масл\w+|аромат\w*)|favorite\s+oil|"
+        r"аріна|арину|арина|разработчик\w*|розробниц\w*)\b",
+        low
+    ))
 
 
 # ---------------------------------------------------------------------------
@@ -167,19 +176,27 @@ async def generate_response(
     # Для RAG-пошуку використовуємо накопичений контекст діалогу якщо є
     rag_query = conversation_context or user_text
 
-    # 1. Знаходимо релевантні чанки з БД (із захистом бюджету ембеддингів)
+    # 1. Знаходимо релевантні чанки з БД (із захистом від помилок квот 429 ембеддингів)
     try:
         chunks = await asyncio.to_thread(search_chunks, rag_query, TOP_K)
     except BudgetExceededError:
         print("[agent] ⚠️ Global LLM Budget exceeded during embedding")
         return BUDGET_EXCEEDED_MESSAGE
+    except Exception as e:
+        print(f"[agent] ⚠️ Embedding search failed (e.g. quota 429): {redact(e)}")
+        chunks = []
 
     print(f"[agent] Found {len(chunks)} chunks for query: {rag_query[:80]!r}")
 
-    # 2. Жорсткий фолбек: база повністю порожня — повертаємо статичну відповідь без виклику LLM
+    # 2. Жорсткий фолбек: якщо база порожня (або сталася помилка ембеддингу 429)
     if not chunks:
-        print(f"[agent] 0 chunks found — returning EMPTY_CONTEXT_FALLBACK")
-        return EN_EMPTY_CONTEXT_FALLBACK if is_clearly_english else EMPTY_CONTEXT_FALLBACK
+        # Але якщо це питання про персонажа, його ім'я, розробників чи улюблені олії — дозволяємо LLM відповісти з промпту
+        if is_persona_query(user_text):
+            print(f"[agent] 0 chunks, but query is persona question — generating via LLM prompt")
+            chunks = []
+        else:
+            print(f"[agent] 0 chunks found — returning EMPTY_CONTEXT_FALLBACK")
+            return EN_EMPTY_CONTEXT_FALLBACK if is_clearly_english else EMPTY_CONTEXT_FALLBACK
 
     # 3. Визначаємо режим скринінгу
     low_ctx = is_low_context(chunks)

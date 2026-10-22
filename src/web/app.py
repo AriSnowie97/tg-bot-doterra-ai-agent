@@ -286,6 +286,11 @@ async def api_chat(request: ChatRequest, user: dict = Depends(require_telegram_u
         return ChatResponse(response=response_text)
     except Exception as e:
         print(f"[api_chat] Error: {redact(e)}")
+        err_str = str(e)
+        if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
+            return ChatResponse(
+                response="🌿 Зараз тимчасово вичерпано ліміт запитів до Google API (429 Resource Exhausted). Зачекай, будь ласка, трішки або звернись до Наталії Котелянської напряму: https://www.instagram.com/nkotelianska/ 💛"
+            )
         raise HTTPException(status_code=500, detail="Помилка при генерації відповіді")
 
 
