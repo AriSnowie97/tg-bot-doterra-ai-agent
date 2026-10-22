@@ -315,7 +315,16 @@ def save_chunks_to_db(chunks_dicts: list[dict]) -> None:
         conn.commit()
         cur.close()
         conn.close()
-        log.info("Saved %d chunks to DB", len(chunks_dicts))
+        log.info("Saved %d chunks to chunks table", len(chunks_dicts))
+
+        # Також індексуємо у knowledge_chunks із векторами для RAG
+        try:
+            from src.storage.storage import bulk_upsert_chunks
+            bulk_upsert_chunks(chunks_dicts)
+            log.info("Saved %d chunks with embeddings to knowledge_chunks", len(chunks_dicts))
+        except Exception as ve:
+            log.warning("Could not sync embeddings to knowledge_chunks: %s", redact(ve))
+
     except Exception as e:
         log.error("save_chunks_to_db error: %s", redact(e))
 
@@ -333,11 +342,13 @@ def update_all_chunks_json(new_chunks: list[dict]) -> None:
     existing = [c for c in existing if c.get("product_slug") not in slugs]
     existing.extend(new_chunks)
 
+    ALL_CHUNKS_PATH.parent.mkdir(parents=True, exist_ok=True)
     ALL_CHUNKS_PATH.write_text(
         json.dumps(existing, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
     log.info("all_chunks.json updated: %d total chunks", len(existing))
+
 
 
 def slugify(text: str) -> str:

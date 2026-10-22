@@ -259,14 +259,24 @@ def _html_page(title: str, body: str) -> str:
 # API Маршрути (для React WebApp)
 # ---------------------------------------------------------------------------
 
+@app.get("/health")
+async def health_check():
+    """Ендпоінт перевірки працездатності сервісу (healthcheck для Railway/Docker)."""
+    return {"status": "ok", "service": "doterra-ai-agent"}
+
+
 @app.post("/api/chat", response_model=ChatResponse)
 async def api_chat(request: ChatRequest, user: dict = Depends(require_telegram_user)):
     """Ендпоінт для чату з Mini App."""
-    if not request.query.strip():
+    clean_query = request.query.strip()
+    if not clean_query:
         raise HTTPException(status_code=400, detail="Query cannot be empty")
     
+    if len(clean_query) > 1000:
+        raise HTTPException(status_code=400, detail="Query is too long (max 1000 characters)")
+    
     try:
-        response_text = await generate_response(request.query)
+        response_text = await generate_response(clean_query)
         return ChatResponse(response=response_text)
     except Exception as e:
         print(f"[api_chat] Error: {redact(e)}")

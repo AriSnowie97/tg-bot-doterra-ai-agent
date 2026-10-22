@@ -13,15 +13,19 @@ import random
 import re
 from typing import Optional, List, Dict
 # Special
+from dotenv import load_dotenv
 from aiogram import Bot
 from aiogram.types import Sticker
 # Local
 from src.safety import redact
 
+# Завантажуємо .env змінні
+load_dotenv()
 
 # ---------------------------------------------------------------------------
 # Конфігурація
 # ---------------------------------------------------------------------------
+
 # Назва стікерпаку в Telegram
 STICKER_SET_NAME: str = os.getenv("STICKER_SET_NAME", "aromaaitgbot").strip()
 
@@ -77,8 +81,10 @@ async def load_stickers(bot: Bot, force_refresh: bool = False) -> List[str]:
         return _cached_file_ids
 
     except Exception as e:
+        _is_loaded = False
         print(f"[stickers] [WARN] Could not load sticker set '{STICKER_SET_NAME}': {redact(e)}")
         return _cached_file_ids
+
 
 
 
@@ -200,8 +206,11 @@ def is_short_question(text: str) -> bool:
 
 
 def should_accompany_with_sticker(text: str, is_complaint: bool = False, is_red_flag: bool = False) -> bool:
-    """Визначає, чи варто додати стікер до звичайної відповіді на коротке питання."""
-    if is_red_flag:
+    """Визначає, чи варто додати стікер до звичайної відповіді на коротке питання.
+    
+    Якщо є скарга на здоров'я або червоний прапор — стікери НЕ додаються.
+    """
+    if is_red_flag or is_complaint:
         return False
 
     if not _cached_file_ids:
@@ -211,6 +220,7 @@ def should_accompany_with_sticker(text: str, is_complaint: bool = False, is_red_
         return random.random() < PROB_SHORT_QUESTION
 
     return False
+
 
 
 def classify_casual_interaction(

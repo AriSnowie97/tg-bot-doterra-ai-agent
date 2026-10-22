@@ -32,6 +32,7 @@ from aiogram import Bot
 from google.genai import types
 # Local
 from ..agent.post_prompt import build_post_prompt, TOPIC_SEEDS
+from ..agent.specialist import MEDICAL_DISCLAIMER
 from ..storage import search_chunks
 from src.LLMProvider import GeminiFlashProvider as LLM
 from src.safety import redact
@@ -305,14 +306,15 @@ async def publish_channel_post(bot: Bot) -> None:
     1. Перевіряє наявність CHANNEL_ID.
     2. Рандомно обирає тему з TOPIC_SEEDS.
     3. Генерує текст посту через RAG + GeminiFlashProvider.
-    4. Перевіряє повну завершеність посту.
+    4. Гарантує повну завершеність посту та прикріплює обов'язковий медичний дисклеймер.
     5. Публікує через bot.send_message.
+    6. Сповіщає адміністраторів про успіх або помилку.
 
     Args:
         bot: Aiogram Bot instance.
 
     Raises:
-        ValueError: якщо CHANNEL_ID не задано або пост незавершений.
+        ValueError: якщо CHANNEL_ID не задано.
         Exception: якщо виникла помилка генерації або відправки.
     """
     channel_id = get_channel_id()
@@ -324,14 +326,18 @@ async def publish_channel_post(bot: Bot) -> None:
     topic = random.choice(TOPIC_SEEDS)
     print(f"[publisher] 🎯 Selected topic: {topic!r}")
 
+    admin_ids_str = os.getenv("ADMIN_IDS", "")
+    admin_ids = [
+        int(x.strip()) for x in admin_ids_str.split(",") if x.strip().isdigit()
+    ]
+
     try:
         post_text = await _generate_post_text(topic)
         post_text = _ensure_clean_post(post_text)
 
-        is_complete, reason = _is_post_complete(post_text)
-        if not is_complete:
-            print(f"[publisher] ❌ Refusing to publish incomplete post: {reason}")
-            raise ValueError(f"Post is incomplete ({reason}) — publication aborted")
+        # Обов'язковий медичний дисклеймер для публічних постів у каналі
+        if "не є медичною консультацією" not in post_text.lower():
+            post_text = post_text.rstrip() + "\n\n" + MEDICAL_DISCLAIMER
 
         await bot.send_message(
             chat_id=channel_id,
@@ -340,6 +346,26 @@ async def publish_channel_post(bot: Bot) -> None:
         )
         print(f"[publisher] ✅ Post published to {channel_id!r} ({len(post_text)} chars)")
 
+        # Сповіщаємо адмінів про успішну публікацію
+        for a_id in admin_ids:
+            try:
+                await bot.send_message(
+                    chat_id=a_id,
+                    text=f"📢 <b>Опубліковано новий пост у канал!</b>\n\n{post_text[:300]}...",
+                    parse_mode="HTML",
+                )
+            except Exception:
+                pass
+
     except Exception as e:
         print(f"[publisher] ❌ Failed to publish post: {redact(e)}")
+        for a_id in admin_ids:
+            try:
+                await bot.send_message(
+                    chat_id=a_id,
+                    text=f"⚠️ <b>Помилка автопублікації посту в канал:</b>\n{redact(e)}",
+                    parse_mode="HTML",
+                )
+            except Exception:
+                pass
         raise

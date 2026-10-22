@@ -43,11 +43,13 @@ CREATE INDEX IF NOT EXISTS idx_feedback_msg
 def ensure_feedback_table() -> None:
     """Створює таблицю response_feedback якщо вона не існує."""
     conn = _conn_create()
-    with conn.cursor() as cur:
-        cur.execute(_CREATE_FEEDBACK_TABLE)
-        cur.execute(_CREATE_INDEX)
-    conn.commit()
-    conn.close()
+    try:
+        with conn.cursor() as cur:
+            cur.execute(_CREATE_FEEDBACK_TABLE)
+            cur.execute(_CREATE_INDEX)
+        conn.commit()
+    finally:
+        conn.close()
 
 
 # ── Запис голосу ─────────────────────────────────────────────────────────────

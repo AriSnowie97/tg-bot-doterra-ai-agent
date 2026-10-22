@@ -17,14 +17,25 @@ from urllib.parse import parse_qsl
 # Special
 from fastapi import Header, HTTPException
 
-# initData старше цього віку (секунди) вважаємо простроченим
-INIT_DATA_MAX_AGE = int(os.getenv("INIT_DATA_MAX_AGE", "86400"))
+# initData старше цього віку (секунди) вважаємо простроченим (2 години замість 24)
+INIT_DATA_MAX_AGE = int(os.getenv("INIT_DATA_MAX_AGE", "7200"))
 
 # Ліміт запитів до /api/chat на одного користувача
 RATE_LIMIT_REQUESTS = int(os.getenv("CHAT_RATE_LIMIT", "10"))
 RATE_LIMIT_WINDOW = int(os.getenv("CHAT_RATE_WINDOW", "60"))
 
 _hits: dict[int, deque] = defaultdict(deque)
+
+
+def _cleanup_rate_limits(now: float) -> None:
+    """Очищення застарілих записів для запобігання витоку пам'яті."""
+    if len(_hits) > 500:
+        stale_keys = [
+            uid for uid, q in _hits.items()
+            if not q or (now - q[-1] > RATE_LIMIT_WINDOW)
+        ]
+        for uid in stale_keys:
+            del _hits[uid]
 
 
 def validate_init_data(init_data: str, bot_token: str) -> dict:
@@ -59,6 +70,7 @@ def validate_init_data(init_data: str, bot_token: str) -> dict:
 def _check_rate_limit(user_id: int) -> None:
     """Ковзне вікно: не більше RATE_LIMIT_REQUESTS за RATE_LIMIT_WINDOW секунд."""
     now = time.monotonic()
+    _cleanup_rate_limits(now)
     q = _hits[user_id]
     while q and now - q[0] > RATE_LIMIT_WINDOW:
         q.popleft()

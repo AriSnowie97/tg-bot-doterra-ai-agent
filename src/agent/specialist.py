@@ -189,6 +189,44 @@ RED_FLAG_KEYWORDS: tuple[str, ...] = (
 
 
 
+import re
+
+# Регулярні вирази для детермінованої детекції червоних прапорів (UK / RU / EN)
+_RED_FLAG_REGEX = re.compile(
+    r"("
+    # Вагітність та лактація
+    r"\bвагітн\w*|\bгодую\w*|\bлактац\w*|грудн\w+\s+вигодовуван\w*"
+    r"|\bберемен\w*|\bлактац\w*|грудн\w+\s+вскармливан\w*|кормл\w+\s+груд\w*"
+    r"|\bpregnan\w*|\blactat\w*|\bbreastfeed\w*|nursing\s+m\w*"
+    # Діти та немовлята
+    r"|\bдитин\w*|\bдіт\w*|\bнемовл\w*|\bмалюк\w*|\bдошкільн\w*|\bшколяр\w*"
+    r"|\bребен\w*|\bдет\w*|\bмладен\w*|\bмалыш\w*|\bноворожден\w*"
+    r"|\bchild\w*|\binfant\w*|\bbab(y|ies)\b|\btoddler\w*|\bnewborn\w*|\bkid\w*"
+    # Хронічні та невідкладні стани
+    r"|\bастм\w*|\bепілеп\w*|\bгіпертон\w*|\bгіпотон\w*|\bаритмі\w*|\bдіабет\w*|\bінфаркт\w*|\bінсульт\w*|\bсудом\w*|\bкровотеч\w*"
+    r"|\bэпилеп\w*|\bгипертон\w*|\bгипотон\w*|\bаритми\w*|\bдиабет\w*|\bинфаркт\w*|\bинсульт\w*|\bсудорог\w*|\bкровотечен\w*|\bдавлен\w*"
+    r"|\basthm\w*|\bepilep\w*|\bhypertens\w*|\bdiabet\w*|\binfarct\w*|\bstroke\w*|\bseizur\w*|\bconvuls\w*|\bbleeding"
+    # Серце / органи / онкологія
+    r"|серцев\w+\s+недостатн\w*|\bонколог\w*|\bрак\b|\bхіміотерап\w*|нирков\w+\s+недостатн\w*|печінков\w+\s+недостатн\w*"
+    r"|сердечн\w+\s+недостаточн\w*|\bхимиотерап\w*|почечн\w+\s+недостаточн\w*|печеночн\w+\s+недостаточн\w*"
+    r"|heart\s+failure|\boncolog\w*|\bcancer\b|\bchemo\w*|kidney\s+failure|liver\s+failure|high\s+blood\s+pressure"
+    # Ліки
+    r"|приймаю\s+ліки|п'ю\s+ліки|\bантидепресант\w*|\bантикоагулянт\w*|\bварфарин\w*|\bаспірин\w*|кроворозрідж\w*|знеболювальн\w*|гормональн\w+\s+таблетк\w*"
+    r"|принимаю\s+лекарств\w*|пью\s+лекарств\w*|\bантидепрессант\w*|\bаспирин\w*|кроворазжижающ\w*|обезболивающ\w*"
+    r"|\bmedicat\w*|\bantidepress\w*|\banticoagulant\w*|\bwarfarin\b|\baspirin\b|blood\s+thinner\w*|\bpainkiller\w*"
+    # Алергії / анафілаксія
+    r"|\bанафілакт\w*|набряк\s+квінке|сильн\w+\s+алергі\w*|хімічн\w+\s+чутливіст\w*"
+    r"|\bанафилакт\w*|отек\s+квинке|сильн\w+\s+аллерги\w*|химическ\w+\s+чувствительност\w*"
+    r"|\banaphyla\w*|quincke|\bsevere\s+allerg\w*"
+    # Похилий вік
+    r"|\bпенсіонер\w*|\bбабус\w*|\bдідус\w*|\b(7[5-9]|[89]\d)\s*рок\w*"
+    r"|\bпенсионер\w*|\bбабушк\w*|\bдедушк\w*|\b(7[5-9]|[89]\d)\s*лет"
+    r"|\belderly\b|\bsenior\b|\bgrandm\w*|\bgrandp\w*|\b(7[5-9]|[89]\d)\s*years?\s*old"
+    r")",
+    re.IGNORECASE,
+)
+
+
 def is_health_complaint_query(text: str) -> bool:
     """Повертає True, якщо запит схожий на скаргу про здоров'я або запит підбору.
 
@@ -206,14 +244,18 @@ def is_health_complaint_query(text: str) -> bool:
 
 def has_red_flags(text: str) -> bool:
     """Повертає True, якщо в тексті є ознаки протипоказань (червоні прапори).
-
-    Використовується для визначення, чи треба одразу перенаправляти до Наталії.
+    Працює детерміновано за основами слів трьома мовами (UK, RU, EN).
 
     Args:
         text: текст повідомлення користувача (може бути діалог).
 
     Returns:
-        True якщо знайдено ключове слово червоного прапора.
+        True якщо знайдено червоний прапор.
     """
+    if not text:
+        return False
     lower = text.lower()
+    if _RED_FLAG_REGEX.search(lower):
+        return True
     return any(kw in lower for kw in RED_FLAG_KEYWORDS)
+

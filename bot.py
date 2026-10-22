@@ -181,8 +181,13 @@ async def command_ask_handler(message: Message, command: CommandObject, state: F
         return
 
     # Режим 2: /ask <текст> — відповідаємо одразу
+    ask_text = command.args.strip()
+    from src.agent.specialist import is_health_complaint_query, has_red_flags
+    ask_complaint = is_health_complaint_query(ask_text)
+    ask_red_flag = has_red_flags(ask_text)
+
     accompany_sticker = None
-    if should_accompany_with_sticker(command.args.strip()):
+    if not ask_red_flag and should_accompany_with_sticker(ask_text, is_complaint=ask_complaint):
         accompany_sticker = await get_or_load_sticker(message.bot)
 
     stop_typing = asyncio.Event()
@@ -191,7 +196,7 @@ async def command_ask_handler(message: Message, command: CommandObject, state: F
     )
 
     try:
-        response = await generate_response(command.args.strip())
+        response = await generate_response(ask_text)
         stop_typing.set()
         typing_task.cancel()
         await _reply_with_feedback(message, response, sticker_id=accompany_sticker)
@@ -215,8 +220,12 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
         await message.reply("🌿 Запитай мене що-небудь про ефірні олії doTERRA!")
         return
 
+    from src.agent.specialist import is_health_complaint_query, has_red_flags
+    user_complaint = is_health_complaint_query(user_text)
+    user_red_flag = has_red_flags(user_text)
+
     accompany_sticker = None
-    if should_accompany_with_sticker(user_text):
+    if not user_red_flag and should_accompany_with_sticker(user_text, is_complaint=user_complaint):
         accompany_sticker = await get_or_load_sticker(message.bot)
 
     stop_typing = asyncio.Event()
@@ -385,6 +394,19 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
     is_new_complaint = is_health_complaint_query(user_text)
     is_new_red_flag  = has_red_flags(user_text)
 
+    # ── Скидання стану якщо користувач перейшов до іншої теми або завершив скринінг ─
+    if stored_mode == "red_flag":
+        if not is_new_red_flag and not is_new_complaint:
+            stored_mode = None
+            stored_turns = []
+            await state.clear()
+    elif stored_mode == "active":
+        should_casual, _, _ = classify_casual_interaction(user_text)
+        if should_casual or len(stored_turns) >= 6:
+            stored_mode = None
+            stored_turns = []
+            await state.clear()
+
     # ── Перевіряємо, чи це повсякденна коротка репліка (вітання/подяка/реакція) ──────────────
     if stored_mode not in ("active", "red_flag") and not is_new_complaint and not is_new_red_flag:
         should_casual, reply_text, pref_emoji = classify_casual_interaction(user_text)
@@ -405,24 +427,21 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
         if should_accompany_with_sticker(user_text, is_complaint=is_new_complaint):
             accompany_sticker = await get_or_load_sticker(bot)
 
-    # Якщо є активний скринінг — продовжуємо його;
-    # якщо прийшов новий незалежний запит без скарги — скидаємо стан
+    # Якщо є активний скринінг — продовжуємо його
     if stored_mode in ("active", "red_flag"):
-        # Продовжуємо скринінг: оновлюємо накопичений контекст (із захистом від role injection)
         active_turns, conversation_context = append_and_format_dialogue(
             stored_turns,
             new_user_text=user_text,
         )
-        # Якщо в новому повідомленні з'явились прапори — ескалюємо до red_flag
         if stored_mode == "active" and (is_new_red_flag or has_red_flags(conversation_context)):
             pass_mode = "red_flag"
         else:
             pass_mode = stored_mode
     else:
-        # Новий запит — передаємо None щоб service.py визначив режим сам
+        # Новий запит
         active_turns = []
         conversation_context = None
-        pass_mode = None
+        pass_mode = "red_flag" if is_new_red_flag else None
 
     stop_typing = asyncio.Event()
     typing_task = asyncio.create_task(
@@ -445,20 +464,18 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
             return
 
         # ── Оновлюємо стан скринінгу після отримання відповіді ───────────────
-        # Визначаємо фінальний режим (міг змінитись в service.py)
         if pass_mode is None:
-            # Перше повідомлення: визначаємо режим по user_text
-            if is_new_complaint and is_new_red_flag:
+            if is_new_red_flag:
                 new_mode = "red_flag"
             elif is_new_complaint:
                 new_mode = "active"
             else:
-                new_mode = None  # загальне питання — не зберігаємо стан
+                new_mode = None
         else:
-            new_mode = pass_mode  # зберігаємо переданий режим
+            new_mode = pass_mode
 
-        if new_mode in ("active", "red_flag"):
-            # Зберігаємо стан: режим + оновлений контекст (скарга + відповідь бота, обмежена історія)
+        # Зберігаємо стан тільки для активного скринінгу (red_flag вже надав остаточну пораду)
+        if new_mode == "active":
             final_turns, final_context = append_and_format_dialogue(
                 active_turns if pass_mode is not None else [],
                 new_user_text=user_text if pass_mode is None else None,
@@ -466,12 +483,12 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
             )
             await state.set_state(ScreeningStates.in_progress)
             await state.update_data(
-                screening_mode=new_mode,
+                screening_mode="active",
                 screening_turns=final_turns,
                 screening_history=final_context,
             )
         else:
-            # Загальне питання або скринінг завершено — очищаємо стан
+            # Загальне питання або червоний прапор — очищаємо стан
             await state.clear()
 
         await _reply_with_feedback(message, response, sticker_id=accompany_sticker)
@@ -539,14 +556,23 @@ async def feedback_callback(callback: CallbackQuery) -> None:
     if callback.message and callback.message.reply_to_message:
         query_text = callback.message.reply_to_message.text or ""
 
-    # Записуємо голос у БД
+    # Захист конфіденційності здоров'я (Privacy-by-Design):
+    # Якщо питання містило медичні скарги або червоні прапори, не зберігаємо чутливий текст у БД
+    from src.agent.specialist import is_health_complaint_query, has_red_flags
+    if is_health_complaint_query(query_text) or has_red_flags(query_text):
+        query_text = "[Захищено: медичне звернення / червоний прапор]"
+    else:
+        query_text = query_text[:500]
+
+    # Записуємо голос у БД у фоновому потоці (не блокуємо event loop)
     try:
-        result = save_vote(
+        result = await asyncio.to_thread(
+            save_vote,
             message_id=msg_id,
             chat_id=chat_id,
             user_id=user_id,
             vote=vote,
-            query_text=query_text[:500],  # обрізаємо довгі тексти
+            query_text=query_text,
         )
     except Exception as e:
         print(f"[feedback] DB error: {redact(e)}")
@@ -559,9 +585,9 @@ async def feedback_callback(callback: CallbackQuery) -> None:
         await callback.answer(f"{emoji} Ти вже поставив цю оцінку!", show_alert=False)
         return
 
-    # Оновлюємо лічильники на кнопках
+    # Оновлюємо лічильники на кнопках у фоновому потоці
     try:
-        counts = get_vote_counts(msg_id, chat_id)
+        counts = await asyncio.to_thread(get_vote_counts, msg_id, chat_id)
         new_keyboard = _feedback_keyboard(
             msg_id, chat_id,
             likes=counts["likes"],
