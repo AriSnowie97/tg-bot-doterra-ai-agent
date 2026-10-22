@@ -63,6 +63,11 @@
 
 **doTERRA SKU:** 31100001
 
+### Book Reference Articles
+* [Essential Oils Safety Reference: Pregnancy, Children, Contraindications](01_oils_safety_reference) — resin safety guidelines, cellular vitality, and cautions
+* [Emotional Themes Map: Truth, Connection, and Inner Awakening](02_emotional_themes_map) — resolving abandonment, spiritual grounding, and fatherly protection
+* [Modern Essentials: Application Methods and Diffusion](04_modern_essentials_supplement) — skin rejuvenation, meditation diffusion, and foot reflexology
+
 ### Origin
 Trees of the genus Boswellia grow in the mountainous regions of Africa and Asia, particularly in Oman, Yemen, Somalia, and Ethiopia. The essential oil is extracted from the tree resin using steam distillation.
 

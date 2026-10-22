@@ -70,6 +70,12 @@
 - **Tea Tree 15 ml** — pure essential oil (Melaleuca)
 - **[Tea Tree Touch (roller)](tea-tree-touch)** — convenient roll-on for topical blemish care
 
+### Book Reference Articles
+* [Essential Oils Safety Reference: Pregnancy, Children, Contraindications](01_oils_safety_reference) — safety precautions, dilution rules, and infant safety
+* [Emotional Themes Map: Energetic Boundaries and Balance](02_emotional_themes_map) — releasing codependency, emotional hygiene, and healthy boundaries
+* [Modern Essentials: Application Methods and Diffusion](04_modern_essentials_supplement) — topical application, nail and skin purification
+* [Aromalogy: Dosage Rules and 3-Day Patch Test](06_aromalogiya_supplement) — high dilution for children under 3, 3-day patch test protocol
+
 ### Origin
 Tea tree (Melaleuca alternifolia) is an evergreen plant endemic to the Australian state of New South Wales. The indigenous people of Australia—the Bundjalung aboriginal people—used melaleuca leaves to treat wounds and skin conditions for millennia.
 The essential oil is obtained by steam distillation of the tree's leaves and twigs. doTERRA partners with certified Australian plantations that ensure the CPTG® (Certified Pure Tested Grade) standard.

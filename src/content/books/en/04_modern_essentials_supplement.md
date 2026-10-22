@@ -1,8 +1,11 @@
 # Knowledge Base: Additions from "Modern Essentials" (AromaTools, 8th Edition)
 
-**Source:** "Introduction to Modern Essentials", a condensed guide from the full reference book "Modern Essentials" (AromaTools).
-**⚠️ Copyright:** "©2011–2016 AromaTools. All rights reserved." This is a commercially published guide. Use in production RAG only after verifying permissions.
-**⚠️ Key Warning — read before using any other sections.** See Section 4.
+**Category:** Books & Guides
+
+**Type:** Reference Guide
+
+**Source:** "Introduction to Modern Essentials", concise reference manual (AromaTools).
+**Purpose:** Practical application methods, diffusion, dilution ratios, and reflexology principles.
 
 ---
 

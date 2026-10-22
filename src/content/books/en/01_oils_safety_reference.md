@@ -1,8 +1,11 @@
 # Knowledge Base: Essential Oils — Properties, Indications, Contraindications
 
+**Category:** Books & Guides
+
+**Type:** Reference Guide
+
 **Sources:** "Aromatherapy for Mother and Baby" (A. England, L. Borg), "The Power in Every Drop" (doTERRA)
-**Status:** Knowledge base draft for the Aroma Bot. Requires final review by Natalia Kotelyanska before publication—especially Section 4 (divergence between sources).
-**Purpose:** Source of facts for bot RAG search and routing logic (see `03_intake_flow_and_routing.md`).
+**Purpose:** Source of facts for bot knowledge base and routing logic (see `03_intake_flow_and_routing.md`).
 
 ---
 

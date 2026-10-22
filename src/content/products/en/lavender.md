@@ -68,6 +68,12 @@
 * **[Lavender Touch (roll-on)](lavender-touch)** — convenient roll-on blend with Fractionated Coconut Oil
 * **Lavender Softgels** — softgels for dietary use and restful sleep
 
+### Book Reference Articles
+* [Essential Oils Safety Reference: Pregnancy, Children, Contraindications](01_oils_safety_reference) — 1% dilution rule for pregnancy and gentle pediatric safety
+* [Emotional Themes Map: Relieving Anxiety and Stress](02_emotional_themes_map) — emotional state mapping, open communication and peace
+* [Modern Essentials: Application Methods and Diffusion](04_modern_essentials_supplement) — diffusion, topical guidelines, and foot reflexology
+* [Aromalogy: Dosage Rules and 3-Day Patch Test](06_aromalogiya_supplement) — pediatric dosage formula, 3-day test, and the 21-day cycling rule
+
 ### Origin and Extraction
 * Lavender (Lavandula angustifolia) is an aromatic flowering plant of the Lamiaceae family native to the Mediterranean region. The highest quality oil is produced in France, Bulgaria, and Provence.
 * Essential oil is extracted by steam distillation of lavender flowers and flower stalks. It takes approximately 150 kg of flowers to produce 1 kg of oil.

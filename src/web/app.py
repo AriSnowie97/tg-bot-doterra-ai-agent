@@ -180,7 +180,9 @@ def _get_article_metadata(lang: str, md_path: Path, base_url: str = "", section_
             break
     
     if category == LANG[lang]["other"]:
-        if LANG[lang]["guide"] in original_stem or original_stem.startswith("0"):
+        if section_name == "books":
+            category = "Книги та довідники" if lang == "ua" else "Books & Guides"
+        elif LANG[lang]["guide"] in original_stem or original_stem.startswith("0"):
             category = LANG[lang]["guides"]
             
     # Шукаємо короткий опис
@@ -190,6 +192,9 @@ def _get_article_metadata(lang: str, md_path: Path, base_url: str = "", section_
         if line.startswith("#"): continue
         if line.startswith("!["): continue
         if line.startswith(LANG[lang]["category"]) or line.startswith(LANG[lang]["type"]) or line.startswith(LANG[lang]["article"]) or line.startswith(LANG[lang]["link"]): continue
+        if line.startswith("**Джерело") or line.startswith("**Джерела") or line.startswith("**Source") or line.startswith("**Sources"): continue
+        if line.startswith("**Статус") or line.startswith("**Status") or line.startswith("**Призначення") or line.startswith("**Purpose"): continue
+        if line.startswith("⚠️") or line.startswith("**⚠️"): continue
         if line.startswith("---"): continue
         
         short = line
@@ -212,7 +217,8 @@ DIRECTORIES_TO_SEARCH = [
     "products",
     "symphony_of_the_cells",
     "advice",
-    "kits"
+    "kits",
+    "books"
 ]
 
 def _get_all_docs() -> list[dict]:
@@ -322,7 +328,7 @@ async def api_get_doc(slug: str, lang: str, request: Request):
     target_path = None
     if CONTENT_DIR.exists():
         for p in CONTENT_DIR.rglob("*.md"):
-            if slugify(p.stem) == slug:
+            if slugify(p.stem) == slugify(slug):
                 if lang == "ua":
                     if p.parent.name != "en":
                         target_path = p

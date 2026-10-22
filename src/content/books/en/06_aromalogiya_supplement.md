@@ -1,8 +1,11 @@
 # Knowledge Base: Additions from "Aromalogy" (Svetlana Mirgorodskaya)
 
-**Source:** "Aromalogy", S. Mirgorodskaya — a dedicated authorial volume on clinical and holistic aromatherapy.
-**⚠️ Copyright:** Published commercial book. The following is a structured condensation of principles (dosage rules, contraindications per oil), avoiding direct verbatim reproduction.
-**Significance:** A systematic framework where safety precautions are organized both by user health risk factors and by individual oil profiles.
+**Category:** Books & Guides
+
+**Type:** Reference Guide
+
+**Source:** "Aromalogy", S. Mirgorodskaya — reference work on clinical aromatherapy.
+**Purpose:** Dosage calculation formulas, 3-day sensitivity patch test, 21-day cycling rule, and pregnancy/pediatric safety.
 
 ---
 

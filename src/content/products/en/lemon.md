@@ -63,6 +63,12 @@
 - **Lemon 15 ml** — classic pure cold-pressed essential oil
 - **Lemon Touch (roller)** — convenient roll-on for topical use
 
+### Book Reference Articles
+* [Essential Oils Safety Reference: Pregnancy, Children, Contraindications](01_oils_safety_reference) — phototoxicity guidelines, morning nausea, and skin tonicity
+* [Emotional Themes Map: Relieving Fatigue and Mental Fog](02_emotional_themes_map) — clarity, mental focus, engagement, and upliftment
+* [Modern Essentials: Application Methods and Diffusion](04_modern_essentials_supplement) — safety icons, household surface cleaning, and diffusion
+* [Aromalogy: Dosage Rules and 3-Day Patch Test](06_aromalogiya_supplement) — citrus dilution ratios, 12-hour sun avoidance window
+
 ### Physical Body Benefits
 ▫️ Antibacterial and antiseptic
 ▫️ Detoxifying (supports liver and lymphatic system function)

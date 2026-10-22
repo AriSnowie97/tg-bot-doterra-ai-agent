@@ -1,8 +1,11 @@
 # Knowledge Base: Additions from "Essential Alphabet from A to Z" (2019)
 
-**Source:** doTERRA booklet "Essential Alphabet from A to Z", 64 pages.
-**⚠️ Copyright:** "©2019, No part of this publication may be reproduced without prior written permission of the copyright holder" — commercial reference.
-**⚠️ Structural Precaution:** The index at the end of the booklet (pages 48–64) lists specific medical diagnoses paired with oils (stroke, aneurysm, autism, Graves' disease, ALS, Parkinson's, Raynaud's, Hashimoto's, dementia, diabetes, etc.). These diagnosis-to-oil treatment mappings must never be introduced into the bot's RAG knowledge base.
+**Category:** Books & Guides
+
+**Type:** Reference Guide
+
+**Source:** reference handbook "Essential Alphabet from A to Z".
+**Purpose:** Safety guidance on wintergreen/birch, anticoagulants, blood pressure, and seizure precautions.
 
 ---
 

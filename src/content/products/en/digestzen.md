@@ -55,6 +55,12 @@
 
 ## Additional Information
 
+### Book Reference Articles
+* [Essential Oils Safety Reference: Fennel, Anise, and Pregnancy](01_oils_safety_reference) — safety cautions for fennel/anise regarding epilepsy and pregnancy
+* [Emotional Themes Map: Digesting Life Experiences and Stress](02_emotional_themes_map) — emotional assimilation, processing overwhelmed feelings
+* [Essential Alphabet from A to Z: Internal Usage Guidelines](05_azbuka_supplement) — proper dosage for digestive blends and soothing protocols
+* [Aromalogy: Dosage Rules and 3-Day Patch Test](06_aromalogiya_supplement) — dilution for sensitive digestion and pediatric guidelines
+
 **Effect on the physical body:**
 ▫️ Soothes the stomach
 ▫️ Reduces gas and bloating

@@ -72,6 +72,12 @@
 * **[On Guard Mouthwash](doterra-on-guard-mouth-rinse)** — alcohol-free refreshing mouth rinse
 * **[On Guard Throat Drops](doterra-on-guard-protecting-throat-drops)** — soothing throat drops
 
+### Book Reference Articles
+* [Essential Oils Safety Reference: Hot Oils & Contraindications](01_oils_safety_reference) — safety handling for hot spices (clove, cinnamon, rosemary)
+* [Emotional Themes Map: Protection and Inner Grounding](02_emotional_themes_map) — healthy energetic protection, resilience, and boundaries
+* [Modern Essentials: Application Methods and Diffusion](04_modern_essentials_supplement) — dilution for mucous membrane safety, diffusion protocols
+* [Essential Alphabet from A to Z: Internal Usage Guidelines](05_azbuka_supplement) — taking warm blends strictly with vegetable capsules (Veggie Caps)
+
 ### Effects on the Physical Body:
 * Immunostimulating and immunomodulatory
 * Powerful antibacterial (broad-spectrum)

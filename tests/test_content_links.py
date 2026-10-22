@@ -70,3 +70,29 @@ class TestContentLinks:
         cleaned = re.sub(r"https?://(?:www\.)?doterra\.com[^\s\)]*", "", text)
         assert "doterra.com" not in cleaned
         assert "[Лаванда](lavender)" in cleaned
+
+    def test_books_in_directories_to_search(self):
+        """Директорія books повинна бути включена у пошук статей Mini App."""
+        from src.web.app import DIRECTORIES_TO_SEARCH
+        assert "books" in DIRECTORIES_TO_SEARCH
+
+    def test_book_articles_metadata_categories(self):
+        """Статті з книг повинні мати категорію 'Книги та довідники' (UA) та 'Books & Guides' (EN)."""
+        from pathlib import Path
+        from src.web.app import _get_article_metadata, CONTENT_DIR
+
+        # UA
+        sample_ua = CONTENT_DIR / "books" / "01_oils_safety_reference.md"
+        assert sample_ua.exists()
+        meta_ua = _get_article_metadata("ua", sample_ua, "http://test", "books")
+        assert meta_ua["tag"] == "Книги та довідники"
+        assert meta_ua["section"] == "books"
+        assert meta_ua["slug"] == "01-oils-safety-reference"
+
+        # EN
+        sample_en = CONTENT_DIR / "books" / "en" / "01_oils_safety_reference.md"
+        assert sample_en.exists()
+        meta_en = _get_article_metadata("en", sample_en, "http://test", "books")
+        assert meta_en["tag"] == "Books & Guides"
+        assert meta_en["section"] == "books"
+        assert meta_en["slug"] == "01-oils-safety-reference"

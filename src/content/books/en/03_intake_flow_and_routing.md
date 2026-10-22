@@ -1,7 +1,11 @@
-# Questionnaire Logic and Specialist Routing — Aroma Bot
+# Questionnaire Logic and Specialist Routing — Aroma Assistant
 
-**Status:** approved logic for RAG system and safety guidelines.  
-**Principle:** the bot acts as a triage assistant and guide, not a medical practitioner or diagnostic system. Oil recommendations are strictly educational, and any risk factors must be routed to a qualified specialist.
+**Category:** Books & Guides
+
+**Type:** Reference Guide
+
+**Status:** approved logic for knowledge base and safety guidelines.  
+**Principle:** the bot acts as an aroma assistant and intake helper, not a medical practitioner or diagnostic system. Oil recommendations are strictly educational, and any risk factors must be routed to a qualified specialist.
 
 ---
 

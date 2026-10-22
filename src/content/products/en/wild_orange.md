@@ -67,6 +67,12 @@
 *   **Wild Orange 15 ml** — pure cold-pressed wild orange essential oil
 *   **Wild Orange Touch (roll-on)** — roll-on for convenient topical application
 
+### Book Reference Articles
+* [Essential Oils Safety Reference: Pregnancy, Children, Contraindications](01_oils_safety_reference) — phototoxicity precautions, safe pregnancy citrus use
+* [Emotional Themes Map: Joy, Abundance, and Emotional Uplift](02_emotional_themes_map) — abundance mindset, playful creativity, and uplifting the spirit
+* [Modern Essentials: Application Methods and Diffusion](04_modern_essentials_supplement) — aromatic diffusion for energizing atmospheres
+* [Aromalogy: Dosage Rules and 3-Day Patch Test](06_aromalogiya_supplement) — 12-hour photosensitivity window, dilution, and compresses
+
 ### Origin
 Wild Orange (Citrus sinensis) is a variety of sweet orange grown without chemical fertilizers or pesticides. doTERRA sources the oil primarily from Brazil and the Dominican Republic through cold pressing the fruit's outer peel. The name "wild" reflects the tradition of harvesting fruit from trees growing in natural conditions with minimal human intervention.
 

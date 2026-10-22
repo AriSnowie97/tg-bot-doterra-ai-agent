@@ -70,6 +70,12 @@
 - **[Peppermint Touch (roll-on)](peppermint-touch)** — convenient roll-on blend with Fractionated Coconut Oil
 - **[Peppermint Softgels](doterra-peppermint-softgels)** — enteric-coated digestive softgels
 
+### Book Reference Articles
+* [Essential Oils Safety Reference: Pregnancy, Children, Contraindications](01_oils_safety_reference) — pregnancy precautions and sensitive skin dilution
+* [Emotional Themes Map: Overcoming Discouragement and Apathy](02_emotional_themes_map) — buoyant heart, emotional buoyancy, and joyful vigor
+* [Modern Essentials: Application Methods and Diffusion](04_modern_essentials_supplement) — respiratory diffusion, invigorating application, and reflexology
+* [Aromalogy: Dosage Rules and 3-Day Patch Test](06_aromalogiya_supplement) — age limit for children under 7 (avoid face/neck), homeopathy incompatibility
+
 ### Origin
 Peppermint (Mentha × piperita) is a hybrid of watermint and spearmint grown all over the world. The largest plantations are located in the USA (Oregon state), India, and China. Essential oil is extracted by steam distillation from the leaves and stems of the plant. doTERRA uses the highest quality raw materials, ensuring a consistently high menthol content.
 

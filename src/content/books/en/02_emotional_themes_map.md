@@ -1,8 +1,11 @@
 # Knowledge Base: Emotional Themes → Essential Oils
 
-**Source:** "Emotions & Essential Oils" (Enlighten/doTERRA guide, EssentialEmotions LLC).
-**⚠️ Copyright Notice:** The original publication states "no part may be reproduced without written permission." The table below is an original structured paraphrase of the conceptual mapping.
-**Purpose:** Source for the bot's emotional intake block—when a user describes a psychological/emotional state rather than a physical symptom.
+**Category:** Books & Guides
+
+**Type:** Reference Guide
+
+**Source:** "Emotions & Essential Oils" (reference guide, EssentialEmotions).
+**Purpose:** Source for emotional state consultation—when a client describes mood, feelings, or psychological states rather than physical symptoms.
 
 ---
 
