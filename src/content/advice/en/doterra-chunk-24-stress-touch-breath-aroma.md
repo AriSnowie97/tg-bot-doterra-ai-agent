@@ -1,4 +1,4 @@
-# The Body Remembers Everything: Stress Relief Through Touch, Breathing, and Aroma (Chunk 24)
+# The Body Remembers Everything: Stress Relief Through Touch, Breathing, and Aroma
 
 ## Why Stress Lives in the Body (Physiology)
 

@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — Символ «Нанесення на руки» (чанк 52)
+# Symphony of the Cells™ — Символ «Нанесення на руки»
 
 ![Симфонія клітин](/images/hand.jpg)
 

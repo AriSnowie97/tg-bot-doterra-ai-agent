@@ -33,4 +33,4 @@ Helichrysum, Jasmine, Lavender, Frankincense, Myrrh, Spikenard, Neroli, Roman Ch
 - Omega-3
 
 ---
-ℹ️ **Note:** body system reference card — used together with the "Body Systems" chart (chunk 33) to select a protocol. In cases of dermatitis, eczema, psoriasis, or other skin conditions, as well as before applying oils to damaged or very sensitive skin — perform a patch test on a small area first and consult a dermatologist for chronic conditions (see the dilution rule for S/D oils in chunk 1).
+ℹ️ **Note:** body system reference card — used together with the "Body Systems" chart to select a protocol. In cases of dermatitis, eczema, psoriasis, or other skin conditions, as well as before applying oils to damaged or very sensitive skin — perform a patch test on a small area first and consult a dermatologist for chronic conditions (see the dilution rule for S/D oils in chunk 1).

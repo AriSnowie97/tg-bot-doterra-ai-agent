@@ -89,6 +89,49 @@ def _has_research_in_text(text: str) -> bool:
     return any(marker in lower for marker in _RESEARCH_MARKERS)
 
 
+# Валідні завершальні знаки та емодзі для кінця посту
+_VALID_POST_ENDINGS: tuple[str, ...] = (
+    ".", "!", "?", "…",
+    "❤️", "🔥", "🌿", "💧", "✨", "💛", "👇", "🌸", "🌱", "🙏", "😊", "👍"
+)
+
+# Слова, що сигналізують про обірване на півслові речення
+_DANGLING_END_WORDS: tuple[str, ...] = (
+    "та", "і", "й", "з", "із", "зі", "в", "у", "на", "о", "до", "від",
+    "для", "як", "що", "або", "чи", "не", "ні", "через", "при", "під",
+    "над", "без", "по", "про", "а", "але", "щоб", "якщо"
+)
+
+
+def _is_post_complete(text: str) -> tuple[bool, str]:
+    """Перевіряє, чи пост є цілісним та повністю завершеним."""
+    if not text or len(text.strip()) < 500:
+        return False, "Текст занадто короткий (менше 500 символів)"
+
+    trimmed = text.strip()
+
+    # Перевірка на обірвані знаки пунктуації в самому кінці
+    if trimmed[-1] in (",", ";", ":", "-", "—", "(", "[", "{", "/"):
+        return False, f"Текст закінчується на незавершений знак '{trimmed[-1]}'"
+
+    # Останнє слово не повинно бути прийменником/сполучником
+    words = re.findall(r'[\w]+', trimmed)
+    if words and words[-1].lower() in _DANGLING_END_WORDS:
+        return False, f"Текст закінчується на незавершене слово '{words[-1]}'"
+
+    # Перевірка кінцевого символу (знак пунктуації або емодзі)
+    if not any(trimmed.endswith(ending) for ending in _VALID_POST_ENDINGS):
+        return False, "Останнє речення не завершене (немає крапки, знака оклику/питання або емодзі)"
+
+    # Перевірка наявності інтерактивного заклику / завершення в останньому абзаці
+    last_block = trimmed.split("\n\n")[-1].lower()
+    has_cta = any(w in last_block for w in ("?", "коментар", "діліться", "ставте", "❤️", "🔥", "рутині", "напишіть"))
+    if not has_cta and len(trimmed) > 1200:
+        return False, "У фіналі відсутній заклик до дії або запитання до підписників"
+
+    return True, "OK"
+
+
 def _sanitize_research_claims(text: str) -> str:
     """Видаляє речення, що містять вигадані маркери досліджень.
 
@@ -184,26 +227,75 @@ async def _generate_post_text(topic_query: str) -> str:
                 )
                 post_text = _sanitize_research_claims(post_text)
 
+        # 5. Перевірка: чи пост повністю завершений?
+        is_complete, reason = _is_post_complete(post_text)
+        if not is_complete:
+            if attempt <= MAX_RETRIES:
+                print(f"[publisher] ⚠️  Attempt {attempt}: post is incomplete ({reason}), retrying...")
+                user_instruction += (
+                    f" ВАЖЛИВО: Твій попередній пост був незавершеним ({reason})! "
+                    "Напиши повністю ЗАВЕРШЕНИЙ пост обсягом 1800-2400 символів, який обов'язково закінчується запитанням або закликом до реакції (❤️/🔥)."
+                )
+                continue
+            else:
+                print(f"[publisher] ⚠️  Post incomplete after retries ({reason}). Cleaning up.")
+                post_text = _ensure_clean_post(post_text)
+
         print(f"[publisher] ✅ Post generated, len={len(post_text)}")
         return post_text
 
     # Fallback (не повинен досягатися)
-    return post_text
+    return _ensure_clean_post(post_text)
 
 
 # ---------------------------------------------------------------------------
 # Публікація посту у канал
 # ---------------------------------------------------------------------------
 
-def _truncate_post(text: str, max_len: int = MAX_POST_LENGTH) -> str:
-    """Обрізає пост до max_len символів по межі абзацу, зберігаючи цілісність."""
+def _ensure_clean_post(text: str, max_len: int = MAX_POST_LENGTH) -> str:
+    """Обрізає пост за потреби та гарантує відсутність обірваних речень і слів."""
+    if not text:
+        return ""
+
+    text = text.strip()
     if len(text) <= max_len:
-        return text
+        is_ok, _ = _is_post_complete(text)
+        if is_ok:
+            return text
+
+    # Якщо текст довший або обірваний — шукаємо останню безпечну межу
     truncated = text[:max_len]
     last_newline = truncated.rfind("\n\n")
     if last_newline > max_len // 2:
-        return truncated[:last_newline].rstrip()
-    return truncated.rstrip()
+        candidate = truncated[:last_newline].rstrip()
+    else:
+        # Шукаємо кінець останнього речення
+        sentence_ends = [m.end() for m in re.finditer(r'[.!?]\s+', truncated)]
+        if sentence_ends:
+            candidate = truncated[:sentence_ends[-1]].rstrip()
+        else:
+            candidate = truncated.rstrip()
+
+    # Очищуємо висячі знаки
+    while candidate and candidate[-1] in (",", ";", ":", "-", "—", "/", "(", "[", "{"):
+        candidate = candidate[:-1].rstrip()
+
+    # Очищуємо висяче останнє слово, якщо воно неповне
+    words = re.findall(r'[\w]+', candidate)
+    if words and words[-1].lower() in _DANGLING_END_WORDS:
+        candidate = candidate[:candidate.rfind(words[-1])].rstrip()
+        while candidate and candidate[-1] in (",", ";", ":", "-", "—", "/", "(", "[", "{"):
+            candidate = candidate[:-1].rstrip()
+
+    # Перевіряємо, чи є заклик до дії; якщо фінал обрізався — додаємо акуратний фінал
+    last_block = candidate.split("\n\n")[-1].lower() if candidate else ""
+    if not any(w in last_block for w in ("?", "коментар", "діліться", "ставте", "❤️", "🔥")):
+        candidate += (
+            "\n\nЧи використовуєте ви такі практики у своїй рутині? "
+            "Поділіться у коментарях та ставте ❤️ або 🔥, якщо пост був корисним!"
+        )
+
+    return candidate.strip()
 
 
 async def publish_channel_post(bot: Bot) -> None:
@@ -213,13 +305,14 @@ async def publish_channel_post(bot: Bot) -> None:
     1. Перевіряє наявність CHANNEL_ID.
     2. Рандомно обирає тему з TOPIC_SEEDS.
     3. Генерує текст посту через RAG + GeminiFlashProvider.
-    4. Публікує через bot.send_message.
+    4. Перевіряє повну завершеність посту.
+    5. Публікує через bot.send_message.
 
     Args:
         bot: Aiogram Bot instance.
 
     Raises:
-        ValueError: якщо CHANNEL_ID не задано.
+        ValueError: якщо CHANNEL_ID не задано або пост незавершений.
         Exception: якщо виникла помилка генерації або відправки.
     """
     channel_id = get_channel_id()
@@ -233,7 +326,12 @@ async def publish_channel_post(bot: Bot) -> None:
 
     try:
         post_text = await _generate_post_text(topic)
-        post_text = _truncate_post(post_text)
+        post_text = _ensure_clean_post(post_text)
+
+        is_complete, reason = _is_post_complete(post_text)
+        if not is_complete:
+            print(f"[publisher] ❌ Refusing to publish incomplete post: {reason}")
+            raise ValueError(f"Post is incomplete ({reason}) — publication aborted")
 
         await bot.send_message(
             chat_id=channel_id,

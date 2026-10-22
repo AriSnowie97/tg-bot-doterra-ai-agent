@@ -1,4 +1,4 @@
-# How to Support the Gut Microbiome (Chunk 29)
+# How to Support the Gut Microbiome
 
 ## Three Directions for Gut Restoration
 

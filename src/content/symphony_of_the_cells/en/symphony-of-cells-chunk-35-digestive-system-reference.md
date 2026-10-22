@@ -31,6 +31,6 @@ Geranium, Grapefruit, Ginger, Cilantro, Lemongrass, Lemon, Peppermint, Pink Pepp
 - Terrazyme Digestive Enzyme Complex
 
 ---
-ℹ️ **Note:** body system reference card — used together with the "Body Systems" chart (chunk 33) to select a protocol. Dietary supplements — according to the manufacturer's instructions; in case of gastrointestinal, liver, gallbladder diseases (in particular gallstone disease) or taking medications, consultation with a doctor is mandatory before starting any supplements.
+ℹ️ **Note:** body system reference card — used together with the "Body Systems" chart to select a protocol. Dietary supplements — according to the manufacturer's instructions; in case of gastrointestinal, liver, gallbladder diseases (in particular gallstone disease) or taking medications, consultation with a doctor is mandatory before starting any supplements.
 
 > Note regarding chunks: there is no separate chunk for the "Digestive" protocol in this topic yet — if you have it, please send it, and I will format it in the same format as the other protocols.

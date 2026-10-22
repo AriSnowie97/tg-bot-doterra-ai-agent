@@ -34,4 +34,4 @@ Geranium, Cardamom, Copaiba, Cinnamon Bark, Turmeric, Lavender, Frankincense, Le
 - Terrazyme Digestive Enzyme Complex
 
 ---
-ℹ️ **Note:** this is a body system reference card — used together with the "Body Systems" chart (chunk 33) to select a protocol. Dietary supplements and softgels — according to the manufacturer's instructions; in case of cardiovascular diseases, taking blood pressure/blood-thinning medications or other drugs, consultation with a physician is required before starting any supplements (interactions are possible).
+ℹ️ **Note:** this is a body system reference card — used together with the "Body Systems" chart to select a protocol. Dietary supplements and softgels — according to the manufacturer's instructions; in case of cardiovascular diseases, taking blood pressure/blood-thinning medications or other drugs, consultation with a physician is required before starting any supplements (interactions are possible).

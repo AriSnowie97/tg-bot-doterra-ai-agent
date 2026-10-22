@@ -61,4 +61,4 @@
 | Digestive Blend | DigestZen (ZenGest) |
 
 ---
-ℹ️ **Note:** this glossary supplements the interchangeability table (chunk 54) — helping to recognize the same oil/blend under different names (Ukrainian, English, commercial).
+ℹ️ **Note:** this glossary supplements the interchangeability table — helping to recognize the same oil/blend under different names (Ukrainian, English, commercial).

@@ -33,4 +33,4 @@ Bergamot, Geranium, Grapefruit, Cinnamon, Coriander, Lemongrass, Lemon, Marjoram
 - Omega-3
 
 ---
-ℹ️ **Note:** body system reference card — used together with the "Body Systems" diagram (chunk 33) for protocol selection. In case of kidney diseases (including chronic renal failure), urolithiasis, or taking medications excreted by the kidneys — consultation with a physician is mandatory before taking supplements and oral oils (juniper berry and grapefruit oil may affect the kidneys/interact with medications when taken orally systematically).
+ℹ️ **Note:** body system reference card — used together with the "Body Systems" diagram for protocol selection. In case of kidney diseases (including chronic renal failure), urolithiasis, or taking medications excreted by the kidneys — consultation with a physician is mandatory before taking supplements and oral oils (juniper berry and grapefruit oil may affect the kidneys/interact with medications when taken orally systematically).

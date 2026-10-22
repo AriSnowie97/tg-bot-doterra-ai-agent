@@ -167,6 +167,7 @@ def _get_article_metadata(lang: str, md_path: Path, base_url: str = "", section_
         if line.startswith("# "):
             title = line[2:].strip()
             break
+    title = re.sub(r"\s*\((?:чанк|chunk)\s*\d+\)", "", title, flags=re.IGNORECASE).strip()
             
     # Шукаємо категорію
     for line in lines:
@@ -339,6 +340,7 @@ async def api_get_doc(slug: str, lang: str, request: Request):
     lines = md_text.splitlines()
     if lines and lines[0].startswith("# "):
         title = lines[0][2:].strip()
+    title = re.sub(r"\s*\((?:чанк|chunk)\s*\d+\)", "", title, flags=re.IGNORECASE).strip()
 
     return {"title": title, "content": html_content, "slug": slug}
 

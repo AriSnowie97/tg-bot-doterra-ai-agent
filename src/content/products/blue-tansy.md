@@ -1,4 +1,4 @@
-![doTERRA Product](https://www.doterra.com/US/en/p/blue-tansy-oil)
+![doTERRA Product](https://www.doterra.com/medias/Blue-Tansy-5mL-Horizontal-Essential-Oil-2025-Photo-Transparent-Link-Preview-3x2.png?context=bWFzdGVyfHJvb3R8MjI4MTgwfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3pPUzlvWWpndk16QTRNak00TWpFMU1EZzJNemd2UW14MVpTQlVZVzV6ZVY4MWJVd3RTRzl5YVhwdmJuUmhiQzFGYzNObGJuUnBZV3dnVDJsc0xUSXdNalV0VUdodmRHOHRWSEpoYm5Od1lYSmxiblJmVEdsdWF5MVFjbVYyYVdWM0xUTjRNaTV3Ym1jfGVjYzQyOTIxZDZjMmUwN2ZiNWYzYmE4MGZlYjI3MzI1ODZlZmY0YjJkNmQ1MTlmNTJmNDk5NTI0NWM2YmY0Zjc)
 
 # Blue Tansy
 

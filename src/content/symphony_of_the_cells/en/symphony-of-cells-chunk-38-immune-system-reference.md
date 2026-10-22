@@ -35,4 +35,4 @@ Clove, Geranium, Cinnamon, Turmeric, Frankincense, Lemon, Melissa, Oregano, Rose
 - On Guard Protective Blend Softgels
 
 ---
-ℹ️ **Note:** body system reference card — used together with the "Body Systems" chart (chunk 33) to select a protocol. In case of autoimmune diseases, taking immunosuppressants or other medications affecting the immune system, a doctor's consultation is mandatory before using oils and supplements — some oils (e.g., oregano, thyme, clove) are potent and require dilution (see chunk 1).
+ℹ️ **Note:** body system reference card — used together with the "Body Systems" chart to select a protocol. In case of autoimmune diseases, taking immunosuppressants or other medications affecting the immune system, a doctor's consultation is mandatory before using oils and supplements — some oils (e.g., oregano, thyme, clove) are potent and require dilution (see chunk 1).

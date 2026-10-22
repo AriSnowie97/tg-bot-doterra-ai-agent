@@ -1,4 +1,4 @@
-# Symphony of the Cells™ — "Apply to Hands" Symbol (chunk 52)
+# Symphony of the Cells™ — "Apply to Hands" Symbol
 
 ![Symphony of the Cells](/images/hand.jpg)
 

@@ -1,4 +1,4 @@
-# Liver and Hormonal Balance: The Connection with Estrogen, Bile, and Cortisol (Chunk 28)
+# Liver and Hormonal Balance: The Connection with Estrogen, Bile, and Cortisol
 
 > From the perspective of functional/integrative medicine — not a substitute for medical examination or prescribed treatment.
 

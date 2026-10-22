@@ -1,4 +1,4 @@
-# Intoxication Starts with Protein Deficiency (Chunk 23)
+# Intoxication Starts with Protein Deficiency
 
 ## Main Idea
 

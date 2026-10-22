@@ -34,4 +34,4 @@ Grapefruit, Cinnamon, Lemon, Melissa, Tangerine, Oregano, Peppermint, Rosemary, 
 - Turmeric Capsules
 
 ---
-ℹ️ **Note:** body system reference card — used together with the "Body Systems" diagram (chunk 33) for protocol selection. In asthma, COPD, or other chronic respiratory conditions — oils (especially those containing menthol/eucalyptus) may trigger spasms in sensitive individuals; consult a physician prior to regular use, and do not apply essential oils directly under the nose of young children (refer to safety guidelines in chunk 1).
+ℹ️ **Note:** body system reference card — used together with the "Body Systems" diagram for protocol selection. In asthma, COPD, or other chronic respiratory conditions — oils (especially those containing menthol/eucalyptus) may trigger spasms in sensitive individuals; consult a physician prior to regular use, and do not apply essential oils directly under the nose of young children (refer to safety guidelines in chunk 1).

@@ -1,4 +1,4 @@
-# How to Balance Hormones Without Pills: 11 Steps (Chunk 27)
+# How to Balance Hormones Without Pills: 11 Steps
 
 ## Step 1 — Diagnostics
 Identify problems with specific hormones based on complaints/symptoms, perform a hormonal check-up (FSH, LH, DHEA, estradiol, free testosterone, prolactin, SHBG, etc.) by consulting an integrative specialist for prescription and interpretation.

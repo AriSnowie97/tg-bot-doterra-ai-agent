@@ -35,4 +35,4 @@ Basil, Birch, Helichrysum, Wintergreen, Turmeric, Copaiba, Lemongrass, Frankince
 - VMG+ Nutrient Complex
 
 ---
-ℹ️ **Note:** body system reference card — used together with the "Body Systems" chart (chunk 33) for protocol selection. In case of fractures, acute injuries, rheumatoid arthritis, or taking painkiller/anti-inflammatory medications — consult a doctor before using oils; Birch/Wintergreen contain methyl salicylate and are contraindicated in case of aspirin allergy, pregnancy, and for children (check manufacturer's instructions).
+ℹ️ **Note:** body system reference card — used together with the "Body Systems" chart for protocol selection. In case of fractures, acute injuries, rheumatoid arthritis, or taking painkiller/anti-inflammatory medications — consult a doctor before using oils; Birch/Wintergreen contain methyl salicylate and are contraindicated in case of aspirin allergy, pregnancy, and for children (check manufacturer's instructions).

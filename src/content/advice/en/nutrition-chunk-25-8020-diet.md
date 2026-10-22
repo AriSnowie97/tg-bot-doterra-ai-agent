@@ -1,4 +1,4 @@
-# 80/20 Nutrition and a Comprehensive Approach to Health (chunk 25)
+# 80/20 Nutrition and a Comprehensive Approach to Health
 
 ## Core Principle
 

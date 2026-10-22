@@ -1,4 +1,4 @@
-# Cooking Oils: The Complete Guide (Chunk 30)
+# Cooking Oils: The Complete Guide
 
 ## 🔥 For High-Heat Frying (180–230°C)
 

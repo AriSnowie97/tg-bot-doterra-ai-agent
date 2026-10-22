@@ -1,4 +1,4 @@
-# Microbiome and Sleep (Chunk 26)
+# Microbiome and Sleep
 
 ## How Gut Health Affects Dream Quality
 

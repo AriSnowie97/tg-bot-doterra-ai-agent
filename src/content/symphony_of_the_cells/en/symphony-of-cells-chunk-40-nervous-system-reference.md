@@ -34,4 +34,4 @@ Basil, Helichrysum, Clove, Ginger, Cedarwood, Copaiba, Turmeric, Frankincense, L
 - Turmeric Capsules
 
 ---
-ℹ️ **Note:** body system reference card — used together with the "Body Systems" chart (chunk 33) to select a protocol. For neurological diagnoses (epilepsy, stroke, multiple sclerosis, etc. — see chunk 8), a history of seizures, or taking anticonvulsant/psychotropic medications, a consultation with a doctor is required before using the oils.
+ℹ️ **Note:** body system reference card — used together with the "Body Systems" chart to select a protocol. For neurological diagnoses (epilepsy, stroke, multiple sclerosis, etc. — see chunk 8), a history of seizures, or taking anticonvulsant/psychotropic medications, a consultation with a doctor is required before using the oils.

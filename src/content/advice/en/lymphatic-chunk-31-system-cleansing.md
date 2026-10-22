@@ -1,4 +1,4 @@
-# Lymphatic system: how it works and how to support it (chunk 31)
+# Lymphatic system: how it works and how to support it
 
 ## How lymph moves
 

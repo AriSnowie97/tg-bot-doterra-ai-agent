@@ -15,6 +15,7 @@
 
 # Standard
 import asyncio
+import re
 # Special
 from google.genai import types
 # Local
@@ -124,6 +125,12 @@ async def generate_response(
 
     # 5. Текст для LLM: якщо є накопичений контекст діалогу — передаємо його
     llm_input = conversation_context if conversation_context else user_text
+
+    # Перевірка мови запиту: якщо користувач пише англійською — вимагаємо відповідь англійською
+    has_cyrillic = bool(re.search(r'[а-яА-ЯіїєґІЇЄҐ]', user_text))
+    has_latin = bool(re.search(r'[a-zA-Z]{3,}', user_text))
+    if has_latin and not has_cyrillic:
+        system_prompt += "\n\n⚠️ CRITICAL LANGUAGE DIRECTIVE: The user's query is in ENGLISH. Your entire response MUST be 100% in ENGLISH only!"
 
     # 6. Виклик LLM
     response = await LLM().generate_content(

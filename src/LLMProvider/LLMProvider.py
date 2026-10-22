@@ -2,7 +2,15 @@
 import re
 import asyncio
 import time
+import sys
 from abc import ABC, abstractmethod
+
+if sys.stdout and hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 # Special
 from google.genai import types
 # Local
@@ -100,12 +108,12 @@ class LLMProvider(ABC):
 
                         is_429 = "429" in error_str or "RESOURCE_EXHAUSTED" in error_str
                         if is_429:
-                            print(f"[agent] 429 on model={model}, key=#{key_fingerprint(api_key)} → next")
+                            print(f"[agent] 429 on model={model}, key=#{key_fingerprint(api_key)} -> next")
                             continue
 
                         is_503 = "503" in error_str or "UNAVAILABLE" in error_str
                         if is_503:
-                            print(f"[agent] 503 on model={model}, key=#{key_fingerprint(api_key)} → next")
+                            print(f"[agent] 503 on model={model}, key=#{key_fingerprint(api_key)} -> next")
                             continue
 
                         print(f"[agent] Unknown error on model={model}: {redact(e)}")

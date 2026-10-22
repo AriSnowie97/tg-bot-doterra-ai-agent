@@ -35,4 +35,4 @@ Bergamot, Clove, Wild Orange, Ylang Ylang, Lavender, Frankincense, Magnolia, Mel
 - Omega-3
 
 ---
-ℹ️ **Note:** body system reference card — used together with the "Body Systems" chart (chunk 33) to select a protocol. This system covers pregnancy, reproductive health, and hormonal glands (thyroid, adrenal, etc.) — during pregnancy/nursing, infertility, diagnosed endocrine diseases, or taking hormonal medications, a doctor's consultation is mandatory before using oils and supplements.
+ℹ️ **Note:** body system reference card — used together with the "Body Systems" chart to select a protocol. This system covers pregnancy, reproductive health, and hormonal glands (thyroid, adrenal, etc.) — during pregnancy/nursing, infertility, diagnosed endocrine diseases, or taking hormonal medications, a doctor's consultation is mandatory before using oils and supplements.

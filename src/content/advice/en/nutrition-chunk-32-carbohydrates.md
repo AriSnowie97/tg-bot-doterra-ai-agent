@@ -1,4 +1,4 @@
-# Carbohydrates: Everything You Need to Know (Chunk 32)
+# Carbohydrates: Everything You Need to Know
 
 ## The Role of Carbohydrates
 
