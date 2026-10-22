@@ -228,7 +228,17 @@ STICKER_TOPIC_RULES: list[tuple[str, list[re.Pattern], list[str]]] = [
         _RULE_PROHIBITION,
         ["👎"],
     ),
-    # 2. Асортимент, що є, каталог, що маєш, що вмієш, покажи
+    # 2. Улюблене масло Ароми, Лайм, "Ні, я не буду це пити без Lime"
+    (
+        "favorite_oil",
+        [
+            re.compile(r"\b((най)?улюблен\w*|(най)?любим\w*)\s+(ол\w+|масл\w+|аромат\w*)", re.IGNORECASE),
+            re.compile(r"\b(favorite\s+oil|тв[оі][єя]\s+(най)?улюблен\w*|тво[еёя]\s+(най)?любим\w*)\b", re.IGNORECASE),
+            re.compile(r"\b(лайм\w*|lime|не\s+буду\s+(це\s+)?пити\s+без\s+lime|без\s+лайм\w*)\b", re.IGNORECASE),
+        ],
+        ["🍋‍🟩", "😍", "🌿", "😊"],
+    ),
+    # 3. Асортимент, що є, каталог, що маєш, що вмієш, покажи
     (
         "assortment",
         [
