@@ -127,6 +127,8 @@ def _upsert_chunk(chunk: dict) -> None:
 
 def bulk_upsert_chunks(chunks: list[dict]) -> None:
     """Оновлення списку чанків у БД з використанням одного з'єднання (оптимізовано)."""
+    from src.LLMProvider.budget import budget_manager
+    budget_manager.set_sync_mode(True)
     conn = _conn_create()
     try:
         register_vector(conn)
@@ -187,7 +189,8 @@ def bulk_upsert_chunks(chunks: list[dict]) -> None:
                 except Exception as e:
                     print(f"[!] Error upserting chunk {chunk_id}: {redact(e)}")
                     conn.rollback()
-    finally:            
+    finally:
+        budget_manager.set_sync_mode(False)
         conn.close()
 
 
