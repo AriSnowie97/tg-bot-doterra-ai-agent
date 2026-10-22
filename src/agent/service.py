@@ -28,7 +28,11 @@ from .specialist import (
     MEDICAL_DISCLAIMER,
 )
 from ..storage import search_chunks
-from src.LLMProvider import GeminiFlashProvider as LLM
+from src.LLMProvider import (
+    GeminiFlashProvider as LLM,
+    BudgetExceededError,
+    BUDGET_EXCEEDED_MESSAGE,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -96,8 +100,13 @@ async def generate_response(
     # Для RAG-пошуку використовуємо накопичений контекст діалогу якщо є
     rag_query = conversation_context or user_text
 
-    # 1. Знаходимо релевантні чанки з БД
-    chunks = await asyncio.to_thread(search_chunks, rag_query, TOP_K)
+    # 1. Знаходимо релевантні чанки з БД (із захистом бюджету ембеддингів)
+    try:
+        chunks = await asyncio.to_thread(search_chunks, rag_query, TOP_K)
+    except BudgetExceededError:
+        print("[agent] ⚠️ Global LLM Budget exceeded during embedding")
+        return BUDGET_EXCEEDED_MESSAGE
+
     print(f"[agent] Found {len(chunks)} chunks for query: {rag_query[:80]!r}")
 
     # 2. Жорсткий фолбек: база повністю порожня — повертаємо статичну відповідь без виклику LLM
@@ -154,16 +163,20 @@ async def generate_response(
     if is_clearly_english:
         system_prompt += "\n\n⚠️ CRITICAL LANGUAGE DIRECTIVE: The user's query is in ENGLISH. Your entire response MUST be 100% in ENGLISH only!"
 
-    # 6. Виклик LLM
-    response = await LLM().generate_content(
-        llm_input,
-        types.GenerateContentConfig(
-            system_instruction=system_prompt,
-            temperature=0.3,
-            max_output_tokens=4096,
-        ),
-        MAX_RETRIES,
-    )
+    # 6. Виклик LLM (із захистом глобального бюджету)
+    try:
+        response = await LLM().generate_content(
+            llm_input,
+            types.GenerateContentConfig(
+                system_instruction=system_prompt,
+                temperature=0.3,
+                max_output_tokens=4096,
+            ),
+            MAX_RETRIES,
+        )
+    except BudgetExceededError:
+        print("[agent] ⚠️ Global LLM Budget exceeded during generation")
+        return BUDGET_EXCEEDED_MESSAGE
 
     text = (response.text or "").strip()
     if not text:

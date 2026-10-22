@@ -15,17 +15,21 @@ if sys.stdout and hasattr(sys.stdout, "reconfigure"):
 from google.genai import types
 # Local
 from src.safety import redact, key_fingerprint
+from .budget import budget_manager
 
 # Жорстка стеля звернень до Gemini на один generate_content (ключі × моделі × повтори)
-MAX_TOTAL_CALLS = 24
+MAX_TOTAL_CALLS = 6
 
 class LLMProvider(ABC):
     """LLMProvider - інтерфейс для LLMs, абстрактний клас, що
     описує необхідні змінні та методи для класів-нащадків."""
 
-    def embed_content(self, content, MAX_RETRIES: int = 5):
-        """Генерація embedding для введеного content з Retry-логікою для 429."""
+    def embed_content(self, content, MAX_RETRIES: int = 1):
+        """Генерація embedding для введеного content з захистом від блокування потоків."""
         last_error = None
+
+        # Перевірка глобального бюджету перед зверненням до API
+        budget_manager.check_and_consume("embed")
 
         for attempt in range(1, MAX_RETRIES + 2):
             for api_key in self.LLM_API_KEYS:
@@ -43,12 +47,11 @@ class LLMProvider(ABC):
                     print(f"[agent] Error on embed_content with key #{key_fingerprint(api_key)}: {redact(e)}")
                     continue
             
-            # Якщо всі ключі перебрані і спроба ще є - чекаємо
+            # Якщо всі ключі перебрані і спроба ще є — короткий бекофф (макс 1.5 секунди)
             if attempt <= MAX_RETRIES:
-                delay = self._parse_retry_delay(str(last_error))
-                if not delay:
-                    delay = attempt * 10
-                print(f"[agent] All keys failed. Sleeping {delay}s before attempt {attempt+1}")
+                parsed_delay = self._parse_retry_delay(str(last_error))
+                delay = min(parsed_delay or 1.0, 1.5)
+                print(f"[agent] All keys failed. Quick sleep {delay}s before attempt {attempt+1}")
                 time.sleep(delay)
             else:
                 break
@@ -74,6 +77,9 @@ class LLMProvider(ABC):
         last_error: Exception | None = None
         calls = 0
         
+        # Перевірка глобального бюджету перед зверненням до генеративної моделі
+        budget_manager.check_and_consume("generate")
+
         for attempt in range(1, MAX_RETRIES + 2):
             for api_key in self.LLM_API_KEYS:
                 for model in models:
@@ -126,7 +132,7 @@ class LLMProvider(ABC):
                 break
 
             if attempt <= MAX_RETRIES:
-                delay = attempt * 5
+                delay = min(attempt * 1.5, 3.0)
                 print(f"[agent] All keys/models failed. Sleeping {delay}s before attempt {attempt+1}")
                 await asyncio.sleep(delay)
             else:
