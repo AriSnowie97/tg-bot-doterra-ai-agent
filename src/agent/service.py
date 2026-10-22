@@ -25,7 +25,11 @@ from .specialist import (
     is_low_context,
     is_health_complaint_query,
     has_red_flags,
+    RED_FLAG_REDIRECT_BLOCK,
+    EN_RED_FLAG_REDIRECT_BLOCK,
     MEDICAL_DISCLAIMER,
+    EN_MEDICAL_DISCLAIMER,
+    get_disclaimer_for_text,
 )
 from ..storage import search_chunks
 from src.LLMProvider import (
@@ -45,7 +49,6 @@ TOP_K = 5
 MAX_RETRIES = 2
 
 # Фолбек-відповідь при повністю порожній базі знань (0 чанків)
-# LLM не викликається взагалі — повертається ця статична відповідь
 EMPTY_CONTEXT_FALLBACK: str = (
     "🌿 На жаль, я не знайшов інформації з цього запиту в базі знань.\n\n"
     "Спробуй переформулювати запит або запитати про конкретний продукт чи олію — "
@@ -54,6 +57,59 @@ EMPTY_CONTEXT_FALLBACK: str = (
     "звернись до Наталії Котелянської: https://www.instagram.com/nkotelianska/ 💛\n\n"
     "🩺 З питань здоров'я, симптомів або лікування — обов'язково проконсультуйся з лікарем."
 )
+
+EN_EMPTY_CONTEXT_FALLBACK: str = (
+    "🌿 Unfortunately, I couldn't find information regarding this query in our knowledge base.\n\n"
+    "Please try rephrasing your question or asking about a specific doTERRA product or essential oil.\n\n"
+    "📸 For personalized aroma advice or complex questions, feel free to contact Nataliia Kotelianska: https://www.instagram.com/nkotelianska/ 💛\n\n"
+    "🩺 For health symptoms or medical treatment, always consult a qualified healthcare professional."
+)
+
+# Маркери транслітерації української/слов'янської мови латинкою
+UK_TRANSLIT_WORDS: set[str] = {
+    "dobry", "den", "dobryj", "dobriy", "dobrogo", "dnya", "dnia", "ranok", "vechir",
+    "pryvit", "privet", "yak", "spravy", "dyakuyu", "dyakuju", "dyakuemo", "spasibo",
+    "shcho", "scho", "tse", "ce", "chomu", "koly", "de", "kudy", "hto", "khto",
+    "cherez", "dlya", "dla", "maslo", "oliya", "oliyi", "lavanda", "myata",
+    "chayne", "derevo", "proty", "vid", "mozhna", "chy", "arina", "arinu", "znayesh", "znaesh",
+}
+
+# Поширені англійські слова та граматичні маркери
+EN_WORDS: set[str] = {
+    "hi", "hello", "hey", "good", "morning", "afternoon", "evening",
+    "what", "how", "why", "where", "when", "who", "which", "whose",
+    "is", "are", "am", "was", "were", "be", "been", "being",
+    "can", "could", "would", "should", "will", "shall", "may", "might", "must",
+    "do", "does", "did", "have", "has", "had",
+    "for", "the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "with", "about",
+    "oil", "oils", "help", "safe", "use", "using", "usage", "dose", "dosage",
+    "tell", "please", "me", "you", "your", "my", "i", "we", "they", "it",
+    "this", "that", "these", "those", "there", "essential", "diffuse", "drop", "drops",
+    "headache", "sleep", "stress", "anxiety", "pain", "skin", "stomach",
+}
+
+
+def detect_is_english(user_text: str) -> bool:
+    """Визначає, чи є запит користувача англомовним (не кирилиця і не транслітерація)."""
+    if not user_text:
+        return False
+    # Наявність кирилиці виключає англійську
+    if re.search(r'[а-яА-ЯіїєґІЇЄҐ]', user_text):
+        return False
+
+    latin_words = [w.lower() for w in re.findall(r'\b[a-zA-Z]{2,}\b', user_text)]
+    if not latin_words:
+        return False
+
+    # Транслітерація української/слов'янських привітань
+    if set(latin_words) & UK_TRANSLIT_WORDS:
+        return False
+
+    # Перевірка на англійські слова або речення з 4+ латинських слів
+    if set(latin_words) & EN_WORDS or len(latin_words) >= 4:
+        return True
+
+    return False
 
 
 # ---------------------------------------------------------------------------
@@ -81,6 +137,9 @@ async def generate_response(
     - 404 NOT_FOUND: пропускає модель одразу.
     - Інша помилка: пропускає до наступного API-ключа.
     """
+    # Визначаємо мову вводу користувача
+    is_clearly_english = detect_is_english(user_text)
+
     # 0. ДЕТЕРМІНОВАНИЙ ЗАХИСТ: перевірка червоних прапорів ДО будь-яких RAG чи LLM викликів
     is_red_flag = (
         screening_mode == "red_flag"
@@ -89,6 +148,14 @@ async def generate_response(
     )
     if is_red_flag:
         print("[agent] 🛡️ RED FLAG ACTIVATED: Returning deterministic safety redirect immediately")
+        if is_clearly_english:
+            return (
+                "🌿 Your request contains signs of a higher-risk situation or contraindications "
+                "(pregnancy, lactation, young children, regular medications, or chronic health conditions).\n\n"
+                "⚠️ I am not qualified to recommend essential oils or dosages in these cases, as it could be unsafe for your health.\n\n"
+                + EN_RED_FLAG_REDIRECT_BLOCK
+                + EN_MEDICAL_DISCLAIMER
+            )
         return (
             "🌿 У вашому запиті є ознаки ситуації підвищеного ризику або протипоказань "
             "(вагітність, лактація, діти, прийом медикаментів або хронічні стани).\n\n"
@@ -112,7 +179,7 @@ async def generate_response(
     # 2. Жорсткий фолбек: база повністю порожня — повертаємо статичну відповідь без виклику LLM
     if not chunks:
         print(f"[agent] 0 chunks found — returning EMPTY_CONTEXT_FALLBACK")
-        return EMPTY_CONTEXT_FALLBACK
+        return EN_EMPTY_CONTEXT_FALLBACK if is_clearly_english else EMPTY_CONTEXT_FALLBACK
 
     # 3. Визначаємо режим скринінгу
     low_ctx = is_low_context(chunks)
@@ -150,18 +217,18 @@ async def generate_response(
     raw_input = conversation_context if conversation_context else user_text
     llm_input = f"<USER_QUERY>\n{raw_input}\n</USER_QUERY>"
 
-    # Перевірка мови запиту: перемикаємо на англійську ТІЛЬКИ якщо є явні граматичні маркери англійської мови
-    has_cyrillic = bool(re.search(r'[а-яА-ЯіїєґІЇЄҐ]', user_text))
-    english_words = re.findall(r'\b[a-zA-Z]{2,}\b', user_text)
-    is_clearly_english = False
-    if not has_cyrillic and english_words:
-        en_stop_words = {"what", "how", "why", "is", "are", "can", "for", "the", "and", "oil", "oils", "help", "with", "safe", "use", "dose", "which"}
-        has_en_grammar = bool(set(w.lower() for w in english_words) & en_stop_words)
-        if has_en_grammar or len(english_words) >= 4:
-            is_clearly_english = True
-
+    # Перевірка мови запиту: додаємо сувору директиву для LLM
     if is_clearly_english:
-        system_prompt += "\n\n⚠️ CRITICAL LANGUAGE DIRECTIVE: The user's query is in ENGLISH. Your entire response MUST be 100% in ENGLISH only!"
+        system_prompt += (
+            "\n\n⚠️ CRITICAL LANGUAGE DIRECTIVE: The user's query is in ENGLISH. "
+            "Your entire response MUST be 100% in ENGLISH only! Do not use Ukrainian or any other language."
+        )
+    else:
+        system_prompt += (
+            "\n\n⚠️ CRITICAL LANGUAGE DIRECTIVE: Мова відповіді — ВИКЛЮЧНО УКРАЇНСЬКА. "
+            "Навіть якщо запит користувача латинкою, транслітом чи іншою мовою — відповідай ТІЛЬКИ природною українською мовою. "
+            "Категорично заборонено відповідати чеською, польською чи іншими випадковими мовами."
+        )
 
     # 6. Виклик LLM (із захистом глобального бюджету)
     try:
@@ -182,6 +249,9 @@ async def generate_response(
     if not text:
         raise RuntimeError(f"[agent] LLM повернув порожній текст. finish_reason={getattr(response.candidates[0], 'finish_reason', 'unknown') if response.candidates else 'unknown'}")
 
+    # Видаляємо випадкові глючні емодзі каменю/обіймів (🪨, 🫂, 🗿)
+    text = text.replace("🪨", "🌿").replace("🫂", "🌿").replace("🗿", "")
+
     # Виявлення витоку промпту: якщо модель вивела інструкції замість відповіді
     leakage_markers = [
         "(no `**`",
@@ -196,14 +266,15 @@ async def generate_response(
     if any(marker in text for marker in leakage_markers):
         raise RuntimeError(f"[agent] Виявлено витік промпту у відповіді моделі — пропускаємо")
 
-    # Додаємо дисклеймер хардкодом (гарантовано, неможливо придушити моделлю)
-    if is_clearly_english:
-        en_disclaimer = "\n\nℹ️ This information is for educational purposes only and does not constitute medical advice. Consult a qualified healthcare professional before use."
-        if en_disclaimer.strip() not in text:
-            text = text.rstrip() + en_disclaimer
-    else:
-        if MEDICAL_DISCLAIMER.strip() not in text:
-            text = text.rstrip() + "\n\n" + MEDICAL_DISCLAIMER.strip()
+    # Додаємо дисклеймер хардкодом згідно з реальною мовою згенерованого тексту
+    disclaimer = get_disclaimer_for_text(text)
+    if (
+        MEDICAL_DISCLAIMER.strip() not in text
+        and EN_MEDICAL_DISCLAIMER.strip() not in text
+        and "медичною консультацією" not in text
+        and "medical advice" not in text.lower()
+    ):
+        text = text.rstrip() + disclaimer
 
     print(f"[agent] Response len={len(text)} chars")
 

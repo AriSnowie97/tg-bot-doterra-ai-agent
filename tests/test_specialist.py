@@ -56,6 +56,45 @@ class TestSpecialistScreening:
         assert "не є медичною консультацією" in MEDICAL_DISCLAIMER
         assert "проконсультуйтеся з лікарем" in MEDICAL_DISCLAIMER
 
+    def test_en_medical_disclaimer_content(self):
+        from src.agent.specialist import EN_MEDICAL_DISCLAIMER
+        assert "medical advice" in EN_MEDICAL_DISCLAIMER
+        assert "healthcare professional" in EN_MEDICAL_DISCLAIMER
+
+    def test_get_disclaimer_for_text(self):
+        from src.agent.specialist import get_disclaimer_for_text, EN_MEDICAL_DISCLAIMER
+        # Український текст містить кирилицю
+        ua_text = "Лаванда чудово підходить для релаксації та спокійного сну."
+        assert get_disclaimer_for_text(ua_text) == MEDICAL_DISCLAIMER
+
+        # Англійський текст не містить кирилиці
+        en_text = "Lavender is wonderful for relaxation and restful sleep."
+        assert get_disclaimer_for_text(en_text) == EN_MEDICAL_DISCLAIMER
+
+    @pytest.mark.parametrize("query,expected", [
+        ("What is lavender?", True),
+        ("Hello, how to use peppermint oil?", True),
+        ("Can I take lemon internally?", True),
+        ("Hi", True),
+        ("Dobrý den", False),
+        ("dobry den", False),
+        ("pryvit", False),
+        ("Доброго дня! Що таке лаванда?", False),
+        ("Ти знаєш Аріну?", False),
+    ])
+    def test_detect_is_english(self, query: str, expected: bool):
+        from src.agent.service import detect_is_english
+        assert detect_is_english(query) is expected
+
+    def test_system_prompt_creator_and_emoji_rules(self):
+        from src.agent.prompt import SYSTEM_PROMPT
+        # Перевірка обізнаності про розробницю Аріну
+        assert "Аріна" in SYSTEM_PROMPT
+        assert "@AriSnowie97" in SYSTEM_PROMPT
+        # Заборона на глючні емодзі каменю/обіймів
+        assert "🪨" in SYSTEM_PROMPT
+        assert "ЗАБОРОНЕНО" in SYSTEM_PROMPT
+
     @pytest.mark.parametrize("query", [
         "Скільки коштує олія чайного дерева?",
         "Як замовити консультацію у Наталії?",

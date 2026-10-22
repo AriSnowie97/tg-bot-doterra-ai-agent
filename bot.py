@@ -113,6 +113,7 @@ async def _reply_with_feedback(message: Message, text: str, sticker_id: str | No
     
     # Замінюємо [Текст](slug) просто на Текст
     clean_text = re.sub(pattern, r'\1', text)
+    clean_text = clean_text.replace("🪨", "🌿").replace("🫂", "🌿").replace("🗿", "")
     
     sent = await message.reply(clean_text)
     keyboard = _feedback_keyboard(sent.message_id, sent.chat.id)

@@ -21,7 +21,8 @@ class TestStickersModule:
     """Тести класифікації запитів та логіки стікерів."""
 
     @pytest.mark.parametrize("text", [
-        "Привіт!", "добрий день", "Хай", "Вітаю", "Hello", "привет"
+        "Привіт!", "добрий день", "Хай", "Вітаю", "Hello", "привет",
+        "dobry den", "Dobrý den", "pryvit", "dobryj vechir",
     ])
     def test_is_greeting(self, text: str):
         assert is_greeting(text) is True

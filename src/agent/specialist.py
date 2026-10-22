@@ -64,6 +64,15 @@ RED_FLAG_REDIRECT_BLOCK: str = (
     f"📸 Instagram: {SPECIALIST_LINKS['Instagram']}"
 )
 
+EN_RED_FLAG_REDIRECT_BLOCK: str = (
+    f"🌿 In your situation, I cannot recommend essential oils independently — "
+    f"this should be done together with a specialist who understands all the details. "
+    f"I recommend reaching out to {SPECIALIST_NAME} — she can help you select "
+    f"a safe option tailored specifically to your needs 💛\n"
+    f"💬 Telegram: {SPECIALIST_LINKS['Telegram']}\n"
+    f"📸 Instagram: {SPECIALIST_LINKS['Instagram']}"
+)
+
 # ---------------------------------------------------------------------------
 # Медичний дисклеймер
 # ---------------------------------------------------------------------------
@@ -75,6 +84,19 @@ MEDICAL_DISCLAIMER: str = (
     "Ця інформація має ознайомлювальний характер і не є медичною консультацією. "
     "Перед застосуванням проконсультуйтеся з лікарем."
 )
+
+EN_MEDICAL_DISCLAIMER: str = (
+    "\n\nℹ️ "
+    "This information is for educational purposes only and does not constitute medical advice. "
+    "Consult a qualified healthcare professional before use."
+)
+
+
+def get_disclaimer_for_text(text: str) -> str:
+    """Повертає відповідний дисклеймер (UK або EN) залежно від наявності кирилиці в тексті."""
+    import re
+    has_cyrillic = bool(re.search(r'[а-яА-ЯіїєґІЇЄҐ]', text))
+    return MEDICAL_DISCLAIMER if has_cyrillic else EN_MEDICAL_DISCLAIMER
 
 
 # ---------------------------------------------------------------------------
