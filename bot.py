@@ -27,6 +27,7 @@ from src.safety import (
     sanitize_ai_response_text,
     get_kyiv_time_of_day,
     strip_redundant_greetings,
+    UNSUPPORTED_CONTENT_REPLY,
 )
 from src.stickers import (
     load_stickers,
@@ -590,9 +591,10 @@ def _is_addressed(message: Message) -> bool:
         return True
 
     # @mention бота у тексті або підписі
-    if message.entities and _BOT_USERNAME:
+    all_entities = (message.entities or []) + (message.caption_entities or [])
+    if all_entities and _BOT_USERNAME:
         text_source = message.text or message.caption or ""
-        for entity in message.entities:
+        for entity in all_entities:
             if entity.type == MessageEntityType.MENTION and text_source:
                 mention_text = text_source[
                     entity.offset : entity.offset + entity.length
@@ -897,28 +899,36 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
         print(f"[on_message] Error: {type(e).__name__}: {redact(e)}")
 
 
-@dp.message(F.sticker)
-async def on_sticker(message: Message, bot: Bot) -> None:
-    """Обробник вхідних стікерів від користувача.
+@dp.message(
+    F.photo
+    | F.video
+    | F.video_note
+    | F.audio
+    | F.voice
+    | F.document
+    | F.animation
+    | F.sticker
+    | F.location
+    | F.venue
+    | F.contact
+    | F.poll
+    | F.dice
+    | F.story
+    | F.game
+)
+async def unsupported_content_handler(message: Message) -> None:
+    """Обробник непідтримуваних типів повідомлень (медіа, стікери, файли, гео, контакти тощо).
 
-    Якщо користувач надіслав стікер у приватному чаті або відповів боту в групі,
-    бот іноді (з високою ймовірністю) відповідає стікером із паку aromaaitgbot.
+    Відповідає коротким повідомленням: 'Я розумію лише текст…'
     """
     if not _is_addressed(message):
         return
 
-    if should_reply_to_user_sticker():
-        input_emoji = message.sticker.emoji if message.sticker else None
-        pref_emojis = [input_emoji] if input_emoji else None
-        reply_sticker = await get_or_load_sticker(bot, preferred_emojis=pref_emojis)
-        if reply_sticker:
-            try:
-                await message.reply_sticker(reply_sticker)
-                return
-            except Exception as e:
-                print(f"[on_sticker] Reply sticker error: {redact(e)}")
+    await message.reply(UNSUPPORTED_CONTENT_REPLY)
 
-    await message.reply("🌿")
+
+# Аліас для зворотної сумісності
+on_sticker = unsupported_content_handler
 
 
 # ---------------------------------------------------------------------------

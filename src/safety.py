@@ -261,3 +261,8 @@ def strip_redundant_greetings(text: str) -> str:
     res = _REDUNDANT_INTRO_STANDALONE_RE.sub("", res)
     return res if res.strip() else text
 
+
+UNSUPPORTED_CONTENT_REPLY: str = (
+    "Я розумію лише текст… 💬 Будь ласка, напиши своє запитання текстом 🌸"
+)
+
