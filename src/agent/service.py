@@ -339,10 +339,12 @@ async def generate_response(
     print(f"[agent] screening_mode={final_mode!r} suggest_specialist={suggest_specialist}")
 
     # 4. Будуємо системний промпт із контекстом + режимом скринінгу
+    screening_stage = "answer" if user_context and user_context.strip() != user_text.strip() else "ask"
     system_prompt = build_system_prompt(
         chunks,
         suggest_specialist=suggest_specialist,
         screening_mode=final_mode,
+        screening_stage=screening_stage,
         is_ongoing_dialogue=is_ongoing_dialogue,
         time_of_day_greeting=time_of_day_greeting,
     )

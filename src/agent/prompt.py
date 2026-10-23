@@ -167,6 +167,12 @@ _SCREENING_ACTIVE_BLOCK: str = """БЛОК 1 — ВИЯВЛЕННЯ ЗАПИТУ
 — Якщо червоних прапорів немає → дай загальну освітню інформацію з бази знань (які олії асоціюються з темою в літературі), але з формулюванням «для точного підбору під твою ситуацію краще проконсультуватись з Наталією», а не «ось твій рецепт».
 — Дисклеймер додається системою автоматично."""
 
+_SCREENING_STAGE_ASK: str = """ЕТАП СКРИНІНГУ: ПЕРШЕ ЗВЕРНЕННЯ
+Користувач щойно описав скаргу. Одним м'яким повідомленням (не анкетою) запитай лише те, чого ще бракує з Блоку 2. Масла поки не підбирай."""
+
+_SCREENING_STAGE_ANSWER: str = """ЕТАП СКРИНІНГУ: КОРИСТУВАЧ ВЖЕ ВІДПОВІВ
+Користувач відповів на питання скринінгу. Більше питань не став. Якщо відповідь заперечна («ні», «нічого з цього») — протипоказань немає: одразу переходь до Блоку 3 і дай загальну освітню інформацію з бази знань із оговоркою про консультацію з Наталією. Не відправляй до Наталії як до єдиного кроку."""
+
 # Блок коли червоні прапори вже виявлені з тексту запиту
 _SCREENING_RED_FLAG_BLOCK: str = """УВАГА — ВИЯВЛЕНО ЧЕРВОНИЙ ПРАПОР
 З повідомлення користувача видно ознаки ситуації підвищеного ризику (вагітність, ліки, хронічне захворювання, дитина або похилий вік).
@@ -185,6 +191,7 @@ def build_system_prompt(
     context_chunks: list[dict] | None = None,
     suggest_specialist: bool = False,
     screening_mode: str = "inactive",
+    screening_stage: str = "ask",
     is_ongoing_dialogue: bool = False,
     time_of_day_greeting: str | None = None,
 ) -> str:
@@ -201,6 +208,9 @@ def build_system_prompt(
                         'inactive'  — загальне питання, скринінг не потрібен;
                         'active'    — скарга/симптом, скринінг активний;
                         'red_flag'  — виявлено червоний прапор, тільки редірект.
+        screening_stage: етап активного скринінгу: 'ask' — перше звернення зі скаргою
+                         (постав недостаючі питання), 'answer' — користувач уже відповів
+                         (питань більше не став, дай освітню відповідь).
         is_ongoing_dialogue: якщо True — розмова вже ведеться, суворо заборонено вітатися.
         time_of_day_greeting: привітальне слово за часом доби для нового сеансу.
 
@@ -224,7 +234,8 @@ def build_system_prompt(
     if screening_mode == "red_flag":
         screening_block = _SCREENING_RED_FLAG_BLOCK
     elif screening_mode == "active":
-        screening_block = _SCREENING_ACTIVE_BLOCK
+        stage_block = _SCREENING_STAGE_ANSWER if screening_stage == "answer" else _SCREENING_STAGE_ASK
+        screening_block = f"{_SCREENING_ACTIVE_BLOCK}\n\n{stage_block}"
     else:
         screening_block = _SCREENING_INACTIVE_BLOCK
 

@@ -42,8 +42,10 @@ from src.stickers import (
     get_closer_reply,
     should_reply_to_user_sticker,
     detect_sticker_emojis_for_text,
+    PROB_CASUAL,
     STICKER_SET_NAME,
 )
+import random
 
 
 # Loading variables from a dotenv file
@@ -174,6 +176,41 @@ def _feedback_keyboard(message_id: int, chat_id: int, likes: int = 0, dislikes: 
     ]])
 
 
+TELEGRAM_MESSAGE_LIMIT = 4096
+
+
+def _split_message(text: str, limit: int = TELEGRAM_MESSAGE_LIMIT - 96) -> list[str]:
+    """Ділить довгий текст на частини ≤ limit символів, по можливості по абзацах, рядках або пробілах."""
+    text = text.strip()
+    if len(text) <= limit:
+        return [text]
+    chunks: list[str] = []
+    while len(text) > limit:
+        cut = max(text.rfind("\n\n", 0, limit), text.rfind("\n", 0, limit), text.rfind(" ", 0, limit))
+        if cut < limit // 2:
+            cut = limit
+        chunks.append(text[:cut].strip())
+        text = text[cut:].strip()
+    if text:
+        chunks.append(text)
+    return chunks
+
+
+async def _send_emotion_sticker(message: Message, getter, *args) -> None:
+    """Надсилає стікер, що відповідає емоції реплiки (привітання, подяка, прощання), з імовірністю PROB_CASUAL.
+
+    Ніколи не викликається для скарг на здоров'я, червоних прапорів та інформаційних відповідей.
+    """
+    if random.random() >= PROB_CASUAL:
+        return
+    try:
+        sticker_id = await getter(message.bot, *args)
+        if sticker_id:
+            await message.reply_sticker(sticker_id)
+    except Exception as e:
+        print(f"[bot] Sticker error: {redact(e)}")
+
+
 async def _reply_with_feedback(message: Message, text: str, sticker_id: str | None = None) -> None:
     """Надсилає reply з текстом відповіді і кнопками 👍/👎 та посиланнями на гайди."""
     webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
@@ -189,7 +226,10 @@ async def _reply_with_feedback(message: Message, text: str, sticker_id: str | No
     clean_text = re.sub(r'\b(я\s+—\s+віртуальний\s+гід|я\s+віртуальний\s+гід|віртуальний\s+гід-помічник|гід-помічник|віртуальний\s+гід|твій\s+гід|ваш\s+гід)\b', 'помічниця', clean_text, flags=re.IGNORECASE)
     clean_text = sanitize_ai_response_text(clean_text)
     
-    sent = await message.reply(clean_text)
+    parts = _split_message(clean_text)
+    sent = await message.reply(parts[0])
+    for part in parts[1:]:
+        sent = await message.answer(part)
     keyboard = _feedback_keyboard(sent.message_id, sent.chat.id)
     
     if links:
@@ -243,6 +283,7 @@ async def command_start_handler(message: Message, state: FSMContext) -> None:
         "Просто напиши своє запитання — і я з радістю підкажу 🔍",
         reply_markup=markup
     )
+    await _send_emotion_sticker(message, get_welcome_sticker)
     time_id, _ = get_kyiv_time_of_day()
     await state.update_data(
         has_introduced=True,
@@ -694,7 +735,9 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
         is_en = detect_is_english(user_text)
         # Якщо діалог вже був завершений і користувач надіслав ще одну реакцію (напр. 👍 після ок),
         # відповідаємо дуже коротко без дублювання всієї фрази
-        if not conversation_active and (now_ts - (last_interaction_ts or 0) < 300):
+        repeated_closer = not conversation_active and (now_ts - (last_interaction_ts or 0) < 300)
+        pref_emojis: list[str] = []
+        if repeated_closer:
             if is_en:
                 if closer_type == "farewell":
                     reply_text = "See you soon! 🌸"
@@ -710,9 +753,14 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
                 else:
                     reply_text = "Завжди на зв'язку! 🌿🌸"
         else:
-            reply_text, _ = get_closer_reply(closer_type, time_of_day=time_id, is_english=is_en)
+            reply_text, pref_emojis = get_closer_reply(closer_type, time_of_day=time_id, is_english=is_en)
 
         await message.reply(reply_text)
+        if not repeated_closer:
+            if closer_type == "farewell":
+                await _send_emotion_sticker(message, get_farewell_sticker)
+            else:
+                await _send_emotion_sticker(message, get_or_load_sticker, pref_emojis)
         await state.set_state(None)
         await state.update_data(
             has_introduced=True,
@@ -749,6 +797,7 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
                 reply_text = f"{time_greeting} Рада тебе бачити! 🌸 Чим можу допомогти тобі сьогодні з оліями doTERRA?"
 
         await message.reply(reply_text)
+        await _send_emotion_sticker(message, get_welcome_sticker)
         await state.set_state(None)
         await state.update_data(
             has_introduced=has_introduced,

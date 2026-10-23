@@ -182,7 +182,7 @@ def should_include_medical_disclaimer(
         screening_mode == "red_flag"
         or has_red_flags(user_query)
         or has_red_flags(response_text)
-        or (screening_mode == "active" and bool(conversation_context) and has_red_flags(conversation_context))
+        or (screening_mode == "active" and bool(conversation_context) and has_red_flags(extract_user_text_from_context(conversation_context)))
     ):
         return True
 
@@ -278,7 +278,9 @@ def is_low_context(chunks: list[dict]) -> bool:
 # Ключові слова, що вказують на скаргу/симптом, а не загальне питання
 _HEALTH_COMPLAINT_KEYWORDS: tuple[str, ...] = (
     # Симптоми
-    "не можу спати", "погано сплю", "безсоння", "тривога", "тривожність",
+    "не можу спати", "не можу заснути", "заснути", "засинаю", "не сплю", "не спиться",
+    "не могу уснуть", "не могу спать", "не спится", "can't sleep", "cant sleep", "trouble sleeping",
+    "погано сплю", "безсоння", "безсонн", "тривога", "тривожність",
     "стрес", "паніка", "панічні атаки", "депресія", "поганий настрій",
     "болить", "біль", "болі", "набряки", "запалення", "свербіж",
     "висипання", "акне", "прищі", "екзема", "псоріаз",
@@ -338,8 +340,8 @@ _RED_FLAG_REGEX = re.compile(
     r"|\bpregnan\w*|\blactat\w*|\bbreastfeed\w*|nursing\s+m\w*"
     # Діти та немовлята
     r"|\bдитин\w*|\bдіт\w*|\bнемовл\w*|\bмалюк\w*|\bдошкільн\w*|\bшколяр\w*"
-    r"|\bребен\w*|\bдет\w*|\bмладен\w*|\bмалыш\w*|\bноворожден\w*"
-    r"|\bchild\w*|\binfant\w*|\bbab(y|ies)\b|\btoddler\w*|\bnewborn\w*|\bkid\w*"
+    r"|\bребен\w*|\bдет(?:и|ей|ям|ьми|ях|ск\w*|ств\w*)\b|\bмладен\w*|\bмалыш\w*|\bноворожден\w*"
+    r"|\bchild\w*|\binfant\w*|\bbab(y|ies)\b|\btoddler\w*|\bnewborn\w*|\bkids?\b"
     # Хронічні та невідкладні стани
     r"|\bастм\w*|\bепілеп\w*|\bгіпертон\w*|\bгіпотон\w*|\bаритмі\w*|\bдіабет\w*|\bінфаркт\w*|\bінсульт\w*|\bсудом\w*|\bкровотеч\w*"
     r"|\bэпилеп\w*|\bгипертон\w*|\bгипотон\w*|\bаритми\w*|\bдиабет\w*|\bинфаркт\w*|\bинсульт\w*|\bсудорог\w*|\bкровотечен\w*|\bдавлен\w*"
@@ -428,5 +430,11 @@ def has_red_flags(text: str) -> bool:
     cleaned = _NEGATED_RED_FLAGS.sub("", lower)
     if _RED_FLAG_REGEX.search(cleaned):
         return True
-    return any(kw in cleaned for kw in RED_FLAG_KEYWORDS)
+    # Ключові слова збігаються лише з початку слова: «рак» не повинен спрацьовувати на «Дракон»
+    # (окремо слово «рак» уже покрите регулярним виразом з межею слова).
+    return any(
+        re.search(r"(?<!\w)" + re.escape(kw), cleaned)
+        for kw in RED_FLAG_KEYWORDS
+        if kw != "рак"
+    )
 
