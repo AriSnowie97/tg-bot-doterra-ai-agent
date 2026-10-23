@@ -602,7 +602,7 @@ def is_conversation_closer(text: str) -> tuple[bool, str]:
     sub_words = [w.strip("!.,;:?()[]{}") for w in lower.split()]
     sub_words = [
         w for w in sub_words
-        if w and w not in ("все", "всі", "тобі", "вам", "дуже", "велике", "гарного", "дня", "вечора", "щиро")
+        if w and w not in ("все", "всі", "тобі", "вам", "дуже", "велике", "гарного", "дня", "вечора", "ночі", "щиро")
     ]
     if sub_words and all(is_gratitude(w) or is_reaction(w) or is_farewell(w) for w in sub_words):
         if any(is_farewell(w) for w in sub_words):
@@ -619,13 +619,14 @@ def get_closer_reply(closer_type: str, time_of_day: str = "day") -> tuple[str, l
     if closer_type == "farewell":
         if time_of_day == "morning":
             reply = "До зустрічі! 🌸 Чудового та натхненного ранку! Якщо знадобиться порада — я завжди тут 🌿"
-        elif time_of_day == "evening":
-            reply = "До зустрічі! 🌸 Затишного вечора та гарного відпочинку! Якщо виникнуть питання — звертайся 🌿"
-        elif time_of_day == "night":
+            return reply, ["👋", "😊", "🌿"]
+        elif time_of_day in ("night", "evening"):
             reply = "На добраніч і солодких снів! 🌙 Якщо знадобиться допомога — я завжди на зв'язку 🌸"
+            return reply, ["🌙", "✨", "🙏", "👋"]
         else:
             reply = "Бувай! 🌸 Гарного та ароматного дня! Якщо знадобиться порада — я завжди тут 🌿"
-        return reply, ["👋", "😊", "🌿"]
+            return reply, ["👋", "😊", "🌿"]
+
 
     if closer_type == "gratitude":
         replies = [

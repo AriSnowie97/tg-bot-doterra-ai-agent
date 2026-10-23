@@ -129,29 +129,43 @@ class TestAiResponseSanitization:
 
     def test_get_kyiv_time_of_day_slots(self):
         tz = ZoneInfo("Europe/Kyiv")
-        # Ранок: 8:00
+        # Ранок: до 12:00 (8:30 та 11:59)
         dt_morning = datetime(2026, 10, 23, 8, 30, tzinfo=tz)
         t_id, phrase = get_kyiv_time_of_day(dt_morning)
         assert t_id == "morning"
         assert "ранку" in phrase
 
-        # День: 14:00
-        dt_day = datetime(2026, 10, 23, 14, 0, tzinfo=tz)
+        dt_morning2 = datetime(2026, 10, 23, 11, 59, tzinfo=tz)
+        t_id2, phrase2 = get_kyiv_time_of_day(dt_morning2)
+        assert t_id2 == "morning"
+        assert "ранку" in phrase2
+
+        # День: після 12:00 до 18:00 (12:00 та 17:59)
+        dt_day = datetime(2026, 10, 23, 12, 0, tzinfo=tz)
         t_id, phrase = get_kyiv_time_of_day(dt_day)
         assert t_id == "day"
         assert "дня" in phrase
 
-        # Вечір: 20:00
-        dt_evening = datetime(2026, 10, 23, 20, 15, tzinfo=tz)
-        t_id, phrase = get_kyiv_time_of_day(dt_evening)
-        assert t_id == "evening"
-        assert "вечора" in phrase
+        dt_day2 = datetime(2026, 10, 23, 17, 59, tzinfo=tz)
+        t_id_d2, phrase_d2 = get_kyiv_time_of_day(dt_day2)
+        assert t_id_d2 == "day"
 
-        # Ніч: 02:00
-        dt_night = datetime(2026, 10, 23, 2, 0, tzinfo=tz)
-        t_id, phrase = get_kyiv_time_of_day(dt_night)
-        assert t_id == "night"
-        assert "ночі" in phrase
+        # Ніч: після 18:00 до 12 ночі (18:00, 22:30) та до ранку (02:00)
+        dt_night1 = datetime(2026, 10, 23, 18, 0, tzinfo=tz)
+        t_id_n1, phrase_n1 = get_kyiv_time_of_day(dt_night1)
+        assert t_id_n1 == "night"
+        assert "ночі" in phrase_n1
+
+        dt_night2 = datetime(2026, 10, 23, 22, 30, tzinfo=tz)
+        t_id_n2, phrase_n2 = get_kyiv_time_of_day(dt_night2)
+        assert t_id_n2 == "night"
+        assert "ночі" in phrase_n2
+
+        dt_night3 = datetime(2026, 10, 23, 2, 0, tzinfo=tz)
+        t_id_n3, phrase_n3 = get_kyiv_time_of_day(dt_night3)
+        assert t_id_n3 == "night"
+        assert "ночі" in phrase_n3
+
 
     def test_strip_redundant_greetings(self):
         # 1. Привітання + самопрезентація на початку відповіді

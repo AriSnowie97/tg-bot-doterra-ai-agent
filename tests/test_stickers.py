@@ -80,13 +80,23 @@ class TestStickersModule:
         assert is_closer is False
 
     def test_get_closer_reply(self):
-        reply_farewell, emojis_fw = get_closer_reply("farewell", "evening")
-        assert "вечора" in reply_farewell
-        assert "👋" in emojis_fw
+        # Ніч (після 18:00 до 12 ночі)
+        reply_farewell_night, emojis_fw = get_closer_reply("farewell", "night")
+        assert "добраніч" in reply_farewell_night
+        assert "🌙" in emojis_fw or "👋" in emojis_fw
+
+        # Ранок (до 12:00)
+        reply_morning, emojis_m = get_closer_reply("farewell", "morning")
+        assert "ранку" in reply_morning
+
+        # День (12:00 - 18:00)
+        reply_day, emojis_d = get_closer_reply("farewell", "day")
+        assert "дня" in reply_day
 
         reply_grat, emojis_gr = get_closer_reply("gratitude", "day")
         assert "допомогти" in reply_grat or "Будь ласка" in reply_grat or "здоров'я" in reply_grat
         assert "🙏" in emojis_gr
+
 
 
     @pytest.mark.parametrize("text", [
