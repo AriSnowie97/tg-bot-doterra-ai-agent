@@ -125,73 +125,149 @@ def _upsert_chunk(chunk: dict) -> None:
         conn.close()
 
 
-def bulk_upsert_chunks(chunks: list[dict]) -> None:
-    """Оновлення списку чанків у БД з використанням одного з'єднання (оптимізовано)."""
+def bulk_upsert_chunks(
+    chunks: list[dict],
+    progress_callback = None,
+    batch_size: int | None = None,
+    pause_seconds: int | None = None,
+    chunk_delay: float | None = None,
+) -> None:
+    """Оновлення списку чанків у БД з лімітом 45–50 чанків за партію та паузою 15 хв між ними.
+    
+    Це запобігає вичерпанню лімітів безкоштовного тарифу Gemini API (15 RPM / добові квоти).
+    """
+    import time
     from src.LLMProvider.budget import budget_manager
+
+    if batch_size is None:
+        batch_size = int(os.getenv("SYNC_BATCH_SIZE", "45"))
+    if pause_seconds is None:
+        pause_seconds = int(os.getenv("SYNC_BATCH_PAUSE_SECONDS", "900"))  # 15 хвилин
+    if chunk_delay is None:
+        chunk_delay = float(os.getenv("SYNC_CHUNK_DELAY_SECONDS", "1.0"))  # 1 сек між запитами в партії
+
     budget_manager.set_sync_mode(True)
-    conn = _conn_create()
-    try:
-        register_vector(conn)
-        
-        print(f"[DB] Bulk upserting {len(chunks)} chunks to knowledge_chunks...")
-        with conn.cursor() as cur:
-            # 1. Fetch existing chunk_ids to avoid re-embedding
-            existing_ids = set()
-            new_ids = {chunk.get("chunk_id") for chunk in chunks if chunk.get("chunk_id")}
+
+    def _log(msg: str) -> None:
+        print(f"[DB] {msg}", flush=True)
+        if progress_callback:
             try:
-                cur.execute("SELECT chunk_id FROM knowledge_chunks;")
-                existing_ids = {row[0] for row in cur.fetchall()}
-                
-                # Delete orphaned chunks (chunks that exist in DB but not in the new MD files)
-                orphans = existing_ids - new_ids
-                if orphans:
-                    print(f"[DB] Deleting {len(orphans)} orphaned chunks...")
-                    orphans_list = list(orphans)
-                    for i in range(0, len(orphans_list), 100):
-                        batch = orphans_list[i:i+100]
-                        format_strings = ','.join(['%s'] * len(batch))
-                        cur.execute(f"DELETE FROM knowledge_chunks WHERE chunk_id IN ({format_strings})", tuple(batch))
-                    conn.commit()
-                    
-            except Exception as e:
-                print(f"[!] Error fetching/deleting existing chunk_ids: {redact(e)}")
-                conn.rollback()
-                
-            for chunk in chunks:
-                chunk_id = chunk.get("chunk_id")
-                if chunk_id in existing_ids:
-                    continue
-                    
+                progress_callback(msg)
+            except Exception as pe:
+                print(f"[DB] progress_callback error: {redact(pe)}", flush=True)
+
+    try:
+        conn = _conn_create()
+        existing_ids = set()
+        try:
+            register_vector(conn)
+            with conn.cursor() as cur:
+                new_ids = {chunk.get("chunk_id") for chunk in chunks if chunk.get("chunk_id")}
                 try:
-                    text_to_embed = f"{chunk['section_title']}\n{chunk['content']}"
-                    emb = create_embedding(text_to_embed)
-                    if not emb:
-                        continue
-                    embedding = Vector(emb)
+                    cur.execute("SELECT chunk_id FROM knowledge_chunks;")
+                    existing_ids = {row[0] for row in cur.fetchall()}
                     
-                    if not іs_there_similar_embedding(cur, chunk, embedding):
-                        cur.execute(
-                            UPSERT_CHUNK,
-                            {
-                                "chunk_id": chunk_id,
-                                "product_slug": chunk["product_slug"],
-                                "section_key": chunk["section_key"],
-                                "section_title": chunk["section_title"],
-                                "content": chunk["content"],
-                                "char_count": chunk["char_count"],
-                                "tokens_approx": chunk["tokens_approx"],
-                                "chunk_order": chunk.get("order", chunk.get("chunk_order", 0)),
-                                "metadata": json.dumps(chunk.get("metadata", {})),
-                                "embedding": embedding
-                            }
-                        )
-                        conn.commit()  # Зафіксувати кожний успішний чанк, щоб не втратити прогрес
+                    # Delete orphaned chunks (chunks that exist in DB but not in the new MD files)
+                    orphans = existing_ids - new_ids
+                    if orphans:
+                        _log(f"Видалення {len(orphans)} застарілих чанків із БД...")
+                        orphans_list = list(orphans)
+                        for i in range(0, len(orphans_list), 100):
+                            batch = orphans_list[i:i+100]
+                            format_strings = ','.join(['%s'] * len(batch))
+                            cur.execute(f"DELETE FROM knowledge_chunks WHERE chunk_id IN ({format_strings})", tuple(batch))
+                        conn.commit()
                 except Exception as e:
-                    print(f"[!] Error upserting chunk {chunk_id}: {redact(e)}")
+                    _log(f"Помилка перевірки/видалення чанків: {redact(e)}")
                     conn.rollback()
+        finally:
+            conn.close()
+
+        # Фільтруємо лише нові чанки, які дійсно потребують обчислення ембеддингів
+        chunks_to_embed = [c for c in chunks if c.get("chunk_id") and c.get("chunk_id") not in existing_ids]
+        total_new = len(chunks_to_embed)
+
+        _log(f"Всього чанків: {len(chunks)}, вже у БД: {len(existing_ids)}, нових для генерації: {total_new}")
+
+        if total_new == 0:
+            _log("✅ Усі чанки вже мають вектори у базі знань. Нових позицій для генерації немає.")
+            return
+
+        total_batches = (total_new + batch_size - 1) // batch_size
+        minutes_pause = pause_seconds // 60
+        _log(
+            f"📦 <b>План синхронізації:</b> {total_new} нових чанків буде оброблено "
+            f"партіями по <b>{batch_size}</b> з паузою <b>{minutes_pause} хв</b> між ними (всього партій: {total_batches})."
+        )
+
+        embedded_count = 0
+        for batch_idx in range(total_batches):
+            batch = chunks_to_embed[batch_idx * batch_size : (batch_idx + 1) * batch_size]
+            batch_num = batch_idx + 1
+            start_num = embedded_count + 1
+            end_num = embedded_count + len(batch)
+
+            _log(f"⏳ Обробка партії <b>{batch_num}/{total_batches}</b> (чанки {start_num}–{end_num} з {total_new})...")
+
+            batch_conn = _conn_create()
+            try:
+                register_vector(batch_conn)
+                with batch_conn.cursor() as cur:
+                    for chunk in batch:
+                        chunk_id = chunk.get("chunk_id")
+                        try:
+                            text_to_embed = f"{chunk['section_title']}\n{chunk['content']}"
+                            emb = create_embedding(text_to_embed)
+                            if not emb:
+                                continue
+                            embedding = Vector(emb)
+                            
+                            if not іs_there_similar_embedding(cur, chunk, embedding):
+                                cur.execute(
+                                    UPSERT_CHUNK,
+                                    {
+                                        "chunk_id": chunk_id,
+                                        "product_slug": chunk["product_slug"],
+                                        "section_key": chunk["section_key"],
+                                        "section_title": chunk["section_title"],
+                                        "content": chunk["content"],
+                                        "char_count": chunk["char_count"],
+                                        "tokens_approx": chunk["tokens_approx"],
+                                        "chunk_order": chunk.get("order", chunk.get("chunk_order", 0)),
+                                        "metadata": json.dumps(chunk.get("metadata", {})),
+                                        "embedding": embedding
+                                    }
+                                )
+                                batch_conn.commit()
+                                embedded_count += 1
+                            if chunk_delay > 0:
+                                time.sleep(chunk_delay)
+                        except Exception as e:
+                            _log(f"Помилка збереження чанку {chunk_id}: {redact(e)}")
+                            batch_conn.rollback()
+            finally:
+                batch_conn.close()
+
+            # Якщо це не остання партія — пауза 15 хвилин для дотримання безкоштовних лімітів Gemini
+            if batch_idx < total_batches - 1:
+                pause_msg = (
+                    f"☕ Партія <b>{batch_num}/{total_batches}</b> завершена (збережено {embedded_count}/{total_new} чанків).\n"
+                    f"⏳ Пауза <b>{minutes_pause} хвилин</b> для відновлення безкоштовних квот Gemini API ({batch_size} запитів/15 хв)..."
+                )
+                _log(pause_msg)
+                
+                # Спимо з кроком 15 секунд
+                sleep_left = pause_seconds
+                while sleep_left > 0:
+                    step = min(15, sleep_left)
+                    time.sleep(step)
+                    sleep_left -= step
+
+                _log(f"🔄 Відновлення синхронізації: переходимо до партії <b>{batch_num + 1}/{total_batches}</b>...")
+
+        _log(f"🎉 <b>Успішно!</b> Всі {embedded_count} нових чанків збережено та індексовано у базі знань.")
     finally:
         budget_manager.set_sync_mode(False)
-        conn.close()
 
 
 def upsert_file_of_chunks(pathFile: str) -> None:

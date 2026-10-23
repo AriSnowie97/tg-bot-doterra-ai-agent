@@ -294,26 +294,45 @@ async def command_post_handler(message: Message, bot: Bot) -> None:
 async def command_sync_db_handler(message: Message, bot: Bot) -> None:
     """Ручне оновлення бази знань (синхронізація файлів) — тільки для адміністраторів."""
 
-    await message.answer("⏳ Запускаю синхронізацію бази знань... Це може зайняти 10-15 хвилин через ліміти API. Я повідомлю, коли закінчу.")
+    await message.answer(
+        "⏳ <b>Запускаю синхронізацію бази знань...</b>\n\n"
+        "⚙️ Увімкнено ліміт безкоштовного тарифу Gemini API: "
+        "обробка партіями по <b>45–50 чанків</b> із паузою <b>15 хвилин</b> між ними.\n"
+        "Я надсилатиму статус по кожній партії.",
+        parse_mode="HTML"
+    )
+
+    loop = asyncio.get_running_loop()
+
+    def tg_progress(msg: str) -> None:
+        """Надсилає оновлення прогресу в Telegram."""
+        try:
+            asyncio.run_coroutine_threadsafe(
+                message.answer(msg, parse_mode="HTML"), loop
+            )
+        except Exception as pe:
+            print(f"[bot] sync_db tg_progress error: {redact(pe)}")
 
     try:
         # Запускаємо синхронізацію у фоновому потоці, щоб не блокувати бота
-        stats = await asyncio.to_thread(run_sync)
+        stats = await asyncio.to_thread(run_sync, tg_progress)
         
         if stats["errors"]:
             error_msg = "\n".join([f"• {err}" for err in stats["errors"][:10]])
             if len(stats["errors"]) > 10:
                 error_msg += f"\n...та ще {len(stats['errors']) - 10} помилок."
             await message.answer(
-                f"⚠️ Синхронізацію завершено з помилками:\n{error_msg}\n\n"
+                f"⚠️ Синхронізацію завершено з окремими помилками:\n{error_msg}\n\n"
                 f"📊 Оброблено карток: {stats['products']}\n"
-                f"📊 Знайдено чанків: {stats['chunks_found']}"
+                f"📊 Знайдено чанків: {stats['chunks_found']}",
+                parse_mode="HTML"
             )
         else:
             await message.answer(
-                f"✅ Базу знань успішно оновлено!\n\n"
-                f"📦 Картки: {stats['products']}\n"
-                f"📄 Чанки: {stats['chunks_found']}"
+                f"✅ <b>Базу знань повністю оновлено!</b>\n\n"
+                f"📦 Картки: <b>{stats['products']}</b>\n"
+                f"📄 Чанки: <b>{stats['chunks_found']}</b>",
+                parse_mode="HTML"
             )
     except Exception as e:
         await message.answer(f"❌ Критична помилка під час синхронізації ({safe_error(e)}). Деталі — у логах сервера.")
