@@ -131,6 +131,7 @@ def bulk_upsert_chunks(
     batch_size: int | None = None,
     pause_seconds: int | None = None,
     chunk_delay: float | None = None,
+    delete_orphans: bool = False,
 ) -> None:
     """Оновлення списку чанків у БД з лімітом 45–50 чанків за партію та паузою 15 хв між ними.
     
@@ -167,16 +168,17 @@ def bulk_upsert_chunks(
                     cur.execute("SELECT chunk_id FROM knowledge_chunks;")
                     existing_ids = {row[0] for row in cur.fetchall()}
                     
-                    # Delete orphaned chunks (chunks that exist in DB but not in the new MD files)
-                    orphans = existing_ids - new_ids
-                    if orphans:
-                        _log(f"Видалення {len(orphans)} застарілих чанків із БД...")
-                        orphans_list = list(orphans)
-                        for i in range(0, len(orphans_list), 100):
-                            batch = orphans_list[i:i+100]
-                            format_strings = ','.join(['%s'] * len(batch))
-                            cur.execute(f"DELETE FROM knowledge_chunks WHERE chunk_id IN ({format_strings})", tuple(batch))
-                        conn.commit()
+                    # Delete orphaned chunks ONLY during full sync when delete_orphans=True
+                    if delete_orphans:
+                        orphans = existing_ids - new_ids
+                        if orphans:
+                            _log(f"Видалення {len(orphans)} застарілих чанків із БД...")
+                            orphans_list = list(orphans)
+                            for i in range(0, len(orphans_list), 100):
+                                batch = orphans_list[i:i+100]
+                                format_strings = ','.join(['%s'] * len(batch))
+                                cur.execute(f"DELETE FROM knowledge_chunks WHERE chunk_id IN ({format_strings})", tuple(batch))
+                            conn.commit()
                 except Exception as e:
                     _log(f"Помилка перевірки/видалення чанків: {redact(e)}")
                     conn.rollback()

@@ -189,7 +189,7 @@ def _run_sync_impl(progress_callback=None) -> dict:
         try:
             creating_table_for_chunks()
             chunk_dicts = [c.to_dict() for c in chunks]
-            bulk_upsert_chunks(chunk_dicts, progress_callback=_log)
+            bulk_upsert_chunks(chunk_dicts, progress_callback=_log, delete_orphans=True)
             _log("✅ Вектори збережено у БД!")
         except Exception as e:
             stats["errors"].append(f"Векторизація: {safe_error(e)}")

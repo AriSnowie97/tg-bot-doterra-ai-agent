@@ -42,7 +42,7 @@ from src.safety import redact, safe_error
 # Шляхи
 # ──────────────────────────────────────────────────
 BASE_DIR = Path(__file__).parent
-DOCS_DIR = BASE_DIR / "src" / "content" / "docs"
+DOCS_DIR = BASE_DIR / "src" / "content" / "products"
 ALL_CHUNKS_PATH = BASE_DIR / "data" / "all_chunks.json"
 if not ALL_CHUNKS_PATH.exists() and (BASE_DIR / "all_chunks.json").exists():
     ALL_CHUNKS_PATH = BASE_DIR / "all_chunks.json"
@@ -258,11 +258,15 @@ def parse_to_chunks(md_path: Path) -> list[dict]:
     return [c.to_dict() for c in chunks]
 
 
-def save_chunks_to_db(chunks_dicts: list[dict]) -> None:
-    """Зберігає чанки у PostgreSQL."""
+def save_chunks_to_db(chunks_dicts: list[dict]) -> tuple[bool, bool, str | None]:
+    """Зберігає чанки у PostgreSQL (таблиця chunks + knowledge_chunks з векторами)."""
     if not DATABASE_URL:
         log.warning("DATABASE_URL не задано, пропускаємо збереження в БД")
-        return
+        return False, False, "DATABASE_URL не задано"
+
+    chunks_saved = False
+    vectors_saved = False
+    err_msg = None
 
     try:
         import psycopg2
@@ -315,18 +319,24 @@ def save_chunks_to_db(chunks_dicts: list[dict]) -> None:
         conn.commit()
         cur.close()
         conn.close()
+        chunks_saved = True
         log.info("Saved %d chunks to chunks table", len(chunks_dicts))
 
         # Також індексуємо у knowledge_chunks із векторами для RAG
         try:
             from src.storage.storage import bulk_upsert_chunks
-            bulk_upsert_chunks(chunks_dicts)
+            bulk_upsert_chunks(chunks_dicts, delete_orphans=False)
+            vectors_saved = True
             log.info("Saved %d chunks with embeddings to knowledge_chunks", len(chunks_dicts))
         except Exception as ve:
+            err_msg = f"векторизація не вдалася: {safe_error(ve)}"
             log.warning("Could not sync embeddings to knowledge_chunks: %s", redact(ve))
 
     except Exception as e:
+        err_msg = f"помилка БД: {safe_error(e)}"
         log.error("save_chunks_to_db error: %s", redact(e))
+
+    return chunks_saved, vectors_saved, err_msg
 
 
 def update_all_chunks_json(new_chunks: list[dict]) -> None:
@@ -505,18 +515,25 @@ async def handle_document(message: Message, bot: Bot) -> None:
         return
 
     # 6. Зберігаємо у БД (I/O у фоновому потоці)
-    await asyncio.to_thread(save_chunks_to_db, chunks)
+    chunks_saved, vectors_saved, err_msg = await asyncio.to_thread(save_chunks_to_db, chunks)
 
     # 7. Оновлюємо all_chunks.json (I/O у фоновому потоці)
     await asyncio.to_thread(update_all_chunks_json, chunks)
 
     # 8. Звіт
-    db_saved = "✅" if DATABASE_URL else "⚠️ пропущено"
+    if chunks_saved and vectors_saved:
+        db_saved = "✅ Збережено і векторизовано для RAG"
+    elif chunks_saved and not vectors_saved:
+        db_saved = f"⚠️ Текст у БД, але вектори не створено ({err_msg})"
+    else:
+        db_saved = f"❌ Помилка БД ({err_msg})" if err_msg else "⚠️ пропущено"
+
     await message.answer(
         f"✅ <b>Готово!</b>\n\n"
         f"📄 Файл: <code>{out_md.name}</code>\n"
+        f"📁 Папка: <code>src/content/products/</code>\n"
         f"🧩 Чанків створено: <code>{len(chunks)}</code>\n"
-        f"🗄 Збережено в БД: {db_saved}\n"
+        f"🗄 БД: {db_saved}\n"
         f"📦 all_chunks.json оновлено ✅",
         parse_mode="HTML",
     )
