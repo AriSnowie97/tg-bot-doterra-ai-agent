@@ -19,6 +19,8 @@ import re
 import random
 import asyncio
 import sys
+import html
+from typing import Any
 from dotenv import load_dotenv
 
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
@@ -29,10 +31,15 @@ if sys.stdout and hasattr(sys.stdout, "reconfigure"):
         pass
 # Special
 from aiogram import Bot
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from google.genai import types
 # Local
 from ..agent.post_prompt import build_post_prompt, TOPIC_SEEDS
-from ..agent.specialist import MEDICAL_DISCLAIMER
+from ..agent.specialist import (
+    MEDICAL_DISCLAIMER,
+    EN_MEDICAL_DISCLAIMER,
+    SPECIALIST_LINKS,
+)
 from ..storage import search_chunks
 from src.LLMProvider import GeminiFlashProvider as LLM
 from src.safety import redact
@@ -253,16 +260,86 @@ async def _generate_post_text(topic_query: str) -> str:
 # Публікація посту у канал
 # ---------------------------------------------------------------------------
 
+def _strip_disclaimer(text: str) -> str:
+    """Видаляє медичний дисклеймер із тексту посту, якщо він там з'явився."""
+    if not text:
+        return ""
+
+    for d in (MEDICAL_DISCLAIMER, EN_MEDICAL_DISCLAIMER):
+        if d in text:
+            text = text.replace(d, "")
+
+    lines = text.split("\n")
+    cleaned_lines: list[str] = []
+    for line in lines:
+        l_lower = line.lower().strip()
+        if not l_lower:
+            cleaned_lines.append(line)
+            continue
+        if "не є медичною консультацією" in l_lower or "medical consultation" in l_lower or "medical advice" in l_lower:
+            continue
+        if "перед застосуванням проконсультуйтеся з лікарем" in l_lower or "consult a healthcare professional" in l_lower or "consult a doctor" in l_lower:
+            continue
+        if l_lower.startswith("ℹ️") and ("ознайомлювальний характер" in l_lower or "інформаційний характер" in l_lower):
+            continue
+        cleaned_lines.append(line)
+
+    cleaned = "\n".join(cleaned_lines)
+    return re.sub(r"\n{3,}", "\n\n", cleaned).strip()
+
+
+def _build_post_url(channel_id: str | int, sent_msg: Any = None) -> str:
+    """Будує пряме посилання на опублікований пост у Telegram-каналі."""
+    msg_id = getattr(sent_msg, "message_id", None)
+    chat = getattr(sent_msg, "chat", None)
+    chat_username = getattr(chat, "username", None) if chat else None
+
+    # 1. Якщо у чату є публічний username (наприклад nkotelianskablog)
+    if chat_username:
+        clean = chat_username.lstrip("@").strip()
+        return f"https://t.me/{clean}/{msg_id}" if msg_id else f"https://t.me/{clean}"
+
+    cid_str = str(channel_id).strip()
+
+    # 2. Якщо channel_id містить повний URL на канал
+    if cid_str.startswith("https://t.me/"):
+        base = cid_str.rstrip("/")
+        return f"{base}/{msg_id}" if msg_id else base
+
+    # 3. Якщо channel_id починається з @ (публічний юзернейм)
+    if cid_str.startswith("@"):
+        clean_user = cid_str.lstrip("@")
+        return f"https://t.me/{clean_user}/{msg_id}" if msg_id else f"https://t.me/{clean_user}"
+
+    # 4. Якщо channel_id числовий ID (-100xxxx або xxxx)
+    clean_id = cid_str
+    if clean_id.startswith("-100"):
+        clean_id = clean_id[4:]
+    elif clean_id.startswith("-"):
+        clean_id = clean_id[1:]
+
+    if clean_id.isdigit():
+        return f"https://t.me/c/{clean_id}/{msg_id}" if msg_id else f"https://t.me/c/{clean_id}"
+
+    # 5. Якщо текстовий рядок без @ (наприклад 'nkotelianskablog')
+    if re.match(r"^[a-zA-Z0-9_]{4,}$", cid_str):
+        return f"https://t.me/{cid_str}/{msg_id}" if msg_id else f"https://t.me/{cid_str}"
+
+    # 6. Fallback на канал спеціаліста
+    fallback = SPECIALIST_LINKS.get("Telegram", "https://t.me/nkotelianskablog").rstrip("/")
+    return f"{fallback}/{msg_id}" if msg_id else fallback
+
+
 def _ensure_clean_post(text: str, max_len: int = MAX_POST_LENGTH) -> str:
     """Обрізає пост за потреби та гарантує відсутність обірваних речень і слів."""
     if not text:
         return ""
 
-    text = text.strip()
+    text = _strip_disclaimer(text)
     if len(text) <= max_len:
         is_ok, _ = _is_post_complete(text)
         if is_ok:
-            return text
+            return _strip_disclaimer(text)
 
     # Якщо текст довший або обірваний — шукаємо останню безпечну межу
     truncated = text[:max_len]
@@ -296,22 +373,25 @@ def _ensure_clean_post(text: str, max_len: int = MAX_POST_LENGTH) -> str:
             "Поділіться у коментарях та ставте ❤️ або 🔥, якщо пост був корисним!"
         )
 
-    return candidate.strip()
+    return _strip_disclaimer(candidate)
 
 
-async def publish_channel_post(bot: Bot) -> None:
+async def publish_channel_post(bot: Bot) -> str | None:
     """Генерує та публікує один пост у Telegram-канал.
 
     Алгоритм:
     1. Перевіряє наявність CHANNEL_ID.
     2. Рандомно обирає тему з TOPIC_SEEDS.
     3. Генерує текст посту через RAG + GeminiFlashProvider.
-    4. Гарантує повну завершеність посту та прикріплює обов'язковий медичний дисклеймер.
+    4. Гарантує повну завершеність посту без медичного дисклеймера.
     5. Публікує через bot.send_message.
-    6. Сповіщає адміністраторів про успіх або помилку.
+    6. Сповіщає адміністраторів про успіх (із посиланням на пост) або помилку.
 
     Args:
         bot: Aiogram Bot instance.
+
+    Returns:
+        URL опублікованого посту в Telegram або None.
 
     Raises:
         ValueError: якщо CHANNEL_ID не задано.
@@ -334,28 +414,42 @@ async def publish_channel_post(bot: Bot) -> None:
     try:
         post_text = await _generate_post_text(topic)
         post_text = _ensure_clean_post(post_text)
+        post_text = _strip_disclaimer(post_text)
 
-        # Обов'язковий медичний дисклеймер для публічних постів у каналі
-        if "не є медичною консультацією" not in post_text.lower():
-            post_text = post_text.rstrip() + "\n\n" + MEDICAL_DISCLAIMER
-
-        await bot.send_message(
+        sent_msg = await bot.send_message(
             chat_id=channel_id,
             text=post_text,
             parse_mode=None,
         )
         print(f"[publisher] ✅ Post published to {channel_id!r} ({len(post_text)} chars)")
 
-        # Сповіщаємо адмінів про успішну публікацію
+        post_url = _build_post_url(channel_id, sent_msg)
+
+        # Сповіщаємо адмінів про успішну публікацію з посиланням на пост
+        preview_text = html.escape(post_text[:300].rstrip())
+        admin_text = (
+            f"📢 <b>Опубліковано новий пост у канал!</b>\n\n"
+            f"{preview_text}...\n\n"
+            f"👉 <a href=\"{post_url}\">Читати далі</a>"
+        )
+        admin_kb = InlineKeyboardMarkup(
+            inline_keyboard=[
+                [InlineKeyboardButton(text="📖 Читати далі в каналі", url=post_url)]
+            ]
+        )
+
         for a_id in admin_ids:
             try:
                 await bot.send_message(
                     chat_id=a_id,
-                    text=f"📢 <b>Опубліковано новий пост у канал!</b>\n\n{post_text[:300]}...",
+                    text=admin_text,
                     parse_mode="HTML",
+                    reply_markup=admin_kb,
                 )
             except Exception:
                 pass
+
+        return post_url
 
     except Exception as e:
         print(f"[publisher] ❌ Failed to publish post: {redact(e)}")

@@ -283,8 +283,20 @@ async def command_post_handler(message: Message, bot: Bot) -> None:
     await message.answer("⏳ Генерую пост... Це може зайняти 30–60 секунд.")
 
     try:
-        await publish_channel_post(bot)
-        await message.answer("✅ Пост успішно опубліковано у канал!")
+        post_url = await publish_channel_post(bot)
+        if post_url:
+            kb = InlineKeyboardMarkup(
+                inline_keyboard=[
+                    [InlineKeyboardButton(text="📖 Читати далі в каналі", url=post_url)]
+                ]
+            )
+            await message.answer(
+                f"✅ <b>Пост успішно опубліковано у канал!</b>\n\n👉 <a href=\"{post_url}\">Читати далі</a>",
+                parse_mode="HTML",
+                reply_markup=kb,
+            )
+        else:
+            await message.answer("✅ Пост успішно опубліковано у канал!")
     except Exception as e:
         await message.answer(f"❌ Помилка при публікації ({safe_error(e)}). Деталі — у логах сервера.")
         print(f"[bot] /post error: {redact(e)}")
