@@ -30,6 +30,16 @@ class TestStickersModule:
         assert is_greeting(text) is True
 
     @pytest.mark.parametrize("text", [
+        "Привет, что такое лаванда?",
+        "pryvit, shcho take lavanda",
+        "привет, как использовать мяту?",
+        "Hello, what is peppermint?",
+        "Привіт, що таке чайне дерево?",
+    ])
+    def test_is_greeting_negative(self, text: str):
+        assert is_greeting(text) is False
+
+    @pytest.mark.parametrize("text", [
         "Дякую велике!", "спасибі", "thanks", "благодарю", "дяка!"
     ])
     def test_is_gratitude(self, text: str):

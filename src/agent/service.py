@@ -76,6 +76,9 @@ UK_TRANSLIT_WORDS: set[str] = {
     "shcho", "scho", "tse", "ce", "chomu", "koly", "de", "kudy", "hto", "khto",
     "cherez", "dlya", "dla", "maslo", "oliya", "oliyi", "lavanda", "myata",
     "chayne", "derevo", "proty", "vid", "mozhna", "chy", "arina", "arinu", "znayesh", "znaesh",
+    "takoe", "chto", "kak", "skolko", "stoit", "zachem", "zashcho", "pomogi", "pomozhy",
+    "kupit", "kupity", "dobre", "khorosho", "harazhd", "bud", "laska", "pozhaluysta",
+    "privetik", "zdravstvuyte", "zdravstvuy", "nuzhno", "potribno", "shchos",
 }
 
 # Поширені англійські слова та граматичні маркери
@@ -112,9 +115,11 @@ def detect_is_english(user_text: str) -> bool:
     if set(latin_words) & UK_TRANSLIT_WORDS:
         return False
 
-    # Перевірка на англійські слова або речення з 4+ латинських слів
-    if set(latin_words) & EN_WORDS or len(latin_words) >= 4:
+    # Перевірка на англійські слова (запит англійською повинен містити визнані англійські слова)
+    if set(latin_words) & EN_WORDS:
         return True
+
+    return False
 
 
 
@@ -245,13 +250,16 @@ async def generate_response(
     if is_clearly_english:
         system_prompt += (
             "\n\n⚠️ CRITICAL LANGUAGE DIRECTIVE: The user's query is in ENGLISH. "
-            "Your entire response MUST be 100% in ENGLISH only! Do not use Ukrainian or any other language."
+            "Your entire response MUST be 100% in ENGLISH only! Do not use Ukrainian, Russian, or any other language. "
+            "Provide all advice, explanations, and safety notes strictly in English."
         )
     else:
         system_prompt += (
             "\n\n⚠️ CRITICAL LANGUAGE DIRECTIVE: Мова відповіді — ВИКЛЮЧНО УКРАЇНСЬКА. "
-            "Навіть якщо запит користувача латинкою, транслітом чи іншою мовою — відповідай ТІЛЬКИ природною українською мовою. "
-            "Категорично заборонено відповідати чеською, польською чи іншими випадковими мовами."
+            "Навіть якщо запит користувача російською мовою ('Привет, что такое лаванда?'), латинкою, "
+            "транслітом ('pryvit, shcho take lavanda') чи будь-якою іншою мовою — твоя відповідь має бути "
+            "ПОВНІСТЮ ТА ВИКЛЮЧНО УКРАЇНСЬКОЮ МОВОЮ з українським дисклеймером! "
+            "Категорично заборонено відповідати російською, транслітом чи іншими мовами."
         )
 
     # 6. Виклик LLM (із захистом глобального бюджету)
@@ -323,14 +331,20 @@ async def generate_response(
     )
 
     if needs_disclaimer:
-        disclaimer = get_disclaimer_for_text(text)
+        target_disclaimer = EN_MEDICAL_DISCLAIMER if is_clearly_english else MEDICAL_DISCLAIMER
+        # Прибираємо невідповідний за мовою дисклеймер, якщо модель згенерувала його
+        if is_clearly_english:
+            text = text.replace(MEDICAL_DISCLAIMER, "")
+        else:
+            text = text.replace(EN_MEDICAL_DISCLAIMER, "")
+
         if (
             MEDICAL_DISCLAIMER.strip() not in text
             and EN_MEDICAL_DISCLAIMER.strip() not in text
             and "медичною консультацією" not in text
             and "medical advice" not in text.lower()
         ):
-            text = text.rstrip() + disclaimer
+            text = text.rstrip() + target_disclaimer
     else:
         # Якщо дисклеймер не потрібен (звичайний діалог, знайомство тощо),
         # але випадково з'явився у відповіді моделі — делікатно прибираємо його

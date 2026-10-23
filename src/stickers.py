@@ -528,19 +528,47 @@ _QUESTION_STARTERS = (
     "що", "як", "чому", "де", "коли", "хто", "чи", "куди", "звідки", "який", "яка", "яке", "які",
     "что", "как", "почему", "где", "когда", "кто", "куда", "откуда", "какой", "какая", "какие",
     "підкажи", "порадь", "скажи", "можна", "чи можна", "подскажи", "посоветуй", "можно",
+    "shcho", "scho", "yak", "chomu", "de", "koly", "khto", "chy", "kudy", "zvidky", "yakyj", "yaka", "yake", "yaki",
+    "chto", "kak", "pochemu", "gde", "kogda", "kto", "kuda", "otkuda", "kakoj", "kakaya", "kakie",
+    "pidkazhy", "podskazhi", "porad", "posovetuy", "mozhna", "mozhno",
+    "what", "how", "why", "where", "when", "who", "which", "can", "could", "is", "tell",
 )
 
 
 def is_greeting(text: str) -> bool:
-    """Перевіряє, чи є текст коротким привітанням."""
-    cleaned = text.strip()
+    """Перевіряє, чи є текст суто коротким привітанням без додаткових запитань чи тем."""
+    cleaned = (text or "").strip()
+    if not cleaned:
+        return False
+    if "?" in cleaned:
+        return False
     words = cleaned.split()
-    return len(words) <= 4 and bool(_RE_GREETING.search(cleaned))
+    if len(words) > 4:
+        return False
+    if not _RE_GREETING.search(cleaned):
+        return False
+
+    lower = cleaned.lower()
+    for starter in _QUESTION_STARTERS:
+        if starter in lower.split() or lower.startswith(starter) or f" {starter} " in lower:
+            return False
+
+    rem = _RE_GREETING.sub("", cleaned).strip("!., \t\n~—–-")
+    if rem:
+        rem_words = rem.split()
+        if len(rem_words) > 1:
+            return False
+        if rem_words[0].lower() not in ("арома", "aroma", "всім", "тобі", "вам", "друзі", "чат"):
+            return False
+
+    return True
 
 
 def is_gratitude(text: str) -> bool:
     """Перевіряє, чи висловлює текст подяку."""
     cleaned = text.strip()
+    if "?" in cleaned:
+        return False
     words = cleaned.split()
     return len(words) <= 5 and bool(_RE_GRATITUDE.search(cleaned))
 
@@ -554,6 +582,8 @@ def is_reaction(text: str) -> bool:
 def is_farewell(text: str) -> bool:
     """Перевіряє, чи є текст коротким прощанням."""
     cleaned = text.strip()
+    if "?" in cleaned:
+        return False
     words = cleaned.split()
     return len(words) <= 4 and bool(_RE_FAREWELL.search(cleaned))
 
