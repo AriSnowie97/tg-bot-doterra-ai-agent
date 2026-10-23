@@ -18,7 +18,7 @@ from src.safety import redact, key_fingerprint
 from .budget import budget_manager
 
 # Жорстка стеля звернень до Gemini на один generate_content (ключі × моделі × повтори)
-MAX_TOTAL_CALLS = 6
+MAX_TOTAL_CALLS = 12
 
 class LLMProvider(ABC):
     """LLMProvider - інтерфейс для LLMs, абстрактний клас, що

@@ -72,15 +72,46 @@ dp.callback_query.outer_middleware(CallbackRateLimitMiddleware(exempt_ids=ADMIN_
 _BOT_USERNAME: str = ""
 
 
-async def _keep_typing(bot: Bot, chat_id: int, stop_event: asyncio.Event) -> None:
-    """Підтримує індикатор 'пише...' у шапці чату поки не встановлено stop_event.
+async def _keep_typing(
+    bot: Bot,
+    chat_id: int,
+    stop_event: asyncio.Event,
+    message_thread_id: int | None = None,
+) -> None:
+    """Підтримує індикатор 'пише...' у шапці чату або теми форуму поки не встановлено stop_event.
 
-    Telegram автоматично гасить typing через ~5 сек — тому шлємо його
-    кожні 4 сек у фоновому таску.
+    Telegram автоматично гасить typing через ~5 сек — тому оновлюємо його кожні 2.5–3 сек.
+    Підтримує message_thread_id для тем/топіків у супергрупах (forum topics).
     """
     while not stop_event.is_set():
-        await bot.send_chat_action(chat_id=chat_id, action=ChatAction.TYPING)
-        await asyncio.sleep(4)
+        try:
+            if message_thread_id:
+                try:
+                    await bot.send_chat_action(
+                        chat_id=chat_id,
+                        action=ChatAction.TYPING,
+                        message_thread_id=message_thread_id,
+                    )
+                except Exception:
+                    # Якщо топік не підтримує або повернув помилку — пробуємо без message_thread_id
+                    await bot.send_chat_action(
+                        chat_id=chat_id,
+                        action=ChatAction.TYPING,
+                    )
+            else:
+                await bot.send_chat_action(
+                    chat_id=chat_id,
+                    action=ChatAction.TYPING,
+                )
+        except Exception:
+            # Захист від зупинки фонового таску при короткочасних помилках мережі Telegram
+            pass
+
+        try:
+            await asyncio.wait_for(stop_event.wait(), timeout=2.5)
+            break
+        except asyncio.TimeoutError:
+            pass
 
 
 def _feedback_keyboard(message_id: int, chat_id: int, likes: int = 0, dislikes: int = 0) -> InlineKeyboardMarkup:
@@ -146,7 +177,10 @@ async def _reply_with_feedback(message: Message, text: str, sticker_id: str | No
                         InlineKeyboardButton(text=f"📖 {link_text}", web_app=WebAppInfo(url=f"{webapp_url}#/article/{clean_slug}"))
                     ])
                 
-    await sent.edit_reply_markup(reply_markup=keyboard)
+    try:
+        await sent.edit_reply_markup(reply_markup=keyboard)
+    except Exception as e:
+        print(f"[_reply_with_feedback] Markup error: {redact(e)}")
 
 
 @dp.message(Command("start"))
@@ -208,25 +242,35 @@ async def command_ask_handler(message: Message, command: CommandObject, state: F
     ask_complaint = is_health_complaint_query(ask_text)
     ask_red_flag = has_red_flags(ask_text)
 
-    accompany_sticker = None
-    if not ask_red_flag and should_accompany_with_sticker(ask_text, is_complaint=ask_complaint):
-        accompany_sticker = await get_or_load_sticker(message.bot)
+    should_accompany = not ask_red_flag and should_accompany_with_sticker(ask_text, is_complaint=ask_complaint)
 
+    thread_id = getattr(message, "message_thread_id", None)
     stop_typing = asyncio.Event()
     typing_task = asyncio.create_task(
-        _keep_typing(message.bot, message.chat.id, stop_typing)
+        _keep_typing(message.bot, message.chat.id, stop_typing, message_thread_id=thread_id)
     )
 
     try:
         response = await generate_response(ask_text)
         stop_typing.set()
         typing_task.cancel()
+
+        if not response or not response.strip():
+            print(f"[command_ask] Empty response for query: {ask_text!r}")
+            await message.reply("😔 Не вдалося сформувати відповідь. Спробуй перефразувати запит.")
+            return
+
+        accompany_sticker = None
+        if should_accompany:
+            pref = detect_sticker_emojis_for_text(ask_text, response_text=response)
+            accompany_sticker = await get_or_load_sticker(message.bot, preferred_emojis=pref)
+
         await _reply_with_feedback(message, response, sticker_id=accompany_sticker)
     except Exception as e:
         stop_typing.set()
         typing_task.cancel()
         await message.reply("😔 Виникла помилка при обробці запиту. Спробуй ще раз.")
-        print(f"[command_ask] Error: {redact(e)}")
+        print(f"[command_ask] Error ({type(e).__name__}): {redact(e)}")
 
 
 @dp.message(AskStates.waiting_for_question, F.text, ~F.text.startswith("/"))
@@ -246,13 +290,12 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
     user_complaint = is_health_complaint_query(user_text)
     user_red_flag = has_red_flags(user_text)
 
-    accompany_sticker = None
-    if not user_red_flag and should_accompany_with_sticker(user_text, is_complaint=user_complaint):
-        accompany_sticker = await get_or_load_sticker(message.bot)
+    should_accompany = not user_red_flag and should_accompany_with_sticker(user_text, is_complaint=user_complaint)
 
+    thread_id = getattr(message, "message_thread_id", None)
     stop_typing = asyncio.Event()
     typing_task = asyncio.create_task(
-        _keep_typing(message.bot, message.chat.id, stop_typing)
+        _keep_typing(message.bot, message.chat.id, stop_typing, message_thread_id=thread_id)
     )
 
     try:
@@ -264,12 +307,17 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
             await message.reply("😔 Не вдалося сформувати відповідь. Спробуй перефразувати запит.")
             return
 
+        accompany_sticker = None
+        if should_accompany:
+            pref = detect_sticker_emojis_for_text(user_text, response_text=response)
+            accompany_sticker = await get_or_load_sticker(message.bot, preferred_emojis=pref)
+
         await _reply_with_feedback(message, response, sticker_id=accompany_sticker)
     except Exception as e:
         stop_typing.set()
         typing_task.cancel()
         await message.reply("😔 Виникла помилка при обробці запиту. Спробуй ще раз.")
-        print(f"[ask_question] Error: {redact(e)}")
+        print(f"[ask_question] Error ({type(e).__name__}): {redact(e)}")
 
 
 @dp.message(Command("post"), AdminFilter(), F.chat.type == ChatType.PRIVATE)
@@ -515,9 +563,10 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
         pass_mode = "red_flag" if is_new_red_flag else None
         orig_query = user_text if is_new_complaint else None
 
+    thread_id = getattr(message, "message_thread_id", None)
     stop_typing = asyncio.Event()
     typing_task = asyncio.create_task(
-        _keep_typing(bot, message.chat.id, stop_typing)
+        _keep_typing(bot, message.chat.id, stop_typing, message_thread_id=thread_id)
     )
 
     try:
