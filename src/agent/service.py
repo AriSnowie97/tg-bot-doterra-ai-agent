@@ -32,6 +32,7 @@ from .specialist import (
     get_disclaimer_for_text,
     should_include_medical_disclaimer,
     is_persona_query,
+    extract_user_text_from_context,
 )
 from ..storage import search_chunks
 from src.LLMProvider import (
@@ -123,6 +124,7 @@ async def generate_response(
     user_text: str,
     screening_mode: str | None = None,
     conversation_context: str | None = None,
+    original_query: str | None = None,
 ) -> str:
     """Повний RAG-пайплайн: пошук → промпт → LLM → відповідь.
 
@@ -131,7 +133,8 @@ async def generate_response(
         screening_mode:       Режим скринінгу з FSMContext ('inactive'|'active'|'red_flag').
                               Якщо None — визначається автоматично за текстом.
         conversation_context: Накопичений текст розмови (скарга + відповіді на скринінг).
-                              Використовується для RAG-пошуку та як вхід для LLM.
+                              Використовується як вхід для LLM.
+        original_query:       Первинна тема/скарга для точного RAG-пошуку (особливо при відповідях «ні»/«так»).
 
     Стратегія при помилках:
     - 429 per-minute: чекає retryDelay із відповіді і повторює.
@@ -143,11 +146,13 @@ async def generate_response(
     # Визначаємо мову вводу користувача
     is_clearly_english = detect_is_english(user_text)
 
-    # 0. ДЕТЕРМІНОВАНИЙ ЗАХИСТ: перевірка червоних прапорів ДО будь-яких RAG чи LLM викликів
+    # 0. ДЕТЕРМІНОВАНИЙ ЗАХИСТ: перевірка червоних прапорів ДО будь-яких RAG чи LLM викликів.
+    # Перевіряємо ТІЛЬКИ репліки користувача, щоб запитання бота (про вагітність/ліки) не тригерили хибний red flag.
+    user_context = extract_user_text_from_context(conversation_context) if conversation_context else ""
     is_red_flag = (
         screening_mode == "red_flag"
         or has_red_flags(user_text)
-        or (bool(conversation_context) and has_red_flags(conversation_context))
+        or (bool(user_context) and has_red_flags(user_context))
     )
     if is_red_flag:
         print("[agent] 🛡️ RED FLAG ACTIVATED: Returning deterministic safety redirect immediately")
@@ -167,8 +172,9 @@ async def generate_response(
             + MEDICAL_DISCLAIMER
         )
 
-    # Для RAG-пошуку використовуємо накопичений контекст діалогу якщо є
-    rag_query = conversation_context or user_text
+    # Для RAG-пошуку використовуємо оригінальний запит/скаргу або введений текст,
+    # щоб короткі репліки скринінгу (наприклад, «ні») знаходили релевантні олії.
+    rag_query = original_query or (user_context if user_context else user_text)
 
     # 1. Знаходимо релевантні чанки з БД (із захистом від помилок квот 429 ембеддингів)
     try:

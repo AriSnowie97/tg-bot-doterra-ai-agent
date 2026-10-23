@@ -165,3 +165,36 @@ class TestSpecialistScreening:
             screening_mode=screening_mode,
             conversation_context=context,
         ) is expected
+
+    @pytest.mark.parametrize("query,expected", [
+        ("не вагітна", False),
+        ("немає вагітності", False),
+        ("я не вагітна, болить голова", False),
+        ("ліків не приймаю", False),
+        ("без ліків", False),
+        ("немає алергії", False),
+        ("тиск в нормі", False),
+        ("ні", False),
+        ("вагітність 5 місяців", True),
+        ("я вагітна", True),
+        ("приймаю ліки щодня", True),
+        ("у мене астма та епілепсія", True),
+    ])
+    def test_has_red_flags_ignores_negations(self, query: str, expected: bool):
+        from src.agent.specialist import has_red_flags
+        assert has_red_flags(query) is expected
+
+    def test_extract_user_text_from_context(self):
+        from src.agent.specialist import extract_user_text_from_context, has_red_flags
+        dialogue = (
+            "Користувач: Що допоможе від головного болю?\n\n"
+            "Бот: Підкажи, будь ласка: Чи є вагітність або період годування груддю? Чи приймаєш якісь ліки?\n\n"
+            "Користувач: ні"
+        )
+        user_only = extract_user_text_from_context(dialogue)
+        assert "Чи є вагітність" not in user_only
+        assert "Що допоможе від головного болю?" in user_only
+        assert "ні" in user_only
+        # Сам діалог з питаннями бота не повинен викликати red flag у користувача, який відповів «ні»
+        assert has_red_flags(user_only) is False
+

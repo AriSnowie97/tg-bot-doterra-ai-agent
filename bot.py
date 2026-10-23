@@ -151,8 +151,11 @@ async def _reply_with_feedback(message: Message, text: str, sticker_id: str | No
 
 @dp.message(Command("start"))
 async def command_start_handler(message: Message, state: FSMContext) -> None:
-    # Скидаємо стан скринінгу при /start
-    await state.clear()
+    # Скидаємо лише режим очікування для /ask, не обнуляючи контекст скринінгу,
+    # щоб користувач міг відповісти на запитання бота (наприклад, «ні») навіть після /start.
+    current_state = await state.get_state()
+    if current_state == AskStates.waiting_for_question:
+        await state.set_state(None)
     
     # Вітальний стікер зі стікерпаку aromaaitgbot («Привіт!»)
     welcome_sticker = await get_welcome_sticker(message.bot)
@@ -435,12 +438,18 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
     fsm_data = await state.get_data()
     stored_mode: str | None = fsm_data.get("screening_mode")        # 'active'|'red_flag'|None
     stored_turns: list[dict[str, str]] = fsm_data.get("screening_turns") or []
+    stored_complaint: str | None = fsm_data.get("original_complaint")
     # Зворотна сумісність: якщо в стані був старий строковий screening_history
     if not stored_turns and fsm_data.get("screening_history"):
         stored_turns = [{"role": "user", "text": str(fsm_data["screening_history"])[:500]}]
 
     # Визначаємо чи це відповідь на скринінг чи новий незалежний запит
-    from src.agent.specialist import is_health_complaint_query, has_red_flags
+    from src.agent.specialist import (
+        is_health_complaint_query,
+        has_red_flags,
+        is_persona_query,
+        is_consultation_query,
+    )
     is_new_complaint = is_health_complaint_query(user_text)
     is_new_red_flag  = has_red_flags(user_text)
 
@@ -449,12 +458,15 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
         if not is_new_red_flag and not is_new_complaint:
             stored_mode = None
             stored_turns = []
+            stored_complaint = None
             await state.clear()
     elif stored_mode == "active":
         should_casual, _, _ = classify_casual_interaction(user_text)
-        if should_casual or len(stored_turns) >= 6:
+        is_topic_switch = is_persona_query(user_text) or is_consultation_query(user_text)
+        if should_casual or is_topic_switch or len(stored_turns) >= 6:
             stored_mode = None
             stored_turns = []
+            stored_complaint = None
             await state.clear()
 
     # ── Перевіряємо, чи це повсякденна коротка репліка (вітання/подяка/реакція) ──────────────
@@ -488,15 +500,20 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
             stored_turns,
             new_user_text=user_text,
         )
-        if stored_mode == "active" and (is_new_red_flag or has_red_flags(conversation_context)):
+        # Перевіряємо червоні прапори ТІЛЬКИ в репліках користувача, ігноруючи запитання бота
+        user_texts = [t["text"] for t in stored_turns if t.get("role") == "user"] + [user_text]
+        user_combined = " ".join(user_texts)
+        if stored_mode == "active" and (is_new_red_flag or has_red_flags(user_combined)):
             pass_mode = "red_flag"
         else:
             pass_mode = stored_mode
+        orig_query = stored_complaint or (stored_turns[0]["text"] if stored_turns else None)
     else:
         # Новий запит
         active_turns = []
         conversation_context = None
         pass_mode = "red_flag" if is_new_red_flag else None
+        orig_query = user_text if is_new_complaint else None
 
     stop_typing = asyncio.Event()
     typing_task = asyncio.create_task(
@@ -508,6 +525,7 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
             user_text,
             screening_mode=pass_mode,
             conversation_context=conversation_context,
+            original_query=orig_query,
         )
 
         stop_typing.set()
@@ -536,11 +554,13 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
                 new_user_text=user_text if pass_mode is None else None,
                 bot_response=response,
             )
+            saved_complaint = stored_complaint or (user_text if is_new_complaint else None)
             await state.set_state(ScreeningStates.in_progress)
             await state.update_data(
                 screening_mode="active",
                 screening_turns=final_turns,
                 screening_history=final_context,
+                original_complaint=saved_complaint,
             )
         else:
             # Загальне питання або червоний прапор — очищаємо стан

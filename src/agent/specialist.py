@@ -365,6 +365,37 @@ _RED_FLAG_REGEX = re.compile(
     re.IGNORECASE,
 )
 
+# Шаблони явних заперечень протипоказань (наприклад: "не вагітна", "без ліків", "немає алергії").
+# Їх необхідно нейтралізувати перед пошуком червоних прапорів, щоб заперечення не вважалося прапором.
+_NEGATED_RED_FLAGS = re.compile(
+    r"\b(не\s+(є\s+)?вагітн\w*|немає\s+вагітност\w*|вагітност\w*\s+немає|"
+    r"не\s+годую\w*|не\s+лакту\w*|"
+    r"не\s+(є\s+)?беремен\w*|нет\s+беременност\w*|беременност\w*\s+нет|"
+    r"not\s+pregnant|no\s+pregnancy|"
+    r"ліків\s+не\s+прийма\w*|не\s+п'ю\s+ліки|не\s+приймаю\s+ліки|без\s+ліків|"
+    r"немає\s+алергі\w*|алергі\w*\s+немає|без\s+алергі\w*|"
+    r"немає\s+хвороб\w*|хвороб\w*\s+немає|не\s+хворі\w*|"
+    r"немає\s+тиск\w*|тиск\w*\s+в\s+нормі)\b",
+    re.IGNORECASE,
+)
+
+
+def extract_user_text_from_context(context: str) -> str:
+    """Витягує тільки репліки користувача з діалогового контексту, ігноруючи запитання бота."""
+    if not context:
+        return ""
+    user_lines = []
+    is_user = False
+    for line in context.splitlines():
+        if line.startswith("Користувач:"):
+            is_user = True
+            user_lines.append(line[len("Користувач:"):].strip())
+        elif line.startswith("Бот:"):
+            is_user = False
+        elif is_user:
+            user_lines.append(line.strip())
+    return " ".join(user_lines)
+
 
 def is_health_complaint_query(text: str) -> bool:
     """Повертає True, якщо запит схожий на скаргу про здоров'я або запит підбору.
@@ -383,7 +414,8 @@ def is_health_complaint_query(text: str) -> bool:
 
 def has_red_flags(text: str) -> bool:
     """Повертає True, якщо в тексті є ознаки протипоказань (червоні прапори).
-    Працює детерміновано за основами слів трьома мовами (UK, RU, EN).
+    Працює детерміновано за основами слів трьома мовами (UK, RU, EN),
+    враховуючи заперечення (наприклад «не вагітна» або «без ліків»).
 
     Args:
         text: текст повідомлення користувача (може бути діалог).
@@ -394,7 +426,8 @@ def has_red_flags(text: str) -> bool:
     if not text:
         return False
     lower = text.lower()
-    if _RED_FLAG_REGEX.search(lower):
+    cleaned = _NEGATED_RED_FLAGS.sub("", lower)
+    if _RED_FLAG_REGEX.search(cleaned):
         return True
-    return any(kw in lower for kw in RED_FLAG_KEYWORDS)
+    return any(kw in cleaned for kw in RED_FLAG_KEYWORDS)
 
