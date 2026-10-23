@@ -182,7 +182,7 @@ def should_include_medical_disclaimer(
         screening_mode == "red_flag"
         or has_red_flags(user_query)
         or has_red_flags(response_text)
-        or (bool(conversation_context) and has_red_flags(conversation_context))
+        or (screening_mode == "active" and bool(conversation_context) and has_red_flags(conversation_context))
     ):
         return True
 
@@ -190,7 +190,6 @@ def should_include_medical_disclaimer(
     if (
         screening_mode == "active"
         or is_health_complaint_query(user_query)
-        or (bool(conversation_context) and is_health_complaint_query(conversation_context))
     ):
         return True
 

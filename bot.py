@@ -175,16 +175,7 @@ def _feedback_keyboard(message_id: int, chat_id: int, likes: int = 0, dislikes: 
 
 
 async def _reply_with_feedback(message: Message, text: str, sticker_id: str | None = None) -> None:
-    """Надсилає reply з текстом відповіді і кнопками 👍/👎 та посиланнями на гайди.
-    
-    Якщо передано sticker_id, надсилає відповідний стікер перед або разом із текстом.
-    """
-    if sticker_id:
-        try:
-            await message.reply_sticker(sticker_id)
-        except Exception as e:
-            print(f"[_reply_with_feedback] Sticker error: {redact(e)}")
-
+    """Надсилає reply з текстом відповіді і кнопками 👍/👎 та посиланнями на гайди."""
     webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
     
     # Шукаємо всі маркдаун посилання виду [Текст](slug)
@@ -235,15 +226,6 @@ async def command_start_handler(message: Message, state: FSMContext) -> None:
     current_state = await state.get_state()
     if current_state == AskStates.waiting_for_question:
         await state.set_state(None)
-    
-    # Вітальний стікер зі стікерпаку aromaaitgbot («Привіт!»)
-    welcome_sticker = await get_welcome_sticker(message.bot)
-    if welcome_sticker:
-        try:
-            await message.answer_sticker(welcome_sticker)
-        except Exception as e:
-            print(f"[command_start] Sticker error: {redact(e)}")
-
     webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
     
     markup = InlineKeyboardMarkup(inline_keyboard=[[
@@ -344,13 +326,17 @@ async def command_ask_handler(message: Message, command: CommandObject, state: F
         )
         return
 
-    # Режим 2: /ask <текст> — відповідаємо одразу
     ask_text = command.args.strip()
+    has_alphanumeric = bool(re.search(r"[a-zA-Zа-яА-ЯіїєґІЇЄҐ0-9]", ask_text))
+    if not has_alphanumeric:
+        await message.reply(
+            "Будь ласка, напиши своє запитання словами — я з радістю допоможу з оліями doTERRA! 🌸"
+        )
+        return
+
     from src.agent.specialist import is_health_complaint_query, has_red_flags
     ask_complaint = is_health_complaint_query(ask_text)
     ask_red_flag = has_red_flags(ask_text)
-
-    should_accompany = not ask_red_flag and should_accompany_with_sticker(ask_text, is_complaint=ask_complaint)
 
     thread_id = getattr(message, "message_thread_id", None)
     stop_typing = asyncio.Event()
@@ -382,18 +368,13 @@ async def command_ask_handler(message: Message, command: CommandObject, state: F
             await message.reply("😔 Не вдалося сформувати відповідь. Спробуй перефразувати запит.")
             return
 
-        accompany_sticker = None
-        if should_accompany:
-            pref = detect_sticker_emojis_for_text(ask_text, response_text=response)
-            accompany_sticker = await get_or_load_sticker(message.bot, preferred_emojis=pref)
-
         await state.update_data(
             has_introduced=True,
             conversation_active=True,
             last_interaction_ts=now_ts,
             last_time_of_day=time_id,
         )
-        await _reply_with_feedback(message, response, sticker_id=accompany_sticker)
+        await _reply_with_feedback(message, response)
     except Exception as e:
         stop_typing.set()
         typing_task.cancel()
@@ -414,6 +395,24 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
         await message.reply("🌿 Запитай мене що-небудь про ефірні олії doTERRA!")
         return
 
+    has_alphanumeric = bool(re.search(r"[a-zA-Zа-яА-ЯіїєґІЇЄҐ0-9]", user_text))
+    if not has_alphanumeric:
+        stripped_punct = user_text.strip("?!.,;:—–- \t\n")
+        if "?" in user_text and not stripped_punct:
+            await message.reply(
+                "Чим я можу тобі допомогти? 🌸 Розкажи, що саме тебе цікавить про ефірні олії doTERRA, і я залюбки підкажу! 🌿"
+            )
+            return
+        if not stripped_punct:
+            await message.reply(
+                "Будь ласка, напиши своє запитання словами — я з радістю допоможу з оліями doTERRA! 🌸"
+            )
+            return
+        await message.reply(
+            "🌿 Запитай мене що-небудь про ефірні олії doTERRA — я з радістю допоможу! 🌸"
+        )
+        return
+
     fsm_data = await state.get_data()
     conversation_active = bool(fsm_data.get("conversation_active", False))
     last_interaction_ts = fsm_data.get("last_interaction_ts")
@@ -427,8 +426,6 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
     from src.agent.specialist import is_health_complaint_query, has_red_flags
     user_complaint = is_health_complaint_query(user_text)
     user_red_flag = has_red_flags(user_text)
-
-    should_accompany = not user_red_flag and should_accompany_with_sticker(user_text, is_complaint=user_complaint)
 
     thread_id = getattr(message, "message_thread_id", None)
     stop_typing = asyncio.Event()
@@ -449,18 +446,13 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
             await message.reply("😔 Не вдалося сформувати відповідь. Спробуй перефразувати запит.")
             return
 
-        accompany_sticker = None
-        if should_accompany:
-            pref = detect_sticker_emojis_for_text(user_text, response_text=response)
-            accompany_sticker = await get_or_load_sticker(message.bot, preferred_emojis=pref)
-
         await state.update_data(
             has_introduced=True,
             conversation_active=True,
             last_interaction_ts=now_ts,
             last_time_of_day=time_id,
         )
-        await _reply_with_feedback(message, response, sticker_id=accompany_sticker)
+        await _reply_with_feedback(message, response)
     except Exception as e:
         stop_typing.set()
         typing_task.cancel()
@@ -699,18 +691,17 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
     # Завершує діалог, якщо немає додаткових запитань
     is_closer, closer_type = is_conversation_closer(user_text)
     if is_closer and not is_new_complaint and not is_new_red_flag:
-        reply_text, pref_emojis = get_closer_reply(closer_type, time_of_day=time_id)
-        closer_sticker = None
-        if closer_type == "farewell":
-            closer_sticker = await get_farewell_sticker(bot)
+        # Якщо діалог вже був завершений і користувач надіслав ще одну реакцію (напр. 👍 після ок),
+        # відповідаємо дуже коротко без дублювання всієї фрази
+        if not conversation_active and (now_ts - (last_interaction_ts or 0) < 300):
+            if closer_type == "farewell":
+                reply_text = "До зустрічі! 🌸"
+            elif closer_type == "gratitude":
+                reply_text = "Завжди рада допомогти! 🌸"
+            else:
+                reply_text = "Завжди на зв'язку! 🌿🌸"
         else:
-            closer_sticker = await get_or_load_sticker(bot, preferred_emojis=pref_emojis)
-
-        if closer_sticker:
-            try:
-                await message.reply_sticker(closer_sticker)
-            except Exception as e:
-                print(f"[on_message] Closer sticker error: {redact(e)}")
+            reply_text, _ = get_closer_reply(closer_type, time_of_day=time_id)
 
         await message.reply(reply_text)
         await state.set_state(None)
@@ -737,13 +728,6 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
         else:
             reply_text = f"{time_greeting} Рада тебе бачити! 🌸 Чим можу допомогти тобі сьогодні з оліями doTERRA?"
 
-        welcome_sticker = await get_welcome_sticker(bot)
-        if welcome_sticker:
-            try:
-                await message.reply_sticker(welcome_sticker)
-            except Exception as e:
-                print(f"[on_message] Welcome sticker error: {redact(e)}")
-
         await message.reply(reply_text)
         await state.set_state(None)
         await state.update_data(
@@ -755,6 +739,30 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
             screening_mode=None,
             screening_turns=[],
             original_complaint=None,
+        )
+        return
+
+    # ── 3. Перевіряємо на відсутність змістовного тексту (лише крапки, знаки питання, емодзі) ──
+    has_alphanumeric = bool(re.search(r"[a-zA-Zа-яА-ЯіїєґІЇЄҐ0-9]", user_text))
+    if not has_alphanumeric:
+        stripped_punct = user_text.strip("?!.,;:—–- \t\n")
+        # Лише знаки питання: '?', '???', '? !'
+        if "?" in user_text and not stripped_punct:
+            await message.reply(
+                "Чим я можу тобі допомогти? 🌸 Розкажи, що саме тебе цікавить про ефірні олії doTERRA, і я залюбки підкажу! 🌿"
+            )
+            return
+
+        # Лише крапки або інші розділові знаки: '.', '...', '!', '—'
+        if not stripped_punct:
+            await message.reply(
+                "Будь ласка, напиши своє запитання словами — я з радістю допоможу з оліями doTERRA! 🌸"
+            )
+            return
+
+        # Лише емодзі (наприклад: '🌿🌿🌿', '🌸🌸🌸', '🌱')
+        await message.reply(
+            "🌿 Запитай мене що-небудь про ефірні олії doTERRA — я з радістю допоможу! 🌸"
         )
         return
 
@@ -882,13 +890,7 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
                 last_time_of_day=time_id,
             )
 
-        # Підбираємо найбільш відповідний за темою та емоцією стікер на основі запиту та сформованої відповіді
-        accompany_sticker = None
-        if should_accompany:
-            pref_emojis = detect_sticker_emojis_for_text(user_text, response_text=response)
-            accompany_sticker = await get_or_load_sticker(bot, preferred_emojis=pref_emojis)
-
-        await _reply_with_feedback(message, response, sticker_id=accompany_sticker)
+        await _reply_with_feedback(message, response)
 
     except Exception as e:
         stop_typing.set()
