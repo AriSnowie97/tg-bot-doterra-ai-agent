@@ -22,8 +22,12 @@ from src.safety import redact, safe_error, append_and_format_dialogue
 from src.stickers import (
     load_stickers,
     get_or_load_sticker,
+    get_welcome_sticker,
+    get_farewell_sticker,
     should_accompany_with_sticker,
     classify_casual_interaction,
+    is_greeting,
+    is_farewell,
     should_reply_to_user_sticker,
     detect_sticker_emojis_for_text,
     STICKER_SET_NAME,
@@ -150,8 +154,8 @@ async def command_start_handler(message: Message, state: FSMContext) -> None:
     # Скидаємо стан скринінгу при /start
     await state.clear()
     
-    # Вітальний стікер зі стікерпаку aromaaitgbot
-    welcome_sticker = await get_or_load_sticker(message.bot, preferred_emojis=["👋", "🌿", "😊", "✨"])
+    # Вітальний стікер зі стікерпаку aromaaitgbot («Привіт!»)
+    welcome_sticker = await get_welcome_sticker(message.bot)
     if welcome_sticker:
         try:
             await message.answer_sticker(welcome_sticker)
@@ -457,7 +461,13 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
     if stored_mode not in ("active", "red_flag") and not is_new_complaint and not is_new_red_flag:
         should_casual, reply_text, pref_emojis = classify_casual_interaction(user_text)
         if should_casual:
-            casual_sticker = await get_or_load_sticker(bot, preferred_emojis=pref_emojis)
+            if is_greeting(user_text):
+                casual_sticker = await get_welcome_sticker(bot)
+            elif is_farewell(user_text):
+                casual_sticker = await get_farewell_sticker(bot)
+            else:
+                casual_sticker = await get_or_load_sticker(bot, preferred_emojis=pref_emojis)
+
             if casual_sticker:
                 try:
                     await message.reply_sticker(casual_sticker)

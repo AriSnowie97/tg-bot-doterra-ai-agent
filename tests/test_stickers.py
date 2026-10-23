@@ -120,3 +120,72 @@ class TestStickersModule:
         if disallowed_emoji:
             assert disallowed_emoji not in detected
 
+    def test_get_welcome_sticker_returns_greeting_not_good_day(self, monkeypatch):
+        import asyncio
+        from src.stickers import (
+            get_welcome_sticker,
+            WELCOME_STICKER_FILE_ID,
+            GOOD_DAY_STICKER_FILE_ID,
+            FAREWELL_STICKER_FILE_ID,
+        )
+        fake_bot = MagicMock()
+
+        monkeypatch.setattr(stickers_mod, "_cached_file_ids", [
+            WELCOME_STICKER_FILE_ID,
+            GOOD_DAY_STICKER_FILE_ID,
+            FAREWELL_STICKER_FILE_ID,
+        ])
+        monkeypatch.setattr(stickers_mod, "_stickers_by_emoji", {
+            "👋": [WELCOME_STICKER_FILE_ID, GOOD_DAY_STICKER_FILE_ID, FAREWELL_STICKER_FILE_ID],
+        })
+
+        for _ in range(10):
+            res = asyncio.run(get_welcome_sticker(fake_bot))
+            assert res == WELCOME_STICKER_FILE_ID
+            assert res != GOOD_DAY_STICKER_FILE_ID
+            assert res != FAREWELL_STICKER_FILE_ID
+
+    def test_get_farewell_sticker_returns_farewell_or_good_day(self, monkeypatch):
+        import asyncio
+        from src.stickers import (
+            get_farewell_sticker,
+            WELCOME_STICKER_FILE_ID,
+            GOOD_DAY_STICKER_FILE_ID,
+            FAREWELL_STICKER_FILE_ID,
+        )
+        fake_bot = MagicMock()
+
+        monkeypatch.setattr(stickers_mod, "_cached_file_ids", [
+            WELCOME_STICKER_FILE_ID,
+            GOOD_DAY_STICKER_FILE_ID,
+            FAREWELL_STICKER_FILE_ID,
+        ])
+
+        for _ in range(10):
+            res = asyncio.run(get_farewell_sticker(fake_bot))
+            assert res in [FAREWELL_STICKER_FILE_ID, GOOD_DAY_STICKER_FILE_ID]
+            assert res != WELCOME_STICKER_FILE_ID
+
+    def test_wave_emoji_filters_out_farewell_and_good_day_in_random(self, monkeypatch):
+        from src.stickers import (
+            WELCOME_STICKER_FILE_ID,
+            GOOD_DAY_STICKER_FILE_ID,
+            FAREWELL_STICKER_FILE_ID,
+        )
+
+        monkeypatch.setattr(stickers_mod, "_cached_file_ids", [
+            WELCOME_STICKER_FILE_ID,
+            GOOD_DAY_STICKER_FILE_ID,
+            FAREWELL_STICKER_FILE_ID,
+        ])
+        monkeypatch.setattr(stickers_mod, "_stickers_by_emoji", {
+            "👋": [WELCOME_STICKER_FILE_ID, GOOD_DAY_STICKER_FILE_ID, FAREWELL_STICKER_FILE_ID],
+        })
+
+        for _ in range(10):
+            res = get_random_sticker(preferred_emojis=["👋"])
+            assert res == WELCOME_STICKER_FILE_ID
+            assert res != GOOD_DAY_STICKER_FILE_ID
+            assert res != FAREWELL_STICKER_FILE_ID
+
+

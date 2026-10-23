@@ -51,6 +51,14 @@ _cached_file_ids: List[str] = []
 _stickers_by_emoji: Dict[str, List[str]] = {}
 _is_loaded: bool = False
 
+# Ключові стікери набору aromaaitgbot (де кілька стікерів мають однакове емодзі 👋):
+# 0: «Привіт!» (дівчинка махає рукою з пляшечкою олії)
+WELCOME_STICKER_FILE_ID: str = "CAACAgIAAxUAAWrbKIYm3QeIG_mhAVeWS9HCtk8FAAJsowACDJ5ZSOjEm6o-dy33PQQ"
+# 24: «Гарного дня!» (дівчинка у бузковій ковдрі зі свічкою)
+GOOD_DAY_STICKER_FILE_ID: str = "CAACAgIAAxUAAWrbKIa9rbJQbTF_bv8xdfCZK-ZNAAL_nAACFi9ZSOsM6G3dtaPrPQQ"
+# 25: «До побачення!» (дівчинка йде та махає рукою)
+FAREWELL_STICKER_FILE_ID: str = "CAACAgIAAxUAAWrbKIZzAAEsh6yTx45frRh966g0IwACBqsAAvFP0Up0RYfJZuq6uj0E"
+
 # Негативні / відмовні / конфліктні емодзі (наприклад, червоний хрест ❌ або схрещені руки 🙅)
 # Їх КАТЕГОРИЧНО НЕ МОЖНА відправляти у випадковому порядку чи на звичайні дружні запитання!
 NEGATIVE_EMOJIS: set[str] = {
@@ -148,6 +156,8 @@ def get_random_sticker(preferred_emojis: Optional[list[str] | str] = None) -> Op
        - Розширює список спорідненими емодзі (EMOJI_SYNONYMS).
        - Шукає точний збіг стікерів за цими емодзі по черзі.
        - Якщо знайдено — повертає випадковий із них.
+       - Для емодзі 👋 виключає стікери прощання/побажання дня («До побачення!», «Гарного дня!»),
+         щоб не вітати користувача стікером прощання.
     2. Якщо точного збігу за preferred_emojis немає:
        - Шукає серед безпечних позитивних емодзі (SAFE_DEFAULT_EMOJIS).
        - У жодному разі не повертає негативні/заборонні стікери (👎, ❌, 🙅) як випадковий фолбек!
@@ -172,24 +182,34 @@ def get_random_sticker(preferred_emojis: Optional[list[str] | str] = None) -> Op
         for emoji in ordered_emojis:
             matches = _stickers_by_emoji.get(emoji)
             if matches:
+                # Якщо шукаємо '👋' (вітання/помах), виключаємо стікери прощання та побажання дня
+                if emoji == "👋" and len(matches) > 1:
+                    greeting_matches = [
+                        m for m in matches if m not in (GOOD_DAY_STICKER_FILE_ID, FAREWELL_STICKER_FILE_ID)
+                    ]
+                    if greeting_matches:
+                        return random.choice(greeting_matches)
                 return random.choice(matches)
 
     # Якщо preferred_emojis не задано або не знайдено збігу:
-    # 1. Пробуємо знайти стікери з безпечними позитивними емодзі
+    # 1. Пробуємо знайти стікери з безпечними позитивними емодзі (виключаючи прощання)
     safe_matches: list[str] = []
     for safe_emoji in SAFE_DEFAULT_EMOJIS:
         if safe_emoji in _stickers_by_emoji:
-            safe_matches.extend(_stickers_by_emoji[safe_emoji])
+            for fid in _stickers_by_emoji[safe_emoji]:
+                if fid not in (GOOD_DAY_STICKER_FILE_ID, FAREWELL_STICKER_FILE_ID):
+                    safe_matches.append(fid)
 
     if safe_matches:
         return random.choice(safe_matches)
 
     # 2. Якщо серед емодзі немає SAFE_DEFAULT_EMOJIS, беремо будь-який стікер,
-    # чий emoji НЕ містить жодного з NEGATIVE_EMOJIS (❌, 🙅 тощо)
+    # чий emoji НЕ містить жодного з NEGATIVE_EMOJIS (❌, 🙅 тощо) і не є прощанням
     non_negative: list[str] = []
     for s in _cached_stickers:
         if s.emoji and not any(neg in s.emoji for neg in NEGATIVE_EMOJIS):
-            non_negative.append(s.file_id)
+            if s.file_id not in (GOOD_DAY_STICKER_FILE_ID, FAREWELL_STICKER_FILE_ID):
+                non_negative.append(s.file_id)
 
     if non_negative:
         return random.choice(non_negative)
@@ -203,6 +223,59 @@ async def get_or_load_sticker(bot: Bot, preferred_emojis: Optional[list[str] | s
     if not _cached_file_ids:
         await load_stickers(bot)
     return get_random_sticker(preferred_emojis)
+
+
+async def get_welcome_sticker(bot: Bot) -> Optional[str]:
+    """Повертає file_id вітального стікера («Привіт!»).
+
+    Спеціально призначений для команди /start та первинних привітань,
+    гарантуючи, що користувач отримає саме стікер із написом «Привіт!»,
+    а не «Гарного дня!» чи «До побачення!», які мають однакове емодзі 👋 в паку.
+    """
+    global _cached_stickers, _cached_file_ids
+    if not _cached_file_ids:
+        await load_stickers(bot)
+
+    # 1. Якщо у кеші є перевірений WELCOME_STICKER_FILE_ID
+    if WELCOME_STICKER_FILE_ID in _cached_file_ids:
+        return WELCOME_STICKER_FILE_ID
+
+    # 2. Якщо це пак aromaaitgbot — перший стікер у ньому це «Привіт!»
+    if _cached_stickers and STICKER_SET_NAME == "aromaaitgbot":
+        return _cached_stickers[0].file_id
+
+    # 3. Фолбек для aromaaitgbot при тимчасових збоях зв'язку
+    if STICKER_SET_NAME == "aromaaitgbot":
+        return WELCOME_STICKER_FILE_ID
+
+    # 4. Для інших кастомних паків: шукаємо перше емодзі 👋 без стікерів прощання
+    wave_stickers = [
+        fid for fid in _stickers_by_emoji.get("👋", [])
+        if fid not in (GOOD_DAY_STICKER_FILE_ID, FAREWELL_STICKER_FILE_ID)
+    ]
+    if wave_stickers:
+        return wave_stickers[0]
+
+    return get_random_sticker(preferred_emojis=["👋", "🌿", "😊", "✨"])
+
+
+async def get_farewell_sticker(bot: Bot) -> Optional[str]:
+    """Повертає file_id стікера прощання («До побачення!» або «Гарного дня!»)."""
+    global _cached_file_ids
+    if not _cached_file_ids:
+        await load_stickers(bot)
+
+    farewell_options = [
+        fid for fid in (FAREWELL_STICKER_FILE_ID, GOOD_DAY_STICKER_FILE_ID)
+        if fid in _cached_file_ids
+    ]
+    if farewell_options:
+        return random.choice(farewell_options)
+
+    if STICKER_SET_NAME == "aromaaitgbot":
+        return random.choice([FAREWELL_STICKER_FILE_ID, GOOD_DAY_STICKER_FILE_ID])
+
+    return get_random_sticker(preferred_emojis=["👋", "😊", "☺️"])
 
 
 # ---------------------------------------------------------------------------
