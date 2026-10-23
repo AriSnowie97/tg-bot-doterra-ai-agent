@@ -11,7 +11,11 @@ from src.safety import (
     sanitize_dialogue_text,
     append_and_format_dialogue,
     sanitize_ai_response_text,
+    get_kyiv_time_of_day,
+    strip_redundant_greetings,
 )
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 
 class TestSafetyRedaction:
@@ -122,4 +126,47 @@ class TestAiResponseSanitization:
         assert sanitize_ai_response_text(None) == ""
         normal = "Привіт! Як справи? 🌿"
         assert sanitize_ai_response_text(normal) == normal
+
+    def test_get_kyiv_time_of_day_slots(self):
+        tz = ZoneInfo("Europe/Kyiv")
+        # Ранок: 8:00
+        dt_morning = datetime(2026, 10, 23, 8, 30, tzinfo=tz)
+        t_id, phrase = get_kyiv_time_of_day(dt_morning)
+        assert t_id == "morning"
+        assert "ранку" in phrase
+
+        # День: 14:00
+        dt_day = datetime(2026, 10, 23, 14, 0, tzinfo=tz)
+        t_id, phrase = get_kyiv_time_of_day(dt_day)
+        assert t_id == "day"
+        assert "дня" in phrase
+
+        # Вечір: 20:00
+        dt_evening = datetime(2026, 10, 23, 20, 15, tzinfo=tz)
+        t_id, phrase = get_kyiv_time_of_day(dt_evening)
+        assert t_id == "evening"
+        assert "вечора" in phrase
+
+        # Ніч: 02:00
+        dt_night = datetime(2026, 10, 23, 2, 0, tzinfo=tz)
+        t_id, phrase = get_kyiv_time_of_day(dt_night)
+        assert t_id == "night"
+        assert "ночі" in phrase
+
+    def test_strip_redundant_greetings(self):
+        # 1. Привітання + самопрезентація на початку відповіді
+        sample1 = "Привіт! 🌸 Я Арома, помічниця Наталії Котелянської. Лаванда — чудова олія."
+        assert strip_redundant_greetings(sample1) == "Лаванда — чудова олія."
+
+        # 2. Тільки привітання
+        sample2 = "Доброго дня! 🌿 Я уважно тебе слухаю, і мені дуже шкода."
+        assert strip_redundant_greetings(sample2) == "Я уважно тебе слухаю, і мені дуже шкода."
+
+        # 3. Самопрезентація без привітання
+        sample3 = "Мене звати Арома, я помічниця Наталії. Ось деталі про олію..."
+        assert strip_redundant_greetings(sample3) == "Ось деталі про олію..."
+
+        # 4. Звичайна відповідь без привітання — не змінюється
+        sample4 = "Лаванда підходить для спокійного сну 🌿."
+        assert strip_redundant_greetings(sample4) == sample4
 

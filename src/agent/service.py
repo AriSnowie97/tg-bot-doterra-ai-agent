@@ -40,7 +40,7 @@ from src.LLMProvider import (
     BudgetExceededError,
     BUDGET_EXCEEDED_MESSAGE,
 )
-from src.safety import redact, sanitize_ai_response_text
+from src.safety import redact, sanitize_ai_response_text, strip_redundant_greetings
 
 
 # ---------------------------------------------------------------------------
@@ -128,6 +128,8 @@ async def generate_response(
     screening_mode: str | None = None,
     conversation_context: str | None = None,
     original_query: str | None = None,
+    is_ongoing_dialogue: bool = False,
+    time_of_day_greeting: str | None = None,
 ) -> str:
     """Повний RAG-пайплайн: пошук → промпт → LLM → відповідь.
 
@@ -225,6 +227,8 @@ async def generate_response(
         chunks,
         suggest_specialist=suggest_specialist,
         screening_mode=final_mode,
+        is_ongoing_dialogue=is_ongoing_dialogue,
+        time_of_day_greeting=time_of_day_greeting,
     )
 
     # Захист від prompt injection у системному промпті
@@ -267,6 +271,8 @@ async def generate_response(
 
     text = (response.text or "").strip()
     text = sanitize_ai_response_text(text)
+    if is_ongoing_dialogue:
+        text = strip_redundant_greetings(text)
     if not text:
         raise RuntimeError(f"[agent] LLM повернув порожній текст. finish_reason={getattr(response.candidates[0], 'finish_reason', 'unknown') if response.candidates else 'unknown'}")
 

@@ -2,6 +2,7 @@
 import os
 import asyncio
 import re
+import time
 from typing import Any
 # Special
 from dotenv import load_dotenv
@@ -19,7 +20,14 @@ from src.storage.feedback import ensure_feedback_table, save_vote, get_vote_coun
 from handlers.states import AskStates, ScreeningStates
 from src.content.sync_content import run_sync
 from src.middleware import RateLimitMiddleware, CallbackRateLimitMiddleware
-from src.safety import redact, safe_error, append_and_format_dialogue, sanitize_ai_response_text
+from src.safety import (
+    redact,
+    safe_error,
+    append_and_format_dialogue,
+    sanitize_ai_response_text,
+    get_kyiv_time_of_day,
+    strip_redundant_greetings,
+)
 from src.stickers import (
     load_stickers,
     get_or_load_sticker,
@@ -29,6 +37,8 @@ from src.stickers import (
     classify_casual_interaction,
     is_greeting,
     is_farewell,
+    is_conversation_closer,
+    get_closer_reply,
     should_reply_to_user_sticker,
     detect_sticker_emojis_for_text,
     STICKER_SET_NAME,
@@ -250,6 +260,17 @@ async def command_start_handler(message: Message, state: FSMContext) -> None:
         "Просто напиши своє запитання — і я з радістю підкажу 🔍",
         reply_markup=markup
     )
+    time_id, _ = get_kyiv_time_of_day()
+    await state.update_data(
+        has_introduced=True,
+        conversation_active=False,
+        dialogue_turns=[],
+        screening_mode=None,
+        screening_turns=[],
+        original_complaint=None,
+        last_interaction_ts=time.time(),
+        last_time_of_day=time_id,
+    )
 
 
 @dp.message(Command("help"))
@@ -336,8 +357,22 @@ async def command_ask_handler(message: Message, command: CommandObject, state: F
         _keep_typing(message.bot, message.chat.id, stop_typing, message_thread_id=thread_id)
     )
 
+    fsm_data = await state.get_data()
+    conversation_active = bool(fsm_data.get("conversation_active", False))
+    last_interaction_ts = fsm_data.get("last_interaction_ts")
+    last_time_of_day = fsm_data.get("last_time_of_day")
+    now_ts = time.time()
+    time_id, time_greeting = get_kyiv_time_of_day()
+    time_gap = (now_ts - last_interaction_ts) if last_interaction_ts else 999999
+    is_ongoing = conversation_active and (time_gap < 7200) and (last_time_of_day == time_id)
+    time_of_day_greeting = None if is_ongoing else time_greeting
+
     try:
-        response = await generate_response(ask_text)
+        response = await generate_response(
+            ask_text,
+            is_ongoing_dialogue=is_ongoing,
+            time_of_day_greeting=time_of_day_greeting,
+        )
         stop_typing.set()
         typing_task.cancel()
 
@@ -351,6 +386,12 @@ async def command_ask_handler(message: Message, command: CommandObject, state: F
             pref = detect_sticker_emojis_for_text(ask_text, response_text=response)
             accompany_sticker = await get_or_load_sticker(message.bot, preferred_emojis=pref)
 
+        await state.update_data(
+            has_introduced=True,
+            conversation_active=True,
+            last_interaction_ts=now_ts,
+            last_time_of_day=time_id,
+        )
         await _reply_with_feedback(message, response, sticker_id=accompany_sticker)
     except Exception as e:
         stop_typing.set()
@@ -365,12 +406,22 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
 
     Скидає FSM-стан і обробляє текст як звичайне питання до RAG-агента.
     """
-    await state.clear()
+    await state.set_state(None)
 
     user_text = message.text.strip()
     if not user_text:
         await message.reply("🌿 Запитай мене що-небудь про ефірні олії doTERRA!")
         return
+
+    fsm_data = await state.get_data()
+    conversation_active = bool(fsm_data.get("conversation_active", False))
+    last_interaction_ts = fsm_data.get("last_interaction_ts")
+    last_time_of_day = fsm_data.get("last_time_of_day")
+    now_ts = time.time()
+    time_id, time_greeting = get_kyiv_time_of_day()
+    time_gap = (now_ts - last_interaction_ts) if last_interaction_ts else 999999
+    is_ongoing = conversation_active and (time_gap < 7200) and (last_time_of_day == time_id)
+    time_of_day_greeting = None if is_ongoing else time_greeting
 
     from src.agent.specialist import is_health_complaint_query, has_red_flags
     user_complaint = is_health_complaint_query(user_text)
@@ -385,7 +436,11 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
     )
 
     try:
-        response = await generate_response(user_text)
+        response = await generate_response(
+            user_text,
+            is_ongoing_dialogue=is_ongoing,
+            time_of_day_greeting=time_of_day_greeting,
+        )
         stop_typing.set()
         typing_task.cancel()
 
@@ -398,6 +453,12 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
             pref = detect_sticker_emojis_for_text(user_text, response_text=response)
             accompany_sticker = await get_or_load_sticker(message.bot, preferred_emojis=pref)
 
+        await state.update_data(
+            has_introduced=True,
+            conversation_active=True,
+            last_interaction_ts=now_ts,
+            last_time_of_day=time_id,
+        )
         await _reply_with_feedback(message, response, sticker_id=accompany_sticker)
     except Exception as e:
         stop_typing.set()
@@ -604,14 +665,23 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
         await message.reply("🌿 Запитай мене що-небудь про ефірні олії doTERRA!")
         return
 
-    # ── Завантажуємо стан скринінгу з FSMContext ──────────────────────────────
+    # ── Завантажуємо стан з FSMContext ───────────────────────────────────────
     fsm_data = await state.get_data()
+    has_introduced: bool = bool(fsm_data.get("has_introduced", False))
+    conversation_active: bool = bool(fsm_data.get("conversation_active", False))
+    last_interaction_ts: float | None = fsm_data.get("last_interaction_ts")
+    last_time_of_day: str | None = fsm_data.get("last_time_of_day")
+
     stored_mode: str | None = fsm_data.get("screening_mode")        # 'active'|'red_flag'|None
-    stored_turns: list[dict[str, str]] = fsm_data.get("screening_turns") or []
+    stored_turns: list[dict[str, str]] = fsm_data.get("screening_turns") or fsm_data.get("dialogue_turns") or []
     stored_complaint: str | None = fsm_data.get("original_complaint")
     # Зворотна сумісність: якщо в стані був старий строковий screening_history
     if not stored_turns and fsm_data.get("screening_history"):
         stored_turns = [{"role": "user", "text": str(fsm_data["screening_history"])[:500]}]
+
+    # Поточний час та час доби за Києвом
+    now_ts = time.time()
+    time_id, time_greeting = get_kyiv_time_of_day()
 
     # Визначаємо чи це відповідь на скринінг чи новий незалежний запит
     from src.agent.specialist import (
@@ -623,54 +693,102 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
     is_new_complaint = is_health_complaint_query(user_text)
     is_new_red_flag  = has_red_flags(user_text)
 
-    # ── Скидання стану якщо користувач перейшов до іншої теми або завершив скринінг ─
+    # ── 1. Перевіряємо, чи це завершення розмови (спасибі, окай, добре, бувай тощо) ──
+    # Завершує діалог, якщо немає додаткових запитань
+    is_closer, closer_type = is_conversation_closer(user_text)
+    if is_closer and not is_new_complaint and not is_new_red_flag:
+        reply_text, pref_emojis = get_closer_reply(closer_type, time_of_day=time_id)
+        closer_sticker = None
+        if closer_type == "farewell":
+            closer_sticker = await get_farewell_sticker(bot)
+        else:
+            closer_sticker = await get_or_load_sticker(bot, preferred_emojis=pref_emojis)
+
+        if closer_sticker:
+            try:
+                await message.reply_sticker(closer_sticker)
+            except Exception as e:
+                print(f"[on_message] Closer sticker error: {redact(e)}")
+
+        await message.reply(reply_text)
+        await state.set_state(None)
+        await state.update_data(
+            has_introduced=True,
+            conversation_active=False,
+            dialogue_turns=[],
+            screening_mode=None,
+            screening_turns=[],
+            original_complaint=None,
+            last_interaction_ts=now_ts,
+            last_time_of_day=time_id,
+        )
+        return
+
+    # ── 2. Перевіряємо, чи це коротке привітання (привіт, добрий день) ─────────
+    if is_greeting(user_text) and not is_new_complaint and not is_new_red_flag:
+        if not has_introduced:
+            reply_text = (
+                f"{time_greeting} Мене звати Арома 🌸, я помічниця Наталії Котелянської у боті Aroma Assistant. "
+                "Чим можу допомогти тобі сьогодні з оліями doTERRA?"
+            )
+            has_introduced = True
+        else:
+            reply_text = f"{time_greeting} Рада тебе бачити! 🌸 Чим можу допомогти тобі сьогодні з оліями doTERRA?"
+
+        welcome_sticker = await get_welcome_sticker(bot)
+        if welcome_sticker:
+            try:
+                await message.reply_sticker(welcome_sticker)
+            except Exception as e:
+                print(f"[on_message] Welcome sticker error: {redact(e)}")
+
+        await message.reply(reply_text)
+        await state.set_state(None)
+        await state.update_data(
+            has_introduced=has_introduced,
+            conversation_active=True,
+            last_interaction_ts=now_ts,
+            last_time_of_day=time_id,
+            dialogue_turns=[],
+            screening_mode=None,
+            screening_turns=[],
+            original_complaint=None,
+        )
+        return
+
+    # ── 3. Розрахунок стану сесії: чи триває розмова або починається нова ─────
+    time_gap = (now_ts - last_interaction_ts) if last_interaction_ts else 999999
+    is_long_hiatus = time_gap >= 7200  # 2 години
+    is_new_time_of_day = (last_time_of_day is not None and time_id != last_time_of_day)
+
+    # Розмова триває, якщо вона була активна, не минуло багато часу і час доби не змінився
+    is_ongoing = conversation_active and (not is_long_hiatus) and (not is_new_time_of_day)
+    time_of_day_greeting = None if is_ongoing else time_greeting
+
+    # ── 4. Скидання скринінгу якщо користувач перейшов до іншої теми ──────────
     if stored_mode == "red_flag":
         if not is_new_red_flag and not is_new_complaint:
             stored_mode = None
             stored_turns = []
             stored_complaint = None
-            await state.clear()
     elif stored_mode == "active":
-        should_casual, _, _ = classify_casual_interaction(user_text)
         is_topic_switch = is_persona_query(user_text) or is_consultation_query(user_text)
-        if should_casual or is_topic_switch or len(stored_turns) >= 6:
+        if is_topic_switch or len(stored_turns) >= 6:
             stored_mode = None
             stored_turns = []
             stored_complaint = None
-            await state.clear()
-
-    # ── Перевіряємо, чи це повсякденна коротка репліка (вітання/подяка/реакція) ──────────────
-    if stored_mode not in ("active", "red_flag") and not is_new_complaint and not is_new_red_flag:
-        should_casual, reply_text, pref_emojis = classify_casual_interaction(user_text)
-        if should_casual:
-            if is_greeting(user_text):
-                casual_sticker = await get_welcome_sticker(bot)
-            elif is_farewell(user_text):
-                casual_sticker = await get_farewell_sticker(bot)
-            else:
-                casual_sticker = await get_or_load_sticker(bot, preferred_emojis=pref_emojis)
-
-            if casual_sticker:
-                try:
-                    await message.reply_sticker(casual_sticker)
-                    if reply_text:
-                        await message.answer(reply_text)
-                    return
-                except Exception as e:
-                    print(f"[on_message] Casual sticker error: {redact(e)}")
 
     # Визначаємо, чи супроводжувати коротке питання стікером із паку aromaaitgbot
     should_accompany = False
     if stored_mode != "red_flag" and not is_new_red_flag:
         should_accompany = should_accompany_with_sticker(user_text, is_complaint=is_new_complaint)
 
-    # Якщо є активний скринінг — продовжуємо його
+    # Якщо є активний скринінг або триваючий діалог — накопичуємо репліки
     if stored_mode in ("active", "red_flag"):
         active_turns, conversation_context = append_and_format_dialogue(
             stored_turns,
             new_user_text=user_text,
         )
-        # Перевіряємо червоні прапори ТІЛЬКИ в репліках користувача, ігноруючи запитання бота
         user_texts = [t["text"] for t in stored_turns if t.get("role") == "user"] + [user_text]
         user_combined = " ".join(user_texts)
         if stored_mode == "active" and (is_new_red_flag or has_red_flags(user_combined)):
@@ -678,6 +796,13 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
         else:
             pass_mode = stored_mode
         orig_query = stored_complaint or (stored_turns[0]["text"] if stored_turns else None)
+    elif is_ongoing and stored_turns:
+        active_turns, conversation_context = append_and_format_dialogue(
+            stored_turns,
+            new_user_text=user_text,
+        )
+        pass_mode = "red_flag" if is_new_red_flag else None
+        orig_query = user_text if is_new_complaint else None
     else:
         # Новий запит
         active_turns = []
@@ -697,6 +822,8 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
             screening_mode=pass_mode,
             conversation_context=conversation_context,
             original_query=orig_query,
+            is_ongoing_dialogue=is_ongoing,
+            time_of_day_greeting=time_of_day_greeting,
         )
 
         stop_typing.set()
@@ -707,7 +834,7 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
             await message.reply("😔 Не вдалося сформувати відповідь. Спробуй перефразувати запит.")
             return
 
-        # ── Оновлюємо стан скринінгу після отримання відповіді ───────────────
+        # ── Оновлюємо стан після відповіді ───────────────────────────────────
         if pass_mode is None:
             if is_new_red_flag:
                 new_mode = "red_flag"
@@ -718,24 +845,40 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
         else:
             new_mode = pass_mode
 
-        # Зберігаємо стан тільки для активного скринінгу (red_flag вже надав остаточну пораду)
+        final_turns, final_context = append_and_format_dialogue(
+            active_turns if (pass_mode is not None or (is_ongoing and stored_turns)) else [],
+            new_user_text=user_text if not active_turns else None,
+            bot_response=response,
+        )
+
         if new_mode == "active":
-            final_turns, final_context = append_and_format_dialogue(
-                active_turns if pass_mode is not None else [],
-                new_user_text=user_text if pass_mode is None else None,
-                bot_response=response,
-            )
             saved_complaint = stored_complaint or (user_text if is_new_complaint else None)
             await state.set_state(ScreeningStates.in_progress)
             await state.update_data(
                 screening_mode="active",
                 screening_turns=final_turns,
                 screening_history=final_context,
+                dialogue_turns=final_turns,
                 original_complaint=saved_complaint,
+                has_introduced=True,
+                conversation_active=True,
+                last_interaction_ts=now_ts,
+                last_time_of_day=time_id,
             )
         else:
-            # Загальне питання або червоний прапор — очищаємо стан
-            await state.clear()
+            # Загальне питання або червоний прапор — зберігаємо історію діалогу та стан сесії
+            await state.set_state(None)
+            await state.update_data(
+                screening_mode=new_mode,
+                screening_turns=[],
+                screening_history=None,
+                dialogue_turns=final_turns,
+                original_complaint=None,
+                has_introduced=True,
+                conversation_active=True,
+                last_interaction_ts=now_ts,
+                last_time_of_day=time_id,
+            )
 
         # Підбираємо найбільш відповідний за темою та емоцією стікер на основі запиту та сформованої відповіді
         accompany_sticker = None

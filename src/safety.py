@@ -6,6 +6,8 @@
 """
 
 # Standard
+from datetime import datetime
+from zoneinfo import ZoneInfo
 import hashlib
 import re
 import unicodedata
@@ -204,4 +206,55 @@ def sanitize_ai_response_text(text: str) -> str:
         text = re.sub(rf"I(?={cyr})", "І", text)
 
     return text
+
+
+def get_kyiv_time_of_day(now: datetime | None = None) -> tuple[str, str]:
+    """Повертає ідентифікатор часу доби та відповідне привітання за київським часом.
+
+    Повертає:
+        (time_id, greeting_phrase):
+        'morning': 'Доброго ранку! ☀️' (05:00 - 11:59)
+        'day':     'Доброго дня! 🌿'    (12:00 - 17:59)
+        'evening': 'Доброго вечора! ✨' (18:00 - 22:59)
+        'night':   'Доброї ночі! 🌙'    (23:00 - 04:59)
+    """
+    if now is None:
+        try:
+            now = datetime.now(ZoneInfo("Europe/Kyiv"))
+        except Exception:
+            now = datetime.now()
+    hour = now.hour
+    if 5 <= hour < 12:
+        return "morning", "Доброго ранку! ☀️"
+    elif 12 <= hour < 18:
+        return "day", "Доброго дня! 🌿"
+    elif 18 <= hour < 23:
+        return "evening", "Доброго вечора! ✨"
+    else:
+        return "night", "Доброї ночі! 🌙"
+
+
+_REDUNDANT_GREETING_PREFIX_RE = re.compile(
+    r"^(?:\s*(?:"
+    r"привіт(?:ік)?|вітаю|доброго\s+(?:ранку|дня|вечора)|добрий\s+(?:ранок|день|вечір)|доброї\s+ночі|hello|hi"
+    r")[!., \-—–~*]*"
+    r"[\U00010000-\U0010ffff\u2600-\u26ff\u2700-\u27bf\s]*"
+    r"(?:(?:я\s*[-—–]?\s*арома|мене\s+звати\s+арома|я\s+(?:твоя\s+)?помічниця\s+наталії(?:\s+котелянської)?)[^.!?\n]*[.!?\n]+\s*)?"
+    r")+\s*",
+    re.IGNORECASE,
+)
+
+_REDUNDANT_INTRO_STANDALONE_RE = re.compile(
+    r"^(?:\s*(?:я\s*[-—–]?\s*арома|мене\s+звати\s+арома|я\s+(?:твоя\s+)?помічниця\s+наталії(?:\s+котелянської)?)[^.!?\n]*[.!?\n]+\s*)",
+    re.IGNORECASE,
+)
+
+
+def strip_redundant_greetings(text: str) -> str:
+    """Видаляє повторні привітання та самопрезентації на початку тексту у триваючому діалозі."""
+    if not text:
+        return text or ""
+    res = _REDUNDANT_GREETING_PREFIX_RE.sub("", text)
+    res = _REDUNDANT_INTRO_STANDALONE_RE.sub("", res)
+    return res if res.strip() else text
 

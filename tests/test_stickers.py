@@ -13,6 +13,8 @@ from src.stickers import (
     is_short_question,
     get_random_sticker,
     classify_casual_interaction,
+    is_conversation_closer,
+    get_closer_reply,
 )
 import src.stickers as stickers_mod
 
@@ -34,10 +36,58 @@ class TestStickersModule:
         assert is_gratitude(text) is True
 
     @pytest.mark.parametrize("text", [
-        "ок", "добре", "супер", "клас", "круто", "чудово", "👍", "❤️"
+        "ок", "добре", "супер", "клас", "круто", "чудово", "👍", "❤️",
+        "окай", "оки", "ок-ок", "хорошо", "ладно", "гаразд", "понятно", "ясно", "зрозуміло",
     ])
     def test_is_reaction(self, text: str):
         assert is_reaction(text) is True
+
+    @pytest.mark.parametrize("text,expected_type", [
+        ("спасибо", "gratitude"),
+        ("дякую", "gratitude"),
+        ("дуже дякую", "gratitude"),
+        ("дяка!", "gratitude"),
+        ("thank you", "gratitude"),
+        ("окай", "reaction"),
+        ("хорошо", "reaction"),
+        ("добре", "reaction"),
+        ("ок", "reaction"),
+        ("зрозуміло", "reaction"),
+        ("добре, дякую", "gratitude"),
+        ("окай, спасибі!", "gratitude"),
+        ("ок, зрозуміло", "reaction"),
+        ("бувай", "farewell"),
+        ("до побачення!", "farewell"),
+        ("пока", "farewell"),
+        ("на добраніч", "farewell"),
+    ])
+    def test_is_conversation_closer_positive(self, text: str, expected_type: str):
+        is_closer, closer_type = is_conversation_closer(text)
+        assert is_closer is True
+        assert closer_type == expected_type
+
+    @pytest.mark.parametrize("text", [
+        "спасибо, а как принимать?",
+        "хорошо, а можно детям?",
+        "окай, а сколько капель надо?",
+        "добре, а що щодо м'яти?",
+        "що таке лаванда?",
+        "у мене болить голова",
+        "підкажи олію для сну",
+    ])
+    def test_is_conversation_closer_negative_with_questions(self, text: str):
+        is_closer, _ = is_conversation_closer(text)
+        assert is_closer is False
+
+    def test_get_closer_reply(self):
+        reply_farewell, emojis_fw = get_closer_reply("farewell", "evening")
+        assert "вечора" in reply_farewell
+        assert "👋" in emojis_fw
+
+        reply_grat, emojis_gr = get_closer_reply("gratitude", "day")
+        assert "допомогти" in reply_grat or "Будь ласка" in reply_grat or "здоров'я" in reply_grat
+        assert "🙏" in emojis_gr
+
 
     @pytest.mark.parametrize("text", [
         "бувай", "до побачення", "папа", "пока", "до зустрічі"

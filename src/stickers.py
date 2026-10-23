@@ -515,12 +515,12 @@ _RE_GRATITUDE = re.compile(
 )
 
 _RE_REACTION = re.compile(
-    r"^(ок|окей|добре|зрозумів|зрозуміло|поняв|понятно|супер|клас|класно|круто|чудово|отлично|кайф|ого|вау|цікаво|ясно|гарно|\+|👍|👌|❤️|🔥)$",
+    r"^(ок|окей|окай|оки|ок-ок|добре|хорошо|ладно|гаразд|домовились|домовилися|зрозумів|зрозуміло|зрозуміла|поняв|понятно|поняла|ясно|супер|клас|класно|круто|чудово|отлично|кайф|ого|вау|цікаво|гарно|\+|👍|👌|❤️|🔥)$",
     re.IGNORECASE,
 )
 
 _RE_FAREWELL = re.compile(
-    r"^(бувай|до\s+побачення|папа|на\s+добраніч|до\s+зустрічі|пока|до\s+свидания|спокойной\s+ночи|до\s+скорого|bye|goodbye)\b",
+    r"^(бувай|до\s+побачення|папа|на\s+добраніч|до\s+зустрічі|пока|до\s+свидания|спокойной\s+ночи|спокійної\s+ночі|до\s+скорого|bye|goodbye)\b",
     re.IGNORECASE,
 )
 
@@ -556,6 +556,91 @@ def is_farewell(text: str) -> bool:
     cleaned = text.strip()
     words = cleaned.split()
     return len(words) <= 4 and bool(_RE_FAREWELL.search(cleaned))
+
+
+def is_conversation_closer(text: str) -> tuple[bool, str]:
+    """Визначає, чи є репліка завершенням розмови (подяка, згода/ок, прощання)
+    БЕЗ додаткових питань чи нової теми.
+
+    Повертає:
+        (is_closer, closer_type) де closer_type: 'farewell' | 'gratitude' | 'reaction' | ''
+    """
+    cleaned = (text or "").strip()
+    if not cleaned:
+        return False, ""
+
+    # Будь-який знак питання означає нове запитання / продовження бесіди
+    if "?" in cleaned:
+        return False, ""
+
+    words = cleaned.split()
+    if len(words) > 8:
+        return False, ""
+
+    lower = cleaned.lower()
+
+    # Перевірка на питальні слова чи спонукальні запити
+    for starter in _QUESTION_STARTERS:
+        if lower.startswith(starter) or f" {starter} " in lower:
+            return False, ""
+
+    norm = re.sub(r"[!.,)?(]+$", "", lower).strip()
+
+    # 1. Прощання
+    if is_farewell(cleaned) or bool(_RE_FAREWELL.search(cleaned)):
+        return True, "farewell"
+
+    # 2. Подяка
+    if is_gratitude(cleaned) or bool(_RE_GRATITUDE.search(cleaned)):
+        return True, "gratitude"
+
+    # 3. Реакція згоди/схвалення (ок, окай, добре, зрозуміло тощо)
+    if is_reaction(norm) or bool(_RE_REACTION.match(norm)):
+        return True, "reaction"
+
+    # 4. Складові фрази подяки/згоди (наприклад: "добре, дякую", "ок, зрозуміло", "окай, спасибі")
+    sub_words = [w.strip("!.,;:?()[]{}") for w in lower.split()]
+    sub_words = [
+        w for w in sub_words
+        if w and w not in ("все", "всі", "тобі", "вам", "дуже", "велике", "гарного", "дня", "вечора", "щиро")
+    ]
+    if sub_words and all(is_gratitude(w) or is_reaction(w) or is_farewell(w) for w in sub_words):
+        if any(is_farewell(w) for w in sub_words):
+            return True, "farewell"
+        if any(is_gratitude(w) for w in sub_words):
+            return True, "gratitude"
+        return True, "reaction"
+
+    return False, ""
+
+
+def get_closer_reply(closer_type: str, time_of_day: str = "day") -> tuple[str, list[str]]:
+    """Повертає теплий текст завершення розмови та бажані емодзі для стікера."""
+    if closer_type == "farewell":
+        if time_of_day == "morning":
+            reply = "До зустрічі! 🌸 Чудового та натхненного ранку! Якщо знадобиться порада — я завжди тут 🌿"
+        elif time_of_day == "evening":
+            reply = "До зустрічі! 🌸 Затишного вечора та гарного відпочинку! Якщо виникнуть питання — звертайся 🌿"
+        elif time_of_day == "night":
+            reply = "На добраніч і солодких снів! 🌙 Якщо знадобиться допомога — я завжди на зв'язку 🌸"
+        else:
+            reply = "Бувай! 🌸 Гарного та ароматного дня! Якщо знадобиться порада — я завжди тут 🌿"
+        return reply, ["👋", "😊", "🌿"]
+
+    if closer_type == "gratitude":
+        replies = [
+            "Рада була допомогти! 🌸 Якщо виникнуть ще запитання — звертайся, я завжди поруч 🌿",
+            "Будь ласка! 🌿 Якщо знадобиться ще порада чи підбір олій — завжди рада підказати 💛",
+            "На здоров'я! 🌸 Звертайся у будь-який час, завжди з радістю допоможу ✨",
+        ]
+        return random.choice(replies), ["🙏", "😊", "❤️", "🌿"]
+
+    # reaction (ок, добре, окай, зрозуміло тощо)
+    replies = [
+        "Домовилися! 🌸 Якщо знадобиться щось підказати чи підібрати олію — пиши, я завжди на зв'язку 🌿",
+        "Рада була підказати! 🌿 Якщо виникнуть нові питання — завжди тут для тебе 🌸",
+    ]
+    return random.choice(replies), ["👍", "👌", "😊", "🌿"]
 
 
 def is_short_question(text: str) -> bool:
@@ -612,6 +697,8 @@ def classify_casual_interaction(
     text: str,
     is_complaint: bool = False,
     is_red_flag: bool = False,
+    has_introduced: bool = True,
+    time_of_day_greeting: Optional[str] = None,
 ) -> tuple[bool, Optional[str], Optional[list[str]]]:
     """Визначає, чи є повідомлення повсякденною реплікою (привітання, подяка, реакція),
     на яку бот може відповісти стікером замість важкого звернення до LLM.
@@ -625,37 +712,26 @@ def classify_casual_interaction(
     if not _cached_file_ids:
         return False, None, None
 
-    # Перевірка ймовірності для повсякденних повідомлень
-    if random.random() >= PROB_CASUAL:
-        return False, None, None
-
     cleaned = text.strip()
 
-    if is_gratitude(cleaned):
-        replies = [
-            "Рада допомогти! 🌿 Звертайся, якщо будуть ще запитання.",
-            "Будь ласка! Завжди рада підказати про олії doTERRA 💚",
-            "На здоров'я! 🌸 Якщо знадобиться ще порада — пиши!",
-        ]
-        return True, random.choice(replies), ["🙏", "😊", "☺️", "❤️"]
+    # Перевірка на завершальну репліку розмови (подяка, згода, прощання)
+    is_closer, closer_type = is_conversation_closer(cleaned)
+    if is_closer:
+        reply, emojis = get_closer_reply(closer_type)
+        return True, reply, emojis
 
     if is_greeting(cleaned):
-        replies = [
-            "Привіт! 🌿 Мене звати Арома, я помічниця Наталії Котелянської у боті Aroma Assistant. Чим можу допомогти тобі сьогодні?",
-            "Вітаю! 🌸 Я Арома, затишна помічниця Наталії. Запитуй будь-що про ефірні олії та продукти doTERRA!",
-            "Привіт! 💛 Я Арома, помічниця Наталії Котелянської. З радістю підкажу про олії та продукцію doTERRA ✨",
-        ]
-        return True, random.choice(replies), ["👋", "😊", "☺️", "🌿"]
-
-    if is_farewell(cleaned):
-        replies = [
-            "Бувай! Гарного та ароматного дня! 🌿",
-            "До зустрічі! Нехай день буде спокійним та затишним 🌸",
-        ]
-        return True, random.choice(replies), ["👋", "😊", "☺️"]
-
-    if is_reaction(cleaned):
-        return True, None, ["👍", "👌", "🤟", "😊"]
+        prefix = f"{time_of_day_greeting} " if time_of_day_greeting else "Привіт! 🌸 "
+        if not has_introduced:
+            reply = f"{prefix}Мене звати Арома, я помічниця Наталії Котелянської у боті Aroma Assistant. Чим можу допомогти тобі сьогодні?"
+        else:
+            replies = [
+                f"{prefix}Рада тебе бачити! Чим можу допомогти тобі з оліями doTERRA?",
+                f"{prefix}Рада знову поспілкуватися! Запитуй будь-що про ефірні олії та продукти doTERRA ✨",
+                f"{prefix}Завжди рада підказати про продукцію та олії Наталії 💛",
+            ]
+            reply = random.choice(replies)
+        return True, reply, ["👋", "😊", "☺️", "🌿"]
 
     return False, None, None
 
