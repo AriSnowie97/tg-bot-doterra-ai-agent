@@ -69,6 +69,9 @@ EN_EMPTY_CONTEXT_FALLBACK: str = (
     "🩺 For health symptoms or medical treatment, always consult a qualified healthcare professional."
 )
 
+import json
+from pathlib import Path
+
 # Маркери транслітерації української/слов'янської мови латинкою
 UK_TRANSLIT_WORDS: set[str] = {
     "dobry", "den", "dobryj", "dobriy", "dobrogo", "dnya", "dnia", "ranok", "vechir",
@@ -81,6 +84,109 @@ UK_TRANSLIT_WORDS: set[str] = {
     "privetik", "zdravstvuyte", "zdravstvuy", "nuzhno", "potribno", "shchos",
 }
 
+# Популярні одиночні олії та фірмові суміші doTERRA латиницею
+COMMON_OILS: set[str] = {
+    "on guard", "deep blue", "tea tree", "lavender", "peppermint", "lemon", "frankincense",
+    "oregano", "zengest", "digestzen", "breathe", "air x", "air-x", "balance", "serenity",
+    "citrus bliss", "copaiba", "wild orange", "supermint", "metapwr", "ddr prime", "intune",
+    "in tune", "clary calm", "clarycalm", "pasttense", "past tense", "aromatouch", "purify",
+    "melaleuca", "eucalyptus", "rosemary", "ylang ylang", "roman chamomile", "geranium",
+    "bergamot", "grapefruit", "lime", "tangerine", "spearmint", "cardamom", "coriander",
+    "cypress", "cedarwood", "juniper berry", "black pepper", "pink pepper", "turmeric",
+    "ginger", "clove", "cinnamon", "cinnamon bark", "lemongrass", "marjoram", "patchouli",
+    "vetiver", "helichrysum", "melissa", "myrrh", "sandalwood", "arborvitae", "douglas fir",
+    "siberian fir", "white fir", "wintergreen", "basil", "fennel", "thyme", "cassia",
+    "salubelle", "immortelle", "hd clear", "correct x", "correct-x", "abode", "adaptiv",
+    "adaptive", "northern escape", "midnight forest", "forest breeze", "hygge", "holiday peace",
+    "holiday joy", "citrus bloom", "harvest spice", "cheer", "passion", "motivate", "forgive",
+    "console", "peace", "hope", "brave", "calmer", "rescuer", "steady", "stronger", "thinker",
+    "tamer", "petal", "laluz", "volo", "roam", "pilot", "dawn", "bubble", "pebble",
+}
+
+
+def _load_latin_product_names() -> set[str]:
+    """Завантажує латинські назви продуктів та сумішей із бази знань."""
+    names = set(COMMON_OILS)
+    try:
+        content_dir = Path(__file__).resolve().parent.parent / "content" / "products"
+        if content_dir.is_dir():
+            for p in content_dir.glob("*.json"):
+                try:
+                    with open(p, "r", encoding="utf-8") as f:
+                        d = json.load(f)
+                        if "name_en" in d:
+                            names.add(re.sub(r"[^a-zA-Z0-9\s]", " ", d["name_en"]).lower())
+                        if "slug" in d:
+                            names.add(d["slug"].replace("-", " ").lower())
+                        for fmt in d.get("formats", []):
+                            fn = fmt.get("name")
+                            if fn:
+                                names.add(re.sub(r"[^a-zA-Z0-9\s]", " ", fn).lower())
+                except Exception:
+                    pass
+            for p in content_dir.glob("*.md"):
+                names.add(p.stem.replace("-", " ").replace("_", " ").lower())
+    except Exception:
+        pass
+    return names
+
+
+LATIN_PRODUCT_NAMES: set[str] = _load_latin_product_names()
+
+
+def is_product_name_query(user_text: str) -> bool:
+    """Визначає, чи є запит користувача назвою продукту/суміші doTERRA латиницею
+    (наприклад: 'Doterra On Guard', 'On Guard', 'Tea tree', 'Lavender oil', 'Deep Blue Rub').
+    Запити такого типу від українських користувачів повинні отримувати відповідь українською мовою.
+    """
+    if not user_text:
+        return False
+    if "?" in user_text:
+        return False
+
+    clean = re.sub(r"[^a-zA-Z0-9\s]", " ", user_text).lower()
+    words = clean.split()
+    if not words or len(words) > 6:
+        return False
+
+    # Відкидаємо префікс бренду ("doterra", "do terra")
+    if words and words[0] in ("doterra", "dōterra", "do"):
+        if words[0] == "do" and len(words) > 1 and words[1] == "terra":
+            words = words[2:]
+        elif words[0] in ("doterra", "dōterra"):
+            words = words[1:]
+    if not words:
+        return True
+
+    # Відкидаємо суфікси форм випуску продукту
+    suffix_set = {
+        "oil", "oils", "touch", "rub", "blend", "softgels", "capsules",
+        "drops", "diffuser", "roller", "mist", "spray", "tablet", "tablets",
+        "cleaner", "beadlets", "complex", "wash", "rinse", "toothpaste",
+    }
+    while words and (words[-1] in suffix_set or (words[-1] == "on" and len(words) > 1 and words[-2] == "roll")):
+        if words[-1] == "on" and len(words) > 1 and words[-2] == "roll":
+            words = words[:-2]
+        else:
+            words = words[:-1]
+
+    if not words:
+        return True
+
+    phrase = " ".join(words)
+    if phrase in LATIN_PRODUCT_NAMES:
+        return True
+
+    for p in LATIN_PRODUCT_NAMES:
+        if phrase == p:
+            return True
+
+    if len(words) <= 3 and any(w in COMMON_OILS for w in words):
+        return True
+
+    return False
+
+
 # Поширені англійські слова та граматичні маркери
 EN_WORDS: set[str] = {
     "hi", "hello", "hey", "good", "morning", "afternoon", "evening",
@@ -89,15 +195,16 @@ EN_WORDS: set[str] = {
     "can", "could", "would", "should", "will", "shall", "may", "might", "must",
     "do", "does", "did", "have", "has", "had",
     "for", "the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "with", "about",
-    "oil", "oils", "help", "safe", "use", "using", "usage", "dose", "dosage",
+    "help", "safe", "use", "using", "usage", "dose", "dosage",
     "tell", "please", "me", "you", "your", "my", "i", "we", "they", "it",
-    "this", "that", "these", "those", "there", "essential", "diffuse", "drop", "drops",
+    "this", "that", "these", "those", "there", "essential", "diffuse",
     "headache", "sleep", "stress", "anxiety", "pain", "skin", "stomach",
+    "thanks", "thank", "thx", "bye", "goodbye", "welcome",
 }
 
 
 def detect_is_english(user_text: str) -> bool:
-    """Визначає, чи є запит користувача англомовним (не кирилиця і не транслітерація)."""
+    """Визначає, чи є запит користувача англомовним (не кирилиця, не транслітерація і не назва продукту)."""
     if not user_text:
         return False
     # Команди бота ніколи не вважаються англійським текстом
@@ -113,6 +220,10 @@ def detect_is_english(user_text: str) -> bool:
 
     # Транслітерація української/слов'янських привітань
     if set(latin_words) & UK_TRANSLIT_WORDS:
+        return False
+
+    # Якщо український користувач просто назвав продукт латиницею (наприклад, "Doterra On Guard", "Lavender oil")
+    if is_product_name_query(user_text):
         return False
 
     # Перевірка на англійські слова (запит англійською повинен містити визнані англійські слова)

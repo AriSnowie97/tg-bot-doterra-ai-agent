@@ -644,8 +644,40 @@ def is_conversation_closer(text: str) -> tuple[bool, str]:
     return False, ""
 
 
-def get_closer_reply(closer_type: str, time_of_day: str = "day") -> tuple[str, list[str]]:
+def get_closer_reply(
+    closer_type: str,
+    time_of_day: str = "day",
+    is_english: bool = False,
+) -> tuple[str, list[str]]:
     """Повертає теплий текст завершення розмови та бажані емодзі для стікера."""
+    if is_english:
+        if closer_type == "farewell":
+            if time_of_day == "morning":
+                reply = "Goodbye! 🌸 Have a wonderful and inspired morning! If you need advice, I'm always here 🌿"
+                return reply, ["👋", "😊", "🌿"]
+            elif time_of_day in ("night", "evening"):
+                reply = "Good night and sweet dreams! 🌙 If you need any advice, I'm always here 🌸"
+                return reply, ["🌙", "✨", "🙏", "👋"]
+            else:
+                reply = "Goodbye! 🌸 Have a wonderful and aromatic day! If you need advice, I'm always here 🌿"
+                return reply, ["👋", "😊", "🌿"]
+
+        if closer_type == "gratitude":
+            replies = [
+                "You're welcome! 🌸 Feel free to reach out anytime, always happy to help ✨",
+                "Happy to help! 🌸 If you have more questions about doTERRA oils, I'm always here 🌿",
+                "You're welcome! 🌿 If you ever need advice or oil selection, always glad to help 💛",
+            ]
+            return random.choice(replies), ["🙏", "😊", "❤️", "🌿"]
+
+        # reaction (ok, got it, etc.)
+        replies = [
+            "Sounds good! 🌸 If you ever need help or advice with doTERRA oils, just let me know 🌿",
+            "Glad to help! 🌿 If new questions arise, I'm always here for you 🌸",
+        ]
+        return random.choice(replies), ["👍", "👌", "😊", "🌿"]
+
+    # Ukrainian (за замовчуванням)
     if closer_type == "farewell":
         if time_of_day == "morning":
             reply = "До зустрічі! 🌸 Чудового та натхненного ранку! Якщо знадобиться порада — я завжди тут 🌿"
@@ -656,7 +688,6 @@ def get_closer_reply(closer_type: str, time_of_day: str = "day") -> tuple[str, l
         else:
             reply = "Бувай! 🌸 Гарного та ароматного дня! Якщо знадобиться порада — я завжди тут 🌿"
             return reply, ["👋", "😊", "🌿"]
-
 
     if closer_type == "gratitude":
         replies = [
@@ -748,10 +779,21 @@ def classify_casual_interaction(
     # Перевірка на завершальну репліку розмови (подяка, згода, прощання)
     is_closer, closer_type = is_conversation_closer(cleaned)
     if is_closer:
-        reply, emojis = get_closer_reply(closer_type)
+        from src.agent.service import detect_is_english
+        is_en = detect_is_english(cleaned)
+        reply, emojis = get_closer_reply(closer_type, is_english=is_en)
         return True, reply, emojis
 
     if is_greeting(cleaned):
+        from src.agent.service import detect_is_english
+        is_en = detect_is_english(cleaned)
+        if is_en:
+            if not has_introduced:
+                reply = "Hello! 🌸 I am Aroma, Natalia Kotelianska's assistant in Aroma Assistant. How can I help you today with doTERRA oils?"
+            else:
+                reply = "Hello! 🌸 Glad to see you! How can I help you today with doTERRA oils?"
+            return True, reply, ["👋", "😊", "☺️", "🌿"]
+
         prefix = f"{time_of_day_greeting} " if time_of_day_greeting else "Привіт! 🌸 "
         if not has_introduced:
             reply = f"{prefix}Мене звати Арома, я помічниця Наталії Котелянської у боті Aroma Assistant. Чим можу допомогти тобі сьогодні?"

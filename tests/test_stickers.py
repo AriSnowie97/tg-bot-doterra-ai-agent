@@ -58,6 +58,9 @@ class TestStickersModule:
         ("дуже дякую", "gratitude"),
         ("дяка!", "gratitude"),
         ("thank you", "gratitude"),
+        ("Thanks!", "gratitude"),
+        ("Thanks", "gratitude"),
+        ("thx", "gratitude"),
         ("окай", "reaction"),
         ("хорошо", "reaction"),
         ("добре", "reaction"),
@@ -70,6 +73,8 @@ class TestStickersModule:
         ("до побачення!", "farewell"),
         ("пока", "farewell"),
         ("на добраніч", "farewell"),
+        ("Bye", "farewell"),
+        ("goodbye", "farewell"),
     ])
     def test_is_conversation_closer_positive(self, text: str, expected_type: str):
         is_closer, closer_type = is_conversation_closer(text)
@@ -106,6 +111,17 @@ class TestStickersModule:
         reply_grat, emojis_gr = get_closer_reply("gratitude", "day")
         assert "допомогти" in reply_grat or "Будь ласка" in reply_grat or "здоров'я" in reply_grat
         assert "🙏" in emojis_gr
+
+        # Англійські відповіді на завершення розмови
+        reply_en_grat, emojis_en_gr = get_closer_reply("gratitude", is_english=True)
+        assert any(w in reply_en_grat.lower() for w in ("welcome", "help", "glad"))
+        assert "🙏" in emojis_en_gr or "😊" in emojis_en_gr
+
+        reply_en_fw, _ = get_closer_reply("farewell", "night", is_english=True)
+        assert "night" in reply_en_fw.lower()
+
+        reply_en_react, _ = get_closer_reply("reaction", is_english=True)
+        assert any(w in reply_en_react.lower() for w in ("sounds good", "glad to help"))
 
 
 

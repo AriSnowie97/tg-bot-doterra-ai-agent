@@ -13,7 +13,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, WebAppInfo, MenuButtonWebApp, BotCommand
 from aiogram.enums import ChatAction, ChatType, MessageEntityType
 # Local
-from src.agent import generate_response
+from src.agent import generate_response, detect_is_english
 from src.publisher import publish_channel_post
 from src.scheduler import setup_scheduler
 from src.storage.feedback import ensure_feedback_table, save_vote, get_vote_counts
@@ -691,17 +691,26 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
     # Завершує діалог, якщо немає додаткових запитань
     is_closer, closer_type = is_conversation_closer(user_text)
     if is_closer and not is_new_complaint and not is_new_red_flag:
+        is_en = detect_is_english(user_text)
         # Якщо діалог вже був завершений і користувач надіслав ще одну реакцію (напр. 👍 після ок),
         # відповідаємо дуже коротко без дублювання всієї фрази
         if not conversation_active and (now_ts - (last_interaction_ts or 0) < 300):
-            if closer_type == "farewell":
-                reply_text = "До зустрічі! 🌸"
-            elif closer_type == "gratitude":
-                reply_text = "Завжди рада допомогти! 🌸"
+            if is_en:
+                if closer_type == "farewell":
+                    reply_text = "See you soon! 🌸"
+                elif closer_type == "gratitude":
+                    reply_text = "Always glad to help! 🌸"
+                else:
+                    reply_text = "Always here for you! 🌿🌸"
             else:
-                reply_text = "Завжди на зв'язку! 🌿🌸"
+                if closer_type == "farewell":
+                    reply_text = "До зустрічі! 🌸"
+                elif closer_type == "gratitude":
+                    reply_text = "Завжди рада допомогти! 🌸"
+                else:
+                    reply_text = "Завжди на зв'язку! 🌿🌸"
         else:
-            reply_text, _ = get_closer_reply(closer_type, time_of_day=time_id)
+            reply_text, _ = get_closer_reply(closer_type, time_of_day=time_id, is_english=is_en)
 
         await message.reply(reply_text)
         await state.set_state(None)
@@ -717,16 +726,27 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
         )
         return
 
-    # ── 2. Перевіряємо, чи це коротке привітання (привіт, добрий день) ─────────
+    # ── 2. Перевіряємо, чи це коротке привітання (привіт, добрий день, hello, hi) ───
     if is_greeting(user_text) and not is_new_complaint and not is_new_red_flag:
-        if not has_introduced:
-            reply_text = (
-                f"{time_greeting} Мене звати Арома 🌸, я помічниця Наталії Котелянської у боті Aroma Assistant. "
-                "Чим можу допомогти тобі сьогодні з оліями doTERRA?"
-            )
-            has_introduced = True
+        is_en = detect_is_english(user_text)
+        if is_en:
+            if not has_introduced:
+                reply_text = (
+                    "Hello! 🌸 I am Aroma, Natalia Kotelianska's assistant in Aroma Assistant. "
+                    "How can I help you today with doTERRA oils?"
+                )
+                has_introduced = True
+            else:
+                reply_text = "Hello! 🌸 Glad to see you! How can I help you today with doTERRA oils?"
         else:
-            reply_text = f"{time_greeting} Рада тебе бачити! 🌸 Чим можу допомогти тобі сьогодні з оліями doTERRA?"
+            if not has_introduced:
+                reply_text = (
+                    f"{time_greeting} Мене звати Арома 🌸, я помічниця Наталії Котелянської у боті Aroma Assistant. "
+                    "Чим можу допомогти тобі сьогодні з оліями doTERRA?"
+                )
+                has_introduced = True
+            else:
+                reply_text = f"{time_greeting} Рада тебе бачити! 🌸 Чим можу допомогти тобі сьогодні з оліями doTERRA?"
 
         await message.reply(reply_text)
         await state.set_state(None)
