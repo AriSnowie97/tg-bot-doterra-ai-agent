@@ -112,3 +112,56 @@ class TestSpecialistScreening:
     ])
     def test_detects_consultation_and_sales_intent(self, query: str):
         assert is_consultation_query(query) is True
+
+    @pytest.mark.parametrize("query,expected", [
+        ("Хто ти?", True),
+        ("Як тебе звати?", True),
+        ("Розкажи про себе", True),
+        ("Яке твоє улюблене масло?", True),
+        ("Яка твоя улюблена олія?", True),
+        ("Хто така Аріна?", True),
+        ("Ти знаєш розробницю?", True),
+        ("Лаванда", False),
+        ("Як приймати лимон?", False),
+    ])
+    def test_is_persona_query(self, query: str, expected: bool):
+        from src.agent.specialist import is_persona_query
+        assert is_persona_query(query) is expected
+
+    @pytest.mark.parametrize("user_query,response_text,screening_mode,context,expected", [
+        # 1. Знайомство / персона помічниці -> False
+        ("Хто ти?", "Привіт! Мене звати Арома 🌸 Я затишна помічниця Наталії Котелянської у нашому боті Aroma Assistant.", "inactive", None, False),
+        ("Яке твоє улюблене масло?", "Моє найулюбленіше масло — це Лайм 🍋‍🟩! Обожнюю крапельку у воді для бадьорості, мій фірмовий вигук: «Ні, я не буду це пити без Lime!» 🍋‍🟩", "inactive", None, False),
+        ("Хто така Аріна?", "Аріна — розробниця системи та співавторка нашого бота 💻✨ Вона й дала мені моє чудове ім'я Арома!", "inactive", None, False),
+        
+        # 2. Повсякденна коротка розмова / привітання / подяка -> False
+        ("Привіт!", "Привіт! Рада тебе бачити 🌿 Чим можу допомогти?", "inactive", None, False),
+        ("Дякую за відповідь!", "Будь ласка! Завжди рада допомогти 💛", "inactive", None, False),
+        ("Бувай!", "На все добре! Затишного дня ✨", "inactive", None, False),
+        ("Що ти вмієш?", "Я можу розповісти про продукцію doTERRA, допомогти підібрати ефірні олії та відповісти на питання про них 🌸", "inactive", None, False),
+
+        # 3. Суто контакти / запис на консультацію без інструкцій застосування -> False
+        ("Скільки коштує консультація?", "Для персональної консультації звертайся до Наталії Котелянської:\n💬 Telegram: https://t.me/nkotelianskablog", "inactive", None, False),
+
+        # 4. Червоні прапори (вагітність, ліки тощо) -> True
+        ("Я вагітна, що порадиш?", "У вашому запиті є ознаки протипоказань. Я не маю права підбирати олії в таких випадках...", "red_flag", None, True),
+        ("Чи можна дитині 2 роки м'яту?", "Для маленьких дітей м'ята перцева протипоказана...", "inactive", None, True),
+
+        # 5. Скарги на здоров'я / скринінг стану -> True
+        ("Болить голова, не знаю що робити", "Розумію, головний біль може дуже виснажувати. Уточни, будь ласка, як давно він триває?", "active", None, True),
+        ("Не можу спати вже тиждень", "Безсоння — поширена проблема. Чи є хронічні стани або вагітність?", "active", None, True),
+
+        # 6. Застосування, дозування, способи вживання -> True
+        ("Як приймати лимон?", "Олію лимону doTERRA можна приймати всередину: 1-2 краплі на склянку теплої води або у рослинній капсулі.", "inactive", None, True),
+        ("Скільки крапель капати в дифузор?", "Для дифузора зазвичай достатньо 3–5 крапель ефірної олії на стандартну кімнату.", "inactive", None, True),
+        ("Розкажи про чайне дерево", "Чайне дерево doTERRA має антисептичні властивості. Наносити на шкіру слід точково, розводячи базовою олією.", "inactive", None, True),
+        ("Як наносити Deep Blue?", "Наносити крем або суміш Deep Blue на м'язи та суглоби масажними рухами після навантажень.", "inactive", None, True),
+    ])
+    def test_should_include_medical_disclaimer(self, user_query, response_text, screening_mode, context, expected):
+        from src.agent.specialist import should_include_medical_disclaimer
+        assert should_include_medical_disclaimer(
+            response_text=response_text,
+            user_query=user_query,
+            screening_mode=screening_mode,
+            conversation_context=context,
+        ) is expected

@@ -30,6 +30,8 @@ from .specialist import (
     MEDICAL_DISCLAIMER,
     EN_MEDICAL_DISCLAIMER,
     get_disclaimer_for_text,
+    should_include_medical_disclaimer,
+    is_persona_query,
 )
 from ..storage import search_chunks
 from src.LLMProvider import (
@@ -109,16 +111,7 @@ def detect_is_english(user_text: str) -> bool:
     if set(latin_words) & EN_WORDS or len(latin_words) >= 4:
         return True
 
-def is_persona_query(text: str) -> bool:
-    """Визначає, чи є запит питанням про саму помічницю, її ім'я, образ, розробників або улюблені олії."""
-    low = text.lower()
-    return bool(re.search(
-        r"\b(хто\s+ти|кто\s+ты|як\s+тебе\s+звати|как\s+тебя\s+зовут|хто\s+ви|кто\s+вы|"
-        r"розкажи\s+про\s+себе|расскажи\s+о\s+себе|який\s+твій\s+образ|як\s+ти\s+виглядаєш|как\s+ты\s+выглядишь|"
-        r"(най)?улюблен\w*\s+(масл\w+|ол\w+|аромат\w*)|(най)?любим\w*\s+(масл\w+|аромат\w*)|favorite\s+oil|"
-        r"аріна|арину|арина|разработчик\w*|розробниц\w*)\b",
-        low
-    ))
+
 
 
 # ---------------------------------------------------------------------------
@@ -304,15 +297,32 @@ async def generate_response(
     if any(marker in text for marker in leakage_markers):
         raise RuntimeError(f"[agent] Виявлено витік промпту у відповіді моделі — пропускаємо")
 
-    # Додаємо дисклеймер хардкодом згідно з реальною мовою згенерованого тексту
-    disclaimer = get_disclaimer_for_text(text)
-    if (
-        MEDICAL_DISCLAIMER.strip() not in text
-        and EN_MEDICAL_DISCLAIMER.strip() not in text
-        and "медичною консультацією" not in text
-        and "medical advice" not in text.lower()
-    ):
-        text = text.rstrip() + disclaimer
+    # Визначаємо, чи потрібен медичний дисклеймер
+    needs_disclaimer = should_include_medical_disclaimer(
+        response_text=text,
+        user_query=user_text,
+        screening_mode=final_mode,
+        conversation_context=conversation_context,
+    )
+
+    if needs_disclaimer:
+        disclaimer = get_disclaimer_for_text(text)
+        if (
+            MEDICAL_DISCLAIMER.strip() not in text
+            and EN_MEDICAL_DISCLAIMER.strip() not in text
+            and "медичною консультацією" not in text
+            and "medical advice" not in text.lower()
+        ):
+            text = text.rstrip() + disclaimer
+    else:
+        # Якщо дисклеймер не потрібен (звичайний діалог, знайомство тощо),
+        # але випадково з'явився у відповіді моделі — делікатно прибираємо його
+        text = text.replace(MEDICAL_DISCLAIMER, "")
+        text = text.replace(EN_MEDICAL_DISCLAIMER, "")
+        disclaimer_lines_pattern = (
+            r"\n*(?:ℹ️|⚠️)?\s*(?:Ця інформація має ознайомлювальний характер|This information is for educational purposes).*"
+        )
+        text = re.sub(disclaimer_lines_pattern, "", text, flags=re.IGNORECASE).rstrip()
 
     print(f"[agent] Response len={len(text)} chars")
 
