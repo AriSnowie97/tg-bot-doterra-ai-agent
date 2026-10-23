@@ -2,9 +2,10 @@
 import os
 import asyncio
 import re
+from typing import Any
 # Special
 from dotenv import load_dotenv
-from aiogram import Bot, Dispatcher, F
+from aiogram import Bot, Dispatcher, F, BaseMiddleware
 from aiogram.filters import BaseFilter, Command, CommandObject
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.memory import MemoryStorage
@@ -56,8 +57,40 @@ class AdminFilter(BaseFilter):
     async def __call__(self, message: Message) -> bool:
         return bool(message.from_user) and message.from_user.id in ADMIN_IDS
 
+class OtherBotCommandFilterMiddleware(BaseMiddleware):
+    """Ігнорує будь-які команди, адресовані іншим ботам (/command@other_bot)."""
+
+    async def __call__(
+        self,
+        handler: Any,
+        event: Message,
+        data: dict[str, Any],
+    ) -> Any:
+        text = (event.text or event.caption or "").strip()
+        if text.startswith("/"):
+            first_token = text.split()[0]
+            if "@" in first_token:
+                target_bot = first_token.split("@", 1)[1].strip().lower()
+                my_username = (_BOT_USERNAME or "").lower()
+                if not my_username:
+                    bot_obj = data.get("bot") or event.bot
+                    if bot_obj:
+                        try:
+                            me = await bot_obj.get_me()
+                            my_username = (me.username or "").lower()
+                        except Exception:
+                            pass
+                if my_username and target_bot != my_username:
+                    # Команда адресована іншому боту в чаті — повністю ігноруємо
+                    return None
+
+        return await handler(event, data)
+
+
 # Creating a dispatcher
 dp = Dispatcher(storage=MemoryStorage())
+# Відсіюємо команди для інших ботів (/start@other_bot) у групах та чатах
+dp.message.outer_middleware(OtherBotCommandFilterMiddleware())
 # Ліміт частоти/довжини — лише для повідомлень, які бот реально обробить (адміни без ліміту).
 # Звичайні розмови в групі не зараховуються. _is_addressed визначена нижче — викликається пізно.
 dp.message.outer_middleware(
@@ -468,10 +501,18 @@ def _is_addressed(message: Message) -> bool:
     """Перевіряє, чи звернення адресоване боту.
 
     Повертає True якщо:
-    - Приватний чат (private) — завжди True.
+    - Приватний чат (private) — завжди True (якщо не адресовано іншому боту).
     - Група/супергрупа: повідомлення є Reply на повідомлення бота.
     - Група/супергрупа: у тексті є @mention бота.
     """
+    text_source = (message.text or message.caption or "").strip()
+    if text_source.startswith("/"):
+        first_token = text_source.split()[0]
+        if "@" in first_token:
+            target_bot = first_token.split("@", 1)[1].strip().lower()
+            if _BOT_USERNAME and target_bot != _BOT_USERNAME.lower():
+                return False
+
     chat_type = message.chat.type
 
     # Приватний чат — відповідаємо завжди
@@ -514,6 +555,14 @@ def _strip_mention(text: str, bot_username: str) -> str:
 @dp.message(F.text.startswith("/"))
 async def unknown_command_handler(message: Message, state: FSMContext) -> None:
     """Обробник невідомих команд (/foo тощо). Не передає їх до LLM."""
+    text = (message.text or "").strip()
+    if text.startswith("/"):
+        first_token = text.split()[0]
+        if "@" in first_token:
+            target_bot = first_token.split("@", 1)[1].strip().lower()
+            if _BOT_USERNAME and target_bot != _BOT_USERNAME.lower():
+                return
+
     if message.chat.type != ChatType.PRIVATE and not _is_addressed(message):
         return
 

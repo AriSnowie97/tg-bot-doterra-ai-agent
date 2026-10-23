@@ -51,6 +51,8 @@ async def test_command_cancel_handler():
 @pytest.mark.anyio
 async def test_unknown_command_handler_private():
     message = AsyncMock()
+    message.text = "/foo"
+    message.caption = None
     message.chat = MagicMock(spec=Chat, type=ChatType.PRIVATE)
     message.reply = AsyncMock()
     state = AsyncMock()
@@ -60,3 +62,46 @@ async def test_unknown_command_handler_private():
 
     message.reply.assert_called_once()
     assert "Невідома команда" in message.reply.call_args[0][0]
+
+
+@pytest.mark.anyio
+async def test_other_bot_command_middleware_ignores_foreign_bot():
+    import bot as bot_mod
+    from bot import OtherBotCommandFilterMiddleware
+
+    bot_mod._BOT_USERNAME = "doterra_ua_assistant_bot"
+    middleware = OtherBotCommandFilterMiddleware()
+    handler = AsyncMock()
+
+    # Повідомлення для іншого бота
+    msg = AsyncMock()
+    msg.text = "/start@shops_json_ua_bot"
+    res = await middleware(handler, msg, {})
+
+    assert res is None
+    handler.assert_not_called()
+
+
+@pytest.mark.anyio
+async def test_other_bot_command_middleware_allows_own_bot():
+    import bot as bot_mod
+    from bot import OtherBotCommandFilterMiddleware
+
+    bot_mod._BOT_USERNAME = "doterra_ua_assistant_bot"
+    middleware = OtherBotCommandFilterMiddleware()
+    handler = AsyncMock(return_value="OK")
+
+    # Повідомлення для нашого бота
+    msg = AsyncMock()
+    msg.text = "/start@doterra_ua_assistant_bot"
+    res = await middleware(handler, msg, {})
+
+    assert res == "OK"
+    handler.assert_called_once()
+
+
+def test_system_prompt_forbids_unprompted_favorite_oil():
+    from src.agent.prompt import SYSTEM_PROMPT
+    assert "НЕ говори постійно про свій улюблений аромат" in SYSTEM_PROMPT
+    assert "КАТЕГОРИЧНО ЗАБОРОНЕНО згадувати про свій улюблений аромат" in SYSTEM_PROMPT
+
