@@ -8,7 +8,7 @@ from aiogram import Bot, Dispatcher, F
 from aiogram.filters import BaseFilter, Command, CommandObject
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, WebAppInfo, MenuButtonWebApp
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, WebAppInfo, MenuButtonWebApp, BotCommand
 from aiogram.enums import ChatAction, ChatType, MessageEntityType
 # Local
 from src.agent import generate_response
@@ -216,6 +216,58 @@ async def command_start_handler(message: Message, state: FSMContext) -> None:
         "Просто напиши своє запитання — і я з радістю підкажу 🔍",
         reply_markup=markup
     )
+
+
+@dp.message(Command("help"))
+async def command_help_handler(message: Message, state: FSMContext) -> None:
+    """/help — довідка з використання бота та доступні команди українською мовою."""
+    current_state = await state.get_state()
+    if current_state == AskStates.waiting_for_question:
+        await state.set_state(None)
+
+    webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
+    markup = InlineKeyboardMarkup(inline_keyboard=[
+        [
+            InlineKeyboardButton(
+                text="📱 Відкрити Mini App", 
+                web_app=WebAppInfo(url=webapp_url)
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                text="👩‍⚕️ Написати Наталії Котелянській",
+                url="https://t.me/Nataliia_Kotelianska"
+            )
+        ]
+    ])
+
+    help_text = (
+        "🌸 <b>Чим я можу тобі допомогти:</b>\n\n"
+        "🌿 <b>Запитання про олії та продукцію:</b>\n"
+        "Просто напиши назву олії, свій симптом чи запитання у чат "
+        "(наприклад, <i>«що допомагає від стресу?»</i> або <i>«як використовувати лаванду?»</i>).\n\n"
+        "👥 <b>У групах та чатах:</b>\n"
+        "Використовуй команду <code>/ask &lt;твоє питання&gt;</code> або тегни мене <code>@AromaAssistantBot</code>, "
+        "щоб я відповіла у гілці чи топіку.\n\n"
+        "📱 <b>Каталог та довідник:</b>\n"
+        "Натискай кнопку <b>«Відкрити Mini App»</b> нижче для перегляду сертифікованої продукції doTERRA та корисних статей.\n\n"
+        "💛 <b>Індивідуальна консультація:</b>\n"
+        "Для персонального підбору олій чи замовлення ти завжди можеш звернутися до нашої ароматерапевтки Наталії Котелянської.\n\n"
+        "📋 <b>Доступні команди:</b>\n"
+        "• /start — почати спілкування та головне меню\n"
+        "• /ask [питання] — поставити запитання боту\n"
+        "• /help — ця довідка з порадами\n"
+        "• /cancel — скасувати поточний режим введення"
+    )
+
+    await message.reply(help_text, parse_mode="HTML", reply_markup=markup)
+
+
+@dp.message(Command("cancel"))
+async def command_cancel_handler(message: Message, state: FSMContext) -> None:
+    """/cancel — скасування поточного запиту або очікування."""
+    await state.clear()
+    await message.reply("👌 Дію скасовано. Якщо матимеш запитання про олії — звертайся у будь-який час! 🌿")
 
 
 @dp.message(Command("ask"))
@@ -459,7 +511,27 @@ def _strip_mention(text: str, bot_username: str) -> str:
     return text or text
 
 
-@dp.message(F.text)
+@dp.message(F.text.startswith("/"))
+async def unknown_command_handler(message: Message, state: FSMContext) -> None:
+    """Обробник невідомих команд (/foo тощо). Не передає їх до LLM."""
+    if message.chat.type != ChatType.PRIVATE and not _is_addressed(message):
+        return
+
+    current_state = await state.get_state()
+    if current_state == AskStates.waiting_for_question:
+        await state.set_state(None)
+
+    await message.reply(
+        "🌿 Невідома команда. Доступні команди бота:\n\n"
+        "• /start — головне меню та привітання\n"
+        "• /ask [питання] — поставити запитання боту\n"
+        "• /help — довідка та інструкція з використання\n"
+        "• /cancel — скасувати поточну дію\n\n"
+        "Або просто напиши своє запитання звичайним текстом — я з радістю допоможу 🌸"
+    )
+
+
+@dp.message(F.text, ~F.text.startswith("/"))
 async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
     """Обробник текстових повідомлень.
 
@@ -764,6 +836,18 @@ async def main() -> None:
         print("[bot] ✅ Menu button configured.")
     except Exception as e:
         print(f"[bot] ⚠️ Could not configure menu button: {redact(e)}")
+
+    # Реєструємо список команд у меню Telegram
+    try:
+        await bot.set_my_commands([
+            BotCommand(command="start", description="Головне меню та привітання"),
+            BotCommand(command="ask", description="Поставити запитання боту"),
+            BotCommand(command="help", description="Довідка з використання бота"),
+            BotCommand(command="cancel", description="Скасувати поточну дію"),
+        ])
+        print("[bot] ✅ Bot commands registered.")
+    except Exception as e:
+        print(f"[bot] ⚠️ Could not register bot commands: {redact(e)}")
 
     # Налаштовуємо та запускаємо планувальник публікацій
     scheduler = setup_scheduler(bot)

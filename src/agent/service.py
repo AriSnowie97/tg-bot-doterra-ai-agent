@@ -97,6 +97,9 @@ def detect_is_english(user_text: str) -> bool:
     """Визначає, чи є запит користувача англомовним (не кирилиця і не транслітерація)."""
     if not user_text:
         return False
+    # Команди бота ніколи не вважаються англійським текстом
+    if user_text.strip().startswith("/"):
+        return False
     # Наявність кирилиці виключає англійську
     if re.search(r'[а-яА-ЯіїєґІЇЄҐ]', user_text):
         return False
