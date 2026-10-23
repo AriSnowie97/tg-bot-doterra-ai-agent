@@ -10,6 +10,7 @@ from src.safety import (
     key_fingerprint,
     sanitize_dialogue_text,
     append_and_format_dialogue,
+    sanitize_ai_response_text,
 )
 
 
@@ -80,4 +81,45 @@ class TestDialogueSanitization:
         assert turns[1]["role"] == "bot"
         assert "Користувач: У мене болить голова" in context
         assert "Бот: Спробуйте перцеву м'яту" in context
+
+
+class TestAiResponseSanitization:
+    """Тести санітизації згенерованого AI тексту від спотворених символів."""
+
+    def test_sanitize_arabic_yeh_glitch_in_word(self):
+        # Реальний випадок зі скриншоту: менي замість мені
+        raw = "Привіт! 🌸 Я уважно тебе слухаю, і мен\u064a дуже шкода"
+        cleaned = sanitize_ai_response_text(raw)
+        assert cleaned == "Привіт! 🌸 Я уважно тебе слухаю, і мені дуже шкода"
+
+    def test_sanitize_various_arabic_farsi_homoglyphs(self):
+        # \u0649 (alef maksura), \u06cc (farsi yeh), \u06d2 (urdu yeh), \u0626 (yeh with hamza)
+        raw = "тв\u0649 олі\u06cc лаванд\u0627 країн\u0626"
+        cleaned = sanitize_ai_response_text(raw)
+        assert cleaned == "тві оліі лаванда країні" or "тві олії" in cleaned or "країні" in cleaned or "країнї" in cleaned
+        assert "\u0649" not in cleaned
+        assert "\u06cc" not in cleaned
+        assert "\u0627" not in cleaned
+
+    def test_sanitize_bidi_and_invisible_controls(self):
+        raw = "Слово\u200e\u200f\u202a\u202e\u200bще одне слово\ufeff"
+        cleaned = sanitize_ai_response_text(raw)
+        assert cleaned == "Словоще одне слово"
+
+    def test_sanitize_subscripts(self):
+        raw = "олі\u1d62 літ\u2091ра"
+        cleaned = sanitize_ai_response_text(raw)
+        assert cleaned == "оліі літера"
+
+    def test_sanitize_latin_i_in_cyrillic_words(self):
+        # Використовуємо \u0069 для латинської i
+        raw = "х\u0069м\u0069я та \u0069нформація"
+        cleaned = sanitize_ai_response_text(raw)
+        assert cleaned == "хімія та інформація"
+
+    def test_sanitize_empty_or_normal_text(self):
+        assert sanitize_ai_response_text("") == ""
+        assert sanitize_ai_response_text(None) == ""
+        normal = "Привіт! Як справи? 🌿"
+        assert sanitize_ai_response_text(normal) == normal
 

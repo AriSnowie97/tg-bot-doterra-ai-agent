@@ -135,3 +135,73 @@ def append_and_format_dialogue(
 
     return safe_turns, context_str
 
+
+def sanitize_ai_response_text(text: str) -> str:
+    """Нормалізує та очищає згенерований AI текст від глітчів та спотворених символів.
+
+    - Замінює арабські/перські символи (наприклад, арабську 'ي' у 'менي' замість української 'і' у 'мені').
+    - Видаляє невидимі керуючі Bidi-символи (LRM, RLM, ZWSP тощо).
+    - Нормалізує сабскрипти (ᵢ -> і, ₑ -> е тощо).
+    - Замінює поодинокі латинські 'i' / 'I' всередині кириличних слів на українські 'і' / 'І'.
+    """
+    if not text:
+        return text or ""
+
+    # Невидимі та керуючі Bidi-символи, що ламають відображення в Telegram
+    bidi_and_invisible = [
+        "\u200b", "\u200c", "\u200d", "\u200e", "\u200f",
+        "\u202a", "\u202b", "\u202c", "\u202d", "\u202e",
+        "\u2066", "\u2067", "\u2068", "\u2069", "\ufeff",
+    ]
+    for char in bidi_and_invisible:
+        text = text.replace(char, "")
+
+    # Арабські/перські символи, які модель іноді помилково генерує замість кирилиці
+    arabic_homoglyphs = {
+        "\u064a": "і",  # Arabic Yeh (наприклад, 'менي' -> 'мені')
+        "\u0649": "і",  # Alef Maksura
+        "\u06cc": "і",  # Farsi Yeh
+        "\u06d2": "і",  # Urdu Yeh
+        "\u0626": "ї",  # Yeh with hamza
+        "\u0647": "е",  # Heh
+        "\u0648": "у",  # Waw
+        "\u0627": "а",  # Alef
+        "\u0631": "р",  # Reh
+        "\u062f": "д",  # Dal
+        "\u0643": "к",  # Kaf
+        "\u0645": "м",  # Meem
+        "\u0646": "н",  # Noon
+        "\u0628": "б",  # Beh
+        "\u062a": "т",  # Teh
+        "\u0633": "с",  # Seen
+        "\u0632": "з",  # Zain
+    }
+    for ar_char, cyr_char in arabic_homoglyphs.items():
+        text = text.replace(ar_char, cyr_char)
+
+    # Сабскрипти
+    subscripts = {
+        "\u1d62": "і",
+        "\u2091": "е",
+        "\u2090": "а",
+        "\u2092": "о",
+        "\u2093": "х",
+        "\u2094": "е",
+        "\u207f": "н",
+    }
+    for sub_char, norm_char in subscripts.items():
+        text = text.replace(sub_char, norm_char)
+
+    # Видаляємо залишки арабського та єврейського блоків (включно з Presentation Forms)
+    text = re.sub(r"[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\u0590-\u05FF\uFB50-\uFDFF\uFE70-\uFEFF]", "", text)
+
+    # Латинська 'i' / 'I' всередині або поряд із кириличними літерами
+    cyr = r"[а-яА-ЯіїєґІЇЄҐ]"
+    for _ in range(3):
+        text = re.sub(rf"(?<={cyr})i", "і", text)
+        text = re.sub(rf"i(?={cyr})", "і", text)
+        text = re.sub(rf"(?<={cyr})I", "І", text)
+        text = re.sub(rf"I(?={cyr})", "І", text)
+
+    return text
+

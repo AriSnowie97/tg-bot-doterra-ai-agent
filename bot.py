@@ -19,7 +19,7 @@ from src.storage.feedback import ensure_feedback_table, save_vote, get_vote_coun
 from handlers.states import AskStates, ScreeningStates
 from src.content.sync_content import run_sync
 from src.middleware import RateLimitMiddleware, CallbackRateLimitMiddleware
-from src.safety import redact, safe_error, append_and_format_dialogue
+from src.safety import redact, safe_error, append_and_format_dialogue, sanitize_ai_response_text
 from src.stickers import (
     load_stickers,
     get_or_load_sticker,
@@ -185,6 +185,7 @@ async def _reply_with_feedback(message: Message, text: str, sticker_id: str | No
     clean_text = re.sub(r'https?://(?:www\.)?doterra\.com[^\s\)]*', '', clean_text).strip()
     clean_text = clean_text.replace("🪨", "🌿").replace("🫂", "🌿").replace("🗿", "")
     clean_text = re.sub(r'\b(я\s+—\s+віртуальний\s+гід|я\s+віртуальний\s+гід|віртуальний\s+гід-помічник|гід-помічник|віртуальний\s+гід|твій\s+гід|ваш\s+гід)\b', 'помічниця', clean_text, flags=re.IGNORECASE)
+    clean_text = sanitize_ai_response_text(clean_text)
     
     sent = await message.reply(clean_text)
     keyboard = _feedback_keyboard(sent.message_id, sent.chat.id)

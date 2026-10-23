@@ -40,7 +40,7 @@ from src.LLMProvider import (
     BudgetExceededError,
     BUDGET_EXCEEDED_MESSAGE,
 )
-from src.safety import redact
+from src.safety import redact, sanitize_ai_response_text
 
 
 # ---------------------------------------------------------------------------
@@ -266,6 +266,7 @@ async def generate_response(
         return BUDGET_EXCEEDED_MESSAGE
 
     text = (response.text or "").strip()
+    text = sanitize_ai_response_text(text)
     if not text:
         raise RuntimeError(f"[agent] LLM повернув порожній текст. finish_reason={getattr(response.candidates[0], 'finish_reason', 'unknown') if response.candidates else 'unknown'}")
 

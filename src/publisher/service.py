@@ -42,7 +42,7 @@ from ..agent.specialist import (
 )
 from ..storage import search_chunks
 from src.LLMProvider import GeminiFlashProvider as LLM
-from src.safety import redact
+from src.safety import redact, sanitize_ai_response_text
 
 load_dotenv()
 
@@ -219,6 +219,7 @@ async def _generate_post_text(topic_query: str) -> str:
         )
 
         post_text = (response.text or "").strip()
+        post_text = sanitize_ai_response_text(post_text)
 
         # 4. Перевірка: чи LLM додала маркери досліджень без бази?
         if not chunks_have_research and _has_research_in_text(post_text):
