@@ -7,6 +7,18 @@ import { useLang } from "../../../contexts/LangContext";
 import { post_chat_question } from "../../../api/chat";
 
 
+// Різні помилки бекенду — різні повідомлення
+const errorKey = (error) => {
+    switch (error?.status) {
+        case 401: return "chat_error_auth";
+        case 429: return "chat_error_rate";
+        case 400:
+        case 422: return "chat_error_input";
+        default: return "chat_error";
+    }
+};
+
+
 const Chat = () => {
     const { t } = useLang();
     const [dialogueMsgs, setDialogueMsgs] = useState(() => {
@@ -35,7 +47,11 @@ const Chat = () => {
         try {
             const response = await post_chat_question(question);
             
-            if (!response.ok) throw new Error('API Error');
+            if (!response.ok) {
+                const err = new Error('API Error');
+                err.status = response.status;
+                throw err;
+            }
             
             const data = await response.json();
             
@@ -47,7 +63,7 @@ const Chat = () => {
             console.error(error);
             setDialogueMsgs(prev => [
                 ...prev,
-                { isQuestion: false, text: t("chat_error") }
+                { isQuestion: false, text: t(errorKey(error)) }
             ]);
         } finally {
             setIsLoading(false);

@@ -75,6 +75,39 @@ EN_RED_FLAG_REDIRECT_BLOCK: str = (
     f"📸 Instagram: {SPECIALIST_LINKS['Instagram']}"
 )
 
+# Невідкладні стани: бот не радить олії і не відсилає до аромапрактика, а скеровує до швидкої.
+# Номери та формулювання потрібно погодити з клієнткою (Q-08).
+EMERGENCY_REPLY: str = (
+    "🚨 Це може бути невідкладна ситуація. Будь ласка, негайно телефонуй 112 "
+    "(або 103 — швидка допомога) і не чекай на пораду щодо олій.\n\n"
+    "Якщо поруч є хтось дорослий — попроси допомогти. "
+    "Олії в такій ситуації не застосовуй. Пиши мені після того, як отримаєш допомогу 💛"
+)
+
+EN_EMERGENCY_REPLY: str = (
+    "🚨 This may be an emergency. Please call your local emergency number right now "
+    "(112 in Ukraine, or 103 for an ambulance) and do not wait for advice about essential oils.\n\n"
+    "If someone is nearby, ask them to help. Do not use any oils in this situation. "
+    "Come back to me once you have received help 💛"
+)
+
+# Кризові повідомлення (думки про самоушкодження): без порад щодо олій.
+# Контакти довіри потрібно погодити з клієнткою (Q-09).
+CRISIS_REPLY: str = (
+    "💛 Мені дуже шкода, що тобі зараз так важко. Ти не сама і не повинна проходити це наодинці.\n\n"
+    "Будь ласка, зв'яжись із людьми, які можуть допомогти просто зараз: "
+    "«Лайфлайн Україна» — 7333 (безкоштовно з мобільного, щодня), "
+    "а якщо ти в небезпеці — 112.\n\n"
+    "Якщо є близька людина, розкажи їй, як ти почуваєшся. Я поруч, але тут потрібна жива підтримка 🌿"
+)
+
+EN_CRISIS_REPLY: str = (
+    "💛 I'm really sorry you're feeling this way. You don't have to go through this alone.\n\n"
+    "Please reach out to someone who can help right now: Lifeline Ukraine — 7333 "
+    "(free from a mobile phone), or 112 if you are in danger.\n\n"
+    "If there is someone close to you, tell them how you feel. I'm here, but you deserve real human support 🌿"
+)
+
 # ---------------------------------------------------------------------------
 # Медичний дисклеймер
 # ---------------------------------------------------------------------------
@@ -330,6 +363,7 @@ RED_FLAG_KEYWORDS: tuple[str, ...] = (
 
 
 import re
+import unicodedata
 
 # Регулярні вирази для детермінованої детекції червоних прапорів (UK / RU / EN)
 _RED_FLAG_REGEX = re.compile(
@@ -362,21 +396,107 @@ _RED_FLAG_REGEX = re.compile(
     r"|\bпенсіонер\w*|\bбабус\w*|\bдідус\w*|\b(7[5-9]|[89]\d)\s*рок\w*"
     r"|\bпенсионер\w*|\bбабушк\w*|\bдедушк\w*|\b(7[5-9]|[89]\d)\s*лет"
     r"|\belderly\b|\bsenior\b|\bgrandm\w*|\bgrandp\w*|\b(7[5-9]|[89]\d)\s*years?\s*old"
+    # Діти, названі через родинні зв'язки
+    r"|\bсин(?:ові|у|а|ом|ку|ка)?\b|\bдочк\w*|\bдонь[кц]\w*|\bдоч(?:ці|ку|ь|ері)\b"
+    r"|\bонук\w*|\bонуц\w*|\bхлопчик\w*|\bдівчинк\w*|\bдівчинц\w*"
+    r"|\bсын\w*|\bдочь\b|\bдочер\w*|\bвнук\w*|\bвнучк\w*|\bмальчик\w*|\bдевочк\w*"
+    r"|\b(?:son|daughter|grandson|granddaughter)\b|\bmy\s+\d+[\s-]*(?:month|year)s?[\s-]*old"
+    # Ліки, що вказують на хронічний стан
+    r"|\bінсулін\w*|\bинсулин\w*|\binsulin\b|\bметформін\w*|\bметформин\w*|\bmetformin\b"
+    r"|п'ю\s+таблетк\w*|пью\s+таблетк\w*|\bприйма\w+\s+(?:таблетк\w*|препарат\w*)"
+    # Транслітерація
+    r"|\bvag?h?itn\w*|\bberemenn\w*"
     r")",
     re.IGNORECASE,
 )
 
-# Шаблони явних заперечень протипоказань (наприклад: "не вагітна", "без ліків", "немає алергії").
+# Невідкладні стани: потрібна швидка, а не аромапрактик
+_EMERGENCY_REGEX = re.compile(
+    r"("
+    r"\bкровотеч\w*|\bінфаркт\w*|\bинфаркт\w*|\bінсульт\w*|\bинсульт\w*|\bсудом\w*|\bсудорог\w*"
+    r"|\bанафілакт\w*|\bанафилакт\w*|набряк\w*\s+(?:обличч\w*|горл\w*|язик\w*|губ\w*)"
+    r"|отек\w*\s+(?:лица|горла|языка|губ)|\bпроковтн\w*|\bпроглот\w*"
+    r"|не\s+можу\s+дихати|\bзадихаю\w*|не\s+могу\s+дышать|\bзадыхаю\w*"
+    r"|втрат\w+\s+свідомост\w*|потерял\w*\s+сознан\w*"
+    r"|\bswallowed\b|can'?t\s+breathe|\bchoking\b|\bunconscious\b|\banaphyla\w*"
+    r"|heart\s+attack|\bseizure\w*|\bbleeding\b"
+    r")",
+    re.IGNORECASE,
+)
+
+# Кризові повідомлення: думки про смерть або самоушкодження
+_CRISIS_REGEX = re.compile(
+    r"("
+    r"не\s+хочу\s+(?:більше\s+)?жит\w*|не\s+хочу\s+жить|хочу\s+померти|хочу\s+умереть"
+    r"|вбити\s+себе|покінчити\s+з\s+собою|убить\s+себя|покончить\s+с\s+собой"
+    r"|\bсуїцид\w*|\bсуицид\w*|\bсамогубств\w*|\bсамоубийств\w*"
+    r"|(?:нашкодити|зашкодити|навредить)\s+(?:собі|себе)|(?:собі|себе)\s+(?:нашкодити|зашкодити|навредить)"
+    r"|\bkill\s+myself|\bsuicid\w*|want\s+to\s+die|hurt\s+myself|harm\s+myself|end\s+my\s+life"
+    r")",
+    re.IGNORECASE,
+)
+
+_INVISIBLE_CHARS = re.compile("[\u200b\u200c\u200d\u2060\ufeff\u00ad]")
+_SPACED_LETTERS = re.compile(r"(?<!\w)(?:\w\s){3,}\w(?!\w)")
+_CYRILLIC_LETTER = re.compile("[а-яіїєґ]")
+_LATIN_TO_CYRILLIC = str.maketrans("iaoepcxy", "іаоерсху")
+
+
+def _normalize_for_detection(text: str) -> str:
+    """Нормалізує текст перед пошуком тригерів: NFKC, невидимі символи, апострофи, регістр,
+    латинські двійники в кириличних словах («вагiтна») та розряджені слова («в а г і т н а»)."""
+    s = unicodedata.normalize("NFKC", text)
+    s = _INVISIBLE_CHARS.sub("", s)
+    s = s.replace("’", "'").replace("ʼ", "'").replace("`", "'").lower()
+    s = re.sub(r"\w+", lambda m: m.group().translate(_LATIN_TO_CYRILLIC)
+               if _CYRILLIC_LETTER.search(m.group()) else m.group(), s)
+    return _SPACED_LETTERS.sub(lambda m: re.sub(r"\s", "", m.group()), s)
+
+# Шаблони явних заперечень протипоказань (наприклад: "не вагітна", "без ліків", "діабету немає", "немає астми").
 # Їх необхідно нейтралізувати перед пошуком червоних прапорів, щоб заперечення не вважалося прапором.
 _NEGATED_RED_FLAGS = re.compile(
-    r"\b(не\s+(є\s+)?вагітн\w*|немає\s+вагітност\w*|вагітност\w*\s+немає|"
-    r"не\s+годую\w*|не\s+лакту\w*|"
-    r"не\s+(є\s+)?беремен\w*|нет\s+беременност\w*|беременност\w*\s+нет|"
-    r"not\s+pregnant|no\s+pregnancy|"
-    r"ліків\s+не\s+прийма\w*|не\s+п'ю\s+ліки|не\s+приймаю\s+ліки|без\s+ліків|"
-    r"немає\s+алергі\w*|алергі\w*\s+немає|без\s+алергі\w*|"
-    r"немає\s+хвороб\w*|хвороб\w*\s+немає|не\s+хворі\w*|"
-    r"немає\s+тиск\w*|тиск\w*\s+в\s+нормі)\b",
+    r"("
+    # 1. Заперечення перед словом (не / немає / без / не маю / не приймаю / не п'ю / not / no / without ...)
+    r"\b(?:не\s+(?:є\s+|маю\s+|прийма\w*\s+|п['’`]?ю\s+|вжива\w*\s+|колю\s+|страждаю\s+на\s+|хворію\s+на\s+)?|"
+    r"немає\s+|нема\s+|нет\s+|без\s+|"
+    r"not\s+|no\s+|not\s+a\s+|not\s+taking\s+(?:any\s+)?|without\s+)"
+    r"(?:хронічн\w*\s+|цукров\w*\s+|проблем\s+з\s+|жодних\s+|ніяких\s+)?(?:\w+\s+)?"
+    r"(?:вагітн\w*|годуван\w*|годую\w*|лактац\w*|беремен\w*|pregnant|pregnancy|breastfeed\w*|nursing|"
+    r"діабет\w*|диабет\w*|diabet\w*|тиск\w*|давлен\w*|гіпертон\w*|гіпотон\w*|гипертон\w*|гипотон\w*|hypertens\w*|blood\s+pressure|"
+    r"астм\w*|asthm\w*|епілеп\w*|эпилеп\w*|epilep\w*|судом\w*|судорог\w*|seizur\w*|"
+    r"алергі\w*|аллерги\w*|allerg\w*|"
+    r"ліків|ліки|ліках|таблет\w*|препарат\w*|медикамент\w*|лекарств\w*|medicat\w*|meds|"
+    r"хвороб\w*|захворюван\w*|болезн\w*|chronic\s+disease\w*|дитин\w*|діт\w*|ребен\w*|дет\w*|child\w*|kids?)\b"
+    # 2. Заперечення або норма після слова (... немає / відсутній / в нормі / не приймаю / none / normal)
+    r"|"
+    r"\b(?:вагітност\w*|вагітна|лактаці\w*|беременност\w*|беременна|pregnancy|"
+    r"діабет\w*|диабет\w*|diabetes|тиск\w*|давлен\w*|гіпертоні\w*|гипертони\w*|blood\s+pressure|"
+    r"астм\w*|астма|asthma|епілепсі\w*|эпилепси\w*|epilepsy|судом\w*|судорог\w*|seizures?|"
+    r"алергі\w*|аллерги\w*|allergies|ліків|ліки|таблет\w*|препарат\w*|медикамент\w*|лекарств\w*|"
+    r"хвороб\w*|захворюван\w*|болезн\w*|дитин\w*|діт\w*|ребен\w*|дет\w*)\s+"
+    r"(?:не\s+прийма\w*|не\s+п['’`]?ю|не\s+вжива\w*|не\s+колю|не\s+маю|не\s+страждаю|немає|нема|нет|"
+    r"відсутн\w*|отсутству\w*|в\s+нормі|у\s+нормі|нормальн\w*|стабільн\w*|none|normal)\b"
+    # 3. Додаткові ідіоматичні вирази (діабетик, астматик, дорослий тощо)
+    r"|"
+    r"\b(?:не\s+діабетик|не\s+диабетик|not\s+diabetic|не\s+астматик|not\s+asthmatic|"
+    r"не\s+епілептик|не\s+гіпертонік|не\s+алергік|not\s+allergic|"
+    r"я\s+доросла|я\s+дорослий|для\s+дорослого|для\s+дорослих|для\s+себе|"
+    r"не\s+для\s+дитини|не\s+для\s+дітей|дитини\s+немає|дітей\s+немає|"
+    r"я\s+взрослый|я\s+взрослая|для\s+взрослого|for\s+(?:an?\s+)?adult|for\s+myself)\b"
+    # 4. Універсальні патерни: слово + немає / немає + слово
+    r"|"
+    r"\b\w+\s+(?:немає|нема|нет)\b|\b(?:немає|нема|нет)\s+\w+\b"
+    r")",
+    re.IGNORECASE,
+)
+
+
+# Додаткові основи слів скарг (відмінки, російська, англійська) з межею слова на початку
+_COMPLAINT_EXTRA_REGEX = re.compile(
+    r"\b(?:кашл\w*|тривог\w*|тривож\w*|нервую\w*|напруг\w*|втомил\w*|втомл\w*|печі[яюїє]\b"
+    r"|колік\w*|діаре\w*|нудит\w*|температур\w*|болит\b|бессонн\w*|тревог\w*|устал\w*|насморк\w*"
+    r"|tired\b|stress\w*|cough\w*|anxi\w*|insomnia|headache|migraine|sore\s+throat|stomach\s*ache"
+    r"|head\s+hurts)",
     re.IGNORECASE,
 )
 
@@ -409,8 +529,20 @@ def is_health_complaint_query(text: str) -> bool:
     Returns:
         True якщо знайдено ключове слово-тригер скарги/симптому.
     """
-    lower = text.lower()
-    return any(kw in lower for kw in _HEALTH_COMPLAINT_KEYWORDS)
+    lower = _normalize_for_detection(text)
+    # «стресостійкість» — не скарга, хоча містить основу «стрес»
+    lower = re.sub(r"стресо?стійк\w*|стрессоустойчив\w*", "", lower)
+    return any(kw in lower for kw in _HEALTH_COMPLAINT_KEYWORDS) or bool(_COMPLAINT_EXTRA_REGEX.search(lower))
+
+
+def is_emergency(text: str) -> bool:
+    """True, якщо повідомлення описує невідкладний стан (потрібна швидка допомога)."""
+    return bool(text) and bool(_EMERGENCY_REGEX.search(_normalize_for_detection(text)))
+
+
+def is_crisis(text: str) -> bool:
+    """True, якщо повідомлення містить думки про смерть чи самоушкодження."""
+    return bool(text) and bool(_CRISIS_REGEX.search(_normalize_for_detection(text)))
 
 
 def has_red_flags(text: str) -> bool:
@@ -426,7 +558,9 @@ def has_red_flags(text: str) -> bool:
     """
     if not text:
         return False
-    lower = text.lower()
+    lower = _normalize_for_detection(text)
+    if _EMERGENCY_REGEX.search(lower) or _CRISIS_REGEX.search(lower):
+        return True
     cleaned = _NEGATED_RED_FLAGS.sub("", lower)
     if _RED_FLAG_REGEX.search(cleaned):
         return True

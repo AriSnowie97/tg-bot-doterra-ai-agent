@@ -29,6 +29,7 @@ const WriteMsgArea = ({onQuestionSubmit}) => {
                 className={styles.input}
                 type="text"
                 name="writing"
+                maxLength={1000}
                 value={question}
                 onChange={(event) => setQuestion(event.target.value)}
                 placeholder={t("chat_placeholder")}

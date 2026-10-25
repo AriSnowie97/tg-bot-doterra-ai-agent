@@ -14,7 +14,7 @@ doTERRA Content Uploader Bot
 
 Налаштування (.env або Railway Variables):
   CONTENT_BOT_TOKEN   — токен цього бота
-  CONTENT_BOT_ADMINS  — Telegram user_id адмінів через кому (наприклад: 388615032)
+  CONTENT_BOT_ADMINS  — Telegram user_id адмінів через кому (наприклад: 123456789)
   DATABASE_URL        — PostgreSQL URL (береться з Railway автоматично)
 """
 

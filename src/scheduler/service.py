@@ -5,8 +5,9 @@
 Параметри розкладу читаються з .env:
 
     POST_SCHEDULE_DAYS=tue,fri   # дні тижня (дефолт: вт + пт)
-    POST_SCHEDULE_HOUR=9         # година UTC (дефолт: 9 = 12:00 Київ зима)
+    POST_SCHEDULE_HOUR=12        # година за часовим поясом розкладу (дефолт: 12:00 за Києвом)
     POST_SCHEDULE_MINUTE=0       # хвилина (дефолт: 0)
+    POST_SCHEDULE_TZ=Europe/Kyiv # часовий пояс розкладу (враховує літній/зимовий час)
 
 Використання:
     from src.scheduler import setup_scheduler
@@ -19,6 +20,8 @@
 
 # Standard
 import os
+from datetime import timezone
+from zoneinfo import ZoneInfo
 # Special
 from aiogram import Bot
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -32,8 +35,20 @@ from ..publisher import publish_channel_post
 # ---------------------------------------------------------------------------
 
 _DAYS: str   = os.getenv("POST_SCHEDULE_DAYS", "tue,fri")
-_HOUR: int   = int(os.getenv("POST_SCHEDULE_HOUR", "9"))
+_HOUR: int   = int(os.getenv("POST_SCHEDULE_HOUR", "12"))
 _MINUTE: int = int(os.getenv("POST_SCHEDULE_MINUTE", "0"))
+_TZ_NAME: str = os.getenv("POST_SCHEDULE_TZ", "Europe/Kyiv")
+
+
+def _resolve_timezone():
+    """Часовий пояс розкладу. Якщо база tzdata не знайшла назву — UTC (години тоді рахуються за UTC)."""
+    for name in (_TZ_NAME, "Europe/Kiev"):
+        try:
+            return ZoneInfo(name)
+        except Exception:
+            continue
+    print(f"[scheduler] ⚠️ Часовий пояс {_TZ_NAME!r} не знайдено, використовую UTC")
+    return timezone.utc
 
 
 # ---------------------------------------------------------------------------
@@ -50,16 +65,17 @@ def setup_scheduler(bot: Bot) -> AsyncIOScheduler:
         Налаштований AsyncIOScheduler (ще не запущений).
 
     Schedule:
-        Cron-тригер: POST_SCHEDULE_DAYS о POST_SCHEDULE_HOUR:POST_SCHEDULE_MINUTE UTC.
-        Дефолт: вівторок + п'ятниця о 09:00 UTC (12:00 Київ, зима).
+        Cron-тригер: POST_SCHEDULE_DAYS о POST_SCHEDULE_HOUR:POST_SCHEDULE_MINUTE за POST_SCHEDULE_TZ.
+        Дефолт: вівторок + п'ятниця о 12:00 за Києвом (і влітку, і взимку).
     """
-    scheduler = AsyncIOScheduler(timezone="UTC")
+    tz = _resolve_timezone()
+    scheduler = AsyncIOScheduler(timezone=tz)
 
     trigger = CronTrigger(
         day_of_week=_DAYS,
         hour=_HOUR,
         minute=_MINUTE,
-        timezone="UTC",
+        timezone=tz,
     )
 
     scheduler.add_job(
@@ -74,7 +90,7 @@ def setup_scheduler(bot: Bot) -> AsyncIOScheduler:
 
     print(
         f"[scheduler] ⏰ Scheduler configured: "
-        f"days={_DAYS!r}, hour={_HOUR:02d}, minute={_MINUTE:02d} UTC"
+        f"days={_DAYS!r}, hour={_HOUR:02d}, minute={_MINUTE:02d} {tz}"
     )
 
     return scheduler

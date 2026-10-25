@@ -27,6 +27,12 @@ from .specialist import (
     has_red_flags,
     RED_FLAG_REDIRECT_BLOCK,
     EN_RED_FLAG_REDIRECT_BLOCK,
+    EMERGENCY_REPLY,
+    EN_EMERGENCY_REPLY,
+    CRISIS_REPLY,
+    EN_CRISIS_REPLY,
+    is_emergency,
+    is_crisis,
     MEDICAL_DISCLAIMER,
     EN_MEDICAL_DISCLAIMER,
     get_disclaimer_for_text,
@@ -203,6 +209,12 @@ EN_WORDS: set[str] = {
 }
 
 
+_EN_FUNCTION_WORDS: frozenset[str] = frozenset({
+    "what", "how", "why", "where", "when", "who", "which", "is", "are", "can", "could",
+    "would", "should", "do", "does", "the", "about", "for", "tell", "please", "my", "i",
+})
+
+
 def detect_is_english(user_text: str) -> bool:
     """Визначає, чи є запит користувача англомовним (не кирилиця, не транслітерація і не назва продукту)."""
     if not user_text:
@@ -221,6 +233,10 @@ def detect_is_english(user_text: str) -> bool:
     # Транслітерація української/слов'янських привітань
     if set(latin_words) & UK_TRANSLIT_WORDS:
         return False
+
+    # Типовий англійський запит («what is lime oil») містить щонайменше два службові слова
+    if len(set(latin_words) & _EN_FUNCTION_WORDS) >= 2:
+        return True
 
     # Якщо український користувач просто назвав продукт латиницею (наприклад, "Doterra On Guard", "Lavender oil")
     if is_product_name_query(user_text):
@@ -275,6 +291,13 @@ async def generate_response(
         or has_red_flags(user_text)
         or (bool(user_context) and has_red_flags(user_context))
     )
+    # Невідкладні та кризові повідомлення мають окремі відповіді (не «напиши Наталії»).
+    if is_crisis(user_text) or is_crisis(user_context):
+        print("[agent] 🛡️ CRISIS message: returning deterministic support reply")
+        return EN_CRISIS_REPLY if is_clearly_english else CRISIS_REPLY
+    if is_emergency(user_text) or is_emergency(user_context):
+        print("[agent] 🛡️ EMERGENCY message: returning deterministic emergency reply")
+        return EN_EMERGENCY_REPLY if is_clearly_english else EMERGENCY_REPLY
     if is_red_flag:
         print("[agent] 🛡️ RED FLAG ACTIVATED: Returning deterministic safety redirect immediately")
         if is_clearly_english:
@@ -307,7 +330,7 @@ async def generate_response(
         print(f"[agent] ⚠️ Embedding search failed (e.g. quota 429): {redact(e)}")
         chunks = []
 
-    print(f"[agent] Found {len(chunks)} chunks for query: {rag_query[:80]!r}")
+    print(f"[agent] Found {len(chunks)} chunks for a query of {len(rag_query)} chars")
 
     # 2. Жорсткий фолбек: якщо база порожня (або сталася помилка ембеддингу 429)
     if not chunks:
@@ -357,6 +380,8 @@ async def generate_response(
 
     # 5. Текст для LLM із явним ізолюванням вводу користувача
     raw_input = conversation_context if conversation_context else user_text
+    # Прибираємо службові теги з тексту користувача, щоб він не міг закрити блок <USER_QUERY> і дописати «інструкції»
+    raw_input = re.sub(r"<\s*/?\s*USER_QUERY\s*>", "", raw_input, flags=re.IGNORECASE)
     llm_input = f"<USER_QUERY>\n{raw_input}\n</USER_QUERY>"
 
     # Перевірка мови запиту: додаємо сувору директиву для LLM

@@ -19,7 +19,7 @@ from src.scheduler import setup_scheduler
 from src.storage.feedback import ensure_feedback_table, save_vote, get_vote_counts
 from handlers.states import AskStates, ScreeningStates
 from src.content.sync_content import run_sync
-from src.middleware import RateLimitMiddleware, CallbackRateLimitMiddleware
+from src.middleware import RateLimitMiddleware, CallbackRateLimitMiddleware, UserSerialMiddleware, UserSerialMiddleware
 from src.safety import (
     redact,
     safe_error,
@@ -113,6 +113,12 @@ dp.message.outer_middleware(
     )
 )
 dp.callback_query.outer_middleware(CallbackRateLimitMiddleware(exempt_ids=ADMIN_IDS))
+# Повідомлення одного користувача в одному чаті обробляються по черзі (FSM без гонок).
+# Довгі адмін-команди не блокують решту його повідомлень.
+dp.message.outer_middleware(UserSerialMiddleware(exempt_commands=("post", "sync_db")))
+# Повідомлення одного користувача в одному чаті обробляються по черзі (FSM без гонок).
+# Довгі адмін-команди не блокують решту його повідомлень.
+dp.message.outer_middleware(UserSerialMiddleware(exempt_commands=("post", "sync_db")))
 
 # Кеш username бота — заповнюється при старті
 _BOT_USERNAME: str = ""
@@ -178,6 +184,13 @@ def _feedback_keyboard(message_id: int, chat_id: int, likes: int = 0, dislikes: 
 
 TELEGRAM_MESSAGE_LIMIT = 4096
 
+# Після червоного прапора режим тримається, поки людина просить підібрати олію (до 24 годин або /start).
+RED_FLAG_TTL_SECONDS = 24 * 60 * 60
+_OIL_REQUEST_REGEX = re.compile(
+    r"\bолі\w*|\bмасл\w*|\bпідбер\w*|\bпідібр\w*|\bпорад\w*|\bдопоможе\w*|\bщо\s+взяти\b|\bяк\w*\s+олі",
+    re.IGNORECASE,
+)
+
 
 def _split_message(text: str, limit: int = TELEGRAM_MESSAGE_LIMIT - 96) -> list[str]:
     """Ділить довгий текст на частини ≤ limit символів, по можливості по абзацах, рядках або пробілах."""
@@ -209,6 +222,20 @@ async def _send_emotion_sticker(message: Message, getter, *args) -> None:
             await message.reply_sticker(sticker_id)
     except Exception as e:
         print(f"[bot] Sticker error: {redact(e)}")
+
+
+def _open_app_button(text: str, url: str, chat_type: str | None) -> InlineKeyboardButton:
+    """Кнопка відкриття Mini App: web_app у приваті, звичайне посилання в групах (Telegram не дозволяє web_app там)."""
+    if chat_type == ChatType.PRIVATE:
+        return InlineKeyboardButton(text=text, web_app=WebAppInfo(url=url))
+    return InlineKeyboardButton(text=text, url=url)
+
+
+def _open_app_button(text: str, url: str, chat_type: str | None) -> InlineKeyboardButton:
+    """Кнопка відкриття Mini App: web_app у приваті, звичайне посилання в групах (Telegram не дозволяє web_app там)."""
+    if chat_type == ChatType.PRIVATE:
+        return InlineKeyboardButton(text=text, web_app=WebAppInfo(url=url))
+    return InlineKeyboardButton(text=text, url=url)
 
 
 async def _reply_with_feedback(message: Message, text: str, sticker_id: str | None = None) -> None:
@@ -250,7 +277,7 @@ async def _reply_with_feedback(message: Message, text: str, sticker_id: str | No
                     # Внутрішні статті довідника відкриваємо в Telegram Mini App
                     clean_slug = slug.lstrip("#/").replace("article/", "")
                     keyboard.inline_keyboard.insert(0, [
-                        InlineKeyboardButton(text=f"📖 {link_text}", web_app=WebAppInfo(url=f"{webapp_url}#/article/{clean_slug}"))
+                        _open_app_button(f"📖 {link_text}", f"{webapp_url}#/article/{clean_slug}", message.chat.type)
                     ])
                 
     try:
@@ -269,10 +296,7 @@ async def command_start_handler(message: Message, state: FSMContext) -> None:
     webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
     
     markup = InlineKeyboardMarkup(inline_keyboard=[[
-        InlineKeyboardButton(
-            text="📱 Відкрити Mini App", 
-            web_app=WebAppInfo(url=webapp_url)
-        )
+        _open_app_button("📱 Відкрити Mini App", webapp_url, message.chat.type)
     ]])
 
     await message.answer(
@@ -307,10 +331,7 @@ async def command_help_handler(message: Message, state: FSMContext) -> None:
     webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
     markup = InlineKeyboardMarkup(inline_keyboard=[
         [
-            InlineKeyboardButton(
-                text="📱 Відкрити Mini App", 
-                web_app=WebAppInfo(url=webapp_url)
-            )
+            _open_app_button("📱 Відкрити Mini App", webapp_url, message.chat.type)
         ],
         [
             InlineKeyboardButton(
@@ -501,6 +522,10 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
         print(f"[ask_question] Error ({type(e).__name__}): {redact(e)}")
 
 
+# Адмін-задачі, що зараз виконуються (захист від подвійного /post і паралельного /sync_db)
+_RUNNING_ADMIN_JOBS: set[str] = set()
+
+
 @dp.message(Command("post"), AdminFilter(), F.chat.type == ChatType.PRIVATE)
 async def command_post_handler(message: Message, bot: Bot) -> None:
     """Ручна публікація посту в канал — тільки для адміністраторів.
@@ -515,6 +540,11 @@ async def command_post_handler(message: Message, bot: Bot) -> None:
             "⚠️ CHANNEL_ID не задано у .env — публікацію неможливо виконати."
         )
         return
+
+    if "post" in _RUNNING_ADMIN_JOBS:
+        await message.answer("⏳ Публікація вже виконується — дочекайся результату.")
+        return
+    _RUNNING_ADMIN_JOBS.add("post")
 
     await message.answer("⏳ Генерую пост... Це може зайняти 30–60 секунд.")
 
@@ -536,11 +566,18 @@ async def command_post_handler(message: Message, bot: Bot) -> None:
     except Exception as e:
         await message.answer(f"❌ Помилка при публікації ({safe_error(e)}). Деталі — у логах сервера.")
         print(f"[bot] /post error: {redact(e)}")
+    finally:
+        _RUNNING_ADMIN_JOBS.discard("post")
 
 
 @dp.message(Command("sync_db"), AdminFilter(), F.chat.type == ChatType.PRIVATE)
 async def command_sync_db_handler(message: Message, bot: Bot) -> None:
     """Ручне оновлення бази знань (синхронізація файлів) — тільки для адміністраторів."""
+
+    if "sync_db" in _RUNNING_ADMIN_JOBS:
+        await message.answer("⏳ Синхронізація вже виконується — дочекайся завершення.")
+        return
+    _RUNNING_ADMIN_JOBS.add("sync_db")
 
     await message.answer(
         "⏳ <b>Запускаю синхронізацію бази знань...</b>\n\n"
@@ -585,11 +622,16 @@ async def command_sync_db_handler(message: Message, bot: Bot) -> None:
     except Exception as e:
         await message.answer(f"❌ Критична помилка під час синхронізації ({safe_error(e)}). Деталі — у логах сервера.")
         print(f"[bot] /sync_db error: {redact(e)}")
+    finally:
+        _RUNNING_ADMIN_JOBS.discard("sync_db")
 
 
 @dp.message(Command("post", "sync_db"))
 async def admin_command_denied(message: Message) -> None:
-    """Fallback для не-адмінів: не віддаємо адмін-команди загальному обробнику F.text."""
+    """Fallback: не віддаємо адмін-команди загальному обробнику F.text."""
+    if message.from_user and message.from_user.id in ADMIN_IDS:
+        await message.answer("ℹ️ Ця команда працює лише в приватному чаті з ботом — напиши її мені в особисті.")
+        return
     await message.answer("⛔ У тебе немає прав для цієї команди.")
 
 
@@ -846,7 +888,9 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
 
     # ── 4. Скидання скринінгу якщо користувач перейшов до іншої теми ──────────
     if stored_mode == "red_flag":
-        if not is_new_red_flag and not is_new_complaint:
+        red_flag_age = now_ts - float(fsm_data.get("red_flag_ts") or 0)
+        keeps_context = is_new_red_flag or is_new_complaint or bool(_OIL_REQUEST_REGEX.search(user_text))
+        if red_flag_age > RED_FLAG_TTL_SECONDS or not keeps_context:
             stored_mode = None
             stored_turns = []
             stored_complaint = None
@@ -909,7 +953,7 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
         typing_task.cancel()
 
         if not response or not response.strip():
-            print(f"[on_message] Empty response for query: {user_text!r}")
+            print(f"[on_message] Empty response for query of {len(user_text)} chars")
             await message.reply("😔 Не вдалося сформувати відповідь. Спробуй перефразувати запит.")
             return
 
@@ -949,6 +993,10 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
             await state.set_state(None)
             await state.update_data(
                 screening_mode=new_mode,
+                red_flag_ts=(
+                    (now_ts if is_new_red_flag else fsm_data.get("red_flag_ts") or now_ts)
+                    if new_mode == "red_flag" else None
+                ),
                 screening_turns=[],
                 screening_history=None,
                 dialogue_turns=final_turns,
@@ -1012,10 +1060,10 @@ async def feedback_callback(callback: CallbackQuery) -> None:
 
     Формат callback_data: fb:<vote>:<message_id>:<chat_id>
     """
-    await callback.answer()  # знімаємо годинник з кнопки
-
-    parts = callback.data.split(":")
+    # Telegram приймає лише одну відповідь на callback, тому answer() викликається рівно один раз на кожному шляху.
+    parts = (callback.data or "").split(":")
     if len(parts) != 4:
+        await callback.answer()
         return
 
     _, vote, msg_id_str, chat_id_str = parts
@@ -1023,14 +1071,14 @@ async def feedback_callback(callback: CallbackQuery) -> None:
         msg_id  = int(msg_id_str)
         chat_id = int(chat_id_str)
     except ValueError:
+        await callback.answer()
         return
 
     user_id = callback.from_user.id
 
-    # Зберігаємо питання для аналітики (беремо з reply-контексту якщо є)
-    query_text = ""
-    if callback.message and callback.message.reply_to_message:
-        query_text = callback.message.reply_to_message.text or ""
+    # Зберігаємо питання для аналітики (повідомлення може бути недоступним: старе або видалене)
+    reply_to = getattr(callback.message, "reply_to_message", None)
+    query_text = (getattr(reply_to, "text", None) or "") if reply_to else ""
 
     # Захист конфіденційності здоров'я (Privacy-by-Design):
     # Якщо питання містило медичні скарги або червоні прапори, не зберігаємо чутливий текст у БД
@@ -1069,7 +1117,8 @@ async def feedback_callback(callback: CallbackQuery) -> None:
             likes=counts["likes"],
             dislikes=counts["dislikes"],
         )
-        await callback.message.edit_reply_markup(reply_markup=new_keyboard)
+        if callback.message is not None and hasattr(callback.message, "edit_reply_markup"):
+            await callback.message.edit_reply_markup(reply_markup=new_keyboard)
     except Exception as e:
         print(f"[feedback] keyboard update error: {redact(e)}")
 

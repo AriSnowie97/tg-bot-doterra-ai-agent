@@ -30,6 +30,9 @@
     "chat_typing": "typing...",
     "chat_placeholder": "Type your question...",
     "chat_error": "Sorry, there was an error connecting to the backend. Ensure the server is running!",
+    "chat_error_auth": "Your session has expired. Close and reopen the Mini App from the bot.",
+    "chat_error_rate": "Too many requests. Please try again a bit later.",
+    "chat_error_input": "The request is empty or too long (maximum 1000 characters). Please shorten it.",
     
     "articles": "Articles",
     "articles_section_data": {

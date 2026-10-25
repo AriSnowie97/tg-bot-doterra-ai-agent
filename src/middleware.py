@@ -1,6 +1,7 @@
 """Middleware для aiogram: ліміт частоти повідомлень та довжини тексту на користувача."""
 
 # Standard
+import asyncio
 import os
 import time
 from collections import defaultdict, deque
@@ -117,3 +118,41 @@ class CallbackRateLimitMiddleware(BaseMiddleware):
             return await handler(event, data)
         await event.answer("⏳ Забагато натискань. Зачекай хвилинку.", show_alert=False)
         return None
+
+
+class UserSerialMiddleware(BaseMiddleware):
+    """Обробляє повідомлення одного користувача в одному чаті по черзі.
+
+    Без цього два швидкі повідомлення читають і перезаписують FSM-стан одночасно
+    (друге не бачить історію першого). Довгі адмін-команди (`exempt_commands`)
+    не блокують решту повідомлень цього користувача.
+    """
+
+    def __init__(self, exempt_commands: tuple[str, ...] = ()) -> None:
+        self.exempt_commands = tuple(c.lower() for c in exempt_commands)
+        self._locks: dict[tuple[int, int], asyncio.Lock] = {}
+
+    def _is_exempt(self, event: Message) -> bool:
+        text = (event.text or "").strip()
+        if not text.startswith("/"):
+            return False
+        command = text.split()[0][1:].split("@")[0].lower()
+        return command in self.exempt_commands
+
+    async def __call__(
+        self,
+        handler: Callable[[Message, dict[str, Any]], Awaitable[Any]],
+        event: Message,
+        data: dict[str, Any],
+    ) -> Any:
+        user = event.from_user
+        if user is None or self._is_exempt(event):
+            return await handler(event, data)
+        key = (event.chat.id, user.id)
+        lock = self._locks.setdefault(key, asyncio.Lock())
+        try:
+            async with lock:
+                return await handler(event, data)
+        finally:
+            if not lock.locked() and not getattr(lock, "_waiters", None):
+                self._locks.pop(key, None)
