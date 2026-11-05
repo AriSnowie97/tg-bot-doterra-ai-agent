@@ -14,6 +14,14 @@ from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, C
 from aiogram.enums import ChatAction, ChatType, MessageEntityType
 # Local
 from src.agent import generate_response, detect_is_english
+from src.agent.specialist import (
+    has_chronic_condition,
+    is_emergency,
+    is_crisis,
+    GROUP_CHRONIC_REPLY,
+    EN_GROUP_CHRONIC_REPLY,
+    PRIVATE_CHRONIC_INTRO,
+)
 from src.publisher import publish_channel_post
 from src.scheduler import setup_scheduler
 from src.storage.feedback import ensure_feedback_table, save_vote, get_vote_counts
@@ -238,6 +246,48 @@ def _open_app_button(text: str, url: str, chat_type: str | None) -> InlineKeyboa
     return InlineKeyboardButton(text=text, url=url)
 
 
+GROUP_CHAT_TYPES = (ChatType.GROUP, ChatType.SUPERGROUP)
+
+# Пряме звернення до Наталії Котелянської (те саме посилання, що й у /help)
+SPECIALIST_DM_URL = "https://t.me/Nataliia_Kotelianska"
+
+# Параметр deep link для переходу з групи в особисті повідомлення з ботом: t.me/<bot>?start=chronic
+CHRONIC_START_PAYLOAD = "chronic"
+
+
+async def _redirect_chronic_in_group(message: Message, text: str) -> bool:
+    """У групових чатах хронічні захворювання не обговорюються публічно.
+
+    Людину скеровують в особисті повідомлення (щоб вона описала проблему, а за червоних прапорів
+    її перенаправили до Наталії) або одразу на консультацію до Наталії Котелянської.
+    Невідкладні та кризові повідомлення сюди не потрапляють — їх обробляє generate_response.
+
+    Повертає True, якщо повідомлення оброблено (відповідь надіслано).
+    """
+    if message.chat.type not in GROUP_CHAT_TYPES:
+        return False
+    if is_emergency(text) or is_crisis(text) or not has_chronic_condition(text):
+        return False
+
+    is_en = detect_is_english(text)
+    rows: list[list[InlineKeyboardButton]] = []
+    if _BOT_USERNAME:
+        rows.append([InlineKeyboardButton(
+            text="💬 Continue in private chat" if is_en else "💬 Продовжити в особистих повідомленнях",
+            url=f"https://t.me/{_BOT_USERNAME}?start={CHRONIC_START_PAYLOAD}",
+        )])
+    rows.append([InlineKeyboardButton(
+        text="👩‍⚕️ Consultation with Natalia" if is_en else "👩‍⚕️ Консультація Наталії",
+        url=SPECIALIST_DM_URL,
+    )])
+
+    await message.reply(
+        EN_GROUP_CHRONIC_REPLY if is_en else GROUP_CHRONIC_REPLY,
+        reply_markup=InlineKeyboardMarkup(inline_keyboard=rows),
+    )
+    return True
+
+
 async def _reply_with_feedback(message: Message, text: str, sticker_id: str | None = None) -> None:
     """Надсилає reply з текстом відповіді і кнопками 👍/👎 та посиланнями на гайди."""
     webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
@@ -287,7 +337,11 @@ async def _reply_with_feedback(message: Message, text: str, sticker_id: str | No
 
 
 @dp.message(Command("start"))
-async def command_start_handler(message: Message, state: FSMContext) -> None:
+async def command_start_handler(
+    message: Message,
+    state: FSMContext,
+    command: CommandObject | None = None,
+) -> None:
     # Скидаємо лише режим очікування для /ask, не обнуляючи контекст скринінгу,
     # щоб користувач міг відповісти на запитання бота (наприклад, «ні») навіть після /start.
     current_state = await state.get_state()
@@ -308,6 +362,10 @@ async def command_start_handler(message: Message, state: FSMContext) -> None:
         reply_markup=markup
     )
     await _send_emotion_sticker(message, get_welcome_sticker)
+    # Перехід із групи за посиланням t.me/<бот>?start=chronic: просимо описати ситуацію в особистих повідомленнях
+    start_payload = (command.args or "").strip().lower() if command else ""
+    if start_payload == CHRONIC_START_PAYLOAD and message.chat.type == ChatType.PRIVATE:
+        await message.answer(PRIVATE_CHRONIC_INTRO)
     time_id, _ = get_kyiv_time_of_day()
     await state.update_data(
         has_introduced=True,
@@ -396,6 +454,10 @@ async def command_ask_handler(message: Message, command: CommandObject, state: F
         )
         return
 
+    # У групах хронічні захворювання не обговорюємо: скеровуємо в особисті або до Наталії
+    if await _redirect_chronic_in_group(message, ask_text):
+        return
+
     from src.agent.specialist import is_health_complaint_query, has_red_flags
     ask_complaint = is_health_complaint_query(ask_text)
     ask_red_flag = has_red_flags(ask_text)
@@ -473,6 +535,10 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
         await message.reply(
             "🌿 Запитай мене що-небудь про ефірні олії doTERRA — я з радістю допоможу! 🌸"
         )
+        return
+
+    # У групах хронічні захворювання не обговорюємо: скеровуємо в особисті або до Наталії
+    if await _redirect_chronic_in_group(message, user_text):
         return
 
     fsm_data = await state.get_data()
@@ -740,6 +806,10 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
     user_text = _strip_mention(message.text, _BOT_USERNAME) if _BOT_USERNAME else message.text
     if not user_text:
         await message.reply("🌿 Запитай мене що-небудь про ефірні олії doTERRA!")
+        return
+
+    # У групах хронічні захворювання не обговорюємо: скеровуємо в особисті або до Наталії
+    if await _redirect_chronic_in_group(message, user_text):
         return
 
     # ── Завантажуємо стан з FSMContext ───────────────────────────────────────

@@ -36,7 +36,6 @@ class TestSpecialistScreening:
 
     @pytest.mark.parametrize("query", [
         "Я вагітна на 6 місяці, чи можна м'яту?",
-        "Дитині 2 місяці, що можна від застуди?",
         "У моєї бабусі гіпертонія та високий тиск",
         "Приймаю антидепресанти та ліки щодня",
         "У мене епілепсія та астма",
@@ -51,6 +50,56 @@ class TestSpecialistScreening:
     ])
     def test_safe_queries_have_no_red_flags(self, query: str):
         assert has_red_flags(query) is False
+
+    @pytest.mark.parametrize("query", [
+        "Дитині 2 місяці, що можна від застуди?",
+        "Чи можна лаванду дитині 3 роки?",
+        "Для дітей можна лаванду?",
+        "моєму синові 3 місяці, як користуватися олією?",
+        "Is it safe for my kids?",
+        "my 2 year old has trouble falling asleep",
+    ])
+    def test_children_are_not_red_flags(self, query: str):
+        # Олії можна з 0 років — усе залежить від концентрації, тому дитина не є червоним прапором
+        assert has_red_flags(query) is False
+
+    @pytest.mark.parametrize("query,expected", [
+        ("Чи можна лаванду моєму котику?", True),
+        ("У нас вдома кішка, чи безпечний дифузор?", True),
+        ("Can I diffuse peppermint around my cat?", True),
+        ("Чи можна олії собаці?", False),
+        ("Яка олія підійде для щеняти?", False),
+        ("Розкажи про Котелянську", False),
+    ])
+    def test_has_cat_mention(self, query: str, expected: bool):
+        from src.agent.specialist import has_cat_mention
+        assert has_cat_mention(query) is expected
+
+    @pytest.mark.parametrize("query,expected", [
+        ("Чи можна олії собаці?", True),
+        ("Яка олія підійде для щеняти?", True),
+        ("Can I use lavender for my dog?", True),
+        ("Чи безпечні олії для тварин?", True),
+        ("Лаванда для сну", False),
+    ])
+    def test_is_pet_query(self, query: str, expected: bool):
+        from src.agent.specialist import is_pet_query
+        assert is_pet_query(query) is expected
+
+    @pytest.mark.parametrize("query,expected", [
+        ("У мене хронічне захворювання нирок", True),
+        ("Маю діабет другого типу", True),
+        ("У мене астма, що порадите?", True),
+        ("я хворію на псоріаз", True),
+        ("I have a chronic condition", True),
+        ("діабету немає", False),
+        ("немає хронічних захворювань", False),
+        ("Яка олія для сну?", False),
+        ("хронічна втома і стрес", False),
+    ])
+    def test_has_chronic_condition(self, query: str, expected: bool):
+        from src.agent.specialist import has_chronic_condition
+        assert has_chronic_condition(query) is expected
 
     def test_medical_disclaimer_content(self):
         assert "не є медичною консультацією" in MEDICAL_DISCLAIMER

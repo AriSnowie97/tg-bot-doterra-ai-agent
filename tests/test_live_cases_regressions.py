@@ -20,9 +20,7 @@ def test_no_false_red_flag_on_substrings(query):
 
 @pytest.mark.parametrize("query", [
     "У мене рак",
-    "Для дітей можна лаванду?",
-    "Is it safe for my kids?",
-    "Дитині 3 роки",
+    "Приймаю антикоагулянти",
 ])
 def test_real_red_flags_still_detected(query):
     assert has_red_flags(query) is True
@@ -116,7 +114,6 @@ async def test_health_complaint_never_gets_sticker(monkeypatch):
 
 
 @pytest.mark.parametrize("query", [
-    "моєму синові 3 місяці кашляє", "доньці 5 років", "my son has a cold", "my 2 year old",
     "колю інсулін", "приймаю метформін", "п'ю таблетки щодня",
     "я вагiтна", "ВАГIТНА", "в а г і т н а", "ва​гітна", "ва­гітна", "vagitna",
 ])
@@ -245,3 +242,77 @@ async def test_admin_command_in_group_gets_hint(monkeypatch):
     assert "приватному" in message.answer.call_args.args[0]
 
 
+
+
+def _group_message(text):
+    message = AsyncMock(spec=Message)
+    message.chat = MagicMock(spec=Chat, type=ChatType.SUPERGROUP, id=-100)
+    message.from_user = MagicMock(spec=User, id=123, is_bot=False)
+    message.text = text
+    message.reply = AsyncMock()
+    return message
+
+
+@pytest.mark.anyio
+async def test_group_chronic_condition_redirects_to_private_or_specialist(monkeypatch):
+    monkeypatch.setattr(bot_mod, "_BOT_USERNAME", "AromaAssistantBot")
+    message = _group_message("У мене діабет, яка олія підійде?")
+
+    assert await bot_mod._redirect_chronic_in_group(message, message.text) is True
+
+    message.reply.assert_called_once()
+    kb = message.reply.call_args.kwargs["reply_markup"]
+    urls = [b.url for row in kb.inline_keyboard for b in row]
+    assert "https://t.me/AromaAssistantBot?start=chronic" in urls
+    assert bot_mod.SPECIALIST_DM_URL in urls
+
+
+@pytest.mark.anyio
+async def test_group_chronic_redirect_skips_other_cases(monkeypatch):
+    monkeypatch.setattr(bot_mod, "_BOT_USERNAME", "AromaAssistantBot")
+
+    # звичайне питання в групі
+    plain = _group_message("Яка олія допоможе заспокоїтись?")
+    assert await bot_mod._redirect_chronic_in_group(plain, plain.text) is False
+    plain.reply.assert_not_called()
+
+    # у приваті хронічні захворювання йдуть звичним шляхом (червоний прапор → Наталія)
+    private = _private_message("У мене діабет")
+    assert await bot_mod._redirect_chronic_in_group(private, private.text) is False
+    private.reply.assert_not_called()
+
+    # невідкладні стани в групі не перехоплюються (їх обробляє generate_response)
+    emergency = _group_message("У мене діабет і сильна кровотеча")
+    assert await bot_mod._redirect_chronic_in_group(emergency, emergency.text) is False
+
+
+@pytest.mark.anyio
+async def test_cat_question_redirects_to_specialist_without_llm(monkeypatch):
+    from src.agent import service
+    from src.agent.specialist import CAT_REDIRECT_REPLY, EN_CAT_REDIRECT_REPLY
+
+    async def _must_not_search(*args, **kwargs):
+        raise AssertionError("RAG не повинен викликатися для котів")
+
+    monkeypatch.setattr(service, "search_chunks", _must_not_search)
+
+    assert await service.generate_response("Чи можна дифузувати лаванду, якщо вдома кіт?") == CAT_REDIRECT_REPLY
+    assert await service.generate_response("Is lavender safe for my cat?") == EN_CAT_REDIRECT_REPLY
+
+
+def test_child_is_not_a_red_flag_in_prompt():
+    prompt = build_system_prompt([], screening_mode="inactive")
+    assert "з 0 років" in prompt
+    assert "КОНЦЕНТРАЦІЇ" in prompt
+    assert "Собакам можна майже всі олії" in prompt
+    assert "РЕГУЛЯЦІЮ СТАНУ" in prompt
+
+
+def test_post_topics_cover_knowledge_base_and_are_not_empty():
+    from src.agent.post_prompt import TOPIC_SEEDS, POST_SYSTEM_PROMPT
+    assert len(TOPIC_SEEDS) >= 30
+    assert len(set(TOPIC_SEEDS)) == len(TOPIC_SEEDS)
+    joined = " ".join(TOPIC_SEEDS).lower()
+    for keyword in ("мікробіом", "симфонія клітин", "безпека ефірних олій", "емоційна карта", "on guard"):
+        assert keyword in joined
+    assert "РЕГУЛЯЦІЯ СТАНУ" in POST_SYSTEM_PROMPT

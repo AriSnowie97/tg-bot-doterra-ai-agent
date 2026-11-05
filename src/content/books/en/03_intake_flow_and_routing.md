@@ -29,7 +29,7 @@ Disclaimer (system-level auto-appended to every response)
 
 Assessed **prior** to personalized recommendations:
 1. Pregnancy or breastfeeding?
-2. Concern involves a child? If yes, what age (under 3 months / 3 months–3 years / over 3 years)?
+2. Concern involves a child? If yes, what age? (Essential oils can be used from age 0; everything depends on the concentration of the product and dilution. The age helps suggest a gentler concentration.)
 3. History of epilepsy or seizure susceptibility?
 4. Asthma, eczema, dermatitis, or acute allergies?
 5. Chronic daily medications (anticoagulants, antidepressants, hormones, blood pressure medications)?
@@ -37,7 +37,7 @@ Assessed **prior** to personalized recommendations:
 
 ### Red Flags
 - Question 1 = Yes (pregnancy / lactation)
-- Question 2 = Under 3 months (essential oils are not recommended for infants)
+- Question 2 — a child is NOT a red flag: essential oils can be used from age 0, but everything depends on the concentration of the product. For an exact concentration for a specific child (especially an infant), consult Nataliia Kotelianska
 - Question 3 = Yes (epilepsy / seizures)
 - Question 4 = Yes (acute allergy or dermatitis flair-up)
 - Question 5 = Yes (chronic daily pharmaceuticals)
