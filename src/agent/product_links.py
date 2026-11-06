@@ -573,17 +573,42 @@ def extract_product_links(text: str, max_links: int = 4) -> list[tuple[str, str]
 
 
 def strip_internal_kb_links(text: str) -> str:
-    """Прибирає markdown-посилання на службові матеріали бази знань: [Текст](slug) → Текст.
+    """Повністю прибирає markdown-посилання на службові матеріали бази знань (разом із підписом).
 
-    Так ні Telegram-бот, ні чат Mini App не покажуть кнопку на довідники/логіку роботи бота.
+    Так ні Telegram-бот, ні чат Mini App не покажуть кнопку або «висячу» назву довідника/логіки бота.
     """
     if not text:
         return text
 
     def _repl(m: re.Match) -> str:
-        return m.group(1) if is_internal_kb_slug(m.group(2)) else m.group(0)
+        return "" if is_internal_kb_slug(m.group(2)) else m.group(0)
 
-    return re.sub(r'\[([^\]]+)\]\(([^)]+)\)', _repl, text)
+    cleaned = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', _repl, text)
+    if cleaned == text:
+        return text
+    # Прибираємо порожні маркери списку та зайві пробіли/порожні рядки, що залишилися після видалення
+    cleaned = re.sub(r'(?m)^[ \t]*[\u2022\u25cf\u25b6\u25c6\u25c7\u25b8\U0001f539\U0001f538\U0001f535\-*•][ \t]*(?:\u2014[ \t]*)?$', '', cleaned)
+    cleaned = re.sub(r'[ \t]+\n', '\n', cleaned)
+    cleaned = re.sub(r'\n{3,}', '\n\n', cleaned)
+    return cleaned.strip()
+
+
+
+def strip_internal_kb_references(content: str) -> str:
+    """Прибирає з тексту фрагмента бази знань рядки-«див. також» із посиланнями на службові документи.
+
+    Картки продуктів містять рядки на кшталт `* [Довідник безпеки…](01_oils_safety_reference) — …`.
+    Якщо модель їх бачить, вона переказує їх у відповіді як назви довідників і кнопок.
+    """
+    if not content:
+        return content
+    kept = []
+    for line in content.splitlines():
+        links = re.findall(r'\[([^\]]+)\]\(([^)]+)\)', line)
+        if links and any(is_internal_kb_slug(slug) for _, slug in links):
+            continue
+        kept.append(line)
+    return "\n".join(kept)
 
 
 def ensure_product_links_in_markdown(text: str, max_links: int = 4) -> str:

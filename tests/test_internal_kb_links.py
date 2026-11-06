@@ -34,10 +34,31 @@ def test_strip_internal_links_keeps_product_links():
     out = strip_internal_kb_links("[Лаванда](lavender) і [Довідник](01_oils_safety_reference)")
     assert "[Лаванда](lavender)" in out
     assert "01_oils_safety_reference" not in out
-    assert "Довідник" in out
+    assert "Довідник" not in out
+
+
+def test_strip_internal_links_removes_dangling_label_at_end():
+    text = "Пораджу лаванду.\n\n[Довідник безпеки олій](01_oils_safety_reference)"
+    out = strip_internal_kb_links(text)
+    assert out == "Пораджу лаванду."
+
+
+def test_strip_internal_kb_references_from_context():
+    from src.agent.product_links import strip_internal_kb_references
+
+    content = (
+        "Лаванда — заспокійлива олія.\n"
+        "* [Довідник безпеки](01_oils_safety_reference) — правила\n"
+        "* [Лаванда Touch](lavender-touch) — ролер"
+    )
+    out = strip_internal_kb_references(content)
+    assert "01_oils_safety_reference" not in out
+    assert "lavender-touch" in out
+    assert "заспокійлива" in out
 
 
 def test_intake_doc_hidden_from_articles_list():
     from src.web.app import HIDDEN_ARTICLE_SLUGS
 
     assert "03-intake-flow-and-routing" in HIDDEN_ARTICLE_SLUGS
+

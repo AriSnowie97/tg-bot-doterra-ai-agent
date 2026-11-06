@@ -14,7 +14,7 @@
     messages = [{"role": "system", "content": build_system_prompt(context_chunks, suggest_specialist=True)}]
 """
 from .specialist import SPECIALIST_CONTACT_BLOCK, RED_FLAG_REDIRECT_BLOCK
-from .product_links import is_internal_kb_slug
+from .product_links import is_internal_kb_slug, strip_internal_kb_references
 
 
 # ---------------------------------------------------------------------------
@@ -79,7 +79,7 @@ SYSTEM_PROMPT: str = """Твоє ім'я — Арома 🌸. Ти персон�
   Бекенд автоматично перетворює кожне таке посилання [Назва](product_slug) на окрему інтерактивну кнопку «📖 Назва продукту» для перегляду сторінки в Telegram Mini App, а в тексті акуратно залишає чисту назву без дужок!
   Якщо ти НЕ вкажеш [Назва](product_slug) — користувач НЕ побачить кнопку і не зможе відкрити статтю в Mini App!
   БЕРИ ТІЛЬКИ точний product_slug із заголовка відповідного чанка [product_slug: ...] у RETRIEVED_CONTEXT. Ніколи не вигадуй slug та не пиши URL doterra.com!
-- Службові матеріали бази знань (довідники, правила безпеки, емоційні карти, логіка опитування та маршрутизації) — це НЕ статті про продукти. НІКОЛИ не давай на них посилань чи кнопок і не називай їхні slugs (01_oils_safety_reference, 02_emotional_themes_map, 03_intake_flow_and_routing, 04_modern_essentials_supplement, 05_azbuka_supplement, 06_aromalogiya_supplement). Користуйся їхнім змістом лише щоб відповісти текстом. Посилання [Назва](product_slug) роби ТІЛЬКИ на сторінки продуктів: олії, суміші, ролери, БАДи, набори, засоби догляду та товари для дому.
+- Службові матеріали бази знань (довідники, правила безпеки, емоційні карти, логіка опитування та маршрутизації) — це НЕ статті про продукти. НІКОЛИ не давай на них посилань чи кнопок і не називай їхні slugs (01_oils_safety_reference, 02_emotional_themes_map, 03_intake_flow_and_routing, 04_modern_essentials_supplement, 05_azbuka_supplement, 06_aromalogiya_supplement). Користуйся їхнім змістом лише щоб відповісти текстом. Посилання [Назва](product_slug) роби ТІЛЬКИ на сторінки продуктів: олії, суміші, ролери, БАДи, набори, засоби догляду та товари для дому. Підпис посилання — це просто назва продукту (напр. «Лаванда»), без слів «Читати про…», і ніколи не називай у тексті довідники чи файли бази знань.
 - КАТЕГОРИЧНО ЗАБОРОНЕНО давати посилання на офіційний сайт doterra.com чи зовнішні інтернет-магазини doTERRA. Наш бот не рекламує сайт doterra.com і не відправляє туди людей! Посилання давай ТІЛЬКИ на статті нашого довідника: [Текст кнопки](product_slug) або на авторитетні наукові дослідження (PubMed), ніколи не вказуй URL на сам сайт doterra.com!
 
 ДИСКЛЕЙМЕР
@@ -259,7 +259,7 @@ def build_system_prompt(
         parts: list[str] = []
         for chunk in context_chunks:
             product_slug = chunk.get("product_slug", "unknown")
-            content = chunk.get("content", "").strip()
+            content = strip_internal_kb_references(chunk.get("content", "").strip())
             if is_internal_kb_slug(product_slug):
                 # Службовий матеріал: використовуємо зміст, але не даємо моделі slug для кнопки
                 parts.append(f"[службовий матеріал, без посилання]\n{content}")
