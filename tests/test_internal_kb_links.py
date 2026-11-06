@@ -60,5 +60,14 @@ def test_strip_internal_kb_references_from_context():
 def test_intake_doc_hidden_from_articles_list():
     from src.web.app import HIDDEN_ARTICLE_SLUGS
 
-    assert "03-intake-flow-and-routing" in HIDDEN_ARTICLE_SLUGS
+    for expected in (
+        "01-oils-safety-reference",
+        "02-emotional-themes-map",
+        "03-intake-flow-and-routing",
+        "04-modern-essentials-supplement",
+        "05-azbuka-supplement",
+        "06-aromalogiya-supplement",
+    ):
+        assert expected in HIDDEN_ARTICLE_SLUGS
+
 

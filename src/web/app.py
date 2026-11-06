@@ -236,8 +236,16 @@ DIRECTORIES_TO_SEARCH = [
     "books"
 ]
 
-# Службові файли бази знань, які не показуються у списку статей Mini App
-HIDDEN_ARTICLE_SLUGS = {"03-intake-flow-and-routing"}
+# Службові матеріали бази знань (довідники, емоційні карти, логіка роботи бота),
+# які використовуються тільки як контекст для помічниці й не показуються як статті користувачам
+HIDDEN_ARTICLE_SLUGS = {
+    "01-oils-safety-reference",
+    "02-emotional-themes-map",
+    "03-intake-flow-and-routing",
+    "04-modern-essentials-supplement",
+    "05-azbuka-supplement",
+    "06-aromalogiya-supplement",
+}
 
 def _get_all_docs() -> list[dict]:
     """Повертає список усіх MD-файлів із вказаних директорій."""
