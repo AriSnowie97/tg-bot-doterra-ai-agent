@@ -22,10 +22,11 @@ from src.agent.specialist import (
     EN_GROUP_CHRONIC_REPLY,
     PRIVATE_CHRONIC_INTRO,
 )
-from src.publisher import publish_channel_post
+from src.publisher import publish_channel_post, generate_post_content, publish_post_text
+from src.agent.post_prompt import TOPIC_CATEGORIES, TOPIC_SEEDS
 from src.scheduler import setup_scheduler
 from src.storage.feedback import ensure_feedback_table, save_vote, get_vote_counts
-from handlers.states import AskStates, ScreeningStates
+from handlers.states import AskStates, ScreeningStates, PostAdminStates
 from src.content.sync_content import run_sync
 from src.middleware import RateLimitMiddleware, CallbackRateLimitMiddleware, UserSerialMiddleware, UserSerialMiddleware
 from src.safety import (
@@ -592,14 +593,100 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
 _RUNNING_ADMIN_JOBS: set[str] = set()
 
 
+# Словник категорій з короткими ідентифікаторами для callback_data
+_CAT_KEYS: list[str] = list(TOPIC_CATEGORIES.keys())
+
+
+def _build_post_categories_keyboard() -> InlineKeyboardMarkup:
+    """Клавіатура вибору категорії для генерації посту."""
+    buttons: list[list[InlineKeyboardButton]] = []
+    for idx, cat_name in enumerate(_CAT_KEYS):
+        buttons.append([InlineKeyboardButton(text=cat_name, callback_data=f"adm_cat:{idx}")])
+    buttons.append([
+        InlineKeyboardButton(text="🎲 Випадкова тема", callback_data="adm_top:random"),
+        InlineKeyboardButton(text="✍️ Своя тема", callback_data="adm_top:custom"),
+    ])
+    buttons.append([InlineKeyboardButton(text="❌ Скасувати", callback_data="adm_post:cancel")])
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
+
+
+def _build_post_topics_keyboard(cat_idx: int) -> InlineKeyboardMarkup:
+    """Клавіатура тем всередині вибраної категорії."""
+    buttons: list[list[InlineKeyboardButton]] = []
+    if 0 <= cat_idx < len(_CAT_KEYS):
+        cat_name = _CAT_KEYS[cat_idx]
+        topics = TOPIC_CATEGORIES[cat_name]
+        for t_idx, topic in enumerate(topics):
+            # Скорочуємо текст на кнопці, якщо занадто довгий
+            label = topic if len(topic) <= 38 else (topic[:35] + "...")
+            buttons.append([InlineKeyboardButton(text=f"• {label}", callback_data=f"adm_top:{cat_idx}:{t_idx}")])
+    buttons.append([
+        InlineKeyboardButton(text="🎲 Випадкова з цієї категорії", callback_data=f"adm_top:{cat_idx}:rnd"),
+        InlineKeyboardButton(text="⬅️ Назад до категорій", callback_data="adm_top:back"),
+    ])
+    buttons.append([InlineKeyboardButton(text="❌ Скасувати", callback_data="adm_post:cancel")])
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
+
+
+def _build_post_preview_keyboard() -> InlineKeyboardMarkup:
+    """Клавіатура дій над згенерованим постом у передперегляді."""
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="✅ Опублікувати в канал", callback_data="adm_post:publish")],
+        [
+            InlineKeyboardButton(text="🔄 Згенерувати заново", callback_data="adm_post:regenerate"),
+            InlineKeyboardButton(text="📋 Змінити тему", callback_data="adm_post:change_topic"),
+        ],
+        [InlineKeyboardButton(text="❌ Скасувати", callback_data="adm_post:cancel")],
+    ])
+
+
+async def _run_post_generation_flow(event_target: Message, state: FSMContext, topic: str | None = None) -> None:
+    """Генерує пост і надсилає передперегляд адміну."""
+    wait_msg = await event_target.answer("⏳ <b>Генерую пост...</b> Це може зайняти 20–40 секунд.", parse_mode="HTML")
+    try:
+        chosen_topic, post_text = await generate_post_content(topic)
+        await state.set_state(PostAdminStates.preview_post)
+        await state.update_data(current_post_text=post_text, current_post_topic=chosen_topic)
+
+        try:
+            await wait_msg.delete()
+        except Exception:
+            pass
+
+        # Надсилаємо пост частинами якщо довший за ліміт Telegram
+        parts = _split_message(post_text)
+        intro_text = (
+            f"📝 <b>Передперегляд посту</b>\n"
+            f"🎯 <b>Тема:</b> <i>{html.escape(chosen_topic)}</i>\n\n"
+            "──────────────\n\n"
+        )
+        first_part = intro_text + parts[0]
+        await event_target.answer(first_part)
+        for part in parts[1:]:
+            await event_target.answer(part)
+
+        preview_kb = _build_post_preview_keyboard()
+        await event_target.answer(
+            "👆 Переглянь пост вище. Опублікувати його у Telegram-канал?",
+            reply_markup=preview_kb,
+        )
+    except Exception as e:
+        try:
+            await wait_msg.delete()
+        except Exception:
+            pass
+        await event_target.answer(f"❌ Помилка під час генерації ({safe_error(e)}). Спробуй іншу тему або пізніше.")
+        print(f"[admin_post] Generation error: {redact(e)}")
+
+
 @dp.message(Command("post"), AdminFilter(), F.chat.type == ChatType.PRIVATE)
-async def command_post_handler(message: Message, bot: Bot) -> None:
-    """Ручна публікація посту в канал — тільки для адміністраторів.
+async def command_post_handler(message: Message, command: CommandObject, state: FSMContext) -> None:
+    """Ручне створення та публікація посту в канал — для адміністраторів.
 
-    Використання: надіслати /post у приватний чат з ботом.
-    Бот одразу публікує новий пост у канал і повідомляє про результат.
+    Варіанти використання:
+    1. /post <тема> — одразу згенерувати пост за вказаною темою та показати передперегляд.
+    2. /post — відкрити інтерактивне меню з вибором категорій, випадкової або власної теми.
     """
-
     channel_id = _get_channel_id()
     if not channel_id:
         await message.answer(
@@ -607,33 +694,194 @@ async def command_post_handler(message: Message, bot: Bot) -> None:
         )
         return
 
-    if "post" in _RUNNING_ADMIN_JOBS:
-        await message.answer("⏳ Публікація вже виконується — дочекайся результату.")
+    # Якщо адмін одразу вказав тему аргументом
+    if command.args and command.args.strip():
+        custom_topic = command.args.strip()
+        await _run_post_generation_flow(message, state, topic=custom_topic)
         return
-    _RUNNING_ADMIN_JOBS.add("post")
 
-    await message.answer("⏳ Генерую пост... Це може зайняти 30–60 секунд.")
+    # Інакше показуємо красиве інтерактивне меню
+    kb = _build_post_categories_keyboard()
+    await state.set_state(None)
+    await message.answer(
+        "📢 <b>Створення публікації у Telegram-канал</b>\n\n"
+        "Обери категорію теми, згенеруй випадковий пост або вкажи власну тему.\n"
+        "Перед відправкою ти зможеш <b>переглянути текст</b> і схвалити або згенерувати заново 🌿",
+        parse_mode="HTML",
+        reply_markup=kb,
+    )
 
-    try:
-        post_url = await publish_channel_post(bot)
-        if post_url:
-            kb = InlineKeyboardMarkup(
-                inline_keyboard=[
-                    [InlineKeyboardButton(text="📖 Читати далі в каналі", url=post_url)]
-                ]
-            )
-            await message.answer(
-                f"✅ <b>Пост успішно опубліковано у канал!</b>\n\n👉 <a href=\"{post_url}\">Читати далі</a>",
-                parse_mode="HTML",
-                reply_markup=kb,
-            )
-        else:
-            await message.answer("✅ Пост успішно опубліковано у канал!")
-    except Exception as e:
-        await message.answer(f"❌ Помилка при публікації ({safe_error(e)}). Деталі — у логах сервера.")
-        print(f"[bot] /post error: {redact(e)}")
-    finally:
-        _RUNNING_ADMIN_JOBS.discard("post")
+
+@dp.callback_query(AdminFilter(), F.data.startswith("adm_cat:"))
+async def post_select_category_callback(callback: CallbackQuery) -> None:
+    """Показує список тем усередині вибраної категорії."""
+    parts = callback.data.split(":")
+    if len(parts) != 2 or not parts[1].isdigit():
+        await callback.answer()
+        return
+    cat_idx = int(parts[1])
+    if cat_idx < 0 or cat_idx >= len(_CAT_KEYS):
+        await callback.answer("Категорію не знайдено", show_alert=True)
+        return
+
+    cat_name = _CAT_KEYS[cat_idx]
+    kb = _build_post_topics_keyboard(cat_idx)
+    await callback.message.edit_text(
+        f"📂 <b>Категорія: {cat_name}</b>\n\n"
+        "Обери конкретну тему для публікації або вибери випадкову з цієї категорії:",
+        parse_mode="HTML",
+        reply_markup=kb,
+    )
+    await callback.answer()
+
+
+@dp.callback_query(AdminFilter(), F.data.startswith("adm_top:"))
+async def post_select_topic_callback(callback: CallbackQuery, state: FSMContext) -> None:
+    """Обробляє вибір конкретної теми, випадкової, назад або перехід до власної."""
+    parts = callback.data.split(":")
+    sub = parts[1]
+
+    if sub == "back":
+        kb = _build_post_categories_keyboard()
+        await callback.message.edit_text(
+            "📢 <b>Створення публікації у Telegram-канал</b>\n\n"
+            "Обери категорію теми, згенеруй випадковий пост або вкажи власну тему:",
+            parse_mode="HTML",
+            reply_markup=kb,
+        )
+        await callback.answer()
+        return
+
+    if sub == "random":
+        await callback.answer("Обрано випадкову тему 🎲")
+        try:
+            await callback.message.edit_reply_markup(reply_markup=None)
+        except Exception:
+            pass
+        await _run_post_generation_flow(callback.message, state, topic=None)
+        return
+
+    if sub == "custom":
+        await state.set_state(PostAdminStates.waiting_for_custom_topic)
+        await callback.message.edit_text(
+            "✍️ <b>Введи свою тему або ключові слова для посту:</b>\n\n"
+            "Наприклад: <i>«Олія Лаванди для вечірнього спокою»</i> або <i>«Здоров'я печінки та енергія»</i>.\n\n"
+            "Надішли текст наступним повідомленням (або /cancel для скасування) 👇",
+            parse_mode="HTML",
+        )
+        await callback.answer()
+        return
+
+    # adm_top:<cat_idx>:<t_idx|rnd>
+    if len(parts) == 3 and parts[1].isdigit():
+        cat_idx = int(parts[1])
+        if 0 <= cat_idx < len(_CAT_KEYS):
+            cat_name = _CAT_KEYS[cat_idx]
+            topics = TOPIC_CATEGORIES[cat_name]
+            chosen_topic = None
+            if parts[2] == "rnd":
+                chosen_topic = random.choice(topics)
+            elif parts[2].isdigit():
+                t_idx = int(parts[2])
+                if 0 <= t_idx < len(topics):
+                    chosen_topic = topics[t_idx]
+
+            if chosen_topic:
+                await callback.answer("Генерую пост 🌿")
+                try:
+                    await callback.message.edit_reply_markup(reply_markup=None)
+                except Exception:
+                    pass
+                await _run_post_generation_flow(callback.message, state, topic=chosen_topic)
+                return
+
+    await callback.answer()
+
+
+@dp.message(PostAdminStates.waiting_for_custom_topic, AdminFilter(), F.text, ~F.text.startswith("/"))
+async def post_custom_topic_handler(message: Message, state: FSMContext) -> None:
+    """Обробляє введену адміном власну тему для посту."""
+    custom_topic = message.text.strip()
+    if not custom_topic:
+        await message.reply("Будь ласка, напиши тему текстом або надішли /cancel.")
+        return
+    await _run_post_generation_flow(message, state, topic=custom_topic)
+
+
+@dp.callback_query(AdminFilter(), F.data.startswith("adm_post:"))
+async def post_action_callback(callback: CallbackQuery, state: FSMContext, bot: Bot) -> None:
+    """Дії над постом: публікація, перегенерація, зміна теми або скасування."""
+    action = callback.data.split(":")[1]
+
+    if action == "cancel":
+        await state.clear()
+        try:
+            await callback.message.edit_text("❌ Публікацію посту скасовано.")
+        except Exception:
+            await callback.message.answer("❌ Публікацію посту скасовано.")
+        await callback.answer("Скасовано")
+        return
+
+    if action == "change_topic":
+        await state.clear()
+        kb = _build_post_categories_keyboard()
+        await callback.message.answer(
+            "📢 <b>Обери нову тему або категорію:</b>",
+            parse_mode="HTML",
+            reply_markup=kb,
+        )
+        await callback.answer()
+        return
+
+    fsm_data = await state.get_data()
+    post_text = fsm_data.get("current_post_text")
+    post_topic = fsm_data.get("current_post_topic")
+
+    if action == "regenerate":
+        await callback.answer("Перегенеровую 🔄")
+        try:
+            await callback.message.edit_reply_markup(reply_markup=None)
+        except Exception:
+            pass
+        await _run_post_generation_flow(callback.message, state, topic=post_topic)
+        return
+
+    if action == "publish":
+        if not post_text:
+            await callback.answer("Пост не знайдено. Спробуй /post ще раз.", show_alert=True)
+            return
+
+        if "post" in _RUNNING_ADMIN_JOBS:
+            await callback.answer("Публікація вже виконується...", show_alert=True)
+            return
+        _RUNNING_ADMIN_JOBS.add("post")
+
+        await callback.answer("Публікую у канал... 🚀")
+        try:
+            await callback.message.edit_reply_markup(reply_markup=None)
+        except Exception:
+            pass
+
+        try:
+            post_url = await publish_post_text(bot, post_text, notify_admins=False)
+            await state.clear()
+            if post_url:
+                kb = InlineKeyboardMarkup(
+                    inline_keyboard=[[InlineKeyboardButton(text="📖 Читати в каналі", url=post_url)]]
+                )
+                await callback.message.answer(
+                    f"✅ <b>Пост успішно опубліковано у канал!</b>\n\n👉 <a href=\"{post_url}\">Переглянути публікацію</a>",
+                    parse_mode="HTML",
+                    reply_markup=kb,
+                )
+            else:
+                await callback.message.answer("✅ <b>Пост успішно опубліковано у канал!</b>", parse_mode="HTML")
+        except Exception as e:
+            await callback.message.answer(f"❌ Помилка при публікації ({safe_error(e)}). Деталі у логах.")
+            print(f"[admin_post] Publish error: {redact(e)}")
+        finally:
+            _RUNNING_ADMIN_JOBS.discard("post")
+        return
 
 
 @dp.message(Command("sync_db"), AdminFilter(), F.chat.type == ChatType.PRIVATE)

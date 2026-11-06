@@ -106,7 +106,8 @@ class TestPublishChannelPost:
             + MEDICAL_DISCLAIMER
         )
 
-        with patch("src.publisher.service._generate_post_text", new=AsyncMock(return_value=fake_generated_post)):
+        with patch("src.publisher.service.search_chunks", return_value=[]), \
+             patch("src.publisher.service.LLM.generate_content", new=AsyncMock(return_value=MagicMock(text=fake_generated_post))):
             post_url = await publish_channel_post(mock_bot)
 
         assert post_url == "https://t.me/testchannel/777"
@@ -132,3 +133,31 @@ class TestPublishChannelPost:
         button = admin_markup.inline_keyboard[0][0]
         assert button.text == "📖 Читати далі в каналі"
         assert button.url == "https://t.me/testchannel/777"
+
+
+    async def test_generate_post_content_and_publish_post_text(self, monkeypatch):
+        monkeypatch.setenv("CHANNEL_ID", "@testchannel")
+        monkeypatch.setenv("ADMIN_IDS", "12345678")
+
+        mock_bot = AsyncMock()
+        sent_channel_msg = MagicMock()
+        sent_channel_msg.message_id = 888
+        sent_channel_msg.chat.username = "testchannel"
+        mock_bot.send_message.return_value = sent_channel_msg
+
+        fake_post = (
+            "ТЕМА ЗДОРОВ'Я ТА БАЛАНСУ 🌿\n\n"
+            "Корисна інформація без дисклеймера.\n\n"
+            "Ставте ❤️ якщо пост був корисним!"
+        )
+
+        with patch("src.publisher.service._generate_post_text", new=AsyncMock(return_value=fake_post)):
+            from src.publisher.service import generate_post_content, publish_post_text
+            topic, generated_text = await generate_post_content("Лаванда")
+            assert topic == "Лаванда"
+            assert "ТЕМА ЗДОРОВ'Я" in generated_text
+
+            post_url = await publish_post_text(mock_bot, generated_text, notify_admins=False)
+            assert post_url == "https://t.me/testchannel/888"
+            # Перевіряємо, що у канал надіслано, а адмінам окреме повідомлення не дублювалося (notify_admins=False)
+            assert mock_bot.send_message.call_count == 1
