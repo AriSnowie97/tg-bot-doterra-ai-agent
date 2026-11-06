@@ -22,7 +22,6 @@ from src.safety import UNSUPPORTED_CONTENT_REPLY
         ("contact", {"contact": MagicMock()}),
         ("poll", {"poll": MagicMock()}),
         ("dice", {"dice": MagicMock()}),
-        ("sticker", {"sticker": MagicMock(emoji="🌸")}),
     ],
 )
 @pytest.mark.anyio
@@ -48,13 +47,16 @@ async def test_unsupported_media_in_private_chat(media_attr: str, kwargs: dict):
     reply_text = message.reply.call_args[0][0]
     assert "Я розумію лише текст…" in reply_text
     assert reply_text == UNSUPPORTED_CONTENT_REPLY
-    # Бот НЕ повинен надсилати стікер у відповідь
+    # Бот НЕ повинен надсилати стікер у відповідь на звичайні медіа
     message.reply_sticker.assert_not_called()
 
 
 @pytest.mark.anyio
-async def test_on_sticker_alias_behaviour():
-    """Перевіряє, що аліас on_sticker тепер повертає текстове повідомлення замість надсилання стікера."""
+async def test_on_sticker_replies_with_sticker(monkeypatch):
+    """Перевіряє, що на стікер бот відповідає стікером із паку."""
+    fake_get_sticker = AsyncMock(return_value="sticker_file_id_123")
+    monkeypatch.setattr("bot.get_or_load_sticker", fake_get_sticker)
+
     message = AsyncMock(spec=Message)
     message.chat = MagicMock(spec=Chat, type=ChatType.PRIVATE)
     message.from_user = MagicMock(spec=User, id=123, is_bot=False)
@@ -66,11 +68,38 @@ async def test_on_sticker_alias_behaviour():
     message.sticker = MagicMock(emoji="😊")
     message.reply = AsyncMock()
     message.reply_sticker = AsyncMock()
+    message.bot = MagicMock()
 
     await on_sticker(message)
 
-    message.reply.assert_called_once_with(UNSUPPORTED_CONTENT_REPLY)
+    fake_get_sticker.assert_called_once_with(message.bot, preferred_emojis="😊")
+    message.reply_sticker.assert_called_once_with("sticker_file_id_123")
+    message.reply.assert_not_called()
+
+
+@pytest.mark.anyio
+async def test_on_sticker_fallback_if_loading_fails(monkeypatch):
+    """Якщо стікер не вдалося завантажити, бот відправляє текстовий фолбек."""
+    fake_get_sticker = AsyncMock(return_value=None)
+    monkeypatch.setattr("bot.get_or_load_sticker", fake_get_sticker)
+
+    message = AsyncMock(spec=Message)
+    message.chat = MagicMock(spec=Chat, type=ChatType.PRIVATE)
+    message.from_user = MagicMock(spec=User, id=123, is_bot=False)
+    message.text = None
+    message.caption = None
+    message.entities = None
+    message.caption_entities = None
+    message.reply_to_message = None
+    message.sticker = MagicMock(emoji="😊")
+    message.reply = AsyncMock()
+    message.reply_sticker = AsyncMock()
+    message.bot = MagicMock()
+
+    await on_sticker(message)
+
     message.reply_sticker.assert_not_called()
+    message.reply.assert_called_once_with(UNSUPPORTED_CONTENT_REPLY)
 
 
 @pytest.mark.anyio

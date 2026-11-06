@@ -381,7 +381,8 @@ def is_admin(user_id: int) -> bool:
 
 @dp.message(CommandStart())
 async def cmd_start(message: Message) -> None:
-    if not is_admin(message.from_user.id):
+    if message.from_user is None or not is_admin(message.from_user.id):
+        log.warning("[SECURITY] event=uploader_access_denied user_id=%s", getattr(message.from_user, "id", None))
         return
 
     await message.answer(
@@ -449,6 +450,7 @@ async def cmd_list(message: Message) -> None:
 @dp.message(F.document)
 async def handle_document(message: Message, bot: Bot) -> None:
     if message.from_user is None or not is_admin(message.from_user.id):
+        log.warning("[SECURITY] event=uploader_upload_denied user_id=%s", getattr(message.from_user, "id", None))
         await message.answer("⛔ У вас немає доступу.")
         return
 

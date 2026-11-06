@@ -13,10 +13,13 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, WebAppInfo, MenuButtonWebApp, BotCommand
 from aiogram.enums import ChatAction, ChatType, MessageEntityType
 # Local
-from src.agent import generate_response, detect_is_english
+from src.agent import generate_response, detect_is_english, extract_product_links
 from src.publisher import publish_channel_post
 from src.scheduler import setup_scheduler
 from src.storage.feedback import ensure_feedback_table, save_vote, get_vote_counts
+from src.storage.user_memory import ensure_user_memory_table
+from src.memory_handlers import register_memory_handlers, load_profile, remember_from_message, wipe_user_memory
+from src.security_log import log_security_event, message_fields
 from handlers.states import AskStates, ScreeningStates
 from src.content.sync_content import run_sync
 from src.middleware import RateLimitMiddleware, CallbackRateLimitMiddleware, UserSerialMiddleware, UserSerialMiddleware
@@ -116,12 +119,12 @@ dp.callback_query.outer_middleware(CallbackRateLimitMiddleware(exempt_ids=ADMIN_
 # Повідомлення одного користувача в одному чаті обробляються по черзі (FSM без гонок).
 # Довгі адмін-команди не блокують решту його повідомлень.
 dp.message.outer_middleware(UserSerialMiddleware(exempt_commands=("post", "sync_db")))
-# Повідомлення одного користувача в одному чаті обробляються по черзі (FSM без гонок).
-# Довгі адмін-команди не блокують решту його повідомлень.
-dp.message.outer_middleware(UserSerialMiddleware(exempt_commands=("post", "sync_db")))
+
+# Пам'ять про користувача: /memory, /forget, кнопки згоди (має реєструватися до fallback-хендлерів команд)
+register_memory_handlers(dp)
 
 # Кеш username бота — заповнюється при старті
-_BOT_USERNAME: str = ""
+_BOT_USERNAME: str = os.getenv("BOT_USERNAME", "doterra_ua_assistant_bot")
 
 
 async def _keep_typing(
@@ -224,29 +227,48 @@ async def _send_emotion_sticker(message: Message, getter, *args) -> None:
         print(f"[bot] Sticker error: {redact(e)}")
 
 
-def _open_app_button(text: str, url: str, chat_type: str | None) -> InlineKeyboardButton:
-    """Кнопка відкриття Mini App: web_app у приваті, звичайне посилання в групах (Telegram не дозволяє web_app там)."""
-    if chat_type == ChatType.PRIVATE:
-        return InlineKeyboardButton(text=text, web_app=WebAppInfo(url=url))
-    return InlineKeyboardButton(text=text, url=url)
+def _make_app_direct_link(url: str) -> str:
+    """Генерує пряме посилання Telegram Mini App (t.me/.../app?startapp=...) для відкриття всередині Telegram у групах."""
+    if url.startswith("https://t.me/"):
+        return url
+
+    bot_user = (_BOT_USERNAME or os.getenv("BOT_USERNAME", "doterra_ua_assistant_bot")).strip().lstrip("@")
+    app_name = os.getenv("MINI_APP_NAME", "app").strip()
+    if not bot_user:
+        return url
+
+    if "#/article/" in url:
+        slug = url.split("#/article/")[-1].strip("/")
+        # startapp підтримує латиницю, цифри, дефіс, підкреслення (до 64 символів)
+        safe_param = re.sub(r"[^a-zA-Z0-9_-]", "_", f"article_{slug}")[:64]
+        return f"https://t.me/{bot_user}/{app_name}?startapp={safe_param}"
+
+    if "#/chat" in url:
+        return f"https://t.me/{bot_user}/{app_name}?startapp=chat"
+    if "#/articles" in url:
+        return f"https://t.me/{bot_user}/{app_name}?startapp=articles"
+    if "#/contacts" in url:
+        return f"https://t.me/{bot_user}/{app_name}?startapp=contacts"
+
+    return f"https://t.me/{bot_user}/{app_name}"
 
 
 def _open_app_button(text: str, url: str, chat_type: str | None) -> InlineKeyboardButton:
-    """Кнопка відкриття Mini App: web_app у приваті, звичайне посилання в групах (Telegram не дозволяє web_app там)."""
+    """Кнопка відкриття Mini App: web_app у приваті, direct-посилання t.me у групах для відкриття всередині Telegram."""
     if chat_type == ChatType.PRIVATE:
         return InlineKeyboardButton(text=text, web_app=WebAppInfo(url=url))
-    return InlineKeyboardButton(text=text, url=url)
+    return InlineKeyboardButton(text=text, url=_make_app_direct_link(url))
 
 
 async def _reply_with_feedback(message: Message, text: str, sticker_id: str | None = None) -> None:
     """Надсилає reply з текстом відповіді і кнопками 👍/👎 та посиланнями на гайди."""
     webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
     
-    # Шукаємо всі маркдаун посилання виду [Текст](slug)
-    pattern = r'\[([^\]]+)\]\(([^)]+)\)'
-    links = re.findall(pattern, text)
+    # Витягуємо посилання на продукти (з маркдауну або автоматично з каталогу)
+    links = extract_product_links(text)
     
     # Замінюємо [Текст](slug) просто на Текст
+    pattern = r'\[([^\]]+)\]\(([^)]+)\)'
     clean_text = re.sub(pattern, r'\1', text)
     clean_text = re.sub(r'https?://(?:www\.)?doterra\.com[^\s\)]*', '', clean_text).strip()
     clean_text = clean_text.replace("🪨", "🌿").replace("🫂", "🌿").replace("🗿", "")
@@ -266,18 +288,19 @@ async def _reply_with_feedback(message: Message, text: str, sticker_id: str | No
             # Повністю блокуємо зовнішні посилання на сайт doterra.com
             if "doterra.com" in slug.lower():
                 continue
-            if slug not in seen_slugs:
-                seen_slugs.add(slug)
+            clean_slug = slug.lstrip("#/").replace("article/", "")
+            if clean_slug not in seen_slugs:
+                seen_slugs.add(clean_slug)
+                btn_label = link_text if link_text.startswith("📖") else f"📖 {link_text}"
                 if slug.startswith("http://") or slug.startswith("https://"):
                     # Авторитетні наукові дослідження (PubMed тощо) відкриваємо як URL
                     keyboard.inline_keyboard.insert(0, [
-                        InlineKeyboardButton(text=f"📖 {link_text}", url=slug)
+                        InlineKeyboardButton(text=btn_label, url=slug)
                     ])
                 else:
                     # Внутрішні статті довідника відкриваємо в Telegram Mini App
-                    clean_slug = slug.lstrip("#/").replace("article/", "")
                     keyboard.inline_keyboard.insert(0, [
-                        _open_app_button(f"📖 {link_text}", f"{webapp_url}#/article/{clean_slug}", message.chat.type)
+                        _open_app_button(btn_label, f"{webapp_url}#/article/{clean_slug}", message.chat.type)
                     ])
                 
     try:
@@ -288,6 +311,9 @@ async def _reply_with_feedback(message: Message, text: str, sticker_id: str | No
 
 @dp.message(Command("start"))
 async def command_start_handler(message: Message, state: FSMContext) -> None:
+    # /start починає знайомство спочатку: пам'ять про особливості користувача стирається
+    if message.from_user:
+        await wipe_user_memory(message.from_user.id, "start_command")
     # Скидаємо лише режим очікування для /ask, не обнуляючи контекст скринінгу,
     # щоб користувач міг відповісти на запитання бота (наприклад, «ні») навіть після /start.
     current_state = await state.get_state()
@@ -357,7 +383,9 @@ async def command_help_handler(message: Message, state: FSMContext) -> None:
         "• /start — почати спілкування та головне меню\n"
         "• /ask [питання] — поставити запитання боту\n"
         "• /help — ця довідка з порадами\n"
-        "• /cancel — скасувати поточний режим введення"
+        "• /cancel — скасувати поточний режим введення\n"
+        "• /memory — що я пам'ятаю про тебе (лише за твоєю згодою)\n"
+        "• /forget — стерти пам'ять про тебе"
     )
 
     await message.reply(help_text, parse_mode="HTML", reply_markup=markup)
@@ -417,8 +445,11 @@ async def command_ask_handler(message: Message, command: CommandObject, state: F
     time_of_day_greeting = None if is_ongoing else time_greeting
 
     try:
+        profile = await load_profile(message)
         response = await generate_response(
             ask_text,
+            user_profile=profile,
+            is_group_chat=message.chat.type != ChatType.PRIVATE,
             is_ongoing_dialogue=is_ongoing,
             time_of_day_greeting=time_of_day_greeting,
         )
@@ -437,6 +468,7 @@ async def command_ask_handler(message: Message, command: CommandObject, state: F
             last_time_of_day=time_id,
         )
         await _reply_with_feedback(message, response)
+        await remember_from_message(message, ask_text)
     except Exception as e:
         stop_typing.set()
         typing_task.cancel()
@@ -496,8 +528,11 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
     )
 
     try:
+        profile = await load_profile(message)
         response = await generate_response(
             user_text,
+            user_profile=profile,
+            is_group_chat=message.chat.type != ChatType.PRIVATE,
             is_ongoing_dialogue=is_ongoing,
             time_of_day_greeting=time_of_day_greeting,
         )
@@ -515,6 +550,7 @@ async def ask_question_handler(message: Message, state: FSMContext) -> None:
             last_time_of_day=time_id,
         )
         await _reply_with_feedback(message, response)
+        await remember_from_message(message, user_text)
     except Exception as e:
         stop_typing.set()
         typing_task.cancel()
@@ -629,6 +665,11 @@ async def command_sync_db_handler(message: Message, bot: Bot) -> None:
 @dp.message(Command("post", "sync_db"))
 async def admin_command_denied(message: Message) -> None:
     """Fallback: не віддаємо адмін-команди загальному обробнику F.text."""
+    is_admin_user = bool(message.from_user) and message.from_user.id in ADMIN_IDS
+    log_security_event(
+        "admin_command_denied" if not is_admin_user else "admin_command_outside_private",
+        command=(message.text or "").split()[0][:30], **message_fields(message),
+    )
     if message.from_user and message.from_user.id in ADMIN_IDS:
         await message.answer("ℹ️ Ця команда працює лише в приватному чаті з ботом — напиши її мені в особисті.")
         return
@@ -766,9 +807,11 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
         has_red_flags,
         is_persona_query,
         is_consultation_query,
+        is_prompt_injection,
     )
     is_new_complaint = is_health_complaint_query(user_text)
     is_new_red_flag  = has_red_flags(user_text)
+    is_injection     = is_prompt_injection(user_text)
 
     # ── 1. Перевіряємо, чи це завершення розмови (спасибі, окай, добре, бувай тощо) ──
     # Завершує діалог, якщо немає додаткових запитань
@@ -895,7 +938,7 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
             stored_turns = []
             stored_complaint = None
     elif stored_mode == "active":
-        is_topic_switch = is_persona_query(user_text) or is_consultation_query(user_text)
+        is_topic_switch = is_persona_query(user_text) or is_consultation_query(user_text) or is_injection
         if is_topic_switch or len(stored_turns) >= 6:
             stored_mode = None
             stored_turns = []
@@ -903,7 +946,7 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
 
     # Визначаємо, чи супроводжувати коротке питання стікером із паку aromaaitgbot
     should_accompany = False
-    if stored_mode != "red_flag" and not is_new_red_flag:
+    if stored_mode != "red_flag" and not is_new_red_flag and not is_injection:
         should_accompany = should_accompany_with_sticker(user_text, is_complaint=is_new_complaint)
 
     # Якщо є активний скринінг або триваючий діалог — накопичуємо репліки
@@ -933,6 +976,12 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
         pass_mode = "red_flag" if is_new_red_flag else None
         orig_query = user_text if is_new_complaint else None
 
+    if is_injection:
+        log_security_event("prompt_injection_attempt", **message_fields(message))
+        pass_mode = None
+        conversation_context = None
+        orig_query = None
+
     thread_id = getattr(message, "message_thread_id", None)
     stop_typing = asyncio.Event()
     typing_task = asyncio.create_task(
@@ -940,8 +989,11 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
     )
 
     try:
+        profile = await load_profile(message)
         response = await generate_response(
             user_text,
+            user_profile=profile,
+            is_group_chat=message.chat.type != ChatType.PRIVATE,
             screening_mode=pass_mode,
             conversation_context=conversation_context,
             original_query=orig_query,
@@ -1008,6 +1060,19 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
             )
 
         await _reply_with_feedback(message, response)
+        await remember_from_message(message, user_text)
+
+        # Якщо це питання про персону/улюблену олію (наприклад, Лайм) або коротке питання із супроводом стікером
+        if (is_persona_query(user_text) or should_accompany) and not is_new_complaint and not is_new_red_flag and stored_mode != "red_flag" and not is_injection:
+            try:
+                pref_emojis = detect_sticker_emojis_for_text(user_text, response)
+                prob = 1.0 if is_persona_query(user_text) else PROB_CASUAL
+                if random.random() < prob:
+                    sticker_id = await get_or_load_sticker(message.bot, preferred_emojis=pref_emojis)
+                    if sticker_id:
+                        await message.reply_sticker(sticker_id)
+            except Exception as e:
+                print(f"[bot] Accompanying sticker error: {redact(e)}")
 
     except Exception as e:
         stop_typing.set()
@@ -1018,6 +1083,27 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
         print(f"[on_message] Error: {type(e).__name__}: {redact(e)}")
 
 
+@dp.message(F.sticker)
+async def on_sticker(message: Message) -> None:
+    """Обробник стікерів від користувача.
+
+    Відповідає взаємним стікером із фірмового набору aromaaitgbot.
+    """
+    if not _is_addressed(message):
+        return
+
+    try:
+        preferred = message.sticker.emoji if message.sticker else None
+        sticker_file_id = await get_or_load_sticker(message.bot, preferred_emojis=preferred)
+        if sticker_file_id:
+            await message.reply_sticker(sticker_file_id)
+            return
+    except Exception as e:
+        print(f"[bot] on_sticker error: {redact(e)}")
+
+    await message.reply(UNSUPPORTED_CONTENT_REPLY)
+
+
 @dp.message(
     F.photo
     | F.video
@@ -1026,7 +1112,6 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
     | F.voice
     | F.document
     | F.animation
-    | F.sticker
     | F.location
     | F.venue
     | F.contact
@@ -1036,7 +1121,7 @@ async def on_message(message: Message, bot: Bot, state: FSMContext) -> None:
     | F.game
 )
 async def unsupported_content_handler(message: Message) -> None:
-    """Обробник непідтримуваних типів повідомлень (медіа, стікери, файли, гео, контакти тощо).
+    """Обробник непідтримуваних типів повідомлень (медіа, файли, гео, контакти тощо).
 
     Відповідає коротким повідомленням: 'Я розумію лише текст…'
     """
@@ -1044,10 +1129,6 @@ async def unsupported_content_handler(message: Message) -> None:
         return
 
     await message.reply(UNSUPPORTED_CONTENT_REPLY)
-
-
-# Аліас для зворотної сумісності
-on_sticker = unsupported_content_handler
 
 
 # ---------------------------------------------------------------------------
@@ -1063,6 +1144,7 @@ async def feedback_callback(callback: CallbackQuery) -> None:
     # Telegram приймає лише одну відповідь на callback, тому answer() викликається рівно один раз на кожному шляху.
     parts = (callback.data or "").split(":")
     if len(parts) != 4:
+        log_security_event("malformed_callback_data", user_id=callback.from_user.id, data_len=len(callback.data or ""))
         await callback.answer()
         return
 
@@ -1079,11 +1161,18 @@ async def feedback_callback(callback: CallbackQuery) -> None:
     # Зберігаємо питання для аналітики (повідомлення може бути недоступним: старе або видалене)
     reply_to = getattr(callback.message, "reply_to_message", None)
     query_text = (getattr(reply_to, "text", None) or "") if reply_to else ""
+    bot_text = getattr(callback.message, "text", "") or ""
 
     # Захист конфіденційності здоров'я (Privacy-by-Design):
-    # Якщо питання містило медичні скарги або червоні прапори, не зберігаємо чутливий текст у БД
+    # Якщо питання містило медичні скарги або червоні прапори, не зберігаємо чутливий текст у БД (FB-04)
     from src.agent.specialist import is_health_complaint_query, has_red_flags
-    if is_health_complaint_query(query_text) or has_red_flags(query_text):
+    if (
+        is_health_complaint_query(query_text)
+        or has_red_flags(query_text)
+        or has_red_flags(bot_text)
+        or "ознаки ситуації підвищеного ризику" in bot_text
+        or "signs of a higher-risk situation" in bot_text
+    ):
         query_text = "[Захищено: медичне звернення / червоний прапор]"
     else:
         query_text = query_text[:500]
@@ -1109,14 +1198,24 @@ async def feedback_callback(callback: CallbackQuery) -> None:
         await callback.answer(f"{emoji} Ти вже поставив цю оцінку!", show_alert=False)
         return
 
-    # Оновлюємо лічильники на кнопках у фоновому потоці
+    # Оновлюємо лічильники на кнопках у фоновому потоці, зберігаючи всі інші кнопки (наприклад, статті «📖 ...»)
     try:
         counts = await asyncio.to_thread(get_vote_counts, msg_id, chat_id)
-        new_keyboard = _feedback_keyboard(
-            msg_id, chat_id,
-            likes=counts["likes"],
-            dislikes=counts["dislikes"],
-        )
+        like_label = f"👍 {counts['likes']}" if counts['likes'] else "👍"
+        dislike_label = f"👎 {counts['dislikes']}" if counts['dislikes'] else "👎"
+
+        existing_rows: list[list[InlineKeyboardButton]] = []
+        if callback.message is not None and callback.message.reply_markup:
+            for row in callback.message.reply_markup.inline_keyboard:
+                # Зберігаємо всі рядки, які НЕ є кнопками голосування (наприклад, кнопки статей «📖 ...»)
+                if not any(btn.callback_data and btn.callback_data.startswith("fb:") for btn in row):
+                    existing_rows.append(row)
+
+        fb_row = [
+            InlineKeyboardButton(text=like_label, callback_data=f"fb:like:{msg_id}:{chat_id}"),
+            InlineKeyboardButton(text=dislike_label, callback_data=f"fb:dislike:{msg_id}:{chat_id}"),
+        ]
+        new_keyboard = InlineKeyboardMarkup(inline_keyboard=existing_rows + [fb_row])
         if callback.message is not None and hasattr(callback.message, "edit_reply_markup"):
             await callback.message.edit_reply_markup(reply_markup=new_keyboard)
     except Exception as e:
@@ -1150,6 +1249,12 @@ async def main() -> None:
     except Exception as e:
         print(f"[bot] ⚠️ Could not init feedback table: {redact(e)}")
 
+    try:
+        ensure_user_memory_table()
+        print("[bot] ✅ User memory table ready.")
+    except Exception as e:
+        print(f"[bot] ⚠️ Could not init user memory table: {redact(e)}")
+
     # Налаштовуємо кнопку "Меню" (Web App)
     webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
     try:
@@ -1167,6 +1272,8 @@ async def main() -> None:
             BotCommand(command="ask", description="Поставити запитання боту"),
             BotCommand(command="help", description="Довідка з використання бота"),
             BotCommand(command="cancel", description="Скасувати поточну дію"),
+            BotCommand(command="memory", description="Що я пам'ятаю про тебе"),
+            BotCommand(command="forget", description="Стерти пам'ять про тебе"),
         ])
         print("[bot] ✅ Bot commands registered.")
     except Exception as e:

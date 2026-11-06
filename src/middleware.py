@@ -8,6 +8,8 @@ from collections import defaultdict, deque
 from typing import Any, Awaitable, Callable
 # Special
 from aiogram import BaseMiddleware
+
+from src.security_log import log_security_event, message_fields
 from aiogram.types import CallbackQuery, Message
 
 RATE_LIMIT_MESSAGES = int(os.getenv("BOT_RATE_LIMIT", "8"))
@@ -89,11 +91,14 @@ class RateLimitMiddleware(BaseMiddleware):
             return await handler(event, data)
 
         if event.text and len(event.text) > MAX_TEXT_LENGTH:
+            log_security_event("message_too_long", **message_fields(event))
             await event.answer(f"⚠️ Занадто довге повідомлення (максимум {MAX_TEXT_LENGTH} символів).")
             return None
 
         if not self._window.allow(user.id):
             if self._window.should_warn(user.id):
+                # Журнал: один запис за вікно на користувача, щоб флуд не роздував логи
+                log_security_event("rate_limit_exceeded", **message_fields(event))
                 await event.answer("⏳ Забагато повідомлень. Зачекай хвилинку і спробуй ще раз.")
             return None
 
@@ -116,6 +121,8 @@ class CallbackRateLimitMiddleware(BaseMiddleware):
         uid = event.from_user.id
         if uid in self.exempt_ids or self._window.allow(uid):
             return await handler(event, data)
+        if self._window.should_warn(uid):
+            log_security_event("callback_rate_limit_exceeded", user_id=uid)
         await event.answer("⏳ Забагато натискань. Зачекай хвилинку.", show_alert=False)
         return None
 

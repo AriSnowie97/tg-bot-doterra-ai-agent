@@ -96,3 +96,110 @@ class TestContentLinks:
         assert meta_en["tag"] == "Books & Guides"
         assert meta_en["section"] == "books"
         assert meta_en["slug"] == "01-oils-safety-reference"
+
+    def test_extract_product_links_from_screenshot_text(self):
+        """Перевірка автоматичного виявлення карток продуктів (Serenity, Softgels, Calmer) без маркдаун-посилань."""
+        from src.agent.product_links import extract_product_links
+
+        sample_text = (
+            "Враховуючи твою алергію на лаванду, ми повністю виключаємо цей компонент із турботи про твій сон. "
+            "На щастя, для спокійного засинання та розслаблення є чудові альтернативи без лаванди:\n\n"
+            "🔹 Олія doTERRA Serenity — збалансована суміш, яка допомагає створити атмосферу для глибокого відпочинку...\n"
+            "🔹 М'які капсули Serenity Softgels — містять запатентовану формулу з екстрактами рослин та ефірними оліями...\n"
+            "🔹 Дитяча суміш Calmer — м'який та ніжний ролер, який чудово підходить для вечірнього ритуалу розслаблення.\n"
+        )
+
+        links = extract_product_links(sample_text)
+        slugs = [s for _, s in links]
+
+        assert "doterra-serenity-softgels" in slugs
+        assert "doterra-serenity" in slugs
+        assert "calmer" in slugs
+        # Лаванда в контексті алергії не повинна створювати кнопку
+        assert "lavender" not in slugs
+
+    def test_ensure_product_links_in_markdown(self):
+        """Перевірка обгортання згаданих продуктів у [Назва](slug) для клієнтів."""
+        from src.agent.product_links import ensure_product_links_in_markdown
+
+        sample = "Спробуй олію Calmer перед сном."
+        result = ensure_product_links_in_markdown(sample)
+        assert "[Calmer](calmer)" in result
+
+    def test_extract_and_ensure_lavender_product_link(self):
+        """Перевірка виявлення олії лаванди у відмінку (лаванди) для кнопки статті Mini App."""
+        from src.agent.product_links import extract_product_links, ensure_product_links_in_markdown
+
+        sample_text = (
+            "Ефірна олія лаванди відома у всьому світі завдяки своїм заспокійливим і розслаблюючим властивостям 🌿 . "
+            "Вона чудово допомагає зняти напругу після напруженого дня, покращує якість сну та дбайливо доглядає за шкірою 💧 .\n\n"
+            "🔹 Додайте 3–4 краплі в дифузор перед сном для створення затишної та мирної атмосфери в домі.\n"
+            "🔹 Нанесіть 1–2 краплі, розбавивши базовою олією, на зап'ястя чи стопи для глибокого розслаблення.\n"
+            "🔹 Використовуйте для заспокоєння шкіри після тривалого перебування на сонці або при легких подразненнях."
+        )
+
+        links = extract_product_links(sample_text)
+        assert len(links) >= 1
+        assert links[0] == ("Лаванда", "lavender")
+
+        wrapped = ensure_product_links_in_markdown(sample_text)
+        assert "[лаванди](lavender)" in wrapped or "[Лаванда](lavender)" in wrapped
+
+        # Перевіряємо, що після обгортання кнопки також коректно генеруються
+        links_from_wrapped = extract_product_links(wrapped)
+        assert ("Лаванда", "lavender") in links_from_wrapped
+
+    def test_avoid_lavender_jacket_false_positive(self):
+        """Опис одягу помічниці ('у лавандовій курточці') не повинен створювати кнопку статті."""
+        from src.agent.product_links import extract_product_links
+
+        intro_text = (
+            "Мене звати Арома 🌸, я помічниця Наталії у лавандовій курточці з паростком у волоссі 🌱. "
+            "Чим можу допомогти?"
+        )
+        links = extract_product_links(intro_text)
+        assert links == []
+
+    def test_extract_other_inflected_oils(self):
+        """Перевірка виявлення інших олій в українських відмінках (перцевої м'яти, кедра, ладану)."""
+        from src.agent.product_links import extract_product_links
+
+        assert extract_product_links("Олія перцевої м'яти чудово освіжає")[0] == ("М'ята перцева", "peppermint")
+        assert extract_product_links("Олія кедра допомагає розслабитись")[0] == ("Кедр", "cedarwood")
+        assert extract_product_links("Аромат ладану заспокоює думки")[0] == ("Ладан", "frankincense")
+        assert extract_product_links("Кілька крапель лимона у воду")[0] == ("Лимон", "lemon")
+
+
+
+
+class TestInternalKbLinksHidden:
+    """Службові матеріали бази знань не повинні ставати кнопками-статтями."""
+
+    def test_internal_slug_detection(self):
+        from src.agent.product_links import is_internal_kb_slug
+        for slug in ("03_intake_flow_and_routing", "03-intake-flow-and-routing",
+                     "01_oils_safety_reference", "#/article/02-emotional-themes-map"):
+            assert is_internal_kb_slug(slug), slug
+        assert not is_internal_kb_slug("lavender")
+        assert not is_internal_kb_slug("doterra-serenity")
+
+    def test_extract_skips_internal_links(self):
+        from src.agent.product_links import extract_product_links
+        text = (
+            "🔹 [Лаванда](lavender) для спокою. "
+            "Деталі: [Логіка бота](03_intake_flow_and_routing), [Довідник безпеки олій](01_oils_safety_reference)."
+        )
+        slugs = [s for _, s in extract_product_links(text)]
+        assert "lavender" in slugs
+        assert not any(s.startswith(("01", "03")) for s in slugs)
+
+    def test_strip_internal_links_keeps_product_links(self):
+        from src.agent.product_links import strip_internal_kb_links
+        out = strip_internal_kb_links("[Лаванда](lavender) і [Довідник](01_oils_safety_reference)")
+        assert "[Лаванда](lavender)" in out
+        assert "01_oils_safety_reference" not in out
+        assert "Довідник" in out
+
+    def test_intake_doc_hidden_from_articles_list(self):
+        from src.web.app import HIDDEN_ARTICLE_SLUGS
+        assert "03-intake-flow-and-routing" in HIDDEN_ARTICLE_SLUGS

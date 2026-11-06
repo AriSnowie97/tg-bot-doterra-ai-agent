@@ -17,6 +17,8 @@ from urllib.parse import parse_qsl
 # Special
 from fastapi import Header, HTTPException
 
+from src.security_log import log_security_event
+
 # initData старше цього віку (секунди) вважаємо простроченим (2 години замість 24)
 INIT_DATA_MAX_AGE = int(os.getenv("INIT_DATA_MAX_AGE", "7200"))
 
@@ -75,6 +77,7 @@ def _check_rate_limit(user_id: int) -> None:
     while q and now - q[0] > RATE_LIMIT_WINDOW:
         q.popleft()
     if len(q) >= RATE_LIMIT_REQUESTS:
+        log_security_event("api_rate_limit_exceeded", user_id=user_id, channel="mini_app")
         raise HTTPException(status_code=429, detail="Забагато запитів. Спробуй трохи пізніше.")
     q.append(now)
 
@@ -85,10 +88,13 @@ async def require_telegram_user(
     """FastAPI-залежність: автентифікація через initData + ліміт запитів."""
     bot_token = os.getenv("BOT_TOKEN", "")
     if not bot_token:
+        log_security_event("api_misconfigured", reason="BOT_TOKEN missing")
         raise HTTPException(status_code=503, detail="Service unavailable")
     try:
         user = validate_init_data(x_telegram_init_data, bot_token)
-    except ValueError:
+    except ValueError as e:
+        # Підпис підроблено, відсутній або прострочений: спроба обійти авторизацію Mini App
+        log_security_event("api_auth_failed", reason=str(e), channel="mini_app")
         raise HTTPException(status_code=401, detail="Unauthorized")
     _check_rate_limit(user["id"])
     return user

@@ -29,6 +29,8 @@ from src.web.auth import require_telegram_user
 from src.agent import generate_response
 from src.content.parser import slugify
 from src.safety import redact
+from src.security_log import log_security_event
+from src.agent.specialist import is_prompt_injection
 
 # ---------------------------------------------------------------------------
 # Налаштування
@@ -55,6 +57,19 @@ app.add_middleware(
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type", "X-Telegram-Init-Data"],
 )
+
+@app.middleware("http")
+async def add_security_headers(request: Request, call_next):
+    """Базові заголовки безпеки для всіх відповідей API та HTML-сторінок."""
+    response = await call_next(request)
+    response.headers.setdefault("X-Content-Type-Options", "nosniff")
+    response.headers.setdefault("Referrer-Policy", "no-referrer")
+    response.headers.setdefault("X-Frame-Options", "DENY")
+    response.headers.setdefault("Cross-Origin-Resource-Policy", "cross-origin")
+    if request.url.path.startswith("/api/"):
+        response.headers.setdefault("Cache-Control", "no-store")
+    return response
+
 
 # Монтуємо папку з картинками
 IMAGES_DIR = Path(__file__).parent.parent / "content" / "images"
@@ -221,6 +236,9 @@ DIRECTORIES_TO_SEARCH = [
     "books"
 ]
 
+# Службові файли бази знань, які не показуються у списку статей Mini App
+HIDDEN_ARTICLE_SLUGS = {"03-intake-flow-and-routing"}
+
 def _get_all_docs() -> list[dict]:
     """Повертає список усіх MD-файлів із вказаних директорій."""
     if not CONTENT_DIR.exists():
@@ -231,6 +249,8 @@ def _get_all_docs() -> list[dict]:
         d = CONTENT_DIR / dir_name
         if d.exists():
             for p in d.glob("*.md"):
+                if slugify(p.stem) in HIDDEN_ARTICLE_SLUGS:
+                    continue
                 docs.append({"slug": slugify(p.stem), "filename": p.name})
                 
     return sorted(docs, key=lambda d: d["slug"])
@@ -280,6 +300,9 @@ async def api_chat(request: ChatRequest, user: dict = Depends(require_telegram_u
     
     if len(clean_query) > 1000:
         raise HTTPException(status_code=400, detail="Query is too long (max 1000 characters)")
+
+    if is_prompt_injection(clean_query):
+        log_security_event("prompt_injection_attempt", user_id=user.get("id"), channel="mini_app", text_len=len(clean_query))
     
     try:
         response_text = await generate_response(clean_query)
@@ -315,6 +338,9 @@ async def api_get_articles(lang: str, request: Request):
             for md_path in d.glob("*.md"):
                 # Пропускаємо технічні файли-гайди (01_Гід, 02_Гід тощо)
                 if md_path.stem[0].isdigit() and "_Гід" in md_path.stem:
+                    continue
+                # Службова логіка роботи бота — не стаття для користувачів
+                if slugify(md_path.stem) in HIDDEN_ARTICLE_SLUGS:
                     continue
                 
                 articles.append(_get_article_metadata(lang, md_path, base_url, dir_name))

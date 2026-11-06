@@ -20,6 +20,8 @@ import re
 from google.genai import types
 # Local
 from .prompt import build_system_prompt
+from .product_links import ensure_product_links_in_markdown, strip_internal_kb_links
+from .user_profile import build_profile_block, has_risk, wants_oil_selection
 from .specialist import (
     is_consultation_query,
     is_low_context,
@@ -39,6 +41,9 @@ from .specialist import (
     should_include_medical_disclaimer,
     is_persona_query,
     extract_user_text_from_context,
+    is_prompt_injection,
+    PROMPT_INJECTION_REPLY,
+    EN_PROMPT_INJECTION_REPLY,
 )
 from ..storage import search_chunks
 from src.LLMProvider import (
@@ -262,6 +267,8 @@ async def generate_response(
     original_query: str | None = None,
     is_ongoing_dialogue: bool = False,
     time_of_day_greeting: str | None = None,
+    user_profile: object | None = None,
+    is_group_chat: bool = False,
 ) -> str:
     """Повний RAG-пайплайн: пошук → промпт → LLM → відповідь.
 
@@ -272,6 +279,8 @@ async def generate_response(
         conversation_context: Накопичений текст розмови (скарга + відповіді на скринінг).
                               Використовується як вхід для LLM.
         original_query:       Первинна тема/скарга для точного RAG-пошуку (особливо при відповідях «ні»/«так»).
+        user_profile:         Збережені (за згодою) особливості користувача: об'єкт з полями tags і allergies.
+        is_group_chat:        True у групах: дані профілю враховуються, але вголос не називаються.
 
     Стратегія при помилках:
     - 429 per-minute: чекає retryDelay із відповіді і повторює.
@@ -283,9 +292,15 @@ async def generate_response(
     # Визначаємо мову вводу користувача
     is_clearly_english = detect_is_english(user_text)
 
-    # 0. ДЕТЕРМІНОВАНИЙ ЗАХИСТ: перевірка червоних прапорів ДО будь-яких RAG чи LLM викликів.
+    # 0. ДЕТЕРМІНОВАНИЙ ЗАХИСТ: перевірка вводу користувача ДО будь-яких RAG чи LLM викликів.
     # Перевіряємо ТІЛЬКИ репліки користувача, щоб запитання бота (про вагітність/ліки) не тригерили хибний red flag.
     user_context = extract_user_text_from_context(conversation_context) if conversation_context else ""
+
+    # 0. ДЕТЕРМІНОВАНИЙ ЗАХИСТ ВІД PROMPT INJECTION ТА ЗАПИТІВ СИСТЕМНОГО ПРОМПТУ (SE-01)
+    if is_prompt_injection(user_text) or (bool(user_context) and is_prompt_injection(user_context)):
+        print("[agent] 🛡️ PROMPT INJECTION / SYSTEM PROMPT QUERY: returning deterministic refusal")
+        return EN_PROMPT_INJECTION_REPLY if is_clearly_english else PROMPT_INJECTION_REPLY
+
     is_red_flag = (
         screening_mode == "red_flag"
         or has_red_flags(user_text)
@@ -298,6 +313,27 @@ async def generate_response(
     if is_emergency(user_text) or is_emergency(user_context):
         print("[agent] 🛡️ EMERGENCY message: returning deterministic emergency reply")
         return EN_EMERGENCY_REPLY if is_clearly_english else EMERGENCY_REPLY
+    profile_tags = set(getattr(user_profile, "tags", None) or ())
+    profile_allergies = list(getattr(user_profile, "allergies", None) or ())
+    if (
+        not is_red_flag
+        and has_risk(profile_tags)
+        and (is_health_complaint_query(user_text) or wants_oil_selection(user_text))
+    ):
+        # Ризикова особливість із пам'яті (вагітність, діти, ліки тощо) + прохання підібрати олію.
+        # Відповідь нейтральна: у групі вона не розкриває здоров'я людини.
+        print("[agent] 🛡️ PROFILE RISK: returning deterministic consultation redirect")
+        if is_clearly_english:
+            return (
+                "🌿 To choose an oil safely, a personal consultation is needed here.\n\n"
+                + EN_RED_FLAG_REDIRECT_BLOCK
+                + EN_MEDICAL_DISCLAIMER
+            )
+        return (
+            "🌿 Щоб підібрати олію безпечно, тут потрібна персональна консультація.\n\n"
+            + RED_FLAG_REDIRECT_BLOCK
+            + MEDICAL_DISCLAIMER
+        )
     if is_red_flag:
         print("[agent] 🛡️ RED FLAG ACTIVATED: Returning deterministic safety redirect immediately")
         if is_clearly_english:
@@ -370,6 +406,7 @@ async def generate_response(
         screening_stage=screening_stage,
         is_ongoing_dialogue=is_ongoing_dialogue,
         time_of_day_greeting=time_of_day_greeting,
+        profile_block=build_profile_block(profile_tags, profile_allergies, is_group_chat),
     )
 
     # Захист від prompt injection у системному промпті
@@ -491,7 +528,10 @@ async def generate_response(
         disclaimer_lines_pattern = (
             r"\n*(?:ℹ️|⚠️)?\s*(?:Ця інформація має ознайомлювальний характер|This information is for educational purposes).*"
         )
-        text = re.sub(disclaimer_lines_pattern, "", text, flags=re.IGNORECASE).rstrip()
+    # Службові матеріали бази знань (довідники, логіка роботи бота) не є статтями про продукти — без кнопок
+    text = strip_internal_kb_links(text)
+    # Гарантуємо наявність маркдаун-посилань [Назва](slug) для рекомендованих продуктів
+    text = ensure_product_links_in_markdown(text)
 
     print(f"[agent] Response len={len(text)} chars")
 

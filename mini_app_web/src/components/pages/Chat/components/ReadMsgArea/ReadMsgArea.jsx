@@ -20,7 +20,7 @@ const ReadMsgArea = ({dialogueMsgs, onQuestionSubmit}) => {
                 <div className={styles.wrapper}>
                     {dialogueMsgs.length === 0 && (
                         <div className={styles.emptyState}>
-                            <span className={styles.emptyIcon}>🌿</span>
+                            <span className={styles.emptyIcon}>🌸</span>
                             <p className={styles.emptyTitle}>{t("chat_empty_title")}</p>
                             <p className={styles.emptyHint}>{t("chat_empty_hint")}</p>
                             <div className={styles.suggestions}>

@@ -109,6 +109,22 @@ EN_CRISIS_REPLY: str = (
 )
 
 # ---------------------------------------------------------------------------
+# Відповідь на запити системного промпту та Prompt Injection (SE-01)
+# ---------------------------------------------------------------------------
+
+PROMPT_INJECTION_REPLY: str = (
+    "Я не можу показати свої системні інструкції чи промпт 🌸 "
+    "Я помічниця Наталії Котелянської і з радістю відповім на твої запитання про ефірні олії doTERRA, "
+    "їхнє безпечне застосування та підбір для гарного самопочуття! Про що ти хотів би дізнатися? 🌿"
+)
+
+EN_PROMPT_INJECTION_REPLY: str = (
+    "I cannot share my system prompt or internal instructions 🌸 "
+    "I am Natalia Kotelianska's assistant, and I'm happy to help you with questions about doTERRA essential oils, "
+    "safe usage, and natural wellness! What would you like to explore? 🌿"
+)
+
+# ---------------------------------------------------------------------------
 # Медичний дисклеймер
 # ---------------------------------------------------------------------------
 
@@ -210,7 +226,11 @@ def should_include_medical_disclaimer(
     - Загальні мета-питання про бота («хто ти?», «що ти вмієш?», «як користуватися?»).
     - Суто контактні запити чи ціни без медичних порад чи застосування.
     """
-    # 1. Червоні прапори: абсолютний пріоритет безпеки — завжди з дисклеймером
+    # 1. Запити системного промпту або ін'єкцій — ніколи не додаємо медичний дисклеймер
+    if (user_query and is_prompt_injection(user_query)) or is_prompt_injection(response_text):
+        return False
+
+    # 2. Червоні прапори: абсолютний пріоритет безпеки — завжди з дисклеймером
     if (
         screening_mode == "red_flag"
         or has_red_flags(user_query)
@@ -219,19 +239,19 @@ def should_include_medical_disclaimer(
     ):
         return True
 
-    # 2. Активний скринінг симптомів або скарга на здоров'я — завжди з дисклеймером
+    # 3. Активний скринінг симптомів або скарга на здоров'я — завжди з дисклеймером
     if (
         screening_mode == "active"
         or is_health_complaint_query(user_query)
     ):
         return True
 
-    # 3. Питання про персону / образ / розробницю Аріну / улюблені олії помічниці
+    # 4. Питання про персону / образ / розробницю Аріну / улюблені олії помічниці
     # (навіть якщо у відповіді Арома згадує крапельку лайму — це її образ і не медична рекомендація)
     if user_query and is_persona_query(user_query):
         return False
 
-    # 4. Повсякденні вітання, подяка, коротка розмова
+    # 5. Повсякденні вітання, подяка, коротка розмова
     if user_query and _CASUAL_CHAT_REGEX.match(user_query.strip()):
         return False
 
@@ -338,6 +358,7 @@ RED_FLAG_KEYWORDS: tuple[str, ...] = (
     # Вагітність / лактація
     "вагітна", "вагітність", "годую груддю", "лактація", "годуючій",
     "годуюча мама", "мама годує", "грудне вигодовування",
+    "vagitna", "vahitna", "beremenna", "беременна", "беременность",
     # Діти
     "дитина", "дитині", "дитячий", "немовля", "немовляті",
     "новонароджений", "новонародженій", "малюк", "малюкові",
@@ -414,12 +435,16 @@ _RED_FLAG_REGEX = re.compile(
 _EMERGENCY_REGEX = re.compile(
     r"("
     r"\bкровотеч\w*|\bінфаркт\w*|\bинфаркт\w*|\bінсульт\w*|\bинсульт\w*|\bсудом\w*|\bсудорог\w*"
-    r"|\bанафілакт\w*|\bанафилакт\w*|набряк\w*\s+(?:обличч\w*|горл\w*|язик\w*|губ\w*)"
-    r"|отек\w*\s+(?:лица|горла|языка|губ)|\bпроковтн\w*|\bпроглот\w*"
-    r"|не\s+можу\s+дихати|\bзадихаю\w*|не\s+могу\s+дышать|\bзадыхаю\w*"
+    r"|\bанафілакт\w*|\bанафилакт\w*"
+    r"|\bнабряк\w*(?:\s+\w+){0,3}\s+(?:обличч\w*|горл\w*|язик\w*|губ\w*)"
+    r"|\bотек\w*(?:\s+\w+){0,3}\s+(?:лиц\w*|горл\w*|язык\w*|губ\w*)"
+    r"|\b(?:facial\s+swelling|swollen\s+(?:face|throat|tongue|lips)|swelling\s+of\s+(?:the\s+)?(?:face|throat|tongue|lips))"
+    r"|\bпроковтн\w*|\bпроглот\w*"
+    r"|\b(?:дитин\w*|малюк\w*|немовл\w*|ребен\w*|малыш\w*|child\w*|baby|toddler)\s+(?:випил\w*|напил\w*|проковтн\w*|з['’`]?їв\w*|выпил\w*|проглот\w*|съел\w*|swallowed|drank)"
+    r"|не\s+можу\s+дихати|\bзадихаю\w*|не\s+могу\s+дышать|\bзадыхаю\w*|\bядух\w*|\bудушь\w*"
     r"|втрат\w+\s+свідомост\w*|потерял\w*\s+сознан\w*"
     r"|\bswallowed\b|can'?t\s+breathe|\bchoking\b|\bunconscious\b|\banaphyla\w*"
-    r"|heart\s+attack|\bseizure\w*|\bbleeding\b"
+    r"|heart\s+attack|\bseizure\w*|\bbleeding\b|\bstroke\b"
     r")",
     re.IGNORECASE,
 )
@@ -437,20 +462,23 @@ _CRISIS_REGEX = re.compile(
 )
 
 _INVISIBLE_CHARS = re.compile("[\u200b\u200c\u200d\u2060\ufeff\u00ad]")
-_SPACED_LETTERS = re.compile(r"(?<!\w)(?:\w\s){3,}\w(?!\w)")
+_SPACED_LETTERS = re.compile(r"(?<!\w)(?:\w\s+){3,}\w(?!\w)")
 _CYRILLIC_LETTER = re.compile("[а-яіїєґ]")
 _LATIN_TO_CYRILLIC = str.maketrans("iaoepcxy", "іаоерсху")
 
 
 def _normalize_for_detection(text: str) -> str:
     """Нормалізує текст перед пошуком тригерів: NFKC, невидимі символи, апострофи, регістр,
-    латинські двійники в кириличних словах («вагiтна») та розряджені слова («в а г і т н а»)."""
+    розряджені слова («в а г і т н а», «в  а  г  і  т  н  а») та латинські двійники («вагiтна»)."""
     s = unicodedata.normalize("NFKC", text)
     s = _INVISIBLE_CHARS.sub("", s)
     s = s.replace("’", "'").replace("ʼ", "'").replace("`", "'").lower()
+    # 1. Спершу згортаємо розряджені літери (наприклад «в а г і т н а» чи «в а г i т н а» -> «вагітна» / «вагiтна»)
+    s = _SPACED_LETTERS.sub(lambda m: re.sub(r"\s+", "", m.group()), s)
+    # 2. Потім замінюємо схожі латинські літери (a, o, e, i, c, x, p, y) на кириличні у словах із кирилицею
     s = re.sub(r"\w+", lambda m: m.group().translate(_LATIN_TO_CYRILLIC)
                if _CYRILLIC_LETTER.search(m.group()) else m.group(), s)
-    return _SPACED_LETTERS.sub(lambda m: re.sub(r"\s", "", m.group()), s)
+    return s
 
 # Шаблони явних заперечень протипоказань (наприклад: "не вагітна", "без ліків", "діабету немає", "немає астми").
 # Їх необхідно нейтралізувати перед пошуком червоних прапорів, щоб заперечення не вважалося прапором.
@@ -571,4 +599,29 @@ def has_red_flags(text: str) -> bool:
         for kw in RED_FLAG_KEYWORDS
         if kw != "рак"
     )
+
+
+# ---------------------------------------------------------------------------
+# Детекція спроб витягти системний промпт або обійти інструкції (SE-01)
+# ---------------------------------------------------------------------------
+
+_PROMPT_INJECTION_REGEX = re.compile(
+    r"("
+    r"\b(?:ignore|disregard|forget)\s+(?:all\s+)?(?:previous\s+|prior\s+)?(?:instructions?|prompts?|rules?)\b"
+    r"|\b(?:забудь|проігноруй|ігноруй|проигнорируй|игнорируй)\s+(?:усі\s+|всі\s+|все\s+)?(?:попередні\s+|предыдущие\s+)?(?:інструкції|инструкции|правила)\b"
+    r"|\b(?:покажи|виведи|выведи|роздрукуй|распечатай|дай|напиши|надішли|пришли|який|какой|скажи|розкрий|раскрой|show|display|reveal|print|what\s+is)\b.*?\b(?:промпт\w*|prompt\w*)\b"
+    r"|\b(?:системн\w*\s+промпт\w*|system\s+prompt|системн\w*\s+інструкці\w*|системн\w*\s+инструкци\w*|system\s+instructions?|системн\w*\s+правил\w*|системн\w*\s+налаштуван\w*|системн\w*\s+настройк\w*|system\s+settings?)\b"
+    r"|\b(?:я\s+розробник|я\s+розробниця|я\s+разработчик|я\s+разработчица|i\s+am\s+(?:the\s+)?developer)\b.*?\b(?:виведи|выведи|покажи|інструкці\w*|инструкци\w*|промпт\w*|правил\w*|налаштуван\w*|настройк\w*|instructions?|prompt|settings?|rules?)\b"
+    r"|\b(?:виведи|выведи|покажи|роздрукуй|распечатай|розкрий|раскрой|надай|предоставь)\s+(?:всі\s+|усі\s+|все\s+|свої\s+|твої\s+|свои\s+|твои\s+)(?:інструкції|инструкции|директиви|директивы)\b"
+    r"|\b(?:show|display|print|reveal|output)\s+(?:all\s+)?(?:your\s+|the\s+)?(?:system\s+instructions?|system\s+prompt|system\s+rules?)\b"
+    r")",
+    re.IGNORECASE,
+)
+
+
+def is_prompt_injection(text: str) -> bool:
+    """True, якщо запит є спробою отримати системний промпт або обійти інструкції (SE-01)."""
+    if not text:
+        return False
+    return bool(_PROMPT_INJECTION_REGEX.search(_normalize_for_detection(text)))
 

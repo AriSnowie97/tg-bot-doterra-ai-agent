@@ -274,4 +274,36 @@ class TestStickersModule:
             assert res != GOOD_DAY_STICKER_FILE_ID
             assert res != FAREWELL_STICKER_FILE_ID
 
+    @pytest.mark.anyio
+    async def test_persona_favorite_oil_sends_lime_sticker(self, monkeypatch):
+        """Питання 'Какое твое любимое масло?)))' надсилає стікер Лайму."""
+        import bot as bot_mod
+        from unittest.mock import AsyncMock, MagicMock
+        from aiogram.types import Message, Chat, User
+        from aiogram.enums import ChatType
+
+        fake_get_sticker = AsyncMock(return_value="LIME_STICKER_ID")
+        fake_gen = AsyncMock(return_value="З усіх ефірних олій я найбільше люблю Лайм 🍋🟩")
+        monkeypatch.setattr(bot_mod, "get_or_load_sticker", fake_get_sticker)
+        monkeypatch.setattr(bot_mod, "generate_response", fake_gen)
+
+        message = AsyncMock(spec=Message)
+        message.chat = MagicMock(spec=Chat, type=ChatType.PRIVATE, id=1)
+        message.from_user = MagicMock(spec=User, id=123, is_bot=False)
+        message.text = "Какое твое любимое масло?)))"
+        sent_mock = MagicMock(message_id=999, chat=MagicMock(id=1))
+        sent_mock.edit_reply_markup = AsyncMock()
+        message.reply = AsyncMock(return_value=sent_mock)
+        message.reply_sticker = AsyncMock()
+        message.bot = MagicMock()
+
+        state = AsyncMock()
+        state.get_data.return_value = {"has_introduced": True, "conversation_active": True}
+
+        await bot_mod.on_message(message, message.bot, state)
+
+        message.reply_sticker.assert_called_once_with("LIME_STICKER_ID")
+        pref = fake_get_sticker.call_args[1].get("preferred_emojis")
+        assert "🍋‍🟩" in pref or "\U0001f34b\u200d\U0001f7e9" in pref
+
 
