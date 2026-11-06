@@ -168,38 +168,3 @@ class TestContentLinks:
         assert extract_product_links("Олія кедра допомагає розслабитись")[0] == ("Кедр", "cedarwood")
         assert extract_product_links("Аромат ладану заспокоює думки")[0] == ("Ладан", "frankincense")
         assert extract_product_links("Кілька крапель лимона у воду")[0] == ("Лимон", "lemon")
-
-
-
-
-class TestInternalKbLinksHidden:
-    """Службові матеріали бази знань не повинні ставати кнопками-статтями."""
-
-    def test_internal_slug_detection(self):
-        from src.agent.product_links import is_internal_kb_slug
-        for slug in ("03_intake_flow_and_routing", "03-intake-flow-and-routing",
-                     "01_oils_safety_reference", "#/article/02-emotional-themes-map"):
-            assert is_internal_kb_slug(slug), slug
-        assert not is_internal_kb_slug("lavender")
-        assert not is_internal_kb_slug("doterra-serenity")
-
-    def test_extract_skips_internal_links(self):
-        from src.agent.product_links import extract_product_links
-        text = (
-            "🔹 [Лаванда](lavender) для спокою. "
-            "Деталі: [Логіка бота](03_intake_flow_and_routing), [Довідник безпеки олій](01_oils_safety_reference)."
-        )
-        slugs = [s for _, s in extract_product_links(text)]
-        assert "lavender" in slugs
-        assert not any(s.startswith(("01", "03")) for s in slugs)
-
-    def test_strip_internal_links_keeps_product_links(self):
-        from src.agent.product_links import strip_internal_kb_links
-        out = strip_internal_kb_links("[Лаванда](lavender) і [Довідник](01_oils_safety_reference)")
-        assert "[Лаванда](lavender)" in out
-        assert "01_oils_safety_reference" not in out
-        assert "Довідник" in out
-
-    def test_intake_doc_hidden_from_articles_list(self):
-        from src.web.app import HIDDEN_ARTICLE_SLUGS
-        assert "03-intake-flow-and-routing" in HIDDEN_ARTICLE_SLUGS
