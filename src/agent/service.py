@@ -40,6 +40,10 @@ from .specialist import (
     get_disclaimer_for_text,
     should_include_medical_disclaimer,
     is_persona_query,
+    is_pet_query,
+    has_cat_mention,
+    CAT_REDIRECT_REPLY,
+    EN_CAT_REDIRECT_REPLY,
     extract_user_text_from_context,
     is_prompt_injection,
     PROMPT_INJECTION_REPLY,
@@ -339,18 +343,24 @@ async def generate_response(
         if is_clearly_english:
             return (
                 "🌿 Your request contains signs of a higher-risk situation or contraindications "
-                "(pregnancy, lactation, young children, regular medications, or chronic health conditions).\n\n"
+                "(pregnancy, lactation, regular medications, or chronic health conditions).\n\n"
                 "⚠️ I am not qualified to recommend essential oils or dosages in these cases, as it could be unsafe for your health.\n\n"
                 + EN_RED_FLAG_REDIRECT_BLOCK
                 + EN_MEDICAL_DISCLAIMER
             )
         return (
             "🌿 У вашому запиті є ознаки ситуації підвищеного ризику або протипоказань "
-            "(вагітність, лактація, діти, прийом медикаментів або хронічні стани).\n\n"
+            "(вагітність, лактація, прийом медикаментів або хронічні стани).\n\n"
             "⚠️ Я не маю права підбирати олії чи дозування в таких випадках, адже це може бути небезпечно для здоров'я.\n\n"
             + RED_FLAG_REDIRECT_BLOCK
             + MEDICAL_DISCLAIMER
         )
+
+    # Коти: для них є обмеження щодо олій — без самостійних порад, лише консультація Наталії.
+    # Перевіряємо тільки поточне повідомлення, щоб згадка про кота в історії не блокувала інші теми.
+    if has_cat_mention(user_text):
+        print("[agent] 🐾 CAT mention: returning deterministic redirect to the specialist")
+        return EN_CAT_REDIRECT_REPLY if is_clearly_english else CAT_REDIRECT_REPLY
 
     # Для RAG-пошуку використовуємо оригінальний запит/скаргу або введений текст,
     # щоб короткі репліки скринінгу (наприклад, «ні») знаходили релевантні олії.
@@ -370,9 +380,10 @@ async def generate_response(
 
     # 2. Жорсткий фолбек: якщо база порожня (або сталася помилка ембеддингу 429)
     if not chunks:
-        # Але якщо це питання про персонажа, його ім'я, розробників чи улюблені олії — дозволяємо LLM відповісти з промпту
-        if is_persona_query(user_text):
-            print(f"[agent] 0 chunks, but query is persona question — generating via LLM prompt")
+        # Але якщо це питання про персонажа, його ім'я, розробників, улюблені олії чи домашніх тварин —
+        # дозволяємо LLM відповісти за правилами з промпту
+        if is_persona_query(user_text) or is_pet_query(user_text):
+            print(f"[agent] 0 chunks, but query is persona/pet question — generating via LLM prompt")
             chunks = []
         else:
             print(f"[agent] 0 chunks found — returning EMPTY_CONTEXT_FALLBACK")

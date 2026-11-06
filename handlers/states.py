@@ -13,6 +13,12 @@ class UploadKBStates(StatesGroup):
     waiting_for_slug = State()
 
 
+class PostAdminStates(StatesGroup):
+    """FSM-стани для адмінського вибору теми та передперегляду посту перед публікацією."""
+    waiting_for_custom_topic = State()  # Очікуємо введення власної теми від адміна
+    preview_post = State()              # Очікуємо підтвердження/перегенерації перед публікацією
+
+
 class ScreeningStates(StatesGroup):
     """FSM-стани для скринінгу протипоказань перед рекомендацією олій.
 

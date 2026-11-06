@@ -75,6 +75,60 @@ EN_RED_FLAG_REDIRECT_BLOCK: str = (
     f"📸 Instagram: {SPECIALIST_LINKS['Instagram']}"
 )
 
+# Коти: для них є обмеження щодо ефірних олій — самостійних порад бот не дає, лише скеровує до Наталії.
+CAT_REDIRECT_REPLY: str = (
+    f"🐾 Для котиків є обмеження щодо використання ефірних олій, тому тут я не даю "
+    f"самостійних порад. Щоб не нашкодити твоєму улюбленцю, будь ласка, спершу "
+    f"проконсультуйся з {SPECIALIST_NAME} — вона підкаже, що буде безпечно саме для вашого котика 💛\n"
+    f"💬 Telegram: {SPECIALIST_LINKS['Telegram']}\n"
+    f"📸 Instagram: {SPECIALIST_LINKS['Instagram']}"
+)
+
+EN_CAT_REDIRECT_REPLY: str = (
+    f"🐾 There are restrictions on using essential oils around cats, so I don't give "
+    f"independent advice here. To keep your pet safe, please consult {SPECIALIST_NAME} first — "
+    f"she will tell you what is safe for your cat 💛\n"
+    f"💬 Telegram: {SPECIALIST_LINKS['Telegram']}\n"
+    f"📸 Instagram: {SPECIALIST_LINKS['Instagram']}"
+)
+
+# Групові чати: хронічні захворювання не обговорюються публічно — людину скеровуємо
+# в особисті повідомлення (опис ситуації та, за потреби, перенаправлення) або одразу до Наталії.
+GROUP_CHRONIC_REPLY: str = (
+    "🌿 Теми хронічних захворювань потребують індивідуального підходу, тому в груповому чаті "
+    "я їх не обговорюю — це особиста інформація, яку краще розбирати наодинці.\n\n"
+    "Обери зручний варіант:\n"
+    "💬 напиши мені в особисті повідомлення й опиши свою ситуацію — якщо там є ознаки, "
+    f"що потребують уваги спеціаліста, я одразу перенаправлю тебе до {SPECIALIST_NAME};\n"
+    f"👩‍⚕️ або звернись напряму за консультацією до {SPECIALIST_NAME}:\n"
+    f"💬 Telegram: {SPECIALIST_LINKS['Telegram']}\n"
+    f"📸 Instagram: {SPECIALIST_LINKS['Instagram']}"
+)
+
+EN_GROUP_CHRONIC_REPLY: str = (
+    "🌿 Chronic health conditions need an individual approach, so I don't discuss them in a group chat — "
+    "this is personal information that is better handled privately.\n\n"
+    "Please choose what suits you:\n"
+    "💬 message me privately and describe your situation — if there are signs that need a specialist's "
+    f"attention, I will redirect you to {SPECIALIST_NAME} right away;\n"
+    f"👩‍⚕️ or contact {SPECIALIST_NAME} directly for a consultation:\n"
+    f"💬 Telegram: {SPECIALIST_LINKS['Telegram']}\n"
+    f"📸 Instagram: {SPECIALIST_LINKS['Instagram']}"
+)
+
+# Відповідь у приваті після переходу з групи (deep link /start chronic)
+PRIVATE_CHRONIC_INTRO: str = (
+    "🌿 Дуже рада, що ми можемо поспілкуватися в особистих повідомленнях 💛 Розкажи, будь ласка, що тебе турбує: "
+    "який діагноз або стан, як давно триває, чи приймаєш ліки. "
+    f"Якщо в твоїй ситуації будуть ознаки, що потребують уваги спеціаліста, я перенаправлю тебе до {SPECIALIST_NAME}."
+)
+
+EN_PRIVATE_CHRONIC_INTRO: str = (
+    "🌿 I'm glad you wrote to me privately 💛 Please tell me what is bothering you: "
+    "the diagnosis or condition, how long it has lasted, and whether you take any medication. "
+    f"If your situation shows signs that need a specialist's attention, I will redirect you to {SPECIALIST_NAME}."
+)
+
 # Невідкладні стани: бот не радить олії і не відсилає до аромапрактика, а скеровує до швидкої.
 # Номери та формулювання потрібно погодити з клієнткою (Q-08).
 EMERGENCY_REPLY: str = (
@@ -343,7 +397,7 @@ _HEALTH_COMPLAINT_KEYWORDS: tuple[str, ...] = (
     "головний біль", "мігрень", "запаморочення",
     "гормони", "місячні", "клімакс", "пмс",
     # Запити на підбір під проблему
-    "що допоможе від", "що взяти від", "що радієте від",
+    "що допоможе від", "що взяти від", "що радите від",
     "підібрати від", "порекомендуй від", "яка олія від",
     "яке масло від", "масло від", "олія від",
     "допоможіть з", "допоможе при", "при болі", "при стресі",
@@ -359,10 +413,8 @@ RED_FLAG_KEYWORDS: tuple[str, ...] = (
     "вагітна", "вагітність", "годую груддю", "лактація", "годуючій",
     "годуюча мама", "мама годує", "грудне вигодовування",
     "vagitna", "vahitna", "beremenna", "беременна", "беременность",
-    # Діти
-    "дитина", "дитині", "дитячий", "немовля", "немовляті",
-    "новонароджений", "новонародженій", "малюк", "малюкові",
-    "дошкільник", "школяр",
+    # Діти більше не є червоним прапором: ефірні олії можна використовувати з 0 років,
+    # усе залежить від концентрації продукції (див. правила в prompt.py).
     # Хронічні хвороби та невідкладні стани
     "епілепсія", "епілептик", "астма", "астматик",
     "тиск", "гіпертонія", "гіпотонія", "серцева недостатність",
@@ -393,10 +445,7 @@ _RED_FLAG_REGEX = re.compile(
     r"\bвагітн\w*|\bгодую\w*|\bлактац\w*|грудн\w+\s+вигодовуван\w*"
     r"|\bберемен\w*|\bлактац\w*|грудн\w+\s+вскармливан\w*|кормл\w+\s+груд\w*"
     r"|\bpregnan\w*|\blactat\w*|\bbreastfeed\w*|nursing\s+m\w*"
-    # Діти та немовлята
-    r"|\bдитин\w*|\bдіт\w*|\bнемовл\w*|\bмалюк\w*|\bдошкільн\w*|\bшколяр\w*"
-    r"|\bребен\w*|\bдет(?:и|ей|ям|ьми|ях|ск\w*|ств\w*)\b|\bмладен\w*|\bмалыш\w*|\bноворожден\w*"
-    r"|\bchild\w*|\binfant\w*|\bbab(y|ies)\b|\btoddler\w*|\bnewborn\w*|\bkids?\b"
+    # Діти та немовлята навмисно НЕ входять до червоних прапорів (олії можна з 0 років).
     # Хронічні та невідкладні стани
     r"|\bастм\w*|\bепілеп\w*|\bгіпертон\w*|\bгіпотон\w*|\bаритмі\w*|\bдіабет\w*|\bінфаркт\w*|\bінсульт\w*|\bсудом\w*|\bкровотеч\w*"
     r"|\bэпилеп\w*|\bгипертон\w*|\bгипотон\w*|\bаритми\w*|\bдиабет\w*|\bинфаркт\w*|\bинсульт\w*|\bсудорог\w*|\bкровотечен\w*|\bдавлен\w*"
@@ -417,11 +466,6 @@ _RED_FLAG_REGEX = re.compile(
     r"|\bпенсіонер\w*|\bбабус\w*|\bдідус\w*|\b(7[5-9]|[89]\d)\s*рок\w*"
     r"|\bпенсионер\w*|\bбабушк\w*|\bдедушк\w*|\b(7[5-9]|[89]\d)\s*лет"
     r"|\belderly\b|\bsenior\b|\bgrandm\w*|\bgrandp\w*|\b(7[5-9]|[89]\d)\s*years?\s*old"
-    # Діти, названі через родинні зв'язки
-    r"|\bсин(?:ові|у|а|ом|ку|ка)?\b|\bдочк\w*|\bдонь[кц]\w*|\bдоч(?:ці|ку|ь|ері)\b"
-    r"|\bонук\w*|\bонуц\w*|\bхлопчик\w*|\bдівчинк\w*|\bдівчинц\w*"
-    r"|\bсын\w*|\bдочь\b|\bдочер\w*|\bвнук\w*|\bвнучк\w*|\bмальчик\w*|\bдевочк\w*"
-    r"|\b(?:son|daughter|grandson|granddaughter)\b|\bmy\s+\d+[\s-]*(?:month|year)s?[\s-]*old"
     # Ліки, що вказують на хронічний стан
     r"|\bінсулін\w*|\bинсулин\w*|\binsulin\b|\bметформін\w*|\bметформин\w*|\bmetformin\b"
     r"|п'ю\s+таблетк\w*|пью\s+таблетк\w*|\bприйма\w+\s+(?:таблетк\w*|препарат\w*)"
@@ -618,6 +662,33 @@ _PROMPT_INJECTION_REGEX = re.compile(
     re.IGNORECASE,
 )
 
+# ---------------------------------------------------------------------------
+# Хронічні захворювання (для групових чатів)
+# ---------------------------------------------------------------------------
+
+_CHRONIC_REGEX = re.compile(
+    r"("
+    # Прямі згадки «хронічне захворювання / хвороба / стан»
+    r"хронічн\w*\s+(?:\w+\s+)?(?:захворюван\w*|хвороб\w*|недуг\w*|патолог\w*|стан\w*|гастрит\w*|бронхіт\w*"
+    r"|панкреатит\w*|цистит\w*|гепатит\w*|коліт\w*|синусит\w*|тонзиліт\w*|дерматит\w*|пієлонефрит\w*)"
+    r"|хроническ\w*\s+(?:\w+\s+)?(?:заболевани\w*|болезн\w*|недуг\w*|патологи\w*|гастрит\w*|бронхит\w*|панкреатит\w*)"
+    r"|\bchronic\s+(?:\w+\s+)?(?:diseases?|illness\w*|conditions?|disorders?|gastritis|bronchitis|pancreatitis)"
+    # Поширені хронічні діагнози (UK / RU / EN)
+    r"|\bдіабет\w*|\bдиабет\w*|\bdiabet\w*|\bінсулін\w*|\bинсулин\w*"
+    r"|\bастм\w*|\basthm\w*|\bхозл\b|\bcopd\b"
+    r"|\bгіпертон\w*|\bгипертон\w*|\bhypertens\w*|\bгіпотон\w*|\bгипотон\w*|\bаритмі\w*|\bаритми\w*"
+    r"|\bепілеп\w*|\bэпилеп\w*|\bepilep\w*"
+    r"|серцев\w+\s+недостатн\w*|нирков\w+\s+недостатн\w*|печінков\w+\s+недостатн\w*"
+    r"|сердечн\w+\s+недостаточн\w*|почечн\w+\s+недостаточн\w*|печеночн\w+\s+недостаточн\w*"
+    r"|\bонколог\w*|\bрак\b|\bcancer\b|\boncolog\w*"
+    r"|\bпсоріаз\w*|\bпсориаз\w*|\bекзем\w*|\bэкзем\w*|\barthritis\b|\bартрит\w*|\bартроз\w*"
+    r"|\bгепатит\w*|\bрозсіян\w+\s+склероз\w*|\bрассеян\w+\s+склероз\w*|\bмультиплекс\w*"
+    r"|\bгіпотиреоз\w*|\bгипотиреоз\w*|\bхашимото\b|\bтиреоїдит\w*|\bтиреоидит\w*|\bвіл\b|\bвич\b|\bhiv\b"
+    r"|\bвиразк\w*|\bязв\w+\s+(?:желудк\w*|кишечник\w*)|\bхвороб\w+\s+крон\w*|\bcrohn\w*"
+    r")",
+    re.IGNORECASE,
+)
+
 
 def is_prompt_injection(text: str) -> bool:
     """True, якщо запит є спробою отримати системний промпт або обійти інструкції (SE-01)."""
@@ -625,3 +696,52 @@ def is_prompt_injection(text: str) -> bool:
         return False
     return bool(_PROMPT_INJECTION_REGEX.search(_normalize_for_detection(text)))
 
+def has_chronic_condition(text: str) -> bool:
+    """True, якщо людина пише про хронічне захворювання (з урахуванням заперечень на кшталт «діабету немає»).
+
+    Використовується в групових чатах: такі теми не обговорюються публічно — людину скеровують
+    в особисті повідомлення або до Наталії Котелянської.
+    """
+    if not text:
+        return False
+    lower = _normalize_for_detection(text)
+    cleaned = _NEGATED_RED_FLAGS.sub("", lower)
+    return bool(_CHRONIC_REGEX.search(cleaned))
+
+
+# ---------------------------------------------------------------------------
+# Тварини: собаки — майже всі олії; коти — обмеження та консультація Наталії
+# ---------------------------------------------------------------------------
+
+_CAT_REGEX = re.compile(
+    r"("
+    r"\bкіт(?:а|у|ом|і|ові|ів|ам|ами|ах)?\b|\bкот(?:а|у|ом|ові|ів|ам|ами|ах)?\b"
+    r"|\bкотик\w*|\bкотів\b|\bкотяч\w*|\bкотен\w*|\bкотят\w*|\bкошен\w*|\bкошеня\w*"
+    r"|\bкішк\w*|\bкіш(?:ці|ок|ками|ках)\b|\bкошк\w*|\bкошач\w*"
+    r"|\bcats?\b|\bkitten\w*|\bkitty\b|\bkitties\b|\bfeline\w*"
+    r")",
+    re.IGNORECASE,
+)
+
+_PET_REGEX = re.compile(
+    r"("
+    r"\bсобак\w*|\bсобац\w*|\bсобач\w*|\bпес(?:а|у|ом|і|ик\w*|ів)?\b|\bпсів\b|\bпсом\b|\bщен(?:ят\w*|ик\w*|я\b)|\bцуцен\w*"
+    r"|\bтварин\w*|\bулюбленц\w*|\bпитомц\w*|\bживотн\w*|\bпітомц\w*"
+    r"|\bdogs?\b|\bpupp(?:y|ies)\b|\bpets?\b|\banimals?\b"
+    r")",
+    re.IGNORECASE,
+)
+
+
+def has_cat_mention(text: str) -> bool:
+    """True, якщо в повідомленні йдеться про котів/кішок (для них є обмеження — лише консультація Наталії)."""
+    if not text:
+        return False
+    return bool(_CAT_REGEX.search(_normalize_for_detection(text)))
+
+
+def is_pet_query(text: str) -> bool:
+    """True, якщо запит стосується домашніх тварин (собак, інших улюбленців)."""
+    if not text:
+        return False
+    return bool(_PET_REGEX.search(_normalize_for_detection(text)))

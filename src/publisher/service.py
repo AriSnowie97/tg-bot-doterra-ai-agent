@@ -377,6 +377,81 @@ def _ensure_clean_post(text: str, max_len: int = MAX_POST_LENGTH) -> str:
     return _strip_disclaimer(candidate)
 
 
+async def generate_post_content(topic: str | None = None) -> tuple[str, str]:
+    """Генерує очищений пост за заданою темою (або випадковою з TOPIC_SEEDS).
+
+    Args:
+        topic: конкретна тема/запит для RAG або None для випадкової.
+
+    Returns:
+        tuple (selected_topic, post_text)
+    """
+    selected_topic = topic or random.choice(TOPIC_SEEDS)
+    print(f"[publisher] 🎯 Generating post for topic: {selected_topic!r}")
+
+    post_text = await _generate_post_text(selected_topic)
+    post_text = _ensure_clean_post(post_text)
+    post_text = _strip_disclaimer(post_text)
+    return selected_topic, post_text
+
+
+async def publish_post_text(bot: Bot, post_text: str, notify_admins: bool = True) -> str | None:
+    """Публікує вже підготовлений текст посту у канал.
+
+    Args:
+        bot: Aiogram Bot instance.
+        post_text: готовий текст посту.
+        notify_admins: чи надсилати сповіщення адмінам з посиланням на пост.
+
+    Returns:
+        URL опублікованого посту в Telegram.
+    """
+    channel_id = get_channel_id()
+    if not channel_id:
+        print("[publisher] ⚠️ CHANNEL_ID не задано — публікацію скасовано.")
+        raise ValueError("CHANNEL_ID environment variable is not set")
+
+    clean_text = _ensure_clean_post(post_text)
+    clean_text = _strip_disclaimer(clean_text)
+
+    sent_msg = await bot.send_message(
+        chat_id=channel_id,
+        text=clean_text,
+        parse_mode=None,
+    )
+    print(f"[publisher] ✅ Post published to {channel_id!r} ({len(clean_text)} chars)")
+    post_url = _build_post_url(channel_id, sent_msg)
+
+    if notify_admins:
+        admin_ids_str = os.getenv("ADMIN_IDS", "")
+        admin_ids = [
+            int(x.strip()) for x in admin_ids_str.split(",") if x.strip().isdigit()
+        ]
+        preview_text = html.escape(clean_text[:300].rstrip())
+        admin_text = (
+            f"📢 <b>Опубліковано новий пост у канал!</b>\n\n"
+            f"{preview_text}...\n\n"
+            f"👉 <a href=\"{post_url}\">Читати далі</a>"
+        )
+        admin_kb = InlineKeyboardMarkup(
+            inline_keyboard=[
+                [InlineKeyboardButton(text="📖 Читати далі в каналі", url=post_url)]
+            ]
+        )
+        for a_id in admin_ids:
+            try:
+                await bot.send_message(
+                    chat_id=a_id,
+                    text=admin_text,
+                    parse_mode="HTML",
+                    reply_markup=admin_kb,
+                )
+            except Exception:
+                pass
+
+    return post_url
+
+
 async def publish_channel_post(bot: Bot) -> str | None:
     """Генерує та публікує один пост у Telegram-канал.
 
@@ -403,55 +478,14 @@ async def publish_channel_post(bot: Bot) -> str | None:
         print("[publisher] ⚠️ CHANNEL_ID не задано — публікацію скасовано.")
         raise ValueError("CHANNEL_ID environment variable is not set")
 
-    # Обираємо рандомну тему
-    topic = random.choice(TOPIC_SEEDS)
-    print(f"[publisher] 🎯 Selected topic: {topic!r}")
-
     admin_ids_str = os.getenv("ADMIN_IDS", "")
     admin_ids = [
         int(x.strip()) for x in admin_ids_str.split(",") if x.strip().isdigit()
     ]
 
     try:
-        post_text = await _generate_post_text(topic)
-        post_text = _ensure_clean_post(post_text)
-        post_text = _strip_disclaimer(post_text)
-
-        sent_msg = await bot.send_message(
-            chat_id=channel_id,
-            text=post_text,
-            parse_mode=None,
-        )
-        print(f"[publisher] ✅ Post published to {channel_id!r} ({len(post_text)} chars)")
-
-        post_url = _build_post_url(channel_id, sent_msg)
-
-        # Сповіщаємо адмінів про успішну публікацію з посиланням на пост
-        preview_text = html.escape(post_text[:300].rstrip())
-        admin_text = (
-            f"📢 <b>Опубліковано новий пост у канал!</b>\n\n"
-            f"{preview_text}...\n\n"
-            f"👉 <a href=\"{post_url}\">Читати далі</a>"
-        )
-        admin_kb = InlineKeyboardMarkup(
-            inline_keyboard=[
-                [InlineKeyboardButton(text="📖 Читати далі в каналі", url=post_url)]
-            ]
-        )
-
-        for a_id in admin_ids:
-            try:
-                await bot.send_message(
-                    chat_id=a_id,
-                    text=admin_text,
-                    parse_mode="HTML",
-                    reply_markup=admin_kb,
-                )
-            except Exception:
-                pass
-
-        return post_url
-
+        _, post_text = await generate_post_content()
+        return await publish_post_text(bot, post_text, notify_admins=True)
     except Exception as e:
         print(f"[publisher] ❌ Failed to publish post: {redact(e)}")
         for a_id in admin_ids:
