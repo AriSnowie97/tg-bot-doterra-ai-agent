@@ -3,6 +3,7 @@ import os
 import asyncio
 import re
 import time
+import html
 from typing import Any
 # Special
 from dotenv import load_dotenv

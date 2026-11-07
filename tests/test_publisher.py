@@ -161,3 +161,27 @@ class TestPublishChannelPost:
             assert post_url == "https://t.me/testchannel/888"
             # Перевіряємо, що у канал надіслано, а адмінам окреме повідомлення не дублювалося (notify_admins=False)
             assert mock_bot.send_message.call_count == 1
+
+    async def test_run_post_generation_flow_renders_preview_without_name_error(self):
+        """Перевірка, що _run_post_generation_flow форматує передперегляд без NameError (html.escape)."""
+        import bot as bot_mod
+
+        mock_event_target = AsyncMock()
+        mock_wait_msg = AsyncMock()
+        mock_event_target.answer.return_value = mock_wait_msg
+
+        mock_state = AsyncMock()
+
+        fake_topic = "Лаванда <ефірна олія> & м'ята"
+        fake_post = "Чудовий пост про користь лаванди та м'яти 🌿\n\nСтавте ❤️ якщо корисно!"
+
+        with patch("bot.generate_post_content", new=AsyncMock(return_value=(fake_topic, fake_post))):
+            await bot_mod._run_post_generation_flow(mock_event_target, mock_state, topic=fake_topic)
+
+        # Перевірка: початкове повідомлення видалено
+        mock_wait_msg.delete.assert_called_once()
+        # Перевірка: передперегляд надіслано, html екрановано без NameError
+        answers = [call.args[0] for call in mock_event_target.answer.call_args_list if call.args]
+        assert any("Передперегляд посту" in a and "Лаванда &lt;ефірна олія&gt; &amp; м&#x27;ята" in a for a in answers)
+        assert any("Опублікувати його у Telegram-канал?" in a for a in answers)
+
