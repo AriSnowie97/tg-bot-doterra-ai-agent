@@ -696,11 +696,15 @@ async def _run_post_generation_flow(event_target: Message, state: FSMContext, to
         intro_text = (
             f"📝 <b>Передперегляд посту</b>\n"
             f"🎯 <b>Тема:</b> <i>{html.escape(chosen_topic)}</i>\n\n"
-            "──────────────\n\n"
+            "──────────────"
         )
-        first_part = intro_text + parts[0]
-        await event_target.answer(first_part)
-        for part in parts[1:]:
+        try:
+            await event_target.answer(intro_text, parse_mode="HTML")
+        except Exception:
+            await event_target.answer(
+                f"📝 Передперегляд посту\n🎯 Тема: {chosen_topic}\n\n──────────────"
+            )
+        for part in parts:
             await event_target.answer(part)
 
         preview_kb = _build_post_preview_keyboard()

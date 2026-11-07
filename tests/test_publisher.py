@@ -180,8 +180,19 @@ class TestPublishChannelPost:
 
         # Перевірка: початкове повідомлення видалено
         mock_wait_msg.delete.assert_called_once()
-        # Перевірка: передперегляд надіслано, html екрановано без NameError
-        answers = [call.args[0] for call in mock_event_target.answer.call_args_list if call.args]
-        assert any("Передперегляд посту" in a and "Лаванда &lt;ефірна олія&gt; &amp; м&#x27;ята" in a for a in answers)
-        assert any("Опублікувати його у Telegram-канал?" in a for a in answers)
+        # Перевірка: передперегляд надіслано з parse_mode="HTML", html екрановано без сирих тегів
+        intro_call = next(
+            call for call in mock_event_target.answer.call_args_list
+            if call.args and "Передперегляд посту" in call.args[0]
+        )
+        assert intro_call.kwargs.get("parse_mode") == "HTML"
+        assert "Лаванда &lt;ефірна олія&gt; &amp; м&#x27;ята" in intro_call.args[0]
+
+        # Текст посту надіслано окремим чистим повідомленням
+        post_call = next(
+            call for call in mock_event_target.answer.call_args_list
+            if call.args and fake_post in call.args[0]
+        )
+        assert post_call.kwargs.get("parse_mode") is None
+        assert any("Опублікувати його у Telegram-канал?" in call.args[0] for call in mock_event_target.answer.call_args_list if call.args)
 
