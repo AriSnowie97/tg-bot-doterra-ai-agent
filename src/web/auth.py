@@ -98,3 +98,17 @@ async def require_telegram_user(
         raise HTTPException(status_code=401, detail="Unauthorized")
     _check_rate_limit(user["id"])
     return user
+
+
+async def require_service_token(
+    x_service_token: str = Header(default="", alias="X-Service-Token"),
+) -> None:
+    """FastAPI-залежність для міжсервісних викликів (Аромакадемія -> Арома)."""
+    expected = os.getenv("AROMA_SERVICE_TOKEN", "").strip()
+    if not expected:
+        log_security_event("api_misconfigured", reason="AROMA_SERVICE_TOKEN missing")
+        raise HTTPException(status_code=503, detail="Service token is not configured")
+    provided = (x_service_token or "").strip()
+    if not provided or not hmac.compare_digest(provided, expected):
+        log_security_event("service_api_auth_failed", channel="aroma_academy")
+        raise HTTPException(status_code=401, detail="Unauthorized")

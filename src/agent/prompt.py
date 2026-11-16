@@ -258,8 +258,12 @@ def build_system_prompt(
     else:
         parts: list[str] = []
         for chunk in context_chunks:
-            product_slug = chunk.get("product_slug", "unknown")
             content = strip_internal_kb_references(chunk.get("content", "").strip())
+            if chunk.get("is_course_material"):
+                label = chunk.get("course_label") or "матеріал уроку Аромакадемії"
+                parts.append(f"[{label}]\n{content}")
+                continue
+            product_slug = chunk.get("product_slug", "unknown")
             if is_internal_kb_slug(product_slug):
                 # Службовий матеріал: використовуємо зміст, але не даємо моделі slug для кнопки
                 parts.append(f"[службовий матеріал, без посилання]\n{content}")

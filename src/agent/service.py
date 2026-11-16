@@ -273,6 +273,7 @@ async def generate_response(
     time_of_day_greeting: str | None = None,
     user_profile: object | None = None,
     is_group_chat: bool = False,
+    extra_chunks: list[dict] | None = None,
 ) -> str:
     """Повний RAG-пайплайн: пошук → промпт → LLM → відповідь.
 
@@ -375,6 +376,9 @@ async def generate_response(
     except Exception as e:
         print(f"[agent] ⚠️ Embedding search failed (e.g. quota 429): {redact(e)}")
         chunks = []
+
+    if extra_chunks:
+        chunks = [*extra_chunks, *chunks]
 
     print(f"[agent] Found {len(chunks)} chunks for a query of {len(rag_query)} chars")
 

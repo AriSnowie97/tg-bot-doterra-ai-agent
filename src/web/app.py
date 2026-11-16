@@ -25,12 +25,18 @@ import markdown
 
 from pydantic import BaseModel, Field
 import nh3
-from src.web.auth import require_telegram_user
+from src.web.auth import require_service_token, require_telegram_user
 from src.agent import generate_response
 from src.content.parser import slugify
 from src.safety import redact
 from src.security_log import log_security_event
-from src.agent.specialist import is_prompt_injection
+from src.agent.specialist import (
+    has_cat_mention,
+    has_red_flags,
+    is_crisis,
+    is_emergency,
+    is_prompt_injection,
+)
 
 # ---------------------------------------------------------------------------
 # Налаштування
@@ -86,6 +92,33 @@ class ChatRequest(BaseModel):
 
 class ChatResponse(BaseModel):
     response: str
+
+
+class LessonContextItem(BaseModel):
+    lesson_id: str = ""
+    title: str = ""
+    source_ref: str = ""
+    text: str = ""
+
+
+class AromaAskRequest(BaseModel):
+    user_id: str = ""
+    tariff: str = ""
+    lesson_id: str | None = None
+    language: str = "uk"
+    message: str = Field(max_length=2000)
+    lesson_context: list[LessonContextItem] = Field(default_factory=list)
+
+
+class AromaSafetyInfo(BaseModel):
+    triggered: bool = False
+    route_to: str | None = None
+    reason: str | None = None
+
+
+class AromaAskResponse(BaseModel):
+    answer: str
+    safety: AromaSafetyInfo = Field(default_factory=AromaSafetyInfo)
 
 
 # ---------------------------------------------------------------------------
@@ -323,6 +356,80 @@ async def api_chat(request: ChatRequest, user: dict = Depends(require_telegram_u
                 response="🌿 Зараз тимчасово вичерпано ліміт запитів до Google API (429 Resource Exhausted). Зачекай, будь ласка, трішки або звернись до Наталії Котелянської напряму: https://www.instagram.com/nkotelianska/ 💛"
             )
         raise HTTPException(status_code=500, detail="Помилка при генерації відповіді")
+
+
+def _format_aroma_plain_text(text: str) -> str:
+    """Перетворює внутрішні markdown-посилання [Назва](slug) на чистий текст для клієнтів без Markdown."""
+    def _replace_link(match: re.Match[str]) -> str:
+        label, target = match.group(1), match.group(2).strip()
+        if target.startswith(("http://", "https://")):
+            return f"{label} ({target})"
+        return label
+
+    cleaned = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", _replace_link, text)
+    return cleaned.replace("**", "").strip()
+
+
+def _detect_aroma_safety_reason(text: str) -> str | None:
+    if is_crisis(text):
+        return "crisis"
+    if is_emergency(text):
+        return "emergency"
+    if has_red_flags(text):
+        return "red_flag"
+    if has_cat_mention(text):
+        return "cat_safety"
+    return None
+
+
+@app.post("/v1/aroma/ask", response_model=AromaAskResponse)
+async def v1_aroma_ask(
+    request: AromaAskRequest,
+    _: None = Depends(require_service_token),
+):
+    """Міжсервісний контракт Ароми для Аромакадемії (POST /v1/aroma/ask)."""
+    clean_message = request.message.strip()
+    if not clean_message:
+        raise HTTPException(status_code=400, detail="Message cannot be empty")
+
+    if is_prompt_injection(clean_message):
+        log_security_event(
+            "prompt_injection_attempt",
+            user_id=request.user_id,
+            channel="aroma_academy",
+            text_len=len(clean_message),
+        )
+
+    extra_chunks = [
+        {
+            "is_course_material": True,
+            "course_label": (
+                f"Матеріал уроку Аромакадемії: {item.title or item.lesson_id or 'урок'}"
+                + (f" ({item.source_ref})" if item.source_ref else "")
+            ),
+            "content": item.text.strip(),
+        }
+        for item in request.lesson_context[:5]
+        if item.text and item.text.strip()
+    ]
+
+    try:
+        raw_answer = await generate_response(
+            clean_message,
+            extra_chunks=extra_chunks or None,
+        )
+    except Exception as e:
+        print(f"[v1_aroma_ask] Error: {redact(e)}")
+        raise HTTPException(status_code=503, detail="Aroma service temporarily unavailable")
+
+    answer = _format_aroma_plain_text(raw_answer)
+    safety_reason = _detect_aroma_safety_reason(clean_message)
+    safety = (
+        AromaSafetyInfo(triggered=True, route_to="natalia_or_doctor", reason=safety_reason)
+        if safety_reason
+        else AromaSafetyInfo()
+    )
+    return AromaAskResponse(answer=answer, safety=safety)
 
 
 @app.get("/api/articles/{lang}")
