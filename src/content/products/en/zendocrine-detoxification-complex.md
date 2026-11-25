@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/zendocrine-detoxification-complex.jpg)
+
 # Zendocrine® Detoxification Complex
 
 **Category:** Supplements

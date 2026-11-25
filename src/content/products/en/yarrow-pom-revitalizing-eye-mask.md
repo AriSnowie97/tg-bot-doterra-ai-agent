@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/yarrow-pom-revitalizing-eye-mask.jpg)
+
 # Yarrow|Pom Revitalizing Eye Mask
 
 **Category:** Personal Care

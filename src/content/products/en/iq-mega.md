@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/iq-mega.jpg)
+
 # IQ Mega
 
 **Category:** Supplements

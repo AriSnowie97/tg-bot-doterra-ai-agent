@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/white-fir.jpg)
+
 # White Fir
 
 **Category:** Essential Oils

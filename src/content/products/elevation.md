@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/elevation.jpg)
+
 # Elevation™ — Joyful Blend
 
 **Категорія:** Суміші олій

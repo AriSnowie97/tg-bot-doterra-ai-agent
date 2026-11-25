@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/lavender-honey.jpg)
+
 # Lavender Honey
 
 **Category:** Seasonal Collection

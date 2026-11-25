@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/pilot-diffuser.jpg)
+
 # Pilōt™ Portable Diffuser (та Pilōt™ MAX)
 
 **Категорія:** Дифузори

@@ -1,3 +1,5 @@
+![Symphony of the Cells](/images/instruction.jpg)
+
 # Symphony of the Cells™ — Глосарій назв олій та сумішей
 
 ## Переклад назв деяких олій

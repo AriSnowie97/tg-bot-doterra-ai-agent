@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/volo-diffuser.jpg)
+
 # dōTERRA Volo™ Ultrasonic Diffuser (Onyx & Marble)
 
 **Категорія:** Дифузори

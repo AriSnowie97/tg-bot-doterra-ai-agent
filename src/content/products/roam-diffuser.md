@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/roam-diffuser.jpg)
+
 # dōTERRA Roam™ Portable Diffuser
 
 **Категорія:** Дифузори

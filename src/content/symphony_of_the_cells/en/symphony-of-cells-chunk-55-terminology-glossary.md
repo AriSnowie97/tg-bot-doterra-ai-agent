@@ -1,3 +1,5 @@
+![Symphony of the Cells](/images/instruction.jpg)
+
 # Symphony of the Cells™ — Glossary of Oil and Blend Names
 
 ## Translation of Some Oil Names

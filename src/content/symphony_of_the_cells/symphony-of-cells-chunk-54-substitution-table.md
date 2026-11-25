@@ -1,3 +1,5 @@
+![Symphony of the Cells](/images/instruction.jpg)
+
 # Symphony of the Cells™ — Таблиця взаємозамінності олій 
 
 ## Загальне правило заміни

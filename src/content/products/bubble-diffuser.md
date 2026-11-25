@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/bubble-diffuser.jpg)
+
 # dōTERRA Bubble™ Motion-Activated Diffuser
 
 **Категорія:** Дифузори

@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/hinoki.jpg)
+
 # Hinoki
 
 **Category:** Essential Oils

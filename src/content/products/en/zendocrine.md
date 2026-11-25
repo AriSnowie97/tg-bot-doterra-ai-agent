@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/zendocrine.jpg)
+
 # Zendocrine® — Detoxification Blend
 
 **Category:** Oil Blends

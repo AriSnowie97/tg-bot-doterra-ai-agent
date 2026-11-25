@@ -1,3 +1,5 @@
+![Symphony of the Cells](/images/instruction.jpg)
+
 # Symphony of the Cells™ — Oil Substitutability Chart 
 
 ## General Substitution Rule

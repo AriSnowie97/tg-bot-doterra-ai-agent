@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/essential-skin-care-facial-cleanser.jpg)
+
 # Essential Skin Care Facial Cleanser
 
 **Категорія:** Догляд за собою

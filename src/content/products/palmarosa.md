@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/palmarosa.jpg)
+
 # Palmarosa (Пальмароза)
 
 **Категорія:** Ефірні олії

@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/kumquat.jpg)
+
 # Kumquat (Кумкват)
 
 **Категорія:** Ефірні олії

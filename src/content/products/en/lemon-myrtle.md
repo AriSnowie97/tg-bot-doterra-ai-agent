@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/lemon-myrtle.jpg)
+
 # Lemon Myrtle
 
 **Category:** Essential Oils

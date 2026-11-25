@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/athletes-kit.jpg)
+
 # Athlete's Kit
 
 **Категорія:** Набори

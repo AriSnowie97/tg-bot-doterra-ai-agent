@@ -1,3 +1,5 @@
+![doTERRA Product](/images/products/lavender-honey.jpg)
+
 # Lavender Honey
 
 **Категорія:** Сезонна колекція
