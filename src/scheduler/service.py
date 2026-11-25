@@ -20,15 +20,16 @@
 
 # Standard
 import os
-from datetime import timezone
+from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 # Special
 from aiogram import Bot
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
+from apscheduler.triggers.date import DateTrigger
 # Local
 from ..publisher import publish_channel_post
-from ..catalog_sync import run_catalog_sync, format_sync_report_html
+from ..catalog_sync import run_catalog_sync, format_sync_report_html, get_catalog_stats
 from ..safety import redact
 
 
@@ -41,10 +42,23 @@ _HOUR: int   = int(os.getenv("POST_SCHEDULE_HOUR", "12"))
 _MINUTE: int = int(os.getenv("POST_SCHEDULE_MINUTE", "0"))
 _TZ_NAME: str = os.getenv("POST_SCHEDULE_TZ", "Europe/Kyiv")
 
-# Автосинхронізація світових ринків doTERRA (дефолт: щонеділі о 04:00 за Києвом)
+# Автосинхронізація світових ринків doTERRA (дефолт: 2 рази на добу — о 04:00 та 16:00 за Києвом)
 _CATALOG_SYNC_ENABLED: bool = os.getenv("ENABLE_CATALOG_SYNC", "1").strip().lower() not in ("0", "false", "no")
-_CATALOG_SYNC_DAY: str = os.getenv("CATALOG_SYNC_DAY", "sun")
-_CATALOG_SYNC_HOUR: int = int(os.getenv("CATALOG_SYNC_HOUR", "4"))
+_CATALOG_SYNC_DAY: str = os.getenv("CATALOG_SYNC_DAY", "*")
+_CATALOG_SYNC_HOURS: str = os.getenv("CATALOG_SYNC_HOURS", os.getenv("CATALOG_SYNC_HOUR", "4,16"))
+
+
+async def _initial_catalog_sync_if_empty(bot: Bot) -> None:
+    """Одноразовий стартовий прогін після першого деплою, якщо ще не було жодної синхронізації."""
+    try:
+        status = get_catalog_stats()
+        if status.get("last_run"):
+            print("[scheduler] ℹ️ Global catalog sync already has run history — skipping startup bootstrap.")
+            return
+    except Exception:
+        pass
+    print("[scheduler] 🌍 No prior catalog sync runs found — starting initial global sync...")
+    await _scheduled_catalog_sync(bot)
 
 
 async def _scheduled_catalog_sync(bot: Bot) -> None:
@@ -131,7 +145,7 @@ def setup_scheduler(bot: Bot) -> AsyncIOScheduler:
     if _CATALOG_SYNC_ENABLED:
         catalog_trigger = CronTrigger(
             day_of_week=_CATALOG_SYNC_DAY,
-            hour=_CATALOG_SYNC_HOUR,
+            hour=_CATALOG_SYNC_HOURS,
             minute=0,
             timezone=tz,
         )
@@ -144,9 +158,19 @@ def setup_scheduler(bot: Bot) -> AsyncIOScheduler:
             misfire_grace_time=3600,
             replace_existing=True,
         )
+        # Перший автозапуск через 90 секунд після старту, якщо ще не було жодного прогону в БД
+        scheduler.add_job(
+            func=_initial_catalog_sync_if_empty,
+            trigger=DateTrigger(run_date=datetime.now(tz) + timedelta(seconds=90)),
+            args=[bot],
+            id="global_catalog_sync_bootstrap",
+            name="Initial catalog sync bootstrap if never run",
+            misfire_grace_time=300,
+            replace_existing=True,
+        )
         print(
             f"[scheduler] 🌍 Global catalog auto-sync configured: "
-            f"day={_CATALOG_SYNC_DAY!r}, hour={_CATALOG_SYNC_HOUR:02d}:00 {tz}"
+            f"day={_CATALOG_SYNC_DAY!r}, hours={_CATALOG_SYNC_HOURS!r} {tz} (+ startup bootstrap if empty)"
         )
 
     print(

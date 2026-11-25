@@ -15,7 +15,7 @@ from typing import Any
 from src.safety import redact
 
 # Кеш у пам'яті, щоб Mini App API (/api/articles) не бив у БД на кожен клік
-_CACHE_TTL_SECONDS = 60.0
+_CACHE_TTL_SECONDS = 30.0
 _CACHE: dict[str, Any] = {"ts": 0.0, "active": [], "archived": set()}
 
 

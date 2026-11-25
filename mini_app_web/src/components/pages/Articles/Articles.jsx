@@ -29,21 +29,41 @@ const Articles = () => {
     
     useEffect(() => {
         setActiveTag("Усі");
-        const fetchArticles = async () => {
+        let cancelled = false;
+        const fetchArticles = async (silent = false) => {
             try {
-                setLoading(true);
+                if (!silent) setLoading(true);
                 const response = await get_articles(lang);
-                if (response.ok) {
+                if (response.ok && !cancelled) {
                     const data = await response.json();
                     setArticlesList(data);
                 }
             } catch (err) {
                 console.error("Failed to load articles", err);
             } finally {
-                setLoading(false);
+                if (!cancelled && !silent) setLoading(false);
             }
         };
-        fetchArticles();
+        fetchArticles(false);
+
+        const intervalId = setInterval(() => {
+            if (document.visibilityState === "visible") {
+                fetchArticles(true);
+            }
+        }, 3 * 60 * 1000);
+
+        const onVisible = () => {
+            if (document.visibilityState === "visible") {
+                fetchArticles(true);
+            }
+        };
+        document.addEventListener("visibilitychange", onVisible);
+
+        return () => {
+            cancelled = true;
+            clearInterval(intervalId);
+            document.removeEventListener("visibilitychange", onVisible);
+        };
     }, [lang]);
 
     const sectionArticles = useMemo(() => {

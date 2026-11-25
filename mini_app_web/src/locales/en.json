@@ -92,5 +92,8 @@
     "whats_new_badge_new": "New",
     "whats_new_badge_returned": "Back",
     "whats_new_search_placeholder": "Search new & returning products...",
-    "whats_new_empty_returned": "No recently returned products yet. As soon as an archived product returns to any global doTERRA market, it will automatically appear here."
+    "whats_new_empty_returned": "No recently returned products yet. As soon as an archived product returns to any global doTERRA market, it will automatically appear here.",
+    "refresh_btn": "Refresh",
+    "refreshing_btn": "Updating...",
+    "updated_at_label": "Updated at"
 }

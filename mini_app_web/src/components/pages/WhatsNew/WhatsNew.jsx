@@ -1,49 +1,72 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useLang } from "../../../contexts/LangContext";
 import { get_articles, get_whats_new } from "../../../api/articles";
 import { Article } from "../Articles/components/Article";
 import styles from "./WhatsNew.module.css";
 
+const AUTO_REFRESH_MS = 2 * 60 * 1000; // Автооновлення кожні 2 хвилини
+
+const formatTime = (date) =>
+    date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
 const WhatsNew = () => {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [refreshing, setRefreshing] = useState(false);
+    const [lastUpdated, setLastUpdated] = useState(null);
     const [filter, setFilter] = useState("all");
     const [search, setSearch] = useState("");
     const { t, lang } = useLang();
 
-    useEffect(() => {
-        let cancelled = false;
-        const fetchUpdates = async () => {
-            try {
+    const fetchUpdates = useCallback(async ({ silent = false } = {}) => {
+        try {
+            if (silent) {
+                setRefreshing(true);
+            } else {
                 setLoading(true);
-                let data = [];
-                const response = await get_whats_new(lang);
-                if (response.ok) {
-                    data = await response.json();
-                } else {
-                    // Fallback якщо бекенд ще перезапускається
-                    const fallback = await get_articles(lang);
-                    if (fallback.ok) {
-                        const all = await fallback.json();
-                        data = all.filter((a) => a.update_type === "new" || a.update_type === "returned");
-                    }
-                }
-                if (!cancelled) {
-                    setItems(Array.isArray(data) ? data : []);
-                }
-            } catch (err) {
-                console.error("Failed to load whats new", err);
-            } finally {
-                if (!cancelled) {
-                    setLoading(false);
+            }
+            let data = [];
+            const response = await get_whats_new(lang);
+            if (response.ok) {
+                data = await response.json();
+            } else {
+                const fallback = await get_articles(lang);
+                if (fallback.ok) {
+                    const all = await fallback.json();
+                    data = all.filter((a) => a.update_type === "new" || a.update_type === "returned");
                 }
             }
-        };
-        fetchUpdates();
-        return () => {
-            cancelled = true;
-        };
+            setItems(Array.isArray(data) ? data : []);
+            setLastUpdated(new Date());
+        } catch (err) {
+            console.error("Failed to load whats new", err);
+        } finally {
+            setLoading(false);
+            setRefreshing(false);
+        }
     }, [lang]);
+
+    useEffect(() => {
+        fetchUpdates({ silent: false });
+
+        const intervalId = setInterval(() => {
+            if (document.visibilityState === "visible") {
+                fetchUpdates({ silent: true });
+            }
+        }, AUTO_REFRESH_MS);
+
+        const onVisible = () => {
+            if (document.visibilityState === "visible") {
+                fetchUpdates({ silent: true });
+            }
+        };
+        document.addEventListener("visibilitychange", onVisible);
+
+        return () => {
+            clearInterval(intervalId);
+            document.removeEventListener("visibilitychange", onVisible);
+        };
+    }, [fetchUpdates]);
 
     const counts = useMemo(() => {
         let newCount = 0;
@@ -78,8 +101,27 @@ const WhatsNew = () => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>
-                <h1 className={styles.pageTitle}>{t("whats_new_title")}</h1>
-                <p className={styles.subtitle}>{t("whats_new_subtitle")}</p>
+                <div className={styles.titleRow}>
+                    <h1 className={styles.pageTitle}>{t("whats_new_title")}</h1>
+                    <button
+                        type="button"
+                        className={styles.refreshBtn}
+                        onClick={() => fetchUpdates({ silent: true })}
+                        disabled={refreshing || loading}
+                    >
+                        <span className={refreshing ? styles.spin : ""}>↻</span>
+                        <span>{refreshing ? t("refreshing_btn") : t("refresh_btn")}</span>
+                    </button>
+                </div>
+                <p className={styles.subtitle}>
+                    {t("whats_new_subtitle")}
+                    {lastUpdated && (
+                        <span className={styles.updatedMeta}>
+                            {" · "}
+                            {t("updated_at_label")} {formatTime(lastUpdated)}
+                        </span>
+                    )}
+                </p>
             </div>
 
             <input
