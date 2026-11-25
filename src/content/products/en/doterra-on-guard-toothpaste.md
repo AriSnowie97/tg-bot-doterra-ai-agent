@@ -2,7 +2,7 @@
 
 # dōTERRA On Guard® Toothpaste
 
-**Category:** Home Products
+**Category:** Home Care
 
 **Type:** Toothpaste
 

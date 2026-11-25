@@ -2,7 +2,7 @@
 
 # Together Touch (Healing Hands)
 
-**Category:** Seasonal Collection
+**Category:** Roll-ons (Touch)
 
 **Type:** Essential Blend Touch (roll-on, charitable)
 

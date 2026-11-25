@@ -2,7 +2,7 @@
 
 # Citrus Bloom® Springtime Blend
 
-**Category:** Blends
+**Category:** Oil Blends
 
 **Type:** Essential Blend (15 ml)
 

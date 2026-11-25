@@ -2,7 +2,7 @@
 
 # ClaryCalm — Monthly Blend for Women
 
-**Category:** Essential Oils
+**Category:** Roll-ons (Touch)
 
 **Type:** Blend (Monthly Blend, specially formulated for women)
 

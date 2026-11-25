@@ -1,8 +1,8 @@
-![doTERRA Product](https://www.doterra.com/medias/625x325-37380001-cleanser-us-english-web.jpg?context=bWFzdGVyfGltYWdlc3w0MjkyNHxpbWFnZS9qcGVnfGFXMWhaMlZ6TDJoaFl5OW9OR1F2TVRRMU5qTTJNamcxTkRNek1EQXVhbkJufGYzOGRhYjJhMjM1ZTQ0NWM2Y2EzNjg5MTMyNjMwNWU3NDYzNGIzM2M1N2FkZjBhMzk5OGU1NzE2OTc5OTk3MTk)
+![doTERRA Product](https://www.doterra.com/medias/verage-cleanser-award.png?context=bWFzdGVyfHJvb3R8MTQ5NzQ2fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzFOeTlvTnpRdk16QXhOalF6TlRZek5qWXpOall2ZG1WeVlXZGxMV05zWldGdWMyVnlMV0YzWVhKa0xuQnVad3w5OGQ5ZThmNWNiZWZkYTRjNjYzNDIxZjgwZjkyYzYxMDM2YjIxZTQ2NWMwNWNhM2M5YmEwYTI3OWRlMDliNjhi)
 
 # Veráge Cleanser
 
-**Категорія:** Skin & Hair Care → Veráge Skin Care
+**Категорія:** Догляд за собою
 
 **Тип:** Очищувальний гель для обличчя
 

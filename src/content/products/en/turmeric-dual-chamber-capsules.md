@@ -2,7 +2,7 @@
 
 # Turmeric Dual Chamber Capsules
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (dual-chamber capsule: oil and extract)
 

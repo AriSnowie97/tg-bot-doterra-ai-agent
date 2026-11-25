@@ -2,7 +2,7 @@
 
 # Natural Solutions Kit
 
-**Category:** Kits
+**Category:** Kits & Collections
 
 **Type:** Kit with diffuser and dietary supplements
 

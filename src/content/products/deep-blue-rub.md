@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/Preview-Images-Deep-Blue-Rub.png?context=bWFzdGVyfHJvb3R8MTE0ODM0fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyaG1ZaTlvTnpndk1qazBNVGswTXpjNE5UQTJOVFF2VUhKbGRtbGxkeUJKYldGblpYTmZSR1ZsY0NCQ2JIVmxJRkoxWWk1d2JtY3w4M2NkOWRjY2JiMGY5OGViMWFjNzljOGM1MmI0OTRiODg0NDc1MDc3YmEyYjhlMjE2N2U2MzBhMTk3NTYwMzE3)
 
 # doTERRA Deep Blue® Rub
 

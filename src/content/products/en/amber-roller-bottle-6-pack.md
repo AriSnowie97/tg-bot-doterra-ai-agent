@@ -2,7 +2,7 @@
 
 # 10 mL Amber Roller Bottle 6 Pack
 
-**Category:** Diffusers & Accessories → Accessories
+**Category:** Diffusers
 
 **Type:** Roller bottles for custom essential oil blends
 

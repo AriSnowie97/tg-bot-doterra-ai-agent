@@ -2,7 +2,7 @@
 
 # DigestZen — Digestive Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Digestive Blend)
 

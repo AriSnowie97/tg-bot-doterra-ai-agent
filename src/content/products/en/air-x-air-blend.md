@@ -2,7 +2,7 @@
 
 # Air-X® Air Blend
 
-**Category:** Blends
+**Category:** Oil Blends
 
 **Type:** Essential Air Blend (15 ml)
 

@@ -2,7 +2,7 @@
 
 # MetaPWR® System Kit
 
-**Category:** Kits
+**Category:** Kits & Collections
 
 **Type:** Metabolic Health Kit
 

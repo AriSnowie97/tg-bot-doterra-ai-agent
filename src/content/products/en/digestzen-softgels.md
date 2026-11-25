@@ -2,7 +2,7 @@
 
 # DigestZen Softgels
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (DigestZen oil in softgels)
 

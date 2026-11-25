@@ -39,7 +39,10 @@ const ArticleView = () => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>
-                <button className={styles.backBtn} onClick={() => navigate(-1)}>
+                <button
+                    className={styles.backBtn}
+                    onClick={() => (window.history.length > 1 ? navigate(-1) : navigate("/articles"))}
+                >
                     {t("article_back")}
                 </button>
             </div>

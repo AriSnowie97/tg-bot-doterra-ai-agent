@@ -2,7 +2,7 @@
 
 # dōTERRA spa Basics Kit
 
-**Category:** Personal care
+**Category:** Personal Care
 
 **Type:** Body care set
 

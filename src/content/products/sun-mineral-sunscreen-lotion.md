@@ -2,7 +2,7 @@
 
 # doTERRA sun Face + Body Mineral Sunscreen Lotion
 
-**Категорія:** Skin & Hair Care → Sun Care
+**Категорія:** Догляд за собою
 
 **Тип:** сонцезахисний засіб (мінеральний SPF)
 

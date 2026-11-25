@@ -2,7 +2,7 @@
 
 # dōTERRA Peace® Touch
 
-**Category:** Blends
+**Category:** Roll-ons (Touch)
 
 **Type:** Essential oil blend Touch (roll-on, 10 ml)
 

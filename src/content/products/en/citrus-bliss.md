@@ -2,7 +2,7 @@
 
 # Citrus Bliss — Invigorating Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Invigorating Blend)
 

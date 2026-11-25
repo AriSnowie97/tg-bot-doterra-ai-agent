@@ -2,7 +2,7 @@
 
 # Adaptiv — Calming Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Calming Blend)
 

@@ -2,7 +2,7 @@
 
 # dōTERRA On Guard+™ Chewable Tablets
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Chewable tablets
 

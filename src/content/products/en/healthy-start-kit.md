@@ -2,7 +2,7 @@
 
 # Healthy Start Kit
 
-**Category:** Kits
+**Category:** Kits & Collections
 
 **Type:** Kit with diffuser
 

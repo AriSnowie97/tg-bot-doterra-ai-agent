@@ -2,7 +2,7 @@
 
 # Women's Health Kit
 
-**Category:** Kits
+**Category:** Kits & Collections
 
 **Type:** Women's Health Kit
 

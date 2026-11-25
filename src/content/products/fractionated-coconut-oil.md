@@ -2,7 +2,7 @@
 
 # Fractionated Coconut Oil
 
-**Категорія:** Skin & Hair Care → Body Care
+**Категорія:** Догляд за собою
 
 **Тип:** базова (транспортна) олія для тіла
 

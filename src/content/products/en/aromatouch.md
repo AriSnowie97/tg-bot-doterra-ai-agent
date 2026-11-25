@@ -2,7 +2,7 @@
 
 # AromaTouch — Massage Blend
 
-**Category:** Essential oils
+**Category:** Roll-ons (Touch)
 
 **Type:** Blend (Massage Blend)
 

@@ -2,7 +2,7 @@
 
 # Dawn® Aroma Humidifier
 
-**Category:** Home Products
+**Category:** Diffusers
 
 **Type:** Diffuser-Humidifier
 

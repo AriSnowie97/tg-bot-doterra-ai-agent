@@ -2,7 +2,7 @@
 
 # Foundational Wellness Bundle
 
-**Category:** Kits
+**Category:** Kits & Collections
 
 **Type:** Supplement Kit
 

@@ -2,7 +2,7 @@
 
 # Family Essentials Kit
 
-**Category:** Kits
+**Category:** Kits & Collections
 
 **Type:** Essential Oil Kit (10 items)
 

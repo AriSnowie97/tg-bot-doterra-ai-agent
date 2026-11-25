@@ -2,7 +2,7 @@
 
 # doTERRA Lifelong Vitality Pack (LLV)
 
-**Category:** Dietary Supplements (Supplements → Daily Vitality / Foundational Wellness)
+**Category:** Supplements
 
 **Type:** Dietary Supplement (foundational vitamin and mineral complex)
 

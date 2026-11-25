@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/9841437016094.jpg?context=bWFzdGVyfHJvb3R8MTM5NjI5fGltYWdlL2pwZWd8YURGaUwyZzBOeTg0TnprNU5qWXlOREEzTnpFd0xtcHdad3w0MzVmNzMxM2MyODU1OTM4ZDBkZDhmYjRhZDk5ZjIwNWZhNzI5ZmY3MTM3ZGE5Yzg4YzM0YjdhYWFiNjllOWYy)
 
 # Dill
 

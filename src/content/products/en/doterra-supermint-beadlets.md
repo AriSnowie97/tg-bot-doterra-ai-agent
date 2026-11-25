@@ -2,7 +2,7 @@
 
 # dōTERRA SuperMint® Beadlets
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Beadlets
 

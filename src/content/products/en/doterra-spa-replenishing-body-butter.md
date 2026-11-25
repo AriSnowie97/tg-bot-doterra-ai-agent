@@ -2,7 +2,7 @@
 
 # dōTERRA spa Replenishing Body Butter
 
-**Category:** Self-care
+**Category:** Essential Oils
 
 **Type:** Body Butter
 

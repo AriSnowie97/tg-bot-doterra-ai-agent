@@ -2,7 +2,7 @@
 
 # doTERRA Motivate — Encouraging Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Encouraging Blend, Emotional Aromatherapy)
 

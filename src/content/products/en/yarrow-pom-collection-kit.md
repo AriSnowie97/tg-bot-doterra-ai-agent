@@ -2,7 +2,7 @@
 
 # Yarrow|Pom Collection
 
-**Category:** Personal Care
+**Category:** Kits & Collections
 
 **Type:** Skincare Set
 

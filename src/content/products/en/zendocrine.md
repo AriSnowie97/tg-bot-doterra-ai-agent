@@ -1,8 +1,6 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
-
 # Zendocrine® — Detoxification Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Detoxification Blend)
 
@@ -45,6 +43,6 @@
 Books in the knowledge base:
 ▫️ "Emotions and Essential Oils": theme "Restriction / Stagnation" — nuance "dependence on habits" → Zendocrine
 ▫️ "Symphony of the Cells": the substitution table entry "Zendocrine (RevitaZen)" lists Geranium / Copaiba / Rosemary as alternatives; the blend also appears in the digestive, immune and integumentary system reference cards
-Note for the bot: if a user asks about Zendocrine, explain that it is the previous formula and that the current option in newer catalogs is RevitaZen™ (see revitazen-detoxification-blend).
+Note for the bot: if a user asks about Zendocrine, explain that it is the previous formula and that the current option in newer catalogs is RevitaZen™ (see revitazen).
 
 #blends #detox #zendocrine #doterra

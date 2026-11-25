@@ -2,7 +2,7 @@
 
 # Adaptiv Calming Blend Capsules
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (capsules for internal use)
 

@@ -2,7 +2,7 @@
 
 # dōTERRA On Guard™ Beadlets
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Beadlets
 

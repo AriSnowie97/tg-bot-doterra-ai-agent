@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/Preview-Images-Deep-Blue-Stick.png?context=bWFzdGVyfHJvb3R8MTY1OTQ2fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzJOQzlvWXpjdk1qazBNVGswTXpnd05EY3lOakl2VUhKbGRtbGxkeUJKYldGblpYTmZSR1ZsY0NCQ2JIVmxJRk4wYVdOckxuQnVad3w0NzliNzU3MDE1NTA0NmY5NGUwZjBhMzY4MzlkOTI3ZjUzYTQ4ODAwMDIzMDcyMGQ3ODc4ZmI1ZGRiZjRlYjIx)
 
 # doTERRA Deep Blue® Stick + Copaiba
 

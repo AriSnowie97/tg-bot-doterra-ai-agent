@@ -2,7 +2,7 @@
 
 # doTERRA Peace — Reassuring Blend
 
-**Category:** Essential oils
+**Category:** Oil Blends
 
 **Type:** Blend (Reassuring Blend, Emotional Aromatherapy)
 

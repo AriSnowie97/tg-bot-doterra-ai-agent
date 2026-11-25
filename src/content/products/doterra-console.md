@@ -2,7 +2,7 @@
 
 # doTERRA Console — Comforting Blend
 
-**Категорія:** Ефірні олії
+**Категорія:** Суміші олій
 
 **Тип:** Суміш (Comforting Blend, Emotional Aromatherapy)
 

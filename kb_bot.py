@@ -114,7 +114,7 @@ async def cmd_list(message: Message) -> None:
         return
 
     files = []
-    for d in ["docs", "products", "advice", "symphony_of_the_cells", "kits"]:
+    for d in ["docs", "products", "symphony_of_the_cells", "kits"]:
         folder = content_dir / d
         if folder.exists():
             files.extend(list(folder.glob("*.md")))
@@ -383,7 +383,7 @@ async def receive_slug(message: Message, state: FSMContext, bot: Bot) -> None:
         content_dir = Path(__file__).parent / "src" / "content"
         found = False
         if content_dir.exists():
-            for d in ["docs", "products", "advice", "symphony_of_the_cells", "kits"]:
+            for d in ["docs", "products", "symphony_of_the_cells", "kits"]:
                 if (content_dir / d / file_name).exists():
                     found = True
                     break

@@ -1,5 +1,3 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
-
 # Palmarosa
 
 **Category:** Essential Oils

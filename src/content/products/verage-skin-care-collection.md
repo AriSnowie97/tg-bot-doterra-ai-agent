@@ -1,8 +1,8 @@
-![doTERRA Product](https://www.doterra.com/medias/625x325-42690001-verage-kit-us-english-web.jpg?context=bWFzdGVyfGltYWdlc3w0NjE4OXxpbWFnZS9qcGVnfGFXMWhaMlZ6TDJnM1l5OW9abU12TVRRMU5qTTJNamcyTkRFd01UQXFhbkJufGUzNGY2M2RiOTY3Y2MyNTk2MjEzNDg4M2MyZjI3OWE1OTBhYTFjOWM4ZDMxMzQzNmViNDEyZjU0NDYwZTc2Nzg)
+![doTERRA Product](https://www.doterra.com/medias/verage-collection-42690001-566x819-us.png?context=bWFzdGVyfHJvb3R8MTE2NTE2fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZ3pPQzlvTURBdk16QTJPRFl6TnpJMk5Ua3lNekF2ZG1WeVlXZGxYMk52Ykd4bFkzUnBiMjVmTkRJMk9UQXdNREZmTlRZMmVEZ3hPVjkxY3k1d2JtY3wxNjg4OWVjYmQ1MjQ2NGExMWQ2OTJkZjY4YzBkNmNiYzU3NWI1NjdkOGJmYWU5MGZhZmJlZDQwMTQyZDgwOGFi)
 
 # Veráge Skin Care Collection
 
-**Категорія:** Набори (Kits) → Догляд за шкірою
+**Категорія:** Набори
 
 **Тип:** Набір натурального догляду за обличчям (4 засоби)
 

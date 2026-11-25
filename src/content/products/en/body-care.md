@@ -2,7 +2,7 @@
 
 # Body Care — Fractionated Coconut Oil
 
-**Category:** Body Care
+**Category:** Personal Care
 
 **Type:** base (carrier) body oil
 

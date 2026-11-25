@@ -2,7 +2,7 @@
 
 # TerraShield® Spray (30 ml)
 
-**Category:** Blends
+**Category:** Oil Blends
 
 **Type:** Repellent Spray
 

@@ -2,7 +2,7 @@
 
 # Veráge Immortelle Hydrating Serum
 
-**Category:** Skin & Hair Care → Veráge Skin Care
+**Category:** Personal Care
 
 **Type:** hydrating serum
 

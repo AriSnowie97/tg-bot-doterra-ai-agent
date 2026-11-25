@@ -1,8 +1,8 @@
-![doTERRA Product](https://www.doterra.com/medias/625x325-37410001-moisturizer-us-english-web.jpg?context=bWFzdGVyfGltYWdlc3w0Mzg1MnxpbWFnZS9qcGVnfGFXMWhaMlZ6TDJneU5pOW9NMlF2TVRRMU5qTTJNamcyTURJeU1UQXFhbkJufGNmNjNhMzQ3MGNhOWJiMTcxNWJiMWZkMGNmYzkzYTZiNjFjYzNkNzE3YjZhMjRiZDdhM2Q3NzI1OWI1MjcyMDk)
+![doTERRA Product](https://www.doterra.com/medias/moisturizer-37410001-566x819-us.png?context=bWFzdGVyfHJvb3R8Mjc3NDd8aW1hZ2UvcG5nfGMzbHpMVzFoYzNSbGNpOXliMjkwTDJobE5DOW9ZelV2TXpBMk9EUTNOek0yTVRNMU9UZ3ZiVzlwYzNSMWNtbDZaWEpmTXpjME1UQXdNREZmTlRZMmVEZ3hPVjkxY3k1d2JtY3xiYTUzZTYzMDU5MjNiZWQ2YjdmOTQ5NDJjZTg5MTRiOWU5MDhjZTcyM2IwNzA2Zjc3OWJlYzM2MDZjMTBiYjE4)
 
 # Veráge Moisturizer
 
-**Категорія:** Skin & Hair Care → Veráge Skin Care
+**Категорія:** Догляд за собою
 
 **Тип:** Зволожувальний крем для обличчя
 

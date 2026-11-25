@@ -2,7 +2,7 @@
 
 # doTERRA Whisper Touch — Personal Fragrance Blend
 
-**Category:** Rollers (Touch)
+**Category:** Roll-ons (Touch)
 
 **Type:** Blend (personal fragrance for women)
 

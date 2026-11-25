@@ -1,0 +1,75 @@
+name: Weekly Global doTERRA Catalog Sync
+
+on:
+  schedule:
+    # Щонеділі о 03:00 UTC (05:00/06:00 за Києвом)
+    - cron: "0 3 * * 0"
+  workflow_dispatch:
+    inputs:
+      max_new:
+        description: "Максимум нових товарів за один прогон"
+        required: false
+        default: "15"
+      markets:
+        description: "Ринки через кому (порожньо = усі 18 ринків)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync-catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install minimal dependencies
+        run: |
+          pip install --no-cache-dir python-dotenv requests google-genai
+
+      - name: Run global doTERRA catalog sync
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          DATABASE_PUBLIC_URL: ${{ secrets.DATABASE_PUBLIC_URL }}
+        run: |
+          MAX_NEW="${{ github.event.inputs.max_new || '15' }}"
+          MARKETS="${{ github.event.inputs.markets || '' }}"
+          EXTRA_ARGS=""
+          if [ -n "$MARKETS" ]; then
+            EXTRA_ARGS="--markets $MARKETS"
+          fi
+          python -m src.catalog_sync --write-files --max-new "$MAX_NEW" $EXTRA_ARGS --json-out catalog_sync_report.json
+
+      - name: Check for product file changes
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain src/content/products)" ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create Pull Request with catalog updates
+        if: steps.changes.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(catalog): auto-sync new/archived doTERRA global products"
+          branch: "chore/auto-catalog-sync"
+          delete-branch: true
+          title: "🌍 Автооновлення каталогу doTERRA (глобальні ринки)"
+          body: |
+            Автоматична щотижнева звірка каталогу з 18 офіційними ринками `doterra.com`.
+
+            - Нові продукти оформлено за стандартом UA + EN (з офіційними `og:image`).
+            - Продукти, зниклі з усіх здорових ринків 3 перевірки поспіль, архівовано (із захистом від масового видалення).
+            - Після злиття цього PR Railway автоматично перезбере контейнер з оновленими файлами.

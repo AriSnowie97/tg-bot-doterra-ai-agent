@@ -2,7 +2,7 @@
 
 # doTERRA sun Face + Body Mineral Sunscreen Lotion
 
-**Category:** Skin & Hair Care → Sun Care
+**Category:** Personal Care
 
 **Type:** sunscreen (mineral SPF)
 

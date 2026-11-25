@@ -2,7 +2,7 @@
 
 # dōTERRA Emotional Aromatherapy® System / Touch Kit
 
-**Категорія:** Набори
+**Категорія:** Ролери (Touch)
 
 **Тип:** Набір емоційних сумішей
 

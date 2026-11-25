@@ -2,7 +2,7 @@
 
 # doTERRA Fiber
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Powder / Fiber
 

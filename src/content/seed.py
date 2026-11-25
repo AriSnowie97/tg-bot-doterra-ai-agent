@@ -37,10 +37,10 @@ from src.safety import redact, redact_db_url
 
 
 CONTENT_DIR = os.path.dirname(__file__)
-DATA_DIRS = ["products", "advice", "kits"]
+DATA_DIRS = ["products", "kits"]
 
 def load_product_files() -> list[dict]:
-    """Завантажити всі JSON-файли продуктів з директорій products, advice, kits"""
+    """Завантажити всі JSON-файли продуктів з директорій products, kits"""
     all_products = []
     for d in DATA_DIRS:
         pattern = os.path.join(CONTENT_DIR, d, "*.json")

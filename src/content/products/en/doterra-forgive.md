@@ -2,7 +2,7 @@
 
 # doTERRA Forgive — Renewing Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Renewing Blend, Emotional Aromatherapy)
 

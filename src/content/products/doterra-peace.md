@@ -2,7 +2,7 @@
 
 # doTERRA Peace — Reassuring Blend
 
-**Категорія:** Ефірні олії
+**Категорія:** Суміші олій
 
 **Тип:** Суміш (Reassuring Blend, Emotional Aromatherapy)
 

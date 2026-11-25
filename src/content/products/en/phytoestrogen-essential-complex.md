@@ -2,7 +2,7 @@
 
 # Phytoestrogen Essential Complex
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (women's hormonal complex)
 

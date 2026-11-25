@@ -28,6 +28,8 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 # Local
 from ..publisher import publish_channel_post
+from ..catalog_sync import run_catalog_sync, format_sync_report_html
+from ..safety import redact
 
 
 # ---------------------------------------------------------------------------
@@ -38,6 +40,44 @@ _DAYS: str   = os.getenv("POST_SCHEDULE_DAYS", "tue,fri")
 _HOUR: int   = int(os.getenv("POST_SCHEDULE_HOUR", "12"))
 _MINUTE: int = int(os.getenv("POST_SCHEDULE_MINUTE", "0"))
 _TZ_NAME: str = os.getenv("POST_SCHEDULE_TZ", "Europe/Kyiv")
+
+# Автосинхронізація світових ринків doTERRA (дефолт: щонеділі о 04:00 за Києвом)
+_CATALOG_SYNC_ENABLED: bool = os.getenv("ENABLE_CATALOG_SYNC", "1").strip().lower() not in ("0", "false", "no")
+_CATALOG_SYNC_DAY: str = os.getenv("CATALOG_SYNC_DAY", "sun")
+_CATALOG_SYNC_HOUR: int = int(os.getenv("CATALOG_SYNC_HOUR", "4"))
+
+
+async def _scheduled_catalog_sync(bot: Bot) -> None:
+    """Фонова автосинхронізація каталогу doTERRA по всіх ринках + звіт адмінам."""
+    admin_ids = [
+        int(x.strip()) for x in os.getenv("ADMIN_IDS", "").split(",") if x.strip().isdigit()
+    ]
+    try:
+        report = await run_catalog_sync(write_files=False, save_db=True)
+        has_changes = bool(
+            report.get("added")
+            or report.get("restored")
+            or report.get("archived")
+            or report.get("archive_skipped_reason")
+        )
+        if has_changes and admin_ids:
+            text = format_sync_report_html(report)
+            for a_id in admin_ids:
+                try:
+                    await bot.send_message(chat_id=a_id, text=text, parse_mode="HTML")
+                except Exception:
+                    pass
+    except Exception as e:
+        print(f"[scheduler] ❌ Catalog auto-sync error: {redact(e)}")
+        for a_id in admin_ids:
+            try:
+                await bot.send_message(
+                    chat_id=a_id,
+                    text=f"⚠️ <b>Помилка автосинхронізації каталогу doTERRA:</b>\n{redact(e)}",
+                    parse_mode="HTML",
+                )
+            except Exception:
+                pass
 
 
 def _resolve_timezone():
@@ -87,6 +127,27 @@ def setup_scheduler(bot: Bot) -> AsyncIOScheduler:
         misfire_grace_time=300,   # 5 хвилин допуску при пропуску
         replace_existing=True,
     )
+
+    if _CATALOG_SYNC_ENABLED:
+        catalog_trigger = CronTrigger(
+            day_of_week=_CATALOG_SYNC_DAY,
+            hour=_CATALOG_SYNC_HOUR,
+            minute=0,
+            timezone=tz,
+        )
+        scheduler.add_job(
+            func=_scheduled_catalog_sync,
+            trigger=catalog_trigger,
+            args=[bot],
+            id="global_catalog_sync",
+            name="Auto-sync doTERRA global markets catalog",
+            misfire_grace_time=3600,
+            replace_existing=True,
+        )
+        print(
+            f"[scheduler] 🌍 Global catalog auto-sync configured: "
+            f"day={_CATALOG_SYNC_DAY!r}, hour={_CATALOG_SYNC_HOUR:02d}:00 {tz}"
+        )
 
     print(
         f"[scheduler] ⏰ Scheduler configured: "

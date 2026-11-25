@@ -2,7 +2,7 @@
 
 # AromaTouch® Technique Training Kit
 
-**Category:** Kits
+**Category:** Roll-ons (Touch)
 
 **Type:** Massage Training Kit
 

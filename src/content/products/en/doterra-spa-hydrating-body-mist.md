@@ -2,7 +2,7 @@
 
 # dōTERRA spa Hydrating Body Mist
 
-**Category:** Self-care
+**Category:** Essential Oils
 
 **Type:** Body mist
 

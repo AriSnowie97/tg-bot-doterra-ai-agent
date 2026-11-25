@@ -2,7 +2,7 @@
 
 # Introductory Kit
 
-**Category:** Kits
+**Category:** Kits & Collections
 
 **Type:** Essential Oil Kit (3 items)
 

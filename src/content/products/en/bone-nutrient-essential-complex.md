@@ -2,7 +2,7 @@
 
 # Bone Nutrient Essential Complex
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (bone health complex)
 

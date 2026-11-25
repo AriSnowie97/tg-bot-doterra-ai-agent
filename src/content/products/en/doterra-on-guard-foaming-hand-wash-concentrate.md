@@ -2,7 +2,7 @@
 
 # dōTERRA On Guard® Foaming Hand Wash Concentrate
 
-**Category:** Home Products
+**Category:** Home Care
 
 **Type:** Foaming hand wash concentrate
 

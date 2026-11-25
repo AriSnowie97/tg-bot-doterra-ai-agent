@@ -2,7 +2,7 @@
 
 # Lemon / Lemon
 
-**Category:** Essential oils
+**Category:** Essential Oils
 
 **Type:** Essential oil (single)
 

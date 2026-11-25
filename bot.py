@@ -128,7 +128,7 @@ dp.message.outer_middleware(
 dp.callback_query.outer_middleware(CallbackRateLimitMiddleware(exempt_ids=ADMIN_IDS))
 # Повідомлення одного користувача в одному чаті обробляються по черзі (FSM без гонок).
 # Довгі адмін-команди не блокують решту його повідомлень.
-dp.message.outer_middleware(UserSerialMiddleware(exempt_commands=("post", "sync_db")))
+dp.message.outer_middleware(UserSerialMiddleware(exempt_commands=("post", "sync_db", "sync_catalog")))
 
 # Пам'ять про користувача: /memory, /forget, кнопки згоди (має реєструватися до fallback-хендлерів команд)
 register_memory_handlers(dp)
@@ -273,7 +273,7 @@ def _open_app_button(text: str, url: str, chat_type: str | None) -> InlineKeyboa
 GROUP_CHAT_TYPES = (ChatType.GROUP, ChatType.SUPERGROUP)
 
 # Пряме звернення до Наталії Котелянської (те саме посилання, що й у /help)
-SPECIALIST_DM_URL = "https://t.me/Nataliia_Kotelianska"
+SPECIALIST_DM_URL = "https://t.me/nkotelianska"
 
 # Параметр deep link для переходу з групи в особисті повідомлення з ботом: t.me/<bot>?start=chronic
 CHRONIC_START_PAYLOAD = "chronic"
@@ -423,7 +423,7 @@ async def command_help_handler(message: Message, state: FSMContext) -> None:
         [
             InlineKeyboardButton(
                 text="👩‍⚕️ Написати Наталії Котелянській",
-                url="https://t.me/Nataliia_Kotelianska"
+                url="https://t.me/nkotelianska"
             )
         ]
     ])
@@ -982,7 +982,65 @@ async def command_sync_db_handler(message: Message, bot: Bot) -> None:
         _RUNNING_ADMIN_JOBS.discard("sync_db")
 
 
-@dp.message(Command("post", "sync_db"))
+@dp.message(Command("sync_catalog"), AdminFilter(), F.chat.type == ChatType.PRIVATE)
+async def command_sync_catalog_handler(message: Message) -> None:
+    """Ручна автосинхронізація каталогу doTERRA по всіх світових ринках (збереження в Postgres)."""
+    if "sync_catalog" in _RUNNING_ADMIN_JOBS:
+        await message.answer("⏳ Перевірка світових ринків уже виконується — зачекай завершення.")
+        return
+    _RUNNING_ADMIN_JOBS.add("sync_catalog")
+
+    await message.answer(
+        "🌍 <b>Запускаю перевірку світових ринків doTERRA...</b>\n\n"
+        "Перевірю 18 регіональних сайтів (US, EU, UK, CA, AU та інші), автоматично додам новинки "
+        "у постійне сховище PostgreSQL (вони збережуться після перезбірки контейнера) і перевірю зняті позиції.",
+        parse_mode="HTML",
+    )
+    try:
+        from src.catalog_sync import run_catalog_sync, format_sync_report_html
+
+        report = await run_catalog_sync(write_files=False, save_db=True)
+        await message.answer(format_sync_report_html(report), parse_mode="HTML")
+    except Exception as e:
+        await message.answer(f"❌ Помилка під час перевірки ринків ({safe_error(e)}). Деталі — у логах.")
+        print(f"[bot] /sync_catalog error: {redact(e)}")
+    finally:
+        _RUNNING_ADMIN_JOBS.discard("sync_catalog")
+
+
+@dp.message(Command("catalog_status"), AdminFilter(), F.chat.type == ChatType.PRIVATE)
+async def command_catalog_status_handler(message: Message) -> None:
+    """Показує статус динамічного сховища каталогу в PostgreSQL (переживає передеплої)."""
+    from src.catalog_sync import get_catalog_stats
+
+    stats = await asyncio.to_thread(get_catalog_stats)
+    if not stats["db_connected"]:
+        await message.answer("⚠️ PostgreSQL недоступний — динамічний каталог зараз не підключений.")
+        return
+
+    lines = [
+        "📊 <b>Статус глобального каталогу (PostgreSQL)</b>",
+        "",
+        f"🆕 Динамічних новинок у БД: <b>{stats['dynamic_active']}</b>",
+        f"🗄 Архівованих позицій (приховано): <b>{stats['archived']}</b>",
+    ]
+    last = stats.get("last_run")
+    if last:
+        lines.extend([
+            "",
+            f"🕒 <b>Останній прогон:</b> {html.escape(last['started_at'][:19])}",
+            f"📡 Ринків здорових: {last['markets_healthy']}/{last['markets_checked']}",
+            f"➕ Додано: {last['added']} | ♻️ Відновлено: {last['restored']} | 🗄 Архівовано: {last['archived']}",
+        ])
+        if last.get("notes"):
+            lines.append(f"🛡 <i>{html.escape(last['notes'])}</i>")
+    else:
+        lines.append("\nℹ️ Автосинхронізація ще не запускалась. Запусти /sync_catalog вручну або дочекайся розкладу.")
+
+    await message.answer("\n".join(lines), parse_mode="HTML")
+
+
+@dp.message(Command("post", "sync_db", "sync_catalog", "catalog_status"))
 async def admin_command_denied(message: Message) -> None:
     """Fallback: не віддаємо адмін-команди загальному обробнику F.text."""
     is_admin_user = bool(message.from_user) and message.from_user.id in ADMIN_IDS

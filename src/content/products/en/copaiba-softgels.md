@@ -2,7 +2,7 @@
 
 # Copaiba Softgels
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (Copaiba oil in softgels)
 

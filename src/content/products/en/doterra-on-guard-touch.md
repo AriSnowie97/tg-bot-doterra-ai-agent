@@ -2,7 +2,7 @@
 
 # dōTERRA On Guard® Touch
 
-**Category:** Blends
+**Category:** Roll-ons (Touch)
 
 **Type:** Touch Essential Oil Blend (roll-on, 10 ml)
 

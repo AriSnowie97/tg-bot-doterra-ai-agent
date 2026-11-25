@@ -2,7 +2,7 @@
 
 # doTERRA Arise — Enlightening Blend
 
-**Категорія:** Ефірні олії
+**Категорія:** Суміші олій
 
 **Тип:** Суміш (Enlightening Blend, частина Yoga Collection)
 

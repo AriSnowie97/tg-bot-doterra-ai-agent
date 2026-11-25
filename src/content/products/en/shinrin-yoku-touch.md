@@ -2,7 +2,7 @@
 
 # Shinrin-Yoku® Touch
 
-**Category:** Blends
+**Category:** Roll-ons (Touch)
 
 **Type:** Essential Touch Blend (roll-on, 10 ml)
 

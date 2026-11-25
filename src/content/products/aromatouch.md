@@ -2,7 +2,7 @@
 
 # AromaTouch — Massage Blend
 
-**Категорія:** Ефірні олії
+**Категорія:** Ролери (Touch)
 
 **Тип:** Суміш (Massage Blend)
 

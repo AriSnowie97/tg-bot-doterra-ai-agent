@@ -2,7 +2,7 @@
 
 # Brave (Courage Blend)
 
-**Category:** Essential Oils
+**Category:** Roll-ons (Touch)
 
 **Type:** Essential Oil (from the Kids Collection line)
 

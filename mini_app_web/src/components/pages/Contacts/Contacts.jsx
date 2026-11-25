@@ -16,7 +16,7 @@ const Contacts = () => {
                 <div className={styles.about}>
                     <img className={styles.img} src={specialistImg} alt="Спеціаліст" />
                     <h2>{t("contacts_about")}</h2>
-                    <p style={{whiteSpace: "pre-line"}}>
+                    <p style={{ whiteSpace: "pre-line" }}>
                         {t("contacts_about_description") ?? "description"}
                     </p>
                 </div>
@@ -27,13 +27,13 @@ const Contacts = () => {
                 </div>
                 <div className={styles.links}>
                     <SimpleLink
-                    to="/chat"
-                    text={t("contacts_simple_links")?.chat?.text ?? "text"}
-                    another={true}
+                        to="/chat"
+                        text={t("contacts_simple_links")?.chat?.text ?? "text"}
+                        another={true}
                     />
                     <SimpleLink
-                    to="/"
-                    text={t("contacts_simple_links")?.specialist?.text ?? "text"}
+                        to="https://t.me/nkotelianska"
+                        text={t("contacts_simple_links")?.specialist?.text ?? "text"}
                     />
                 </div>
             </div>
@@ -41,4 +41,4 @@ const Contacts = () => {
     );
 }
 
-export {Contacts};
+export { Contacts };

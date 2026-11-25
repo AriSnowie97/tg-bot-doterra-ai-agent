@@ -6,8 +6,8 @@ const Article = ({data}) => {
     const [imgError, setImgError] = useState(false);
 
     let imageUrl = data.image;
-    if (!imageUrl && data.section === "products") {
-        imageUrl = "https://www.doterra.com/medias/New-Default-Image.png?context=bWFzdGVyfHJvb3R8MjMzMzg0NHxpbWFnZS9wbmd8YzNsekxXMWhjM1JsY2k5eWIyOTBMMmhtTnk5b1ltUXZNamt6TWpZNU9Ua3lOVGN4TVRndlRtVjNMVVJsWm1GMWJIUXRTVzFoWjJVdWNHNW58M2Y5NzU2N2YyZDJhYjcyNDFhYzY5YWY2N2RjY2I5OTQ3MDBlNDQxMjUyOTNmZTNkOTdlMTc1MWQxNjY2Y2QxNA";
+    if (imageUrl && imageUrl.includes("New-Default-Image")) {
+        imageUrl = "";
     }
 
     const cleanTitle = (data.title || "").replace(/\s*\((?:чанк|chunk)\s*\d+\)/gi, "").trim();

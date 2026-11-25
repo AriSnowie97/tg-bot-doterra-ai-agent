@@ -2,7 +2,7 @@
 
 # doTERRA Protein
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (protein powder, 3 options: Whey Chocolate, Whey Vanilla, Vegan)
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import styles from "./Home.module.css";
 import { useLang } from "../../../contexts/LangContext";
@@ -7,6 +7,21 @@ import { ArticlesLinkBtn } from "./components/LinkBtn/posterity/ArticlesLinkBtn"
 import { LinkArticleBtn } from "./components/LinkArticleBtn";
 import { TelegramLinkBtn } from "./components/LinkBtn/posterity/TelegramLinkBtn";
 import { get_articles } from "../../../api/articles";
+import { openExternalLink } from "../../../utils/openLink";
+
+const SPECIALIST_TG_URL = "https://t.me/nkotelianska";
+const POPULAR_SLUGS = [
+    "lavender",
+    "peppermint",
+    "lemon",
+    "frankincense",
+    "doterra-on-guard",
+    "on-guard",
+    "deep-blue",
+    "doterra-breathe",
+    "tea-tree",
+    "wild-orange",
+];
 
 
 const Home = () => {
@@ -32,6 +47,28 @@ const Home = () => {
         fetchArticles();
     }, [lang]);
 
+    const popularArticles = useMemo(() => {
+        if (!articlesList.length) return [];
+        const bySlug = new Map(articlesList.map((a) => [a.slug, a]));
+        const picked = [];
+        for (const s of POPULAR_SLUGS) {
+            if (bySlug.has(s) && picked.length < 6) {
+                picked.push(bySlug.get(s));
+            }
+        }
+        if (picked.length < 6) {
+            const used = new Set(picked.map((a) => a.slug));
+            for (const a of articlesList) {
+                if (!used.has(a.slug) && a.image) {
+                    picked.push(a);
+                    used.add(a.slug);
+                    if (picked.length >= 6) break;
+                }
+            }
+        }
+        return picked;
+    }, [articlesList]);
+
     return (
         <>
             <div className={styles.wrapper}>
@@ -48,11 +85,11 @@ const Home = () => {
                     <div className={styles.articles}>
                         {loading ? (
                             <div style={{marginTop: "20px"}}>{t("loading")}</div>
-                        ) : articlesList.length > 0 ? (
-                            articlesList.slice(0, 5).map((data, index) => (
+                        ) : popularArticles.length > 0 ? (
+                            popularArticles.map((data) => (
                                 <LinkArticleBtn
                                 data={data}
-                                key={index}
+                                key={data.slug}
                                 />
                             ))
                         ) : (
@@ -66,7 +103,18 @@ const Home = () => {
                         <TelegramLinkBtn />
                     </div>
                 </div>
-                <a className={styles.contact} href="" >{t("contact_specialist")}</a>
+                <a
+                    className={styles.contact}
+                    href={SPECIALIST_TG_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        openExternalLink(SPECIALIST_TG_URL);
+                    }}
+                >
+                    {t("contact_specialist")}
+                </a>
             </div>
         </>
     );

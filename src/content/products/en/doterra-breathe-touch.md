@@ -2,7 +2,7 @@
 
 # dōTERRA Breathe® Touch
 
-**Category:** Blends
+**Category:** Roll-ons (Touch)
 
 **Type:** Essential Blend Touch (roll-on, 10 ml)
 

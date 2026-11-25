@@ -2,7 +2,7 @@
 
 # On Guard (Protective Blend) -- On Guard Protective Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Essential Oil Blend
 

@@ -2,7 +2,7 @@
 
 # doTERRA Cheer — Uplifting Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Uplifting Blend, Emotional Aromatherapy)
 

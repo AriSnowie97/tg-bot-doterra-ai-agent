@@ -2,7 +2,7 @@
 
 # MetaPWR Beadlets
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (MetaPWR oil in the form of small beadlets)
 

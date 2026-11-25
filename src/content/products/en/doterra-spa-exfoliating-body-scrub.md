@@ -2,7 +2,7 @@
 
 # dōTERRA spa Exfoliating Body Scrub
 
-**Category:** Self-care
+**Category:** Essential Oils
 
 **Type:** Body scrub
 

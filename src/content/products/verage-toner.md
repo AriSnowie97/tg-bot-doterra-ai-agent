@@ -1,8 +1,8 @@
-![doTERRA Product](https://www.doterra.com/medias/625x325-37390001-toner-us-english-web.jpg?context=bWFzdGVyfGltYWdlc3w0Mzg5N3xpbWFnZS9qcGVnfGFXMWhaMlZ6TDJoaFl5OW9OR0V2TVRRMU5qTTJNamcxT0RNd01EQXVhbkJufDU4ZTRkNjA2NTUyMzZlNDI3ZmJhNWQ5N2U1ZmQ4ZmU0MDNkZTkxZDlmYTY1NjEyNzU3M2UzMjQyOTcxMmNhNGI)
+![doTERRA Product](https://www.doterra.com/medias/2x3-37390001-Verage-Toner.png?context=bWFzdGVyfHJvb3R8MTU3MzE5fGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzVaUzlvWW1Rdk16QTRNVEU0T1RrMk1qVTFNREl2TW5nekxUTTNNemt3TURBeExWWmxjbUZuWlMxVWIyNWxjaTV3Ym1jfDMzMzA1ODIwZmM3ZWRjOTQ5Yjk5YjI0ODYwMDliZGQ2ZGM5ZDc4NTA1MTIwYTNlZjc3MWQ4NjEwYTBiOWYyMDg)
 
 # Veráge Toner
 
-**Категорія:** Skin & Hair Care → Veráge Skin Care
+**Категорія:** Догляд за собою
 
 **Тип:** Тонік-спрей для обличчя
 

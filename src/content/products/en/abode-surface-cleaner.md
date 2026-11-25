@@ -2,7 +2,7 @@
 
 # abōde Multi-Purpose Surface Cleaner Concentrate
 
-**Category:** Home Care Products (abōde Line)
+**Category:** Home Care
 
 **Type:** Multi-Purpose Surface Cleaner Concentrate
 

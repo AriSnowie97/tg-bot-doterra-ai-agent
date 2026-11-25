@@ -2,7 +2,7 @@
 
 # Spearmint
 
-**Category:** Essential oils
+**Category:** Essential Oils
 
 **Type:** Essential oil (single, 15 ml)
 

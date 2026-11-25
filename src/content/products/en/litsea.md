@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/1x1-manuka-litsea-august-lifestyle-us-english-web.jpg?context=bWFzdGVyfHJvb3R8MTM4MzI4fGltYWdlL2pwZWd8YURaa0wyaGxaaTh4TURNeE1qUTRNVFl6TmpNNE1pNXFjR2N8YmRhNWNmMWM0NzNmZjRlNzRkYjVmMjk4MDQyZDBjNTViZjVmNmJhM2FiMGUyZDk5MTljNTI3MzY1NTlmMzFlNg)
 
 # Litsea
 

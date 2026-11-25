@@ -2,7 +2,7 @@
 
 # dōTERRA Yoga Collection
 
-**Category:** Kits
+**Category:** Kits & Collections
 
 **Type:** Yoga Kit
 

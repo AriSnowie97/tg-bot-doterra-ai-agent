@@ -2,7 +2,7 @@
 
 # PB Restore ProBiome Complex
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (pre-, pro-, and postbiotic complex)
 

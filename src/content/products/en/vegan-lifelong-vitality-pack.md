@@ -2,7 +2,7 @@
 
 # Vegan Lifelong Vitality Pack
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (vegan version of the core LLV complex)
 

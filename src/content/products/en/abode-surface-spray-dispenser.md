@@ -2,7 +2,7 @@
 
 # abōde Surface Spray Dispenser
 
-**Category:** Home Products
+**Category:** Home Care
 
 **Type:** Accessory — reusable spray bottle
 

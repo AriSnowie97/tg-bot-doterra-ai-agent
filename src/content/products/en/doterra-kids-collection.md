@@ -2,7 +2,7 @@
 
 # doTERRA Kids Collection — Overview
 
-**Category:** Essential oils
+**Category:** Kits & Collections
 
 **Type:** Blend (a line of 7 pre-diluted blends for children)
 

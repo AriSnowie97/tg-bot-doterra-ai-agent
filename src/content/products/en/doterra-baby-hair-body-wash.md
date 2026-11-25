@@ -2,7 +2,7 @@
 
 # doTERRA Baby Hair & Body Wash
 
-**Category:** Skin & Hair Care → doTERRA Baby
+**Category:** Personal Care
 
 **Type:** baby hair and body wash
 

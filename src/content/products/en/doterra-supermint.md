@@ -2,7 +2,7 @@
 
 # doTERRA SuperMint
 
-**Category:** Essential oils
+**Category:** Oil Blends
 
 **Type:** Blend (cooling mint blend)
 

@@ -2,7 +2,7 @@
 
 # dōTERRA Spa Hand & Body Lotion
 
-**Category:** Personal Care (dōTERRA Spa)
+**Category:** Personal Care
 
 **Type:** Hand & Body Lotion (unscented)
 

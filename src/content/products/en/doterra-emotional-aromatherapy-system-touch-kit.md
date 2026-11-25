@@ -2,7 +2,7 @@
 
 # dōTERRA Emotional Aromatherapy® System / Touch Kit
 
-**Category:** Kits
+**Category:** Roll-ons (Touch)
 
 **Type:** Emotional Blends Kit
 

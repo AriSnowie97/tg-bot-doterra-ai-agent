@@ -2,7 +2,7 @@
 
 # Shinrin-Yoku — Forest Bathing Blend
 
-**Категорія:** Ефірні олії
+**Категорія:** Суміші олій
 
 **Тип:** Суміш (Forest Bathing Blend)
 

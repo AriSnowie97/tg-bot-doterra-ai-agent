@@ -2,7 +2,7 @@
 
 # dōTERRA On Guard® Cleaner Concentrate
 
-**Category:** Household Products
+**Category:** Essential Oils
 
 **Type:** Cleaner Concentrate
 

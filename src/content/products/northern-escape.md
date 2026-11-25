@@ -2,7 +2,7 @@
 
 # Northern Escape — Woodland Blend
 
-**Категорія:** Ефірні олії
+**Категорія:** Суміші олій
 
 **Тип:** Суміш (Woodland Blend)
 

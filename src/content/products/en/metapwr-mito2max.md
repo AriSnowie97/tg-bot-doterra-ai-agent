@@ -2,7 +2,7 @@
 
 # MetaPWR Mito2Max
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (Energy & Stamina Complex)
 

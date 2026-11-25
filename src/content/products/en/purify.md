@@ -2,7 +2,7 @@
 
 # Purify — Cleansing Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Cleansing Blend)
 

@@ -2,7 +2,7 @@
 
 # AromaTouch® Technique Refill Kit
 
-**Category:** Kits
+**Category:** Roll-ons (Touch)
 
 **Type:** Refill Kit
 

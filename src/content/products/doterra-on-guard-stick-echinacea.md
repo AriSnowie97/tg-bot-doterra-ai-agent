@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/900x600-on-guard-stick-thumbnail.jpg?context=bWFzdGVyfHJvb3R8MTc4ODN8aW1hZ2UvanBlZ3xhR0ZtTDJobE9TOHpNRGt4TXprNE5EYzFOemM1TUM4NU1EQjROakF3TFc5dUxXZDFZWEprTFhOMGFXTnJMWFJvZFcxaWJtRnBiQzVxY0djfGRkOGZiYmNiNDQ1MjIyYTg2ZGRiMWFhMmY3NDY4MmFiMmYzMjdkODhmMWU1MmE4MjYzMjAxYmEyNTRjNWVhMjE)
 
 # doTERRA On Guard® Stick + Echinacea
 

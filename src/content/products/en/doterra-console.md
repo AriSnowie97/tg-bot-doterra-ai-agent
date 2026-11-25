@@ -2,7 +2,7 @@
 
 # doTERRA Console — Comforting Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Comforting Blend, Emotional Aromatherapy)
 

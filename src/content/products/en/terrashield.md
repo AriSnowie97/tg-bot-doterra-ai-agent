@@ -2,7 +2,7 @@
 
 # TerraShield — Repellent Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Repellent Blend)
 

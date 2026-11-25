@@ -2,7 +2,7 @@
 
 # Deep Blue Polyphenol Complex
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (encapsulated polyphenol complex)
 

@@ -2,7 +2,7 @@
 
 # Veggie Caps
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (empty vegetable capsules)
 

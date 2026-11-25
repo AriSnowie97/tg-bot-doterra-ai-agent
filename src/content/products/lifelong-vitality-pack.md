@@ -2,7 +2,7 @@
 
 # doTERRA Lifelong Vitality Pack (LLV)
 
-**Категорія:** БАДи (Supplements → Daily Vitality / Foundational Wellness)
+**Категорія:** БАДи
 
 **Тип:** БАД (базовий вітамінно-мінеральний комплекс)
 

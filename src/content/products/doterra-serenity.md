@@ -2,7 +2,7 @@
 
 # doTERRA Serenity — Restful Blend
 
-**Категорія:** Ефірні олії
+**Категорія:** Суміші олій
 
 **Тип:** Суміш (Restful Blend)
 

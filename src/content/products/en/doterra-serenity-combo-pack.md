@@ -2,7 +2,7 @@
 
 # dōTERRA Serenity® Combo Pack
 
-**Category:** Kits
+**Category:** Kits & Collections
 
 **Type:** Sleep Kit
 

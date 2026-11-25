@@ -2,7 +2,7 @@
 
 # DigestTab Chewable Tablets
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (chewable tablets with calcium carbonate)
 

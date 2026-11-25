@@ -2,7 +2,7 @@
 
 # Alpha CRS+®
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Capsules — Cellular Vitality Complex
 

@@ -1,8 +1,6 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
-
 # Elevation™ — Joyful Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Joyful Blend, 15 ml)
 

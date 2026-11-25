@@ -2,7 +2,7 @@
 
 # doTERRA Balance — Grounding Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Grounding Blend)
 

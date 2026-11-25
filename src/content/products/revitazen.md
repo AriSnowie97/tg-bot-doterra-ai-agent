@@ -2,7 +2,7 @@
 
 # RevitaZen — Detoxification Blend
 
-**Категорія:** Ефірні олії
+**Категорія:** Суміші олій
 
 **Тип:** Суміш (Detoxification Blend)
 

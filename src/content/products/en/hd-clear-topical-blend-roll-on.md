@@ -2,7 +2,7 @@
 
 # HD Clear® Topical Blend (Roll-On)
 
-**Category:** Blends
+**Category:** Roll-ons (Touch)
 
 **Type:** Essential oil blend for skin (roll-on, 10 ml)
 

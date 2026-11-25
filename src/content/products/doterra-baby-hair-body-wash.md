@@ -2,7 +2,7 @@
 
 # doTERRA Baby Hair & Body Wash
 
-**Категорія:** Skin & Hair Care → doTERRA Baby
+**Категорія:** Догляд за собою
 
 **Тип:** дитячий засіб для миття волосся і тіла
 

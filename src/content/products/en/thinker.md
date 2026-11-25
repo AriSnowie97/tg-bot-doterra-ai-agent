@@ -2,7 +2,7 @@
 
 # Thinker (Focus Blend)
 
-**Category:** Essential oils
+**Category:** Roll-ons (Touch)
 
 **Type:** Essential oil (from the Kids Collection line)
 

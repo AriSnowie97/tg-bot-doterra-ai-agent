@@ -2,7 +2,7 @@
 
 # doTERRA Align — Centering Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Centering Blend, part of the Yoga Collection)
 

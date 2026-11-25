@@ -2,7 +2,7 @@
 
 # dōTERRA Cheer® Touch
 
-**Category:** Blends
+**Category:** Roll-ons (Touch)
 
 **Type:** Essential Oil Blend Touch (10 mL Roll-On)
 

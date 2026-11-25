@@ -15,8 +15,8 @@
         },
 
         "telegram": {
-            "title": "Our Telegram channel",
-            "description": "Link to the Telegram bot"
+            "title": "Our Telegram Channel",
+            "description": "Tips, updates, and essential oils from Natalia"
         }
     },
     "contact_specialist": "Message specialist directly -->",
@@ -44,11 +44,6 @@
         "symphony_of_the_cells": {
             "name": "A symphony of cells",
             "description": "Essential oil application protocols"
-        },
-
-        "advice": {
-            "name": "Advices",
-            "description": "Recommendations and useful articles"
         },
 
         "kits": {

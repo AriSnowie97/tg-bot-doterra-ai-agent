@@ -2,7 +2,7 @@
 
 # dōTERRA Forgive® Touch
 
-**Category:** Blends
+**Category:** Roll-ons (Touch)
 
 **Type:** Essential Oil Blend Touch (roll-on, 10 ml)
 

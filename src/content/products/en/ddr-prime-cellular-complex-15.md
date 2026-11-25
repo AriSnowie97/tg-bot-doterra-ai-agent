@@ -2,7 +2,7 @@
 
 # DDR Prime® Cellular Complex (15 mL Blend)
 
-**Category:** Blends
+**Category:** Oil Blends
 
 **Type:** Essential Oil Blend (15 mL)
 

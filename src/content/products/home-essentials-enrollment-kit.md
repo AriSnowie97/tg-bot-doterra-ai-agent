@@ -2,7 +2,7 @@
 
 # Home Essentials Enrollment Kit
 
-**Категорія:** Набори (Kits & Collections → Starter Kits)
+**Категорія:** Набори
 
 **Тип:** Стартовий набір для нових клієнтів
 

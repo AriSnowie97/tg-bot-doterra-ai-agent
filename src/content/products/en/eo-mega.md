@@ -2,7 +2,7 @@
 
 # EO Mega+
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (fish oil with essential oil)
 

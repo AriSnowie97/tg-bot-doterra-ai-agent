@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/9841442357278.jpg?context=bWFzdGVyfHJvb3R8MTMxNzYzfGltYWdlL2pwZWd8YURFNUwyaG1OeTg0TnprNU5qY3pPREV3T1RjMExtcHdad3xhY2VkMTE3YzI3OTYyZWNlMWU1YmY1NWJhYzljYmI5ZTVlMDIxN2E3ZTYzOThmMmJhYmNmNmJlM2IzMTRiMzRm)
 
 # Cumin
 

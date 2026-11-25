@@ -2,7 +2,7 @@
 
 # MetaPWR Advantage
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (powder complex with collagen)
 

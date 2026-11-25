@@ -2,7 +2,7 @@
 
 # Yarrow|Pom Active Botanical Nutritive Duo
 
-**Category:** Self-care
+**Category:** Essential Oils
 
 **Type:** Essential oil (proprietary blend, 15 ml)
 

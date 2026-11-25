@@ -2,7 +2,7 @@
 
 # doTERRA Passion — Inspiring Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Inspiring Blend, Emotional Aromatherapy)
 

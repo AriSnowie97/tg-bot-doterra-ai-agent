@@ -2,7 +2,7 @@
 
 # Frankincense Touch
 
-**Category:** Rollers (Touch)
+**Category:** Roll-ons (Touch)
 
 **Type:** Touch Essential Oil (roll-on, 10 ml)
 

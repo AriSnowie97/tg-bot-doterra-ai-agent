@@ -2,7 +2,7 @@
 
 # dōTERRA On Guard® Sanitizing Mist
 
-**Category:** Home Products
+**Category:** Home Care
 
 **Type:** Hand Sanitizing Mist
 

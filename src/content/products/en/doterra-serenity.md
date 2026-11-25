@@ -2,7 +2,7 @@
 
 # doTERRA Serenity — Restful Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Restful Blend)
 

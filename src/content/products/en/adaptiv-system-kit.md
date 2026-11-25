@@ -2,7 +2,7 @@
 
 # Adaptiv® System
 
-**Category:** Kits
+**Category:** Kits & Collections
 
 **Type:** Stress management kit
 

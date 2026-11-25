@@ -1,8 +1,6 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
-
 # Zendocrine® Detoxification Complex
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary supplement (capsules, 60 count)
 

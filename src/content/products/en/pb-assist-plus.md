@@ -2,7 +2,7 @@
 
 # PB Assist+
 
-**Category:** Supplements → ProBiome
+**Category:** Supplements
 
 **Type:** Dietary Supplement (probiotic-prebiotic complex)
 

@@ -2,7 +2,7 @@
 
 # MetaPWR Metabolic Blend
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (essential oil-based supplement for internal use)
 

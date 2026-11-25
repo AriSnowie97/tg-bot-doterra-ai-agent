@@ -2,7 +2,7 @@
 
 # dōTERRA On Guard® Protecting Throat Drops
 
-**Category:** Household Products
+**Category:** Essential Oils
 
 **Type:** Throat drops
 

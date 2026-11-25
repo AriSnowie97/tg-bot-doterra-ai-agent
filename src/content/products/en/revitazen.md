@@ -2,7 +2,7 @@
 
 # RevitaZen — Detoxification Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Detoxification Blend)
 

@@ -2,7 +2,7 @@
 
 # doTERRA Forgive — Renewing Blend
 
-**Категорія:** Ефірні олії
+**Категорія:** Суміші олій
 
 **Тип:** Суміш (Renewing Blend, Emotional Aromatherapy)
 

@@ -1,5 +1,3 @@
-![doTERRA Product](https://www.doterra.com/medias/yarrow-pom-eye-mask-60225985-600x900-us.png?context=bWFzdGVyfHJvb3R8MzMxMDMyfGltYWdlL3BuZ3xjM2x6TFcxaGMzUmxjaTl5YjI5MEwyZzBOaTlvWkRRdk16QTRORE13TnprM01qQTVPVEF2ZVdGeWNtOTNMWEJ2YlMxbGVXVXRiV0Z6YXkwMk1ESXlOVGs0TlMwMk1EQjRPVEF3TFhWekxuQnVad3xkZGJiZjYxOTE4ZDhmNDIyYzc1MDc5NTNkY2NhNGM2NmI4OTcyZDg2NWI1ODVhMjJiNDZkMTI0YzQ1OTQwMjJh)
-
 # Yarrow|Pom Revitalizing Eye Mask
 
 **Category:** Personal Care

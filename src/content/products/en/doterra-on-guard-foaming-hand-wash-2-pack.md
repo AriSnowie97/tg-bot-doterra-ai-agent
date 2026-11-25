@@ -2,7 +2,7 @@
 
 # dōTERRA On Guard® Foaming Hand Wash (2-Pack)
 
-**Category:** Home Products
+**Category:** Home Care
 
 **Type:** Foaming Hand Wash (2-bottle pack)
 

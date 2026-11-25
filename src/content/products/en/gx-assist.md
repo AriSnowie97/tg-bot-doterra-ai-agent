@@ -2,7 +2,7 @@
 
 # GX Assist
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (gastrointestinal cleansing formula)
 

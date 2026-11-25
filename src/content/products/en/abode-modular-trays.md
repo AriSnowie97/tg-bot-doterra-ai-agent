@@ -2,7 +2,7 @@
 
 # abōde Modular Trays
 
-**Category:** Home Products
+**Category:** Home Care
 
 **Type:** Accessory — modular storage trays
 

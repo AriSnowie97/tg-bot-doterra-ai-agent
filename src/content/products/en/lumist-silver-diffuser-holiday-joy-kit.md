@@ -2,7 +2,7 @@
 
 # Lumist™ Silver Diffuser + Holiday Joy Kit
 
-**Category:** Seasonal Collection
+**Category:** Diffusers
 
 **Type:** Kit with Diffuser (seasonal)
 

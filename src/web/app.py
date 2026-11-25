@@ -28,6 +28,7 @@ import nh3
 from src.web.auth import require_service_token, require_telegram_user
 from src.agent import generate_response
 from src.content.parser import slugify
+from src.catalog_sync import get_catalog_overrides, get_override_doc
 from src.safety import redact
 from src.security_log import log_security_event
 from src.agent.specialist import (
@@ -205,8 +206,11 @@ def _get_article_metadata(lang: str, md_path: Path, base_url: str = "", section_
                 # Якщо картинка локальна, робимо її абсолютною
                 if image.startswith("/images/") and base_url:
                     image = f"{base_url}{image}"
-                # Якщо картинка це шаблонний текст
-                if image == "Тут_буде_офіційне_фото_після_завантаження_через_бот":
+                # Якщо картинка це шаблонний текст або стандартна заглушка doTERRA
+                if (
+                    image == "Тут_буде_офіційне_фото_після_завантаження_через_бот"
+                    or "New-Default-Image" in image
+                ):
                     image = ""
             break
 
@@ -264,7 +268,6 @@ DIRECTORIES_TO_SEARCH = [
     "docs",
     "products",
     "symphony_of_the_cells",
-    "advice",
     "kits",
     "books"
 ]
@@ -443,6 +446,8 @@ async def api_get_articles(lang: str, request: Request):
     if request.headers.get("x-forwarded-proto") == "https":
         base_url = base_url.replace("http://", "https://")
     articles = []
+    seen_slugs = set()
+    active_overrides, archived_slugs = get_catalog_overrides()
     for dir_name in DIRECTORIES_TO_SEARCH:
         if lang == "ua":
             d = CONTENT_DIR / dir_name
@@ -450,15 +455,35 @@ async def api_get_articles(lang: str, request: Request):
             d = CONTENT_DIR / dir_name / lang
 
         if d.exists():
-            for md_path in d.glob("*.md"):
+            for md_path in sorted(d.glob("*.md")):
                 # Пропускаємо технічні файли-гайди (01_Гід, 02_Гід тощо)
                 if md_path.stem[0].isdigit() and "_Гід" in md_path.stem:
                     continue
-                # Службова логіка роботи бота — не стаття для користувачів
-                if slugify(md_path.stem) in HIDDEN_ARTICLE_SLUGS:
+                # Службова логіка роботи бота або архівовані з усіх ринків позиції
+                item_slug = slugify(md_path.stem)
+                if item_slug in HIDDEN_ARTICLE_SLUGS or item_slug in archived_slugs or item_slug in seen_slugs:
                     continue
+                seen_slugs.add(item_slug)
                 
                 articles.append(_get_article_metadata(lang, md_path, base_url, dir_name))
+
+    # Додаємо динамічні новинки з PostgreSQL (catalog_overrides), яких ще немає серед статичних файлів
+    for ov in active_overrides:
+        ov_slug = ov["slug"]
+        if ov_slug in seen_slugs or ov_slug in HIDDEN_ARTICLE_SLUGS or not (ov.get("md_ua") or ov.get("md_en")):
+            continue
+        seen_slugs.add(ov_slug)
+        title = (ov.get("title_en") or ov.get("title_ua") or ov_slug) if lang == "en" else (ov.get("title_ua") or ov.get("title_en") or ov_slug)
+        short = (ov.get("short_en") or ov.get("short_ua") or "") if lang == "en" else (ov.get("short_ua") or ov.get("short_en") or "")
+        tag = (ov.get("category_en") or "Essential Oils") if lang == "en" else (ov.get("category_ua") or "Ефірні олії")
+        articles.append({
+            "slug": ov_slug,
+            "title": title,
+            "short": short,
+            "tag": tag,
+            "image": ov.get("image_url", ""),
+            "section": "products",
+        })
         
     # Сортуємо: спочатку гайди (якщо якісь залишились), потім інші за алфавітом
     articles.sort(key=lambda a: (0 if a["tag"] == "Гайди" else 1, a["title"]))
@@ -471,24 +496,42 @@ async def api_get_doc(slug: str, lang: str, request: Request):
     if not slug.replace("-", "").replace("_", "").isalnum():
         raise HTTPException(status_code=400, detail="Невірний slug")
 
-    target_path = None
-    if CONTENT_DIR.exists():
-        for p in CONTENT_DIR.rglob("*.md"):
-            if slugify(p.stem) == slugify(slug):
-                if lang == "ua":
-                    if p.parent.name != "en":
-                        target_path = p
-                        break
+    # 0. Перевіряємо динамічні зміни каталогу в PostgreSQL (новинки та архів)
+    norm_slug = slugify(slug)
+    ov_title, ov_md, ov_archived = get_override_doc(norm_slug, lang)
+    if ov_archived:
+        raise HTTPException(status_code=404, detail=f"Документ '{slug}' архівовано")
 
-                else: # lang == "en"
-                    if p.parent.name == lang:
-                        target_path = p
-                        break
+    md_text = None
+    if ov_md:
+        md_text = ov_md
+    else:
+        target_path = None
+        if CONTENT_DIR.exists():
+            for p in CONTENT_DIR.rglob("*.md"):
+                if slugify(p.stem) == norm_slug:
+                    if lang == "ua":
+                        if p.parent.name != "en":
+                            target_path = p
+                            break
 
-    if not target_path:
-        raise HTTPException(status_code=404, detail=f"Документ '{slug}' не знайдено")
+                    else: # lang == "en"
+                        if p.parent.name == lang:
+                            target_path = p
+                            break
 
-    md_text = target_path.read_text(encoding="utf-8")
+        if not target_path:
+            raise HTTPException(status_code=404, detail=f"Документ '{slug}' не знайдено")
+
+        md_text = target_path.read_text(encoding="utf-8")
+    # Прибираємо плейсхолдер-зображення, щоб у статті не було битої іконки <img>
+    md_text = re.sub(
+        r"^!\[[^\]]*\]\((?:Тут_буде_офіційне_фото_після_завантаження_через_бот|[^)]*New-Default-Image[^)]*)\)\s*\n*",
+        "",
+        md_text,
+        count=1,
+        flags=re.MULTILINE,
+    )
     html_content = _render_md(md_text)
     
     # Робимо відносні посилання на картинки абсолютними (щоб працювали в React)
@@ -544,6 +587,14 @@ async def view_doc(slug: str) -> HTMLResponse:
         raise HTTPException(status_code=404, detail=f"Документ '{slug}' не знайдено")
 
     md_text = target_path.read_text(encoding="utf-8")
+    # Прибираємо плейсхолдер-зображення, щоб у статті не було битої іконки <img>
+    md_text = re.sub(
+        r"^!\[[^\]]*\]\((?:Тут_буде_офіційне_фото_після_завантаження_через_бот|[^)]*New-Default-Image[^)]*)\)\s*\n*",
+        "",
+        md_text,
+        count=1,
+        flags=re.MULTILINE,
+    )
     html_content = _render_md(md_text)
 
     body = (

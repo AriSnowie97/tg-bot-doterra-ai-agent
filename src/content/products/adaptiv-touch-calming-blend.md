@@ -2,7 +2,7 @@
 
 # Adaptiv® Touch Calming Blend
 
-**Категорія:** Суміші (Blends)
+**Категорія:** Ролери (Touch)
 
 **Тип:** Ефірна суміш Touch (рол-он, 10 мл)
 

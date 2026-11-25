@@ -2,7 +2,7 @@
 
 # MetaPWR® Assist
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Capsules
 

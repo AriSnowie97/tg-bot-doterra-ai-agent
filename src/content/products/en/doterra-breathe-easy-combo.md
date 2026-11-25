@@ -2,7 +2,7 @@
 
 # dōTERRA Breathe Easy Combo
 
-**Category:** Kits
+**Category:** Kits & Collections
 
 **Type:** Respiratory Kit
 

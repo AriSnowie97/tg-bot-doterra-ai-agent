@@ -2,7 +2,7 @@
 
 # PastTense — Tension Blend
 
-**Категорія:** Ефірні олії
+**Категорія:** Ролери (Touch)
 
 **Тип:** Суміш (Tension Blend)
 

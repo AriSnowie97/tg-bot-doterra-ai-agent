@@ -2,7 +2,7 @@
 
 # InTune — Focus Blend
 
-**Category:** Essential Oils
+**Category:** Roll-ons (Touch)
 
 **Type:** Blend (Focus Blend)
 

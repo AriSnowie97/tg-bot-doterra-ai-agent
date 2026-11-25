@@ -2,7 +2,7 @@
 
 # Shinrin-Yoku — Forest Bathing Blend
 
-**Category:** Essential oils
+**Category:** Oil Blends
 
 **Type:** Blend (Forest Bathing Blend)
 

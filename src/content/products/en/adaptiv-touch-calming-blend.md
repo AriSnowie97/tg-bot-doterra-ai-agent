@@ -2,7 +2,7 @@
 
 # Adaptiv® Touch Calming Blend
 
-**Category:** Blends
+**Category:** Roll-ons (Touch)
 
 **Type:** Essential oil Touch blend (roll-on, 10 ml)
 

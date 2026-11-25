@@ -2,7 +2,7 @@
 
 # vEO Mega
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (vegetarian omega-3 complex)
 

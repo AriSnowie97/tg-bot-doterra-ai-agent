@@ -2,7 +2,7 @@
 
 # doTERRA Arise — Enlightening Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Enlightening Blend, part of the Yoga Collection)
 

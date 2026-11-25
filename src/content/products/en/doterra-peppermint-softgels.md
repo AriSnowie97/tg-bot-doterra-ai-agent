@@ -2,7 +2,7 @@
 
 # dōTERRA Peppermint Softgels
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Softgels
 

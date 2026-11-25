@@ -2,7 +2,7 @@
 
 # dōTERRA On Guard® Foaming Hand Wash Dispenser
 
-**Category:** Home Products
+**Category:** Home Care
 
 **Type:** Accessory — reusable dispenser
 

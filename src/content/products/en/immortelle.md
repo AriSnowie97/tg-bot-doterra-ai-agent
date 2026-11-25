@@ -2,7 +2,7 @@
 
 # Immortelle — Anti-Aging Blend
 
-**Category:** Essential Oils
+**Category:** Roll-ons (Touch)
 
 **Type:** Blend (Anti-Aging Blend)
 

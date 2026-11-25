@@ -2,7 +2,7 @@
 
 # dōTERRA baby Collection
 
-**Category:** Personal Care
+**Category:** Kits & Collections
 
 **Type:** Baby Care Kit
 

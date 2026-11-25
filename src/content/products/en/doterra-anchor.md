@@ -2,7 +2,7 @@
 
 # doTERRA Anchor — Steadying Blend
 
-**Category:** Essential oils
+**Category:** Oil Blends
 
 **Type:** Blend (Steadying Blend, part of the Yoga Collection)
 

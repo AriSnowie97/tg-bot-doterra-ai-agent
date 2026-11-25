@@ -2,7 +2,7 @@
 
 # Citrus Bliss — Invigorating Blend
 
-**Категорія:** Ефірні олії
+**Категорія:** Суміші олій
 
 **Тип:** Суміш (Invigorating Blend)
 

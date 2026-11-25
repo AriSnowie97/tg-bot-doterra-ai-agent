@@ -2,7 +2,7 @@
 
 # abōde Foaming Hand Wash Concentrate + Dispenser
 
-**Category:** Home Products
+**Category:** Home Care
 
 **Type:** Foaming hand wash concentrate + reusable dispenser
 

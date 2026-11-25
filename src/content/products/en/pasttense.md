@@ -2,7 +2,7 @@
 
 # PastTense — Tension Blend
 
-**Category:** Essential Oils
+**Category:** Roll-ons (Touch)
 
 **Type:** Blend (Tension Blend)
 

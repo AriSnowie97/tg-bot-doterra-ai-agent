@@ -2,7 +2,7 @@
 
 # Oil Collectors Kit
 
-**Category:** Kits
+**Category:** Kits & Collections
 
 **Type:** Complete Essential Oil Collector's Kit
 

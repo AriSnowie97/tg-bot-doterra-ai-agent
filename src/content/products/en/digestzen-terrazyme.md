@@ -2,7 +2,7 @@
 
 # DigestZen TerraZyme
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (digestive enzyme complex)
 

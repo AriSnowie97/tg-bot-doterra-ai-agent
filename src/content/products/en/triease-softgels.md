@@ -2,7 +2,7 @@
 
 # TriEase Softgels
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (seasonal blend in softgels)
 

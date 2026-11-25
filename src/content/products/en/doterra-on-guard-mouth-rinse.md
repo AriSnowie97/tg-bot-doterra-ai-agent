@@ -2,7 +2,7 @@
 
 # dōTERRA On Guard® Mouth Rinse
 
-**Category:** Home Products
+**Category:** Home Care
 
 **Type:** Mouth Rinse
 

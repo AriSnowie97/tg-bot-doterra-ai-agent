@@ -2,7 +2,7 @@
 
 # Deep Blue — Soothing Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Soothing Blend)
 

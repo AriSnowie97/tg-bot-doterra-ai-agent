@@ -2,7 +2,7 @@
 
 # Pebble™ Diffuser
 
-**Category:** Home Products
+**Category:** Diffusers
 
 **Type:** Compact portable diffuser
 

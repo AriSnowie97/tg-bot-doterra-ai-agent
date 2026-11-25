@@ -162,7 +162,6 @@ def _run_sync_impl(progress_callback=None) -> dict:
     md_dirs = [
         project_root / "src" / "content" / "docs",
         project_root / "src" / "content" / "products",
-        project_root / "src" / "content" / "advice",
         project_root / "src" / "content" / "symphony_of_the_cells",
         project_root / "src" / "content" / "books",   # 📚 Книги по ефірних оліях
     ]
@@ -180,6 +179,42 @@ def _run_sync_impl(progress_callback=None) -> dict:
                 print(f"[sync] MD parse error ({d.name}): {redact(e)}", flush=True)
                 _log(f"❌ Помилка парсингу MD ({d.name}) (деталі у логах сервера).")
                 
+    stats["chunks_found"] = len(chunks)
+    # Враховуємо динамічні зміни каталогу з PostgreSQL (catalog_overrides), щоб нові/архівні
+    # позиції зберігалися навіть після /sync_db у новому контейнері
+    try:
+        from src.catalog_sync import get_catalog_overrides
+        from src.content.parser import DoterraMarkdownParser
+
+        active_ov, archived_slugs = get_catalog_overrides(force_refresh=True)
+        if archived_slugs:
+            chunks = [c for c in chunks if c.product_slug not in archived_slugs]
+            _log(f"🗄 Пропущено архівованих позицій: <b>{len(archived_slugs)}</b>")
+
+        existing_slugs = {c.product_slug for c in chunks}
+        parser = DoterraMarkdownParser()
+        ov_added = 0
+        for ov in active_ov:
+            ov_slug = ov["slug"]
+            ov_md = (ov.get("md_ua") or "").strip()
+            if ov_slug in existing_slugs or not ov_md:
+                continue
+            tmp_p = project_root / "data" / f".tmp_ov_{ov_slug}.md"
+            tmp_p.parent.mkdir(parents=True, exist_ok=True)
+            try:
+                tmp_p.write_text(ov_md, encoding="utf-8")
+                ov_chunks = parser.parse_file(tmp_p)
+                for c in ov_chunks:
+                    c.product_slug = ov_slug
+                chunks.extend(ov_chunks)
+                ov_added += 1
+            finally:
+                tmp_p.unlink(missing_ok=True)
+        if ov_added:
+            _log(f"🆕 Додано динамічних новинок з БД: <b>{ov_added}</b>")
+    except Exception as e:
+        print(f"[sync] catalog_overrides merge skipped: {redact(e)}", flush=True)
+
     stats["chunks_found"] = len(chunks)
     _log(f"✅ Всього знайдено чанків: <b>{len(chunks)}</b>")
 

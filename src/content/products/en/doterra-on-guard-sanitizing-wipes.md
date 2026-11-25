@@ -2,7 +2,7 @@
 
 # dōTERRA On Guard® Sanitizing Wipes
 
-**Category:** Home Products
+**Category:** Home Care
 
 **Type:** Sanitizing Wipes (50 count)
 

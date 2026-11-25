@@ -2,7 +2,7 @@
 
 # ClaryCalm — Monthly Blend for Women
 
-**Категорія:** Ефірні олії
+**Категорія:** Ролери (Touch)
 
 **Тип:** Суміш (Monthly Blend, розроблена спеціально для жінок)
 

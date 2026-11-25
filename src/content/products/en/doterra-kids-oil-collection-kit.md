@@ -2,7 +2,7 @@
 
 # dōTERRA Kids Oil Collection
 
-**Category:** Kits
+**Category:** Kits & Collections
 
 **Type:** Kids Kit
 

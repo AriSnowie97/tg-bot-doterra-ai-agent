@@ -2,7 +2,7 @@
 
 # abōde Dishwasher Pods
 
-**Category:** Household Products
+**Category:** Essential Oils
 
 **Type:** Dishwasher pods
 

@@ -1,4 +1,4 @@
-![doTERRA Product](Тут_буде_офіційне_фото_після_завантаження_через_бот)
+![doTERRA Product](https://www.doterra.com/medias/625x325-5ml-60201876-manuka-au-english-web.jpg?context=bWFzdGVyfGltYWdlc3w1OTM5M3xpbWFnZS9qcGVnfGltYWdlcy9oZDUvaGY1Lzk5MDkyNjUxMzc2OTQuanBnfGRhNDg2NTk1NzYxZDFjMTk4NzcxODk0OGFjMTE2MGYwOWU1NzliMzdlOThmZTQ4MWFjOWMzMmE1YzM5ZmJlMTI&pool=wave0)
 
 # Manuka
 

@@ -17,7 +17,6 @@ const Articles = () => {
     const SECTION_DATA = {
         "products": { icon: ArticlesSvg },
         "symphony_of_the_cells": { icon: SunSvg },
-        "advice": { icon: ChatSvg },
         "kits": { icon: GlobeSvg },
         "docs": { icon: ContactsSvg }
     };
@@ -29,6 +28,7 @@ const Articles = () => {
     });
     
     useEffect(() => {
+        setActiveTag("Усі");
         const fetchArticles = async () => {
             try {
                 setLoading(true);

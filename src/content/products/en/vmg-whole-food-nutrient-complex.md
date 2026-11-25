@@ -2,7 +2,7 @@
 
 # VMG+ Whole-Food Nutrient Complex
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (powder drink)
 

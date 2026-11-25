@@ -2,7 +2,7 @@
 
 # RevitaZen+ Advanced Organ Detoxification Complex
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (dual-chamber complex for organ detoxification)
 

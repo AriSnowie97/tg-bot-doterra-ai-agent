@@ -2,7 +2,7 @@
 
 # Home Essentials Enrollment Kit
 
-**Category:** Kits (Kits & Collections → Starter Kits)
+**Category:** Kits & Collections
 
 **Type:** Starter kit for new customers
 

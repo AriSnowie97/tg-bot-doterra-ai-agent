@@ -2,7 +2,7 @@
 
 # Veráge Immortelle Hydrating Serum
 
-**Категорія:** Skin & Hair Care → Veráge Skin Care
+**Категорія:** Догляд за собою
 
 **Тип:** зволожувальна сироватка
 

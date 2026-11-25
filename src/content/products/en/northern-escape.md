@@ -2,7 +2,7 @@
 
 # Northern Escape — Woodland Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Woodland Blend)
 

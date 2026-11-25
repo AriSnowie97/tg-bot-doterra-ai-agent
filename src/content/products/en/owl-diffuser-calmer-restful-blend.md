@@ -2,7 +2,7 @@
 
 # Owl Diffuser + Calmer® Restful Blend
 
-**Category:** Seasonal Collection
+**Category:** Diffusers
 
 **Type:** Diffuser Set (seasonal)
 

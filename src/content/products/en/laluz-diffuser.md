@@ -2,7 +2,7 @@
 
 # Laluz® Diffuser
 
-**Category:** Home Products
+**Category:** Diffusers
 
 **Type:** Ultrasonic Diffuser
 

@@ -2,7 +2,7 @@
 
 # dōTERRA Ginger Drops
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Lozenges (supplement)
 

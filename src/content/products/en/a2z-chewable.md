@@ -2,7 +2,7 @@
 
 # a2z Chewable
 
-**Category:** Dietary Supplements (on website: Supplements → Children's Supplements)
+**Category:** Supplements
 
 **Type:** Dietary Supplement (children's chewable multivitamins)
 

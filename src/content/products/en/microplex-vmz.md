@@ -2,7 +2,7 @@
 
 # Microplex VMz®
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Capsules — Food Nutrient Complex
 

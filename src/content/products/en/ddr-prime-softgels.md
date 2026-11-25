@@ -2,7 +2,7 @@
 
 # DDR Prime Softgels
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (cellular complex softgels)
 

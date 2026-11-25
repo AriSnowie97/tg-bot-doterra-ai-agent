@@ -2,7 +2,7 @@
 
 # Endless Summer Sunshine Blend + Pilot® Diffuser Bundle
 
-**Category:** Seasonal Collection
+**Category:** Diffusers
 
 **Type:** Set with portable diffuser (limited summer edition)
 

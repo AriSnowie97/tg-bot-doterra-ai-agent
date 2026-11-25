@@ -2,7 +2,7 @@
 
 # MetaPWR Satiety Gum
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (sugar-free chewing gum)
 

@@ -2,7 +2,7 @@
 
 # doTERRA Breathe — Respiratory Blend
 
-**Category:** Essential Oils
+**Category:** Oil Blends
 
 **Type:** Blend (Respiratory Blend)
 

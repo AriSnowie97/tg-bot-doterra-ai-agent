@@ -2,7 +2,7 @@
 
 # Frankincense Boswellic Acid Complex
 
-**Category:** Dietary Supplements
+**Category:** Supplements
 
 **Type:** Dietary Supplement (Frankincense oil and resin in microbeads)
 
