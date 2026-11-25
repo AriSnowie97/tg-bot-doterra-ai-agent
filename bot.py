@@ -314,7 +314,7 @@ async def _redirect_chronic_in_group(message: Message, text: str) -> bool:
 
 async def _reply_with_feedback(message: Message, text: str, sticker_id: str | None = None) -> None:
     """Надсилає reply з текстом відповіді і кнопками 👍/👎 та посиланнями на гайди."""
-    webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
+    webapp_url = os.getenv("WEBAPP_URL", "https://tg-bot-doterra-ai-agent-production.up.railway.app/app/")
     
     # Витягуємо посилання на продукти (з маркдауну або автоматично з каталогу)
     links = extract_product_links(text)
@@ -376,7 +376,7 @@ async def command_start_handler(
     current_state = await state.get_state()
     if current_state == AskStates.waiting_for_question:
         await state.set_state(None)
-    webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
+    webapp_url = os.getenv("WEBAPP_URL", "https://tg-bot-doterra-ai-agent-production.up.railway.app/app/")
     
     markup = InlineKeyboardMarkup(inline_keyboard=[[
         _open_app_button("📱 Відкрити Mini App", webapp_url, message.chat.type)
@@ -415,7 +415,7 @@ async def command_help_handler(message: Message, state: FSMContext) -> None:
     if current_state == AskStates.waiting_for_question:
         await state.set_state(None)
 
-    webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
+    webapp_url = os.getenv("WEBAPP_URL", "https://tg-bot-doterra-ai-agent-production.up.railway.app/app/")
     markup = InlineKeyboardMarkup(inline_keyboard=[
         [
             _open_app_button("📱 Відкрити Mini App", webapp_url, message.chat.type)
@@ -1638,7 +1638,7 @@ async def main() -> None:
         print(f"[bot] ⚠️ Could not init user memory table: {redact(e)}")
 
     # Налаштовуємо кнопку "Меню" (Web App)
-    webapp_url = os.getenv("WEBAPP_URL", "https://arisnowie97.github.io/tg-bot-doterra-ai-agent/")
+    webapp_url = os.getenv("WEBAPP_URL", "https://tg-bot-doterra-ai-agent-production.up.railway.app/app/")
     try:
         await bot.set_chat_menu_button(
             menu_button=MenuButtonWebApp(text="Mini App", web_app=WebAppInfo(url=webapp_url))

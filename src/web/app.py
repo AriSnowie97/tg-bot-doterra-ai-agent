@@ -50,10 +50,13 @@ app = FastAPI(title="doTERRA Docs Viewer", docs_url=None, redoc_url=None)
 # Додаємо CORS для того, щоб React (який запущено на іншому порту чи домені) міг робити запити
 from fastapi.middleware.cors import CORSMiddleware
 
-# Дозволені origin'и (через кому). За замовчуванням — лише GitHub Pages з Mini App.
+# Дозволені origin'и (через кому). Підтримуємо GitHub Pages та власний домен Railway.
 CORS_ORIGINS = [
     o.strip()
-    for o in os.getenv("CORS_ORIGINS", "https://arisnowie97.github.io").split(",")
+    for o in os.getenv(
+        "CORS_ORIGINS",
+        "https://arisnowie97.github.io,https://tg-bot-doterra-ai-agent-production.up.railway.app",
+    ).split(",")
     if o.strip()
 ]
 
@@ -71,7 +74,12 @@ async def add_security_headers(request: Request, call_next):
     response = await call_next(request)
     response.headers.setdefault("X-Content-Type-Options", "nosniff")
     response.headers.setdefault("Referrer-Policy", "no-referrer")
-    response.headers.setdefault("X-Frame-Options", "DENY")
+    if request.url.path.startswith("/app"):
+        # Telegram Web / Desktop відкривають Mini App в iframe — не блокуємо його через X-Frame-Options
+        if request.url.path in ("/app", "/app/", "/app/index.html"):
+            response.headers.setdefault("Cache-Control", "no-cache")
+    else:
+        response.headers.setdefault("X-Frame-Options", "DENY")
     response.headers.setdefault("Cross-Origin-Resource-Policy", "cross-origin")
     if request.url.path.startswith("/api/"):
         response.headers.setdefault("Cache-Control", "no-store")
@@ -82,6 +90,11 @@ async def add_security_headers(request: Request, call_next):
 IMAGES_DIR = Path(__file__).parent.parent / "content" / "images"
 IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 app.mount("/images", StaticFiles(directory=str(IMAGES_DIR)), name="images")
+
+# Монтуємо зібраний Telegram Mini App (працює незалежно від GitHub Pages)
+MINIAPP_DIR = Path(__file__).parent / "miniapp_dist"
+if MINIAPP_DIR.exists():
+    app.mount("/app", StaticFiles(directory=str(MINIAPP_DIR), html=True), name="miniapp")
 
 
 # ---------------------------------------------------------------------------
