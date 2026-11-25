@@ -189,7 +189,6 @@ async def _build_cards_with_llm(
         resp = await LLM().generate_content(
             prompt,
             types.GenerateContentConfig(temperature=0.2, max_output_tokens=2048),
-            max_retries=1,
         )
         raw = (resp.text or "").strip()
         if "===EN_CARD===" in raw:
@@ -202,6 +201,26 @@ async def _build_cards_with_llm(
         print(f"[catalog_sync] LLM card build fallback for {slug}: {redact(e)}")
 
     return _build_template_card(slug, title, desc, image_url, category_ua, category_en, markets, source_url)
+
+
+_ALIAS_SUFFIX_RE = re.compile(
+    r"(?:-(?:calming|springtime|protective|soothing|respiratory|grounding|joyful|restful|"
+    r"detoxification|rejuvenating|inspiring|invigorating|encouraging|comforting|reassuring|"
+    r"renewing|holiday|seasonal|sunshine|essential-oil|essential|oil|fixed))+|-blend$",
+    re.IGNORECASE,
+)
+
+
+def _canonical_alias(slug: str) -> str:
+    """Нормалізує слaг для виявлення дублікатів (напр. adaptiv-touch == adaptiv-touch-calming-blend)."""
+    s = slug.strip().lower()
+    if s.startswith("doterra-"):
+        s = s[len("doterra-"):]
+    prev = None
+    while prev != s:
+        prev = s
+        s = _ALIAS_SUFFIX_RE.sub("", s).strip("-")
+    return s
 
 
 def _get_static_product_slugs() -> dict[str, Path]:
@@ -342,8 +361,15 @@ async def run_catalog_sync(
                 })
             report["restored"].append({"slug": slug, "markets": discovered[slug]["markets"]})
 
-    # 3. Пошук та автоматичне додавання НОВИНОК
-    new_slugs = [s for s in discovered.keys() if s not in known_active and s not in {r["slug"] for r in report["restored"]}]
+    # 3. Пошук та автоматичне додавання НОВИНОК (із захистом від дублікатів-синонімів)
+    known_aliases = {_canonical_alias(k) for k in known_active}
+    restored_set = {r["slug"] for r in report["restored"]}
+    new_slugs = [
+        s for s in discovered.keys()
+        if s not in known_active
+        and _canonical_alias(s) not in known_aliases
+        and s not in restored_set
+    ]
     # Пріоритезуємо новинки, що є на US або на >= 2 ринках
     new_slugs.sort(key=lambda s: (0 if "US" in discovered[s]["markets"] else 1, -len(discovered[s]["markets"]), s))
 

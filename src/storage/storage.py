@@ -143,7 +143,7 @@ def bulk_upsert_chunks(
     if batch_size is None:
         batch_size = int(os.getenv("SYNC_BATCH_SIZE", "45"))
     if pause_seconds is None:
-        pause_seconds = int(os.getenv("SYNC_BATCH_PAUSE_SECONDS", "900"))  # 15 хвилин
+        pause_seconds = int(os.getenv("SYNC_BATCH_PAUSE_SECONDS", "180"))  # 3 хвилини
     if chunk_delay is None:
         chunk_delay = float(os.getenv("SYNC_CHUNK_DELAY_SECONDS", "1.0"))  # 1 сек між запитами в партії
 
@@ -250,11 +250,11 @@ def bulk_upsert_chunks(
             finally:
                 batch_conn.close()
 
-            # Якщо це не остання партія — пауза 15 хвилин для дотримання безкоштовних лімітів Gemini
+            # Якщо це не остання партія — коротка пауза для дотримання лімітів Gemini
             if batch_idx < total_batches - 1:
                 pause_msg = (
                     f"☕ Партія <b>{batch_num}/{total_batches}</b> завершена (збережено {embedded_count}/{total_new} чанків).\n"
-                    f"⏳ Пауза <b>{minutes_pause} хвилин</b> для відновлення безкоштовних квот Gemini API ({batch_size} запитів/15 хв)..."
+                    f"⏳ Пауза <b>{minutes_pause} хв</b> для відновлення квот Gemini API ({batch_size} запитів / {minutes_pause} хв)..."
                 )
                 _log(pause_msg)
                 
