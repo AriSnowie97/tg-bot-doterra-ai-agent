@@ -41,6 +41,11 @@ const Article = ({data}) => {
                     <span>{data.short}</span>
                     {(data.update_type || data.tag || marketsLabel) && (
                         <div className={styles.metaRow}>
+                            {data.update_type === "holiday" && (
+                                <div className={`${styles.statusBadge} ${styles.badgeHoliday}`}>
+                                    🎄 {t("whats_new_badge_holiday")}
+                                </div>
+                            )}
                             {data.update_type === "new" && (
                                 <div className={`${styles.statusBadge} ${styles.badgeNew}`}>
                                     ✨ {t("whats_new_badge_new")}

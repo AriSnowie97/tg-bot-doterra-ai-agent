@@ -33,7 +33,7 @@ const WhatsNew = () => {
                 const fallback = await get_articles(lang);
                 if (fallback.ok) {
                     const all = await fallback.json();
-                    data = all.filter((a) => a.update_type === "new" || a.update_type === "returned");
+                    data = all.filter((a) => a.update_type === "new" || a.update_type === "holiday" || a.update_type === "returned");
                 }
             }
             setItems(Array.isArray(data) ? data : []);
@@ -69,13 +69,15 @@ const WhatsNew = () => {
     }, [fetchUpdates]);
 
     const counts = useMemo(() => {
+        let holidayCount = 0;
         let newCount = 0;
         let returnedCount = 0;
         for (const item of items) {
-            if (item.update_type === "returned") returnedCount += 1;
+            if (item.update_type === "holiday") holidayCount += 1;
+            else if (item.update_type === "returned") returnedCount += 1;
             else if (item.update_type === "new") newCount += 1;
         }
-        return { all: items.length, new: newCount, returned: returnedCount };
+        return { all: items.length, holiday: holidayCount, new: newCount, returned: returnedCount };
     }, [items]);
 
     const filteredItems = useMemo(() => {
@@ -94,6 +96,7 @@ const WhatsNew = () => {
 
     const filterTabs = [
         { key: "all", label: t("whats_new_filter_all"), count: counts.all },
+        { key: "holiday", label: `🎄 ${t("whats_new_filter_holiday")}`, count: counts.holiday },
         { key: "new", label: `✨ ${t("whats_new_filter_new")}`, count: counts.new },
         { key: "returned", label: `♻️ ${t("whats_new_filter_returned")}`, count: counts.returned },
     ];

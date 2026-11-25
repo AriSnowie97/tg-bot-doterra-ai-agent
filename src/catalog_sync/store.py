@@ -64,6 +64,10 @@ def ensure_catalog_tables() -> bool:
                 );
                 ALTER TABLE catalog_overrides
                     ADD COLUMN IF NOT EXISTS change_type VARCHAR(20) NOT NULL DEFAULT 'new';
+                UPDATE catalog_overrides
+                    SET change_type = 'track'
+                    WHERE status = 'active' AND change_type = 'new'
+                      AND length(COALESCE(md_ua, '')) = 0 AND length(COALESCE(md_en, '')) = 0;
                 CREATE INDEX IF NOT EXISTS idx_catalog_overrides_status
                     ON catalog_overrides(status);
 
@@ -289,8 +293,8 @@ def record_missing_streak(slug: str, streak: int, archive: bool) -> bool:
         with conn.cursor() as cur:
             cur.execute(
                 """
-                INSERT INTO catalog_overrides (slug, status, missing_streak, updated_at)
-                VALUES (%s, %s, %s, CURRENT_TIMESTAMP)
+                INSERT INTO catalog_overrides (slug, status, change_type, missing_streak, updated_at)
+                VALUES (%s, %s, 'track', %s, CURRENT_TIMESTAMP)
                 ON CONFLICT (slug) DO UPDATE SET
                     status         = EXCLUDED.status,
                     missing_streak = EXCLUDED.missing_streak,

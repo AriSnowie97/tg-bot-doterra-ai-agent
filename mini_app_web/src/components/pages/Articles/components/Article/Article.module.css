@@ -116,6 +116,12 @@
         line-height: 1.3;
     }
 
+    .badgeHoliday {
+        color: #8b1e24;
+        background-color: #fde2e4;
+        border: 1px solid #f4a4aa;
+    }
+
     .badgeNew {
         color: #7c4d00;
         background-color: #ffe8a3;

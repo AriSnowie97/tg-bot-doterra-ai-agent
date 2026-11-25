@@ -42,9 +42,13 @@ GLOBAL_MARKETS: tuple[MarketConfig, ...] = (
     MarketConfig("MX", "Mexico", "/MX/es_MX"),
 )
 
-# Стандартні розділи каталогу doTERRA для виявлення новинок і асортименту
+# Стандартні розділи каталогу doTERRA для виявлення новинок, святкових і лімітованих пропозицій
 LISTING_PATHS: tuple[str, ...] = (
     "/pl/new-products",
+    "/pl/holiday",
+    "/pl/holiday-products",
+    "/pl/holiday-gifts",
+    "/pl/seasonal-offers",
     "/pl/single-oils",
     "/pl/proprietary-blends",
     "/pl/diffusers",

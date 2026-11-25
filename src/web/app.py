@@ -192,8 +192,34 @@ STATIC_NEW_2026_SLUGS = {
     "bubble-diffuser",
 }
 
+# Новорічна та зимова колекція doTERRA Holiday 2026 («A Season of Wōnder», US & EU)
+STATIC_HOLIDAY_2026_MARKETS: dict[str, list[str]] = {
+    "doterra-advent-calendar-2026": ["US"],
+    "mini-stick-trio": ["US"],
+    "red-lumist-diffuser-holiday-joy-set": ["US"],
+    "pink-sand-lip-oil": ["US"],
+    "vanilla-dream-lip-balm": ["US"],
+    "vanilla-dream-restorative-hand-cream": ["US", "EU"],
+    "holiday-joy": ["US", "EU"],
+    "holiday-peace": ["US", "EU"],
+    "holiday-love": ["US", "EU", "CA"],
+    "winterberry": ["US"],
+    "yule-log": ["US"],
+    "wassail": ["US"],
+    "cinnamon-drops": ["US"],
+    "lemon-lime-drops": ["US", "EU"],
+    "lumist-silver-diffuser-holiday-joy-kit": ["US"],
+    "doterra-hygge": ["US", "EU"],
+    "northern-escape": ["US", "EU"],
+    "black-spruce-pebble-diffuser-set": ["EU"],
+}
+
 _NEW_MARKERS_RE = re.compile(
     r"(?:#новинка\d*|#new20\d\d|\bновинка\s+20\d\d\b|\bnew\s+20\d\d\b)",
+    re.IGNORECASE,
+)
+_HOLIDAY_MARKERS_RE = re.compile(
+    r"(?:#новорічн\w*|#святков\w*|#holiday20\d\d|holiday\s+2026|новорічн\w+\s+колекці)",
     re.IGNORECASE,
 )
 _RETURNED_MARKERS_RE = re.compile(
@@ -203,9 +229,13 @@ _RETURNED_MARKERS_RE = re.compile(
 
 
 def _detect_static_update_info(slug: str, md_text: str) -> tuple[str, list[str]]:
-    """Визначає статус новинки/повернення для статичного .md продукту."""
+    """Визначає статус новинки/святкової колекції/повернення для статичного .md продукту."""
     if _RETURNED_MARKERS_RE.search(md_text):
         return "returned", ["US"]
+    if slug in STATIC_HOLIDAY_2026_MARKETS:
+        return "holiday", list(STATIC_HOLIDAY_2026_MARKETS[slug])
+    if _HOLIDAY_MARKERS_RE.search(md_text):
+        return "holiday", ["US", "EU"]
     if slug in STATIC_NEW_2026_SLUGS or _NEW_MARKERS_RE.search(md_text):
         return "new", ["US"]
     return "", []
@@ -503,8 +533,11 @@ def _collect_articles(lang: str, base_url: str) -> list[dict]:
     if not CONTENT_DIR.exists():
         return []
 
+    from src.catalog_sync.service import _canonical_alias
+
     articles: list[dict] = []
     seen_slugs: set[str] = set()
+    seen_aliases: set[str] = set()
     active_overrides, archived_slugs = get_catalog_overrides()
     override_by_slug = {ov["slug"]: ov for ov in active_overrides}
 
@@ -524,27 +557,45 @@ def _collect_articles(lang: str, base_url: str) -> list[dict]:
                 if item_slug in HIDDEN_ARTICLE_SLUGS or item_slug in archived_slugs or item_slug in seen_slugs:
                     continue
                 seen_slugs.add(item_slug)
+                if dir_name == "products":
+                    seen_aliases.add(_canonical_alias(item_slug))
 
                 meta = _get_article_metadata(lang, md_path, base_url, dir_name)
                 ov = override_by_slug.get(item_slug)
                 if ov:
-                    if ov.get("change_type") in ("new", "returned"):
-                        meta["update_type"] = ov["change_type"]
-                    if ov.get("markets"):
-                        meta["markets"] = ov["markets"]
-                    if ov.get("updated_at"):
-                        meta["updated_at"] = ov["updated_at"]
+                    ov_type = ov.get("change_type")
+                    has_ov_card = bool(ov.get("md_ua") or ov.get("md_en"))
+                    # Порожні рядки трекінгу missing_streak (change_type='track' або без md) НЕ є новинками!
+                    if ov_type == "returned":
+                        meta["update_type"] = "returned"
+                        if ov.get("markets"):
+                            meta["markets"] = ov["markets"]
+                        if ov.get("updated_at"):
+                            meta["updated_at"] = ov["updated_at"]
+                    elif ov_type in ("new", "holiday") and has_ov_card:
+                        meta["update_type"] = ov_type
+                        if ov.get("markets"):
+                            meta["markets"] = ov["markets"]
+                        if ov.get("updated_at"):
+                            meta["updated_at"] = ov["updated_at"]
                 articles.append(meta)
 
     # Додаємо динамічні новинки та повернення з PostgreSQL (catalog_overrides)
     for ov in active_overrides:
         ov_slug = ov["slug"]
-        if ov_slug in seen_slugs or ov_slug in HIDDEN_ARTICLE_SLUGS or not (ov.get("md_ua") or ov.get("md_en")):
+        if (
+            ov_slug in seen_slugs
+            or _canonical_alias(ov_slug) in seen_aliases
+            or ov_slug in HIDDEN_ARTICLE_SLUGS
+            or not (ov.get("md_ua") or ov.get("md_en"))
+        ):
             continue
         seen_slugs.add(ov_slug)
+        seen_aliases.add(_canonical_alias(ov_slug))
         title = (ov.get("title_en") or ov.get("title_ua") or ov_slug) if lang == "en" else (ov.get("title_ua") or ov.get("title_en") or ov_slug)
         short = (ov.get("short_en") or ov.get("short_ua") or "") if lang == "en" else (ov.get("short_ua") or ov.get("short_en") or "")
         tag = (ov.get("category_en") or "Essential Oils") if lang == "en" else (ov.get("category_ua") or "Ефірні олії")
+        ov_type = ov.get("change_type") if ov.get("change_type") in ("new", "holiday", "returned") else "new"
         articles.append({
             "slug": ov_slug,
             "title": title,
@@ -552,7 +603,7 @@ def _collect_articles(lang: str, base_url: str) -> list[dict]:
             "tag": tag,
             "image": ov.get("image_url", ""),
             "section": "products",
-            "update_type": ov.get("change_type") if ov.get("change_type") in ("new", "returned") else "new",
+            "update_type": ov_type,
             "markets": ov.get("markets") or [],
             "updated_at": ov.get("updated_at") or "",
         })
@@ -572,21 +623,22 @@ async def api_get_articles(lang: str, request: Request):
 
 @app.get("/api/whats-new/{lang}")
 async def api_get_whats_new(lang: str, request: Request):
-    """Повертає новинки та продукти, які повернулися на ринки doTERRA."""
+    """Повертає новорічну колекцію, новинки та продукти, які повернулися на ринки doTERRA."""
     _validate_lang(lang)
     articles = _collect_articles(lang, _get_request_base_url(request))
-    updates = [a for a in articles if a.get("update_type") in ("new", "returned")]
+    updates = [a for a in articles if a.get("update_type") in ("new", "holiday", "returned")]
 
     db_updates = sorted(
         [a for a in updates if a.get("updated_at")],
         key=lambda a: a["updated_at"],
         reverse=True,
     )
+    order_rank = {"holiday": 0, "returned": 1, "new": 2}
     static_updates = sorted(
         [a for a in updates if not a.get("updated_at")],
-        key=lambda a: (0 if a.get("update_type") == "returned" else 1, a.get("title", "").lower()),
+        key=lambda a: (order_rank.get(a.get("update_type", ""), 3), a.get("title", "").lower()),
     )
-    return db_updates + static_updates
+    return static_updates + db_updates
 
 @app.get("/api/docs/{slug}/{lang}")
 async def api_get_doc(slug: str, lang: str, request: Request):
