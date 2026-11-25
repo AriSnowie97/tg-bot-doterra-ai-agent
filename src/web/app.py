@@ -164,6 +164,40 @@ def _render_md(md_text: str) -> str:
     )
 
 
+# Актуальні новинки 2026 року зі статичного каталогу (доповнюються динамічними з catalog_overrides)
+STATIC_NEW_2026_SLUGS = {
+    "ikise-skin-care-collection",
+    "intune-stick-hiba-wood",
+    "naio-wood",
+    "frankincense-stick-naio-wood",
+    "natures-rx-collection",
+    "doterra-on-guard-stick-echinacea",
+    "deep-blue-stick-copaiba",
+    "volo-diffuser",
+    "roam-diffuser",
+    "pilot-diffuser",
+    "bubble-diffuser",
+}
+
+_NEW_MARKERS_RE = re.compile(
+    r"(?:#новинка\d*|#new20\d\d|\bновинка\s+20\d\d\b|\bnew\s+20\d\d\b)",
+    re.IGNORECASE,
+)
+_RETURNED_MARKERS_RE = re.compile(
+    r"(?:#повернення|#returned|повернувся\s+на\s+ринок|returned\s+to\s+market)",
+    re.IGNORECASE,
+)
+
+
+def _detect_static_update_info(slug: str, md_text: str) -> tuple[str, list[str]]:
+    """Визначає статус новинки/повернення для статичного .md продукту."""
+    if _RETURNED_MARKERS_RE.search(md_text):
+        return "returned", ["US"]
+    if slug in STATIC_NEW_2026_SLUGS or _NEW_MARKERS_RE.search(md_text):
+        return "new", ["US"]
+    return "", []
+
+
 def _get_article_metadata(lang: str, md_path: Path, base_url: str = "", section_name: str = "") -> dict:
     """Витягує метадані з .md файлу."""
     original_stem = md_path.stem
@@ -253,14 +287,23 @@ def _get_article_metadata(lang: str, md_path: Path, base_url: str = "", section_
         if len(short) > 120:
             short = short[:117] + "..."
         break
-        
+
+    update_type, markets = (
+        _detect_static_update_info(slug, text)
+        if section_name in ("products", "kits")
+        else ("", [])
+    )
+
     return {
         "slug": slug,
         "title": title,
         "short": short,
         "tag": category,
         "image": image,
-        "section": section_name
+        "section": section_name,
+        "update_type": update_type,
+        "markets": markets,
+        "updated_at": "",
     }
 
 CONTENT_DIR = Path(__file__).parent.parent / "content"
@@ -435,23 +478,27 @@ async def v1_aroma_ask(
     return AromaAskResponse(answer=answer, safety=safety)
 
 
-@app.get("/api/articles/{lang}")
-async def api_get_articles(lang: str, request: Request):
-    """Повертає список усіх статей з метаданими для Mini App."""
-    _validate_lang(lang)
-    if not CONTENT_DIR.exists():
-        return []
-    
+def _get_request_base_url(request: Request) -> str:
     base_url = str(request.base_url).rstrip("/")
     if request.headers.get("x-forwarded-proto") == "https":
         base_url = base_url.replace("http://", "https://")
-    articles = []
-    seen_slugs = set()
+    return base_url
+
+
+def _collect_articles(lang: str, base_url: str) -> list[dict]:
+    """Збирає всі активні статті та динамічні оновлення каталогу для заданої мови."""
+    if not CONTENT_DIR.exists():
+        return []
+
+    articles: list[dict] = []
+    seen_slugs: set[str] = set()
     active_overrides, archived_slugs = get_catalog_overrides()
+    override_by_slug = {ov["slug"]: ov for ov in active_overrides}
+
     for dir_name in DIRECTORIES_TO_SEARCH:
         if lang == "ua":
             d = CONTENT_DIR / dir_name
-        else: # lang == "en"
+        else:  # lang == "en"
             d = CONTENT_DIR / dir_name / lang
 
         if d.exists():
@@ -464,10 +511,19 @@ async def api_get_articles(lang: str, request: Request):
                 if item_slug in HIDDEN_ARTICLE_SLUGS or item_slug in archived_slugs or item_slug in seen_slugs:
                     continue
                 seen_slugs.add(item_slug)
-                
-                articles.append(_get_article_metadata(lang, md_path, base_url, dir_name))
 
-    # Додаємо динамічні новинки з PostgreSQL (catalog_overrides), яких ще немає серед статичних файлів
+                meta = _get_article_metadata(lang, md_path, base_url, dir_name)
+                ov = override_by_slug.get(item_slug)
+                if ov:
+                    if ov.get("change_type") in ("new", "returned"):
+                        meta["update_type"] = ov["change_type"]
+                    if ov.get("markets"):
+                        meta["markets"] = ov["markets"]
+                    if ov.get("updated_at"):
+                        meta["updated_at"] = ov["updated_at"]
+                articles.append(meta)
+
+    # Додаємо динамічні новинки та повернення з PostgreSQL (catalog_overrides)
     for ov in active_overrides:
         ov_slug = ov["slug"]
         if ov_slug in seen_slugs or ov_slug in HIDDEN_ARTICLE_SLUGS or not (ov.get("md_ua") or ov.get("md_en")):
@@ -483,11 +539,41 @@ async def api_get_articles(lang: str, request: Request):
             "tag": tag,
             "image": ov.get("image_url", ""),
             "section": "products",
+            "update_type": ov.get("change_type") if ov.get("change_type") in ("new", "returned") else "new",
+            "markets": ov.get("markets") or [],
+            "updated_at": ov.get("updated_at") or "",
         })
-        
+
+    return articles
+
+
+@app.get("/api/articles/{lang}")
+async def api_get_articles(lang: str, request: Request):
+    """Повертає список усіх статей з метаданими для Mini App."""
+    _validate_lang(lang)
+    articles = _collect_articles(lang, _get_request_base_url(request))
     # Сортуємо: спочатку гайди (якщо якісь залишились), потім інші за алфавітом
     articles.sort(key=lambda a: (0 if a["tag"] == "Гайди" else 1, a["title"]))
     return articles
+
+
+@app.get("/api/whats-new/{lang}")
+async def api_get_whats_new(lang: str, request: Request):
+    """Повертає новинки та продукти, які повернулися на ринки doTERRA."""
+    _validate_lang(lang)
+    articles = _collect_articles(lang, _get_request_base_url(request))
+    updates = [a for a in articles if a.get("update_type") in ("new", "returned")]
+
+    db_updates = sorted(
+        [a for a in updates if a.get("updated_at")],
+        key=lambda a: a["updated_at"],
+        reverse=True,
+    )
+    static_updates = sorted(
+        [a for a in updates if not a.get("updated_at")],
+        key=lambda a: (0 if a.get("update_type") == "returned" else 1, a.get("title", "").lower()),
+    )
+    return db_updates + static_updates
 
 @app.get("/api/docs/{slug}/{lang}")
 async def api_get_doc(slug: str, lang: str, request: Request):

@@ -336,7 +336,9 @@ async def run_catalog_sync(
             if not dry_run and save_db:
                 upsert_catalog_item({
                     "slug": slug,
+                    "status": "active",
                     "markets": discovered[slug]["markets"],
+                    "change_type": "returned",
                 })
             report["restored"].append({"slug": slug, "markets": discovered[slug]["markets"]})
 
@@ -371,6 +373,7 @@ async def run_catalog_sync(
             "md_en": md_en,
             "markets": info["markets"],
             "source_url": primary_url,
+            "change_type": "new",
         }
 
         if not dry_run:

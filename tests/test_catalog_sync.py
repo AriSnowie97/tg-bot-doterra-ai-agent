@@ -118,6 +118,7 @@ async def test_adds_new_product_and_archives_only_after_3_misses(monkeypatch):
     assert report["markets_healthy"] == 3
     assert [a["slug"] for a in report["added"]] == ["brand-new-oil"]
     assert upserted[0]["markets"] == ["US", "EU", "UK"]
+    assert upserted[0]["change_type"] == "new"
     # gone-once отримує streak=1 без архівації; gone-three-times досягає 3 і архівується
     assert ("gone-once", 1, False) in streaks
     assert ("gone-three-times", 3, True) in streaks
@@ -126,3 +127,37 @@ async def test_adds_new_product_and_archives_only_after_3_misses(monkeypatch):
     html_report = format_sync_report_html(report)
     assert "Brand New Oil 2026" in html_report
     assert "gone-three-times" in html_report
+
+
+@pytest.mark.anyio
+async def test_restored_product_marked_with_returned_change_type(monkeypatch):
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.delenv("GEMINI_API_KEY_1", raising=False)
+    monkeypatch.delenv("GOOGLE_API_KEY", raising=False)
+
+    markets = (
+        MarketConfig("US", "US", "/US/en"),
+        MarketConfig("EU", "EU", "/EU/en"),
+        MarketConfig("UK", "UK", "/GB/en_GB"),
+    )
+    base_slugs = {f"oil-{i}": f"https://www.doterra.com/US/en/p/oil-{i}" for i in range(18)}
+    discovered_map = {**base_slugs, "seasonal-oil": "https://www.doterra.com/US/en/p/seasonal-oil"}
+    static_map = {**{k: MagicMock() for k in base_slugs}, "seasonal-oil": MagicMock()}
+    db_states = {
+        "seasonal-oil": {"status": "archived", "missing_streak": 3, "markets": ["US"], "has_md": False},
+    }
+    upserted = []
+
+    with patch("src.catalog_sync.service.scan_market", return_value=discovered_map), \
+         patch("src.catalog_sync.service._get_static_product_slugs", return_value=static_map), \
+         patch("src.catalog_sync.service.get_all_override_states", return_value=db_states), \
+         patch("src.catalog_sync.service.ensure_catalog_tables", return_value=True), \
+         patch("src.catalog_sync.service.upsert_catalog_item", side_effect=lambda x: upserted.append(x) or True), \
+         patch("src.catalog_sync.service.log_sync_run"):
+        report = await run_catalog_sync(markets=markets, write_files=False, save_db=True, dry_run=False)
+
+    assert [r["slug"] for r in report["restored"]] == ["seasonal-oil"]
+    assert upserted[0]["slug"] == "seasonal-oil"
+    assert upserted[0]["change_type"] == "returned"
+    assert upserted[0]["status"] == "active"
+    assert upserted[0]["markets"] == ["US", "EU", "UK"]

@@ -20,6 +20,9 @@ menu {
 .navigation > a {
     height: 72px;
     width: 100%;
+    min-width: 0;
+    padding: 0 2px;
+    box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
@@ -28,15 +31,23 @@ menu {
     justify-content: center;
     gap: 4px;
 
-    font-size: 11px;
+    font-size: 9.5px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.2px;
     text-decoration-line: none;
 
     color: var(--color-text-muted);
 
     transition: color 0.2s ease;
+}
+
+.navigation > a h3 {
+    margin: 0;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .navigation > a:hover {

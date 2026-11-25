@@ -16,4 +16,12 @@ const get_articles = async (lang, url = `${API_URL}/api/articles/`) => {
 };
 
 
-export {get_article, get_articles};
+// Getting new & returning products
+const get_whats_new = async (lang, url = `${API_URL}/api/whats-new/`) => {
+    const response = await fetch(`${url}${lang}`);
+
+    return response;
+};
+
+
+export {get_article, get_articles, get_whats_new};

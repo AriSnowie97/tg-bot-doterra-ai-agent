@@ -2,6 +2,7 @@
     "home_title": "Привіт! Я Арома 🌸",
     "home_subtitle": "Помічниця Наталії Котелянської. Я допоможу підібрати ефірні олії, БАДи та набори doTERRA — просто запитай 🌿",
     "popular_now": "ПОПУЛЯРНЕ ЗАРАЗ",
+    "read_more": "Читати далі →",
     "tg_channel": "НАШ ТЕЛЕГРАМ-КАНАЛ",
     "link_btns": {
         "chat": {
@@ -79,6 +80,17 @@
 
     "nav_home": "Головна",
     "nav_chat": "Чат",
+    "nav_whats_new": "Новинки",
     "nav_articles": "Статті",
-    "nav_contacts": "Контакти"
+    "nav_contacts": "Контакти",
+
+    "whats_new_title": "Новинки та повернення",
+    "whats_new_subtitle": "Нові релізи та продукти, які повернулися на ринки doTERRA у світі",
+    "whats_new_filter_all": "Усі",
+    "whats_new_filter_new": "Новинки",
+    "whats_new_filter_returned": "Повернення",
+    "whats_new_badge_new": "Новинка",
+    "whats_new_badge_returned": "Повернулося",
+    "whats_new_search_placeholder": "Пошук новинок і повернень...",
+    "whats_new_empty_returned": "Поки немає нещодавно повернених позицій. Як тільки продукт знову з'явиться на одному з ринків doTERRA — він автоматично відобразиться тут."
 }

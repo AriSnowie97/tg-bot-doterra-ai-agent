@@ -51,6 +51,10 @@ function App() {
         navigate("/chat");
         return;
       }
+      if (startParam === "whats_new" || startParam === "whats-new" || startParam === "new") {
+        navigate("/whats-new");
+        return;
+      }
       if (startParam === "articles") {
         navigate("/articles");
         return;

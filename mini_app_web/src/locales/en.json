@@ -2,6 +2,7 @@
     "home_title": "Hello! I am Aroma 🌸",
     "home_subtitle": "Natalia Kotelianska's assistant. I will help you find doTERRA essential oils, supplements, and kits — just ask 🌿",
     "popular_now": "POPULAR NOW",
+    "read_more": "Read more →",
     "tg_channel": "OUR TELEGRAM CHANNEL",
     "link_btns": {
         "chat": {
@@ -79,6 +80,17 @@
 
     "nav_home": "Home",
     "nav_chat": "Chat",
+    "nav_whats_new": "New",
     "nav_articles": "Articles",
-    "nav_contacts": "Contacts"
+    "nav_contacts": "Contacts",
+
+    "whats_new_title": "New & Returning",
+    "whats_new_subtitle": "New releases and products returning to global doTERRA markets",
+    "whats_new_filter_all": "All",
+    "whats_new_filter_new": "New",
+    "whats_new_filter_returned": "Returning",
+    "whats_new_badge_new": "New",
+    "whats_new_badge_returned": "Back",
+    "whats_new_search_placeholder": "Search new & returning products...",
+    "whats_new_empty_returned": "No recently returned products yet. As soon as an archived product returns to any global doTERRA market, it will automatically appear here."
 }

@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import { Home } from "../components/pages/Home";
 import { Chat } from "../components/pages/Chat";
+import { WhatsNew } from "../components/pages/WhatsNew";
 import { Articles } from "../components/pages/Articles";
 import { Contacts } from "../components/pages/Contacts";
 import { ArticleView } from "../components/pages/ArticleView";
@@ -13,6 +14,7 @@ const Router = () => {
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/chat" element={<Chat />} />
+            <Route path="/whats-new" element={<WhatsNew />} />
             <Route path="/articles" element={<Articles />} />
             <Route path="/article/:slug" element={<ArticleView />} />
             <Route path="/contacts" element={<Contacts />} />

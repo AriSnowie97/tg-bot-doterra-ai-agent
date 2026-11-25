@@ -9,3 +9,4 @@ export {GlobeSvg} from "./GlobeSvg";
 export {SendMsgSvg} from "./SendMsgSvg";
 export {InstagramSvg} from "./InstagramSvg";
 export {WhatsappSvg} from "./WhatsappSvg";
+export {SparkleSvg} from "./SparkleSvg";

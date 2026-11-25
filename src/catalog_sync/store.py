@@ -57,10 +57,13 @@ def ensure_catalog_tables() -> bool:
                     md_en           TEXT         NOT NULL DEFAULT '',
                     markets         TEXT         NOT NULL DEFAULT '[]',
                     source_url      TEXT         NOT NULL DEFAULT '',
+                    change_type     VARCHAR(20)  NOT NULL DEFAULT 'new',
                     missing_streak  INTEGER      NOT NULL DEFAULT 0,
                     last_seen_at    TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
                     updated_at      TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
                 );
+                ALTER TABLE catalog_overrides
+                    ADD COLUMN IF NOT EXISTS change_type VARCHAR(20) NOT NULL DEFAULT 'new';
                 CREATE INDEX IF NOT EXISTS idx_catalog_overrides_status
                     ON catalog_overrides(status);
 
@@ -108,7 +111,8 @@ def get_catalog_overrides(force_refresh: bool = False) -> tuple[list[dict], set[
             cur.execute(
                 """
                 SELECT slug, status, title_ua, title_en, category_ua, category_en,
-                       short_ua, short_en, image_url, md_ua, md_en, markets, source_url, missing_streak
+                       short_ua, short_en, image_url, md_ua, md_en, markets, source_url,
+                       missing_streak, COALESCE(change_type, 'new'), updated_at
                 FROM catalog_overrides
                 """
             )
@@ -128,7 +132,8 @@ def get_catalog_overrides(force_refresh: bool = False) -> tuple[list[dict], set[
     for row in rows:
         (
             slug, status, title_ua, title_en, category_ua, category_en,
-            short_ua, short_en, image_url, md_ua, md_en, markets_raw, source_url, missing_streak
+            short_ua, short_en, image_url, md_ua, md_en, markets_raw, source_url,
+            missing_streak, change_type, updated_at
         ) = row
         try:
             markets = json.loads(markets_raw or "[]")
@@ -152,6 +157,8 @@ def get_catalog_overrides(force_refresh: bool = False) -> tuple[list[dict], set[
                 "markets": markets,
                 "source_url": source_url,
                 "missing_streak": int(missing_streak or 0),
+                "change_type": change_type or "new",
+                "updated_at": str(updated_at or ""),
             })
 
     _CACHE["ts"] = now
@@ -221,8 +228,8 @@ def upsert_catalog_item(item: dict) -> bool:
                 INSERT INTO catalog_overrides
                     (slug, status, title_ua, title_en, category_ua, category_en,
                      short_ua, short_en, image_url, md_ua, md_en, markets, source_url,
-                     missing_streak, last_seen_at, updated_at)
-                VALUES (%s, 'active', %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                     change_type, missing_streak, last_seen_at, updated_at)
+                VALUES (%s, 'active', %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
                 ON CONFLICT (slug) DO UPDATE SET
                     status         = 'active',
                     title_ua       = CASE WHEN EXCLUDED.title_ua <> '' THEN EXCLUDED.title_ua ELSE catalog_overrides.title_ua END,
@@ -236,6 +243,7 @@ def upsert_catalog_item(item: dict) -> bool:
                     md_en          = CASE WHEN EXCLUDED.md_en <> '' THEN EXCLUDED.md_en ELSE catalog_overrides.md_en END,
                     markets        = EXCLUDED.markets,
                     source_url     = CASE WHEN EXCLUDED.source_url <> '' THEN EXCLUDED.source_url ELSE catalog_overrides.source_url END,
+                    change_type    = EXCLUDED.change_type,
                     missing_streak = 0,
                     last_seen_at   = CURRENT_TIMESTAMP,
                     updated_at     = CURRENT_TIMESTAMP
@@ -253,6 +261,7 @@ def upsert_catalog_item(item: dict) -> bool:
                     item.get("md_en", ""),
                     json.dumps(item.get("markets", []), ensure_ascii=False),
                     item.get("source_url", ""),
+                    item.get("change_type", "new"),
                 ),
             )
         conn.commit()

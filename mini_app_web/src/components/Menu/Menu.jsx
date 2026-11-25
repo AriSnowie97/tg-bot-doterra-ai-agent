@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 import styles from "./Menu.module.css";
-import { HomeSvg, ChatSvg, ArticlesSvg, ContactsSvg } from "../../assets/icons";
+import { HomeSvg, ChatSvg, SparkleSvg, ArticlesSvg, ContactsSvg } from "../../assets/icons";
 import { useLang } from "../../contexts/LangContext";
 
 const Menu = () => {
@@ -10,6 +10,7 @@ const Menu = () => {
     const navigation = [
         ["/", HomeSvg,"home", t("nav_home")],
         ["/chat", ChatSvg, "chat", t("nav_chat")],
+        ["/whats-new", SparkleSvg, "whats_new", t("nav_whats_new")],
         ["/articles", ArticlesSvg, "articles", t("nav_articles")],
         ["/contacts", ContactsSvg, "contacts", t("nav_contacts")]
     ]
