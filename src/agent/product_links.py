@@ -188,8 +188,12 @@ _CANONICAL_OIL_MAP: dict[str, dict[str, any]] = {
         "stems": [r"садов\w*\s+м['’`]?ят", r"зелен\w*\s+м['’`]?ят", r"spearmint"],
     },
     "tangerine": {
-        "name": "Мандарин",
-        "stems": [r"мандарин", r"tangerine"],
+        "name": "Танжерин",
+        "stems": [r"танжерин", r"tangerine"],
+    },
+    "green-mandarin": {
+        "name": "Зелений мандарин",
+        "stems": [r"зелен\w*\s+мандарин", r"green\s+mandarin"],
     },
     "wintergreen": {
         "name": "Вінтергрін",

@@ -33,11 +33,12 @@
 
 ## Compatibility with Other doTERRA Products
 
-🔹 Red Mandarin — the same fruit, but from the ripe fruit
+🔹 Pairs well with [Tangerine](tangerine) (a separate popular core oil) and [Wild Orange](wild-orange)
+🔹 Distinct from Red Mandarin, which is a separate rare limited-time oil pressed from ripe mandarin peel (not part of the regular doTERRA collection)
 
 ## Interesting Facts
 
-👑 Pressed from the peel of the unripe fruit of the mandarin tree, unlike Red Mandarin
+👑 Pressed from the peel of the unripe fruit of the mandarin tree (distinct from the rare limited-time Red Mandarin oil and from the separate core oil Tangerine)
 
 ## Cautions
 
