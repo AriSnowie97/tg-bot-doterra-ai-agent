@@ -33,12 +33,12 @@
 
 ## Compatibility with Other doTERRA Products
 
-🔹 Pairs well with [Tangerine](tangerine) (a separate popular core oil) and [Wild Orange](wild-orange)
-🔹 Distinct from Red Mandarin, which is a separate rare limited-time oil pressed from ripe mandarin peel (not part of the regular doTERRA collection)
+🔹 Pairs well with [Tangerine](tangerine) and [Wild Orange](wild-orange)
+🔹 Softly complements floral and conifer oils in a diffuser
 
 ## Interesting Facts
 
-👑 Pressed from the peel of the unripe fruit of the mandarin tree (distinct from the rare limited-time Red Mandarin oil and from the separate core oil Tangerine)
+👑 Cold-pressed from the peel of unripe mandarin fruit, giving it a bright, subtly floral aroma (distinct from the sweeter [Tangerine](tangerine))
 
 ## Cautions
 

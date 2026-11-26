@@ -36,7 +36,7 @@
 ## Fun Facts
 
 👑 Key ingredient in the RevitaZen detox blend  
-👑 Tangerine is a standalone core doTERRA essential oil available permanently across all markets — it is **not** Red Mandarin (a separate rare limited-time oil not in the regular collection) and **not** Green Mandarin
+👑 One of doTERRA's most popular core citrus oils — unlike [Green Mandarin](green-mandarin) (cold-pressed from unripe fruit), it has a sweet, sunny, ripe-tangerine aroma
 
 ## Cautions
 
