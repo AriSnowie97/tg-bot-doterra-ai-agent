@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Символ «Нанесення базової олії»
 
-![Симфонія клітин](/images/droplet.jpg)
+![Симфонія клітин](/images/base_oil.jpg)
 
 ## Опис символу
 

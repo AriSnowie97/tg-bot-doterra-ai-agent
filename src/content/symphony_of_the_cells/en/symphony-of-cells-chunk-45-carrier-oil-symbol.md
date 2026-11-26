@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — "Carrier Oil Application" Symbol
 
-![Symphony of the Cells](/images/droplet.jpg)
+![Symphony of the Cells](/images/base_oil.jpg)
 
 ## Symbol Description
 

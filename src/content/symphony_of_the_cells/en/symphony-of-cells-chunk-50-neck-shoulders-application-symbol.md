@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — "Neck & Shoulders Application" Symbol
 
-![Symphony of the Cells](/images/neck.jpg)
+![Symphony of the Cells](/images/neck_and_shoulder.jpg)
 
 ## Symbol Description
 

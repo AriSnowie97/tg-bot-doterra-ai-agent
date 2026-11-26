@@ -1,6 +1,6 @@
 # Symphony of the Cells™ — Символ «Нанесення на шию та плечі» 
 
-![Симфонія клітин](/images/neck.jpg)
+![Симфонія клітин](/images/neck_and_shoulder.jpg)
 
 ## Опис символу
 

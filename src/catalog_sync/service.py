@@ -206,13 +206,27 @@ async def _build_cards_with_llm(
 _ALIAS_SUFFIX_RE = re.compile(
     r"(?:-(?:calming|springtime|protective|soothing|respiratory|grounding|joyful|restful|"
     r"detoxification|rejuvenating|inspiring|invigorating|encouraging|comforting|reassuring|"
-    r"renewing|holiday|seasonal|sunshine|essential-oil|essential|oil|fixed))+|-blend$",
+    r"renewing|holiday|seasonal|sunshine|essential-oil|essential|oil|fixed|air-blend|"
+    r"metabolic-blend|cellular-complex-15|cellular-complex|plus|5ml|10ml|15ml))+|-blend$",
     re.IGNORECASE,
 )
 
+# Регіональні назви / варіанти слагов для існуючих статичних продуктів (AU/NZ/ZA/BR -> US канон)
+_REGIONAL_ALIAS_MAP: dict[str, str] = {
+    "on-guard-oil-beadlet": "on-guard-beadlets",
+    "on-guard-beadlet": "on-guard-beadlets",
+    "clearify": "air-x",
+    "affirm": "align",
+    "ascend": "arise",
+    "coast": "coastal-escape",
+    "deep-blue-touch": "deep-blue",
+    "natures-rx": "natures-rx-collection",
+    "ikise-skin-ritual": "ikise-skin-care-collection",
+}
+
 
 def _canonical_alias(slug: str) -> str:
-    """Нормалізує слaг для виявлення дублікатів (напр. adaptiv-touch == adaptiv-touch-calming-blend)."""
+    """Нормалізує слаг для виявлення дублікатів (напр. adaptiv-touch == adaptiv-touch-calming-blend)."""
     s = slug.strip().lower()
     if s.startswith("doterra-"):
         s = s[len("doterra-"):]
@@ -220,7 +234,7 @@ def _canonical_alias(slug: str) -> str:
     while prev != s:
         prev = s
         s = _ALIAS_SUFFIX_RE.sub("", s).strip("-")
-    return s
+    return _REGIONAL_ALIAS_MAP.get(s, s)
 
 
 def _get_static_product_slugs() -> dict[str, Path]:

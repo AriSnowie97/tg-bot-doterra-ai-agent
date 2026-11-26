@@ -70,7 +70,7 @@ _BAD_IMAGE_SUBSTRINGS = (
     "fallback_image",
     "default-image",
     "new-default-image",
-    "targeted-solutions-sleep",
+    "-za-en-web.",
     "social_media",
     "placeholder",
 )

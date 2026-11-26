@@ -596,12 +596,20 @@ def _collect_articles(lang: str, base_url: str) -> list[dict]:
         short = (ov.get("short_en") or ov.get("short_ua") or "") if lang == "en" else (ov.get("short_ua") or ov.get("short_en") or "")
         tag = (ov.get("category_en") or "Essential Oils") if lang == "en" else (ov.get("category_ua") or "Ефірні олії")
         ov_type = ov.get("change_type") if ov.get("change_type") in ("new", "holiday", "returned") else "new"
+        local_img = IMAGES_DIR / "products" / f"{ov_slug}.jpg"
+        if local_img.exists():
+            ov_image = f"{base_url}/images/products/{ov_slug}.jpg" if base_url else f"/images/products/{ov_slug}.jpg"
+        else:
+            ov_image = ov.get("image_url", "")
+            if "-za-en-web." in ov_image:
+                # Старі регіональні фото ZA CDN віддають 404 — не показуємо биту картку без фото
+                continue
         articles.append({
             "slug": ov_slug,
             "title": title,
             "short": short,
             "tag": tag,
-            "image": ov.get("image_url", ""),
+            "image": ov_image,
             "section": "products",
             "update_type": ov_type,
             "markets": ov.get("markets") or [],

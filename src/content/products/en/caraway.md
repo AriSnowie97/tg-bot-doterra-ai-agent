@@ -1,4 +1,4 @@
-![doTERRA Product](https://www.doterra.com/medias/625x325-5ml-caraway-eu-en-web.jpg?context=bWFzdGVyfGltYWdlc3w0OTIwN3xpbWFnZS9qcGVnfGltYWdlcy9oZGUvaDY3Lzk5NjIyNDM3ODQ3MzQuanBnfGFiZDJiODdhNjQwNjM2YzVkOGI4NmI4ZGUyODIyNjVkYTQyN2VhMDEwYTZjNDlkNmVlNjkyZjRkNWI4YjMwYTA&pool=wave0)
+![doTERRA Product](/images/products/caraway.jpg)
 
 # Caraway
 

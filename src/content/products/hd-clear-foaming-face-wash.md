@@ -1,4 +1,4 @@
-![doTERRA Product](https://www.doterra.com/medias/625x325-49420001-hd-face-ru-en-web.jpg?context=bWFzdGVyfGltYWdlc3wzNzAwN3xpbWFnZS9qcGVnfGltYWdlcy9oZTEvaDBkLzk5MTA3MDIyNDM4NzAuanBnfDg4MDAzZDlhNWYzN2YzMGZiNmQ2OTlhMWJlOGQwNmU3Y2Y4ZjkzMDZhODZmNmI5N2VkMDczYmVkMDczODU2Nzk&pool=wave0)
+![doTERRA Product](/images/products/hd-clear-foaming-face-wash.jpg)
 
 # HD Clear Foaming Face Wash
 
