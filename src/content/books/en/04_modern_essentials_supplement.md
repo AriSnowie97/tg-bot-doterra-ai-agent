@@ -1,3 +1,5 @@
+![doTERRA Reference Guide](/images/instruction.jpg)
+
 # Knowledge Base: Additions from "Modern Essentials" (AromaTools, 8th Edition)
 
 **Category:** Books & Guides

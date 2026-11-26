@@ -50,4 +50,13 @@ Books in the knowledge base:
 ▫️ "Modern Essentials": Siberian / White Fir (Abies alba / Abies sibirica) — a clear respiratory feeling, invigorating aroma
 Note: the official page does not mention internal use; "Modern Essentials" marks it for white fir — per the knowledge-base rules the bot does not recommend it.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Brings grounding stability, crisp evergreen freshness, and emotional support.
+- **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': diluted topical & aromatic use for vitality and breathing; avoid during acute kidney flare-ups.
+
+**Related Reference Guides in Mini App:**
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+
 #essentialoils #singleoils #conifers #doterra

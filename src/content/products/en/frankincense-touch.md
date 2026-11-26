@@ -43,4 +43,15 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Comforts feelings of abandonment or vulnerability; fosters spirituality, groundedness, and inner support.
+- **Safety & Practical Notes:** 'Aromalogy': gentle, well-tolerated oil; always dilute with a carrier oil for sensitive skin or children.
+- **Safety & Practical Notes:** 'Power in Every Drop' (doTERRA): featured for respiratory, skin, and overall cellular wellness support.
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+
 #essentialoils #singleoils #doterra

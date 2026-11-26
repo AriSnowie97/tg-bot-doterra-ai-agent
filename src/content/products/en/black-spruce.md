@@ -43,4 +43,12 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Deeply grounding, helping restore calm emotional equilibrium after demanding days.
+- **Safety & Practical Notes:** 'Aromalogy': avoid during pregnancy and do not use internally with kidney conditions.
+
+**Related Reference Guides in Mini App:**
+- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+
 #essentialoils #singleoils #doterra

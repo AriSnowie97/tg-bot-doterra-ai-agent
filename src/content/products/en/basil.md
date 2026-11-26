@@ -44,4 +44,15 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Restores vitality during fatigue and burnout; supports renewal and mental clarity.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child', 'Azbuka' & 'Aromalogy': avoid during pregnancy, seizure/epilepsy predisposition, and clotting disorders or anticoagulant therapy.
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Essential Azbuka A–Z': Key Safety Rules](05-azbuka-supplement)
+- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+
 #essentialoils #singleoils #doterra

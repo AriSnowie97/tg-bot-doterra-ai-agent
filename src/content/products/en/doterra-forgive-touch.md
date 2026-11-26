@@ -52,4 +52,12 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas. Avoid direct sunlight and UV rays for at least 12 hours after application.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Helps release resentment and anger; fosters generosity, forgiveness, and relief.
+- **Safety & Practical Notes:** 'Emotions & Essential Oils': suited for diffusing or diluted application on pulse points.
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+
 #blends #doterra

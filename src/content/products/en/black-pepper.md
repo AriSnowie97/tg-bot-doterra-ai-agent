@@ -43,4 +43,12 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Encourages emotional honesty and courage to let go of guarded facades.
+- **Safety & Practical Notes:** 'Modern Essentials': use diluted topically or aromatically (noted for aromatic support when letting go of smoking habits).
+
+**Related Reference Guides in Mini App:**
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+
 #essentialoils #singleoils #doterra

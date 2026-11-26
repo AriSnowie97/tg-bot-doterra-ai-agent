@@ -44,4 +44,13 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Calms anger and frustration; restores objectivity, clarity, and composure.
+- **Safety & Practical Notes:** 'Modern Essentials': gentle oil for diffusing and diluted topical use (breathing, head, and digestive comfort).
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+
 #essentialoils #singleoils #doterra

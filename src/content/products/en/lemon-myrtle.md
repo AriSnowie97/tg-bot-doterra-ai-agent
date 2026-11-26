@@ -50,4 +50,13 @@ Positive pole, theme "Energy / Engagement" — "mental clarity" → Lemon Myrtle
 Books in the knowledge base:
 ▫️ "Emotions and Essential Oils": both maps (negative and desired state) include Lemon Myrtle
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Clears mental fog and confusion; restores bright focus and clarity of mind.
+- **Safety & Practical Notes:** 'Aromalogy': dilute for topical use and diffuse moderately due to rich citral aroma.
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+
 #essentialoils #singleoils #limited #doterra

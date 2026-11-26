@@ -41,4 +41,12 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Cultivates gratitude, acceptance, and deep evening relaxation.
+- **Safety & Practical Notes:** 'Modern Essentials': diluted topical and aromatic use for mature skin and restful sleep.
+
+**Related Reference Guides in Mini App:**
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+
 #essentialoils #singleoils #doterra

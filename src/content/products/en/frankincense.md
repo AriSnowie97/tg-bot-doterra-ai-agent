@@ -132,4 +132,15 @@ Source: https://pubmed.ncbi.nlm.nih.gov/28980468/
 
 > ⚠️ The information provided is intended solely for informational purposes and does not constitute medical advice. Consult a physician before use.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Comforts feelings of abandonment or vulnerability; fosters spirituality, groundedness, and inner support.
+- **Safety & Practical Notes:** 'Aromalogy': gentle, well-tolerated oil; always dilute with a carrier oil for sensitive skin or children.
+- **Safety & Practical Notes:** 'Power in Every Drop' (doTERRA): featured for respiratory, skin, and overall cellular wellness support.
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+
 #frankincense #essentialoil #doterra #kingofoils #health #aromatherapy

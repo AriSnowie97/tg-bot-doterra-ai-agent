@@ -80,4 +80,14 @@ Develops:
 👑 More about application:
 Deep Blue is most commonly applied topically rather than aromatically — its true power is revealed during massage or a compress on the targeted area. The combination of cooling (wintergreen, peppermint) and warming (camphor) effects creates a unique sensation that distinguishes Deep Blue from ordinary warming ointments. The product is especially popular among athletes, parents of growing children, and people with an active lifestyle or physical job.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports comfort through physical or emotional pain; fosters relief and resilience.
+- **Safety & Practical Notes:** 'Essential Azbuka': ⚠️ contains Wintergreen — NEVER for internal use; use caution if taking anticoagulants; keep away from children.
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Essential Azbuka A–Z': Key Safety Rules](05-azbuka-supplement)
+
 #muscles #deepblue #joints #video

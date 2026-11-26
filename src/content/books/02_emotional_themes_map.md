@@ -1,3 +1,5 @@
+![doTERRA Reference Guide](/images/emotion_protocol.jpg)
+
 # База знань: емоційні теми → олії
 
 **Категорія:** Книги та довідники

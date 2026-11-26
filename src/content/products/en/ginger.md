@@ -42,4 +42,12 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Encourages empowerment, initiative, and confident action.
+- **Safety & Practical Notes:** 'Aromalogy': avoid taking on an empty stomach (possible GI irritation); use caution with high hypertension.
+
+**Related Reference Guides in Mini App:**
+- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+
 #essentialoils #singleoils #doterra

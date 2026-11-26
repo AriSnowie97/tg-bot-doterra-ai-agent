@@ -53,4 +53,12 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas. Avoid direct sunlight or UV rays for up to 12 hours after application.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Gently comforts grief, loss, and sorrow; offers solace, warmth, and hope.
+- **Safety & Practical Notes:** 'Emotions & Essential Oils': apply diluted over the heart or diffuse 1–2 drops during tender times.
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+
 #blends #doterra

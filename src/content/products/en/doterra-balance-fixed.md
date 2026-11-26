@@ -71,4 +71,13 @@ doTERRA Balance helps restore a sense of stability when life feels unbalanced be
 **Additional Precautions:**
 Perform an allergy test before first use. Do not apply to damaged or irritated skin. When diffusing, ventilate the room and ensure the oil does not get on pets. The provided information is intended solely for educational purposes.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Centers feeling disconnected or ungrounded; restores steady balance and calm.
+- **Safety & Practical Notes:** 'Power in Every Drop' & 'Emotions & Essential Oils': foundational daily blend for grounding (feet application and diffusing).
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+
 #doTERRA #Balance #EssentialOils #Aromatherapy #Grounding #Health

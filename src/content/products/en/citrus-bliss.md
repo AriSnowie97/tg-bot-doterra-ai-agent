@@ -74,4 +74,13 @@ Fosters: energy and positive mood, clarity and concentration, a sense of freshne
 **Additional usage recommendations:**
 Citrus Bliss is unique in that it works equally well for emotional uplifting and practical home cleaning. Diffusing it in a teenager's room or any space with stubborn odors is one of the most popular practical life hacks. Combining it with Lavender and Peppermint for focus is a popular recipe among students and knowledge workers.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Clears creative stagnation and sluggishness; sparks joy and creativity.
+- **Safety & Practical Notes:** 'Modern Essentials': ☀️ citrus blend — avoid direct sunlight/UV for at least 12 hours after topical use.
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+
 #video #citrus #invigoration #citrusbliss #citrusblend

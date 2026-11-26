@@ -53,4 +53,13 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas. Avoid sunlight and UV rays for at least 12 hours after applying product.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Lifts discouragement and lack of motivation; sparks confidence and courage.
+- **Safety & Practical Notes:** 'Emotions & Essential Oils': ideal for desk diffusing or diluted morning application on wrists/neck.
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+
 #blends #doterra

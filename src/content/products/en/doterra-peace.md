@@ -82,4 +82,13 @@ Additional cautions:
 🔹 Pregnant women and individuals with chronic conditions should consult a doctor before use
 > ⚠️ The information provided is intended solely for educational purposes and does not constitute medical advice. Consult a doctor before using essential oils.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Soothes general restlessness and worry; nurtures deep reassurance and peace.
+- **Safety & Practical Notes:** 'Emotions & Essential Oils': use aromatically or diluted on wrists and heart center during anxious moments.
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+
 #doterrapeace #peace #emotionalaromatherapy #video #roller

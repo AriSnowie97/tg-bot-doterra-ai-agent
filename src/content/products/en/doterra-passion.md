@@ -73,4 +73,13 @@ Fosters:
 
 > ⚠️ The information provided is intended solely for educational purposes and does not constitute medical advice. Consult a doctor before using essential oils.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Revives confidence and inspiration when feeling dull or uninspired.
+- **Safety & Practical Notes:** 'Modern Essentials': contains warm spice oils (cinnamon, clove) — dilute with a carrier oil for sensitive skin.
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+
 #video #roller #emotionalaromatherapy #doterrapassion #inspiration

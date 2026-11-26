@@ -52,4 +52,14 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas. Avoid direct sunlight and UV rays for up to 12 hours after application.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Offers comfort, openness, and clear breathing during emotional constriction.
+- **Safety & Practical Notes:** 'Power in Every Drop' & 'Modern Essentials': aromatic and diluted topical use only (NOT for internal use); ☀️ avoid UV for 12 hours.
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+
 #blends #doterra

@@ -78,4 +78,13 @@ The company especially emphasizes Arise's connection to the idea of self-improve
 
 The information provided is for informational purposes only and does not constitute medical advice. Consult a physician before using essential oils.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Lifts heavy burden of responsibility; inspires courage, clarity, and elevation.
+- **Safety & Practical Notes:** 'Modern Essentials': contains grapefruit and lemon — ☀️ avoid direct sunlight/UV for 12 hours on exposed skin.
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+
 #yoga #video #roller #arise #inspiration

@@ -1,3 +1,5 @@
+![doTERRA Reference Guide](/images/base_oil.jpg)
+
 # Knowledge Base: Additions from "Essential Alphabet from A to Z" (2019)
 
 **Category:** Books & Guides

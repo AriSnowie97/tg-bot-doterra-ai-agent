@@ -131,4 +131,14 @@
 ---
 *The information provided is intended solely for educational purposes and does not constitute medical advice. Consult a physician before using essential oils.*
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports feelings of vulnerability; strengthens protective boundaries and resilience.
+- **Safety & Practical Notes:** 'Modern Essentials': contains clove, cinnamon, and wild orange — dilute topically and avoid UV for 12 hours (☀️).
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+
 #onguard #essential_oils #immunity #protective_blend #doterra

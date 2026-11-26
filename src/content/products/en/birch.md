@@ -43,4 +43,15 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Promotes inner resilience, grounding support, and recovery after physical or emotional strain.
+- **Safety & Practical Notes:** 'Essential Azbuka' & 'Aromalogy': ⚠️ never take internally (blood-thinning — avoid with anticoagulants); use caution with epilepsy/seizure predisposition.
+- **Safety & Practical Notes:** 'Modern Essentials': topical (diluted) and aromatic use only for soothing muscle comfort.
+
+**Related Reference Guides in Mini App:**
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+- ['Essential Azbuka A–Z': Key Safety Rules](05-azbuka-supplement)
+- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+
 #essentialoils #singleoils #doterra

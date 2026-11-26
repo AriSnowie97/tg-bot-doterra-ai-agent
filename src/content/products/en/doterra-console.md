@@ -56,4 +56,12 @@
 - More about emotional impact: doTERRA Console is designed for moments when words cannot fully express feelings — loss, separation, unfulfilled hopes. The ritual of applying over the heart area morning and evening is a symbolic way to remind yourself to be patient with your own healing process. The blend does not "remove" sadness instantly, but rather accompanies a person on the path through it toward hope.
 - Additional precautions: Avoid contact with eyes and mucous membranes; do not apply to broken or irritated skin; pregnant women and individuals with chronic conditions should consult a doctor before use. The information provided is intended solely for informational purposes and does not constitute medical advice.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Gently comforts grief, loss, and sorrow; offers solace, warmth, and hope.
+- **Safety & Practical Notes:** 'Emotions & Essential Oils': apply diluted over the heart or diffuse 1–2 drops during tender times.
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+
 #video #roller #emotionalaromatherapy #doterraconsole #support

@@ -50,4 +50,13 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas. Avoid direct sunlight and UV rays for up to 12 hours after applying product.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports emotional clarity when dealing with suppressed frustration alongside clear-looking skin.
+- **Safety & Practical Notes:** 'Power in Every Drop': targeted topical support for clear, balanced skin.
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+
 #blends #doterra

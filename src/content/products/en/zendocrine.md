@@ -47,4 +47,13 @@ Books in the knowledge base:
 ▫️ "Symphony of the Cells": the substitution table entry "Zendocrine (RevitaZen)" lists Geranium / Copaiba / Rosemary as alternatives; the blend also appears in the digestive, immune and integumentary system reference cards
 Note for the bot: if a user asks about Zendocrine, explain that it is the previous formula and that the current option in newer catalogs is RevitaZen™ (see revitazen).
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports releasing limiting habits and stagnation; inspires renewal and vitality.
+- **Safety & Practical Notes:** 'Aromalogy': contains rosemary, juniper berry, and citrus — avoid in pregnancy or acute kidney conditions; ☀️ 12-hour UV precaution.
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+
 #blends #detox #zendocrine #doterra

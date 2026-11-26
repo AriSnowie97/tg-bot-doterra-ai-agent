@@ -71,4 +71,13 @@ Diffuser Blends:
 More about emotional impact:
 doTERRA Cheer is formulated as a response to "gray", gloomy emotional states — not acute sadness, but rather everyday fatigue or a lack of energy. The blend works well as a quick mood "resetter" throughout the day — unlike blends designed for deep emotional work, Cheer acts instantly and lightheartedly. Together with the other five Emotional Aromatherapy blends, it forms a complete system for working with various emotional states throughout the day.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Uplifts pessimism and low mood; restores optimism, cheerfulness, and warmth.
+- **Safety & Practical Notes:** 'Modern Essentials': contains citrus oils — ☀️ avoid direct sunlight/UV for 12 hours after topical use.
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+
 #video #roller #emotionalaromatherapy #doterracheer #joy #emotionalaromatherapy

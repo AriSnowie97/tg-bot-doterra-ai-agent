@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./ArticleView.module.css";
 import { useLang } from "../../../contexts/LangContext";
+import { openExternalLink } from "../../../utils/openLink";
 
 import { get_article } from "../../../api/articles";
 
@@ -18,6 +19,7 @@ const ArticleView = () => {
         const fetchArticle = async () => {
             try {
                 setLoading(true);
+                setError("");
                 const response = await get_article(slug, lang);
                 
                 if (!response.ok) {
@@ -35,6 +37,31 @@ const ArticleView = () => {
 
         fetchArticle();
     }, [slug, lang]);
+
+    const handleContentClick = useCallback((event) => {
+        const anchor = event.target?.closest?.("a");
+        if (!anchor) return;
+        const rawHref = (anchor.getAttribute("href") || "").trim();
+        if (!rawHref) return;
+
+        if (/^https?:\/\//i.test(rawHref) || rawHref.startsWith("mailto:")) {
+            event.preventDefault();
+            openExternalLink(rawHref);
+            return;
+        }
+
+        // Внутрішні посилання між продуктами та книгами (напр. 01_oils_safety_reference, lavender-touch)
+        event.preventDefault();
+        const cleaned = rawHref
+            .replace(/^#?\/?article\//i, "")
+            .replace(/\.md$/i, "")
+            .replace(/^\/+/, "")
+            .replace(/_/g, "-")
+            .trim();
+        if (cleaned) {
+            navigate(`/article/${cleaned}`);
+        }
+    }, [navigate]);
 
     return (
         <div className={styles.wrapper}>
@@ -55,6 +82,7 @@ const ArticleView = () => {
                 <div className={styles.content}>
                     <div 
                         className={styles.markdownContent}
+                        onClick={handleContentClick}
                         dangerouslySetInnerHTML={{ __html: articleData.content }} 
                     />
                 </div>

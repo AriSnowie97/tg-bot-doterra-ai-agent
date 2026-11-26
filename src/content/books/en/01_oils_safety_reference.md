@@ -1,3 +1,5 @@
+![doTERRA Reference Guide](/images/aroma.jpg)
+
 # Knowledge Base: Essential Oils — Properties, Indications, Contraindications
 
 **Category:** Books & Guides

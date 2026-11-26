@@ -1,3 +1,5 @@
+![doTERRA Reference Guide](/images/covering.jpg)
+
 # Knowledge Base: Additions from "Aromalogy" (Svetlana Mirgorodskaya)
 
 **Category:** Books & Guides

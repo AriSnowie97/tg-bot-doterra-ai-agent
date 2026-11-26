@@ -41,4 +41,13 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Eases hesitation and feeling tongue-tied; supports confident, articulate expression.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child': gentler alternative to peppermint for diffusing and family use when properly diluted.
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+
 #essentialoils #singleoils #doterra

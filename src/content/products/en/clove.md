@@ -42,4 +42,15 @@
 
 > ⚠️ Powerful ("hot") oil — be sure to dilute with a carrier oil before applying to the skin, especially for children and sensitive skin. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports healthy personal boundaries and empowerment; strengthens inner courage.
+- **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': ⚠️ 'hot' oil — strict dilution required, diffuse sparingly; avoid during pregnancy, high hypertension, and nervous exhaustion.
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+
 #essentialoils #singleoils #doterra

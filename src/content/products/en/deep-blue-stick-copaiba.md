@@ -59,4 +59,14 @@ Books in the knowledge base:
 ▫️ "Essential ABC": wintergreen and birch (and blends containing them) thin the blood — they are excluded outright for people on anticoagulants; the bot routes such requests to a specialist
 Note: the stick itself is not mentioned in the books (only in `deep-blue.md` as part of the line). The description comes from the US (OTC) label.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports comfort through physical or emotional pain; fosters relief and resilience.
+- **Safety & Practical Notes:** 'Essential Azbuka': ⚠️ contains Wintergreen — NEVER for internal use; use caution if taking anticoagulants; keep away from children.
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Essential Azbuka A–Z': Key Safety Rules](05-azbuka-supplement)
+
 #personalcare #deepblue #copaiba #muscles #doterra

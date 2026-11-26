@@ -1,3 +1,5 @@
+![doTERRA Reference Guide](/images/instruction.jpg)
+
 # База знань: доповнення з «Modern Essentials» (AromaTools, 8-е видання)
 
 **Категорія:** Книги та довідники

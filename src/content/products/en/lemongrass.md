@@ -42,4 +42,14 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Clears apathy and stagnation; inspires renewal and fresh perspective.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child' & 'Modern Essentials': always dilute (possible skin and mucous membrane irritation); valued for muscle tone.
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+
 #essentialoils #singleoils #doterra

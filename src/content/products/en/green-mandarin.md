@@ -43,4 +43,13 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas. Avoid direct sunlight or UV rays for up to 12 hours after applying product.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Eases fatigue and heaviness; brings lighthearted joy and gentle renewal.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child': one of the gentlest citrus oils for family use with proper dilution.
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+
 #essentialoils #singleoils #doterra

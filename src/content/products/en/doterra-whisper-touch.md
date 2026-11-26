@@ -78,4 +78,13 @@ The convenient roll-on bottle format allows you to carry the blend with you to r
 > 🔹 Avoid sunlight or UV rays for at least 12 hours after applying to skin.
 > 🔹 The provided information is intended solely for informational purposes and does not constitute medical advice.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Nurtures tenderness, softness, and warm feminine grace.
+- **Safety & Practical Notes:** 'Modern Essentials': contains bergamot — ☀️ avoid direct UV exposure on applied skin.
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+
 #video #roller #perfume #whispertouch #personalfragrance

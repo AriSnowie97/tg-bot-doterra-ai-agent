@@ -75,4 +75,12 @@ Anchor is designed as the first step of practice — grounding before movement o
 Diffuser blends:
 💦 Before practice: 3 drops Anchor
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Strengthens inner steadiness, calm, and grounded self-trust.
+- **Safety & Practical Notes:** 'Emotions & Essential Oils': ideal for grounding practices, yoga, and calm restoration.
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+
 #yoga #video #roller #anchor #grounding

@@ -73,4 +73,13 @@ Promotes:
 **More About Application:**
 ClaryCalm is formulated as part of a regular self-care ritual — an abdominal massage with a warm heating pad is described by the company specifically as a way to "nurture and soothe" the body. The cooling effect on the back of the neck is especially valued during moments of excess heat. The blend is part of the dōTERRA Women line alongside Phytoestrogen Essential Complex and Bone Nutrient Complex.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Soothes hyper-vigilance and mood swings; nurtures receptivity and feminine harmony.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child': contains Clary Sage — avoid during pregnancy without specialist consultation.
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+
 #womenshealth #clarycalm #cycle #video #roller

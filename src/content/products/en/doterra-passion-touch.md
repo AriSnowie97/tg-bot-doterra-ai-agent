@@ -52,4 +52,13 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas. Avoid direct sunlight and UV rays for up to 12 hours after application.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Revives confidence and inspiration when feeling dull or uninspired.
+- **Safety & Practical Notes:** 'Modern Essentials': contains warm spice oils (cinnamon, clove) — dilute with a carrier oil for sensitive skin.
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+
 #blends #doterra

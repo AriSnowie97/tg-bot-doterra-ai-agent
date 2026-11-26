@@ -49,4 +49,16 @@
 * [Emotional Themes Map: Surrender and Trust](02_emotional_themes_map) — emotional surrender, releasing stubbornness, and trusting life
 * [Modern Essentials: Application Methods and Diffusion](04_modern_essentials_supplement) — athletic and restorative muscle massage techniques
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Helps release rigid need for control; encourages surrender, humility, and inner ease.
+- **Safety & Practical Notes:** 'Essential Azbuka' & 'Aromalogy': ⚠️ NEVER for internal use! Contains methyl salicylate (blood-thinning) — contraindicated with anticoagulants or bleeding disorders; keep child-resistant cap secured.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child': consult Natalia Kotelianska before topical use for personalized dilution guidance.
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Essential Azbuka A–Z': Key Safety Rules](05-azbuka-supplement)
+- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+
 #essentialoils #singleoils #doterra

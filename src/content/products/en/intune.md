@@ -81,4 +81,13 @@ Enhances:
 **More About Application:**
 InTune is unique because it combines stimulating and soothing components simultaneously, helping to achieve "calm concentration" rather than just alertness. The roller bottle format makes the blend convenient to use at school, the office, or the library without needing a diffuser. A clay pendant with the blend applied is a popular way to create a personal "concentration zone" without spraying the fragrance across the whole space.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Helps overcome distraction; promotes sharp focus, clarity, and productivity.
+- **Safety & Practical Notes:** 'Power in Every Drop': roll onto back of neck, temples, or wrists to support focus during study or work.
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+
 #video #roller #concentration #intune #focus

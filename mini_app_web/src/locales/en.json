@@ -42,6 +42,11 @@
             "description": "Essential oils, blends, and care"
         },
 
+        "books": {
+            "name": "Books & Reference Guides",
+            "description": "Safety, Emotions map, Modern Essentials, Azbuka & Aromalogy"
+        },
+
         "symphony_of_the_cells": {
             "name": "A symphony of cells",
             "description": "Essential oil application protocols"

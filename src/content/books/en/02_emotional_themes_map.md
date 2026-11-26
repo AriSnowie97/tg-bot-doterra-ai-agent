@@ -1,3 +1,5 @@
+![doTERRA Reference Guide](/images/emotion_protocol.jpg)
+
 # Knowledge Base: Emotional Themes → Essential Oils
 
 **Category:** Books & Guides

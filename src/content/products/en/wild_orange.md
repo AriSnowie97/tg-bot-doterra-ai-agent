@@ -135,4 +135,14 @@ Wild Orange (Citrus sinensis) is a variety of sweet orange grown without chemica
 ---
 *The information provided is intended solely for informational purposes and does not constitute medical advice. Consult a doctor before using essential oils.*
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Cultivates joy, optimism, and a sense of abundance; helps release tension and invite lightness.
+- **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': ☀️ phototoxic — avoid direct sunlight/UV on applied skin for 12 hours.
+
+**Related Reference Guides in Mini App:**
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+
 #wild_orange #essential_oil #antioxidant #mood #doterra

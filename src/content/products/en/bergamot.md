@@ -43,4 +43,16 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor’s care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas. Avoid direct sunlight and UV rays for up to 12 hours after applying to skin.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports self-acceptance when dealing with self-judgment or low self-esteem; fosters confidence and optimism.
+- **Safety & Practical Notes:** 'Modern Essentials': ☀️☀️ strong phototoxicity — avoid sunlight and UV rays on applied skin for up to 72 hours.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child': valued for mood uplift and skin care with strict UV precautions.
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+
 #essentialoils #singleoils #doterra

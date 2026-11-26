@@ -70,4 +70,13 @@ Promotes:
 👑 Additional Details:
 TerraShield is specially formulated for outdoor activities — hiking, camping, picnics, and gardening. Unlike many synthetic repellents, the formula is safe for the entire family, including children, provided dilution guidelines are followed. The spray format (TerraShield Spray) offers the same formula in a more convenient format for quick application.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports self-sufficiency, confidence, and healthy boundaries.
+- **Safety & Practical Notes:** 'Power in Every Drop': topical and aromatic use only for outdoor comfort.
+
+**Related Reference Guides in Mini App:**
+- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+
 #video #repellent #outdooractivities #terrashield #nature
