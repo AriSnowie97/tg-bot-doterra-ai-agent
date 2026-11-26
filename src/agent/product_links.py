@@ -199,6 +199,14 @@ _CANONICAL_OIL_MAP: dict[str, dict[str, any]] = {
         "name": "Gingerbread Cookie (Імбирне печиво)",
         "stems": [r"імбирн\w*\s+печив", r"имбирн\w*\s+печень", r"gingerbread\s+cookie"],
     },
+    "pasttense-stick-sweet-gum": {
+        "name": "PastTense Stick + Sweet Gum",
+        "stems": [r"pasttense\s+stick", r"sweet\s*gum", r"світ\s*гам"],
+    },
+    "honeysuckle-touch": {
+        "name": "Honeysuckle Touch (Жимолость)",
+        "stems": [r"жимолост", r"honeysuckle"],
+    },
     "wintergreen": {
         "name": "Вінтергрін",
         "stems": [r"вінтергрін", r"грушанк", r"wintergreen"],
@@ -640,6 +648,17 @@ def ensure_product_links_in_markdown(text: str, max_links: int = 4) -> str:
     catalog, search_index = _load_product_catalog()
     modified_text = text
 
+    def _wrap_first_outside_links(src: str, rgx: re.Pattern, target_slug: str, avoid: re.Pattern | None = None) -> tuple[str, bool]:
+        link_spans = [(lm.start(), lm.end()) for lm in re.finditer(r'\[[^\]]+\]\([^)]+\)', src)]
+        for m in rgx.finditer(src):
+            s, e = m.start(), m.end()
+            if any(ls <= s < le or ls < e <= le for ls, le in link_spans):
+                continue
+            if avoid and avoid.search(m.group(0)):
+                continue
+            return f"{src[:s]}[{m.group(0)}]({target_slug}){src[e:]}", True
+        return src, False
+
     for btn_name, slug in detected:
         wrapped = False
 
@@ -649,15 +668,11 @@ def ensure_product_links_in_markdown(text: str, max_links: int = 4) -> str:
             avoid_rgx = re.compile(meta["avoid_context"], re.IGNORECASE) if "avoid_context" in meta else None
 
             for stem in meta.get("stems", []):
-                pattern_str = rf"(?<!\[)\b({stem}[а-яіїєґ]*)\b(?!\])" if any(c in stem for c in "абвгдеєжзиіїйклмнопрстуфхцчшщьюя") else rf"(?<!\[)\b({stem})\b(?!\])"
+                pattern_str = rf"\b({stem}[а-яіїєґ]*)\b" if any(c in stem for c in "абвгдеєжзиіїйклмнопрстуфхцчшщьюя") else rf"\b({stem})\b"
                 try:
                     rgx = re.compile(pattern_str, re.IGNORECASE)
-                    m = rgx.search(modified_text)
-                    if m:
-                        # Перевірка на контекст, що виключає помилкове спрацьовування
-                        if avoid_rgx and avoid_rgx.search(m.group(0)):
-                            continue
-                        modified_text = rgx.sub(rf'[\1]({slug})', modified_text, count=1)
+                    modified_text, ok = _wrap_first_outside_links(modified_text, rgx, slug, avoid_rgx)
+                    if ok:
                         wrapped = True
                         break
                 except Exception:
@@ -671,9 +686,9 @@ def ensure_product_links_in_markdown(text: str, max_links: int = 4) -> str:
         for term in search_terms:
             if not term or len(term) < 3:
                 continue
-            pattern = re.compile(r'(?<!\[)\b(' + re.escape(term) + r')\b(?!\])', re.IGNORECASE)
-            if pattern.search(modified_text):
-                modified_text = pattern.sub(rf'[\1]({slug})', modified_text, count=1)
+            pattern = re.compile(r'\b(' + re.escape(term) + r')\b', re.IGNORECASE)
+            modified_text, ok = _wrap_first_outside_links(modified_text, pattern, slug)
+            if ok:
                 wrapped = True
                 break
 

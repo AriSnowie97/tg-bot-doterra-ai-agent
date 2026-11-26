@@ -186,6 +186,7 @@ STATIC_NEW_2026_SLUGS = {
     "natures-rx-collection",
     "doterra-on-guard-stick-echinacea",
     "deep-blue-stick-copaiba",
+    "pasttense-stick-sweet-gum",
     "volo-diffuser",
     "roam-diffuser",
     "pilot-diffuser",
@@ -196,6 +197,7 @@ STATIC_NEW_2026_SLUGS = {
 STATIC_HOLIDAY_2026_MARKETS: dict[str, list[str]] = {
     "doterra-advent-calendar-2026": ["US"],
     "gingerbread-cookie-spice-blend": ["US", "EU"],
+    "honeysuckle-touch": ["CA", "US"],
     "mini-stick-trio": ["US"],
     "red-lumist-diffuser-holiday-joy-set": ["US"],
     "pink-sand-lip-oil": ["US"],

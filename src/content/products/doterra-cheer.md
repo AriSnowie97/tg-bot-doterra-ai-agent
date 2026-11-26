@@ -17,7 +17,7 @@
 
 ## Склад та ключові інгредієнти
 
-▫️ Дикий апельсин (Citrus sinensis), гвоздика (Eugenia caryophyllata), зірчастий аніс (Illicium verum), лимонний мирт (Backhousia citriodora), мускатний горіх (Myristica fragrans), ваніль, імбир (Zingiber officinale), кориця (Cinnamomum zeylanicum), здравець (Geranium macrorrhizum)
+▫️ Дикий апельсин (Citrus sinensis), гвоздика (Eugenia caryophyllata), зірчастий аніс (Illicium verum), лимонний мирт (Backhousia citriodora), мускатний горіх (Myristica fragrans), абсолют ванілі та бобів тонка (Tonka Bean), імбир (Zingiber officinale), кориця (Cinnamomum zeylanicum), здравець (Geranium macrorrhizum)
 ▫️ Зірчастий аніс майже повністю складається з фенілпропену анетолу — сполуки з потужним енергетичним ефектом
 ▫️ Здравець (Zdravetz) — рідкісна болгарська рослина, назва якої буквально перекладається як "здоров'я"
 ▫️ Хімічний профіль суміші багатий на монотерпени і альдегіди — сполуки, відомі своїми бадьорими і зігріваючими властивостями

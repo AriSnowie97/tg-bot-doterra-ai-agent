@@ -17,7 +17,7 @@
 
 ## Склад та ключові інгредієнти
 
-▫️ М'ята перцева (Mentha piperita), клементин (Citrus clementina), коріандр (Coriandrum sativum), базилік (Ocimum basilicum), юзу (Citrus junos), меліса (Melissa officinalis), розмарин (Rosmarinus officinalis), ваніль
+▫️ М'ята перцева (Mentha piperita), клементин (Citrus clementina), коріандр (Coriandrum sativum), базилік (Ocimum basilicum), юзу (Citrus junos), меліса (Melissa officinalis), розмарин (Rosmarinus officinalis), абсолют ванілі та бобів тонка (Tonka Bean)
 ▫️ Юзу — перше застосування цього рідкісного японського цитруса в продуктах doTERRA, багатого на лімонен
 
 ## Показання
