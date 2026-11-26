@@ -178,3 +178,24 @@ async def test_restored_product_marked_with_returned_change_type(monkeypatch):
     assert upserted[0]["change_type"] == "returned"
     assert upserted[0]["status"] == "active"
     assert upserted[0]["markets"] == ["US", "EU", "UK"]
+
+
+def test_parse_product_page_rejects_wave0_and_uses_working_fallback():
+    from src.catalog_sync.markets import parse_product_page
+
+    html_with_wave0 = """
+    <html><head>
+      <title>Baking Spice | dōTERRA Essential Oils</title>
+      <meta property="og:description" content="Warm baking spice blend.">
+      <meta property="og:image" content="https://www.doterra.com/medias/bakingspice.jpg?context=abc&amp;pool=wave0">
+    </head><body>
+      <img src="https://prd-evo-content.doterra.com/europe/images/products/bakingspice-5ml-large.png" />
+      <p>Official doTERRA Baking Spice blend description text long enough to pass minimum page length check.</p>
+      <p>Warm ginger, cardamom, cassia, clove, and cinnamon bark essential oils for culinary creations and cozy aroma.</p>
+    </body></html>
+    """
+    with patch("src.catalog_sync.markets.fetch_html", return_value=html_with_wave0):
+        meta = parse_product_page("https://www.doterra.com/MX/es_MX/p/baking-spice")
+    assert meta is not None
+    assert "pool=wave0" not in meta["image_url"]
+    assert meta["image_url"] == "https://prd-evo-content.doterra.com/europe/images/products/bakingspice-5ml-large.png"

@@ -71,6 +71,7 @@ _BAD_IMAGE_SUBSTRINGS = (
     "default-image",
     "new-default-image",
     "-za-en-web.",
+    "pool=wave0",
     "social_media",
     "placeholder",
 )
@@ -201,7 +202,11 @@ def parse_product_page(url: str, timeout: int = 12) -> dict | None:
             desc = html_lib.unescape(dm.group(1).strip())
             break
 
-    # Суворий og:image (відсікаємо fallback-банери doTERRA)
+    # Суворий og:image + фолбек по валідним офіційним фото продукту (відсікаємо fallback-банери та битий pool=wave0)
+    def _is_good_image(cand_url: str) -> bool:
+        low = cand_url.lower()
+        return is_official_doterra_url(cand_url) and not any(b in low for b in _BAD_IMAGE_SUBSTRINGS)
+
     image_url = ""
     for pat in (
         r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']',
@@ -210,8 +215,20 @@ def parse_product_page(url: str, timeout: int = 12) -> dict | None:
         im = re.search(pat, page, re.I)
         if im:
             cand = urljoin(url, im.group(1).strip()).replace("&amp;", "&")
+            if _is_good_image(cand):
+                image_url = cand
+                break
+
+    if not image_url:
+        # Шукаємо робоче фото продукту на офіційних CDN doTERRA (без pool=wave0 та банерів)
+        for im in re.finditer(
+            r'(?:src|data-src)=["\']([^"\']+(?:/medias/|prd-evo-content\.doterra\.com)[^"\']+\.(?:jpg|jpeg|png|webp)[^"\']*)["\']',
+            page,
+            re.I,
+        ):
+            cand = urljoin(url, im.group(1).strip()).replace("&amp;", "&")
             low = cand.lower()
-            if is_official_doterra_url(cand) and not any(b in low for b in _BAD_IMAGE_SUBSTRINGS):
+            if _is_good_image(cand) and not any(skip in low for skip in ("logo", "icon", "banner", "flag", "sprite")):
                 image_url = cand
                 break
 

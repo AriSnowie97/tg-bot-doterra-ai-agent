@@ -601,9 +601,9 @@ def _collect_articles(lang: str, base_url: str) -> list[dict]:
             ov_image = f"{base_url}/images/products/{ov_slug}.jpg" if base_url else f"/images/products/{ov_slug}.jpg"
         else:
             ov_image = ov.get("image_url", "")
-            if "-za-en-web." in ov_image:
-                # Старі регіональні фото ZA CDN віддають 404 — не показуємо биту картку без фото
-                continue
+            if "-za-en-web." in ov_image or "pool=wave0" in ov_image:
+                # Старі регіональні CDN-фото (ZA / wave0) віддають 404 — не передаємо битий URL на фронтенд
+                ov_image = ""
         # Чистимо технічні хвости сайту в заголовку та за можливості беремо перекладений H1
         from src.catalog_sync.service import _clean_product_title, _extract_h1_title, _CJK_RE
         raw_title = (ov.get("title_en") or ov.get("title_ua") or ov_slug) if lang == "en" else (ov.get("title_ua") or ov.get("title_en") or ov_slug)
@@ -689,14 +689,28 @@ async def api_get_doc(slug: str, lang: str, request: Request):
             raise HTTPException(status_code=404, detail=f"Документ '{slug}' не знайдено")
 
         md_text = target_path.read_text(encoding="utf-8")
-    # Прибираємо плейсхолдер-зображення, щоб у статті не було битої іконки <img>
-    md_text = re.sub(
-        r"^!\[[^\]]*\]\((?:Тут_буде_офіційне_фото_після_завантаження_через_бот|[^)]*New-Default-Image[^)]*)\)\s*\n*",
-        "",
-        md_text,
-        count=1,
-        flags=re.MULTILINE,
-    )
+    # Прибираємо плейсхолдер або биті wave0/ZA CDN зображення, і підставляємо локальне студійне фото якщо воно є
+    img_slug = slugify(slug)
+    local_product_img = IMAGES_DIR / "products" / f"{img_slug}.jpg"
+    if local_product_img.exists():
+        local_md_img = f"![doTERRA Product](/images/products/{img_slug}.jpg)"
+        if re.match(r"^\s*!\[[^\]]*\]\([^)]*\)", md_text):
+            md_text = re.sub(
+                r"^\s*!\[[^\]]*\]\([^)]*\)",
+                local_md_img,
+                md_text,
+                count=1,
+            )
+        else:
+            md_text = f"{local_md_img}\n\n{md_text}"
+    else:
+        md_text = re.sub(
+            r"^!\[[^\]]*\]\((?:Тут_буде_офіційне_фото_після_завантаження_через_бот|[^)]*(?:New-Default-Image|pool=wave0|-za-en-web\.)[^)]*)\)\s*\n*",
+            "",
+            md_text,
+            count=1,
+            flags=re.MULTILINE,
+        )
     html_content = _render_md(md_text)
     
     # Робимо відносні посилання на картинки абсолютними (щоб працювали в React)
@@ -752,14 +766,28 @@ async def view_doc(slug: str) -> HTMLResponse:
         raise HTTPException(status_code=404, detail=f"Документ '{slug}' не знайдено")
 
     md_text = target_path.read_text(encoding="utf-8")
-    # Прибираємо плейсхолдер-зображення, щоб у статті не було битої іконки <img>
-    md_text = re.sub(
-        r"^!\[[^\]]*\]\((?:Тут_буде_офіційне_фото_після_завантаження_через_бот|[^)]*New-Default-Image[^)]*)\)\s*\n*",
-        "",
-        md_text,
-        count=1,
-        flags=re.MULTILINE,
-    )
+    # Прибираємо плейсхолдер або биті wave0/ZA CDN зображення, і підставляємо локальне студійне фото якщо воно є
+    img_slug = slugify(slug)
+    local_product_img = IMAGES_DIR / "products" / f"{img_slug}.jpg"
+    if local_product_img.exists():
+        local_md_img = f"![doTERRA Product](/images/products/{img_slug}.jpg)"
+        if re.match(r"^\s*!\[[^\]]*\]\([^)]*\)", md_text):
+            md_text = re.sub(
+                r"^\s*!\[[^\]]*\]\([^)]*\)",
+                local_md_img,
+                md_text,
+                count=1,
+            )
+        else:
+            md_text = f"{local_md_img}\n\n{md_text}"
+    else:
+        md_text = re.sub(
+            r"^!\[[^\]]*\]\((?:Тут_буде_офіційне_фото_після_завантаження_через_бот|[^)]*(?:New-Default-Image|pool=wave0|-za-en-web\.)[^)]*)\)\s*\n*",
+            "",
+            md_text,
+            count=1,
+            flags=re.MULTILINE,
+        )
     html_content = _render_md(md_text)
 
     body = (
