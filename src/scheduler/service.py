@@ -30,7 +30,24 @@ from apscheduler.triggers.date import DateTrigger
 # Local
 from ..publisher import publish_channel_post
 from ..catalog_sync import run_catalog_sync, format_sync_report_html, get_catalog_stats
+from ..catalog_sync.service import retranslate_existing_overrides
 from ..safety import redact
+
+
+def _get_report_recipients() -> list[int]:
+    """Повертає ID отримувачів звіту (лише ти і Наталія — CATALOG_REPORT_CHAT_IDS або ADMIN_IDS)."""
+    raw = os.getenv("CATALOG_REPORT_CHAT_IDS") or os.getenv("ADMIN_IDS", "")
+    return [int(x.strip()) for x in raw.split(",") if x.strip().isdigit()]
+
+
+async def _startup_retranslate_overrides() -> None:
+    """Разовий фоновий переклад неперекладених позицій (JP/KR/MX/EN-only) у БД після старту."""
+    try:
+        translated = await retranslate_existing_overrides(limit=20)
+        if translated:
+            print(f"[scheduler] 🌐 Auto-translated {len(translated)} dynamic catalog items to UA+EN.")
+    except Exception as e:
+        print(f"[scheduler] ⚠️ Startup retranslation skipped: {redact(e)}")
 
 
 # ---------------------------------------------------------------------------
@@ -62,32 +79,29 @@ async def _initial_catalog_sync_if_empty(bot: Bot) -> None:
 
 
 async def _scheduled_catalog_sync(bot: Bot) -> None:
-    """Фонова автосинхронізація каталогу doTERRA по всіх ринках + звіт адмінам."""
-    admin_ids = [
-        int(x.strip()) for x in os.getenv("ADMIN_IDS", "").split(",") if x.strip().isdigit()
-    ]
+    """Фонова автосинхронізація каталогу doTERRA по всіх ринках + простий звіт лише для тебе та Наталії."""
+    recipients = _get_report_recipients()
     try:
         report = await run_catalog_sync(write_files=False, save_db=True)
-        has_changes = bool(
+        has_visible_changes = bool(
             report.get("added")
             or report.get("restored")
             or report.get("archived")
-            or report.get("archive_skipped_reason")
         )
-        if has_changes and admin_ids:
+        if has_visible_changes and recipients:
             text = format_sync_report_html(report)
-            for a_id in admin_ids:
+            for chat_id in recipients:
                 try:
-                    await bot.send_message(chat_id=a_id, text=text, parse_mode="HTML")
+                    await bot.send_message(chat_id=chat_id, text=text, parse_mode="HTML")
                 except Exception:
                     pass
     except Exception as e:
         print(f"[scheduler] ❌ Catalog auto-sync error: {redact(e)}")
-        for a_id in admin_ids:
+        for chat_id in recipients:
             try:
                 await bot.send_message(
-                    chat_id=a_id,
-                    text=f"⚠️ <b>Помилка автосинхронізації каталогу doTERRA:</b>\n{redact(e)}",
+                    chat_id=chat_id,
+                    text="⚠️ Не вдалося автоматично перевірити оновлення каталогу doTERRA. Спробуємо ще раз за розкладом.",
                     parse_mode="HTML",
                 )
             except Exception:
@@ -165,6 +179,15 @@ def setup_scheduler(bot: Bot) -> AsyncIOScheduler:
             args=[bot],
             id="global_catalog_sync_bootstrap",
             name="Initial catalog sync bootstrap if never run",
+            misfire_grace_time=300,
+            replace_existing=True,
+        )
+        # Разовий автопереклад неперекладених позицій (JP/KR/MX/EN-only) через 25 секунд після старту
+        scheduler.add_job(
+            func=_startup_retranslate_overrides,
+            trigger=DateTrigger(run_date=datetime.now(tz) + timedelta(seconds=25)),
+            id="catalog_retranslate_startup",
+            name="Auto-translate foreign/EN-only dynamic catalog items to UA+EN",
             misfire_grace_time=300,
             replace_existing=True,
         )

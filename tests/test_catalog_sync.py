@@ -126,7 +126,24 @@ async def test_adds_new_product_and_archives_only_after_3_misses(monkeypatch):
 
     html_report = format_sync_report_html(report)
     assert "Brand New Oil 2026" in html_report
-    assert "gone-three-times" in html_report
+    assert "Gone Three Times" in html_report
+    assert "США" in html_report
+
+
+def test_jp_kr_mx_translation_detection_and_regional_dedup():
+    from src.catalog_sync.service import _canonical_alias, _clean_product_title, _needs_translation
+
+    assert _canonical_alias("black-pepper-oil-jp") == _canonical_alias("black-pepper")
+    assert _canonical_alias("basil-oil-jp") == _canonical_alias("basil")
+    assert _canonical_alias("aromatouch-massage-blend") == _canonical_alias("aromatouch")
+    assert _canonical_alias("brave-roll-on") == _canonical_alias("brave")
+    assert _canonical_alias("zengest") == _canonical_alias("digestzen")
+    assert _canonical_alias("adaptive-calming-blend-capsules") == _canonical_alias("adaptiv-calming-blend-capsules")
+
+    assert _clean_product_title("Baking Spice - dōTERRA Product Information | Aceites esenciales dōTERRA") == "Baking Spice"
+    assert _needs_translation({"title_ua": "ブラックペッパー", "md_ua": "test"}) is True
+    assert _needs_translation({"title_ua": "Stress Bundle", "short_ua": "The Stress Bundle brings together...", "md_ua": "x"}) is True
+    assert _needs_translation({"title_ua": "Дифузор Ведмедик", "title_en": "Bear Diffuser", "short_ua": "Компактний дифузор", "md_ua": "# Дифузор", "md_en": "# Diffuser"}) is False
 
 
 @pytest.mark.anyio

@@ -604,6 +604,12 @@ def _collect_articles(lang: str, base_url: str) -> list[dict]:
             if "-za-en-web." in ov_image:
                 # Старі регіональні фото ZA CDN віддають 404 — не показуємо биту картку без фото
                 continue
+        # Чистимо технічні хвости сайту в заголовку та за можливості беремо перекладений H1
+        from src.catalog_sync.service import _clean_product_title, _extract_h1_title, _CJK_RE
+        raw_title = (ov.get("title_en") or ov.get("title_ua") or ov_slug) if lang == "en" else (ov.get("title_ua") or ov.get("title_en") or ov_slug)
+        md_for_lang = (ov.get("md_en") or "") if lang == "en" else (ov.get("md_ua") or "")
+        h1_title = _extract_h1_title(md_for_lang, raw_title)
+        title = h1_title if (_CJK_RE.search(raw_title) or "|" in raw_title) and not _CJK_RE.search(h1_title) else _clean_product_title(raw_title)
         articles.append({
             "slug": ov_slug,
             "title": title,

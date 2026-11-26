@@ -165,22 +165,28 @@ async def _build_cards_with_llm(
             f"На основі офіційної сторінки продукту doTERRA створи ДВІ структуровані картки "
             f"(спочатку українською, потім англійською), розділені рівно рядком `===EN_CARD===`.\n\n"
             f"ПРАВИЛА:\n"
-            f"1. Пиши ТІЛЬКИ факти з наданого тексту, нічого не вигадуй.\n"
-            f"2. Фокус — регуляція стану та підтримка добробуту, НІКОЛИ не обіцяй лікування хвороб.\n"
-            f"3. Грамотна літературна українська та англійська без помилок.\n"
-            f"4. Обов'язковий формат заголовку UA:\n"
-            f"   # {title}\n"
+            f"1. Вихідна сторінка може бути японською, корейською, іспанською, португальською, німецькою, "
+            f"французькою, польською чи іншою мовою. ОБОВ'ЯЗКОВО повністю переклади І ЗАГОЛОВОК (`# ...`), "
+            f"І ВЕСЬ ТЕКСТ: перша картка — 100% літературною українською (без ієрогліфів, кани, хангилю, "
+            f"іспанських чи англійських речень), друга картка — 100% англійською.\n"
+            f"2. Заголовок `# ...` має бути чистим і лаконічним (БЕЗ дописок на кшталт "
+            f"`| Aceites esenciales dōTERRA`, `- dōTERRA Product Information`, `| 도테라 에센셜 오일`). "
+            f"Брендову назву продукту можна залишити латиницею + українську назву в дужках, якщо доречно.\n"
+            f"3. Пиши ТІЛЬКИ факти з наданого тексту, нічого не вигадуй.\n"
+            f"4. Фокус — регуляція стану та підтримка добробуту, НІКОЛИ не обіцяй лікування хвороб.\n"
+            f"5. Обов'язковий формат заголовку UA:\n"
+            f"   # <Чиста назва продукту українською>\n"
             f"   **Категорія:** {category_ua}\n"
             f"   **Тип:** ... (ринки: {markets_str})\n"
             f"   ---\n"
             f"   ## Короткий опис / ## Склад та ключові інгредієнти / ## Спосіб застосування / ## Застереження\n"
-            f"5. Обов'язковий формат заголовку EN:\n"
-            f"   # {title}\n"
+            f"6. Обов'язковий формат заголовку EN:\n"
+            f"   # <Clean product title in English>\n"
             f"   **Category:** {category_en}\n"
             f"   **Type:** ... (markets: {markets_str})\n"
             f"   ---\n"
             f"   ## Short Description / ## Ingredients & Features / ## Directions for Use / ## Precautions\n"
-            f"6. Не додавай теги зображень `![...]` — вони підставляються автоматично.\n\n"
+            f"7. Не додавай теги зображень `![...]` — вони підставляються автоматично.\n\n"
             f"ОФІЦІЙНІ ДАНІ ({source_url}):\n"
             f"Title: {title}\n"
             f"Description: {desc}\n"
@@ -207,11 +213,12 @@ _ALIAS_SUFFIX_RE = re.compile(
     r"(?:-(?:calming|springtime|protective|soothing|respiratory|grounding|joyful|restful|"
     r"detoxification|rejuvenating|inspiring|invigorating|encouraging|comforting|reassuring|"
     r"renewing|holiday|seasonal|sunshine|essential-oil|essential|oil|fixed|air-blend|"
-    r"metabolic-blend|cellular-complex-15|cellular-complex|plus|5ml|10ml|15ml))+|-blend$",
+    r"metabolic-blend|massage-blend|outback-blend|cellular-complex-15|cellular-complex|"
+    r"roll-on|plus|5ml|10ml|15ml|jp|kr|eu|uk|au|nz|za|br|mx|ca|us|sg|il))+|-blend$",
     re.IGNORECASE,
 )
 
-# Регіональні назви / варіанти слагов для існуючих статичних продуктів (AU/NZ/ZA/BR -> US канон)
+# Регіональні назви / варіанти слагов для існуючих статичних продуктів (AU/NZ/ZA/BR/JP/KR -> US канон)
 _REGIONAL_ALIAS_MAP: dict[str, str] = {
     "on-guard-oil-beadlet": "on-guard-beadlets",
     "on-guard-beadlet": "on-guard-beadlets",
@@ -222,7 +229,55 @@ _REGIONAL_ALIAS_MAP: dict[str, str] = {
     "deep-blue-touch": "deep-blue",
     "natures-rx": "natures-rx-collection",
     "ikise-skin-ritual": "ikise-skin-care-collection",
+    "zengest": "digestzen",
+    "xeo-mega": "eo-mega",
 }
+
+_CJK_RE = re.compile(r"[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]")
+_CYRILLIC_RE = re.compile(r"[А-Яа-яІіЇїЄєҐґ]")
+_FOREIGN_BOILERPLATE_RE = re.compile(
+    r"(?:Aceites\s+esenciales|Product\s+Information|도테라|Mezcla\s+de|Difusor\s+Osito|Óleo)",
+    re.IGNORECASE,
+)
+_TITLE_NOISE_RE = re.compile(
+    r"\s*(?:\|\s*(?:Aceites\s+esenciales\s+d[oō]TERRA|도테라\s*에센셜\s*오일|d[oō]TERRA\s+Essential\s+Oils)"
+    r"|-\s*d[oō]TERRA\s+Product\s+Information).*$",
+    re.IGNORECASE,
+)
+
+
+def _clean_product_title(title: str) -> str:
+    return _TITLE_NOISE_RE.sub("", (title or "").strip()).strip(" |-")
+
+
+def _extract_h1_title(md_text: str, fallback: str = "") -> str:
+    for line in (md_text or "").splitlines():
+        s = line.strip()
+        if s.startswith("# "):
+            cleaned = _clean_product_title(s[2:])
+            if cleaned:
+                return cleaned
+    return _clean_product_title(fallback)
+
+
+def _needs_translation(ov: dict) -> bool:
+    """Перевіряє, чи містить динамічна картка неперекладений японський/корейський/іспанський або лише англійський текст."""
+    t_ua = ov.get("title_ua") or ""
+    t_en = ov.get("title_en") or ""
+    s_ua = ov.get("short_ua") or ""
+    md_ua = ov.get("md_ua") or ""
+    md_en = ov.get("md_en") or ""
+    if not (md_ua or md_en):
+        return False
+    combined_titles = f"{t_ua} {t_en}"
+    if _CJK_RE.search(combined_titles) or _CJK_RE.search(s_ua) or _CJK_RE.search(md_ua[:600]) or _CJK_RE.search(md_en[:600]):
+        return True
+    if _FOREIGN_BOILERPLATE_RE.search(combined_titles):
+        return True
+    # Якщо українська картка взагалі не містить кирилиці в короткому описі (напр., залишився лише англійський опис)
+    if s_ua and not _CYRILLIC_RE.search(s_ua):
+        return True
+    return False
 
 
 def _canonical_alias(slug: str) -> str:
@@ -230,6 +285,8 @@ def _canonical_alias(slug: str) -> str:
     s = slug.strip().lower()
     if s.startswith("doterra-"):
         s = s[len("doterra-"):]
+    if s.startswith("adaptive-"):
+        s = "adaptiv-" + s[len("adaptive-"):]
     prev = None
     while prev != s:
         prev = s
@@ -399,11 +456,13 @@ async def run_catalog_sync(
 
         cat_ua, cat_en = infer_category(slug, meta["title"], primary_url)
         md_ua, md_en = await _build_cards_with_llm(slug, meta, cat_ua, cat_en, info["markets"])
+        title_ua = _extract_h1_title(md_ua, meta["title"])
+        title_en = _extract_h1_title(md_en, meta["title"])
 
         item = {
             "slug": slug,
-            "title_ua": meta["title"],
-            "title_en": meta["title"],
+            "title_ua": title_ua,
+            "title_en": title_en,
             "category_ua": cat_ua,
             "category_en": cat_en,
             "short_ua": _extract_short(md_ua),
@@ -428,11 +487,17 @@ async def run_catalog_sync(
 
         report["added"].append({
             "slug": slug,
-            "title": meta["title"],
+            "title": title_ua,
             "category": cat_ua,
             "markets": info["markets"],
             "has_image": bool(meta.get("image_url")),
         })
+
+    # 3.5. Доперекладаємо наявні динамічні картки з іноземних ринків (JP/KR/MX/BR/EN-only)
+    if not dry_run and save_db:
+        report["translated"] = await retranslate_existing_overrides(limit=15)
+    else:
+        report["translated"] = []
 
     # 4. Безпечна автоархівація товарів, які зникли з УСІХ здорових ринків
     # Circuit Breaker 1: недостатньо здорових ринків -> не чіпаємо існуючий каталог
@@ -492,46 +557,147 @@ async def run_catalog_sync(
     return report
 
 
+_MARKET_LABELS_UA: dict[str, str] = {
+    "US": "США",
+    "CA": "Канада",
+    "EU": "Європа",
+    "UK": "Велика Британія",
+    "DE": "Німеччина",
+    "FR": "Франція",
+    "IT": "Італія",
+    "ES": "Іспанія",
+    "PL": "Польща",
+    "AU": "Австралія",
+    "NZ": "Нова Зеландія",
+    "ZA": "ПАР",
+    "IL": "Ізраїль",
+    "SG": "Сінгапур",
+    "JP": "Японія",
+    "KR": "Корея",
+    "BR": "Бразилія",
+    "MX": "Мексика",
+}
+
+
+async def retranslate_existing_overrides(limit: int = 15) -> list[str]:
+    """Автоматично перекладає українською та англійською існуючі динамічні позиції з JP/KR/MX/BR/EN-only."""
+    from .store import get_catalog_overrides
+
+    has_gemini_key = bool(
+        os.getenv("GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY_1") or os.getenv("GOOGLE_API_KEY")
+    )
+    if not has_gemini_key:
+        return []
+
+    active_ov, _ = get_catalog_overrides(force_refresh=True)
+    static_aliases = {_canonical_alias(s) for s in _get_static_product_slugs().keys()}
+    translated_slugs: list[str] = []
+
+    for ov in active_ov:
+        if len(translated_slugs) >= limit:
+            break
+        ov_slug = ov["slug"]
+        if _canonical_alias(ov_slug) in static_aliases:
+            continue
+        if not _needs_translation(ov):
+            continue
+
+        raw_title = ov.get("title_en") or ov.get("title_ua") or ov_slug
+        raw_desc = ov.get("short_en") or ov.get("short_ua") or ""
+        raw_excerpt = (ov.get("md_en") or ov.get("md_ua") or "")[:2400]
+        markets = ov.get("markets") or []
+        cat_ua = ov.get("category_ua") or "Ефірні олії"
+        cat_en = ov.get("category_en") or "Essential Oils"
+
+        meta = {
+            "title": raw_title,
+            "description": raw_desc,
+            "image_url": ov.get("image_url", ""),
+            "source_url": ov.get("source_url", ""),
+            "excerpt": raw_excerpt,
+        }
+        md_ua, md_en = await _build_cards_with_llm(ov_slug, meta, cat_ua, cat_en, markets)
+        new_title_ua = _extract_h1_title(md_ua, raw_title)
+        new_title_en = _extract_h1_title(md_en, raw_title)
+        new_short_ua = _extract_short(md_ua)
+        new_short_en = _extract_short(md_en)
+
+        # Оновлюємо в БД, тільки якщо переклад справді вдався (зникли CJK / з'явилась кирилиця)
+        if _CYRILLIC_RE.search(new_short_ua or md_ua) and not _CJK_RE.search(new_title_ua):
+            upsert_catalog_item({
+                "slug": ov_slug,
+                "status": "active",
+                "title_ua": new_title_ua,
+                "title_en": new_title_en,
+                "category_ua": cat_ua,
+                "category_en": cat_en,
+                "short_ua": new_short_ua,
+                "short_en": new_short_en,
+                "image_url": ov.get("image_url", ""),
+                "md_ua": md_ua,
+                "md_en": md_en,
+                "markets": markets,
+                "source_url": ov.get("source_url", ""),
+                "change_type": ov.get("change_type") or "new",
+            })
+            await asyncio.to_thread(_vectorize_markdown_to_rag, ov_slug, md_ua)
+            translated_slugs.append(ov_slug)
+            print(f"[catalog_sync] 🌐 Перекладено UA+EN: {ov_slug} -> {new_title_ua} / {new_title_en}")
+
+    return translated_slugs
+
+
+def _format_markets_ua(markets: list[str]) -> str:
+    labels = [_MARKET_LABELS_UA.get(m, m) for m in markets[:4]]
+    suffix = f" +{len(markets) - 4}" if len(markets) > 4 else ""
+    return ", ".join(labels) + suffix if labels else "світові ринки"
+
+
 def format_sync_report_html(report: dict) -> str:
-    """Форматує звіт синхронізації каталогу у гарний HTML для адміна в Telegram."""
-    healthy = report.get("markets_healthy", 0)
-    total_m = report.get("markets_checked", 0)
-    codes = ", ".join(report.get("healthy_market_codes", [])) or "немає"
+    """Форматує простий і зрозумілий звіт про оновлення асортименту (лише для тебе і Наталії)."""
     added = report.get("added", [])
     restored = report.get("restored", [])
     archived = report.get("archived", [])
-    skip_reason = report.get("archive_skipped_reason", "")
+    translated = report.get("translated", [])
 
-    lines = [
-        "🌍 <b>Звіт автосинхронізації каталогу doTERRA</b>",
-        "",
-        f"📡 <b>Ринків перевірено:</b> {healthy}/{total_m} ({html.escape(codes)})",
-        f"📦 <b>Знайдено товарів на сайтах:</b> {report.get('total_discovered', 0)}",
-        f"🆕 <b>Додано новинок:</b> {len(added)}",
-        f"♻️ <b>Відновлено:</b> {len(restored)}",
-        f"🗄 <b>Архівовано (зникли з усіх ринків):</b> {len(archived)}",
-    ]
+    lines = ["🌿 <b>Оновлення асортименту doTERRA</b>"]
+
+    if not added and not restored and not archived and not translated:
+        lines.append("\nУсе актуально — нових змін на ринках doTERRA поки немає ✨")
+        return "\n".join(lines)
 
     if added:
-        lines.append("\n<b>Новинки:</b>")
+        lines.append(f"\n✨ <b>З'явилися новинки ({len(added)}):</b>")
         for item in added[:10]:
-            m_str = ", ".join(item.get("markets", [])[:4])
-            img_icon = "🖼" if item.get("has_image") else "🌿"
+            m_str = _format_markets_ua(item.get("markets", []))
             lines.append(
-                f"  • {img_icon} <b>{html.escape(item['title'])}</b> "
-                f"(<i>{html.escape(item['category'])}</i> · {html.escape(m_str)})"
+                f"  • <b>{html.escape(item['title'])}</b> ({html.escape(m_str)})"
             )
         if len(added) > 10:
             lines.append(f"  … та ще {len(added) - 10}")
 
+    if restored:
+        lines.append(f"\n♻️ <b>Повернулися у продаж ({len(restored)}):</b>")
+        for r in restored[:10]:
+            slug = r["slug"] if isinstance(r, dict) else str(r)
+            m_str = _format_markets_ua(r.get("markets", [])) if isinstance(r, dict) else ""
+            nice_name = slug.replace("-", " ").title()
+            lines.append(
+                f"  • <b>{html.escape(nice_name)}</b>" + (f" ({html.escape(m_str)})" if m_str else "")
+            )
+        if len(restored) > 10:
+            lines.append(f"  … та ще {len(restored) - 10}")
+
     if archived:
-        lines.append("\n<b>Архівовано:</b>")
+        lines.append(f"\n📦 <b>Тимчасово зникли з усіх ринків ({len(archived)}):</b>")
         for slug in archived[:10]:
-            lines.append(f"  • <code>{html.escape(slug)}</code>")
+            nice_name = str(slug).replace("-", " ").title()
+            lines.append(f"  • {html.escape(nice_name)}")
         if len(archived) > 10:
             lines.append(f"  … та ще {len(archived) - 10}")
 
-    if skip_reason:
-        lines.append(f"\n🛡 <i>{html.escape(skip_reason)}</i>")
+    if translated:
+        lines.append(f"\n🌐 <b>Автоматично перекладено на укр. та англ.:</b> {len(translated)} поз.")
 
+    lines.append("\nУсі оновлення вже автоматично додані в Mini App та базу знань Ароми 💛")
     return "\n".join(lines)
