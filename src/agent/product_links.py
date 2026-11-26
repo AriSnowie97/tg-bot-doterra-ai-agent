@@ -195,6 +195,10 @@ _CANONICAL_OIL_MAP: dict[str, dict[str, any]] = {
         "name": "Зелений мандарин",
         "stems": [r"зелен\w*\s+мандарин", r"green\s+mandarin"],
     },
+    "gingerbread-cookie-spice-blend": {
+        "name": "Gingerbread Cookie (Імбирне печиво)",
+        "stems": [r"імбирн\w*\s+печив", r"имбирн\w*\s+печень", r"gingerbread\s+cookie"],
+    },
     "wintergreen": {
         "name": "Вінтергрін",
         "stems": [r"вінтергрін", r"грушанк", r"wintergreen"],

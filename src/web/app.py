@@ -195,6 +195,7 @@ STATIC_NEW_2026_SLUGS = {
 # Новорічна та зимова колекція doTERRA Holiday 2026 («A Season of Wōnder», US & EU)
 STATIC_HOLIDAY_2026_MARKETS: dict[str, list[str]] = {
     "doterra-advent-calendar-2026": ["US"],
+    "gingerbread-cookie-spice-blend": ["US", "EU"],
     "mini-stick-trio": ["US"],
     "red-lumist-diffuser-holiday-joy-set": ["US"],
     "pink-sand-lip-oil": ["US"],
