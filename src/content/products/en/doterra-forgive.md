@@ -78,7 +78,7 @@ The fresh, woody character of the blend makes it suitable both for meditation an
 - **Emotional Profile ('Emotions & Essential Oils'):** Helps release resentment and anger; fosters generosity, forgiveness, and relief.
 - **Safety & Practical Notes:** 'Emotions & Essential Oils': suited for diffusing or diluted application on pulse points.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
 
 #video #roller #emotionalaromatherapy #doterraforgive #forgiveness

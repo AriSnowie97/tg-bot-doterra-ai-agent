@@ -50,4 +50,11 @@
 
 - Belongs to the doTERRA Kids Collection line
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Helps balance big emotions and foster calm groundedness.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child' & 'Aromalogy': gentle pre-diluted grounding roll-on for feet or spine during emotional moments.
+
+*Sources: 'Aromatherapy for Mother & Child', 'Aromalogy' (S. Mirgorodska).*
+
 #video #roller #kids #kidscollection #steady

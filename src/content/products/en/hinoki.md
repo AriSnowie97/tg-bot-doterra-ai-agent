@@ -54,8 +54,8 @@ Books in the knowledge base:
 - **Emotional Profile ('Emotions & Essential Oils'):** Slows down rush and overwhelm; creates quiet stillness and centered calm.
 - **Safety & Practical Notes:** 'Aromalogy': gentle woody oil ideal for diffusing and tranquil evening rituals.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #limited #doterra

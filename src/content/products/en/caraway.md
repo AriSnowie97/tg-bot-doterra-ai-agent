@@ -46,4 +46,11 @@ Books in the knowledge base:
 Caution: do not confuse "caraway" with "cumin" (Cuminum cyminum) — it is a different oil (separate KB file).
 Note: there is no official data on dosage or application method — do not add any without a source.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports calm composure, emotional balance, and digestive comfort.
+- **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': dilute with a carrier oil; follow the 21-day cycle rule and 3-day sensitivity test.
+
+*Sources: 'Modern Essentials', 'Aromalogy' (S. Mirgorodska).*
+
 #essentialoils #singleoils #doterra

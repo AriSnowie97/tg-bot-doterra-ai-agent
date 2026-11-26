@@ -44,4 +44,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Creates a warm, loving, and welcoming family atmosphere.
+- **Safety & Practical Notes:** 'Modern Essentials': contains spice and citrus oils — dilute for skin and observe 12-hour UV safety (☀️).
+
+*Sources: 'Modern Essentials', 'Aromalogy'.*
+
 #seasonalcollection #seasonal #doterra

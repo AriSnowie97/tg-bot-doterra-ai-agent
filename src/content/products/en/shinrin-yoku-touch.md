@@ -53,4 +53,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas. Avoid direct sunlight or UV rays for up to 12 hours after applying product.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Captures the restorative calm of forest bathing to ease mental fatigue.
+- **Safety & Practical Notes:** 'Modern Essentials': pre-diluted roll-on; observe 12-hour UV safety (☀️) on exposed skin due to citrus notes.
+
+*Sources: 'Modern Essentials', 'Aromalogy'.*
+
 #blends #doterra

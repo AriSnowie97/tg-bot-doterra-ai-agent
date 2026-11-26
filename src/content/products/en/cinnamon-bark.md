@@ -46,10 +46,10 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Eases jealousy and control patterns; supports warmth, harmony, and healthy intimacy.
 - **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': ⚠️ 'hot' oil — always dilute heavily, never apply to face; use sparingly in diffuser (mucous membrane irritant); avoid in pregnancy, high hypertension, and nervous exhaustion.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

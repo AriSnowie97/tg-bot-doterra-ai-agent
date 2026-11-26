@@ -43,4 +43,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports deep calm, emotional grounding, and inner steadiness.
+- **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': gentle, versatile everyday oil; follow age-appropriate dilution and the 21-day cycle rule.
+
+*Sources: 'Modern Essentials', 'Aromalogy' (S. Mirgorodska).*
+
 #essentialoils #singleoils #doterra

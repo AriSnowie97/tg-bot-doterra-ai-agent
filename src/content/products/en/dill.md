@@ -46,4 +46,11 @@ Books in the knowledge base:
 ▫️ The urinary system reference card lists Dill among its oils
 Note: because it is limited edition, check current availability before saying where to buy it.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Encourages openness to learning and lighthearted clarity.
+- **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': use diluted topically; in cooking, start with a toothpick dip.
+
+*Sources: 'Modern Essentials', 'Aromalogy'.*
+
 #essentialoils #singleoils #limited #doterra

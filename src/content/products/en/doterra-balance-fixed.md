@@ -76,8 +76,8 @@ Perform an allergy test before first use. Do not apply to damaged or irritated s
 - **Emotional Profile ('Emotions & Essential Oils'):** Centers feeling disconnected or ungrounded; restores steady balance and calm.
 - **Safety & Practical Notes:** 'Power in Every Drop' & 'Emotions & Essential Oils': foundational daily blend for grounding (feet application and diffusing).
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
 
 #doTERRA #Balance #EssentialOils #Aromatherapy #Grounding #Health

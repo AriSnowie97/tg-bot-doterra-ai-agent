@@ -78,8 +78,8 @@ Fosters:
 - **Emotional Profile ('Emotions & Essential Oils'):** Revives confidence and inspiration when feeling dull or uninspired.
 - **Safety & Practical Notes:** 'Modern Essentials': contains warm spice oils (cinnamon, clove) — dilute with a carrier oil for sensitive skin.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
 
 #video #roller #emotionalaromatherapy #doterrapassion #inspiration

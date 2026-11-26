@@ -45,4 +45,11 @@ Books in the knowledge base:
 ▫️ "Aromalogiya": phototoxicity — Wild Orange, Grapefruit, Litsea, Lime, Lemon, Mandarin, Petitgrain, Rosemary, Thyme
 Note: official data is sparse (no bottle size, Latin name or usage scheme) — do not extend this card without a source.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports clear intuition, creative inspiration, and uplifting energy.
+- **Safety & Practical Notes:** 'Aromalogy': ☀️ observe UV precautions on exposed skin (at least 12 hours before sunlight); dilute with a carrier oil.
+
+*Sources: 'Emotions & Essential Oils', 'Aromalogy' (S. Mirgorodska).*
+
 #essentialoils #singleoils #doterra

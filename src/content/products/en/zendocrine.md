@@ -52,8 +52,8 @@ Note for the bot: if a user asks about Zendocrine, explain that it is the previo
 - **Emotional Profile ('Emotions & Essential Oils'):** Supports releasing limiting habits and stagnation; inspires renewal and vitality.
 - **Safety & Practical Notes:** 'Aromalogy': contains rosemary, juniper berry, and citrus — avoid in pregnancy or acute kidney conditions; ☀️ 12-hour UV precaution.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #blends #detox #zendocrine #doterra

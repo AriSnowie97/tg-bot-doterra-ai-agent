@@ -50,10 +50,10 @@
 - **Safety & Practical Notes:** 'Aromatherapy for Mother & Child': one of the gentlest oils (1% dilution for pregnancy/sensitive skin; age-appropriate mild dilution for children).
 - **Safety & Practical Notes:** 'Aromalogy' (S. Mirgorodska): avoid combining with iron/iodine supplements in anemia; follow the 21-day cycle rule and 3-day sensitivity test.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

@@ -46,7 +46,7 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Nurtures connection, warmth, and emotional trust.
 - **Safety & Practical Notes:** 'Aromatherapy for Mother & Child': ⚠️ avoid during pregnancy; soothing for muscles and restful evenings.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
 
 #essentialoils #singleoils #doterra

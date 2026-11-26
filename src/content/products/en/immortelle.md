@@ -57,4 +57,11 @@ Fosters: hope and spiritual transformation; trust and inner stillness; a sense o
 
 👑 More about application: Immortelle is considered an oil of spiritual insight. The company recommends using the blend specifically in the morning and evening as part of a consistent skincare routine. Due to the high concentration of rare ingredients, it is one of the most expensive oils in the doTERRA portfolio.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Nurtures inner harmony, self-compassion, and serene radiance.
+- **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': concentrated precious-oil blend — layer over a carrier oil or moisturizer for sensitive skin; consult a specialist during pregnancy (contains myrrh & rose).
+
+*Sources: 'Aromatherapy for Mother & Child', 'Modern Essentials', 'Aromalogy'.*
+
 #video #roller #antiagingcare #immortelle #skinglow

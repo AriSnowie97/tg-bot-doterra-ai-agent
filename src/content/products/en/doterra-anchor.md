@@ -80,7 +80,7 @@ Diffuser blends:
 - **Emotional Profile ('Emotions & Essential Oils'):** Strengthens inner steadiness, calm, and grounded self-trust.
 - **Safety & Practical Notes:** 'Emotions & Essential Oils': ideal for grounding practices, yoga, and calm restoration.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
 
 #yoga #video #roller #anchor #grounding

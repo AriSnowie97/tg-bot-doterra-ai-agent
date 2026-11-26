@@ -44,4 +44,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Fosters warmth, openness, compassion, and meaningful connection.
+- **Safety & Practical Notes:** 'Modern Essentials': gentle pre-diluted roll-on; contains citrus — ☀️ avoid direct sunlight for 12 hours.
+
+*Sources: 'Modern Essentials', 'Emotions & Essential Oils'.*
+
 #seasonalcollection #seasonal #doterra

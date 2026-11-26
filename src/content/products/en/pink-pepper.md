@@ -49,8 +49,8 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Eases self-comparison; encourages authenticity and appreciation of your own worth.
 - **Safety & Practical Notes:** 'Aromalogy': dilute for sensitive skin and start with a 3-day sensitivity test.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

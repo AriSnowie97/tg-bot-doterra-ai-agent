@@ -43,4 +43,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports emotional renewal, healthy boundaries, and radiant self-care.
+- **Safety & Practical Notes:** 'Aromalogy': rich botanical blend (natural blue tint may stain fabrics); observe the 21-day cycle rule.
+
+*Sources: 'Aromalogy' (S. Mirgorodska), 'Modern Essentials'.*
+
 #essentialoils #singleoils #doterra

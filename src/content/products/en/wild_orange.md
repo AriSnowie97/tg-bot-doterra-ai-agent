@@ -68,10 +68,10 @@
 *   **Wild Orange Touch (roll-on)** — roll-on for convenient topical application
 
 ### Book Reference Articles
-* [Essential Oils Safety Reference: Pregnancy, Children, Contraindications](01_oils_safety_reference) — phototoxicity precautions, safe pregnancy citrus use
-* [Emotional Themes Map: Joy, Abundance, and Emotional Uplift](02_emotional_themes_map) — abundance mindset, playful creativity, and uplifting the spirit
-* [Modern Essentials: Application Methods and Diffusion](04_modern_essentials_supplement) — aromatic diffusion for energizing atmospheres
-* [Aromalogy: Dosage Rules and 3-Day Patch Test](06_aromalogiya_supplement) — 12-hour photosensitivity window, dilution, and compresses
+* Essential Oils Safety Reference: Pregnancy, Children, Contraindications — phototoxicity precautions, safe pregnancy citrus use
+* Emotional Themes Map: Joy, Abundance, and Emotional Uplift — abundance mindset, playful creativity, and uplifting the spirit
+* Modern Essentials: Application Methods and Diffusion — aromatic diffusion for energizing atmospheres
+* Aromalogy: Dosage Rules and 3-Day Patch Test — 12-hour photosensitivity window, dilution, and compresses
 
 ### Origin
 Wild Orange (Citrus sinensis) is a variety of sweet orange grown without chemical fertilizers or pesticides. doTERRA sources the oil primarily from Brazil and the Dominican Republic through cold pressing the fruit's outer peel. The name "wild" reflects the tradition of harvesting fruit from trees growing in natural conditions with minimal human intervention.
@@ -140,9 +140,9 @@ Wild Orange (Citrus sinensis) is a variety of sweet orange grown without chemica
 - **Emotional Profile ('Emotions & Essential Oils'):** Cultivates joy, optimism, and a sense of abundance; helps release tension and invite lightness.
 - **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': ☀️ phototoxic — avoid direct sunlight/UV on applied skin for 12 hours.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #wild_orange #essential_oil #antioxidant #mood #doterra

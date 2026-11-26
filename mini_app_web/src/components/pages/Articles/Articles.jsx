@@ -16,7 +16,6 @@ const Articles = () => {
     const { t, lang } = useLang();
     const SECTION_DATA = {
         "products": { icon: ArticlesSvg },
-        "books": { icon: ContactsSvg },
         "symphony_of_the_cells": { icon: SunSvg },
         "kits": { icon: GlobeSvg },
         "docs": { icon: ContactsSvg }

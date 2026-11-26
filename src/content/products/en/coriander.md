@@ -42,4 +42,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Encourages staying true to yourself with lightness and creative freedom.
+- **Safety & Practical Notes:** 'Aromalogy': gentle oil for diffusing and diluted topical use (digestive and skin comfort).
+
+*Sources: 'Emotions & Essential Oils', 'Aromalogy'.*
+
 #essentialoils #singleoils #doterra

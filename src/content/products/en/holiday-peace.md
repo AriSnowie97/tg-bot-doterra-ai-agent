@@ -43,4 +43,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Brings grounding calm and quiet peace amid holiday bustle.
+- **Safety & Practical Notes:** 'Modern Essentials': contains fir oils and grapefruit — ☀️ avoid direct sunlight for 12 hours after topical use.
+
+*Sources: 'Modern Essentials', 'Aromalogy'.*
+
 #seasonalcollection #seasonal #doterra

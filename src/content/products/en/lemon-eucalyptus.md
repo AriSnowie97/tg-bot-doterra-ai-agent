@@ -42,4 +42,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Refreshes your space, clears heaviness, and brings crisp renewing energy.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child' & 'Aromalogy': aromatic and diluted topical use (high dilution for children; keep away from young children's faces).
+
+*Sources: 'Aromatherapy for Mother & Child', 'Aromalogy'.*
+
 #essentialoils #singleoils #doterra

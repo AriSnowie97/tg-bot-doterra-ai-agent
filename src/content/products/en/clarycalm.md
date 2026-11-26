@@ -78,8 +78,8 @@ ClaryCalm is formulated as part of a regular self-care ritual — an abdominal m
 - **Emotional Profile ('Emotions & Essential Oils'):** Soothes hyper-vigilance and mood swings; nurtures receptivity and feminine harmony.
 - **Safety & Practical Notes:** 'Aromatherapy for Mother & Child': contains Clary Sage — avoid during pregnancy without specialist consultation.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
 
 #womenshealth #clarycalm #cycle #video #roller

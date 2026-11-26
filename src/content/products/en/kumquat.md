@@ -46,4 +46,11 @@ Books in the knowledge base:
 ▫️ "Modern Essentials": Kumquat is among the oils featured primarily in emotional aromatics
 Note: the description comes from the doTERRA page for the Russian market (5 ml bottle, limit of 2 per order) — check availability in your region.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Encourages authenticity, bright optimism, and refreshing emotional clarity.
+- **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': citrus oil — ☀️ avoid direct sunlight/UV for 12 hours on exposed skin.
+
+*Sources: 'Emotions & Essential Oils', 'Modern Essentials', 'Aromalogy'.*
+
 #essentialoils #singleoils #citrus #doterra

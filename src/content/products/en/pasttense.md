@@ -83,4 +83,11 @@ Diffuser Blends:
 More about application:
 PastTense is especially popular before exams, dates, and public speaking. A neck and shoulder massage is a simple ritual to relieve physical tension. The roller bottle format is convenient for quick application.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Helps release accumulated tension, mental strain, and stress.
+- **Safety & Practical Notes:** 'Power in Every Drop' & 'Essential Azbuka': ⚠️ contains Wintergreen and peppermint — topical use ONLY (neck, shoulders, temples); avoid with anticoagulants and during pregnancy.
+
+*Sources: 'Power in Every Drop', 'Essential Azbuka A–Z', 'Aromalogy'.*
+
 #video #roller #tension #pasttense #calming

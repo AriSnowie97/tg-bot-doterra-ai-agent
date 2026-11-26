@@ -49,7 +49,7 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Refreshes your space and lifts emotional fatigue.
 - **Safety & Practical Notes:** 'Aromalogy': avoid in pregnancy, high hypertension, and nervous exhaustion; avoid after 6 PM if prone to insomnia.
 
-**Related Reference Guides in Mini App:**
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

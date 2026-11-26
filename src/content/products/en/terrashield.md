@@ -75,8 +75,8 @@ TerraShield is specially formulated for outdoor activities — hiking, camping, 
 - **Emotional Profile ('Emotions & Essential Oils'):** Supports self-sufficiency, confidence, and healthy boundaries.
 - **Safety & Practical Notes:** 'Power in Every Drop': topical and aromatic use only for outdoor comfort.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
 
 #video #repellent #outdooractivities #terrashield #nature

@@ -73,10 +73,10 @@
 * **[On Guard Throat Drops](doterra-on-guard-protecting-throat-drops)** — soothing throat drops
 
 ### Book Reference Articles
-* [Essential Oils Safety Reference: Hot Oils & Contraindications](01_oils_safety_reference) — safety handling for hot spices (clove, cinnamon, rosemary)
-* [Emotional Themes Map: Protection and Inner Grounding](02_emotional_themes_map) — healthy energetic protection, resilience, and boundaries
-* [Modern Essentials: Application Methods and Diffusion](04_modern_essentials_supplement) — dilution for mucous membrane safety, diffusion protocols
-* [Essential Alphabet from A to Z: Internal Usage Guidelines](05_azbuka_supplement) — taking warm blends strictly with vegetable capsules (Veggie Caps)
+* Essential Oils Safety Reference: Hot Oils & Contraindications — safety handling for hot spices (clove, cinnamon, rosemary)
+* Emotional Themes Map: Protection and Inner Grounding — healthy energetic protection, resilience, and boundaries
+* Modern Essentials: Application Methods and Diffusion — dilution for mucous membrane safety, diffusion protocols
+* Essential Alphabet from A to Z: Internal Usage Guidelines — taking warm blends strictly with vegetable capsules (Veggie Caps)
 
 ### Effects on the Physical Body:
 * Immunostimulating and immunomodulatory
@@ -136,9 +136,9 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Supports feelings of vulnerability; strengthens protective boundaries and resilience.
 - **Safety & Practical Notes:** 'Modern Essentials': contains clove, cinnamon, and wild orange — dilute topically and avoid UV for 12 hours (☀️).
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
 
 #onguard #essential_oils #immunity #protective_blend #doterra

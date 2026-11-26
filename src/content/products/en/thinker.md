@@ -45,4 +45,11 @@
 **Effect:**
 - To support focus during studying or completing tasks
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports calm attentiveness, focus, and clarity during study or creative time.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child' & 'Aromalogy': gentle focus roll-on for wrists and back of neck; contains clementine — ☀️ observe UV precautions.
+
+*Sources: 'Aromatherapy for Mother & Child', 'Aromalogy' (S. Mirgorodska).*
+
 #video #roller #forkids #kidscollection #thinker

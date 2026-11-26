@@ -47,9 +47,9 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Supports harmonious family bonds, calm, and clear concentration.
 - **Safety & Practical Notes:** 'Aromatherapy for Mother & Child', 'Modern Essentials' & 'Aromalogy': gentle neroli alternative for focus and oily skin; ☀️ observe 12-hour UV precaution.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- 'Modern Essentials': Application Methods & Safety Icons
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

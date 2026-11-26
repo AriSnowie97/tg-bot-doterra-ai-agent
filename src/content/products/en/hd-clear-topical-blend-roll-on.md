@@ -55,8 +55,8 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Supports emotional clarity when dealing with suppressed frustration alongside clear-looking skin.
 - **Safety & Practical Notes:** 'Power in Every Drop': targeted topical support for clear, balanced skin.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
 
 #blends #doterra

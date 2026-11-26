@@ -47,9 +47,9 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Helps let go of rigid attachments and stubbornness; fosters humility and flexibility.
 - **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': ⚠️ very 'hot' oil — heavy dilution required, avoid direct inhalation; contraindicated during pregnancy, high hypertension, and GI ulcers.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- 'Modern Essentials': Application Methods & Safety Icons
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

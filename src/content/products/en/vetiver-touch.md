@@ -48,9 +48,9 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Centers escapism and scattered energy; deeply grounding and supportive of focus.
 - **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': suited for diluted topical and aromatic grounding/focus; use with caution during pregnancy.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

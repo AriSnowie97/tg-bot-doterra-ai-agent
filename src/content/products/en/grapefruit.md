@@ -46,8 +46,8 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Encourages body acceptance, lightness, and uplifting mood.
 - **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': ☀️ phototoxic — avoid sunlight/UV exposure on applied skin for at least 12 hours.
 
-**Related Reference Guides in Mini App:**
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- 'Modern Essentials': Application Methods & Safety Icons
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

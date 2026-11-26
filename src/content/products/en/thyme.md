@@ -46,11 +46,11 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Helps release long-held resentment and irritability; encourages an open, forgiving heart.
 - **Safety & Practical Notes:** 'Modern Essentials', 'Azbuka' & 'Aromalogy': ⚠️ 'hot' oil — always dilute heavily and avoid direct inhalation from waterless diffusers; avoid during pregnancy, high hypertension, late evening if prone to insomnia, and with alcohol.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
-- ['Essential Azbuka A–Z': Key Safety Rules](05-azbuka-supplement)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
+- 'Essential Azbuka A–Z': Key Safety Rules
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

@@ -64,10 +64,10 @@
 - **Lemon Touch (roller)** — convenient roll-on for topical use
 
 ### Book Reference Articles
-* [Essential Oils Safety Reference: Pregnancy, Children, Contraindications](01_oils_safety_reference) — phototoxicity guidelines, morning nausea, and skin tonicity
-* [Emotional Themes Map: Relieving Fatigue and Mental Fog](02_emotional_themes_map) — clarity, mental focus, engagement, and upliftment
-* [Modern Essentials: Application Methods and Diffusion](04_modern_essentials_supplement) — safety icons, household surface cleaning, and diffusion
-* [Aromalogy: Dosage Rules and 3-Day Patch Test](06_aromalogiya_supplement) — citrus dilution ratios, 12-hour sun avoidance window
+* Essential Oils Safety Reference: Pregnancy, Children, Contraindications — phototoxicity guidelines, morning nausea, and skin tonicity
+* Emotional Themes Map: Relieving Fatigue and Mental Fog — clarity, mental focus, engagement, and upliftment
+* Modern Essentials: Application Methods and Diffusion — safety icons, household surface cleaning, and diffusion
+* Aromalogy: Dosage Rules and 3-Day Patch Test — citrus dilution ratios, 12-hour sun avoidance window
 
 ### Physical Body Benefits
 ▫️ Antibacterial and antiseptic
@@ -181,10 +181,10 @@ Lemon in emotional aromatherapy is associated with the energy of renewal and new
 - **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': ☀️ phototoxic — avoid sunlight/UV exposure on applied skin for at least 12 hours.
 - **Safety & Practical Notes:** 'Aromalogy': mild in standard everyday use; perform a 3-day sensitivity test when introducing a new oil.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #lemon #essential_oil #detox #immunity #doterra

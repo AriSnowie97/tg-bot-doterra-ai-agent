@@ -46,4 +46,11 @@
 
 - **Effect:** Copaiba, lavender, spearmint, zanthoxylum — for tired legs or muscles after an active day.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Offers soothing comfort and ease after active play or tired muscles.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child' & 'Aromalogy': gentle pre-diluted roll-on for tired legs, back, or shoulders under adult supervision.
+
+*Sources: 'Aromatherapy for Mother & Child', 'Aromalogy' (S. Mirgorodska).*
+
 #video #roller #forkids #kidscollection #rescuer

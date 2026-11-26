@@ -44,4 +44,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Brings warm comfort, coziness, and gentle emotional ease.
+- **Safety & Practical Notes:** 'Aromalogy': gentle blend in Fractionated Coconut Oil — pairs beautifully with citrus and wood oils.
+
+*Sources: 'Aromalogy' (S. Mirgorodska), 'Modern Essentials'.*
+
 #essentialoils #singleoils #doterra

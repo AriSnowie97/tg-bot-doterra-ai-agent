@@ -48,7 +48,7 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Encourages emotional honesty and courage to let go of guarded facades.
 - **Safety & Practical Notes:** 'Modern Essentials': use diluted topically or aromatically (noted for aromatic support when letting go of smoking habits).
 
-**Related Reference Guides in Mini App:**
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- 'Modern Essentials': Application Methods & Safety Icons
 
 #essentialoils #singleoils #doterra

@@ -23,4 +23,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. Consult your physician if pregnant, nursing, or under a doctor's care. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Encourages deep stillness, calm focus, and grounded steadiness.
+- **Safety & Practical Notes:** 'Aromalogy': start with a 3-day sensitivity test and dilute with a carrier oil for sensitive skin.
+
+*Sources: 'Aromalogy' (S. Mirgorodska), 'Modern Essentials'.*
+
 #naio #new2026 #essentialoil #hawaii #doterra

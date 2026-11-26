@@ -44,4 +44,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Promotes serene grounding, clarity, and restoration of emotional resilience.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child' & 'Aromalogy': use caution with basil oils during pregnancy or anticoagulant therapy; apply diluted.
+
+*Sources: 'Aromatherapy for Mother & Child', 'Aromalogy'.*
+
 #essentialoils #singleoils #doterra

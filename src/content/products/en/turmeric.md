@@ -48,8 +48,8 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Supports steadiness after emotional shock; fosters inner stability and trust.
 - **Safety & Practical Notes:** 'Aromalogy': observe the 21-day cycle rule and 3-day individual sensitivity test.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

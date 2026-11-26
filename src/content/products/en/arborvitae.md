@@ -43,4 +43,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Helps release over-efforting and control; encourages trust in life's natural flow.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child' & 'Modern Essentials': ⚠️ topical (diluted) and aromatic use ONLY — NOT for internal use; avoid during pregnancy.
+
+*Sources: 'Aromatherapy for Mother & Child', 'Modern Essentials'.*
+
 #essentialoils #singleoils #doterra

@@ -46,9 +46,9 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Helps ease body shame and low self-esteem; grounds you peacefully in your body.
 - **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': diluted topical and aromatic use for skin care and natural insect repellent; topical only with gastritis/ulcers.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

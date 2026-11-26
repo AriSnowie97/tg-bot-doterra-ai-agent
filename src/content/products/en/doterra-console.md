@@ -61,7 +61,7 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Gently comforts grief, loss, and sorrow; offers solace, warmth, and hope.
 - **Safety & Practical Notes:** 'Emotions & Essential Oils': apply diluted over the heart or diffuse 1–2 drops during tender times.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
 
 #video #roller #emotionalaromatherapy #doterraconsole #support

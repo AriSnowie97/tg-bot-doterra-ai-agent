@@ -47,4 +47,11 @@
 **Effects:**
 ▫️ To support children's immunity
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports feelings of vitality, resilience, and comforting protection.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child' & 'Aromalogy': gentle pre-diluted protective roll-on with frankincense, rose, and litsea for feet and spine.
+
+*Sources: 'Aromatherapy for Mother & Child', 'Aromalogy' (S. Mirgorodska).*
+
 #video #roller #kids #kidscollection #stronger

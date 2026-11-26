@@ -58,8 +58,8 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Lifts discouragement and lack of motivation; sparks confidence and courage.
 - **Safety & Practical Notes:** 'Emotions & Essential Oils': ideal for desk diffusing or diluted morning application on wrists/neck.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
 
 #blends #doterra

@@ -55,8 +55,8 @@ Note: the official page does not mention internal use; "Modern Essentials" marks
 - **Emotional Profile ('Emotions & Essential Oils'):** Brings grounding stability, crisp evergreen freshness, and emotional support.
 - **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': diluted topical & aromatic use for vitality and breathing; avoid during acute kidney flare-ups.
 
-**Related Reference Guides in Mini App:**
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- 'Modern Essentials': Application Methods & Safety Icons
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #conifers #doterra

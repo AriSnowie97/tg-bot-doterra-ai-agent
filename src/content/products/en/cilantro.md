@@ -46,8 +46,8 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Helps release the urge to control others; invites ease, trust, and lightness.
 - **Safety & Practical Notes:** 'Aromalogy': follow standard dilution and the 21-day cycle rule.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

@@ -46,4 +46,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Fills the home with warmth, cheer, and festive uplift.
+- **Safety & Practical Notes:** 'Modern Essentials': contains wild orange, clove, and cinnamon — dilute well for skin and avoid UV for 12 hours (☀️).
+
+*Sources: 'Modern Essentials', 'Aromalogy'.*
+
 #seasonalcollection #seasonal #doterra

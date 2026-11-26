@@ -53,8 +53,8 @@ Books in the knowledge base:
 - **Emotional Profile ('Emotions & Essential Oils'):** Lifts heavy or discouraged mood; inspires joy, vitality, and elevated spirits.
 - **Safety & Practical Notes:** 'Modern Essentials': contains citrus oils — ☀️ avoid direct UV exposure for 12 hours after applying to exposed skin.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
 
 #blends #mood #elevation #doterra

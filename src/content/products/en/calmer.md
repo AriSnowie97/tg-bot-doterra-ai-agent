@@ -46,4 +46,11 @@
 **Effects:**
 ▫️ For peaceful falling asleep in the evening
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Soothes busy emotions in the evening and supports peaceful bedtime routines.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child' & 'Aromalogy': gentle lavender & chamomile kids roll-on for feet or wrists at bedtime; consult Natalia for infant concentration.
+
+*Sources: 'Aromatherapy for Mother & Child', 'Aromalogy' (S. Mirgorodska).*
+
 #video #roller #kids #kidscollection #calmer

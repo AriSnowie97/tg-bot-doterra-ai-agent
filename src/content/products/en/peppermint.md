@@ -71,10 +71,10 @@
 - **[Peppermint Softgels](doterra-peppermint-softgels)** — enteric-coated digestive softgels
 
 ### Book Reference Articles
-* [Essential Oils Safety Reference: Pregnancy, Children, Contraindications](01_oils_safety_reference) — pregnancy precautions and sensitive skin dilution
-* [Emotional Themes Map: Overcoming Discouragement and Apathy](02_emotional_themes_map) — buoyant heart, emotional buoyancy, and joyful vigor
-* [Modern Essentials: Application Methods and Diffusion](04_modern_essentials_supplement) — respiratory diffusion, invigorating application, and reflexology
-* [Aromalogy: Dosage Rules and 3-Day Patch Test](06_aromalogiya_supplement) — age limit for children under 7 (avoid face/neck), homeopathy incompatibility
+* Essential Oils Safety Reference: Pregnancy, Children, Contraindications — pregnancy precautions and sensitive skin dilution
+* Emotional Themes Map: Overcoming Discouragement and Apathy — buoyant heart, emotional buoyancy, and joyful vigor
+* Modern Essentials: Application Methods and Diffusion — respiratory diffusion, invigorating application, and reflexology
+* Aromalogy: Dosage Rules and 3-Day Patch Test — age limit for children under 7 (avoid face/neck), homeopathy incompatibility
 
 ### Origin
 Peppermint (Mentha × piperita) is a hybrid of watermint and spearmint grown all over the world. The largest plantations are located in the USA (Oregon state), India, and China. Essential oil is extracted by steam distillation from the leaves and stems of the plant. doTERRA uses the highest quality raw materials, ensuring a consistently high menthol content.
@@ -206,9 +206,9 @@ It is especially effective for individuals prone to procrastination or lacking m
 - **Safety & Practical Notes:** 'Aromatherapy for Mother & Child' & 'Aromalogy': avoid during pregnancy; do not apply to face/neck of children under 7; avoid with bronchospasm and homeopathic remedies.
 - **Safety & Practical Notes:** 'Power in Every Drop': featured for head tension, digestion, breathing comfort, and mental focus.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #peppermint #essential_oil #doterra

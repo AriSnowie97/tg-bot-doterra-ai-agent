@@ -44,4 +44,11 @@
 **Impact:**
 - To support confidence in new or stressful situations
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Encourages courage, confidence, and positive energy before new challenges.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child' & 'Aromalogy': gentle pre-diluted kids roll-on (oils can be used from age 0 depending on concentration; consult Natalia for infant dilution); ☀️ 12-hour UV safety.
+
+*Sources: 'Aromatherapy for Mother & Child', 'Aromalogy' (S. Mirgorodska).*
+
 #video #roller #kids #kidscollection #brave

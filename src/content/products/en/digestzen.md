@@ -56,10 +56,10 @@
 ## Additional Information
 
 ### Book Reference Articles
-* [Essential Oils Safety Reference: Fennel, Anise, and Pregnancy](01_oils_safety_reference) — safety cautions for fennel/anise regarding epilepsy and pregnancy
-* [Emotional Themes Map: Digesting Life Experiences and Stress](02_emotional_themes_map) — emotional assimilation, processing overwhelmed feelings
-* [Essential Alphabet from A to Z: Internal Usage Guidelines](05_azbuka_supplement) — proper dosage for digestive blends and soothing protocols
-* [Aromalogy: Dosage Rules and 3-Day Patch Test](06_aromalogiya_supplement) — dilution for sensitive digestion and pediatric guidelines
+* Essential Oils Safety Reference: Fennel, Anise, and Pregnancy — safety cautions for fennel/anise regarding epilepsy and pregnancy
+* Emotional Themes Map: Digesting Life Experiences and Stress — emotional assimilation, processing overwhelmed feelings
+* Essential Alphabet from A to Z: Internal Usage Guidelines — proper dosage for digestive blends and soothing protocols
+* Aromalogy: Dosage Rules and 3-Day Patch Test — dilution for sensitive digestion and pediatric guidelines
 
 **Effect on the physical body:**
 ▫️ Soothes the stomach
@@ -80,5 +80,12 @@ Promotes:
 
 **More about application:**
 DigestZen is one of the few doTERRA blends that is equally actively used in all three ways (aromatic, topical, and internal). Abdominal massage with diluted DigestZen is a popular home ritual for adults and children experiencing occasional discomfort. Many users keep a bottle or the Touch version in their bag specifically for trips.
+
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports ease in assimilating both meals and overwhelming life experiences.
+- **Safety & Practical Notes:** 'Power in Every Drop' & 'Aromalogy': contains fennel and peppermint — avoid with epilepsy and during pregnancy; dilute well on tummy/feet for children.
+
+*Sources: 'Power in Every Drop', 'Aromatherapy for Mother & Child', 'Aromalogy'.*
 
 #video #roller #digestion #digestzen #tummytamer

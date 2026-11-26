@@ -83,8 +83,8 @@ The convenient roll-on bottle format allows you to carry the blend with you to r
 - **Emotional Profile ('Emotions & Essential Oils'):** Nurtures tenderness, softness, and warm feminine grace.
 - **Safety & Practical Notes:** 'Modern Essentials': contains bergamot — ☀️ avoid direct UV exposure on applied skin.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
 
 #video #roller #perfume #whispertouch #personalfragrance

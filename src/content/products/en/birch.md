@@ -49,9 +49,9 @@
 - **Safety & Practical Notes:** 'Essential Azbuka' & 'Aromalogy': ⚠️ never take internally (blood-thinning — avoid with anticoagulants); use caution with epilepsy/seizure predisposition.
 - **Safety & Practical Notes:** 'Modern Essentials': topical (diluted) and aromatic use only for soothing muscle comfort.
 
-**Related Reference Guides in Mini App:**
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
-- ['Essential Azbuka A–Z': Key Safety Rules](05-azbuka-supplement)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- 'Modern Essentials': Application Methods & Safety Icons
+- 'Essential Azbuka A–Z': Key Safety Rules
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

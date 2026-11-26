@@ -64,9 +64,9 @@
 **doTERRA SKU:** 31100001
 
 ### Book Reference Articles
-* [Essential Oils Safety Reference: Pregnancy, Children, Contraindications](01_oils_safety_reference) — resin safety guidelines, cellular vitality, and cautions
-* [Emotional Themes Map: Truth, Connection, and Inner Awakening](02_emotional_themes_map) — resolving abandonment, spiritual grounding, and fatherly protection
-* [Modern Essentials: Application Methods and Diffusion](04_modern_essentials_supplement) — skin rejuvenation, meditation diffusion, and foot reflexology
+* Essential Oils Safety Reference: Pregnancy, Children, Contraindications — resin safety guidelines, cellular vitality, and cautions
+* Emotional Themes Map: Truth, Connection, and Inner Awakening — resolving abandonment, spiritual grounding, and fatherly protection
+* Modern Essentials: Application Methods and Diffusion — skin rejuvenation, meditation diffusion, and foot reflexology
 
 ### Origin
 Trees of the genus Boswellia grow in the mountainous regions of Africa and Asia, particularly in Oman, Yemen, Somalia, and Ethiopia. The essential oil is extracted from the tree resin using steam distillation.
@@ -138,9 +138,9 @@ Source: https://pubmed.ncbi.nlm.nih.gov/28980468/
 - **Safety & Practical Notes:** 'Aromalogy': gentle, well-tolerated oil; always dilute with a carrier oil for sensitive skin or children.
 - **Safety & Practical Notes:** 'Power in Every Drop' (doTERRA): featured for respiratory, skin, and overall cellular wellness support.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #frankincense #essentialoil #doterra #kingofoils #health #aromatherapy

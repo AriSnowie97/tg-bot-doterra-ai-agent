@@ -69,10 +69,10 @@
 * **Lavender Softgels** — softgels for dietary use and restful sleep
 
 ### Book Reference Articles
-* [Essential Oils Safety Reference: Pregnancy, Children, Contraindications](01_oils_safety_reference) — 1% dilution rule for pregnancy and gentle pediatric safety
-* [Emotional Themes Map: Relieving Anxiety and Stress](02_emotional_themes_map) — emotional state mapping, open communication and peace
-* [Modern Essentials: Application Methods and Diffusion](04_modern_essentials_supplement) — diffusion, topical guidelines, and foot reflexology
-* [Aromalogy: Dosage Rules and 3-Day Patch Test](06_aromalogiya_supplement) — pediatric dosage formula, 3-day test, and the 21-day cycling rule
+* Essential Oils Safety Reference: Pregnancy, Children, Contraindications — 1% dilution rule for pregnancy and gentle pediatric safety
+* Emotional Themes Map: Relieving Anxiety and Stress — emotional state mapping, open communication and peace
+* Modern Essentials: Application Methods and Diffusion — diffusion, topical guidelines, and foot reflexology
+* Aromalogy: Dosage Rules and 3-Day Patch Test — pediatric dosage formula, 3-day test, and the 21-day cycling rule
 
 ### Origin and Extraction
 * Lavender (Lavandula angustifolia) is an aromatic flowering plant of the Lamiaceae family native to the Mediterranean region. The highest quality oil is produced in France, Bulgaria, and Provence.
@@ -144,10 +144,10 @@
 - **Safety & Practical Notes:** 'Aromatherapy for Mother & Child': one of the gentlest oils (1% dilution for pregnancy/sensitive skin; age-appropriate mild dilution for children).
 - **Safety & Practical Notes:** 'Aromalogy' (S. Mirgorodska): avoid combining with iron/iodine supplements in anemia; follow the 21-day cycle rule and 3-day sensitivity test.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #lavender #essential_oil #doterra

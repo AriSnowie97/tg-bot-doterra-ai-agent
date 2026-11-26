@@ -50,4 +50,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas. Avoid direct sunlight and UV rays for up to 12 hours after application.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Brings bright springtime joy, lightness, and uplifting calm.
+- **Safety & Practical Notes:** 'Modern Essentials': ☀️ contains wild orange and grapefruit — avoid direct sunlight/UV for 12 hours after topical use.
+
+*Sources: 'Modern Essentials', 'Aromalogy'.*
+
 #blends #doterra

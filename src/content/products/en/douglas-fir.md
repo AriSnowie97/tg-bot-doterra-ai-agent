@@ -47,8 +47,8 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Supports generational harmony and fresh, uplifting perspective.
 - **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': aromatic support for clear breathing and focus; avoid direct waterless inhalation; use caution with acute kidney conditions.
 
-**Related Reference Guides in Mini App:**
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- 'Modern Essentials': Application Methods & Safety Icons
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

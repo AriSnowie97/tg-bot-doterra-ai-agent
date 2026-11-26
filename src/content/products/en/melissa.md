@@ -47,8 +47,8 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Uplifting oil of light supporting vitality, optimism, and emotional equilibrium.
 - **Safety & Practical Notes:** 'Aromatherapy for Mother & Child' & 'Aromalogy': ⚠️ avoid during pregnancy; use in short courses of no more than 14 days.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

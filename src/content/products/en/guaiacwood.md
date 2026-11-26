@@ -42,4 +42,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Deeply grounding, calming restless thoughts and nurturing quiet inner strength.
+- **Safety & Practical Notes:** 'Modern Essentials': pre-diluted in Fractionated Coconut Oil for gentle topical and aromatic rituals.
+
+*Sources: 'Modern Essentials', 'Aromalogy'.*
+
 #essentialoils #singleoils #doterra

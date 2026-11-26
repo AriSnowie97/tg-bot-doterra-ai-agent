@@ -85,9 +85,9 @@ Applying to palms followed by a deep inhale is a simple way to quickly calm down
 - **Emotional Profile ('Emotions & Essential Oils'):** Eases stress and overwhelm; fosters tranquility, serenity, and restful sleep.
 - **Safety & Practical Notes:** 'Power in Every Drop': featured for evening diffusing, Epsom salt baths, and bedtime foot application.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
 
 #sleep #video #evening #doterraserenity #calming

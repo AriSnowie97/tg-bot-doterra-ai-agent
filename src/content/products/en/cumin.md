@@ -46,4 +46,11 @@ Books in the knowledge base:
 ▫️ "Essential ABC": cumin is among the "hot" oils (with clove, cassia, cinnamon, oregano, thyme) — taking it internally without dilution is unacceptable
 ▫️ "Symphony of the Cells": in the substitution table, Oregano — Thyme / Basil / Cumin
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports grounded clarity and focused inner strength.
+- **Safety & Practical Notes:** 'Essential Azbuka' & 'Modern Essentials': warm spice oil — dilute heavily before topical use; ☀️ avoid UV exposure after applying to skin.
+
+*Sources: 'Essential Azbuka A–Z', 'Modern Essentials'.*
+
 #essentialoils #singleoils #limited #doterra

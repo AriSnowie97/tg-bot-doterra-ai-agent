@@ -46,4 +46,11 @@ Books in the knowledge base:
 ▫️ "Modern Essentials": Manuka is among the oils featured primarily in emotional aromatics
 Note: the description comes from the doTERRA New Zealand page (5 ml bottle) — check availability in your region.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Offers grounding protection, resilience, and quiet emotional steadiness.
+- **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': gentle diluted topical and aromatic oil for skin care; start with a 3-day sensitivity test.
+
+*Sources: 'Modern Essentials', 'Emotions & Essential Oils', 'Aromalogy'.*
+
 #essentialoils #singleoils #doterra

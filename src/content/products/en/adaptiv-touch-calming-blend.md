@@ -50,4 +50,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor’s care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas. Avoid sunlight and UV rays for at least 12 hours after applying product.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports calm adaptation to stressful situations, easing tension and restoring emotional balance.
+- **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': contains wild orange — ☀️ avoid direct sunlight/UV for 12 hours on exposed skin.
+
+*Sources: 'Emotions & Essential Oils', 'Modern Essentials', 'Aromalogy'.*
+
 #blends #doterra

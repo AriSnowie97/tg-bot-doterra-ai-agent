@@ -28,3 +28,10 @@
 ## Precautions
 
 - Possible skin sensitivity. Avoid sunlight and UV rays for at least 12 hours after applying topically.
+
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Cultivates warmth, coziness, and peaceful contentment in the present moment.
+- **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': contains wild orange, cedarwood, and myrrh — ☀️ avoid UV for 12 hours; consult a specialist during pregnancy.
+
+*Sources: 'Aromatherapy for Mother & Child', 'Modern Essentials', 'Aromalogy'.*

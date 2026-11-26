@@ -49,8 +49,8 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Calms anger and frustration; restores objectivity, clarity, and composure.
 - **Safety & Practical Notes:** 'Modern Essentials': gentle oil for diffusing and diluted topical use (breathing, head, and digestive comfort).
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
 
 #essentialoils #singleoils #doterra

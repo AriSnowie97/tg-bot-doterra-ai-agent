@@ -71,4 +71,11 @@ Purify is specially designed for practical, household use — unlike emotional o
 A popular life hack is keeping a cotton ball with Purify in the car for continuous interior freshening without synthetic fragrances.
 The blend diluted with water is a simple, safe alternative to chemical cleaning products for kitchen surfaces.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Helps clear stagnant emotional atmosphere and refresh your environment.
+- **Safety & Practical Notes:** 'Power in Every Drop' & 'Modern Essentials': aromatic and topical use only (NOT for internal use); ☀️ 12-hour UV precaution.
+
+*Sources: 'Power in Every Drop', 'Modern Essentials'.*
+
 #home #video #airfreshening #purify #cleansingblend #freshair

@@ -47,8 +47,8 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Gently supports healing from past emotional pain; restores resilience and wholeness.
 - **Safety & Practical Notes:** 'Power in Every Drop' (doTERRA): treasured for skin renewal and soothing muscle comfort.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
 
 #essentialoils #singleoils #doterra

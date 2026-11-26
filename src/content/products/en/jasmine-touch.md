@@ -49,9 +49,9 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Gently supports emotional vulnerability and self-trust; nurtures tenderness and balance.
 - **Safety & Practical Notes:** 'Aromatherapy for Mother & Child' & 'Aromalogy': avoid pure oil during pregnancy (outside labor support); caution with hypotension; always dilute (at least 1:5) and use topically only with GI ulcers or kidney concerns.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

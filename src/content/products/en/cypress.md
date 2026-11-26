@@ -46,9 +46,9 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Helps release perfectionism and rigidity; encourages adaptability, flow, and trust.
 - **Safety & Practical Notes:** 'Aromatherapy for Mother & Child' & 'Aromalogy': avoid in early pregnancy; consult a specialist if prone to clotting or using anticoagulants, and observe the 21-day cycle rule.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

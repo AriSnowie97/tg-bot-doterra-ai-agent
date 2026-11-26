@@ -95,4 +95,11 @@ More about application:
 👑 The AromaTouch Hand Technique is a simple way to apply the blend even without professional massage skills, simply by massaging the hands of a loved one.
 👑 Combining with Epsom salt in a warm bath is a popular way to extend the relaxation effect after physical exertion.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Helps release physical and emotional tightness; invites deep soothing relaxation.
+- **Safety & Practical Notes:** 'Modern Essentials': contains cypress, peppermint, marjoram, basil, and grapefruit — dilute for massage, avoid in pregnancy, and observe 12-hour UV safety (☀️).
+
+*Sources: 'Aromatherapy for Mother & Child', 'Modern Essentials', 'Aromalogy'.*
+
 #aromatouch #massage #massageblend #technique #doterra #essentialoils #video

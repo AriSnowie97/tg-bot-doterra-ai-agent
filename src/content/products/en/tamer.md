@@ -45,4 +45,11 @@
 
 - **Impact:** Spearmint, Japanese Mint, Ginger — for stomach comfort and motion sickness while traveling
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Brings soothing comfort and ease during travel or after meals.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child' & 'Aromalogy': gentler alternative to DigestZen formulated with Spearmint (instead of Peppermint) in a pre-diluted kids roll-on.
+
+*Sources: 'Aromatherapy for Mother & Child', 'Aromalogy' (S. Mirgorodska).*
+
 #video #roller #forkids #kidscollection #tamer

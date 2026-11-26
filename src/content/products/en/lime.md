@@ -46,9 +46,9 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Lifts sluggishness and apathy; restores zest and enthusiasm for life.
 - **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': ☀️ phototoxic — avoid direct sunlight for 12 hours after topical application.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

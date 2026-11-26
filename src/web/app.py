@@ -358,10 +358,15 @@ DIRECTORIES_TO_SEARCH = [
     "books"
 ]
 
-# Внутрішня службова логіка маршрутизації бота — використовується тільки для ІІ,
-# а самі довідники за книгами (01, 02, 04, 05, 06) доступні користувачам у розділі «Книги та довідники»
+# Службові довідники за книгами та логіка маршрутизації бота використовуються всередині ІІ-помічниці
+# (RAG-пошук та пости), а вижимки з книг інтегровані безпосередньо у картки продуктів doTERRA
 HIDDEN_ARTICLE_SLUGS = {
+    "01-oils-safety-reference",
+    "02-emotional-themes-map",
     "03-intake-flow-and-routing",
+    "04-modern-essentials-supplement",
+    "05-azbuka-supplement",
+    "06-aromalogiya-supplement",
 }
 
 def _get_all_docs() -> list[dict]:

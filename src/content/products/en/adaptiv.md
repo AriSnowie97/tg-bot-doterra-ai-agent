@@ -75,4 +75,11 @@ Research shows that the aroma of lavender, a key component of the blend, promote
 👑 More on Application:
 Adaptiv is unique in that it creates a state of "calm alertness," which is especially useful when you need to remain productive despite stress. A bath with Epsom salt and a few drops of Adaptiv is a popular way to end a stressful day.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports calm adaptation to stressful situations, easing tension and restoring emotional balance.
+- **Safety & Practical Notes:** 'Modern Essentials' & 'Aromalogy': contains wild orange — ☀️ avoid direct sunlight/UV for 12 hours on exposed skin.
+
+*Sources: 'Emotions & Essential Oils', 'Modern Essentials', 'Aromalogy'.*
+
 #video #roller #adaptation #adaptiv #stress

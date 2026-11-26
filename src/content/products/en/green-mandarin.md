@@ -48,8 +48,8 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Eases fatigue and heaviness; brings lighthearted joy and gentle renewal.
 - **Safety & Practical Notes:** 'Aromatherapy for Mother & Child': one of the gentlest citrus oils for family use with proper dilution.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
 
 #essentialoils #singleoils #doterra

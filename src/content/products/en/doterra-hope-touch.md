@@ -76,8 +76,8 @@ The roll-on bottle format makes the blend convenient for quick application at an
 - **Emotional Profile ('Emotions & Essential Oils'):** Uplifts despair and aimlessness; restores light, hope, and renewed perspective.
 - **Safety & Practical Notes:** 'Modern Essentials': contains bergamot — ☀️ avoid direct sunlight on applied areas.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
 
 #video #rollon #charity #hopetouch #hope

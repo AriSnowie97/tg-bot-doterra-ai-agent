@@ -41,4 +41,11 @@
 
 > ⚠️ Strong ("hot") oil — always dilute with a carrier oil before applying to the skin, especially for children and sensitive skin. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Encourages courage, self-confidence, and warm inner assurance.
+- **Safety & Practical Notes:** 'Essential Azbuka' & 'Modern Essentials': ⚠️ 'hot' oil — always dilute heavily before topical use, avoid face/mucous membranes; avoid during pregnancy.
+
+*Sources: 'Essential Azbuka A–Z', 'Modern Essentials', 'Aromalogy'.*
+
 #essentialoils #singleoils #doterra

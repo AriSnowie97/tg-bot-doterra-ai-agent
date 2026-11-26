@@ -45,4 +45,11 @@ Books in the knowledge base:
 ▫️ "Aromalogiya": palmarosa is among the oils that irritate the GI mucosa (with anise, bay, geranium, ginger, citronella, thyme and others)
 Note: the official page does not state the bottle size and does not label the oil as limited edition.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports calm serenity, tenderness, and balanced self-care.
+- **Safety & Practical Notes:** 'Aromalogy': avoid internal use on an empty stomach (possible GI irritation); gentle diluted for skin balance.
+
+*Sources: 'Aromalogy' (S. Mirgorodska), 'Modern Essentials'.*
+
 #essentialoils #singleoils #skincare #doterra

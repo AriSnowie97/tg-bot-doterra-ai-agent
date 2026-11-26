@@ -86,8 +86,8 @@ InTune is unique because it combines stimulating and soothing components simulta
 - **Emotional Profile ('Emotions & Essential Oils'):** Helps overcome distraction; promotes sharp focus, clarity, and productivity.
 - **Safety & Practical Notes:** 'Power in Every Drop': roll onto back of neck, temples, or wrists to support focus during study or work.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
 
 #video #roller #concentration #intune #focus

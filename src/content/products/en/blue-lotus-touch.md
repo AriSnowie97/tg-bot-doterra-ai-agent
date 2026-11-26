@@ -43,4 +43,11 @@
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Invites serene tranquility, meditation, and heart-centered harmony.
+- **Safety & Practical Notes:** 'Modern Essentials': pre-diluted Touch roll-on in Fractionated Coconut Oil for gentle skin and pulse-point application.
+
+*Sources: 'Modern Essentials', 'Aromalogy'.*
+
 #essentialoils #singleoils #doterra

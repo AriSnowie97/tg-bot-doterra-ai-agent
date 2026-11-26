@@ -47,7 +47,7 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Encourages empowerment, initiative, and confident action.
 - **Safety & Practical Notes:** 'Aromalogy': avoid taking on an empty stomach (possible GI irritation); use caution with high hypertension.
 
-**Related Reference Guides in Mini App:**
-- ['Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions](06-aromalogiya-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- 'Aromalogy' (S. Mirgorodska): Dosing, 3-Day Test & Precautions
 
 #essentialoils #singleoils #doterra

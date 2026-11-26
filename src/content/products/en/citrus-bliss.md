@@ -79,8 +79,8 @@ Citrus Bliss is unique in that it works equally well for emotional uplifting and
 - **Emotional Profile ('Emotions & Essential Oils'):** Clears creative stagnation and sluggishness; sparks joy and creativity.
 - **Safety & Practical Notes:** 'Modern Essentials': ☀️ citrus blend — avoid direct sunlight/UV for at least 12 hours after topical use.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
 
 #video #citrus #invigoration #citrusbliss #citrusblend

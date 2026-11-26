@@ -71,10 +71,10 @@
 - **[Tea Tree Touch (roller)](tea-tree-touch)** — convenient roll-on for topical blemish care
 
 ### Book Reference Articles
-* [Essential Oils Safety Reference: Pregnancy, Children, Contraindications](01_oils_safety_reference) — safety precautions, dilution rules, and infant safety
-* [Emotional Themes Map: Energetic Boundaries and Balance](02_emotional_themes_map) — releasing codependency, emotional hygiene, and healthy boundaries
-* [Modern Essentials: Application Methods and Diffusion](04_modern_essentials_supplement) — topical application, nail and skin purification
-* [Aromalogy: Dosage Rules and 3-Day Patch Test](06_aromalogiya_supplement) — high dilution for children under 3, 3-day patch test protocol
+* Essential Oils Safety Reference: Pregnancy, Children, Contraindications — safety precautions, dilution rules, and infant safety
+* Emotional Themes Map: Energetic Boundaries and Balance — releasing codependency, emotional hygiene, and healthy boundaries
+* Modern Essentials: Application Methods and Diffusion — topical application, nail and skin purification
+* Aromalogy: Dosage Rules and 3-Day Patch Test — high dilution for children under 3, 3-day patch test protocol
 
 ### Origin
 Tea tree (Melaleuca alternifolia) is an evergreen plant endemic to the Australian state of New South Wales. The indigenous people of Australia—the Bundjalung aboriginal people—used melaleuca leaves to treat wounds and skin conditions for millennia.
@@ -191,5 +191,13 @@ It is a "guardian" oil — protecting physical space and the body from microbial
 🔹 Presence of pet cats or birds — the oil is toxic to them.
 
 > The information provided is intended solely for educational purposes and does not constitute medical advice. Consult a physician before using essential oils.
+
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Supports healthy energetic boundaries when dealing with codependency; promotes emotional clarity.
+- **Safety & Practical Notes:** 'Aromatherapy for Mother & Child' & 'Aromalogy': valued for skin cleansing; for children under 3, use high dilution with specialist guidance.
+- **Safety & Practical Notes:** 'Power in Every Drop': staple oil for blemished skin, nails, and purifying aromatic use.
+
+*Sources: 'Emotions & Essential Oils', 'Aromatherapy for Mother & Child', 'Power in Every Drop', 'Aromalogy'.*
 
 #teatree #melaleuca #essentialoil #antiseptic #doterra

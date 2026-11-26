@@ -46,8 +46,8 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Eases hesitation and feeling tongue-tied; supports confident, articulate expression.
 - **Safety & Practical Notes:** 'Aromatherapy for Mother & Child': gentler alternative to peppermint for diffusing and family use when properly diluted.
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
 
 #essentialoils #singleoils #doterra

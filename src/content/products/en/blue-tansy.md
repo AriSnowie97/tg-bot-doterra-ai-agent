@@ -46,8 +46,8 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Helps overcome procrastination and aimlessness; inspires purposeful action.
 - **Safety & Practical Notes:** 'Modern Essentials': dilute before topical application (natural deep blue color may stain skin or fabrics).
 
-**Related Reference Guides in Mini App:**
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Modern Essentials': Application Methods & Safety Icons
 
 #essentialoils #singleoils #doterra

@@ -50,9 +50,9 @@ Books in the knowledge base:
 - **Emotional Profile ('Emotions & Essential Oils'):** Supports comfort through physical or emotional pain; fosters relief and resilience.
 - **Safety & Practical Notes:** 'Essential Azbuka': ⚠️ contains Wintergreen — NEVER for internal use; use caution if taking anticoagulants; keep away from children.
 
-**Related Reference Guides in Mini App:**
-- [Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')](01-oils-safety-reference)
-- [Emotional Themes Map ('Emotions & Essential Oils')](02-emotional-themes-map)
-- ['Essential Azbuka A–Z': Key Safety Rules](05-azbuka-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- Safety Reference ('Aromatherapy for Mother & Child', 'Power in Every Drop')
+- Emotional Themes Map ('Emotions & Essential Oils')
+- 'Essential Azbuka A–Z': Key Safety Rules
 
 #personalcare #deepblue #muscles #doterra

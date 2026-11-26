@@ -46,7 +46,7 @@
 - **Emotional Profile ('Emotions & Essential Oils'):** Cultivates gratitude, acceptance, and deep evening relaxation.
 - **Safety & Practical Notes:** 'Modern Essentials': diluted topical and aromatic use for mature skin and restful sleep.
 
-**Related Reference Guides in Mini App:**
-- ['Modern Essentials': Application Methods & Safety Icons](04-modern-essentials-supplement)
+**Reference Sources (Aroma Knowledge Base):**
+- 'Modern Essentials': Application Methods & Safety Icons
 
 #essentialoils #singleoils #doterra

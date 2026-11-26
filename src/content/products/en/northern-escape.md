@@ -53,4 +53,11 @@
 👑 Diffuser blends: Forest Calm (4 drops Northern Escape), Winter Comfort (3 drops Northern Escape, 1 drop Wild Orange), Office Refresh (3 drops Northern Escape).
 👑 More about application: Northern Escape was developed as a quick way to emotionally "escape" the hustle of everyday life. Researchers note the potential soothing effect of lavandin alongside the stimulating effect of Siberian fir and hinoki. The formula is well-suited for seasonal winter use.
 
+## From Literature & Reference Guides
+
+- **Emotional Profile ('Emotions & Essential Oils'):** Brings crisp evergreen forest serenity and steady grounding.
+- **Safety & Practical Notes:** 'Aromalogy': conifer-wood blend for diffusing and diluted massage; use caution with acute kidney conditions.
+
+*Sources: 'Aromalogy' (S. Mirgorodska), 'Modern Essentials'.*
+
 #video #forest #grounding #northernescape
