@@ -32,11 +32,15 @@
 🔹 For dilution: 1 part essential oil to 5 or more parts Fractionated Coconut Oil — depending on skin sensitivity
 🔹 Topically: apply to the skin for moisturizing without interfering with the aroma of other blends
 🔹 For massage: mix with favorite essential oils and apply to the neck and shoulders
+🔹 Topically: apply to skin to hydrate without interfering with the fragrance of other blends
+🔹 For massage: mix with your favorite essential oils and apply to the neck and shoulders
 
 ## Compatibility with Other doTERRA Products
 
 🔹 Universal base ingredient for almost all topical doTERRA essential oil recipes
 🔹 Frequently used together with Deep Blue, AromaTouch, and other massage blends
+🔹 A universal carrier component for almost all topical application recipes for doTERRA essential oils
+🔹 Often used together with Deep Blue, AromaTouch, and other massage blends
 
 ## Interesting Facts
 
@@ -51,5 +55,17 @@
 ## Additional Information
 
 🔹 Before use, test the product on a small area of skin. If there is a history of allergic reactions, consult a dermatologist before use.
+- **Website Category:** Skin & Hair Care → Body Care
+- **Additional Precautions:** For external use only.
+- **Notes:** The provided information is intended strictly for informational purposes. Test the product on a small area of skin before use. If there is a history of allergic reactions, consult a dermatologist before use.
+
+## Short Description
+
+👑 Light, colorless, odorless; completely soluble with all doTERRA essential oils
+
+## Composition and Key Ingredients
+
+▫️ Caprylic/Capric Triglyceride — the main component derived from the fractionation of coconut oil
+▫️ 100% plant origin (Cocos nucifera)
 
 #bodycare #carrieroil #fractionatedcoconut #doterra

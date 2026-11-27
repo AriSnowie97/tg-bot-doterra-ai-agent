@@ -24,6 +24,7 @@
 
 🔹 Daily hand washing at home or in the office
 🔹 Maintaining hand cleanliness during seasons of increased immune system stress
+🔹 Daily hand washing in multiple locations around the house — kitchen, bathroom
 
 ## Directions for Use
 
@@ -33,14 +34,26 @@
 
 🔹 dōTERRA On Guard® Foaming Hand Wash Concentrate — concentrated version for dispenser
 🔹 dōTERRA On Guard® Sanitizing Mist — for additional hand sanitization
+🔹 dōTERRA On Guard® Foaming Hand Wash Dispenser — reusable dispenser
 
 ## Fun Facts
 
 👑 Protects the skin's natural moisture barrier thanks to a balanced pH
 👑 Suitable for daily use by the whole family
+👑 Convenient option for placing bottles in multiple rooms at once
 
 ## Cautions
 
 > ⚠️ For external use only. Avoid contact with eyes. Keep out of reach of children.
+
+## Short Description
+
+👑 Set of two bottles of On Guard foaming hand wash for the home
+👑 Cost-effective option for families who use the product regularly
+👑 Gently cleanses hands without drying out the skin
+
+## Composition and Key Ingredients
+
+▫️ On Guard® essential blend (Wild Orange, Clove, Cinnamon, Eucalyptus, Rosemary)
 
 #home #house #doterra

@@ -29,6 +29,7 @@ from src.safety import redact
 
 from .markets import GLOBAL_MARKETS, MarketConfig, parse_product_page, scan_market
 from .store import (
+    delete_catalog_override,
     ensure_catalog_tables,
     get_all_override_states,
     log_sync_run,
@@ -218,20 +219,53 @@ _ALIAS_SUFFIX_RE = re.compile(
     re.IGNORECASE,
 )
 
-# Регіональні назви / варіанти слагов для існуючих статичних продуктів (AU/NZ/ZA/BR/JP/KR -> US канон)
+# Регіональні назви / варіанти слагов для існуючих статичних продуктів (AU/NZ/ZA/BR/JP/KR/MX -> канон)
 _REGIONAL_ALIAS_MAP: dict[str, str] = {
     "on-guard-oil-beadlet": "on-guard-beadlets",
     "on-guard-beadlet": "on-guard-beadlets",
     "clearify": "air-x",
+    "air-repair": "air-x",
     "affirm": "align",
     "ascend": "arise",
     "coast": "coastal-escape",
     "deep-blue-touch": "deep-blue",
+    "deep-blue-stick": "deep-blue-stick-copaiba",
+    "citrusbliss": "citrus-bliss",
     "natures-rx": "natures-rx-collection",
     "ikise-skin-ritual": "ikise-skin-care-collection",
+    "ikise-skin-care": "ikise-skin-care-collection",
+    "vanilla-dream-lip-balm": "vanilla-dream-restorative-lip-balm",
+    "yarrow-pom-active-botanical-nutritive-duo": "yarrow-pom",
+    "doterra-kids-oil-collection-kit": "doterra-kids-collection",
+    "kids-oil-collection-kit": "kids-collection",
+    "doterra-lifelong-vitality-pack-llv": "lifelong-vitality-pack",
+    "lifelong-vitality-pack-llv": "lifelong-vitality-pack",
     "zengest": "digestzen",
     "xeo-mega": "eo-mega",
 }
+
+_CATEGORY_PREFIX_RE = re.compile(
+    r"^(?:body\s+care|sun\s+care|starter\s+kits?|collections?|"
+    r"hd\s+clear\s+skin\s+care|d[oō]terra\s+hair\s+care|"
+    r"d[oō]terra\s+baby)\s*[—–-]+\s*",
+    re.IGNORECASE,
+)
+
+_GENERIC_DUP_SLUGS: frozenset[str] = frozenset({
+    "body-care",
+    "sun-care",
+    "starter-kits",
+    "collections",
+    "essential-skin-care",
+    "hd-clear-skin-care",
+    "verage-skin-care",
+    "veráge-skin-care",
+    "doterra-spa",
+    "dōterra-spa",
+    "doterra-hair-care",
+    "dōterra-hair-care",
+    "doterra-baby",
+})
 
 _CJK_RE = re.compile(r"[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]")
 _CYRILLIC_RE = re.compile(r"[А-Яа-яІіЇїЄєҐґ]")
@@ -282,7 +316,9 @@ def _needs_translation(ov: dict) -> bool:
 
 def _canonical_alias(slug: str) -> str:
     """Нормалізує слаг для виявлення дублікатів (напр. adaptiv-touch == adaptiv-touch-calming-blend)."""
-    s = slug.strip().lower()
+    s = slugify(slug).strip().lower()
+    if s in _REGIONAL_ALIAS_MAP:
+        s = _REGIONAL_ALIAS_MAP[s]
     if s.startswith("doterra-"):
         s = s[len("doterra-"):]
     if s.startswith("adaptive-"):
@@ -291,7 +327,203 @@ def _canonical_alias(slug: str) -> str:
     while prev != s:
         prev = s
         s = _ALIAS_SUFFIX_RE.sub("", s).strip("-")
-    return _REGIONAL_ALIAS_MAP.get(s, s)
+    mapped = _REGIONAL_ALIAS_MAP.get(s, s)
+    if mapped.startswith("doterra-"):
+        mapped = mapped[len("doterra-"):]
+    return mapped
+
+
+def _compact_alias(slug: str) -> str:
+    """Бездефісний ключ канонічного слага (ловить 'citrusbliss' == 'citrus-bliss', 'onguard' == 'on-guard')."""
+    return re.sub(r"[^a-z0-9]", "", _canonical_alias(slug))
+
+
+def _normalize_title_key(title: str) -> str:
+    """Нормалізує назву продукту для виявлення дублікатів (прибирає префікси категорій, бренд, дужки)."""
+    s = _clean_product_title(title or "")
+    # Прибираємо лише префікс категорії перед тире ('Body Care — Fractionated Coconut Oil' -> 'Fractionated Coconut Oil')
+    s = _CATEGORY_PREFIX_RE.sub("", s)
+    # Якщо залишилося "Назва — підзаголовок" для брендових серій (напр. "Essential Skin Care — Facial Cleanser")
+    s = s.lower()
+    s = re.sub(r"\([^)]*\)", " ", s)
+    s = re.sub(r"[®™©]", "", s)
+    s = re.sub(r"\bd[oō]terra\b", " ", s)
+    s = re.sub(r"\bskin\s+care\b", " ", s)
+    s = re.sub(r"\b(?:essential\s+oils?|oil|overview)\b", " ", s)
+    s = re.sub(r"\b(?:restorative|springtime|invigorating|calming|protective|soothing|respiratory|grounding|digestive|detoxification|refreshing|woodland|holiday|seasonal|active\s+botanical\s+nutritive\s+duo)\b", " ", s)
+    # Нормалізуємо діакритику (veráge -> verage)
+    s = s.replace("á", "a").replace("ō", "o").replace("é", "e").replace("’", "'")
+    s = re.sub(r"[^a-zа-яіїєґ0-9]+", " ", s)
+    return " ".join(s.split())
+
+
+def _line_fingerprint(line: str) -> str:
+    """Короткий нормалізований відбиток рядка для перевірки, чи факт уже є у статті."""
+    s = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", line)
+    s = re.sub(r"[^a-zа-яіїєґ0-9]+", " ", s.lower())
+    return " ".join(s.split())
+
+
+def _split_md_sections(md_text: str) -> tuple[str, list[tuple[str, list[str]]], str]:
+    """Розбиває картку продукту на (header_block, [(heading, lines), ...], hashtags_line)."""
+    lines = (md_text or "").splitlines()
+    hashtags = ""
+    while lines and not lines[-1].strip():
+        lines.pop()
+    if lines and lines[-1].strip().startswith("#") and not lines[-1].strip().startswith("# "):
+        # Останній рядок із хештегами (#ефірніолії #дотерра)
+        if re.match(r"^(?:#[a-zA-Zа-яА-ЯіїєґІЇЄҐ0-9_]+\s*)+$", lines[-1].strip()):
+            hashtags = lines.pop().strip()
+            while lines and not lines[-1].strip():
+                lines.pop()
+
+    header_lines: list[str] = []
+    sections: list[tuple[str, list[str]]] = []
+    cur_heading: str | None = None
+    cur_body: list[str] = []
+
+    for ln in lines:
+        if ln.startswith("## "):
+            if cur_heading is not None:
+                sections.append((cur_heading, cur_body))
+            cur_heading = ln.strip()
+            cur_body = []
+        elif cur_heading is None:
+            header_lines.append(ln)
+        else:
+            cur_body.append(ln)
+    if cur_heading is not None:
+        sections.append((cur_heading, cur_body))
+
+    return "\n".join(header_lines).strip(), sections, hashtags
+
+
+def _norm_heading_key(heading: str) -> str:
+    h = heading.lstrip("#").strip().lower()
+    mapping = {
+        "короткий опис": "desc",
+        "опис": "desc",
+        "short description": "desc",
+        "description": "desc",
+        "склад та ключові інгредієнти": "ingredients",
+        "склад": "ingredients",
+        "composition and key ingredients": "ingredients",
+        "ingredients & features": "ingredients",
+        "ingredients": "ingredients",
+        "показання": "indications",
+        "indications": "indications",
+        "benefits": "indications",
+        "спосіб застосування": "directions",
+        "directions for use": "directions",
+        "directions": "directions",
+        "сумісність з іншими продуктами doterra": "compat",
+        "compatibility with other doterra products": "compat",
+        "цікаві факти": "facts",
+        "interesting facts": "facts",
+        "fun facts": "facts",
+        "застереження": "cautions",
+        "cautions": "cautions",
+        "precautions": "cautions",
+        "за даними літератури та довідників": "literature",
+        "from literature & reference guides": "literature",
+    }
+    return mapping.get(h, re.sub(r"[^a-zа-яіїєґ0-9]+", "", h))
+
+
+def _extract_md_image(md_text: str) -> str:
+    for ln in (md_text or "").splitlines()[:5]:
+        if ln.startswith("![") and "](" in ln:
+            url = ln.split("](", 1)[1].split(")", 1)[0].strip()
+            low = url.lower()
+            if url and not any(b in low for b in ("тут_буде", "new-default-image", "pool=wave0", "-za-en-web.")):
+                return url
+    return ""
+
+
+def _merge_markdown_cards(primary_md: str, secondary_md: str) -> tuple[str, int]:
+    """Доповнює основну картку унікальною інформацією з дубліката (без повторів).
+
+    Повертає (merged_markdown, count_added_items).
+    """
+    if not secondary_md or not secondary_md.strip():
+        return primary_md, 0
+    if not primary_md or not primary_md.strip():
+        return secondary_md, 1
+
+    added = 0
+    p_header, p_sections, p_tags = _split_md_sections(primary_md)
+    _, s_sections, s_tags = _split_md_sections(secondary_md)
+
+    # Якщо в основній картці немає робочого фото, а в дублікаті є — підхоплюємо фото
+    if not _extract_md_image(primary_md):
+        sec_img = _extract_md_image(secondary_md)
+        if sec_img:
+            p_header = f"![doTERRA Product]({sec_img})\n\n" + re.sub(
+                r"^\s*!\[[^\]]*\]\([^)]*\)\s*", "", p_header
+            )
+            added += 1
+
+    # Збираємо відбитки всіх уже наявних рядків основної картки
+    existing_fps: set[str] = {
+        _line_fingerprint(ln)
+        for _, body in p_sections
+        for ln in body
+        if len(_line_fingerprint(ln)) >= 12
+    }
+
+    p_idx_by_key = {_norm_heading_key(h): idx for idx, (h, _) in enumerate(p_sections)}
+
+    for s_heading, s_body in s_sections:
+        s_key = _norm_heading_key(s_heading)
+        # Застереження не дублюємо, якщо вони вже є в основній картці
+        if s_key == "cautions" and "cautions" in p_idx_by_key:
+            continue
+
+        unique_lines: list[str] = []
+        for ln in s_body:
+            stripped = ln.strip()
+            if not stripped or stripped == "---":
+                continue
+            fp = _line_fingerprint(stripped)
+            if len(fp) < 12:
+                continue
+            # Перевіряємо на точний збіг або повне входження у вже наявний рядок
+            if any(fp == ex or fp in ex or ex in fp for ex in existing_fps):
+                continue
+            unique_lines.append(stripped)
+            existing_fps.add(fp)
+
+        if not unique_lines:
+            continue
+
+        if s_key in p_idx_by_key:
+            idx = p_idx_by_key[s_key]
+            heading, body = p_sections[idx]
+            while body and not body[-1].strip():
+                body.pop()
+            body.extend(unique_lines)
+            p_sections[idx] = (heading, body)
+        else:
+            # Вставляємо нову секцію перед застереженнями/літературою або в кінець
+            p_sections.append((s_heading, [""] + unique_lines))
+            p_idx_by_key[s_key] = len(p_sections) - 1
+        added += len(unique_lines)
+
+    # Об'єднуємо хештеги без дублікатів
+    tags_list: list[str] = []
+    for raw_tags in (p_tags, s_tags):
+        for t in raw_tags.split():
+            if t.startswith("#") and t.lower() not in {x.lower() for x in tags_list}:
+                tags_list.append(t)
+
+    parts = [p_header]
+    for heading, body in p_sections:
+        clean_body = "\n".join(body).strip()
+        parts.append(f"{heading}\n\n{clean_body}" if clean_body else heading)
+    if tags_list:
+        parts.append(" ".join(tags_list))
+
+    return "\n\n".join(p for p in parts if p).strip() + "\n", added
 
 
 def _get_static_product_slugs() -> dict[str, Path]:
@@ -432,13 +664,24 @@ async def run_catalog_sync(
                 })
             report["restored"].append({"slug": slug, "markets": discovered[slug]["markets"]})
 
-    # 3. Пошук та автоматичне додавання НОВИНОК (із захистом від дублікатів-синонімів)
+    # 3. Пошук та автоматичне додавання НОВИНОК (із захистом від дублікатів-синонімів та по назві)
     known_aliases = {_canonical_alias(k) for k in known_active}
+    known_compact = {_compact_alias(k) for k in known_active}
+    known_static_titles: set[str] = set()
+    for p in static_slugs.values():
+        try:
+            t = _extract_h1_title(p.read_text(encoding="utf-8"), p.stem)
+            nt = _normalize_title_key(t)
+            if nt:
+                known_static_titles.add(nt)
+        except Exception:
+            pass
     restored_set = {r["slug"] for r in report["restored"]}
     new_slugs = [
         s for s in discovered.keys()
         if s not in known_active
         and _canonical_alias(s) not in known_aliases
+        and _compact_alias(s) not in known_compact
         and s not in restored_set
     ]
     # Пріоритезуємо новинки, що є на US або на >= 2 ринках
@@ -454,10 +697,23 @@ async def run_catalog_sync(
         if not meta:
             continue
 
+        # Додаткова перевірка на дублікат за нормалізованою назвою перед створенням нової картки
+        cand_title_key = _normalize_title_key(meta["title"])
+        if cand_title_key and cand_title_key in known_static_titles:
+            _log(f"⏭️ Пропущено дублікат за назвою: {slug} ({meta['title']})")
+            continue
+
         cat_ua, cat_en = infer_category(slug, meta["title"], primary_url)
         md_ua, md_en = await _build_cards_with_llm(slug, meta, cat_ua, cat_en, info["markets"])
         title_ua = _extract_h1_title(md_ua, meta["title"])
         title_en = _extract_h1_title(md_en, meta["title"])
+        if _normalize_title_key(title_en) in known_static_titles:
+            _log(f"⏭️ Пропущено дублікат після перекладу: {slug} ({title_en})")
+            continue
+        known_aliases.add(_canonical_alias(slug))
+        known_compact.add(_compact_alias(slug))
+        if cand_title_key:
+            known_static_titles.add(cand_title_key)
 
         item = {
             "slug": slug,
@@ -498,6 +754,18 @@ async def run_catalog_sync(
         report["translated"] = await retranslate_existing_overrides(limit=15)
     else:
         report["translated"] = []
+
+    # 3.6. Автоматична перевірка на дублікати: доповнення унікальної інфи + видалення дублів
+    dedup_summary: dict = {"merged": [], "removed": []}
+    if save_db:
+        dyn_dedup = await asyncio.to_thread(deduplicate_dynamic_overrides, dry_run)
+        dedup_summary["merged"].extend(dyn_dedup.get("merged", []))
+        dedup_summary["removed"].extend(dyn_dedup.get("removed", []))
+    if write_files:
+        st_dedup = await asyncio.to_thread(deduplicate_static_products, dry_run)
+        dedup_summary["merged"].extend(st_dedup.get("merged", []))
+        dedup_summary["removed"].extend(st_dedup.get("removed", []))
+    report["deduped"] = dedup_summary
 
     # 4. Безпечна автоархівація товарів, які зникли з УСІХ здорових ринків
     # Circuit Breaker 1: недостатньо здорових ринків -> не чіпаємо існуючий каталог
@@ -647,6 +915,236 @@ async def retranslate_existing_overrides(limit: int = 15) -> list[str]:
     return translated_slugs
 
 
+def _pick_primary_static_item(group: list[dict]) -> dict:
+    """Обирає основну (канонічну) картку серед знайденої групи статичних дублікатів."""
+    images_dir = PROJECT_ROOT / "src" / "content" / "images" / "products"
+
+    def _score(item: dict) -> tuple[int, int, int, int, int]:
+        slug = item["slug"]
+        # 1. Категорійні префікси (body-care, sun-care, collections, starter-kits) — завжди вторинні
+        not_generic = 0 if slug in _GENERIC_DUP_SLUGS or item["stem"].lower() in _GENERIC_DUP_SLUGS else 1
+        # 2. Чистий ASCII slug без діакритики
+        ascii_slug = 1 if item["stem"].isascii() else 0
+        # 3. Має локальне студійне фото
+        has_local_img = 1 if (images_dir / f"{slug}.jpg").exists() else 0
+        # 4. Повніший текст статті
+        text_len = len(item["md"])
+        # 5. Коротший і чистіший slug (без -llv, -kit-oil тощо)
+        neg_slug_len = -len(slug)
+        return (not_generic, ascii_slug, has_local_img, text_len, neg_slug_len)
+
+    return max(group, key=_score)
+
+
+def deduplicate_static_products(dry_run: bool = False) -> dict:
+    """Знаходить дублікати у `src/content/products/` (UA + EN), доповнює основну картку та видаляє дублі."""
+    result: dict = {"merged": [], "removed": []}
+    if not PRODUCTS_DIR.exists():
+        return result
+
+    items: list[dict] = []
+    for p in sorted(PRODUCTS_DIR.glob("*.md")):
+        md = p.read_text(encoding="utf-8")
+        slug = slugify(p.stem)
+        title = _extract_h1_title(md, p.stem)
+        items.append({
+            "path": p,
+            "stem": p.stem,
+            "slug": slug,
+            "alias": _canonical_alias(slug),
+            "compact": _compact_alias(slug),
+            "title": title,
+            "title_key": _normalize_title_key(title),
+            "md": md,
+        })
+
+    # Union-Find групування за однаковим compact_alias або title_key
+    parent = list(range(len(items)))
+
+    def find(i: int) -> int:
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    def union(i: int, j: int) -> None:
+        ri, rj = find(i), find(j)
+        if ri != rj:
+            parent[rj] = ri
+
+    by_compact: dict[str, int] = {}
+    by_title: dict[str, int] = {}
+    for idx, it in enumerate(items):
+        if it["compact"]:
+            if it["compact"] in by_compact:
+                union(by_compact[it["compact"]], idx)
+            else:
+                by_compact[it["compact"]] = idx
+        tk = it["title_key"]
+        if tk and len(tk) >= 5:
+            if tk in by_title:
+                union(by_title[tk], idx)
+            else:
+                by_title[tk] = idx
+
+    groups: dict[int, list[dict]] = {}
+    for idx, it in enumerate(items):
+        groups.setdefault(find(idx), []).append(it)
+
+    for grp in groups.values():
+        if len(grp) < 2:
+            continue
+        primary = _pick_primary_static_item(grp)
+        p_path: Path = primary["path"]
+        p_en_path = PRODUCTS_EN_DIR / p_path.name
+        merged_ua = primary["md"]
+        merged_en = p_en_path.read_text(encoding="utf-8") if p_en_path.exists() else ""
+        total_added_ua = 0
+        total_added_en = 0
+
+        for dup in grp:
+            if dup["path"] == p_path:
+                continue
+            merged_ua, add_ua = _merge_markdown_cards(merged_ua, dup["md"])
+            total_added_ua += add_ua
+
+            dup_en_path = PRODUCTS_EN_DIR / dup["path"].name
+            if dup_en_path.exists():
+                dup_en_md = dup_en_path.read_text(encoding="utf-8")
+                if merged_en:
+                    merged_en, add_en = _merge_markdown_cards(merged_en, dup_en_md)
+                    total_added_en += add_en
+                else:
+                    merged_en = dup_en_md
+                    total_added_en += 1
+
+            result["removed"].append({"slug": dup["slug"], "into": primary["slug"], "source": "static"})
+            if not dry_run:
+                dup["path"].unlink(missing_ok=True)
+                if dup_en_path.exists():
+                    dup_en_path.unlink(missing_ok=True)
+
+        if total_added_ua > 0 or total_added_en > 0:
+            result["merged"].append({
+                "slug": primary["slug"],
+                "added_ua_lines": total_added_ua,
+                "added_en_lines": total_added_en,
+                "source": "static",
+            })
+            if not dry_run:
+                if total_added_ua > 0:
+                    p_path.write_text(merged_ua, encoding="utf-8")
+                if total_added_en > 0 and merged_en:
+                    PRODUCTS_EN_DIR.mkdir(parents=True, exist_ok=True)
+                    p_en_path.write_text(merged_en, encoding="utf-8")
+
+    return result
+
+
+def deduplicate_dynamic_overrides(dry_run: bool = False) -> dict:
+    """Знаходить дублікати у PostgreSQL (`catalog_overrides`): доповнює або видаляє зайві записи."""
+    from .store import get_catalog_overrides
+
+    result: dict = {"merged": [], "removed": []}
+    active_ov, _ = get_catalog_overrides(force_refresh=True)
+    if not active_ov:
+        return result
+
+    static_slugs = _get_static_product_slugs()
+    static_compact = {_compact_alias(s): s for s in static_slugs.keys()}
+    static_titles: dict[str, str] = {}
+    for s, p in static_slugs.items():
+        try:
+            nt = _normalize_title_key(_extract_h1_title(p.read_text(encoding="utf-8"), p.stem))
+            if nt and len(nt) >= 5:
+                static_titles[nt] = s
+        except Exception:
+            pass
+
+    remaining: list[dict] = []
+    # 1. Динамічні дублікати статичних карток -> видаляємо з catalog_overrides (щоб не дублювались у Mini App/RAG)
+    for ov in active_ov:
+        ov_slug = ov["slug"]
+        has_md = bool(ov.get("md_ua") or ov.get("md_en"))
+        if not has_md:
+            continue
+        comp = _compact_alias(ov_slug)
+        t_ua = _normalize_title_key(ov.get("title_ua") or "")
+        t_en = _normalize_title_key(ov.get("title_en") or "")
+
+        matched_static = (
+            static_slugs.get(ov_slug) and ov_slug
+            or static_compact.get(comp)
+            or (static_titles.get(t_en) if t_en else None)
+            or (static_titles.get(t_ua) if t_ua else None)
+        )
+        if matched_static:
+            result["removed"].append({"slug": ov_slug, "into": matched_static, "source": "dynamic_vs_static"})
+            if not dry_run:
+                delete_catalog_override(ov_slug)
+                print(f"[catalog_sync] 🧹 Видалено динамічний дублікат {ov_slug} (вже є статична картка {matched_static})")
+            continue
+        remaining.append(ov)
+
+    # 2. Динамічні дублікати між собою -> зливаємо ринки й унікальний контент у кращу картку, дубль видаляємо
+    groups: dict[str, list[dict]] = {}
+    for ov in remaining:
+        key = _compact_alias(ov["slug"]) or _normalize_title_key(ov.get("title_en") or ov.get("title_ua") or ov["slug"])
+        groups.setdefault(key, []).append(ov)
+
+    for grp in groups.values():
+        if len(grp) < 2:
+            continue
+        grp.sort(
+            key=lambda x: (
+                1 if "US" in (x.get("markets") or []) else 0,
+                1 if "EU" in (x.get("markets") or []) else 0,
+                len(x.get("md_ua") or ""),
+            ),
+            reverse=True,
+        )
+        keeper = grp[0]
+        merged_markets = list(keeper.get("markets") or [])
+        merged_ua = keeper.get("md_ua") or ""
+        merged_en = keeper.get("md_en") or ""
+        keeper_img = keeper.get("image_url") or ""
+        enriched = False
+
+        for dup in grp[1:]:
+            for m in dup.get("markets") or []:
+                if m not in merged_markets:
+                    merged_markets.append(m)
+                    enriched = True
+            if not keeper_img and dup.get("image_url"):
+                keeper_img = dup["image_url"]
+                enriched = True
+            merged_ua, add_ua = _merge_markdown_cards(merged_ua, dup.get("md_ua") or "")
+            merged_en, add_en = _merge_markdown_cards(merged_en, dup.get("md_en") or "")
+            if add_ua or add_en:
+                enriched = True
+
+            result["removed"].append({"slug": dup["slug"], "into": keeper["slug"], "source": "dynamic_vs_dynamic"})
+            if not dry_run:
+                delete_catalog_override(dup["slug"])
+                print(f"[catalog_sync] 🧹 Об'єднано динамічний дублікат {dup['slug']} -> {keeper['slug']}")
+
+        if enriched:
+            result["merged"].append({"slug": keeper["slug"], "source": "dynamic"})
+            if not dry_run:
+                upsert_catalog_item({
+                    **keeper,
+                    "markets": merged_markets,
+                    "image_url": keeper_img,
+                    "md_ua": merged_ua,
+                    "md_en": merged_en,
+                    "short_ua": _extract_short(merged_ua) or keeper.get("short_ua", ""),
+                    "short_en": _extract_short(merged_en) or keeper.get("short_en", ""),
+                })
+                _vectorize_markdown_to_rag(keeper["slug"], merged_ua)
+
+    return result
+
+
 def _format_markets_ua(markets: list[str]) -> str:
     labels = [_MARKET_LABELS_UA.get(m, m) for m in markets[:4]]
     suffix = f" +{len(markets) - 4}" if len(markets) > 4 else ""
@@ -659,10 +1157,12 @@ def format_sync_report_html(report: dict) -> str:
     restored = report.get("restored", [])
     archived = report.get("archived", [])
     translated = report.get("translated", [])
+    deduped = report.get("deduped") or {}
+    dedup_removed = deduped.get("removed", []) if isinstance(deduped, dict) else []
 
     lines = ["🌿 <b>Оновлення асортименту doTERRA</b>"]
 
-    if not added and not restored and not archived and not translated:
+    if not added and not restored and not archived and not translated and not dedup_removed:
         lines.append("\nУсе актуально — нових змін на ринках doTERRA поки немає ✨")
         return "\n".join(lines)
 
@@ -698,6 +1198,9 @@ def format_sync_report_html(report: dict) -> str:
 
     if translated:
         lines.append(f"\n🌐 <b>Автоматично перекладено на укр. та англ.:</b> {len(translated)} поз.")
+
+    if dedup_removed:
+        lines.append(f"\n🧹 <b>Прибрано дублікатів (інформацію об'єднано):</b> {len(dedup_removed)} поз.")
 
     lines.append("\nУсі оновлення вже автоматично додані в Mini App та базу знань Ароми 💛")
     return "\n".join(lines)

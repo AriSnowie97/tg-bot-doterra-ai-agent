@@ -14,6 +14,8 @@
 👑 Ultra-moisturizing lip balm with a winter vanilla scent
 👑 Protects against dryness during cold weather or dry air
 👑 Glides effortlessly onto lips, leaving a feeling of comfort
+👑 Rich, comforting winter lip balm from dōTERRA's seasonal **Vanilla Dream** collection (Holiday 2026).
+👑 Formulated with nourishing botanical butters and CPTG® essential oils to keep lips soft and protected in cold weather.
 
 ## Composition & Key Ingredients
 
@@ -27,6 +29,7 @@
 ## Directions for Use
 
 🔹 Apply to lips throughout the day as needed
+- Apply generously to lips as needed throughout the day.
 
 ## Compatibility with Other doTERRA Products
 
@@ -39,5 +42,10 @@
 ## Cautions
 
 > ⚠️ Possible skin sensitivity. Keep out of reach of children. If you are pregnant, nursing, or under a doctor's care, consult your physician. Avoid contact with eyes, inner ears, and sensitive areas.
+
+## Key Benefits
+
+- Soothes dry winter lips and locks in moisture.
+- Warm, inviting vanilla aroma ideal for everyday holiday gifting.
 
 #seasonalcollection #seasonal #doterra

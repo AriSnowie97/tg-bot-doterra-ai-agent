@@ -322,6 +322,33 @@ def record_missing_streak(slug: str, streak: int, archive: bool) -> bool:
                 pass
 
 
+def delete_catalog_override(slug: str) -> bool:
+    """Видаляє дублікат із `catalog_overrides` та прибирає його чанки з `knowledge_chunks`."""
+    if not _has_db_config():
+        return False
+    conn = None
+    try:
+        conn = _get_conn()
+        with conn.cursor() as cur:
+            cur.execute("DELETE FROM catalog_overrides WHERE slug = %s", (slug,))
+            try:
+                cur.execute("DELETE FROM knowledge_chunks WHERE product_slug = %s", (slug,))
+            except Exception:
+                pass
+        conn.commit()
+        invalidate_overrides_cache()
+        return True
+    except Exception as e:
+        print(f"[catalog_sync.store] delete_catalog_override({slug}) error: {redact(e)}")
+        return False
+    finally:
+        if conn is not None:
+            try:
+                conn.close()
+            except Exception:
+                pass
+
+
 def log_sync_run(
     markets_checked: int,
     markets_healthy: int,

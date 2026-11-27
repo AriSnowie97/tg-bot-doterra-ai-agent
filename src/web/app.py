@@ -201,7 +201,7 @@ STATIC_HOLIDAY_2026_MARKETS: dict[str, list[str]] = {
     "mini-stick-trio": ["US"],
     "red-lumist-diffuser-holiday-joy-set": ["US"],
     "pink-sand-lip-oil": ["US"],
-    "vanilla-dream-lip-balm": ["US"],
+    "vanilla-dream-restorative-lip-balm": ["US"],
     "vanilla-dream-restorative-hand-cream": ["US", "EU"],
     "holiday-joy": ["US", "EU"],
     "holiday-peace": ["US", "EU"],
@@ -536,11 +536,20 @@ def _collect_articles(lang: str, base_url: str) -> list[dict]:
     if not CONTENT_DIR.exists():
         return []
 
-    from src.catalog_sync.service import _canonical_alias
+    from src.catalog_sync.service import (
+        _canonical_alias,
+        _clean_product_title,
+        _compact_alias,
+        _CJK_RE,
+        _extract_h1_title,
+        _normalize_title_key,
+    )
 
     articles: list[dict] = []
     seen_slugs: set[str] = set()
     seen_aliases: set[str] = set()
+    seen_compact: set[str] = set()
+    seen_titles: set[str] = set()
     active_overrides, archived_slugs = get_catalog_overrides()
     override_by_slug = {ov["slug"]: ov for ov in active_overrides}
 
@@ -562,8 +571,13 @@ def _collect_articles(lang: str, base_url: str) -> list[dict]:
                 seen_slugs.add(item_slug)
                 if dir_name == "products":
                     seen_aliases.add(_canonical_alias(item_slug))
+                    seen_compact.add(_compact_alias(item_slug))
 
                 meta = _get_article_metadata(lang, md_path, base_url, dir_name)
+                if dir_name == "products":
+                    tk = _normalize_title_key(meta.get("title", ""))
+                    if tk and len(tk) >= 5:
+                        seen_titles.add(tk)
                 ov = override_by_slug.get(item_slug)
                 if ov:
                     ov_type = ov.get("change_type")
@@ -586,16 +600,27 @@ def _collect_articles(lang: str, base_url: str) -> list[dict]:
     # Додаємо динамічні новинки та повернення з PostgreSQL (catalog_overrides)
     for ov in active_overrides:
         ov_slug = ov["slug"]
+        raw_title = (ov.get("title_en") or ov.get("title_ua") or ov_slug) if lang == "en" else (ov.get("title_ua") or ov.get("title_en") or ov_slug)
+        md_for_lang = (ov.get("md_en") or "") if lang == "en" else (ov.get("md_ua") or "")
+        h1_title = _extract_h1_title(md_for_lang, raw_title)
+        title = h1_title if (_CJK_RE.search(raw_title) or "|" in raw_title) and not _CJK_RE.search(h1_title) else _clean_product_title(raw_title)
+        ov_tk = _normalize_title_key(title)
+        ov_tk_en = _normalize_title_key(ov.get("title_en") or "")
         if (
             ov_slug in seen_slugs
             or _canonical_alias(ov_slug) in seen_aliases
+            or _compact_alias(ov_slug) in seen_compact
+            or (ov_tk and ov_tk in seen_titles)
+            or (ov_tk_en and ov_tk_en in seen_titles)
             or ov_slug in HIDDEN_ARTICLE_SLUGS
             or not (ov.get("md_ua") or ov.get("md_en"))
         ):
             continue
         seen_slugs.add(ov_slug)
         seen_aliases.add(_canonical_alias(ov_slug))
-        title = (ov.get("title_en") or ov.get("title_ua") or ov_slug) if lang == "en" else (ov.get("title_ua") or ov.get("title_en") or ov_slug)
+        seen_compact.add(_compact_alias(ov_slug))
+        if ov_tk and len(ov_tk) >= 5:
+            seen_titles.add(ov_tk)
         short = (ov.get("short_en") or ov.get("short_ua") or "") if lang == "en" else (ov.get("short_ua") or ov.get("short_en") or "")
         tag = (ov.get("category_en") or "Essential Oils") if lang == "en" else (ov.get("category_ua") or "Ефірні олії")
         ov_type = ov.get("change_type") if ov.get("change_type") in ("new", "holiday", "returned") else "new"
@@ -607,12 +632,6 @@ def _collect_articles(lang: str, base_url: str) -> list[dict]:
             if "-za-en-web." in ov_image or "pool=wave0" in ov_image:
                 # Старі регіональні CDN-фото (ZA / wave0) віддають 404 — не передаємо битий URL на фронтенд
                 ov_image = ""
-        # Чистимо технічні хвости сайту в заголовку та за можливості беремо перекладений H1
-        from src.catalog_sync.service import _clean_product_title, _extract_h1_title, _CJK_RE
-        raw_title = (ov.get("title_en") or ov.get("title_ua") or ov_slug) if lang == "en" else (ov.get("title_ua") or ov.get("title_en") or ov_slug)
-        md_for_lang = (ov.get("md_en") or "") if lang == "en" else (ov.get("md_ua") or "")
-        h1_title = _extract_h1_title(md_for_lang, raw_title)
-        title = h1_title if (_CJK_RE.search(raw_title) or "|" in raw_title) and not _CJK_RE.search(h1_title) else _clean_product_title(raw_title)
         articles.append({
             "slug": ov_slug,
             "title": title,

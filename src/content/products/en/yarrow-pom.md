@@ -14,6 +14,8 @@
 👑 A unique combination of yarrow essential oil and pomegranate seed oil
 👑 A comprehensive approach to health from the inside out
 👑 Vegan-friendly formula
+👑 Activates skin-protecting proteins to maintain a youthful appearance
+👑 Suitable for topical and internal use
 
 ## Composition and Key Ingredients
 
@@ -25,6 +27,7 @@
 🔹 Support for a youthful skin appearance
 🔹 Support for metabolic function
 🔹 Support for cellular, immune, and nervous systems
+🔹 Support for metabolic, cellular, immune, and nervous systems
 
 ## Directions for Use
 
@@ -34,10 +37,12 @@
 ## Compatibility with Other doTERRA Products
 
 🔹 Yarrow|Pom Active Botanical Nutritive Duo, Body Renewal Serum, Cellular Beauty Complex — the entire Yarrow|Pom line
+🔹 Yarrow|Pom Body Renewal Serum, Cellular Beauty Complex, Revitalizing Eye Mask — the entire Yarrow|Pom line
 
 ## Interesting Facts
 
 👑 doTERRA tests yarrow for the absence of thujone — a substance toxic to the nervous system found in some analogues
+👑 doTERRA tests yarrow for the absence of thujone — a substance toxic to the nervous system found in some analogs
 
 ## Cautions
 
@@ -50,4 +55,4 @@
 
 *Sources: 'Aromalogy' (S. Mirgorodska), 'Modern Essentials'.*
 
-#essentialoils #singleoils #doterra
+#essentialoils #singleoils #doterra #care #skincare

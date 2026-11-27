@@ -31,6 +31,8 @@
 🔹 Stronger — to support children's immunity
 🔹 Calmer — for peaceful falling asleep in the evening
 🔹 Tamer — for stomach comfort and motion sickness during travel
+🔹 Comprehensive care for children's emotional and physical well-being
+🔹 Convenient roll-on format for daily use by children
 
 ## Directions for Use
 
@@ -42,12 +44,14 @@
 🔹 Tamer — apply to the abdomen for stomach discomfort or motion sickness during travel
 🔹 Aromatic method: each blend can be diffused in a child's bedroom or classroom
 🔹 Internal method: not recommended for internal consumption — the blends are intended exclusively for aromatic and topical application
+🔹 Apply the selected blend to the desired area of the child's skin — requires no additional dilution
 
 ## Compatibility with Other doTERRA Products
 
 🔹 Children's bedroom in the evening: 2 drops Calmer, 1 drop Lavender
 🔹 Morning before school: 2 drops Thinker, 1 drop Wild Orange
 🔹 Soothing after an active day: 2 drops Rescuer
+🔹 Each of the 7 blends is also sold separately
 
 ## Interesting Facts
 
@@ -56,6 +60,7 @@
 👑 Tamer is the newest blend in the line, added as a gentler alternative to adult DigestZen specifically for children
 👑 Zdravetz (in Rescuer) is a rare Bulgarian plant whose name translates to "health"
 👑 Each blend was formulated by a separate team of doTERRA perfumers and scientists specifically for children's needs
+👑 All blends are specially formulated considering children's skin sensitivity and needs
 
 ## Cautions
 
@@ -84,4 +89,21 @@ Promotes:
 **More about application:**
 The Kids Collection is designed so that parents can confidently care for their children using essential oils without worrying about self-diluting or correct proportions. Each blend addresses a specific, clear need for parents — from physical fatigue to emotional support and focus. The roller bottle format makes the line convenient for school, kindergarten, or travel.
 
-#video #roller #kids #kidscollection
+## Short Description
+
+👑 Ready-to-use essential oil "toolkit" designed specifically for children
+👑 Formulated to be gentle on delicate children's skin
+👑 Covers key kids' needs — from sleep to digestion
+
+## Ingredients and Key Components
+
+▫️ Rescuer — soothing blend for skin
+▫️ Steady — calming blend for emotions
+▫️ Brave — confidence blend
+▫️ Stronger — immune-boosting blend
+▫️ Thinker — blend for concentration
+▫️ Calmer — blend for restful sleep
+▫️ Tamer — blend for digestive comfort
+▫️ All blends are 10 mL roll-ons in Fractionated Coconut Oil
+
+#video #roller #kids #kidscollection #kits #doterra

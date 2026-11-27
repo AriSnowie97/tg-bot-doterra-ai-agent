@@ -29,6 +29,7 @@
 🔹 Tear-free: clinically tested formula that does not irritate eyes
 🔹 Bedtime soothing: lavender and chamomile aroma helps create a calm atmosphere
 🔹 Suitable for hair and body — a versatile bath product
+🔹 Bedtime calming: the scent of lavender and chamomile helps create a peaceful atmosphere
 
 ## Directions for Use
 
@@ -36,17 +37,22 @@
 🔹 Lather on baby's hair and body
 🔹 Rinse thoroughly with water
 🔹 Suitable for regular (every bath) use
+🔹 Pump several times into hand or washcloth
 
 ## Compatibility with Other doTERRA Products
 
 🔹 doTERRA baby Lotion — the next step after bathing for additional skin nourishment
 🔹 doTERRA baby Diaper Rash Cream — care for skin in the diaper area
+🔹 doTERRA baby Lotion — the next step after bathing for extra skin nourishment
+🔹 doTERRA baby Diaper Rash Cream — diaper area skin care
 
 ## Fun Facts
 
 👑 Formula is free of parabens, phthalates, propylene glycol, artificial colors, and talc
 👑 Muyao shea butter originates from East Africa and is traditionally used for infant skin care
 👑 The aroma of vanilla, lavender, and chamomile is consistent across all three products in the doTERRA baby line — for a holistic experience
+👑 The formula is free of parabens, phthalates, propylene glycol, artificial dyes, and talc
+👑 The vanilla, lavender, and chamomile scent is consistent across all three products in the doTERRA baby line — for a cohesive experience
 
 ## Cautions
 
@@ -56,5 +62,14 @@
 🔹 Avoid contact with baby's eyes
 
 > ⚠️ The information provided is intended solely for informational purposes. Before first use, patch test the product on a small area of the baby's skin. If any reaction occurs, consult a pediatrician.
+
+## Composition & Key Ingredients
+
+▫️ Sodium Laurylglucosides Hydroxypropylsulfonate and Caprylyl/Capryl Glucoside — mild cleansing agents
+
+## Additional Information
+
+Website category: Skin & Hair Care → doTERRA Baby
+The information provided is for informational purposes only. Before first use, test the product on a small area of the child's skin. If any reaction occurs, consult a pediatrician.
 
 #doterrababy #babycare #tearfree #doterra

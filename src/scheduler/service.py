@@ -30,7 +30,7 @@ from apscheduler.triggers.date import DateTrigger
 # Local
 from ..publisher import publish_channel_post
 from ..catalog_sync import run_catalog_sync, format_sync_report_html, get_catalog_stats
-from ..catalog_sync.service import retranslate_existing_overrides
+from ..catalog_sync.service import deduplicate_dynamic_overrides, retranslate_existing_overrides
 from ..safety import redact
 
 
@@ -41,7 +41,16 @@ def _get_report_recipients() -> list[int]:
 
 
 async def _startup_retranslate_overrides() -> None:
-    """Разовий фоновий переклад неперекладених позицій (JP/KR/MX/EN-only) у БД після старту."""
+    """Разовий фоновий автопереклад та дедуплікація динамічних позицій у БД після старту."""
+    try:
+        dedup = deduplicate_dynamic_overrides(dry_run=False)
+        if dedup.get("removed") or dedup.get("merged"):
+            print(
+                f"[scheduler] 🧹 Startup dedup: removed={len(dedup.get('removed', []))}, "
+                f"merged={len(dedup.get('merged', []))}"
+            )
+    except Exception as e:
+        print(f"[scheduler] ⚠️ Startup dedup skipped: {redact(e)}")
     try:
         translated = await retranslate_existing_overrides(limit=20)
         if translated:

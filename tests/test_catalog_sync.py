@@ -199,3 +199,92 @@ def test_parse_product_page_rejects_wave0_and_uses_working_fallback():
     assert meta is not None
     assert "pool=wave0" not in meta["image_url"]
     assert meta["image_url"] == "https://prd-evo-content.doterra.com/europe/images/products/bakingspice-5ml-large.png"
+
+
+def test_merge_markdown_cards_appends_unique_info_without_duplicates():
+    from src.catalog_sync.service import _merge_markdown_cards
+
+    primary = (
+        "![doTERRA Product](/images/products/test.jpg)\n\n"
+        "# Test Oil\n\n"
+        "## Короткий опис\n\n"
+        "👑 М'яка цитрусова олія для настрою\n\n"
+        "## Застереження\n\n"
+        "> ⚠️ Зберігати в недоступному для дітей місці.\n\n"
+        "#doterra #test\n"
+    )
+    secondary = (
+        "# Test Oil\n\n"
+        "## Короткий опис\n\n"
+        "👑 М'яка цитрусова олія для настрою\n"
+        "👑 Додаткова корисна властивість для дифузора\n\n"
+        "## Цікаві факти\n\n"
+        "👑 Виготовлено методом холодного пресування\n\n"
+        "## Застереження\n\n"
+        "> ⚠️ Інший стандартний текст застереження.\n\n"
+        "#doterra #newtag\n"
+    )
+    merged, added = _merge_markdown_cards(primary, secondary)
+    assert added == 2
+    assert merged.count("М'яка цитрусова олія для настрою") == 1
+    assert "Додаткова корисна властивість для дифузора" in merged
+    assert "Виготовлено методом холодного пресування" in merged
+    assert "Інший стандартний текст застереження" not in merged
+    assert "#newtag" in merged
+
+
+def test_deduplicate_dynamic_overrides_removes_static_dups_and_merges_dynamic_dups():
+    from src.catalog_sync.service import deduplicate_dynamic_overrides, _compact_alias
+
+    assert _compact_alias("citrusbliss") == _compact_alias("citrus-bliss")
+    assert _compact_alias("air-repair") == _compact_alias("air-x-air-blend")
+    assert _compact_alias("deep-blue-stick") == _compact_alias("deep-blue-stick-copaiba")
+
+    fake_overrides = [
+        {
+            "slug": "citrusbliss",
+            "status": "active",
+            "title_ua": "Citrus Bliss",
+            "title_en": "Citrus Bliss",
+            "md_ua": "# Citrus Bliss\n\n## Короткий опис\n\n👑 Test",
+            "md_en": "# Citrus Bliss\n\n## Short Description\n\n👑 Test",
+            "markets": ["MX"],
+        },
+        {
+            "slug": "brand-new-oil",
+            "status": "active",
+            "title_ua": "Brand New Oil",
+            "title_en": "Brand New Oil",
+            "md_ua": "# Brand New Oil\n\n## Короткий опис\n\n👑 Опис США",
+            "md_en": "# Brand New Oil\n\n## Short Description\n\n👑 US desc",
+            "markets": ["US"],
+            "image_url": "https://media.doterra.com/us/en/test.jpg",
+        },
+        {
+            "slug": "brand-new-oil-eu",
+            "status": "active",
+            "title_ua": "Brand New Oil",
+            "title_en": "Brand New Oil",
+            "md_ua": "# Brand New Oil\n\n## Короткий опис\n\n👑 Унікальний факт з Європи",
+            "md_en": "# Brand New Oil\n\n## Short Description\n\n👑 Unique EU fact",
+            "markets": ["EU"],
+            "image_url": "",
+        },
+    ]
+    deleted = []
+    upserted = []
+    with patch("src.catalog_sync.store.get_catalog_overrides", return_value=(fake_overrides, set())), \
+         patch("src.catalog_sync.service._get_static_product_slugs", return_value={"citrus-bliss": MagicMock(read_text=lambda encoding="utf-8": "# Citrus Bliss")}), \
+         patch("src.catalog_sync.service.delete_catalog_override", side_effect=lambda s: deleted.append(s) or True), \
+         patch("src.catalog_sync.service.upsert_catalog_item", side_effect=lambda x: upserted.append(x) or True), \
+         patch("src.catalog_sync.service._vectorize_markdown_to_rag"):
+        res = deduplicate_dynamic_overrides(dry_run=False)
+
+    assert "citrusbliss" in deleted
+    assert "brand-new-oil-eu" in deleted
+    assert len(upserted) == 1
+    assert upserted[0]["slug"] == "brand-new-oil"
+    assert set(upserted[0]["markets"]) == {"US", "EU"}
+    assert "Унікальний факт з Європи" in upserted[0]["md_ua"]
+    assert len(res["removed"]) == 2
+    assert len(res["merged"]) == 1

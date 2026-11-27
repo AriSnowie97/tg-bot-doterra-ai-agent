@@ -27,23 +27,29 @@
 🔹 Scalp health: massaging properties of oils promote scalp rejuvenation
 🔹 Split end protection: reduces the appearance of split ends
 🔹 Lightweight texture: does not weigh down hair or leave a greasy look
+🔹 Shine and softness: instantly improves hair appearance, adds radiance. Scalp health: massaging properties of oils promote scalp renewal. Tip protection: reduces the appearance of split ends. Lightweight texture: does not weigh hair down or leave a greasy look
 
 ## Directions for Use
 
 🔹 Apply a few drops to clean, damp hair, distributing over the scalp
 🔹 Gently massage with fingertips
 🔹 For smooth hair, apply a small amount along the length, focusing on the ends, and dry as usual
+🔹 Apply a few drops to clean, damp hair, distributing across the scalp. Massage gently with fingertips
+🔹 For smooth hair, apply a small amount along the length, paying attention to the ends, and blow-dry as usual
 
 ## Compatibility with Other doTERRA Products
 
 🔹 Part of the Salon Essentials line (shampoo, conditioner, styling products)
 🔹 Can be combined with scalp care products based on Peppermint or Rosemary
+🔹 Can be combined with scalp products based on Peppermint or Rosemary
 
 ## Interesting Facts
 
 👑 Includes eight different essential oils specially selected for hair and scalp
 👑 Rosemary and Peppermint are traditionally used for a stimulating scalp massage
 👑 The formula is designed to provide long-lasting hydration without making hair greasy
+👑 Formulated with eight different essential oils selected specifically for hair and scalp
+👑 Rosemary and Peppermint are traditionally used for stimulating scalp massage. The formula is designed to provide long-lasting hydration without a greasy feel
 
 ## Cautions
 
@@ -53,5 +59,8 @@
 
 🔹 For external use only. If scalp irritation occurs, discontinue use.
 🔹 The information provided is intended for informational purposes only. Patch test on a small area of skin before use. If you have a history of allergic reactions, consult a dermatologist before use.
+- **Website Category:** Skin & Hair Care → dōTERRA Hair Care
+- **Precautions:** For external use only. Avoid contact with eyes. Discontinue use if scalp irritation occurs.
+- The information provided is strictly for educational purposes. Test the product on a small patch of skin prior to use. If you have a history of allergic reactions, consult a dermatologist before use.
 
 #haircare #serum #salonessentials #doterra

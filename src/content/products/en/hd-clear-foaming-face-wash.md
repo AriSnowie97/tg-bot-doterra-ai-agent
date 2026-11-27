@@ -14,6 +14,7 @@
 👑 Formula with five essential oils (Tea Tree, Eucalyptus, Geranium, Litsea, Ho Wood) for skin cleansing
 👑 Foaming cleansing formula for problem skin with licorice and white willow bark extracts
 👑 Suitable for skin of all ages prone to breakouts
+👑 Foaming cleansing formula for problem skin with licorice and white willow extracts
 
 ## Ingredients and Key Ingredients
 
@@ -28,6 +29,7 @@
 🔹 Sebum control: licorice regulates excessive skin oiliness
 🔹 Cell renewal: white willow promotes smoothness and an even tone
 🔹 Soothing: amino acids and algae extract relieve redness and irritation
+🔹 Problem skin: helps cope with breakouts and maintain clean skin
 
 ## Directions for Use
 
@@ -35,17 +37,24 @@
 🔹 Apply to damp face and neck, massaging in circular motions upwards
 🔹 Rinse thoroughly with water and pat dry with a towel
 🔹 Use morning and evening, followed by HD Clear Topical Blend and a moisturizer
+🔹 Pump the foam dispenser twice into the palm of your hand
+🔹 Apply to damp skin of the face and neck, massaging in upward circular motions
+🔹 Use morning and evening, followed by HD Clear Topical Blend and moisturizer
 
 ## Compatibility with other doTERRA products
 
 🔹 HD Clear Topical Blend — a spot treatment product to apply after cleansing
 🔹 HD Clear Facial Lotion — the final step of the system for problem skin
+🔹 HD Clear Topical Blend — spot treatment for application after cleansing
+🔹 HD Clear Facial Lotion — final step of the system for problem skin
 
 ## Interesting Facts
 
 👑 The five essential oils in the formula are combined specifically for their cleansing properties for problem skin
 👑 A specialized blend of phytolipids (black cumin, chaulmoogra, magnolia, manuka) helps reduce breakouts
 👑 The formula is specifically designed for skin prone to imperfections at any age
+👑 A specialized phytolipid blend (black cumin, chaulmoogra, magnolia, manuka) helps reduce breakouts
+👑 The formula is designed specifically for skin prone to imperfections at any age
 
 ## Cautions
 
@@ -55,5 +64,8 @@
 
 🔹 Additional precautions: for external use only. Avoid direct contact with eyes. Discontinue use if irritation occurs.
 🔹 The provided information is intended for educational purposes only. Test the product on a small area of skin before use. If you have a history of allergic reactions, consult a dermatologist before use.
+- **Website Category:** Skin & Hair Care → HD Clear Skin Care
+- **Additional Cautions:** For external use only. Avoid direct contact with eyes. Discontinue use if irritation occurs.
+- The information provided is for informational purposes only. Patch test the product on a small area of skin before use. If you have a history of allergic reactions, consult a dermatologist before use.
 
 #hdclear #problemskin #cleansingfoam #doterra

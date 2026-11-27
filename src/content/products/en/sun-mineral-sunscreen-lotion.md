@@ -28,12 +28,15 @@
 🔹 Skin nourishment: vitamin E and plant oils support the skin's barrier function
 🔹 Suitable for sensitive skin and the whole family
 🔹 Leaves no white cast upon application
+🔹 Does not leave a white cast upon application
 
 ## Directions for Use
 
 🔹 Apply an even layer to exposed skin areas before sun exposure
 🔹 Reapply every 2 hours or immediately after swimming or heavy sweating
 🔹 Suitable for face and body
+🔹 Apply evenly to exposed areas of skin before sun exposure
+🔹 Reapply every 2 hours or immediately after swimming or excessive sweating
 
 ## Compatibility with other doTERRA products
 
@@ -45,6 +48,8 @@
 👑 Zinc oxide is a mineral (physical) UV filter that reflects sun rays, unlike chemical filters
 👑 The formula does not contain oxybenzone — an ingredient that causes concern due to its impact on marine ecosystems (reef-safe product)
 👑 Contains frankincense — one of the most famous oils in the doTERRA portfolio
+👑 The formula does not contain oxybenzone — a ingredient that causes concern due to its impact on marine ecosystems (reef-safe product)
+👑 Contains frankincense — one of the most famous essential oils in the doTERRA portfolio
 
 ## Cautions
 
@@ -56,5 +61,12 @@
 🔹 If irritation occurs, discontinue use
 🔹 Patch test on a small area of skin before use. If you have a history of allergic reactions, consult a dermatologist before use
 > ⚠️ The information provided is for informational purposes only.
+**Website Category:** Skin & Hair Care → Sun Care
+- Discontinue use if irritation occurs
+- The information provided is intended solely for educational purposes. Test the product on a small area of skin before use. If you have a history of allergic reactions, consult a dermatologist before use.
+
+## Overview
+
+👑 Mineral sunscreen lotion SPF 30 based on zinc oxide (free of chemical UV filters)
 
 #skincare #sunprotection #mineralSPF #doterra

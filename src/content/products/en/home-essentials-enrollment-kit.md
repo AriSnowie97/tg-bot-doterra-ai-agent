@@ -14,6 +14,7 @@
 👑 doTERRA's most popular starter kit — the foundation for getting started with essential oils
 👑 Contains 10 essential oils and blends plus a Petal Diffuser
 👑 Includes free wholesale membership (Wellness Advocate) upon enrollment
+👑 doTERRA's most popular starter kit — the foundation for getting to know essential oils
 
 ## Contents & Key Ingredients
 
@@ -28,23 +29,31 @@
 🔹 Savings: the kit is less expensive than purchasing each product individually
 🔹 Versatility: covers respiratory, digestive, immune support, and household applications
 🔹 Foundation for further learning: recommended kit for new doTERRA customers and partners
+🔹 First introduction: the kit contains the most commonly used oils for basic household needs
+🔹 Savings: the kit is more cost-effective than buying each product separately
 
 ## Directions for Use
 
 🔹 Each oil and blend is used according to its individual profile (aromatic, topical, or internal — depending on the product)
 🔹 The Petal Diffuser allows you to immediately start aromatherapy application of the oils in the kit
 🔹 It is recommended to start by exploring the properties of each oil individually, gradually creating your own recipes
+🔹 Each oil and blend is used according to its own profile (aromatically, topically, or internally — depending on the product)
+🔹 It is recommended to start by exploring the properties of each oil individually, gradually creating your own blends and recipes
 
 ## Compatibility with Other doTERRA Products
 
 🔹 A natural continuation — Lifelong Vitality Pack for regular nutritional support
 🔹 Can be complemented with roller bottles and a carrier oil to create your own blends
+🔹 A natural extension — Lifelong Vitality Pack for regular nutritional support
+🔹 Can be supplemented with roller bottles and a carrier oil to create your own custom blends
 
 ## Interesting Facts
 
 👑 The kit is traditionally considered the most popular starter kit among new doTERRA customers
 👑 Enrollment with the kit usually includes a one-time fee for wholesale membership, which can be waived under certain order conditions
 👑 Kit contents may vary slightly depending on the region and current promotions
+👑 Enrollment with a kit usually includes a wholesale membership fee, which can be waived under certain ordering conditions
+👑 The contents of the kit may vary slightly depending on the region and current promotions
 
 ## Cautions
 
@@ -55,5 +64,7 @@
 🔹 Each product in the kit has its own recommendations and cautions — carefully read the label of each product.
 🔹 Pregnant or nursing women, and individuals with chronic medical conditions should consult a doctor before using individual oils.
 🔹 The information provided is intended solely for educational purposes and does not constitute medical advice.
+- **Additional category on the website:** Kits & Collections → Starter Kits
+- **Note:** The information provided is strictly for educational purposes and does not constitute medical advice. Consult a physician before use.
 
 #starterkit #homeessentials #forbeginners #doterra
